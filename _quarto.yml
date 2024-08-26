@@ -3,22 +3,64 @@ project:
   output-dir: docs
 
 book:
-  title: "SDS_trans"
-  author: "Norah Jones"
-  date: "2024. 8. 26."
+  title: "공간데이터사이언스 개론"
+  subtitle: "R의 활용"
+  author: 
+    - name: 이상일
+      orcid: 0000-0002-5342-9930
+      email: si_lee@snu.ac.kr
+      url: https://sangillee.snu.ac.kr/
+      affiliations:
+        - name: 서울대학교 지리교육과
+          url: https://geoedu.snu.ac.kr/
+          city: Seoul
+          country: South Korea
+  date: last-modified
+  search: true
+  bread-crumbs: false
+  back-to-top-navigation: true
+  repo-url: https://github.com/sangillee66/book_sds_trans
+  repo-actions: [issue]
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    - part: part_1.qmd
+      chapters: 
+        - 01.qmd
+        - 02.qmd
+        - 03.qmd
+        - 04.qmd
+        - 05.qmd
+        - 06.qmd
+    - part: part_2.qmd
+      chapters: 
+        - 07.qmd
+        - 08.qmd
+        - 09.qmd
+    - part: part_3.qmd
+      chapters: 
+        - 10.qmd
+        - 11.qmd
+        - 12.qmd
+        - 13.qmd
+        - 14.qmd
+        - 15.qmd
+        - 16.qmd
+        - 17.qmd
+  appendices:
+    - A.qmd
+    - B.qmd
 
 bibliography: references.bib
 
+lightbox: true
+
+execute:
+  freeze: auto
+
 format:
   html:
-    theme: cosmo
-  pdf:
-    documentclass: scrreprt
+    theme: [cosmo, custom.scss]
+    css: styles.css
+    toc: true
 
 editor: visual
-
