@@ -1,5 +1,4 @@
 ---
-title: "Spherical Geometries"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 구체 지오메트리  {#sec-구체지오메트리}

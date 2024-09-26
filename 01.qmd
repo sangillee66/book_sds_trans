@@ -1,5 +1,4 @@
 ---
-title: "Getting Started"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,24 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 시작하기 {#sec-시작하기}
+
+이 장에서는 공간데이터와 시공간데이터를 다루기 위한 관련 개념들에 대해 소개한다. 이 개념들은 이후의 장들에서 좀 더 상세하게 다루어질 것이다. 이 외에도 모든 공간데이터사이언스 언어 실행의 토대를 형성하는 몇 가지 오픈소스 테크놀로지에 대해 소개한다.
+
+## 첫 번째 지도
+
+공간데이터를 표현하는 전형적인 방법은 지도를 그리는 것이다. @fig-first-map 에는 단순한 지도가 나타나 있다.
+
+```{r}
+#| echo: false
+#| label: fig-first-map
+library(tidyverse)
+library(sf)
+system.file("gpkg/nc.gpkg", package="sf") |>
+    read_sf() -> nc
+nc.32119 <- st_transform(nc, 'EPSG:32119')
+nc.32119 |>
+    select(BIR74) |>
+    plot(graticule = TRUE, axes = TRUE)
+```

@@ -1,5 +1,4 @@
 ---
-title: "Attributes and Support"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 속성과 서포트  {#sec-속성과서포트}

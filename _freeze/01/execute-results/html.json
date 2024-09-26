@@ -1,0 +1,17 @@
+{
+  "hash": "d17b579c306f4f63f28825f1e447d2a0",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ndate-modified: last-modified\nnumber-sections: true\nformat: \n  html: \n    toc: true\ncode-link: true\ncode-copy: true\nexecute: \n  warning: false\n  error: false\n  freeze: auto\neditor: visual\n---\n\n\n# 시작하기 {#sec-시작하기}\n\n이 장에서는 공간데이터와 시공간데이터를 다루기 위한 관련 개념들에 대해 소개한다. 이 개념들은 이후의 장들에서 좀 더 상세하게 다루어질 것이다. 이 외에도 모든 공간데이터사이언스 언어 실행의 토대를 형성하는 몇 가지 오픈소스 테크놀로지에 대해 소개한다.\n\n## 첫 번째 지도\n\n공간데이터를 표현하는 전형적인 방법은 지도를 그리는 것이다. @fig-first-map 에는 단순한 지도가 나타나 있다.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](01_files/figure-html/fig-first-map-1.png){#fig-first-map width=672}\n:::\n:::\n",
+    "supporting": [
+      "01_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,5 +1,4 @@
 ---
-title: "Coordinates"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 좌표계  {#sec-좌표계}

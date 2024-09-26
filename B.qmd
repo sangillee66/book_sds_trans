@@ -1,5 +1,4 @@
 ---
-title: "R Basics"
 date-modified: last-modified
 number-sections: false
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# R 기초  {#sec-R기초}

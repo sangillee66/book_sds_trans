@@ -1,5 +1,4 @@
 ---
-title: "Geometries"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 지오메트리  {#sec-지오메트리}
