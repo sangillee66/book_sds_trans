@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 포인트패턴 분석  {#sec-point}
+# 포인트패턴 분석 {#sec-point}

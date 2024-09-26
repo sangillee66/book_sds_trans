@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 대용량 데이터와 클라우드 네이티브  {#sec-대용량}
+# 대용량 데이터와 클라우드 네이티브 {#sec-large}

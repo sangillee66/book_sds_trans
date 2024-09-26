@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-시작하기" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-start" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -281,7 +281,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-시작하기" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-start" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></h1>
 </div>
 
 
@@ -301,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><p>이 장에서는 공간데이터와 시공간데이터를 다루기 위한 관련 개념들에 대해 소개한다. 이 개념들은 이후의 장들에서 좀 더 상세하게 다루어질 것이다. 이 외에도 모든 공간데이터사이언스 언어 실행의 토대를 형성하는 몇 가지 오픈소스 테크놀로지에 대해 소개한다.</p>
+</header><p>이 장에서는 공간데이터와 시공간데이터를 다루기 위한 관련 개념들에 대해 소개한다. 이 개념들은 이후의 장들에서 좀 더 상세하게 다루어질 것이다. 이 외에도 모든 공간데이터사이언스 언어 실행의 토대가 되는 몇 가지 오픈소스 테크놀로지에 대해 소개한다.</p>
 <section id="첫-번째-지도" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="첫-번째-지도">
 <span class="header-section-number">1.1</span> 첫 번째 지도</h2>
 <p>공간데이터를 표현하는 전형적인 방법은 지도를 그리는 것이다. <a href="#fig-first-map" class="quarto-xref">그림&nbsp;<span>1.1</span></a> 에는 단순한 지도가 나타나 있다.</p>
@@ -309,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div id="fig-first-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-first-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="01_files/figure-html/fig-first-map-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="01_files/figure-html/fig-first-map-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="01_files/figure-html/fig-first-map-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="01_files/figure-html/fig-first-map-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-first-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;1.1: 첫 번째 지도: 미국 노스캐롤라이나의 카운티별 출생아수, 1974~78년
@@ -324,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>경위선망(그래티큘)이 지도의 배경에 나타나 있다.</p></li>
 <li><p>축의 눈금은 특정한 경도값과 위도값이다.</p></li>
 </ul>
-<p><em>폴리곤</em>은 특정한 형태의 <em>지오메트리</em>이다. 공간적 지오메트리(포인트, 라인, 폴리곤, 픽셀)에 대해서는 <a href="#sec-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC" class="quarto-xref"><span>장 3</span></a> 에서 자세히 다룬다. 폴리곤은 여러 개의 포인트들로 구성되어 있고, 포인트들은 선분으로 서로 이어져 있다. 공간데이터의 포인트 위치가 어떻게 표현되고 측정되는지에 대해서는 <a href="#sec-%EC%A2%8C%ED%91%9C%EA%B3%84" class="quarto-xref"><span>장 2</span></a> 에서 다룬다. <a href="#fig-first-map" class="quarto-xref">그림&nbsp;<span>1.1</span></a> 에서 볼 수 있는 것처럼, 모든 경위선이 직선으로 표현되는 것이 아니다. 이것은 지도에 특정한 형태의 투영법이 적용되어 있음을 의미한다. 지도투영에 대해서는 <a href="#sec-%EC%A2%8C%ED%91%9C%EA%B3%84" class="quarto-xref"><span>장 2</span></a> 와 <a href="#sec-%EB%AA%A8%EB%93%A0%EC%A7%80%EB%8F%84%ED%88%AC%EC%98%81%EB%B2%95" class="quarto-xref"><span>섹션 8.1</span></a> 에서 다룬다.</p>
+<p><em>폴리곤</em>은 특정한 형태의 <em>지오메트리</em>이다. 공간적 지오메트리(포인트, 라인, 폴리곤, 픽셀)에 대해서는 <a href="03.html" class="quarto-xref"><span>장 3</span></a> 에서 자세히 다룬다. 폴리곤은 여러 개의 포인트들로 구성되어 있고, 포인트들은 선분으로 서로 이어져 있다. 공간데이터의 포인트 위치가 어떻게 표현되고 측정되는지에 대해서는 <a href="02.html" class="quarto-xref"><span>장 2</span></a> 에서 다룬다. <a href="#fig-first-map" class="quarto-xref">그림&nbsp;<span>1.1</span></a> 에서 볼 수 있는 것처럼, 모든 경위선이 직선으로 표현되는 것이 아니다. 이것은 지도에 특정한 형태의 투영법이 적용되어 있음을 의미한다. 지도투영에 대해서는 <a href="02.html" class="quarto-xref"><span>장 2</span></a> 와 <a href="08.html#sec-every" class="quarto-xref"><span>섹션 8.1</span></a> 에서 다룬다.</p>
 
 
 <div class="hidden" aria-hidden="true">
@@ -728,7 +728,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

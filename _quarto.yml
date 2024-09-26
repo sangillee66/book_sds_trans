@@ -68,7 +68,7 @@ format:
     number-depth: 2
     code-link: true
     toc: true
-    # fig-title: "그림"
-    # table-title: "표"
-    # chapter-title: "장"
+    fig-title: "그림"
+    table-title: "표"
+    chapter-title: "장"
 editor: visual

@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 다변량 및 시공간 지구통계학  {#sec-지구통계학}
+# 다변량 및 시공간 지구통계학 {#sec-geostatistics}

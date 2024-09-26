@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 공간계량경제학적 모델  {#sec-계량경제학}
+# 공간계량경제학적 모델 {#sec-econometrics}

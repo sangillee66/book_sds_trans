@@ -1,5 +1,4 @@
 ---
-title: 공간데이터사이언스와 R
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,7 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 공간데이터사이언스와 R
+
+The second part of this book explains how the concepts introduced in the first part are dealt with using R. @sec-sf deals with basic handling of spatial data: reading, writing, subsetting, selecting by spatial predicates, geometry transformers like buffers or intersections, raster-vector and vector-raster conversion, handling of data cubes, spherical geometry, coordinate transformations and conversions.

@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 공간적 인터폴레이션  {#sec-인터폴레이션}
+# 공간적 인터폴레이션 {#sec-interpolation}

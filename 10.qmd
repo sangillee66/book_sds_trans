@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 공간데이터의 통계적 모델링  {#sec-통계모델링}
+# 공간데이터의 통계적 모델링 {#sec-statistical}

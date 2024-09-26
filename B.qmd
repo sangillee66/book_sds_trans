@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# R 기초 {#sec-R기초}
+# R 기초 {#sec-basics}

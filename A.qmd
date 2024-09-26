@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# R 스페셜 패키지  {#sec-패키지}
+# R 스페셜 패키지 {#sec-package}

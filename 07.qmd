@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# sf와 stars  {#sec-sf와stars}
+# sf와 stars {#sec-sf}

@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 근접성과 에어리어 데이터  {#sec-area}
+# 근접성과 에어리어 데이터 {#sec-area}

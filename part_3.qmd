@@ -1,5 +1,4 @@
 ---
-title: "공간통계분석과 공간모델링"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -14,3 +13,4 @@ execute:
 editor: visual
 ---
 
+# 공간통계분석과 공간모델링
