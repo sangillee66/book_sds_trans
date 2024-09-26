@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 속성과 서포트  {#sec-속성과서포트}
+# 속성과 서포트 {#sec-속성과서포트}

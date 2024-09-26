@@ -1,5 +1,4 @@
 ---
-title: "Older R Spatial Packages"
 date-modified: last-modified
 number-sections: false
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# R 스페셜 패키지  {#sec-패키지}

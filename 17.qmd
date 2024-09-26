@@ -1,5 +1,4 @@
 ---
-title: "Spatial Econometrics Models"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 공간계량경제학적 모델  {#sec-계량경제학}

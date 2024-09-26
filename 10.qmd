@@ -1,5 +1,4 @@
 ---
-title: "Statistical Modelling of Spatial Data"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 공간데이터의 통계적 모델링  {#sec-통계모델링}

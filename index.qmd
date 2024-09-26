@@ -1,6 +1,6 @@
 ---
 date-modified: last-modified
-number-sections: false
+number-sections: true
 format: 
   html: 
     toc: true
@@ -15,4 +15,4 @@ editor: visual
 
 # 서장 {.unnumbered}
 
-djflajfl
+데이터사이언스는 주어진 데이터를 바탕으로 질문에 대한 답을 찾고, 그 과정을 서로 소통하는 학문이다. 데이터사이언스에서의 소통은 단순히 결과를 보여주는 것에 그치지 않고, 사용된 데이터를 공유하고, 답을 도출하는 과정을 포괄적이고 재현 가능한 방식으로 제시하는 것을 포함한다. 또한 데이터사이언스는 주어진 데이터가 질문에 답하기에 충분치 않을 수 있음을, 그리고 비록 답이 도출되었다 하더라도 데터 수집 또는 표집 방식에 따라 답이 달라질 수 있음을 인정한다.

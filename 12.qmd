@@ -1,5 +1,4 @@
 ---
-title: "Spatial Interpolation"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 공간적 인터폴레이션  {#sec-인터폴레이션}

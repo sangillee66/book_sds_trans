@@ -1,5 +1,4 @@
 ---
-title: "Proximity and Areal Data"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 근접성과 에어리어 데이터  {#sec-area}

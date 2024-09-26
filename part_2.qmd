@@ -1,5 +1,5 @@
 ---
-title: "공간데이터사이언스와 R"
+title: 공간데이터사이언스와 R
 date-modified: last-modified
 number-sections: true
 format: 

@@ -1,5 +1,4 @@
 ---
-title: "Spatial Regression"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 공간적 회귀분석  {#sec-회귀분석}

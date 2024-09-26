@@ -1,5 +1,4 @@
 ---
-title: "Large Data and Cloud Native"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 대용량 데이터와 클라우드 네이티브  {#sec-대용량}

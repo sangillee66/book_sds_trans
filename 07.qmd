@@ -1,5 +1,4 @@
 ---
-title: "Introduction to sf and stars"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# sf와 stars  {#sec-sf와stars}

@@ -1,5 +1,4 @@
 ---
-title: "Multivariate and Spatiotemporal Geostatistics"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 다변량 및 시공간 지구통계학  {#sec-지구통계학}

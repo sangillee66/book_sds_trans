@@ -13,4 +13,4 @@ execute:
 editor: visual
 ---
 
-# 좌표계  {#sec-좌표계}
+# 좌표계 {#sec-좌표계}

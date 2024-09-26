@@ -1,5 +1,4 @@
 ---
-title: "Measures of Spatial Autocorrelation"
 date-modified: last-modified
 number-sections: true
 format: 
@@ -13,3 +12,5 @@ execute:
   freeze: auto
 editor: visual
 ---
+
+# 공간적 자기상관 측도  {#sec-자기상관}
