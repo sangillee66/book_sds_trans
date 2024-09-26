@@ -44,23 +44,23 @@
   {
     "objectID": "01.html",
     "href": "01.html",
-    "title": "2  시작하기",
+    "title": "1  시작하기",
     "section": "",
-    "text": "2.1 첫 번째 지도\n공간데이터를 표현하는 전형적인 방법은 지도를 그리는 것이다. Figure 2.1 에는 단순한 지도가 나타나 있다.\nFigure 2.1",
+    "text": "1.1 첫 번째 지도\n공간데이터를 표현하는 전형적인 방법은 지도를 그리는 것이다. Figure 1.1 에는 단순한 지도가 나타나 있다.\nFigure 1.1",
     "crumbs": [
       "공간데이터",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>시작하기</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>시작하기</span>"
     ]
   },
   {
     "objectID": "01.html#첫-번째-지도",
     "href": "01.html#첫-번째-지도",
-    "title": "2  시작하기",
+    "title": "1  시작하기",
     "section": "",
-    "text": "Figure 2.1:",
+    "text": "Figure 1.1:",
     "crumbs": [
       "공간데이터",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>시작하기</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>시작하기</span>"
     ]
   }
 ]
