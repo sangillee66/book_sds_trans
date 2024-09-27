@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "공간데이터사이언스 개론",
     "section": "",
-    "text": "서장\n데이터사이언스는 주어진 데이터를 바탕으로 질문에 대한 답을 찾고, 그 과정을 서로 소통하는 학문이다. 데이터사이언스에서의 소통은 단순히 결과를 보여주는 것에 그치지 않고, 사용된 데이터를 공유하고, 답을 도출하는 과정을 포괄적이고 재현 가능한 방식으로 제시하는 것을 포함한다. 또한 데이터사이언스는 주어진 데이터가 질문에 답하기에 충분치 않을 수 있음을, 그리고 비록 답이 도출되었다 하더라도 데터 수집 또는 표집 방식에 따라 답이 달라질 수 있음을 인정한다.",
+    "text": "서장\n데이터사이언스는 주어진 데이터를 바탕으로 질문에 대한 답을 찾고, 그 과정을 서로 소통하는 학문이다. 데이터사이언스에서의 소통은 단순히 결과를 보여주는 것에 그치지 않고, 사용된 데이터를 공유하고, 답을 도출하는 과정을 포괄적이고 재현 가능한 방식으로 제시하는 것을 포함한다. 또한 데이터사이언스는 주어진 데이터가 질문에 답하기에 충분치 않을 수 있음을, 그리고 비록 답이 도출되었다 하더라도 데터 수집 또는 표집 방식에 따라 답이 달라질 수 있음을 인정한다.\n이 책은 공간적 데이터의 기본 개념을 소개하고 설명한다. 포인트, 라인, 폴리곤, 래스터, 커버리지, 지오메트리 속성, 데이터 큐브, 참조계와 같은 기초 개념에서부터 속성이 지오메트리와 어떻게 연결되는지와 이것이 분석에 어떤 영향을 끼치는지 등과 관련된 보다 고차원적인 개념도 다룬다. 속성과 지오메트리의 관계를 서포트(support)라고 하는데, 서포트가 변경되면 속성의 특성도 변화한다. 어떤 데이터는 공간적 연속성에 기반해 생성되기 때문에 모든 지점에서 관찰될 수 있다. 반면, 다른 데이터는 공간적 이산성에 기반해 생성되기 때문에 특정한 구획 체계에 의거해 관찰된다. 현대 공간데이터분석에서는 이러한 구획 체계에 의거한 방법이 빈번히 사용되며, 포인트 데이터, 지구통계학적 데이터, 에어리어 데이터를 가리지 않고 폭넓게 적용되고 있다. 공간적 재현의 중요성을 뒷받침하는 것이 바로 서포트(그리고 서포트에 대한 이해)이다. 이 책은 분석에서 공간데이터를 활용하고자 하는 데이터 과학자를 대상으로 하고 있다. 어떻게 공간데이터분석을 행하는 지를 예시하기 위해 R를 사용한다. 향후에 파이썬(Python)(예: Bivand 2022a)과 줄리아(Julia)을 사용한 예시도 추가할 예정이다.\n사람들은 종종 공간데이터란 관측 개체의 경위도값이 데이터셋에 포함되어 있는 것을 의미하고, 경위도값을 여타의 변수와 마찬가지로 취급하면 된다고 생각한다. 이는 기회를 놓치고 무의미한 분석을 초래할 위험이 있다. 다음과 같은 예를 들 수 있다.\n우리는 공간데이터, 좌표참조계, 공간분석과 관련된 다양한 개념을 소개하고, 더불어 sf (Pebesma 2018, 2022a), stars (Pebesma 2022b), s2 (Dunnington, Pebesma, and Rubak 2023) and lwgeom (Pebesma 2023)와 같은 다양한 R 패키지를 소개한다. 또한 공간적 타이디버스 (Wickham et al. 2019; Wickham 2022) 확정 패키지 및 이들 패키지와 함께 사용할 수 있는 공간분석 및 시각화 패키지인 gstat (Pebesma 2004; Pebesma and Graeler 2022), spdep (Bivand 2022b), spatialreg (Bivand and Piras 2022), spatstat (Baddeley, Rubak, and Turner 2015; Baddeley, Turner, and Rubak 2022), tmap (Tennekes 2018, 2022), mapview (Appelhans et al. 2022)도 포함된다.\n데이터사이언스와 마찬가지로, 공간데이터사이언스도 특정 과학 분야의 하위 분야로 발전한 것이 아니라 공간데이터의 적용과 관련된 수많은 학문 혹은 산업 영역로부터 상향식으로 발전해 온 분야인 것으로 보인다. 학술 컨퍼런스, 심포지움, 학회, 연구 프로그램 등을 통해 공간데이터사이언스를 규정하려는 다양한 시도들이 이루어지고는 있지만, 공간데이터의 적용 영역이 너무나 다양하기 때문에 이러한 활동이 결실을 맺기는 쉽지 않아 보인다. 이 책에 “공간데이터사이언스”라는 제목을 붙이는 것은 이 분야의 경계를 획정하려는 또 다른 시도가 아니라, 연구 주제, 데이터, 소프트웨어를 활용한 연구 과정, 이 모두를 기꺼이 공유하고자 한 수 많은 분야의 수 많은 연구자들과 함께 한 지난 30~40년간의 경험을 이 분야의 발전을 위해 쓰고 싶기 때문이다. 따라서 이 책에서 다루는 주제의 선택은 우리 자신의 연구 관심 분야와 경험에 의해 어느정도 편향되어 있을 수 밖에 없다.\n개방형 연구 커뮤니티를 만드는 데 도움을 준 플랫폼으로는 ai-geostats 및 r-sig-geo 메일링 리스트, sourceforge, r-forge, GitHub, 그리고 2006년부터 매년 개최되는 OpenGeoHub 여름 학교가 있다. 데이터사이언스의 언어 장벽을 넘고자 한 수 많은 노력의 결과 현재 우리는 새롭고도 가슴뛰는 퍼스펙티브가 열리고 있음을 목도하고 있다. 이 분야에 기여하고자 하는 것은 오픈사이언스가 더 나은 과학으로 이어지며, 더 나은 과학이 보다 지속 가능한 세상에 기여할 수 있다는 믿음 때문이다.",
     "crumbs": [
       "서장"
     ]
@@ -12,11 +12,11 @@
   {
     "objectID": "part_1.html",
     "href": "part_1.html",
-    "title": "Spatial Data",
+    "title": "공간데이터",
     "section": "",
     "text": "이 첫 번째 파트에서는 공간데이터사이언스의 핵심 개념을 다룬다. 지도, 투영, 벡터와 래스터 데이터 구조, 소프트웨어, 속성과 서포트, 데이터 큐브와 같은 개념들에 대해 배울 것이다. R은 이 파트에서는 별로 중요하지 않다. 주로 텍스트 아웃풋이나 그래프 작성을 위해서만 사용될 것이다. 따라서 내용에 집중한다는 의미에서 R코드 자체를 보여주거나 설명하는 일은 없을 것이다. R은 두 번째 파트에서 집중적으로 다루어진다. 그래도 이 책의 온라인 버전(https://r-spatial.org/book/)을 통해 감춰진 R 코드를 펼쳐 볼 수 있고, 필요한 경우 클립보드에 복사하여 실행해 볼 수 있다. R 코드를 실행한 결과는 # 기호로 시작하며 코드 폰트를 사용하여 나타낸다.\n# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE\n공간데이터사이언스 문제에 답을 제시하기 위한 R 코드에 대한 보다 상세한 설명은 이 책의 두 번째 파트에서 시작한다. 부록 B — R 기초 에는 R 데이터 구조에 대한 간략한 설명이 나타나 있다. 보다 자세한 사항은 Wickham (2019) 을 참고하라.\n\n\n\n\nWickham, Hadley. 2019. Advanced R. 2nd edition. Boca Raton: Chapman; Hall/CRC.",
     "crumbs": [
-      "Spatial Data"
+      "공간데이터"
     ]
   },
   {
@@ -93,6 +93,16 @@
     "text": "The second part of this book explains how the concepts introduced in the first part are dealt with using R. 7  sf와 stars deals with basic handling of spatial data: reading, writing, subsetting, selecting by spatial predicates, geometry transformers like buffers or intersections, raster-vector and vector-raster conversion, handling of data cubes, spherical geometry, coordinate transformations and conversions.",
     "crumbs": [
       "공간데이터사이언스와 R"
+    ]
+  },
+  {
+    "objectID": "index.html#사사",
+    "href": "index.html#사사",
+    "title": "공간데이터사이언스 개론",
+    "section": "사사",
+    "text": "사사\n우리는 r-spatial 커뮤니티 전체에 감사하며, 특히 다음에 기여한 분들께 특별한 감사의 마음을 전한다.\n\nr-spatial 패키지를 개발하거나 그 개발에 기여한 분들\n트위터 #rspatial 또는 GitHub에서 디스커션에 참여한 분들\n강좌, 여름 학교, 또는 컨퍼런스에서 의견을 주거나 질문을 한 분들\n\n우리는 s2 패키지를 구현한 Dewey Dunnington, 적극적인 도움을 준 Sahil Bhandari, 6  데이터 큐브 의 그래프 제작을 도와준 Jonathan Bahlmann, 그리고 Claus Wilke와 Jakub Nowosad에게 특별한 감사의 마음을 전한다. 2021년과 2022년에 있었던 “R을 활용한 공간데이터사이언스(Spatial Data Science with R)” 강좌로부터 큰 도움을 받았다. GitHub의 이슈, 풀 리퀘스트 또는 디스커션에 적극적으로 기여한 분들께도 감사의 마음을 표한다.\n\n책 리포지터리에 기여한 분들 (Nowosad, jonathom, JaFro96, singhkpratham, liuyadong, hurielreichel, PPaccioretti, Robinlovelace, Syverpet, jonas-hurst, angela-li, ALanguillaume, florisvdh, ismailsunni, andronaco)\nsf 리포지터리에 기여한 분들 (aecoleman, agila5, andycraig, angela-li, ateucher, barryrowlingson, bbest, BenGraeler, bhaskarvk, Bisaloo, bkmgit, christophertull, chrisyeh96, cmcaine, cpsievert, daissi, dankelley, DavisVaughan, dbaston, dblodgett-usgs, dcooley, demorenoc, dpprdan, drkrynstrng, etiennebr, famuvie, fdetsch, florisvdh, gregleleu, hadley, hughjonesd, huizezhang-sherry, jeffreyhanson, jeroen, jlacko, joethorley, joheisig, JoshOBrien, jwolfson, kadyb, karldw, kendonB, khondula, KHwong12, krlmlr, lambdamoses, lbusett, lcgodoy, lionel-, loicdtx, marwahaha, MatthieuStigler, mdsumner, MichaelChirico, microly, mpadge, mtennekes, nikolai-b, noerw, Nowosad, oliverbeagley, Pakillo, paleolimbot, pat-s, PPaccioretti, prdm0, ranghetti, rCarto, renejuan, rhijmans, rhurlin, rnuske, Robinlovelace, robitalec, rubak, rundel, statnmap, thomasp85, tim-salabim, tyluRp, uribo, Valexandre, wibeasley, wittja01, yutannihilation, Zedseayou)\nstars 리포지터리에 기여한 분들(a-benini, ailich, ateucher, btupper, dblodgett-usgs, djnavarro, ErickChacon, ethanwhite, etiennebr, flahn, floriandeboissieu, gavg712, gdkrmr, jannes-m, jeroen, JoshOBrien, kadyb, kendonB, mdsumner, michaeldorman, mtennekes, Nowosad, pat-s, PPaccioretti, przell, qdread, Rekyt, rhijmans, rubak, rushgeo, statnmap, uribo, yutannihilation)\ns2 리포지토리에 기여한 분들(kylebutts, spiry34, jeroen, eddelbuettel)",
+    "crumbs": [
+      "서장"
     ]
   }
 ]
