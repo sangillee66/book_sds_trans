@@ -14,3 +14,225 @@ editor: visual
 ---
 
 # 좌표계 {#sec-coord}
+
+"데이터는 단순한 숫자가 아니라 맥락을 가진 숫자이다.": "데이터 분석에서 맥락은 의미를 부여한다."(Cobb and Moore 1997)
+
+포인트, 라인 , 폴리곤, 커버리지, 그리드와 같은 지오메트리를 이해하기 전에, 좌표계에 대해 우선적으로 검토하는 것이 유용하다. 이를 통해 좌표값이 정확히 무엇을 나타내는지에 대한 개념을 갖출 수 있다. 공간데이터에서 관측개체의 위치는 좌표값으로 주어지고, 좌표값은 좌표계에 의해 규정된다. 이를 위해 다양한 좌표계가 사용될 수 있으며, 가장 중요한 차이점은 2차원 혹은 3차원 공간 상의 좌표값이 직교하는 두 축에 의거해 결정되는지(데카르트 좌표계) 혹은 거리와 방향에 의거해 결정되는지(극 좌표계, 구체 혹은 타원체 좌표계)이다. 모든 관측치는 관측의 위치 뿐만 아니라 관측의 시간과도 결부되어 있기 때문에 시간좌표계 역시 간단히 언급될 것이다. 단위와 데이텀이 무엇인지를 배우기에 앞서 퀀티티(quantity)에 대해 간략히 검토하고자 한다.
+
+## 퀀티티, 단위, 데이텀
+
+VIM(International Vocabulary of Metrology, BIPM et al., 2012)는 콴티티에 대해 "현상, 물체 또는 물질의 속성으로, 이 속성은 숫자로 표현할 수 있는 크기와 준거를 가진다." 여기서 "준거는 측정 단위, 측정 절차, 기준 물질 또는 이러한 것들의 조합일 수 있다."라고 기술한다. 모든 데이터가 퀀티티로 구성되어 있는지에 대해 논의할 수 있지만, 적절한 데이터 처리를 위해서는 숫자(또는 기호)와 자체 뿐만 아니라 숫자가 무엇을 의미하는지, 특히 숫자가 어떤 준거에 기반하고 있는지에 대한 정보가 함께 제공되어야 한다는 점에 대해서는 논의할 필요가 없다.
+
+측정 시스템은 기본 퀀티티에 대한 기본 단위와 파생 퀀티티에 대한 파생 단위로 구성된다. 예를 들어, SI 단위계(Bureau International des Poids et Mesures 2006)는 일곱개의 기본 단위로 구성된다: 길이(미터, m), 질량(킬로그램, kg), 시간(초, s), 전류(암페어, A), 열역학적 온도(켈빈, K), 물질의 양(몰, mol), 그리고 광도(칸델라, cd). 파생 단위는 기본 단위의 정수 거듭제곱의 곱으로 구성되며, 예를 들어 속도($\text{m s}^{-1}$)나 밀도($\text{kg s}^{-1}$), 면적( $\text{m}^{2}$) 등이 있다. 특별한 경우에는 무단위 측정이 있을 수 있는데, 단위가 서로 소거되는 경우(예: 질량 분율: kg/kg 또는 라디안으로 측정된 각: m/m)나 물체나 사건의 빈도를 세는 경우(예: "5개의 사과")이다. 각도와 사과의 개수를 더하는 것은 의미가 없지만, 5개의 사과와 3개의 오렌지를 더하는 것은 의미가 있을 수 있으며, 이 경우 결과를 상위 클래스(즉, *과일*의 개수)로 재해석할 수 있다. Hand(2004)는 측정 단위의 맥락에서 다양한 측정 스케일에 대해 논의한 바 있는데, 예를 들어 사회과학에서 지능과 같은 변수를 측정하는데 사용되는 측정 스케일과 같은 것이다.
+
+많은 퀀티티의 경우 값의 자연적인 원점은 0이다. 이러한 자연적 원점의 개념은 양(amount)이라는 퀀티티에 잘 들어맞는다. 두 양의 차는 의미 있는 음의 값일 수 있다. 위치와 시간의 차도 이러한 자연적 원점 개념으로 해석될 수 있다. 즉, 위치의 차는 거리이고, 시간의 차는 지속기간이다. 절대적인 위치와 시간은 고정된 원점이 필요하며, 이를 기준으로 다른 절대적인 시공간적 지점을 의미 있게 측정할 수 있다. 이러한 기준을 우리는 데이텀이라고 부른다. 공간의 경우, 데이텀은 하나 이상의 차원을 포함한다. 데이텀과 측정 단위(스케일)의 조합이 하나의 참조계를 구성한다.
+
+이제 공간적 위치를 타원체 좌표 또는 데카르트 좌표로 표현하는 방법에 대해 자세하게 설명하고자 한다. 다음 섹션에서는 시간 및 공간 참조계과 R에서 이러한 참조계를 처리하는 방법에 대해 다룰 것이다.
+
+## 타원좌표계
+
+```{r}
+#| echo: false
+#| label: fig-2-1
+#| fig-cap: "2차원 극 좌표계와 데카르트 좌표계"
+
+par(mar = rep(0,4))
+plot(3, 4, xlim = c(-6,6), ylim = c(-6,6), asp = 1)
+axis(1, pos = 0, at = 0:6)
+axis(2, pos = 0, at = -6:6)
+xd <- seq(-5, 5, by = .1)
+lines(xd, sqrt(25 - xd^2), col = 'grey')
+lines(xd, -sqrt(25 - xd^2), col = 'grey')
+arrows(0, 0, 3, 4, col = 'red', length = .15, angle = 20)
+text(1.5, 2.7, label = "r", col = 'red')
+xd <- seq(3/5, 1, by = .1)
+lines(xd, sqrt(1 - xd^2), col = 'red')
+text(1.2, 0.5, label = parse(text = "phi"), col = 'red')
+lines(c(3,3), c(0,4), lty = 2, col = 'blue')
+lines(c(0,3), c(4,4), lty = 2, col = 'blue')
+text(3.3, 0.3, label = "x", col = 'blue')
+text(0.3, 4.3, label = "y", col = 'blue')
+
+```
+
+그림 2.1은 2차원 극 좌표계와 데카르트 좌표계를 보여주고 있다. 해당 지점의 데카르트 좌표는 $(x,y)=(3,4)$으로 주어지고, 극 좌표는 $(r,\phi)=(5,\text{arctan(4/3)})$으로 주어지는데 $\text{arctan(4/3)}$는 대략 $0.93$ 라디안 혹은 $53^\circ$이다. 여기서 $x$, $y$, $r$은 모두 길이 단위이고 $\phi$는 각도 단위(무단위 길이/길이 비)라는 점에 유의할 필요가 있다. 데카르트 좌표와 극 좌표 간의 변환은 매우 간단하다.
+
+$$
+x=r\cos\phi,\quad y=r\sin\phi, \text{and}
+$$
+
+$$
+r=\sqrt{x^2+y^2}, \quad \phi=\text{atan2}(y,x)
+$$
+
+여기서 $\text{atan2}$이 $\text{atan}(y/x)$대신 사용되었는데, 오른쪽 일사분면에 위치가 있기 때문이다.
+
+## 구체 혹은 타원체 좌표계
+
+3차원의 경우, 데카르트 좌표계는 $(x,y,z)$로 주어지고, 극 좌표계는 $(r,\lambda,\phi)$로 주어진다.
+
+-   $r$은 구체의 반지름이다.
+
+-   $\lambda$는 경도로, $(x,y)$ 평면에서 양의 $x$축으로부터 반시계방향으로 측정된다.
+
+-   $\phi$는 위도로, $(x,y)$ 평면과 해당 벡터가 이루는 각도이다.
+
+그림 2.2는 데카르트 지심 좌표계와 타원체 좌표계를 보여준다.
+
+```{r}
+#| echo: false
+#| label: "세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)"
+library(sf) |> suppressPackageStartupMessages()
+e <- cbind(-90:90,0) # equator
+f1 <- rbind(cbind(0, -90:90)) # 0/antimerid.
+f2 <- rbind(cbind(90, -90:90), cbind(270, 90:-90))# +/- 90
+eq <- st_sfc(st_linestring(e), st_linestring(f1), st_linestring(f2), crs='OGC:CRS84')
+
+geoc <- st_transform(eq, "+proj=geocent")
+cc <- rbind(geoc[[1]], NA, geoc[[2]], NA, geoc[[3]])
+from3d <- function(x, offset, maxz, minz) {
+    x = x[,c(2,3,1)] + offset # move to y right, x up, z backw
+    x[,2] = x[,2] - maxz      # shift y to left
+    d = maxz
+    z = x[,3] - minz + offset
+    x[,1] = x[,1] * (d/z)
+    x[,2] = x[,2] * (d/z)
+    x[,1:2]
+}
+maxz <- max(cc[,3], na.rm = TRUE)
+minz <- min(cc[,3], na.rm = TRUE)
+offset <- 3e7
+circ <- from3d(cc, offset, maxz, minz)
+mx <- max(cc, na.rm = TRUE) * 1.1
+x <- rbind(c(0, 0, 0), c(mx, 0, 0))
+y <- rbind(c(0, 0, 0), c(0, mx, 0))
+z <- rbind(c(0, 0, 0), c(0, 0, mx))
+ll <- rbind(x, NA, y, NA, z)
+l0 <-  from3d(ll, offset, maxz, minz)
+mx <- max(cc, na.rm = TRUE) * 1.2
+x <- rbind(c(0, 0, 0), c(mx, 0, 0))
+y <- rbind(c(0, 0, 0), c(0, mx, 0))
+z <- rbind(c(0, 0, 0), c(0, 0, mx))
+ll <- rbind(x, NA, y, NA, z)
+l <-  from3d(ll, offset, maxz, minz)
+
+par(mfrow = c(1, 2))
+par(mar = rep(0,4))
+plot.new()
+plot.window(xlim = c(min(circ[,1],na.rm = TRUE), 3607103*1.02), 
+                        ylim = c(min(circ[,2],na.rm = TRUE), 2873898*1.1), asp = 1)
+lines(circ)
+lines(l0)
+text(l[c(2,5,8),], labels = c("x", "y", "z"), col = 'red')
+# add POINT(60 47)
+p <- st_as_sfc("POINT(60 47)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent")
+p <- p[[1]]
+pts <- rbind(c(0,0,0), c(p[1],0,0), c(p[1],p[2],0), c(p[1],p[2],p[2]))
+ptsl <- from3d(pts, offset, maxz, minz)
+lines(ptsl, col = 'blue', lty = 2, lwd = 2)
+points(ptsl[4,1], ptsl[4,2], col = 'blue', cex = 1, pch = 16)
+
+plot.new()
+plot.window(xlim = c(min(circ[,1],na.rm = TRUE), 3607103*1.02), 
+                        ylim = c(min(circ[,2],na.rm = TRUE), 2873898*1.1), asp = 1)
+lines(circ)
+
+p <- st_as_sfc("POINT(60 47)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent")
+p <- p[[1]]
+pts <- rbind(c(0,0,0), c(p[1],p[2],p[3]))
+pt <-  from3d(pts, offset, maxz, minz)
+lines(pt)
+points(pt[2,1], pt[2,2], col = 'blue', cex = 1, pch = 16)
+
+p0 <- st_as_sfc("POINT(60 0)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent")
+p0 <- p0[[1]]
+pts <- rbind(c(0,0,0), c(p0[1],p0[2],p0[3]))
+pt <-  from3d(pts, offset, maxz, minz)
+lines(pt)
+
+p0 <- st_as_sfc("POINT(0 0)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent")
+p0 <- p0[[1]]
+pts <- rbind(c(0,0,0), c(p0[1],p0[2],p0[3]))
+pt <-  from3d(pts, offset, maxz, minz)
+lines(pt)
+
+p0 <- st_as_sfc("POINT(0 90)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent")
+p0 <- p0[[1]]
+pts <- rbind(c(0,0,0), c(p0[1],p0[2],p0[3]))
+pt <-  from3d(pts, offset, maxz, minz)
+lines(pt, lty = 2)
+
+p0 <- st_as_sfc("POINT(90 0)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent")
+p0 <- p0[[1]]
+pts <- rbind(c(0,0,0), c(p0[1],p0[2],p0[3]))
+pt <-  from3d(pts, offset, maxz, minz)
+lines(pt, lty = 2)
+
+f1 <- rbind(cbind(0:60, 0))
+arc <- st_sfc(st_linestring(f1), crs='OGC:CRS84')
+geoc <- st_transform(arc, "+proj=geocent")
+cc <- rbind(geoc[[1]])
+circ <- from3d(cc, offset, maxz, minz)
+lines(circ, col = 'red', lwd = 2, lty = 2)
+
+f1 <- rbind(cbind(60, 0:47))
+arc <- st_sfc(st_linestring(f1), crs='OGC:CRS84')
+geoc <- st_transform(arc, "+proj=geocent")
+cc <- rbind(geoc[[1]])
+circ <- from3d(cc, offset, maxz, minz)
+lines(circ, col = 'blue', lwd = 2, lty = 2)
+
+text(pt[1,1]+100000, pt[1,2]+50000, labels = expression(phi), col = 'blue') # lat
+text(pt[1,1]+20000, pt[1,2]-50000, labels = expression(lambda), col = 'red') # lng
+
+
+```
+
+$\lambda$는 $-180^\circ$에서 $180^\circ$ 사이의 값(혹은 $0^\circ$에서 $360^\circ$ 사이의 값)을 갖고, $\phi$는 $-90^\circ$에서 $90^\circ$ 사이의 값을 갖는다. 타원체가 아니라 고정된 반지름 갖는 구체 *상*의 위치만을 상정할 경우 위의 $r$을 생략한 $(\lambda,\phi)$ 만으로도 모든 위치를 규정하기에 충분하다.
+
+이것은 단지 *하나의* 정의일 뿐이며, 예를 들어 위도 대신 해당 벡터와 $z$ 축 사이의 각도인 극각을 측정할 수도 있다는 점에 유의해야 한다. 좌표값을 $(\phi,\lambda)$의 형태로 나타내는 오랜 전통이 있지만 이 책에서는 경도-위도 형식($\lambda,\phi$)을 사용할 것이다. 그림 2.2에 표시된 지점은 각도값으로 구성된 $(\lambda,\phi)$ 혹은 타원체 좌표값을 가지며 도 단위로 주어진다.
+
+```{r}
+#| echo: false
+#| message: true
+library(sf)
+p <- st_as_sfc("POINT(60 47)", crs = 'OGC:CRS84')
+p[[1]]
+```
+
+지심좌표값은 미터 단위로 주어진다.
+
+```{r}
+#| echo: false
+#| message: true
+p <- st_as_sfc("POINT(60 47)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent")
+p[[1]]
+```
+
+타원체 상의 지점에 대해서는 각도를 나타내는 두 가지 방법이 있다(그림 2.3). 하나는 타원체의 중심을 기준으로 측정된 각도($\psi$), 또는 해당 지점을 지나는 접선에 수직으로 측정된 각도($\phi$)이다.
+
+```{r}
+#| echo: false
+#| label: fig-2-3
+#| fig-cap: "타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)"
+
+par(mar = rep(0,4))
+x <- 4
+y <- 5/8 * sqrt(48)
+plot(x, y, xlim = c(-6,6), ylim = c(-8,8), asp = 1)
+axis(1, pos = 0, at = 0:9)
+axis(2, pos = 0, at = -5:5)
+xd <- seq(-8, 8, by = .1)
+lines(xd, 5/8 * sqrt(64 - xd^2), col = 'grey')
+lines(xd, 5/8 * -sqrt(64 - xd^2), col = 'grey')
+arrows(0, 0, x, y, col = 'red', length = .15, angle = 20)
+b <- (x * 25) / (-y * 64)
+a <- y - x * b
+abline(a, b, col = 'grey')
+b <- -1/b
+x0 <- x - y / b
+arrows(x0, 0, x, y, col = 'blue', length = .15, angle = 20)
+text(1.2, 0.5, label = parse(text = "psi"), col = 'red')
+text(3, 0.5, label = parse(text = "phi"), col = 'blue')
+
+```
