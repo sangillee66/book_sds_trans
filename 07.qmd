@@ -15,4 +15,4 @@ editor: visual
 
 # sf와 stars {#sec-sf-stars}
 
-## sf 패키지  {#sec-sf}
+## sf 패키지 {#sec-sf}
