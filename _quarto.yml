@@ -65,7 +65,7 @@ format:
     theme: [cosmo, custom.scss]
     css: styles.css
     number-sections: true
-    number-depth: 2
+    number-depth: 3
     code-link: true
     toc: true
     fig-title: "그림"
