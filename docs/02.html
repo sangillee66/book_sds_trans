@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -306,7 +340,8 @@ window.Quarto = {
 <a href="#%ED%83%80%EC%9B%90%EC%A2%8C%ED%91%9C%EA%B3%84" id="toc-타원좌표계" class="nav-link" data-scroll-target="#%ED%83%80%EC%9B%90%EC%A2%8C%ED%91%9C%EA%B3%84"><span class="header-section-number">2.2</span> 타원좌표계</a>
   <ul class="collapse">
 <li><a href="#%EA%B5%AC%EC%B2%B4-%ED%98%B9%EC%9D%80-%ED%83%80%EC%9B%90%EC%B2%B4-%EC%A2%8C%ED%91%9C%EA%B3%84" id="toc-구체-혹은-타원체-좌표계" class="nav-link" data-scroll-target="#%EA%B5%AC%EC%B2%B4-%ED%98%B9%EC%9D%80-%ED%83%80%EC%9B%90%EC%B2%B4-%EC%A2%8C%ED%91%9C%EA%B3%84"><span class="header-section-number">2.2.1</span> 구체 혹은 타원체 좌표계</a></li>
-  <li><a href="#%ED%88%AC%EC%98%81-%EC%A2%8C%ED%91%9C%EA%B3%84-%EA%B1%B0%EB%A6%AC" id="toc-투영-좌표계-거리" class="nav-link" data-scroll-target="#%ED%88%AC%EC%98%81-%EC%A2%8C%ED%91%9C%EA%B3%84-%EA%B1%B0%EB%A6%AC"><span class="header-section-number">2.2.2</span> 투영 좌표계, 거리</a></li>
+  <li><a href="#%ED%88%AC%EC%98%81%EC%A2%8C%ED%91%9C%EA%B3%84-%EA%B1%B0%EB%A6%AC" id="toc-투영좌표계-거리" class="nav-link" data-scroll-target="#%ED%88%AC%EC%98%81%EC%A2%8C%ED%91%9C%EA%B3%84-%EA%B1%B0%EB%A6%AC"><span class="header-section-number">2.2.2</span> 투영좌표계, 거리</a></li>
+  <li><a href="#%ED%95%9C%EC%A0%95-%EA%B3%B5%EA%B0%84%EA%B3%BC-%EB%B9%84%ED%95%9C%EC%A0%95-%EA%B3%B5%EA%B0%84" id="toc-한정-공간과-비한정-공간" class="nav-link" data-scroll-target="#%ED%95%9C%EC%A0%95-%EA%B3%B5%EA%B0%84%EA%B3%BC-%EB%B9%84%ED%95%9C%EC%A0%95-%EA%B3%B5%EA%B0%84"><span class="header-section-number">2.2.3</span> 한정 공간과 비한정 공간</a></li>
   </ul>
 </li>
   <li><a href="#crs" id="toc-crs" class="nav-link" data-scroll-target="#crs"><span class="header-section-number">2.3</span> CRS</a></li>
@@ -329,7 +364,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 30일</p>
+      <p class="date-modified">2024년 10월 1일</p>
     </div>
   </div>
     
@@ -351,7 +386,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-2-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="02_files/figure-html/fig-2-1-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="02_files/figure-html/fig-2-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="02_files/figure-html/fig-2-1-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.1: 2차원 극 좌표계와 데카르트 좌표계
@@ -378,9 +413,13 @@ r=\sqrt{x^2+y^2}, \quad \phi=\text{atan2}(y,x)
 <p>그림 2.2는 데카르트 지심 좌표계와 타원체 좌표계를 보여준다.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="02_files/figure-html/세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="02_files/figure-html/세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
+<div id="fig-2-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="02_files/figure-html/fig-2-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="02_files/figure-html/fig-2-2-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2.2: 세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -402,29 +441,157 @@ r=\sqrt{x^2+y^2}, \quad \phi=\text{atan2}(y,x)
 <div class="cell-output-display">
 <div id="fig-2-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="02_files/figure-html/fig-2-3-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="02_files/figure-html/fig-2-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="02_files/figure-html/fig-2-3-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;2.2: 타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)
+그림&nbsp;2.3: 타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)
 </figcaption></figure>
 </div>
 </div>
 </div>
-</section><section id="투영-좌표계-거리" class="level3" data-number="2.2.2"><h3 data-number="2.2.2" class="anchored" data-anchor-id="투영-좌표계-거리">
-<span class="header-section-number">2.2.2</span> 투영 좌표계, 거리</h3>
+</section><section id="투영좌표계-거리" class="level3" data-number="2.2.2"><h3 data-number="2.2.2" class="anchored" data-anchor-id="투영좌표계-거리">
+<span class="header-section-number">2.2.2</span> 투영좌표계, 거리</h3>
+<p>종이 지도와 컴퓨터 화면이 지구본보다 훨씬 더 실용적이고 널리 사용되기 때문에, 우리는 공간데이터를 보통 2차원 평면 상에 투영된 형태로 보게 된다. 이차원 공간에서 위치를 계산한다는 것은 우리가 투영 좌표를 사용한다는 것을 의미한다. 타원체 좌표를 투영한다는 것은 형태, 방향, 면적 또는 이 세 가지 모두가 왜곡된다는 것을 의미한다(Iliffe and Lott 2008).</p>
+<p>데카르트 좌표계에서 두 지점 <span class="math inline">\(p_i\)</span>와 <span class="math inline">\(p_j\)</span> 간의 거리는 유클리드 거리로 계산되며, 2차원의 경우 <span class="math inline">\(p_i=(x_i,y_i)\)</span>이므로 다음의 수식으로 주어진다.</p>
+<p><span class="math display">\[
+d_{ij}=\sqrt{(x_i-x_j)^2+(y_i-y_j)^2}
+\]</span></p>
+<p>3차원의 경우는 <span class="math inline">\(p_i=(x_i,y_i,z_i)\)</span>이므로, 다음의 수식으로 주어진다.</p>
+<p><span class="math display">\[
+d_{ij}=\sqrt{(x_i-x_j)^2+(y_i-y_j)^2+(z_i-z_j)^2}
+\]</span></p>
+<p>이 거리는 지점 <span class="math inline">\(i\)</span>와 지점 <span class="math inline">\(j\)</span> 사이의 직선 거리의 길이를 의미한다.</p>
+<p>원 상의 두 지점의 경우, 두 지점 <span class="math inline">\(c_i=(r,\phi_1)\)</span>와 <span class="math inline">\(c_j=(r,\phi_2)\)</span> 사이의 호의 길이는 다음과 같이 주어진다. <span class="math display">\[
+s_{ij}=r|\phi_1-\phi_2|=r\theta
+\]</span> 여기서 <span class="math inline">\(\theta\)</span>는 <span class="math inline">\(\phi_1\)</span>과 <span class="math inline">\(\phi_2\)</span> 사이의 각도를 라디안으로 나타낸 것이다. <span class="math inline">\(\theta\)</span>의 값이 매우 작다면 호가 직선에 가깝기 때문에 <span class="math inline">\(s_{ij}\approx d_{ij}\)</span>가 성립한다.</p>
+<p>반지름이 <span class="math inline">\(r'\)</span>인 구체 상의 두 지점 <span class="math inline">\(p_1=(\lambda_1,\phi_1)\)</span>과 <span class="math inline">\(p_2=(\lambda_2,\phi_2)\)</span>의 경우, 두 지점 <span class="math inline">\(p_1\)</span>과 <span class="math inline">\(p_2\)</span>를 통과하는 원(이 원의 중심은 구체의 중심과 일치) 상에서의 두 지점 사이의 호의 길이를 <em>대권거리</em>(great circle distance)라고 하며, <span class="math inline">\(s_{12}=r\theta_{12}\)</span>로 주어진다. 따라서 <span class="math inline">\(p_1\)</span>과 <span class="math inline">\(p_2\)</span> 사이의 각도(라디안)는 다음과 같이 주어진다.</p>
+<p><span class="math display">\[
+\theta_{12}=\arccos(\sin\phi_1\cdot \sin\phi_2+\cos\phi_1\cdot \cos\phi_2\cdot\cos(|\lambda_1-\lambda_2|))
+\]</span></p>
+<p>타원체 상의 두 지점 간의 호의 길이를 계산하는 것은 훨씬 더 복잡하다. Karney (2013)은 이와 관련하여 심도 있는 논의를 제공하였으며, PROJ 라이브러리의 일부인 GeographicLib에서 구현된 방법에 대한 자세한 설명을 제시한다.</p>
+<p>이 거리 측정 방식들이 실제로 서로 다른 값을 산출함을 보여주기 위해, 우리는 베를린과 파리 간의 거리를 계산했다. WGS84 타원체와 완전 구체에 각각에 대해 거리를 계산했는데, gc_는 대권거리를, str_은 지심좌표값을 이용한 직선거리를 나타낸다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Units: [km]
+ gc_ellipse str_ellipse   gc_sphere  str_sphere 
+     879.70      879.00      877.46      876.77 </code></pre>
+</div>
+</div>
+</section><section id="한정-공간과-비한정-공간" class="level3" data-number="2.2.3"><h3 data-number="2.2.3" class="anchored" data-anchor-id="한정-공간과-비한정-공간">
+<span class="header-section-number">2.2.3</span> 한정 공간과 비한정 공간</h3>
+<p>2차원 및 3차원 유클리드 공간(<span class="math inline">\(R^2\)</span>와 <span class="math inline">\(R^3\)</span>)는 비한정 공간이다. 이 공간의 모든 선은 무한한 길이를 가지며, 면적이나 부피는 자연적인 상한이 없다. 이와는 대조적으로 구(<span class="math inline">\(S^1\)</span>) 혹은 구체(<span class="math inline">\(S^2\)</span>)의 공간은 한정 공간이다. 무한히 많은 점이 있을 수는 있지만, 원의 길이와 면적, 구의 반지름, 면적 및 부피는 유한하다.</p>
+<p>이것은 사소하게 들릴 수 있지만, 공간데이터를 처리할 때 흥미로운 도전 과제로 이어진다. <span class="math inline">\(R^2\)</span> 상의 폴리곤은 명확하게 내부와 외부를 가진다. <span class="math inline">\(S^2\)</span> 공간인 구체 상에서 모든 폴리곤은 구체를 두 부분으로 나누며, 이 두 부분 중 어느 쪽을 내부로 간주하고 어느 쪽을 외부로 간주할지는 애매하며, 이는 통과 방향(traversal direction)에 의해 정의되어야 한다(역자주: 통과 방향은 보통 시계 방향과 반시계 방향으로 나누는데, 예를 들어, 삼각형의 변을 시계 방향으로 통과하면 왼쪽에 있는 영역이 내부로 간주되고, 반시계 방향으로 통과하면 오른쪽에 있는 영역이 내부로 간주된다.). 4장에서 <span class="math inline">\(S^2\)</span> 지오메트리를 다룰 때의 결과에 대해 추가로 논의할 것이다.</p>
 </section></section><section id="crs" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="crs">
 <span class="header-section-number">2.3</span> CRS</h2>
+<p>Lott(2015)를 따라 다음과 같은 개념 정의를 사용할 것이다(이탤릭체는 Lott의 정의를 그대로 옮겨 쓴 것이다)</p>
+<ul>
+<li><p><strong>좌표계</strong>는 <em>지점에 좌표를 할당하는 방법을 지정하는 수학적 규칙의 집합</em>이다.</p></li>
+<li><p><strong>데이텀</strong>은 <em>좌표계의 원점, 축척, 방향을 정의하는 파라미터 또는 파라미터의 집합</em>이다.</p></li>
+<li><p><strong>측지데이텀</strong>은 <em>2차원 또는 3차원 좌표계와 지구와의 관계를 설명하는 데이텀</em>이다(역자주: 다시 말해, 지구에 부여된 2차원 또는 3차원 좌표계를 설명하는 데이텀이다).</p></li>
+<li><p><strong>CRS</strong>(좌표참조계)는 특정한 데이텀에 의거해 특정한 객체에 부여된 좌표계이다. 측지데이텀과 수직데이텀의 경우, 객체는 지구이다(역자주: 측지데이텀은 지구 상의 위치를 규정하는 수평데이텀이고 수직데이텀은 말그대로 지표 상의 높이를 규정하는 데이텀이다).</p></li>
+</ul>
+<p>이 개념을 더 자세히 설명하는 읽기 쉬운 텍스트는 Iliffe and Lott(2008)이다.</p>
+<p>지구는 규칙적인 형태를 따르지 않는다. 지표 기복이 매우 불규칙적인 형상을 띤다는 것을 잘 알려져 있지만, 평균해수면과 관련하여 일정한 중력에 의해 형성된 표면인 지오이드(geoid) 또한 불규칙적이다. 지오이드에 대한 모델 중 가장 일반적으로 사용되는 것은 회전타원체로, 이는 두 개의 동일한 반단축을 가진 타원이다. 이런 회전타원체를 지구와 어떠한 방식으로 일치시킬 것인가가 데이텀을 규정한다. 그런데 타원체를 지구의 어떤 부분에 일치시킬지, 혹은 어떤 준거 지점을 사용하여 일치시킬지에 따라 타원체의 적합도는 다양할 수 있고, 이런 연유로 인해 다양한 데이텀이 존재할 수 있는 것이다. 어떤 데이텀은 특정한 지각판에 대한 적합도에 집중하며(ETRS89), 어떤 데이텀은 전세계의 평균적인 적합도를 지향한다(WGS84). 국지적인 적합도에 치중할수록 해당 지역에서의 근사 오류는 낮아지게 된다.</p>
+<p>위에서 제시된 정의를 살펴보면, 경도와 위도로 주어진 좌표값은 해당 데이텀이 주어질 경우에만 지구 좌표계로서의 의미를 부여받을 수 있고, 해석이 모호성이 사라질 수 있음을 함축하고 있다.</p>
+<p>특정한 투영법이 적용된 데이터는 반드시 특정한 참조타원체(데이텀)와 결부되어 있음을 주의해야 한다. 데이텀 전환 없이 투영법만 바꾸는 것을 좌표전환(coordinate conversion)이라고 하는데, 이 좌표변환은 해당 데이텀과 결부되어 있는 특정 타원체의 좌표값에 의거해 이루어진다. 이 좌표변환의 과정은 정보의 비손실적이며 가역적이다. 변환을 위한 파라미터와 함수식은 불변이다.</p>
+<p>새로운 데이텀에 의거해 좌표를 재계산하는 것을 좌표변환(coordinate transformation)이라고 한다. 좌표전환과 달리 좌표변환은 근사적으로 이루어진다. 왜냐하면 데이텀이 모델 적합의 결과이기 때문에 데이텀 간 변환 또한 적합된 모델이기 때문이다. 변환 함수도 경험적으로 얻어지는 것이며, 적합도와 정확성에 대한 설정을 달리하는 다양한 변환 경로가 가능할 수 있다.</p>
+<p>판구조론은 글로벌 데이텀을 위한 고정된 객체의 위치가 시간이 흐름에 따라 변할 수 있음을 우리들에게 알려준다. 이는 데이텀 간 좌표변환이 시간 의존적일 수 있음을 시사하는 것이다. 지진으로 인해 특정 지역의 좌표가 갑작스럽게 변화할 수 있다. 국지 데이텀을 특정한 지각판에 고정시킬 수도 있지만(ETRS89), 보다 역동적으로 변화시킬 수도 있다.</p>
 </section><section id="proj와-지도-정확도" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="proj와-지도-정확도">
 <span class="header-section-number">2.4</span> PROJ와 지도 정확도</h2>
+<p>현재 오픈소스 지리공간 소프트웨어에서 활동하는 사람들 중 PROJ 이전의 시간을 기억하는 사람은 거의 없다. PROJ(Evenden 1990)는 1970년대에 포트란 프로젝트로 시작되어 1985년에 지도투영을 위한 C 라이브러리로 출시되었다. 이 라이브러리는 직접 투영 및 역 투영을 위한 명령줄 인터페이스를 제공하였으며, 소프트웨어와 연결하여 투영과 재투영을 곧바로 실행하는 것이 가능했다. 데이텀은 그냥 주어지는 것으로 간주되었으며 데이텀 변환은 허용되지 않았다.</p>
+<p>2000년대 초 PROJ는 PROJ.4가 되었는데, 불변의 버전 번호가 붙은 것이다. GPS의 대두 등 여러 요인으로 인해 데이터 변환에 대한 필요성이 증가하였고, PROJ.4는 기본적인 데이텀 지원 기능을 장착하게 되었다. PROJ는 CRS를 다음과 같은 형식으로 정의한다.</p>
+<p><code>+proj=utm +zone=33 +datum=WGS84 +units=m +no_defs</code></p>
+<p>“키=값”쌍은 + 기호로 시작하고 공백으로 구분된다. 이 형식은 PROJ 프로젝트가 수십 년 동안 4.x 버전으로 유지되었기 때문에 ’PROJ.4 문자열’로 알려지게 되었다. 다른 예를 들면 다음과 같다.</p>
+<p><code>+ellps=bessel +towgs84=565.4,50.3,465.6,-0.399,0.344,-1.877,4.072</code></p>
+<p>이 문자열은 해당 데이텀이 다른 타원체(Bessel)를 사용하며, 이 타원체를 WGS84(GPS때문에 널리 알려짐)로 변환하기 위해서는 7개(또는 3개)의 파라미터가 필요하다는 점을 잘 나타낸다.</p>
+<p>PROJ.4 외에 널리 사용되고 있는 투영법에 대한 데이터베이스가 구축되었는데, 그것들 중 가장 널리 알려진 것인 EPSG(European Petroleum Survey Group) 레지스트리이다. 국가지도제작기관은 자국의 CRS에 대한 <code>+towgs84</code> 파라미터(WGS84로 변환하기 위한 파라미터)에 대한 최선의 추정치를 계산 및 업데이트하여, EPSG 등록부를 통해 배포하였다. 일부 변환의 경우, 데이텀 그리드가 제공되었는데 PROJ.4의 일부로 배포되었다. 이러한 그리드는 결국 래스터 지도를 의미하는데, 데이텀 변환이 야기하는 경도, 위도, 또는 고도의 변화값을 모든 지점에 대해 미리 계산해 둔 것이다.</p>
+<p>PROJ.4에서는 모든 좌표변환이 WGS84로의 변환을 거쳐야 했다. 전혀 다른 데이텀을 가진 데이터를 재투영할 때도 WGS84로의 변환을 거쳐야 했다. 최대 100m의 오류는 비교적 큰 지역의 지도 제작 목적으로는 허용 가능했지만, 일부 응용 프로그램은 더 높은 정확도의 변환이 필요하다. 예를 들어, 정밀 농업, UAV(역자주: Unmanned Aerial Vehicle의 약자로 무인항공기로 번역될 수 있지만, 보통 드론을 지칭할 때 사용된다.) 비행 계획 또는 객체 추적이 있다.</p>
+<p>2018년, 성공적인 ‘GDAL 좌표계 공동 개발’ 이니셔티브 이후, 오픈소스 지리공간 소프트웨어 스택에서 이익을 얻는 여러 회사들이 PROJ에서 보다 현대적이고 진보된 좌표변환 시스템 개발을 지원했다. 몇 년 동안 PROJ.4는 5, 6, 7, 8, 9 버전을 거치며 발전하였고, 따라서 PROJ(또는 PR<span class="math inline">\(\phi\)</span>J)로 이름이 변경되었다.</p>
+<p>가장 주목할만한 변화에 다음의 것들이 있다.</p>
+<ul>
+<li><p>비록 PROJ.4 문자열이 새로운 CRS를 정의하는데 여전히 사용될 수 있지만, 모든 CRS를 포괄하기에 충분하지 않다는 점이 드러났다. 새로운 형식인 WKT-2(다음 섹션에서 설명됨)가 이를 대체한다.</p></li>
+<li><p>허브 데이텀으로서의 WGS84의 지위를 박탈한다. 좌표변환이 더 이상 특정 데이텀을 거칠 필요가 없다.</p></li>
+<li><p>CRS A에서 CRS B로 가는 여러 변환 또는 전환 경로(소위 파이프라인)가 가능하며, 정확도 정보만 제시된다면 등재될 수 있다. PROJ는 디폴트로 가장 정확한 경로를 사용하지만 사용자가 제어할 수 있다.</p></li>
+<li><p>변환 파이프라인은 축 교환 및 단위 변환을 포함하여 다수의 기본 변환 작업을 연결할 수 있다.</p></li>
+<li><p>데이텀 그리드는 라이브러리와 함께 배포되지 않고 CDN(content delivery network)에서 접근할 수 있다. PROJ는 이러한 그리드에 대한 네트워크 접근을 활성화하거나 비활성화할 수 있도록 하며, 실제로 필요한 그리드 섹션만 다운로드하여 사용자의 기기에 캐시로 저장하여 향후 사용할 수 있게 한다.</p></li>
+<li><p>에포케(epoche) 좌표변환, 즉 시간-의존적 좌표변환이 가능하다. 따라서 소스 및 타깃 시간을 포함하는 4차원 자표계에 대한 변환이 가능하다(역자주: 지구의 좌표계가 시간이 지남에 따라 변화해 왔으므로 특정 시대(에포케)에 의거한 변환임으로 하나의 정보로 포함시킬 수 있게 되었다는 점을 의미한다.).</p></li>
+<li><p>기등록 CRS를 가진 데이터셋의 경우는 SQLite 데이터베이스에서 관리된다.</p></li>
+<li><p>축 순서(경도, 위도)를 다르게 정의하는 것이 가능하다.</p></li>
+</ul>
+<p>많은 개선이 이루어졌으며, 변환의 정확도는 이제 1미터 이하일 수 있다. 흥미로운 점은 마지막 부분이다. 수십년 동안 타원체 좌표를 가진 공간데이터의 축 순서(경도, 위도)를 자명한 것으로 가정할 수 있었지만, 이제는 더 이상 그렇지 않다. 섹션 7.7.6에서 이를 처리하는 방법을 살펴볼 것이다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-2-4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="02_files/figure-html/fig-2-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="02_files/figure-html/fig-2-4-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2.4: 영국의 OSGB 1936(EPSG:4277)를 ETRS89(EPSG:4258)로 변환하는데 사용되는 수평 데이텀 그리드
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-2-5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="02_files/figure-html/fig-2-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="02_files/figure-html/fig-2-5-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;2.5: 영국의 ETRS89(EPSG:4937를 ODN 고도(EPSG:5701)로 변환하는데 사용되는 수직 데이텀 그리드
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>그림 2.4에 나타나 있는 수평 데이텀 그리드와 그림 2.5에 나타나 있는 수직 데이텀 그리드의 예는 cdn.proj.org로부터 다운로드 받았다. 데이텀 그리드는 픽셀별 정화도 값을 포함할 수 있다.</p>
 </section><section id="wkt-2" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="wkt-2">
 <span class="header-section-number">2.5</span> WKT-2</h2>
+<p>Lott (2015)는 CRS의 인코딩과 CRS 간의 변환을 WKT(well-known text) 통해 나타내는 표준을 제안하였다. 이 표준(및 포맷)을 비공식적으로 WKT-2라고 부른다. 앞에서 언급했듯이, GDAL과 PROJ는 이 표준을 지원한다. 예로서 특정 CRS(<code>EPSG:4326</code>)은 WKT-2로 다음과 같이 표시된다.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">GEOGCRS</span><span class="op">[</span><span class="st">"WGS 84"</span>,</span>
+<span>    <span class="va">ENSEMBLE</span><span class="op">[</span><span class="st">"World Geodetic System 1984 ensemble"</span>,</span>
+<span>        <span class="va">MEMBER</span><span class="op">[</span><span class="st">"World Geodetic System 1984 (Transit)"</span><span class="op">]</span>,</span>
+<span>        <span class="va">MEMBER</span><span class="op">[</span><span class="st">"World Geodetic System 1984 (G730)"</span><span class="op">]</span>,</span>
+<span>        <span class="va">MEMBER</span><span class="op">[</span><span class="st">"World Geodetic System 1984 (G873)"</span><span class="op">]</span>,</span>
+<span>        <span class="va">MEMBER</span><span class="op">[</span><span class="st">"World Geodetic System 1984 (G1150)"</span><span class="op">]</span>,</span>
+<span>        <span class="va">MEMBER</span><span class="op">[</span><span class="st">"World Geodetic System 1984 (G1674)"</span><span class="op">]</span>,</span>
+<span>        <span class="va">MEMBER</span><span class="op">[</span><span class="st">"World Geodetic System 1984 (G1762)"</span><span class="op">]</span>,</span>
+<span>        <span class="va">MEMBER</span><span class="op">[</span><span class="st">"World Geodetic System 1984 (G2139)"</span><span class="op">]</span>,</span>
+<span>        <span class="va">ELLIPSOID</span><span class="op">[</span><span class="st">"WGS 84"</span>,<span class="fl">6378137</span>,<span class="fl">298.257223563</span>,</span>
+<span>            <span class="va">LENGTHUNIT</span><span class="op">[</span><span class="st">"metre"</span>,<span class="fl">1</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>        <span class="va">ENSEMBLEACCURACY</span><span class="op">[</span><span class="fl">2.0</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    <span class="va">PRIMEM</span><span class="op">[</span><span class="st">"Greenwich"</span>,<span class="fl">0</span>,</span>
+<span>        <span class="va">ANGLEUNIT</span><span class="op">[</span><span class="st">"degree"</span>,<span class="fl">0.0174532925199433</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    <span class="va">CS</span><span class="op">[</span><span class="va">ellipsoidal</span>,<span class="fl">2</span><span class="op">]</span>,</span>
+<span>        <span class="va">AXIS</span><span class="op">[</span><span class="st">"geodetic latitude (Lat)"</span>,<span class="va">north</span>,</span>
+<span>            <span class="va">ORDER</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>            <span class="va">ANGLEUNIT</span><span class="op">[</span><span class="st">"degree"</span>,<span class="fl">0.0174532925199433</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>        <span class="va">AXIS</span><span class="op">[</span><span class="st">"geodetic longitude (Lon)"</span>,<span class="va">east</span>,</span>
+<span>            <span class="va">ORDER</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>            <span class="va">ANGLEUNIT</span><span class="op">[</span><span class="st">"degree"</span>,<span class="fl">0.0174532925199433</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    <span class="va">USAGE</span><span class="op">[</span></span>
+<span>        <span class="va">SCOPE</span><span class="op">[</span><span class="st">"Horizontal component of 3D system."</span><span class="op">]</span>,</span>
+<span>        <span class="va">AREA</span><span class="op">[</span><span class="st">"World."</span><span class="op">]</span>,</span>
+<span>        <span class="va">BBOX</span><span class="op">[</span><span class="op">-</span><span class="fl">90</span>,<span class="op">-</span><span class="fl">180</span>,<span class="fl">90</span>,<span class="fl">180</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    <span class="va">ID</span><span class="op">[</span><span class="st">"EPSG"</span>,<span class="fl">4326</span><span class="op">]</span><span class="op">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>이 예시는 축 순서가 <em>위도</em>, <em>경도</em>로 설정된 좌표계를 보여주고 있다. 물론 실제로 사용되고 있는 대부분의 좌표계는 축 순서가 <em>경도</em>, <em>위도</em>이다. WGS84 타원체에 대한 <em>앙상블</em>(ENSEMBLE)은 다양한 업데이트를 나열하고 있다. 이 앙상블 중 <em>어떤</em> 것를 사용하는냐에 따라 수 미터의 오차가 발생할 수 있다. <code>OGS:CRS84</code>는 축 순서를 <code>경도</code>, <code>위도</code>의 순서를 명확히 하였기 때문에 GRS84에 대한 대안으로 권장된다. 그러나 데이텀 앙상믈 문제는 해결하지 못한다.</p>
+<p>PROJ의 역사와 최근 변화에 대한 자세한 소개는 Knudsen and Evers(2017), Evers and Knudsen(2017)의 연구를 토대로 정리한 Bivand(2020)에 잘 나타나 있다.</p>
 </section><section id="연습문제" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="연습문제">
 <span class="header-section-number">2.6</span> 연습문제</h2>
+<p>R을 활용하여 아래의 연습문제를 풀되 패키지의 사용은 금지이다. 적절한 함수를 찾도록 노력하라.</p>
+<ol type="1">
+<li><p>자연적 원점 0을 갖지 않는 <em>지리적</em> 측도 세가지를 나열하라.</p></li>
+<li><p>다음의 <span class="math inline">\((x,y)\)</span> 좌표, <span class="math inline">\((10,2)\)</span>, <span class="math inline">\((-10,-2)\)</span>, <span class="math inline">\((10,-2)\)</span>, <span class="math inline">\((0,10)\)</span>을 극 좌표로 전환하라.</p></li>
+<li><p>다음의 <span class="math inline">\((r,\phi)\)</span> 좌표, <span class="math inline">\((10,45^\circ)\)</span>, <span class="math inline">\((0,100^\circ)\)</span>, <span class="math inline">\((5,359^\circ)\)</span>를 데카르트 좌표로 전환하라.</p></li>
+<li><p>지구를 반지름이 6371km인 완전한 구체라고 가정하고, 다음의 두 지점 간의 대권거리를 구하라. <span class="math inline">\((10,10)\)</span>과 <span class="math inline">\((11,10)\)</span>, <span class="math inline">\((10,80)\)</span>과 <span class="math inline">\((11,80)\)</span>, <span class="math inline">\((10,10)\)</span>과 <span class="math inline">\((10,11)\)</span>, <span class="math inline">\((10,80)\)</span>과 <span class="math inline">\((10,81)\)</span>(단위: 각도)의 대권거리는 몇 도인가?</p></li>
+</ol>
 
 
 <div class="hidden" aria-hidden="true">
 <span class="glightbox-desc lightbox-desc-1">그림&nbsp;2.1: 2차원 극 좌표계와 데카르트 좌표계</span>
-<span class="glightbox-desc lightbox-desc-3">그림&nbsp;2.2: 타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;2.2: 세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;2.3: 타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;2.4: 영국의 OSGB 1936(EPSG:4277)를 ETRS89(EPSG:4258)로 변환하는데 사용되는 수평 데이텀 그리드</span>
+<span class="glightbox-desc lightbox-desc-5">그림&nbsp;2.5: 영국의 ETRS89(EPSG:4937를 ODN 고도(EPSG:5701)로 변환하는데 사용되는 수직 데이텀 그리드</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -824,7 +991,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
