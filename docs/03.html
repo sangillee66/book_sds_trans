@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>공간데이터사이언스 개론 - 3&nbsp; 지오메트리</title>
 <style>
 code{white-space: pre-wrap;}
@@ -20,8 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -41,7 +71,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -67,18 +99,37 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-
-<link rel="stylesheet" href="styles.css">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -89,13 +140,9 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">공간데이터사이언스 개론</a> 
         <div class="sidebar-tools-main">
@@ -110,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서장</span></a>
@@ -124,8 +171,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></a>
@@ -162,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_2.html" class="sidebar-item-text sidebar-link">
@@ -171,8 +218,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
@@ -191,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_3.html" class="sidebar-item-text sidebar-link">
@@ -200,8 +247,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
@@ -250,7 +297,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -259,8 +306,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R 스페셜 패키지</span></span></a>
@@ -279,20 +326,52 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#%EC%8B%AC%ED%94%8C-%ED%94%BC%EC%B3%90-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC" id="toc-심플-피쳐-지오메트리" class="nav-link active" data-scroll-target="#%EC%8B%AC%ED%94%8C-%ED%94%BC%EC%B3%90-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC"><span class="header-section-number">3.1</span> 심플 피쳐 지오메트리</a>
+  <ul class="collapse">
+<li><a href="#%EA%B0%9C%EC%9D%98-%EB%8C%80%ED%91%9C-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC" id="toc-개의-대표-지오메트리" class="nav-link" data-scroll-target="#%EA%B0%9C%EC%9D%98-%EB%8C%80%ED%91%9C-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC"><span class="header-section-number">3.1.1</span> 7개의 대표 지오메트리</a></li>
+  <li><a href="#%EC%8B%AC%ED%94%8C-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC-%ED%83%80%EB%8B%B9%ED%95%9C-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC-%EB%A7%81-%EB%94%94%EB%A0%89%EC%85%98" id="toc-심플-지오메트리-타당한-지오메트리-링-디렉션" class="nav-link" data-scroll-target="#%EC%8B%AC%ED%94%8C-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC-%ED%83%80%EB%8B%B9%ED%95%9C-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC-%EB%A7%81-%EB%94%94%EB%A0%89%EC%85%98"><span class="header-section-number">3.1.2</span> 심플 지오메트리, 타당한 지오메트리, 링 디렉션</a></li>
+  <li><a href="#z-%EC%A2%8C%ED%91%9C%EC%99%80-m-%EC%A2%8C%ED%91%9C" id="toc-z-좌표와-m-좌표" class="nav-link" data-scroll-target="#z-%EC%A2%8C%ED%91%9C%EC%99%80-m-%EC%A2%8C%ED%91%9C"><span class="header-section-number">3.1.3</span> Z 좌표와 M 좌표</a></li>
+  <li><a href="#%EC%97%A0%ED%94%84%ED%8B%B0-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC" id="toc-엠프티-지오메트리" class="nav-link" data-scroll-target="#%EC%97%A0%ED%94%84%ED%8B%B0-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC"><span class="header-section-number">3.1.4</span> 엠프티 지오메트리</a></li>
+  <li><a href="#%EA%B0%9C%EC%9D%98-%EB%B6%80%EC%88%98%EC%A0%81%EC%9D%B8-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC" id="toc-개의-부수적인-지오메트리" class="nav-link" data-scroll-target="#%EA%B0%9C%EC%9D%98-%EB%B6%80%EC%88%98%EC%A0%81%EC%9D%B8-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC"><span class="header-section-number">3.1.5</span> 10개의 부수적인 지오메트리</a></li>
+  <li><a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%97%94%EC%BD%94%EB%94%A9%EA%B3%BC-%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EC%97%94%EC%BD%94%EB%94%A9" id="toc-텍스트-엔코딩과-바이너리-엔코딩" class="nav-link" data-scroll-target="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%97%94%EC%BD%94%EB%94%A9%EA%B3%BC-%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EC%97%94%EC%BD%94%EB%94%A9"><span class="header-section-number">3.1.6</span> 텍스트 엔코딩과 바이너리 엔코딩</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC%EC%97%90-%EC%A0%81%EC%9A%A9%EB%90%98%EB%8A%94-%EC%98%A4%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98" id="toc-지오메트리에-적용되는-오퍼레이션" class="nav-link" data-scroll-target="#%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC%EC%97%90-%EC%A0%81%EC%9A%A9%EB%90%98%EB%8A%94-%EC%98%A4%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98"><span class="header-section-number">3.2</span> 지오메트리에 적용되는 오퍼레이션</a>
+  <ul class="collapse">
+<li><a href="#%EC%9C%A0%EB%84%88%EB%A6%AC-%ED%94%84%EB%A6%AC%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8-%EB%8B%A8%ED%95%AD-%EC%A1%B0%EA%B1%B4%EC%8B%9Dunary-predicate" id="toc-유너리-프리디케이트-단항-조건식unary-predicate" class="nav-link" data-scroll-target="#%EC%9C%A0%EB%84%88%EB%A6%AC-%ED%94%84%EB%A6%AC%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8-%EB%8B%A8%ED%95%AD-%EC%A1%B0%EA%B1%B4%EC%8B%9Dunary-predicate"><span class="header-section-number">3.2.1</span> 유너리 프리디케이트: 단항 조건식(unary predicate)</a></li>
+  <li><a href="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%ED%94%84%EB%A6%AC%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8%EC%99%80-de-9im-%EC%9D%B4%ED%95%AD-%EC%A1%B0%EA%B1%B4%EC%8B%9Dbinary-predicate%EA%B3%BC-de-9im" id="toc-바이너리-프리디케이트와-de-9im-이항-조건식binary-predicate과-de-9im" class="nav-link" data-scroll-target="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%ED%94%84%EB%A6%AC%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8%EC%99%80-de-9im-%EC%9D%B4%ED%95%AD-%EC%A1%B0%EA%B1%B4%EC%8B%9Dbinary-predicate%EA%B3%BC-de-9im"><span class="header-section-number">3.2.2</span> 바이너리 프리디케이트와 DE-9IM: 이항 조건식(binary predicate)과 DE-9IM</a></li>
+  <li><a href="#%EC%9C%A0%EB%84%88%EB%A6%AC-%EC%B8%A1%EB%8F%84" id="toc-유너리-측도" class="nav-link" data-scroll-target="#%EC%9C%A0%EB%84%88%EB%A6%AC-%EC%B8%A1%EB%8F%84"><span class="header-section-number">3.2.3</span> 유너리 측도</a></li>
+  <li><a href="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EC%B8%A1%EB%8F%84" id="toc-바이너리-측도" class="nav-link" data-scroll-target="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EC%B8%A1%EB%8F%84"><span class="header-section-number">3.2.4</span> 바이너리 측도</a></li>
+  <li><a href="#%EC%9C%A0%EB%84%88%EB%A6%AC-%EB%B3%80%ED%99%98%EC%9E%90" id="toc-유너리-변환자" class="nav-link" data-scroll-target="#%EC%9C%A0%EB%84%88%EB%A6%AC-%EB%B3%80%ED%99%98%EC%9E%90"><span class="header-section-number">3.2.5</span> 유너리 변환자</a></li>
+  <li><a href="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EB%B3%80%ED%99%98%EC%9E%90" id="toc-바이너리-변환자" class="nav-link" data-scroll-target="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EB%B3%80%ED%99%98%EC%9E%90"><span class="header-section-number">3.2.6</span> 바이너리 변환자</a></li>
+  <li><a href="#%EC%97%90%EB%84%88%EB%A6%AC-%EB%B3%80%ED%99%98%EC%9E%90" id="toc-에너리-변환자" class="nav-link" data-scroll-target="#%EC%97%90%EB%84%88%EB%A6%AC-%EB%B3%80%ED%99%98%EC%9E%90"><span class="header-section-number">3.2.7</span> 에너리 변환자</a></li>
+  </ul>
+</li>
+  <li><a href="#%EC%A0%95%EB%B0%80%EB%8F%84" id="toc-정밀도" class="nav-link" data-scroll-target="#%EC%A0%95%EB%B0%80%EB%8F%84"><span class="header-section-number">3.3</span> 정밀도</a></li>
+  <li>
+<a href="#%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80-%ED%85%8C%EC%85%80%EB%A0%88%EC%9D%B4%EC%85%98%EA%B3%BC-%EB%9E%98%EC%8A%A4%ED%84%B0" id="toc-커버리지-테셀레이션과-래스터" class="nav-link" data-scroll-target="#%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80-%ED%85%8C%EC%85%80%EB%A0%88%EC%9D%B4%EC%85%98%EA%B3%BC-%EB%9E%98%EC%8A%A4%ED%84%B0"><span class="header-section-number">3.4</span> 커버리지: 테셀레이션과 래스터</a>
+  <ul class="collapse">
+<li><a href="#%ED%86%A0%ED%8F%B4%EB%A1%9C%EC%A7%80-%EB%AA%A8%EB%8D%B8" id="toc-토폴로지-모델" class="nav-link" data-scroll-target="#%ED%86%A0%ED%8F%B4%EB%A1%9C%EC%A7%80-%EB%AA%A8%EB%8D%B8"><span class="header-section-number">3.4.1</span> 토폴로지 모델</a></li>
+  <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%ED%85%8C%EC%85%80%EB%A0%88%EC%9D%B4%EC%85%98" id="toc-래스터-테셀레이션" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%ED%85%8C%EC%85%80%EB%A0%88%EC%9D%B4%EC%85%98"><span class="header-section-number">3.4.2</span> 래스터 테셀레이션</a></li>
+  </ul>
+</li>
+  <li><a href="#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC" id="toc-네트워크" class="nav-link" data-scroll-target="#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC"><span class="header-section-number">3.5</span> 네트워크</a></li>
+  <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"><span class="header-section-number">3.6</span> 연습문제</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block"><span id="sec-geometry" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">지오메트리</span></span></h1>
 </div>
 
@@ -305,7 +384,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 26일</p>
+      <p class="date-modified">2024년 10월 1일</p>
     </div>
   </div>
     
@@ -313,16 +392,595 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>2장에서 좌표계에 대해 배웠기 때문에 이 장에서는 좌표계를 이용하여 지오메트리를 어떻게 정의할 수 있는지에 대해 배울 것이다. 다음의 사항이 다루어진다.</p>
+<ul>
+<li><p>심플 피처(simple feature): 포인트, 라인, 폴리곤 지오메트리를 다루는 표준</p></li>
+<li><p>지오메트리에 적용되는 오퍼레이션</p></li>
+<li><p>커버리지(coveratge): 공간 혹은 시공간의 함수</p></li>
+<li><p>테셀레이션(tessellation): 하나의 지역을 여러개의 하위지역으로 분할한 것</p></li>
+<li><p>네트워크</p></li>
+</ul>
+<p>구면 지오메트리는 4장에서 논의되며, 래스터와 공간 혹은 시공간을 직사각형 형태로 분할한 또 다른 세분 체계는 6장에서 다룬다.</p>
+<section id="심플-피쳐-지오메트리" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="심플-피쳐-지오메트리">
+<span class="header-section-number">3.1</span> 심플 피쳐 지오메트리</h2>
+<p>심플 피처 지오메트리는 피처의 지오메트리를 설명하는 방법이다. 여기서 피처란 지오메트리를 가진 사물을 의미하는데, 암묵적으로 시간 속성을 가질 수 있고, 사물 자체를 묘사하기 위한 라벨이나 사물을 정량적으로 측정한 값과 관련된 속성을 가질 수 있다. 단순 피처 지오메트리의 주된 용도는 2차원 공간의 기하학적 형태를 포인트, 라인, 또는 폴리곤에 의거해 설명하는 것이다. “단순”이라는 형용사가 붙은 이유는 라인이나 폴리곤 지오메트리 역시 포인트 지오메트리와 그것을 연결한 직선으로 표현될 수 있기 때문이다.</p>
+<p>심플 피처 억세스(access)는 심플 피처 지오메트리를 설명하는 표준으로(Herring 2011, 2010; ISO 2004), 다음의 사항이 포함되어 있다.</p>
+<ul>
+<li><p>클래스 위계</p></li>
+<li><p>오퍼레이션의 집합</p></li>
+<li><p>이항 엔코딩과 텍스트 엔코딩</p></li>
+</ul>
+<p>먼저 가장 일반적으로 사용되는 7가지 단순 피처 지오메트리 유형에 대해 논의할 것이다.</p>
+<section id="개의-대표-지오메트리" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="개의-대표-지오메트리">
+<span class="header-section-number">3.1.1</span> 7개의 대표 지오메트리</h3>
+<p>단일(single) 피처를 나타내기 위해 사용되는 가장 일반적인 심플 피처 지오메트리 유형은 다음과 같다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th>유형</th>
+<th>설명</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>POINT</code></td>
+<td>단일 포인트 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>MULTIPOINT</code></td>
+<td>포인트의 집합</td>
+</tr>
+<tr class="odd">
+<td><code>LINESTRING</code></td>
+<td>단일 라인스트링(두개 이상의 포인트가 직선으로 연결되어 있음)</td>
+</tr>
+<tr class="even">
+<td><code>MULTILINESTRING</code></td>
+<td>라인스트링의 집합</td>
+</tr>
+<tr class="odd">
+<td><code>POLYGON</code></td>
+<td>내부 링(구멍을 의미)을 가질 수 있는 외부 링</td>
+</tr>
+<tr class="even">
+<td><code>MULTIPOLYGON</code></td>
+<td>폴리곤의 집합</td>
+</tr>
+<tr class="odd">
+<td><code>GEOMETRYCOLLECTION</code></td>
+<td>위에서 언급된 모든 지오메트리의 집합</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-3-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="03_files/figure-html/fig-3-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="03_files/figure-html/fig-3-1-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.1: 심플 피처 지오메트리의 주요 유형
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>그림 3.1은 이러한 기본 지오메트리 유형의 예를 보여준다. 지오메트리를 표현한 사람이 읽을 수 있는 WKT 표기법은 다음과 같다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">POINT</span> (<span class="dv">0</span> <span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">MULTIPOINT</span> ((<span class="dv">1</span> <span class="dv">1</span>), (<span class="dv">2</span> <span class="dv">2</span>), (<span class="dv">4</span> <span class="dv">1</span>), (<span class="dv">2</span> <span class="dv">3</span>), (<span class="dv">1</span> <span class="dv">4</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">LINESTRING</span> (<span class="dv">1</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">5</span>, <span class="dv">5</span> <span class="dv">6</span>, <span class="dv">4</span> <span class="dv">6</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">2</span> <span class="dv">3</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">MULTILINESTRING</span> ((<span class="dv">1</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">5</span>, <span class="dv">5</span> <span class="dv">6</span>, <span class="dv">4</span> <span class="dv">6</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">2</span> <span class="dv">3</span>), (<span class="dv">3</span> <span class="dv">0</span>, <span class="dv">4</span> <span class="dv">1</span>, <span class="dv">2</span> <span class="dv">1</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">POLYGON</span> ((<span class="dv">2</span> <span class="dv">1</span>, <span class="dv">3</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">2</span>, <span class="dv">6</span> <span class="dv">3</span>, <span class="dv">5</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">4</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">1</span> <span class="dv">3</span>, <span class="dv">2</span> <span class="dv">1</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="dv">2</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">MULTIPOLYGON</span> (((<span class="dv">2</span> <span class="dv">1</span>, <span class="dv">3</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">2</span>, <span class="dv">6</span> <span class="dv">3</span>, <span class="dv">5</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">4</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">1</span> <span class="dv">3</span>, <span class="dv">2</span> <span class="dv">1</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="dv">2</span>)), ((<span class="dv">3</span> <span class="dv">7</span>, <span class="dv">4</span> <span class="dv">7</span>, <span class="dv">5</span> <span class="dv">8</span>, <span class="dv">3</span> <span class="dv">9</span>, <span class="dv">2</span> <span class="dv">8</span>, <span class="dv">3</span> <span class="dv">7</span>)))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">GEOMETRYCOLLECTION</span> (</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">POLYGON</span> ((<span class="dv">2</span> <span class="dv">1</span>, <span class="dv">3</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">2</span>, <span class="dv">6</span> <span class="dv">3</span>, <span class="dv">5</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">4</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">1</span> <span class="dv">3</span>, <span class="dv">2</span> <span class="dv">1</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      (<span class="dv">2</span> <span class="dv">2</span> , <span class="dv">3</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="dv">2</span>)),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">LINESTRING</span> (<span class="dv">1</span> <span class="dv">6</span>, <span class="dv">5</span> <span class="dv">10</span>, <span class="dv">5</span> <span class="dv">11</span>, <span class="dv">4</span> <span class="dv">11</span>, <span class="dv">3</span> <span class="dv">9</span>, <span class="dv">2</span> <span class="dv">8</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">POINT</span> (<span class="dv">2</span> <span class="dv">5</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">POINT</span> (<span class="dv">5</span> <span class="dv">4</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>좌표는 공백으로 구분되고, 포인트는 쉼표로 구분된다. 집합은 괄호로 묶여 있으며, 쉼표로 구분된다. 폴리곤은 외부 링과 (만일 있다면) 내부 링(구멍을 나타냄)으로 구성된다.</p>
+<p>지오메트리의 개별 포인트는 최소한 두 개의 좌표를 포함하며, 이 좌표는 x와 y 순서로 나열된다. 이 좌표가 타원체 좌표를 나타내는 경우, x는 일반적으로 경도를, y는 위도를 의미하지만, 경우에 따라 위도와 경도의 순서로 나열될 수도 있다(섹션 2.4 및 섹션 7.7.6 참조).</p>
+</section><section id="심플-지오메트리-타당한-지오메트리-링-디렉션" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="심플-지오메트리-타당한-지오메트리-링-디렉션">
+<span class="header-section-number">3.1.2</span> 심플 지오메트리, 타당한 지오메트리, 링 디렉션</h3>
+<p>라인리스팅은 자기 교차하지 않을 때 심플이라고 부를 수 있다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>LINESTRING (0 0, 1 1, 2 2, 0 2, 1 1, 2 0)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>is_simple 
+    FALSE </code></pre>
+</div>
+</div>
+<p>타당한 폴리곤과 멀티폴리곤은 다음의 모든 프로프티를 보유한다.</p>
+<ul>
+<li><p>폴리곤 링은 닫혀있다(첫번째 포인트와 마지막 포인트는 동일하다)</p></li>
+<li><p>폴리곤 구멍(내부 링)은 외부 링의 안쪽에 있다.</p></li>
+<li><p>폴리곤 내부 링은 외부 링과 한 지점에서 만날 수는 있지만 라인을 공유할 수는 없다.</p></li>
+<li><p>폴리곤 링은 자신의 경로를 반복하지 않는다.</p></li>
+<li><p>멀티폴리곤에서 외부 링은 다른 외부 링과 한 지점에서 만날 수는 있지만 라인을 공유할 수는 없다.</p></li>
+</ul>
+<p>이것들 어느 하나라도 만족시키지 못한다면 해당 지오메트리는 타당하지 않다. 타당하지 않는 지오메트리는 일반적으로 오퍼레이션 과정에서 오류를 발생시키지만, 보통 사전에 타당한 지오메트리로 수정된다.</p>
+<p>또 다른 규칙은 폴리곤의 외부 링은 반시계 방향으로 감겨야 하며, 구멍은 시계 방향으로 감겨야 한다는 것이다. 그러나 이러한 규칙을 따르지 않는 폴리곤도 여전히 타당한 것으로 간주된다. 이러한 ‘시계 방향’ 개념은 구체에서의 그리 유용하지 않다. 예를 들어, 적도를 폴리곤으로 간주할 경우, 북반구와 남반구 중 어느 쪽이 ’내부’라고 할 수 있는가? 여기서 채택된 규칙은 폴리곤을 변을 시계 방향으로 탐색할 때 왼쪽에 있는 영역을 폴리곤의 내부로 간주하는 것이다(7.3절 참조).</p>
+</section><section id="z-좌표와-m-좌표" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="z-좌표와-m-좌표">
+<span class="header-section-number">3.1.3</span> Z 좌표와 M 좌표</h3>
+<p>심플 피처 지오메트리의 단일 포인트(버텍스)는 X 좌표와 Y 좌표 외에 다음을 가질 수 있다.</p>
+<ul>
+<li><p>Z 좌표: 고도</p></li>
+<li><p>M 좌표: 측정치</p></li>
+</ul>
+<p>M 속성이 버텍스의 프로퍼티라는 점을 염두에 두면 M 좌표는 유용하게 사용될 수 있을 것으로 보인다. 예를 들어, LINESTRING을 통해 일종의 경로 데이터를 엔코딩한다고 하면, 개별 버텍스에 시간 속성을 할당할 수 있다. 그러나 경로가 자기-교차하게 되면 비타당 혹은 비심플(non-simple)이 된다. 자기-교차성을 검토하기 위해 X 좌표와 Y 좌표만을 고려할 때는 드러나지 않는다.</p>
+<p>Z와 M은 자주 사용되지 않으며, 이를 유용하게 활용할 수 있는 소프트웨어 지원도 (아직) 드물다. 그래도 Z와 M의 WKT 표현은 비교적 쉽게 이해할 수 있다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>POINT Z (1 3 2)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>POINT M (1 3 2)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>LINESTRING ZM (3 1 2 4, 4 4 2 2)</code></pre>
+</div>
+</div>
+</section><section id="엠프티-지오메트리" class="level3" data-number="3.1.4"><h3 data-number="3.1.4" class="anchored" data-anchor-id="엠프티-지오메트리">
+<span class="header-section-number">3.1.4</span> 엠프티 지오메트리</h3>
+<p>피쳐 지오메트리 프레임워크에서 매우 중요한 개념이 엠프티(empty) 지오메트리이다. 엠프티 지오메트리는 기하학적 오퍼레이션(3.2절)을 실행할 때 자연스럽게 생성된다. 예를 들어 <code>POINT (0 0)</code>과 <code>POINT (1 1)</code>의 인터섹션 여부를 검토한다고 하자.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>GEOMETRYCOLLECTION EMPTY</code></pre>
+</div>
+</div>
+<p>두 포인트는 교차하지 않으므로 엠프티 집합이 도출된다. 엠프티 포인트를 비어있지 않은 지오메트리와 결합하면(합집합을 구하면) 엠프티 포인트는 소실된다.</p>
+<p>모든 지오메트리 유형은 엠프티 지오메트리를 나타내는 특정한 값을 가지고 있다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>POINT EMPTY</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>LINESTRING M EMPTY</code></pre>
+</div>
+</div>
+<p>엠프티 집합이 생성된다는 점에서는 동일하고 단지 디멘션만 다를 뿐이다(3.2절 참조).</p>
+</section><section id="개의-부수적인-지오메트리" class="level3" data-number="3.1.5"><h3 data-number="3.1.5" class="anchored" data-anchor-id="개의-부수적인-지오메트리">
+<span class="header-section-number">3.1.5</span> 10개의 부수적인 지오메트리</h3>
+<p>다음의 10가지 지오메트리는 매우 드물게 사용되지만, 사용 빈도가 증가하는 경향이 있다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th>유형</th>
+<th>설명</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>CIRCULARSTRING</code></td>
+<td>서큘러스트링은 기본적인 곡선 유형으로 직선 유형의 LINESTRING과 유사하다. 단일 세그먼트는 세 점이 필요하며, 시작점과 끝점(첫 번째와 세 번째 점) 및 호 상의 다른 점이 필요하다. 예외는 닫힌 원의 경우로, 이 경우 시작점과 끝점이 동일하다. 이 경우 두 번째 점은 반드시 호의 중심, 즉 원의 반대편이어야 한다. 호를 연결하려면 이전 호의 마지막 점이 다음 호의 첫 번째 점이 되며, 이는 LINESTRING에서도 동일하다. 따라서 타당한 서큘러 문자열은 1보다 큰 홀수 개의 점을 가져야 한다.</td>
+</tr>
+<tr class="even">
+<td><code>COMPOUNDCURVE</code></td>
+<td>컴파운트커브는 곡선(서큘러) 세그먼트와 선형 세그먼트를 모두 포함하는 단일 연속 곡선이다. 구성 요소를 잘 갖추고 있어야 하며, 모든 구성 요소의 끝점(마지막을 제외하고)은 다음 구성 요소의 시작점과 일치해야 한다.</td>
+</tr>
+<tr class="odd">
+<td><code>CURVEPOLYGON</code></td>
+<td>커브폴리곤 속에 컴파운트커브가 포함된 예: <code>CURVEPOLYGON( COMPOUNDCURVE( CIRCULARSTRING(0 0,2 0, 2 1, 2 3, 4 3),(4 3, 4 5, 1 4, 0 0)), CIRCULARSTRING(1.7 1, 1.4 0.4, 1.6 0.4, 1.6 0.5, 1.7 1))</code>
+</td>
+</tr>
+<tr class="even">
+<td><code>MULTICURVE</code></td>
+<td>멀티커브는 곡선으로 구성된 1차원 지오메트리 컬렉션이다. 이 컬렉션은 라인 문자열, 서큘러 문자열 또는 컴파운드 문자열을 포함할 수 있다.</td>
+</tr>
+<tr class="odd">
+<td><code>MULTISURFACE</code></td>
+<td>멀티서피스는 동일한 CRS를 사용하는 서피스로 구성된 2차원 지오메트리 컬렉션이다.</td>
+</tr>
+<tr class="even">
+<td><code>CURVE</code></td>
+<td>커브는 일반적으로 몇 개의 점의 연결로 정의되는 1차원 지오메트리 객체이며, 점들 간의 인터폴레이션 형태에 따라 커브의 하위 유형이 정의된다.</td>
+</tr>
+<tr class="odd">
+<td><code>SURFACE</code></td>
+<td>서피스는 2차원 지오메트리 객체이다.</td>
+</tr>
+<tr class="even">
+<td><code>POLYHEDRALSURFACE</code></td>
+<td>폴리헤드럴서피스는 공통 경계 세그먼트를 공유하는 연속적인 폴리곤의 컬렉션이다.</td>
+</tr>
+<tr class="odd">
+<td><code>TIN</code></td>
+<td>불규칙삼각망(triangulated irregular network)은 오직 삼각형으로만 구성된 폴리헤드럴서피스이다.</td>
+</tr>
+<tr class="even">
+<td><code>TRIANGLE</code></td>
+<td>트라이앵글은 세 개의 비공선적(non-collinear) 버텍스로 구성된(역자주: 세 점이 일직선 상에 놓이지 않음을 의미한다), 내부 경계가 없는 폴리곤이다.</td>
+</tr>
+</tbody>
+</table>
+<p><code>CIRCULARSTRING</code>, <code>COMPOUNDCURVE</code>, <code>CURVEPOLYGON</code>은 SFA 표준에 언급되지 않지만 SQL-MM 파트3 표준에는 포함되어 있다. 위 표의 설명 부분은 PostGIS 매뉴얼에서 그대로 가져온 것이다.</p>
+</section><section id="텍스트-엔코딩과-바이너리-엔코딩" class="level3" data-number="3.1.6"><h3 data-number="3.1.6" class="anchored" data-anchor-id="텍스트-엔코딩과-바이너리-엔코딩">
+<span class="header-section-number">3.1.6</span> 텍스트 엔코딩과 바이너리 엔코딩</h3>
+<p>심플 피처 표준에는 도 가지 엔코딩 방식이 포함되어 있다. 하나는 텍스트 인코딩이고 다른 하나는 바이너리 인코딩이다. 위에서 사용된 KWT는 인간-해독가능(human-readable)이고, KWB(well-known binary) 인코딩은 기계-해동가능(machine-readable)이다. WKB 인코딩은 정보 손실이 없으며 일반적인 텍스트 인코딩(및 디코딩)보다 작업 속도가 빠르다. 이는 R 패키지 <strong>sf</strong>와 GDAL, GEOS, liblwgeom, s2geometry 라이브러리 간의 모든 통신에서 사용된다(그림 1.7).</p>
+</section></section><section id="지오메트리에-적용되는-오퍼레이션" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="지오메트리에-적용되는-오퍼레이션">
+<span class="header-section-number">3.2</span> 지오메트리에 적용되는 오퍼레이션</h2>
+<p>심플 피처 지오메트리의 프로퍼티를 추출하는 것이 가능하며, 심플 피처 지오메트리의 결합을 통해 새로운 지오메트리가 생성된 경우, 그것의 프로퍼티를 추출하는 것 역시 가능하다. 이 섹션에서는 기하학적 프로퍼티에 전적으로 초점을 맞춘 오퍼레이션에 대해서만 간략하게 다룬다. 5장에서는 비기하학적 피처 속성 분석에 초점을 맞춘다. 이 섹션의 일부 내용은 Pebesma (2018)로부터 가져온 것이다.</p>
+<p>기하학적 프로퍼티에 대한 오퍼레이션을 투입과 산출에 의거해 분류하는 것이 가능하다. 우선 산출의 관점에서, 다음과 같이 구분할 수 있다.</p>
+<ul>
+<li><p>프레디케이트(predicate): 특정 프로퍼티가 TRUE임을 주장하는 논리값</p></li>
+<li><p>측정치(measure): 양(수치, 측정 단위가 있을 수 있음)</p></li>
+<li><p>변형(transformation): 새롭게 생성된 지오메트리</p></li>
+</ul>
+<p>오퍼레이션이 어떤 지오메트리에 적용되느냐에 따라 다음과 같이 분류하는 것이 가능하다.</p>
+<ul>
+<li><p>유너리(unary)단일 지오메트리에 적용</p></li>
+<li><p>바이너리(binary): 지오메트리의 쌍에 적용</p></li>
+<li><p>에너리(n-ary): 지오메트리의 집합에 적용</p></li>
+</ul>
+<section id="유너리-프리디케이트-단항-조건식unary-predicate" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="유너리-프리디케이트-단항-조건식unary-predicate">
+<span class="header-section-number">3.2.1</span> 유너리 프리디케이트: 단항 조건식(unary predicate)</h3>
+<p>유너리 프리디케이트는 하나의 지오메트리의 하나의 프로퍼티를 설명한다. <code>is_simple</code>, <code>is_valid</code>, <code>is_empty</code>와 같는 프리디케이트는 각각 지오메트리가 심플한지, 타당한지, 엠프티한지의 여부에 대한 논리값을 반환한다. <code>is_longlat</code> 프리디케이트는 주어진 CRS가 경위도 좌표계에 기반하고 있는지 평면 좌표계에 기반하고 있는지의 여부를 반환한다. <code>is(geometry, class)</code>는 지오메트리가 특정한 클래스에 속하는지의 여부를 확인한다.</p>
+</section><section id="바이너리-프리디케이트와-de-9im-이항-조건식binary-predicate과-de-9im" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="바이너리-프리디케이트와-de-9im-이항-조건식binary-predicate과-de-9im">
+<span class="header-section-number">3.2.2</span> 바이너리 프리디케이트와 DE-9IM: 이항 조건식(binary predicate)과 DE-9IM</h3>
+<p>DE-9IM(Dimensionally Extended Nine-Intersection Model)(Clementini, Di Felice, and Oosterom 1993; Egenhofer and Franzosa 1991)은 2차원 공간(<span class="math inline">\(R^2\)</span>)에서 두 지오메트리간의 정성적 관계를 설명하는 모델이다. 모든 지오메트리는 디멘션 값을 가진다.</p>
+<ul>
+<li><p>포인트는 0</p></li>
+<li><p>라인 지오메트리는 1</p></li>
+<li><p>폴리곤 지오메트리는 2</p></li>
+<li><p>엠프티 지오메트리는 F(거짓)</p></li>
+</ul>
+<p>모든 지오메트리는 내부(I), 경계(B), 외부(E)를 가지며, 이것들이 어떤 역할은 하는지는 폴리곤의 경우에 보다 명확히 드러난다.</p>
+<ul>
+<li><p>라인의 경계는 종점에 의해 형성되고, 선상의 모든 비종점이 내부를 구성한다.</p></li>
+<li><p>포인트는 0차원의 내부를 가지지만, 경계는 없다.</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-3-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="03_files/figure-html/fig-3-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="03_files/figure-html/fig-3-2-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.2: DE-9IM: 폴리곤의 내부, 경계, 외부(행)와 라인스트링의 내부, 경계, 외부(열) 간의 인터섹션
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>그림 3.2는 폴리곤과 라인스트링의 I, B 및 E 간의 인터섹션을 빨간색으로 표시한 것이다. 개별 그래프의 제목에 인터섹션의 결과 도출되는 디멘션(0, 1, 2, 또는 F)이 표시되어 있다. 폴리곤 지오메트리와 라인 지오메트리의 관계는 바로 이러한 디멘션의 연속(concatenation)이다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]       
+[1,] "1020F1102"</code></pre>
+</div>
+</div>
+<p>첫 세 문자는 <em>첫 번째</em> 지오메트리(폴리곤)의 내부와 관련이 있다. 그림 3.2에는 첫 번째 지오메트리가 행에 배열되어 있다. 더 나아가 지오메트리의 쌍에 대해 <em>마스크(mask) 문자열</em>로 표현된 특정한 조건의 만족 여부도 질의할 수 있다. 예를 들어, 문자열 <code>"0******"</code>는 두 번째 지오메트리가 첫 번째 지오메트리의 내부와 하나 이상의 경계 점을 공유할 때 <code>TRUE</code>로 평가된다. 여기서 기호 <code>*</code>는 디멘션(0, 1, 2 또는 F)을 의미하는 것으로 네 개 중 어는 것도 올 수 있다. 마스크 문자열 <code>"T********"</code>은 내부가 서로 교차하는 지오메트리 쌍을 찾아내느데, 여기서 기호 T는 차원 디멘션이 0, 1, 2이면서 비엠프티 인터섹션인 경우를 의미한다.</p>
+<p>더 나아가 바이너리 프리디케이트는 DE-9IM에서 규정된 정의를 활용함으로써 일반 언어 동사로 표현될 수 있다. 예를 들어, 프리디케이트 <code>equals</code>는 관계 <code>"T*F**FFF*"</code>와 동일하다. 어떤 두 지오메트리가 이러한 관계를 만족한다면, 그 둘은 (위상적으로)는 동일하지만, 노드의 순서가 다를 수 있다.</p>
+<p>바이너리 프리디케이트를 나열하면 다음과 같다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>프리디케이트</th>
+<th>의미</th>
+<th>역프리디케이트</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>contains</code></td>
+<td>A 포인트 어느 것도 B의 외부에 있지 않다.</td>
+<td><code>within</code></td>
+</tr>
+<tr class="even">
+<td><code>contains_properly</code></td>
+<td>A는 B를 포함하며, B의 어떤 포인트도 A의 경계 상에 있지 않다.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>covers</code></td>
+<td>B의 어떤 포인트도 A의 외부에 있지 않다.</td>
+<td><code>covered_by</code></td>
+</tr>
+<tr class="even">
+<td><code>covered_by</code></td>
+<td>covers의 반대</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>crosses</code></td>
+<td>A와 B는 일부 내부 포인트를 공유하지만 모든 포인트를 공유하는 것은 아니다.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>disjoint</code></td>
+<td>A와 B는 어떤 포인트도 서로 공유하지 않는다.</td>
+<td><code>intersects</code></td>
+</tr>
+<tr class="odd">
+<td><code>equals</code></td>
+<td>A와 B는 위상적으로 동일하다. 노드 순서나 노드 수가 다를 수 있으며, A가 B를 포함하고 A가 B의 내부에 있는 것과 동일하다.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>equals_exact</code></td>
+<td>A와 B는 기하학적으로 동일하며, 노드 순서도 동일하다.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>intersects</code></td>
+<td>A와 B가 완전 분리의 관계를 가지지 않는다.</td>
+<td><code>disjoint</code></td>
+</tr>
+<tr class="even">
+<td><code>is_within_distance</code></td>
+<td>A가 주어진 거리보다 B에 더 가깝게 위치해 있다.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>within</code></td>
+<td>B의 어떤 포인트도 A의 외부에 있지 않다.</td>
+<td><code>contains</code></td>
+</tr>
+<tr class="even">
+<td><code>touches</code></td>
+<td>A와 B는 최소한 한 개의 경계 포인트를 공유한다. 내부 포인트를 공유하는 것은 아니다.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>overlaps</code></td>
+<td>A와 B가 다수의 포인트를 공유한다. 디멘션은 A와 B의 디멘션과 동일하다.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>related</code></td>
+<td>A와 B가 주어진 마스크 패턴을 준수하는지의 여부를 반환한다.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>위키피디어의 DE-9IM 페이지를 가면, 개별 동사에 해당하는 <code>relate</code> 마스크 패턴을 확인할 수 있다. 왜냐하면 <em>covers</em>와 <em>contains</em>와 같은 동사(그 역도 마찬가지)는 그 의미를 직관적으로 파악하기 어려울 때가 있다.</p>
+<ul>
+<li><p>만일 A가 B를 포함한다면, B는 A의 외부나 경계와 어떠한 공유 포인트도 없다.</p></li>
+<li><p>만일 A가 B를 덮으면, B는 A의 외부와 어떠한 공유 포인트도 없다.</p></li>
+</ul></section><section id="유너리-측도" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="유너리-측도">
+<span class="header-section-number">3.2.3</span> 유너리 측도</h3>
+<p>유너리 측도는 지오메트리의 퍼로퍼티를 설명하는 측정값이나 양을 반환한다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th>측도</th>
+<th>반환값</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>dimension</code></td>
+<td>포인트는 0, 라인은 1, 폴리곤은 2, 엠프티 지오메트리에 대해서는 NA</td>
+</tr>
+<tr class="even">
+<td><code>area</code></td>
+<td>지오메트리의 면적</td>
+</tr>
+<tr class="odd">
+<td><code>length</code></td>
+<td>라인 지오메트리의 길이</td>
+</tr>
+</tbody>
+</table></section><section id="바이너리-측도" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="바이너리-측도">
+<span class="header-section-number">3.2.4</span> 바이너리 측도</h3>
+<p>distance는 지오메트리 간의 거리를 반환한다. 질적 측도로서의 (마스크가 없는) <code>relate</code>는 관계 패턴을 제공한다. 두 지오메트리간의 기하학적 관련성에 대한 설명은 섹션 3.2.2에 나타나 있다.</p>
+</section><section id="유너리-변환자" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="유너리-변환자">
+<span class="header-section-number">3.2.5</span> 유너리 변환자</h3>
+<p>유너리 변환자는 지오메트리별로 작동하며, 각 지오메트리에 대해 새로운 지오메트리를 반환한다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th>변환자</th>
+<th>반환 지오메트리</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>centroid</code></td>
+<td>투입 지오메트리의 센트로이드로 구성된 POINT 유형의 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>buffer</code></td>
+<td>투입 지오메트리보다 더 큰(혹은 더 작은) 지오메트리: 버퍼 사이즈에 따라 산출 지오메트리의 크기가 달라짐</td>
+</tr>
+<tr class="odd">
+<td><code>jitter</code></td>
+<td>이변량 균등 분포를 이용하여 조금 전위된 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>wrap_dateline</code></td>
+<td>날짜 변경선(데이라인)을 더 이상 덮거나 교차하지 않는 조각으로 분할된 지오메트리</td>
+</tr>
+<tr class="odd">
+<td><code>boundary</code></td>
+<td>투입 지오메트리의 경계를 가진 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>convex_hull</code></td>
+<td>투입 지오메트리의 컨벡스헐을 가진 지오메트리(그림 3.3)</td>
+</tr>
+<tr class="odd">
+<td><code>line_merge</code></td>
+<td>MULTILINESTRING 내의 LINESTRING 요소들을 결합하여 더 긴 LINESTRING을 형성한 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>make_valid</code></td>
+<td>타당하게 교정된 지오메트리</td>
+</tr>
+<tr class="odd">
+<td><code>node</code></td>
+<td>노드가 없는 교차점에 노드를 추가한 라인 지오메트리. 개별적인 라인 지오메트리에만 적용됨</td>
+</tr>
+<tr class="even">
+<td><code>point_on_surface</code></td>
+<td>서피스에 임의의 포인트를 가진 지오메트리</td>
+</tr>
+<tr class="odd">
+<td><code>polygonize</code></td>
+<td>폐쇄 링을 형성하는 라인으로부터 생성된 폴리곤 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>segmentize</code></td>
+<td>주어진 밀도 또는 최소 거리를 만족하는 노드로 구성된 라인 지오메트리</td>
+</tr>
+<tr class="odd">
+<td><code>simplify</code></td>
+<td>버텍스/노드를 제거함으로써 단순화된 라인 혹은 폴리곤 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>split</code></td>
+<td>라인스트링에 의해 분할된 지오메트리</td>
+</tr>
+<tr class="odd">
+<td><code>transform</code></td>
+<td>새로운 CRS로 변형 혹은 전환된 지오메트리(2장)</td>
+</tr>
+<tr class="even">
+<td><code>triangulate</code></td>
+<td>들로네(Delauney) 삼각망으로 구성된 지오메트리(그림 3.3)</td>
+</tr>
+<tr class="odd">
+<td><code>voronoi</code></td>
+<td>투입 지오메트리로부터 형성된 보로노이(Voronoi) 테셀레이션(그림 3.3)</td>
+</tr>
+<tr class="even">
+<td><code>zm</code></td>
+<td>Z 좌표 및 M 좌표가 수정된(일부 좌표의 삭제 혹은 새로운 좌표의 첨가) 지오메트리</td>
+</tr>
+<tr class="odd">
+<td><code>collection_extract</code></td>
+<td>특정 유형의 GEOMETRYCOLLECTION으로부터 일부를 추출한 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>cast</code></td>
+<td>유형이 전환된 지오메트리</td>
+</tr>
+<tr class="odd">
+<td><code>+</code></td>
+<td>주어진 벡터만큼 전위된 지오메트리</td>
+</tr>
+<tr class="even">
+<td><code>*</code></td>
+<td>스칼라 또는 매트릭스가 곱해진 지오메트리</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-3-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="03_files/figure-html/fig-3-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="03_files/figure-html/fig-3-3-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.3: 포인트의 집합, 왼편은 컨벡스 헐(빨간색), 가운데는 보로노이 폴리곤, 오른편은 들로네 삼각망
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="바이너리-변환자" class="level3" data-number="3.2.6"><h3 data-number="3.2.6" class="anchored" data-anchor-id="바이너리-변환자">
+<span class="header-section-number">3.2.6</span> 바이너리 변환자</h3>
+<p>바이러니 변환자는 지오메트리 쌍에 적용되어 새로운 지오메트리를 생성하는 함수이다. 다음과 같은 것이 있다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead><tr class="header">
+<th>함수</th>
+<th>반환 지오메트리</th>
+<th>인픽스 오퍼레이터</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>intersection</code></td>
+<td>두 지오메트리 겹치는 부분에 대한 지오메트리</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr class="even">
+<td><code>union</code></td>
+<td>두 지오메트리를 결합한 지오메트리로, 내부 경계를 제거하고, 중복되는 포인트, 노드, 또는 라인을 삭제한다.</td>
+<td><code>|</code></td>
+</tr>
+<tr class="odd">
+<td><code>difference</code></td>
+<td>두 번째 지오메트리와 중복되는 부분을 제거한 첫 번째 지오메트리</td>
+<td><code>/</code></td>
+</tr>
+<tr class="even">
+<td><code>sym_difference</code></td>
+<td>중복되는 부분을 제거한 이후에 두 지오메트리를 결한한 지오메트리로 <code>intersection</code>의 반대</td>
+<td><code>%/%</code></td>
+</tr>
+</tbody>
+</table></section><section id="에너리-변환자" class="level3" data-number="3.2.7"><h3 data-number="3.2.7" class="anchored" data-anchor-id="에너리-변환자">
+<span class="header-section-number">3.2.7</span> 에너리 변환자</h3>
+<p>에너리 변환자는 지오메트리의 집합에 작용한다. <code>union</code>을 적용하면 모든 지오메트리의 결합 결과를 얻을 수 있다. 이런 방식이 아니라면, 동일한 차원을 가진 지오메트리 집합은 MULTI-유형 지오메트리로 결합하거나 GEOMETRYCOLLECTION으로 결합할 수 있다. 이 경우, <code>union</code>을 적용하지 않았기 때문에 두 폴리곤 링이 공유 경계선을 가질 때와 같이 타당하지 않은 지오메트리가 생성될 수 있다.</p>
+<p>에너리 <code>intersection</code>과 <code>difference</code>의 경우 형식적으로는 단일 아규먼트를 취하지만 모든 쌍, 세 쌍, 네 쌍 등에 대해 순차적으로 작동한다. 그림 3.4를 살펴보자. 세 개의 상자가 모두 겹치는 영역을 어떻게 식별할 수 있을까? 바이너리 intersection을 사용하면 모든 쌍(1-1, 1-2, 1-3, 2-1, 2-2, 2-3, 3-1, 3-2, 3-3)에 대한 intersection을 얻을 수 있다. 하지만 두 개 이상의 지오메트리가 교차하는 영역을 식별할 수는 없다. 그림 3.4의 오른쪽 그림은 에너리 intersection을 보여주는데, 한 개, 두 개, 또는 <em>더 많은</em> 지오메트리의 교차를 통해 생성된 7개의 겹치지 않는 고유한 지오메트리를 확인할 수 있다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="03_files/figure-html/왼쪽- 세 개의 겹치는 정사각형이 있는데, 모든 사각형이 겹치는 부분을 어떻게 확인할 수 있을까 오른쪽- 서로 겹치지 않는 고유한 에너리 교차-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="03_files/figure-html/왼쪽- 세 개의 겹치는 정사각형이 있는데, 모든 사각형이 겹치는 부분을 어떻게 확인할 수 있을까 오른쪽- 서로 겹치지 않는 고유한 에너리 교차-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>유사하게, 집합 <span class="math inline">\(\{s_1,s_2,s_3,...\}\)</span>에 에너리 difference를 적용하여 <span class="math inline">\(\{s_1,s_2-s_1,s_3-s_2-s_1,...\}\)</span>를 생성할 수 있다. 결과가 그림 3.5에 나타나 있는데, 왼편에는 원래 집합을 보여주고 있고, 오른편에는 투입 지오메트리의 순서를 바꾼 후의 집합을 보여주고 있다. 이는 결과가 입력 지오메트리의 순서에 의존한다는 사실을 명확히 하기 위함이다. 결과로 얻어진 지오메트리는 서로 겹치지 않는다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-3-5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="03_files/figure-html/fig-3-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="03_files/figure-html/fig-3-5-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.4: 박스를 서로다른 순서에 따라 differece를 적용한 결과: 왼쪽은 원리 순서이고 오른쪽은 반대 순서
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section></section><section id="정밀도" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="정밀도">
+<span class="header-section-number">3.3</span> 정밀도</h2>
+</section><section id="커버리지-테셀레이션과-래스터" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="커버리지-테셀레이션과-래스터">
+<span class="header-section-number">3.4</span> 커버리지: 테셀레이션과 래스터</h2>
+<section id="토폴로지-모델" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="토폴로지-모델">
+<span class="header-section-number">3.4.1</span> 토폴로지 모델</h3>
+</section><section id="래스터-테셀레이션" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="래스터-테셀레이션">
+<span class="header-section-number">3.4.2</span> 래스터 테셀레이션</h3>
+</section></section><section id="네트워크" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="네트워크">
+<span class="header-section-number">3.5</span> 네트워크</h2>
+</section><section id="연습문제" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="연습문제">
+<span class="header-section-number">3.6</span> 연습문제</h2>
 
 
-<p>어미러밀</p>
-<p>ㅁㄻ</p>
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;3.1: 심플 피처 지오메트리의 주요 유형</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;3.2: DE-9IM: 폴리곤의 내부, 경계, 외부(행)와 라인스트링의 내부, 경계, 외부(열) 간의 인터섹션</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;3.3: 포인트의 집합, 왼편은 컨벡스 헐(빨간색), 가운데는 보로노이 폴리곤, 오른편은 들로네 삼각망</span>
+<span class="glightbox-desc lightbox-desc-5">그림&nbsp;3.4: 박스를 서로다른 순서에 따라 differece를 적용한 결과: 왼쪽은 원리 순서이고 오른쪽은 반대 순서</span>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -708,10 +1366,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./02.html" class="pagination-link  aria-label=" &lt;span="">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./02.html" class="pagination-link  aria-label=">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">좌표계</span></span>
       </a>          
   </div>
@@ -722,8 +1378,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
-
-
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+</body></html>
