@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>공간데이터사이언스 개론 - 4&nbsp; 구체 지오메트리</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,7 +18,6 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -41,7 +37,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -67,12 +65,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -97,17 +90,12 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script>
-
-<link rel="stylesheet" href="styles.css">
+</script><link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -118,13 +106,9 @@ window.Quarto = {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">공간데이터사이언스 개론</a> 
         <div class="sidebar-tools-main">
@@ -139,7 +123,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서장</span></a>
@@ -153,8 +137,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></a>
@@ -191,7 +175,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_2.html" class="sidebar-item-text sidebar-link">
@@ -200,8 +184,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
@@ -220,7 +204,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_3.html" class="sidebar-item-text sidebar-link">
@@ -229,8 +213,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
@@ -279,7 +263,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -288,8 +272,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R 스페셜 패키지</span></span></a>
@@ -308,20 +292,24 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EC%A7%81%EC%84%A0" id="toc-직선" class="nav-link active" data-scroll-target="#%EC%A7%81%EC%84%A0"><span class="header-section-number">4.1</span> 직선</a></li>
+  <li><a href="#%EB%A7%81-%EB%94%94%EB%A0%89%EC%85%98%EA%B3%BC-%EC%99%84%EC%A0%84-%ED%8F%B4%EB%A6%AC%EA%B3%A4" id="toc-링-디렉션과-완전-폴리곤" class="nav-link" data-scroll-target="#%EB%A7%81-%EB%94%94%EB%A0%89%EC%85%98%EA%B3%BC-%EC%99%84%EC%A0%84-%ED%8F%B4%EB%A6%AC%EA%B3%A4"><span class="header-section-number">4.2</span> 링 디렉션과 완전 폴리곤</a></li>
+  <li><a href="#%EB%B0%94%EC%9A%B4%EB%94%A9-%EB%B0%95%EC%8A%A4-%EB%B0%94%EC%9A%B4%EB%94%A9-%EC%A7%81%EC%82%AC%EA%B0%81%ED%98%95-%EB%B0%94%EC%9A%B4%EB%94%A9-%EC%BA%A1" id="toc-바운딩-박스-바운딩-직사각형-바운딩-캡" class="nav-link" data-scroll-target="#%EB%B0%94%EC%9A%B4%EB%94%A9-%EB%B0%95%EC%8A%A4-%EB%B0%94%EC%9A%B4%EB%94%A9-%EC%A7%81%EC%82%AC%EA%B0%81%ED%98%95-%EB%B0%94%EC%9A%B4%EB%94%A9-%EC%BA%A1"><span class="header-section-number">4.3</span> 바운딩 박스, 바운딩 직사각형, 바운딩 캡</a></li>
+  <li><a href="#%EA%B5%AC%EC%B2%B4-%EC%83%81%EC%9D%98-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B0%9C%EB%85%90" id="toc-구체-상의-유효성-개념" class="nav-link" data-scroll-target="#%EA%B5%AC%EC%B2%B4-%EC%83%81%EC%9D%98-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B0%9C%EB%85%90"><span class="header-section-number">4.4</span> 구체 상의 유효성 개념</a></li>
+  <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"><span class="header-section-number">4.5</span> 연습문제</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block"><span id="sec-spherical" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구체 지오메트리</span></span></h1>
 </div>
 
@@ -342,17 +330,93 @@ window.Quarto = {
   
 
 
-</header>
-
-
-<p>“국지적 데카르트 투영 좌표계로 세팅이 되어 있는 GIS 소프트웨어를 글로벌 스케일의 애플리케이션을 위해 확장하는 순간, 오류투성이의 결론이 도출되고 어이없는 측정이 이루어지기 시작한다.” (Chrisman 2012)</p>
+</header><p>“국지적 데카르트 투영 좌표계로 세팅이 되어 있는 GIS 소프트웨어를 글로벌 스케일의 애플리케이션을 위해 확장하는 순간, 오류투성이의 결론이 도출되고 어이없는 측정이 이루어지기 시작한다.” (Chrisman 2012)</p>
 <p>3장에서는 평면인 <span class="math inline">\(R^2\)</span>에에서 정의되는 지오메트리에 대해 논의했다. 이 장에서는 평면이 아니라 3차원 구체(<span class="math inline">\(S^2\)</span>) 상의 지오메트리를 다룰 때 어떠한 변화가 발생하는지에 대해 논의할 것이다.</p>
 <p>우리는 제2장에서 지구의 형태가 일반적으로 구체가 아니라 타원체로 근사된다는 것을 배웠지만, 그림 1.7에서 녹색으로 표시된 라이브러리 중 어느 것도 타원체를 전제한 포괄적인 계산 함수의 세트에 접근할 수 없다. 오직 s2geometry (Dunnington, Pebesma, and Rubak 2023; Veach et al.&nbsp;2020) 라이브러리만이 이러한 접근을 가능케 하는데, 타원체 대신 구체를 사용한다. 그러나 이전 장에서 사용한 평면(투영된) 공간과 비교할 때, 구는 타원체에 대한 <em>훨씬</em> 더 나은 근사값이다.</p>
+<section id="직선" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="직선">
+<span class="header-section-number">4.1</span> 직선</h2>
+<p>3장에서 다룬 심플 피처의 기본 전제는 지오메트리가 <em>직선으로 연결된</em> 포인트들의 시퀀스로 표현된다는 것이다. <span class="math inline">\(R^2\)</span>(또는 데카르트 공간)에서는 이는 자명하지만, 구체 상에서는 직선이 존재하지 않는다. 두 지점을 연결하는 가장 짧은 선은 두 지점을 지나는 원의 호로, 이를 <em>대권호</em>(grate circle segment)라고도 한다. 이로 인해, 구의 반대편에 있는 두 점을 연결하는 <em>가장</em> 짧은 거리의 선은 존재하지 않으며, 이들을 연결하는 모든 대원호가 같은 길이를 갖는다. GeoJSON 표준(Butler et al.&nbsp;2016)은 측지 좌표에서 직선이 무엇인지에 대한 독자적인 정의를 제시하고 있다(이 장의 끝에 있는 연습문제 1 참조).</p>
+</section><section id="링-디렉션과-완전-폴리곤" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="링-디렉션과-완전-폴리곤">
+<span class="header-section-number">4.2</span> 링 디렉션과 완전 폴리곤</h2>
+<p>구체 상에 존재하는 폴리곤은 구 표면을 유한한 면적을 가진 두 부분, 즉 내부와 외부로 나눈다. <span class="math inline">\(R^2\)</span>의 경우에 적용된 “반시계 방향 규칙”은 잘 작동하지 않는데, 이는 방향 해석이 무엇을 내부로 정의할 것이냐에 따라 달라지기 때문이다. 통상적인 방식은, 폴리곤의 점을 순서대로 순회할 때 다각형 경계의 왼쪽(또는 오른쪽)을 내부로 정의하는 것이다. 노드 순서를 반대로 하면 내부와 외부가 뒤바뀐다.</p>
+<p>3장에서 빈 폴리곤에 대해 배웠는데, 정반대로 지표면 전체를 포괄하는 <em>완전 폴리곤</em> 개념을 생각해 볼 수 있다. 이 개념은, 예를 들어, 완전 폴리곤과 육지부의 합집합의 기하학적 차이를 통해 해양부를 정의할 때, 유용할 수 있다(그림 8.1과 그림 11.6 참고).</p>
+</section><section id="바운딩-박스-바운딩-직사각형-바운딩-캡" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="바운딩-박스-바운딩-직사각형-바운딩-캡">
+<span class="header-section-number">4.3</span> 바운딩 박스, 바운딩 직사각형, 바운딩 캡</h2>
+<p><span class="math inline">\(R^2\)</span>에서는 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span> 좌표의 범위로 바운딩 박스를 쉽게 정의할 수 있지만, 타원체 좌표의 경우 지오메트리가 반대자오선(antimeridian)(경도 <span class="math inline">\(\pm 180\)</span>)(역자주: 반대자오선은 본초자오선의 반대편에 위치한 자오선을 의미하는 것으로 동경 180도 혹은 서경 180도 경선을 지칭한다.) 이나 극점을 가로지를 때 이러한 범위는 그다지 유용하지 않다.</p>
+<p>낮은 <span class="math inline">\(x\)</span> 값이 높은 값의 서쪽에 있다는 <span class="math inline">\(R^2\)</span>에서의 가정은 반대 자오선을 넘을 때 성립하지 않는다. 구체 상의 영역을 획정하는 보다 자연스러운 대안은 바운딩 캡(bounding cap)인데, 영역의 중심 좌표와 반지름으로 만으로 정의할 수 있다. 남극대륙의 경우, 그림 4.1의 (a)와 (c)에 나타나 있는 것처럼, 바운딩 박스는 다음의 좌표 범위를 통해 정의된다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      xmin       ymin       xmax       ymax 
+-180.00000  -85.19218  179.62032  -60.52090 </code></pre>
+</div>
+</div>
+<p>이 바운딩 박스는 명백히 <code>ymin</code>이 -90이고 <code>xmax</code>가 180인 지역을 포함하지 않는다. 바운딩 캡은 해당 지역을 포함한다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  lng lat   angle
+1   0 -90 29.4791</code></pre>
+</div>
+</div>
+<p>해당 지역을 포함하는 또 다른 지오메트리에 바운딩 <em>직사각형</em>(rectangle)이 있다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  lng_lo lat_lo lng_hi   lat_hi
+1   -180    -90    180 -60.5209</code></pre>
+</div>
+</div>
+<p>반대자오선을 가로지르는 지역의 예로 피지 제도를 들 수 있는데, 피지 제도의 바운딩 박스는 다음과 같이 주어진다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      xmin       ymin       xmax       ymax 
+-179.86734  -21.70586  180.17769  -12.47695 </code></pre>
+</div>
+</div>
+<p>지구를 한바퀴 도는 정도의 크기이다. 동일한 지역에 대한 바운딩 직사각형은 다음과 같이 주어진다.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>    lng_lo    lat_lo    lng_hi    lat_hi
+1 174.5872 -21.70586 -178.2511 -12.47695</code></pre>
+</div>
+</div>
+<p>여기서 <code>lng_lo</code>가 <code>lng_hi</code> 보다 더 <em>큰</em> 값을 갖는데, 이는 바운딩 직사각형이 반대자오선을 가로지른다는 것을 나타낸다. 좌표 범위를 가지고 이러한 위치 관계를 추로하는 것은 불가능하다.</p>
+</section><section id="구체-상의-유효성-개념" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="구체-상의-유효성-개념">
+<span class="header-section-number">4.4</span> 구체 상의 유효성 개념</h2>
+<p>많은 글로벌 데이터셋은 타원체 좌표로 제공되지만 [-180,180]<span class="math inline">\(\times\)</span>[-90,90]의 <span class="math inline">\(R^2\)</span>에서도 잘 작동하도록 사전 조치되어 있다. 이것은 다음과 같은 사항을 의미한다.</p>
+<ul>
+<li><p>반대자오선(경도 <span class="math inline">\(\pm 180\)</span>)을 가로지르는 지오메트리는 양쪽으로 분할되어 횡단은 발생하지 않는다(하지만 둘은 거의 서로 닿아 있다).</p></li>
+<li><p>극점을 포함하는 지오메트리, 예를 들어 남극은 <span class="math inline">\(\pm 180\)</span>를 기준으로 분할되어 -180,-90과 180,-90가 다른 것으로 취급되지만 실질적으로는 둘 다 지리적 남극(Geographic South Pole)을 나타낸다.</p></li>
+</ul>
+<p>그림 4.1은 남극의 두 가지 다른 표현을 보여준다. 위쪽은 <span class="math inline">\(R^2\)</span>을 상정한 타원체 좌표로 나타낸 것이고, 아래쪽은 극평사도법(Polar Stereographic projection)으로 나타낸 것이다. 왼쪽은 지리적 남극을 중심으로한 분할이 없는 경우이고, 오른쪽은 지리적 남극을 중심으로한 분할이 있는 경우이다.</p>
+<p>폴리곤 (b)와 (c)는 유효하지만, 폴리곤 (a)는 자기-교차하기 때문에 유효하지 않고, 폴리곤 (d)는 남극을 향한 같은 변을 두 번 지나기 때문에 유효하지 않다. 구(<span class="math inline">\(S^2\)</span>)에서는 폴리곤 (a)는 유효하지만, (b)는 (d)와 같은 이유로 유효하지 않다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-4-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="04_files/figure-html/fig-4-1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="04_files/figure-html/fig-4-1-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;4.1: 남극 폴리곤으로 (a)와 (c)는 POINT(-180 90)을 통과하지 않고, (b)와 (d)는 POINT(-180 -90)과 POINT(180 -90)을 통과한다.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="연습문제" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="연습문제">
+<span class="header-section-number">4.5</span> 연습문제</h2>
+<p>다음의 연습문제를 풀되, 적절한 곳에서 R을 활용하라.</p>
+<ol type="1">
+<li><p>GeoJSON 형식(Butler et al.&nbsp;2016)은 타원체 좌표 간의 “직선”을 어떻게 정의하는가(섹션 3.1.1)? 이 직선 정의를 사용했을 때, LINESTRING(0 85, 180 85)는 극투영법에서 어떻게 나타나는가? 북극을 통과하게 하려면 이 지오메트리를 어떻게 수정해야 할까?</p></li>
+<li><p><span class="math inline">\(S^2\)</span>의 전형적인 폴리곤의 링 디렉션을 어떻게 확인할 수 있을까?</p></li>
+<li><p>바운딩 박스 대신 바운딩 캡을 사용하는 것의 이점이 있는가? 이점이 있다면 열거해 보시오.</p></li>
+<li><p>왜 작은 지역에 대해 해당 지역을 중심으로 한 정사도법이 <span class="math inline">\(S^2\)</span>에서 다루어진 지오메트리의 좋은 근사가 되는가?</p></li>
+<li><p><code>rnaturalearth::ne_countries(country = "Fiji", returnclass = "sf")</code>를 사용하여 피지의 기하학이 <span class="math inline">\(R^2\)</span>에서 유효한지, 피지를 중심에 둔 정사도법에서 유효한지, <span class="math inline">\(S^2\)</span>에서 유효한지 확인하시오. <span class="math inline">\(S^2\)</span>에서 지오메트리를 유효하게 하기 위해서는 어떻게 해야 하는가? 결과 지오메트리를 <span class="math inline">\(R^2\)</span>로 되돌려 지도로 그려보시오. 피지의 센트로이드를 <span class="math inline">\(R^2\)</span>와 <span class="math inline">\(S^2\)</span> 각각에 대해 구하고 두 센트로이드 간의 거리를 구하시오.</p></li>
+<li><p><strong>giscoR</strong> 패키지의 <code>gisco_countries</code> 데이터셋에서 <code>NAME_ENGL == "Fiji"</code>인 국가를 선택하시오. 이 국가의 지오메트리가 구체 상에서 유효한가? 그렇다면, 어떻게 그렇게 되었는지 설명하시오.</p></li>
+</ol>
 
 
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;4.1: 남극 폴리곤으로 (a)와 (c)는 POINT(-180 90)을 통과하지 않고, (b)와 (d)는 POINT(-180 -90)과 POINT(180 -90)을 통과한다.</span>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -738,10 +802,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./03.html" class="pagination-link  aria-label=" &lt;span="">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./03.html" class="pagination-link  aria-label=">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">지오메트리</span></span>
       </a>          
   </div>
@@ -752,8 +814,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
-
-
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+</body></html>
