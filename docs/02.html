@@ -386,7 +386,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-2-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="02_files/figure-html/fig-2-1-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="02_files/figure-html/fig-2-1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="02_files/figure-html/fig-2-1-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.1: 2차원 극 좌표계와 데카르트 좌표계
@@ -415,7 +415,7 @@ r=\sqrt{x^2+y^2}, \quad \phi=\text{atan2}(y,x)
 <div class="cell-output-display">
 <div id="fig-2-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="02_files/figure-html/fig-2-2-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="02_files/figure-html/fig-2-2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="02_files/figure-html/fig-2-2-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.2: 세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)
@@ -441,7 +441,7 @@ r=\sqrt{x^2+y^2}, \quad \phi=\text{atan2}(y,x)
 <div class="cell-output-display">
 <div id="fig-2-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="02_files/figure-html/fig-2-3-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="02_files/figure-html/fig-2-3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="02_files/figure-html/fig-2-3-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.3: 타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)
@@ -480,7 +480,7 @@ s_{ij}=r|\phi_1-\phi_2|=r\theta
 </section><section id="한정-공간과-비한정-공간" class="level3" data-number="2.2.3"><h3 data-number="2.2.3" class="anchored" data-anchor-id="한정-공간과-비한정-공간">
 <span class="header-section-number">2.2.3</span> 한정 공간과 비한정 공간</h3>
 <p>2차원 및 3차원 유클리드 공간(<span class="math inline">\(R^2\)</span>와 <span class="math inline">\(R^3\)</span>)는 비한정 공간이다. 이 공간의 모든 선은 무한한 길이를 가지며, 면적이나 부피는 자연적인 상한이 없다. 이와는 대조적으로 구(<span class="math inline">\(S^1\)</span>) 혹은 구체(<span class="math inline">\(S^2\)</span>)의 공간은 한정 공간이다. 무한히 많은 점이 있을 수는 있지만, 원의 길이와 면적, 구의 반지름, 면적 및 부피는 유한하다.</p>
-<p>이것은 사소하게 들릴 수 있지만, 공간데이터를 처리할 때 흥미로운 도전 과제로 이어진다. <span class="math inline">\(R^2\)</span> 상의 폴리곤은 명확하게 내부와 외부를 가진다. <span class="math inline">\(S^2\)</span> 공간인 구체 상에서 모든 폴리곤은 구체를 두 부분으로 나누며, 이 두 부분 중 어느 쪽을 내부로 간주하고 어느 쪽을 외부로 간주할지는 애매하며, 이는 통과 방향(traversal direction)에 의해 정의되어야 한다(역자주: 통과 방향은 보통 시계 방향과 반시계 방향으로 나누는데, 예를 들어, 삼각형의 변을 시계 방향으로 통과하면 왼쪽에 있는 영역이 내부로 간주되고, 반시계 방향으로 통과하면 오른쪽에 있는 영역이 내부로 간주된다.). 4장에서 <span class="math inline">\(S^2\)</span> 지오메트리를 다룰 때의 결과에 대해 추가로 논의할 것이다.</p>
+<p>이것은 사소하게 들릴 수 있지만, 공간데이터를 처리할 때 흥미로운 도전 과제로 이어진다. <span class="math inline">\(R^2\)</span> 상의 폴리곤은 명확하게 내부와 외부를 가진다. <span class="math inline">\(S^2\)</span> 공간인 구체 상에서 모든 폴리곤은 구체를 두 부분으로 나누며, 이 두 부분 중 어느 쪽을 내부로 간주하고 어느 쪽을 외부로 간주할지는 애매하며, 이는 탐색 방향(traversal direction)에 의해 정의되어야 한다(역자주: 탐색 방향은 보통 시계 방향과 반시계 방향으로 나누는데, 예를 들어, 삼각형의 변을 시계 방향으로 탐색하면 왼쪽에 있는 영역이 내부로 간주되고, 반시계 방향으로 탐색하면 오른쪽에 있는 영역이 내부로 간주된다.). 4장에서 <span class="math inline">\(S^2\)</span> 지오메트리를 다룰 때의 결과에 대해 추가로 논의할 것이다.</p>
 </section></section><section id="crs" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="crs">
 <span class="header-section-number">2.3</span> CRS</h2>
 <p>Lott(2015)를 따라 다음과 같은 개념 정의를 사용할 것이다(이탤릭체는 Lott의 정의를 그대로 옮겨 쓴 것이다)</p>
@@ -523,7 +523,7 @@ s_{ij}=r|\phi_1-\phi_2|=r\theta
 <div class="cell-output-display">
 <div id="fig-2-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="02_files/figure-html/fig-2-4-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="02_files/figure-html/fig-2-4-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="02_files/figure-html/fig-2-4-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.4: 영국의 OSGB 1936(EPSG:4277)를 ETRS89(EPSG:4258)로 변환하는데 사용되는 수평 데이텀 그리드
@@ -535,7 +535,7 @@ s_{ij}=r|\phi_1-\phi_2|=r\theta
 <div class="cell-output-display">
 <div id="fig-2-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="02_files/figure-html/fig-2-5-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="02_files/figure-html/fig-2-5-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="02_files/figure-html/fig-2-5-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.5: 영국의 ETRS89(EPSG:4937를 ODN 고도(EPSG:5701)로 변환하는데 사용되는 수직 데이텀 그리드
@@ -546,7 +546,7 @@ s_{ij}=r|\phi_1-\phi_2|=r\theta
 <p>그림 2.4에 나타나 있는 수평 데이텀 그리드와 그림 2.5에 나타나 있는 수직 데이텀 그리드의 예는 cdn.proj.org로부터 다운로드 받았다. 데이텀 그리드는 픽셀별 정화도 값을 포함할 수 있다.</p>
 </section><section id="wkt-2" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="wkt-2">
 <span class="header-section-number">2.5</span> WKT-2</h2>
-<p>Lott (2015)는 CRS의 인코딩과 CRS 간의 변환을 WKT(well-known text) 통해 나타내는 표준을 제안하였다. 이 표준(및 포맷)을 비공식적으로 WKT-2라고 부른다. 앞에서 언급했듯이, GDAL과 PROJ는 이 표준을 지원한다. 예로서 특정 CRS(<code>EPSG:4326</code>)은 WKT-2로 다음과 같이 표시된다.</p>
+<p>Lott (2015)는 CRS의 인코딩과 CRS 간의 변환을 WKT(well-known text) 통해 나타내는 표준을 정리한 바 있다. 이 표준(및 포맷)을 비공식적으로 WKT-2라고 부른다. 앞에서 언급했듯이, GDAL과 PROJ는 이 표준을 지원한다. 예로서 특정 CRS(<code>EPSG:4326</code>)은 WKT-2로 다음과 같이 표시된다.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">GEOGCRS</span><span class="op">[</span><span class="st">"WGS 84"</span>,</span>
 <span>    <span class="va">ENSEMBLE</span><span class="op">[</span><span class="st">"World Geodetic System 1984 ensemble"</span>,</span>
 <span>        <span class="va">MEMBER</span><span class="op">[</span><span class="st">"World Geodetic System 1984 (Transit)"</span><span class="op">]</span>,</span>
@@ -991,7 +991,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

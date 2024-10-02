@@ -384,7 +384,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 10월 1일</p>
+      <p class="date-modified">2024년 10월 2일</p>
     </div>
   </div>
     
@@ -392,25 +392,25 @@ window.Quarto = {
   
 
 
-</header><p>2장에서 좌표계에 대해 배웠기 때문에 이 장에서는 좌표계를 이용하여 지오메트리를 어떻게 정의할 수 있는지에 대해 배울 것이다. 다음의 사항이 다루어진다.</p>
+</header><p>2장에서 좌표계에 대해 배웠으므로 이제 이 장에서는 좌표계를 이용하여 지오메트리를 어떻게 정의할 수 있는지에 대해 배울 것이다. 다음의 사항이 다루어진다.</p>
 <ul>
 <li><p>심플 피처(simple feature): 포인트, 라인, 폴리곤 지오메트리를 다루는 표준</p></li>
-<li><p>지오메트리에 적용되는 오퍼레이션</p></li>
+<li><p>지오메트리에 적용되는 다양한 오퍼레이션</p></li>
 <li><p>커버리지(coveratge): 공간 혹은 시공간의 함수</p></li>
-<li><p>테셀레이션(tessellation): 하나의 지역을 여러개의 하위지역으로 분할한 것</p></li>
+<li><p>테셀레이션(tessellation): 하나의 지역을 여러개의 하위지역으로 세분한 것</p></li>
 <li><p>네트워크</p></li>
 </ul>
 <p>구면 지오메트리는 4장에서 논의되며, 래스터와 공간 혹은 시공간을 직사각형 형태로 분할한 또 다른 세분 체계는 6장에서 다룬다.</p>
 <section id="심플-피쳐-지오메트리" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="심플-피쳐-지오메트리">
 <span class="header-section-number">3.1</span> 심플 피쳐 지오메트리</h2>
-<p>심플 피처 지오메트리는 피처의 지오메트리를 설명하는 방법이다. 여기서 피처란 지오메트리를 가진 사물을 의미하는데, 암묵적으로 시간 속성을 가질 수 있고, 사물 자체를 묘사하기 위한 라벨이나 사물을 정량적으로 측정한 값과 관련된 속성을 가질 수 있다. 단순 피처 지오메트리의 주된 용도는 2차원 공간의 기하학적 형태를 포인트, 라인, 또는 폴리곤에 의거해 설명하는 것이다. “단순”이라는 형용사가 붙은 이유는 라인이나 폴리곤 지오메트리 역시 포인트 지오메트리와 그것을 연결한 직선으로 표현될 수 있기 때문이다.</p>
-<p>심플 피처 억세스(access)는 심플 피처 지오메트리를 설명하는 표준으로(Herring 2011, 2010; ISO 2004), 다음의 사항이 포함되어 있다.</p>
+<p>심플 피처 지오메트리는 피처의 지오메트리를 설명하는 방법이다. 여기서 피처란 지오메트리를 가진 사물을 의미하는데, 암묵적으로 시간 속성을 가질 수 있고, 사물 자체를 묘사하기 위한 라벨이나 사물을 정량적으로 측정한 값과 관련된 속성을 가질 수 있다. 단순 피처 지오메트리의 주된 용도는 2차원 공간의 기하학적 형태를 포인트, 라인, 또는 폴리곤에 의거해 설명하는 것이다. “심플”이라는 형용사가 붙은 이유는 라인이나 폴리곤 지오메트리 역시 포인트 지오메트리와 그것을 연결한 직선으로 표현될 수 있기 때문이다.</p>
+<p>심플 피처 억세스(access)는 심플 피처 지오메트리를 설명하는 표준으로(Herring 2011, 2010; ISO 2004), 다음의 사항을 포함한다.</p>
 <ul>
 <li><p>클래스 위계</p></li>
 <li><p>오퍼레이션의 집합</p></li>
 <li><p>이항 엔코딩과 텍스트 엔코딩</p></li>
 </ul>
-<p>먼저 가장 일반적으로 사용되는 7가지 단순 피처 지오메트리 유형에 대해 논의할 것이다.</p>
+<p>먼저 가장 일반적으로 사용되는 7가지 심플 피처 지오메트리 유형에 대해 논의할 것이다.</p>
 <section id="개의-대표-지오메트리" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="개의-대표-지오메트리">
 <span class="header-section-number">3.1.1</span> 7개의 대표 지오메트리</h3>
 <p>단일(single) 피처를 나타내기 위해 사용되는 가장 일반적인 심플 피처 지오메트리 유형은 다음과 같다.</p>
@@ -962,16 +962,74 @@ window.Quarto = {
 </div>
 </section></section><section id="정밀도" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="정밀도">
 <span class="header-section-number">3.3</span> 정밀도</h2>
+<p>기하학적 오퍼레이션, 예를 들어 특정 점이 선 위에 있는지 여부를 찾는 오퍼레이션은 R에서 사용되는 8바이트 더블과 같은 배정밀도 부동소수점 수로 좌표가 표현될 때 실패할 수 있다. 자주 선택되는 해결책은 연산 전에 좌표의 정밀도를 제한하는 것이다. 이를 위해 정밀도 모델이 채택된다. 가장 일반적인 방법은 하나의 계수 <span class="math inline">\(p\)</span>를 선택하고, 원래 좌표 <span class="math inline">\(c\)</span>에에서 반올림된 좌표 <span class="math inline">\(c'\)</span>를 계산하는 것이다.</p>
+<p><span class="math display">\[
+c'=\text {round} (p\cdot c)/p
+\]</span></p>
+<p>이러한 종류의 반올림은 좌표를 간격이 <span class="math inline">\(1/p\)</span> 인 규칙적인 그리드 상의 점으로 변환하며, 이는 기하학적 연산에 유익하다. 물론, 이러한 반올림은 면적이나 거리와 같은 모든 계산에도 영향을 미치며, 유효한 기하를 무효하게 만들 수 있다. 어떤 정밀도 값이 특정 애플리케이션에 가장 적합한지는 일반적으로 상식과 시행착오를 결합해 결정된다.</p>
 </section><section id="커버리지-테셀레이션과-래스터" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="커버리지-테셀레이션과-래스터">
 <span class="header-section-number">3.4</span> 커버리지: 테셀레이션과 래스터</h2>
+<p>OGC(Open Geospatial Consortium, 오픈지리공간컨소시움)는 <em>커버리지</em>(coverage)를 “시공간적 도메인 내의 임의의 직접 위치에 대해 그 범위에서 값을 반환하는 함수로 작용하는 피처”라고 정의한다 (Baumann, Hirschorn, and Masó 2017). <em>함수</em>가 존재한다는 것은 시공간적 도메인 내의 모든 “포인트”, 즉 특정한 지점과 특정한 시점의 모든 조합마다 범위에 대해 <em>단일</em> 값을 우리가 얻을 수 있다는 것을 의미한다. 이는 시공간적 현상에서 매우 일반적인 상황이며, 몇 가지 예를 들 수 있다.</p>
+<ul>
+<li>경계 분쟁을 제외하고 얘기한다면, 특정 시점의 특정 지역 내 모든 지점(도메인)은 단일 행정 단위(범위)에 속한다.</li>
+<li>특정 시점의 특정 지역 내 모든 지점(도메인)은 특정한 토지피복 유형(범위)을 갖는다.</li>
+<li>특정 지역(도메인)의 모든 지점은 단일한 고도값(범위)을 가지며, 이는 주어진 평균 해수면을 기준으로 측정될 수 있다.</li>
+<li>3차원 기체의 모든 시공간적 지점(도메인)은 온도(범위)에 대해 단일 값을 갖는다.</li>
+</ul>
+<p>여기서 주의해야 할 점은 관찰이나 측정은 항상 시간과 공간을 소요하기 때문에, 측정된 값은 항상 시공간적 부피(volume)에 대한 평균값일 수 밖에 없다는 점이다. 따라서 범위 변수를 무부피의 “포인트”에 대해 측정하는 경우는 극히 드물다. 그러나 많은 실제 사례에서 측정된 부피는 “포인트”로 간주될 만큼 충분히 작기는 하다. <em>토지 피복</em> 유형과 같은 변수의 경우, 구별되는 유형이 측정된 면적 단위와 관련하여 의미가 있도록 부피를 선택해야 한다.</p>
+<p>주어진 예의 처음 두 가지에서 범위 변수는 <em>범주형</em>이며, 마지막 두 가지에서 범위 변수는 <em>연속형</em>이다. 범주형 범위 변수의 경우, 넓은 지역이 동일한 범위 값을 가지면, 이러한 데이터를 효율적으로 표현하는 방법은 동일한 값을 가진 지역의 경계를 저장하는 것이다. 예를 들어, 국가 경계와 같은 경계가 이에 해당한다. 이는 단순 피처 지오메트리(폴리곤 또는 멀티폴리곤)을 사용하여 수행할 수 있지만, 이로 인해 몇 가지 도전 과제가 발생할 수 있다.</p>
+<ul>
+<li><p>단순 피처 폴리곤들이 서로 겹치지 않고 틈새도 없어야 하지만, 이러한 점이 반드시 보장된다고 말하기 어렵다.</p></li>
+<li><p>단순 피처는 인접한 두 폴리곤의 경계 상에 놓인 포인트를 하나의 폴리곤에만 할당하지 못하는데, 이는 커버리지로서의 해석과 충돌한다.</p></li>
+</ul>
 <section id="토폴로지-모델" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="토폴로지-모델">
 <span class="header-section-number">3.4.1</span> 토폴로지 모델</h3>
+<p>폴리곤 커버리지의 겹침과 틈새가 없도록 보장된 데이터 모델을 <em>토폴로지</em> 모델(topological model)이라고 하는데, GRASS GIS나 ArcGIS와 같은 지리정보시스템(GIS)에서 그 예를 찾을 수 있다. 토폴로지 모델은 폴리곤 경계를 한 번만 저장하고, 경계의 양쪽에 어떤 폴리곤이 있는지를 등록한다.</p>
+<p>토폴로지 모델에서 동일한 범위 값을 가진 지역들에 대해 (멀티)폴리곤 집합을 도출하는 것은 간단하다. 폴리곤의 세트로부터 토폴로지를 재정의하는 역의 과정을 수행하기 위해서는 오류에 대한 임계값을 설정해야하고 겹침과 틈새를 처리하는 특정한 방법을 고려해야 한다.</p>
 </section><section id="래스터-테셀레이션" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="래스터-테셀레이션">
 <span class="header-section-number">3.4.2</span> 래스터 테셀레이션</h3>
+<p>테셀레이션은 공간(2차원 또는 3차원)을 폴리곤을 이용해 더 작은 요소로 세분화한 것을 말한다. 규칙(정규) 테셀레이션은 정규 폴리곤(삼각형, 사각형 또는 육각형)으로 구성되는 테셀레이션을 의미한다. 정사각형을 사용하는 테셀레이션이 공간데이터에 일반적으로 사용되는 이를 래스터 데이터라고 부른다. 래스터 데이터는 공간적 디멘션 <span class="math inline">\(d\)</span>를 정규 셀로 세분하는데, 각 셀 <span class="math inline">\(d_i\)</span>는 좌측 닫힘 및 우측 개방 범위(구간)로 형성된다(역자주: 어떤 범위가 좌측 닫힘 치 우측 개방의 형식으로 규정되었다는 것은 범위의 왼쪽 끝점은 포함되지만, 범위의 오른쪽 끝점은 포함되지 않는다는 것을 의미한다.)</p>
+<p><span class="math display">\[
+d_i=d_0+[i\times \delta,(i+1)\times \delta)
+\]</span></p>
+<p>여기서 <span class="math inline">\(d_0\)</span>는 오프셋값, <span class="math inline">\(\delta\)</span>는 구간(셀 또는 픽셀) 크기, 셀 인덱스인 <span class="math inline">\(i\)</span>는 임의의 값을 취할 수 있지만 연속적인 정수값이어야한다. <span class="math inline">\(\delta\)</span>는 <span class="math inline">\(y\)</span>-축(북거)에 대해서는 보통 음의 값을 취하는데 래스터의 행은 남쪽으로 갈수록 증가하는 반면 <span class="math inline">\(y\)</span>-좌표값은 감소하는 것과 보조를 맞추기 위함이다.</p>
+<p>일반적인 폴리곤 테셀레이션에서는 두 개의 폴리곤이 공유하는 경계에 위치한 점의 할당이 모호하지만, 정규 테셀레이션에서는 좌측 닫힘 “[” 및 우측 개방 “)” 구간을 사용하기 때문에 이러한 모호성이 해소된다. 이는 <span class="math inline">\(y\)</span>-좌표에 음의 <span class="math inline">\(\delta\)</span>값이 <span class="math inline">\(x\)</span>-좌표에 양의 <span class="math inline">\(\delta\)</span>값이 적용된 적용된 래스터의 경우, 각 셀의 모서리 점들 중 좌측 상단의 것만이 해당 셀의 부분으로 간주된다는 것을 의미한다. 이로 인해 발생할 수 있는 예기치 못한 결과중 한 예가 그림 3.6에 나타나 있다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-3-6" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="03_files/figure-html/fig-3-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="03_files/figure-html/fig-3-6-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.5: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>시간 차원을 좌측 닫힘 및 우측 개방 구간으로 세분하는 것은 매우 일반적이며, 이는 R의 <strong>xts</strong> 패키지와 같은 시계열 소프트웨어의 암묵적인 기본 가정이다. 즉, 시간 스탬프(시점)는 시간 간격의 시작을 나타낸다. 다른 모델이 결합될 수도 있다. 예를 들어, 심플 피처 폴리곤을 사용하여 공간을 세분하고 이를 정규 시간 테셀레이션과 결합하여 시공간 벡터 데이터 큐브 개념을 구현할 수 있다. 래스터 및 벡터 데이터 큐브에 대한 논의는 6장에서 다룬다.</p>
+<p>위에서 언급한 것처럼, <span class="math inline">\(R^2\)</span>에 대한 정규 테셀레이션을 생성하는데 활용될 수 있는 폴리곤으로 정사각형 외에 삼각형과 육각형도 있다. 3차원 구체로 확장하면 더 많아지는데, 큐브, 정팔면체, 정이십면체, 정십이면체 등을 포함한다. 큐브를 기반으로 하는 공간 인덱스는 s2geometry이며, H3 라이브러리는 정이십면체를 사용하는데, 밀집화를 위해 (주로) 육각형을 사용한다. 지구 전체를 포괄하는 모자이크 역시 이산 글로벌 그리드라고 불린다.</p>
 </section></section><section id="네트워크" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="네트워크">
 <span class="header-section-number">3.5</span> 네트워크</h2>
+<p>공간적 네트워크느 일반적으로 라인(LINESTRING) 요소로 구성되지만, 네트워크로서의 완결성을 위한 추가적인 위상적 특성을 가진다.</p>
+<ul>
+<li><p>라인스트링의 시작점과 끝점은 다른 라인스트링의 시작점이나 끝점에 연결될 수 있으며, 이를 통해 노드와 엣지의 집합이 형성된다.</p></li>
+<li><p>엣지는 방향성을 가질 수 있으며, 이 경우 연결(흐름, 수송)은 한 방향으로만 가능하다.</p></li>
+</ul>
+<p><strong>osmar</strong>(Schlesinger and Eugster 2013), <strong>stplanr</strong>(Lovelace, Ellison, and Morgan 2022), <strong>sfnetworks</strong>(van der Meer et al.&nbsp;2022)와 같은 R 패키지는 네트워크 객체를 구성하고 이를 다루는 기능을 제공하며, 네트워크를 통한 최단 또는 최속 경로를 계산할 수 있게 해준다. <strong>spatstat</strong> 패키지(Baddeley, Turner, and Rubak 2022; Baddeley, Rubak, and Turner 2015)는 포인트 패턴 분석을 선형 네트워크 상에서도 할 수 있는 기능을 제공한다(11장). Lovelace, Nowosad, and Muenchow (2019)의 12장은 네트워크 데이터를 사용한 교통 애플리케이션에 대해 다루고 있다.</p>
 </section><section id="연습문제" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="연습문제">
 <span class="header-section-number">3.6</span> 연습문제</h2>
+<p>다음의 연습문제를 풀되, 적절한 곳에서 R을 활용하라.</p>
+<ol type="1">
+<li><p>2차원(평면) 공간에서 심플 피처 지오메트리로 표현될 수 없는 지오메트리의 두 가지 예를 제시하고, 그림으로 표현하시오.</p></li>
+<li><p>좌표 10.542, 0.01, 45321.6789를 정밀도 값 1, 1e3, 1e6, 및 1e-2를 사용하여 재계산하시오.</p></li>
+<li><p>에너리 인터섹션이 요구되는 현실 문제를 제시하시오.</p></li>
+<li><p>지점별로 하나의 폐쇄 폴리곤을 가지는 보로노이 다이어그램(그림 3.3)을 어떻게 만들 수 있는지 설명하시오.</p></li>
+<li><p>다음의 지오메트리에 대해 유너리 측도 <code>dimension</code>을 계산하시오. <code>POINT Z (0 1 1)</code>, <code>LINESTRING Z (0 0 1,1 1 2)</code>, <code>POLYGON Z ((0 0 0,1 0 0,1 1 0,0 00))</code></p></li>
+<li><p><code>LINESTRING(0 0,1 0)</code>과 <code>LINESTRING(0.5 0,0.5 1)</code>의 DE-9IM 관계를 설명하시오. 개별 문자의 의미도 함께 설명하시오.</p></li>
+<li><p>심플 피처 폴리곤의 집합을 가지고 커버리지 하나를 만들 수 있을지의 여부에 대해 답하시오. 만약 답이 그렇다이면 어떤 제약조건 하에서 그것이 가능한지 설명하시오.</p></li>
+<li><p><strong>sf</strong> 패키지에 들어 있는 <code>nc</code> 카운티 데이터를 가지고, 네 개의 카운티가 동시에 접촉하고 있는 포인트들을 추출하시오.</p></li>
+<li><p><span class="math inline">\(y\)</span>-축을 위한 <span class="math inline">\(\delta\)</span>값이 양수라면, 그림 3.6은 어떻게 달라질지 설명하시오.</p></li>
+</ol>
 
 
 <div class="hidden" aria-hidden="true">
@@ -979,6 +1037,7 @@ window.Quarto = {
 <span class="glightbox-desc lightbox-desc-2">그림&nbsp;3.2: DE-9IM: 폴리곤의 내부, 경계, 외부(행)와 라인스트링의 내부, 경계, 외부(열) 간의 인터섹션</span>
 <span class="glightbox-desc lightbox-desc-3">그림&nbsp;3.3: 포인트의 집합, 왼편은 컨벡스 헐(빨간색), 가운데는 보로노이 폴리곤, 오른편은 들로네 삼각망</span>
 <span class="glightbox-desc lightbox-desc-5">그림&nbsp;3.4: 박스를 서로다른 순서에 따라 differece를 적용한 결과: 왼쪽은 원리 순서이고 오른쪽은 반대 순서</span>
+<span class="glightbox-desc lightbox-desc-6">그림&nbsp;3.5: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1378,7 +1437,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
