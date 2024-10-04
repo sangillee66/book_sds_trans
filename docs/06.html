@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>공간데이터사이언스 개론 - 6&nbsp; 데이터 큐브</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,7 +18,6 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -41,7 +37,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -67,18 +65,37 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-
-<link rel="stylesheet" href="styles.css">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -89,13 +106,9 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">공간데이터사이언스 개론</a> 
         <div class="sidebar-tools-main">
@@ -110,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서장</span></a>
@@ -124,8 +137,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></a>
@@ -162,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_2.html" class="sidebar-item-text sidebar-link">
@@ -171,8 +184,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
@@ -191,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_3.html" class="sidebar-item-text sidebar-link">
@@ -200,8 +213,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
@@ -250,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -259,8 +272,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R 스페셜 패키지</span></span></a>
@@ -279,20 +292,39 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EC%B0%A8%EC%9B%90-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C" id="toc-차원-데이터-큐브" class="nav-link active" data-scroll-target="#%EC%B0%A8%EC%9B%90-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C"><span class="header-section-number">6.1</span> 4차원 데이터 큐브</a></li>
+  <li>
+<a href="#%EC%B0%A8%EC%9B%90-%EC%86%8D%EC%84%B1-%EC%84%9C%ED%8F%AC%ED%8A%B8" id="toc-차원-속성-서포트" class="nav-link" data-scroll-target="#%EC%B0%A8%EC%9B%90-%EC%86%8D%EC%84%B1-%EC%84%9C%ED%8F%AC%ED%8A%B8"><span class="header-section-number">6.2</span> 차원, 속성, 서포트</a>
+  <ul class="collapse">
+<li><a href="#%EC%A0%95%EA%B7%9C-%EC%B0%A8%EC%9B%90-gdal%EC%9D%98-%EC%A7%80%EC%98%A4%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%BC" id="toc-정규-차원-gdal의-지오트랜스폼" class="nav-link" data-scroll-target="#%EC%A0%95%EA%B7%9C-%EC%B0%A8%EC%9B%90-gdal%EC%9D%98-%EC%A7%80%EC%98%A4%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%BC"><span class="header-section-number">6.2.1</span> 정규 차원, GDAL’의 지오트랜스폼</a></li>
+  <li><a href="#%ED%81%90%EB%B8%8C-%EC%B0%A8%EC%9B%90%EA%B3%BC-%EC%84%9C%ED%8F%AC%ED%8A%B8" id="toc-큐브-차원과-서포트" class="nav-link" data-scroll-target="#%ED%81%90%EB%B8%8C-%EC%B0%A8%EC%9B%90%EA%B3%BC-%EC%84%9C%ED%8F%AC%ED%8A%B8"><span class="header-section-number">6.2.2</span> 큐브 차원과 서포트</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C%EC%97%90-%EC%9E%91%EC%9A%A9%ED%95%98%EB%8A%94-%EC%98%A4%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98" id="toc-데이터-큐브에-작용하는-오퍼레이션" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C%EC%97%90-%EC%9E%91%EC%9A%A9%ED%95%98%EB%8A%94-%EC%98%A4%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98"><span class="header-section-number">6.3</span> 데이터 큐브에 작용하는 오퍼레이션</a>
+  <ul class="collapse">
+<li><a href="#%ED%81%90%EB%B8%8C%EB%A5%BC-%EC%9E%98%EA%B2%8C-%EC%AA%BC%EA%B0%9C%EA%B8%B0-%ED%95%84%ED%84%B0" id="toc-큐브를-잘게-쪼개기-필터" class="nav-link" data-scroll-target="#%ED%81%90%EB%B8%8C%EB%A5%BC-%EC%9E%98%EA%B2%8C-%EC%AA%BC%EA%B0%9C%EA%B8%B0-%ED%95%84%ED%84%B0"><span class="header-section-number">6.3.1</span> 큐브를 잘게 쪼개기: 필터</a></li>
+  <li><a href="#%EC%B0%A8%EC%9B%90%EC%97%90-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0" id="toc-차원에-함수를-적용하기" class="nav-link" data-scroll-target="#%EC%B0%A8%EC%9B%90%EC%97%90-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0"><span class="header-section-number">6.3.2</span> 차원에 함수를 적용하기</a></li>
+  <li><a href="#%EC%B0%A8%EC%9B%90%EC%9D%84-%EC%A4%84%EC%9D%B4%EA%B8%B0" id="toc-차원을-줄이기" class="nav-link" data-scroll-target="#%EC%B0%A8%EC%9B%90%EC%9D%84-%EC%A4%84%EC%9D%B4%EA%B8%B0"><span class="header-section-number">6.3.3</span> 차원을 줄이기</a></li>
+  </ul>
+</li>
+  <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%ED%81%90%EB%B8%8C%EB%A5%BC-%EB%B2%A1%ED%84%B0-%ED%81%90%EB%B8%8C%EB%A1%9C-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%ED%8C%85%ED%95%98%EA%B8%B0" id="toc-래스터-큐브를-벡터-큐브로-애그리게이팅하기" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%ED%81%90%EB%B8%8C%EB%A5%BC-%EB%B2%A1%ED%84%B0-%ED%81%90%EB%B8%8C%EB%A1%9C-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%ED%8C%85%ED%95%98%EA%B8%B0"><span class="header-section-number">6.4</span> 래스터 큐브를 벡터 큐브로 애그리게이팅하기</a></li>
+  <li><a href="#%EC%B0%A8%EC%9B%90%EC%9D%84-%EC%86%8D%EC%84%B1%EC%9C%BC%EB%A1%9C-%EA%B5%90%EC%B2%B4%ED%95%98%EA%B8%B0" id="toc-차원을-속성으로-교체하기" class="nav-link" data-scroll-target="#%EC%B0%A8%EC%9B%90%EC%9D%84-%EC%86%8D%EC%84%B1%EC%9C%BC%EB%A1%9C-%EA%B5%90%EC%B2%B4%ED%95%98%EA%B8%B0"><span class="header-section-number">6.5</span> 차원을 속성으로 교체하기</a></li>
+  <li><a href="#%EA%B8%B0%ED%83%80-%EB%8F%99%EC%A0%81-%EA%B3%B5%EA%B0%84%EB%8D%B0%EC%9D%B4%ED%84%B0" id="toc-기타-동적-공간데이터" class="nav-link" data-scroll-target="#%EA%B8%B0%ED%83%80-%EB%8F%99%EC%A0%81-%EA%B3%B5%EA%B0%84%EB%8D%B0%EC%9D%B4%ED%84%B0"><span class="header-section-number">6.6</span> 기타 동적 공간데이터</a></li>
+  <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"><span class="header-section-number">6.7</span> 연습문제</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block"><span id="sec-datacube" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터 큐브</span></span></h1>
 </div>
 
@@ -305,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 26일</p>
+      <p class="date-modified">2024년 10월 4일</p>
     </div>
   </div>
     
@@ -313,14 +345,96 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>데이터 큐브는 시간에 걸쳐 일련의 지오메트리의 특성을 반복적으로 관찰할 때 자연스럽게 발생한다. 시간 정보는 때때로 건물의 건축 연도나 사람의 생년월일을 등록할 때와 같이 피처의 속성으로 간주될 수 있다(5장). 다른 경우에는 속성을 관찰하는 시간이나 속성에 대한 예측이 이루어진 시점을 나타낼 수 있다. 이러한 경우, 시간은 공간과 동등한 위상을 가지며, 시간과 공간은 함께 우리가 관찰, 모델링, 예측 또는 예보하는 물리적 차원을 설정한다.</p>
+<p>우리 세상을 바라보는 한 가지 방법은 세 가지 공간 차원과 하나의 시간 차원을 포함하는 네 차원 공간을 상정하는 것이다. 그런 관점에서 사건은 시간 차원에서의 크기를 지속 시간으로 갖는 “사물”이나 “객체”가 된다(Galton 2004). 이러한 관점은 우리가 세상을 경험하고 묘사하는 방식과 잘 맞지 않지만, 데이터 분석의 관점에서는 네 개의 숫자(와 참조 체계) 만으로 관측의 시공간 좌표를 설명하는 데 충분하다.</p>
+<p>우리는 데이터 큐브를 공간 및/또는 시간과 관련된 하나 이상의 배열 차원을 가진 배열 데이터로 정의한다(Lu, Appel, and Pebesma 2018). 이는 래스터 데이터, 속성을 가진 피처, 그리고 시계열 데이터가 모두 데이터 큐브의 특별한 경우임을 의미한다. 우리는 3차원 구조에 한정될 이유가 없으므로 실제로는 큐브보다는 <em>하이퍼큐브</em>(hypercube)를 의미하며, 서로 다른 차원의 큐브 범위가 동일할 필요는 없고 비교 가능한 단위를 가질 필요도 없기 때문에 더 적절한 용어는 <em>하이퍼-직사각형</em>(hyper-retangle)이 될 것이다. 간편하게 우리는 데이터 큐브라고 부른다.</p>
+<p>데이터 큐브의 표준 형식은 그림 6.1에 나타나 있으며, 이는 서로 다른 시간 단계에서 수집(관찰 또는 모델링)된 동일한 지역의 래스터 레이어 세트를 원근법 플롯으로 보여준다. 세 개의 큐브 차원인 경도, 위도, 시간은 서로 직교 관계를 이룬다. 임의의 2차원 큐브 슬라이스는 특정 값에서 하나의 차원을 고정함으로써 얻어지고, 1차원 슬라이스는 특정 값에서 두 개의 차원을 고정하여 얻어지며, 스칼라는 세 개의 차원을 특정 값에서 고정함으로써 얻어진다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-6-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-6-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="06_files/figure-html/fig-6-1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="06_files/figure-html/fig-6-1-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;6.1: 위도, 경도, 시간의 세 차원을 가지 래스터 데이터 큐브
+</figcaption></figure>
+</div>
+</div>
+</div>
+<section id="차원-데이터-큐브" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="차원-데이터-큐브">
+<span class="header-section-number">6.1</span> 4차원 데이터 큐브</h2>
+<div id="fig-6-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-6-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/06-Cubes_files/figure-html/fig-cube4d-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/06-Cubes_files/figure-html/fig-cube4d-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;6.2: x, y, 밴드, 시간의 네 차원을 가진 4차원 래스터 데이터 큐브
+</figcaption></figure>
+</div>
+<p>그림 6.2는 4차원 래스터 데이터 큐브를 보여준다(Appel and Pebesma 2019). 여기서 스펙트럼 차원(“밴드”)을 가진 3차원 래스터 데이터 큐브가 네 번째 차원인 시간 축을 따라 조직된다. 컬러 이미지 데이터는 항상 세 개의 밴드(파란색, 녹색, 빨간색)를 가지며, 이 예제는 스펙트럼 원격탐사 데이터에서 일반적으로 발견되는 네 번째 밴드(근적외선, NIR)를 포함하고 있다.</p>
+<p>그림 6.3은 정확히 동일한 데이터를 보여주지만, 평면적으로 배열한 패싯 플롯(또는 산점도 행렬)으로 나타내고 있다. 플롯의 두 차원(<span class="math inline">\(x\)</span> 및 <span class="math inline">\(y\)</span>)은 기본적으로는 <em>밴드</em>와 <em>시간</em> 차원을 의미하지만, 세부 플롯 내부에서는 실제 좌표계를 의미한다.</p>
+<div id="fig-6-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-6-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/06-Cubes_files/figure-html/fig-cube4d2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/06-Cubes_files/figure-html/fig-cube4d2-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;6.3: 두 차원에 의거해 평면적으로 배열된 4차원 래스터 데이터
+</figcaption></figure>
+</div>
+</section><section id="차원-속성-서포트" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="차원-속성-서포트">
+<span class="header-section-number">6.2</span> 차원, 속성, 서포트</h2>
+<p><span class="math display">\[
+Z=f(x,y,t)
+\]</span></p>
+<p><span class="math display">\[
+\{Z_1,Z_2,...,Z_p\}=f(x,y,t)
+\]</span></p>
+<p><span class="math display">\[
+\{Z_1,Z_2,...,Z_p\}=f(D_1,D_2,...,D_n)
+\]</span></p>
+<section id="정규-차원-gdal의-지오트랜스폼" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="정규-차원-gdal의-지오트랜스폼">
+<span class="header-section-number">6.2.1</span> 정규 차원, GDAL’의 지오트랜스폼</h3>
+<p><span class="math display">\[
+x=o_x+(i-1)d_x
+\]</span></p>
+<p><span class="math display">\[
+x=o_x+(i-a)d_x+(j-1)a_1
+\]</span></p>
+<p><span class="math display">\[
+y=o_y+(i-1)a_2+(j-1)d_y
+\]</span></p>
+</section><section id="큐브-차원과-서포트" class="level3" data-number="6.2.2"><h3 data-number="6.2.2" class="anchored" data-anchor-id="큐브-차원과-서포트">
+<span class="header-section-number">6.2.2</span> 큐브 차원과 서포트</h3>
+</section></section><section id="데이터-큐브에-작용하는-오퍼레이션" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="데이터-큐브에-작용하는-오퍼레이션">
+<span class="header-section-number">6.3</span> 데이터 큐브에 작용하는 오퍼레이션</h2>
+<section id="큐브를-잘게-쪼개기-필터" class="level3" data-number="6.3.1"><h3 data-number="6.3.1" class="anchored" data-anchor-id="큐브를-잘게-쪼개기-필터">
+<span class="header-section-number">6.3.1</span> 큐브를 잘게 쪼개기: 필터</h3>
+</section><section id="차원에-함수를-적용하기" class="level3" data-number="6.3.2"><h3 data-number="6.3.2" class="anchored" data-anchor-id="차원에-함수를-적용하기">
+<span class="header-section-number">6.3.2</span> 차원에 함수를 적용하기</h3>
+</section><section id="차원을-줄이기" class="level3" data-number="6.3.3"><h3 data-number="6.3.3" class="anchored" data-anchor-id="차원을-줄이기">
+<span class="header-section-number">6.3.3</span> 차원을 줄이기</h3>
+</section></section><section id="래스터-큐브를-벡터-큐브로-애그리게이팅하기" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="래스터-큐브를-벡터-큐브로-애그리게이팅하기">
+<span class="header-section-number">6.4</span> 래스터 큐브를 벡터 큐브로 애그리게이팅하기</h2>
+</section><section id="차원을-속성으로-교체하기" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="차원을-속성으로-교체하기">
+<span class="header-section-number">6.5</span> 차원을 속성으로 교체하기</h2>
+<p><span class="math display">\[
+\{Z_1,Z_2,...,Z_p\}=f(D_1,D_2,...,D_n)
+\]</span></p>
+<p><span class="math display">\[
+Z=f(D_1,D_2,...,D_n,D_{n+1})
+\]</span></p>
+</section><section id="기타-동적-공간데이터" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="기타-동적-공간데이터">
+<span class="header-section-number">6.6</span> 기타 동적 공간데이터</h2>
+</section><section id="연습문제" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="연습문제">
+<span class="header-section-number">6.7</span> 연습문제</h2>
 
 
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;6.1: 위도, 경도, 시간의 세 차원을 가지 래스터 데이터 큐브</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;6.2: x, y, 밴드, 시간의 네 차원을 가진 4차원 래스터 데이터 큐브</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;6.3: 두 차원에 의거해 평면적으로 배열된 4차원 래스터 데이터</span>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -706,10 +820,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./05.html" class="pagination-link  aria-label=" &lt;span="" 서포트&lt;="" span&gt;"="">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./05.html" class="pagination-link  aria-label=">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">속성과 서포트</span></span>
       </a>          
   </div>
@@ -720,8 +832,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
-
-
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+</body></html>

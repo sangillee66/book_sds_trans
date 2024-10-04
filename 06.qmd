@@ -14,3 +14,372 @@ editor: visual
 ---
 
 # 데이터 큐브 {#sec-datacube}
+
+데이터 큐브는 시간에 걸쳐 일련의 지오메트리의 특성을 반복적으로 관찰할 때 자연스럽게 발생한다. 시간 정보는 때때로 건물의 건축 연도나 사람의 생년월일을 등록할 때와 같이 피처의 속성으로 간주될 수 있다(5장). 다른 경우에는 속성을 관찰하는 시간이나 속성에 대한 예측이 이루어진 시점을 나타낼 수 있다. 이러한 경우, 시간은 공간과 동등한 위상을 가지며, 시간과 공간은 함께 우리가 관찰, 모델링, 예측 또는 예보하는 물리적 차원을 설정한다.
+
+우리 세상을 바라보는 한 가지 방법은 세 가지 공간 차원과 하나의 시간 차원을 포함하는 네 차원 공간을 상정하는 것이다. 그런 관점에서 사건은 시간 차원에서의 크기를 지속 시간으로 갖는 “사물”이나 “객체”가 된다(Galton 2004). 이러한 관점은 우리가 세상을 경험하고 묘사하는 방식과 잘 맞지 않지만, 데이터 분석의 관점에서는 네 개의 숫자(와 참조 체계) 만으로 관측의 시공간 좌표를 설명하는 데 충분하다.
+
+우리는 데이터 큐브를 공간 및/또는 시간과 관련된 하나 이상의 배열 차원을 가진 배열 데이터로 정의한다(Lu, Appel, and Pebesma 2018). 이는 래스터 데이터, 속성을 가진 피처, 그리고 시계열 데이터가 모두 데이터 큐브의 특별한 경우임을 의미한다. 우리는 3차원 구조에 한정될 이유가 없으므로 실제로는 큐브보다는 *하이퍼큐브*(hypercube)를 의미하며, 서로 다른 차원의 큐브 범위가 동일할 필요는 없고 비교 가능한 단위를 가질 필요도 없기 때문에 더 적절한 용어는 *하이퍼-직사각형*(hyper-retangle)이 될 것이다. 간편하게 우리는 데이터 큐브라고 부른다.
+
+데이터 큐브의 표준 형식은 그림 6.1에 나타나 있으며, 이는 서로 다른 시간 단계에서 수집(관찰 또는 모델링)된 동일한 지역의 래스터 레이어 세트를 원근법 플롯으로 보여준다. 세 개의 큐브 차원인 경도, 위도, 시간은 서로 직교 관계를 이룬다. 임의의 2차원 큐브 슬라이스는 특정 값에서 하나의 차원을 고정함으로써 얻어지고, 1차원 슬라이스는 특정 값에서 두 개의 차원을 고정하여 얻어지며, 스칼라는 세 개의 차원을 특정 값에서 고정함으로써 얻어진다.
+
+```{r}
+#| echo: false
+#| label: fig-6-1
+#| fig-cap: "위도, 경도, 시간의 세 차원을 가지 래스터 데이터 큐브"
+
+# (C) 2019, Edzer Pebesma, CC-BY-SA
+set.seed(1331)
+library(stars) |> suppressPackageStartupMessages()
+library(colorspace)
+tif <- system.file("tif/L7_ETMs.tif", package = "stars")
+r <- read_stars(tif)
+
+nrow <- 5
+ncol <- 8
+m <- r[[1]][1:nrow,1:ncol,1]
+dim(m) <- c(x = nrow, y = ncol) # named dim
+s <- st_as_stars(m)
+# s
+attr(s, "dimensions")[[1]]$delta = 3
+attr(s, "dimensions")[[2]]$delta = -.5
+attr(attr(s, "dimensions"), "raster")$affine = c(-1.2, 0.0)
+
+plt <- function(x, yoffset = 0, add, li = TRUE) {
+    attr(x, "dimensions")[[2]]$offset = attr(x, "dimensions")[[2]]$offset + yoffset
+    l <- st_as_sf(x, as_points = FALSE)
+    pal <- sf.colors(10)
+    if (li)
+        pal <- lighten(pal, 0.3 + rnorm(1, 0, 0.1))
+    if (! add)
+        plot(l, axes = FALSE, breaks = "equal", pal = pal, reset = FALSE, border = grey(.75), key.pos = NULL, main = NULL, xlab = "time")
+    else
+        plot(l, axes = TRUE, breaks = "equal", pal = pal, add = TRUE, border = grey(.75))
+    u <- st_union(l)
+    # print(u)
+    plot(st_geometry(u), add = TRUE, col = NA, border = 'black', lwd = 2.5)
+}
+
+pl <- function(s, x, y, add = TRUE, randomize = FALSE) {
+  attr(s, "dimensions")[[1]]$offset = x
+  attr(s, "dimensions")[[2]]$offset = y
+  m <- r[[1]][y + 1:nrow,x + 1:ncol,1]
+  if (randomize)
+    m <- m[sample(y + 1:nrow),x + 1:ncol]
+  dim(m) = c(x = nrow, y = ncol) # named dim
+  s[[1]] = m
+  plt(s, 0, add)
+  plt(s, 1, TRUE)
+  plt(s, 2, TRUE)
+  plt(s, 3, TRUE)
+  plt(s, 4, TRUE)
+  plt(s, 5, TRUE)
+  plt(s, 6, TRUE)
+  plt(s, 7, TRUE)
+  plt(s, 8, TRUE, FALSE)
+}
+
+plot.new()
+par(mar = rep(0.5,4))
+plot.window(xlim = c(-12,15), ylim = c(-5,10), asp=1)
+pl(s, 0, 0)
+# box()
+text(-10, 0, "time", srt = -90, col = 'black')
+text(-5,  6.5, "latitude", srt = 25, col = 'black')
+text( 5,  8.5, "longitude", srt = 0, col = 'black')
+
+```
+
+## 4차원 데이터 큐브
+
+```{r}
+#| echo: false
+#| eval: false
+#| label: fig-6-2
+#| fig-cap: "x, y, 밴드, 시간의 네 차원을 가진 4차원 래스터 데이터 큐브"
+
+# (C) 2021, Jonathan Bahlmann, CC-BY-SA
+# https://github.com/Open-EO/openeo.org/tree/master/documentation/1.0/datacubes/.scripts
+# based on work by Edzer Pebesma, 2019, here: https://gist.github.com/edzer/5f1b0faa3e93073784e01d5a4bb60eca
+
+# plotting runs via a dummy stars object with x, y dimensions (no bands)
+# to not be overly dependent on an input image, time steps and bands
+# are displayed by replacing the matrix contained in the dummy stars object
+# every time something is plotted
+
+# packages, read input ----
+set.seed(1331)
+library(stars)
+library(colorspace) |> suppressPackageStartupMessages()
+library(scales) |> suppressPackageStartupMessages()
+
+# make color palettes ----
+blues <- sequential_hcl(n = 20, h1 = 211, c1 = 80, l1 = 40, l2 = 100, p1 = 2)
+greens <- sequential_hcl(n = 20, h1 = 134, c1 = 80, l1 = 40, l2 = 100, p1 = 2)
+reds <- sequential_hcl(n = 20, h1 = 360, c1 = 80, l1 = 40, l2 = 100, p1 = 2)
+purples <- sequential_hcl(n = 20, h1 = 299, c1 = 80, l1 = 40, l2 = 100, p1 = 2)
+greys <- sequential_hcl(n = 20, h1 = 0, c1 = 0, l1 = 40, l2 = 100, p1 = 2)
+
+# matrices from raster ----
+# make input matrices from an actual raster image
+input <- read_stars("data/iceland_delta_cutout_2.tif") # this raster needs approx 6x7 format
+# if the input raster is changed, every image where a pixel value is written as text needs to be checked and corrected accordingly
+input <- input[,,,1:4]
+warped <- st_warp(input, crs = st_crs(input), cellsize = 200) # warp to approx. 6x7 pixel
+
+# these are only needed for resampling
+warped_highres <- st_warp(warped, crs = st_crs(warped), cellsize = 100) # with different input, cellsize must be adapted
+# this is a bit of a trick, because 3:4 is different format than 6:7
+# when downsampling, the raster of origin isn't so important anyway
+warped_lowres <- st_warp(warped_highres[,1:11,,], crs = st_crs(warped), cellsize = 390)
+# plot(warped_lowres)
+# image(warped[,,,1], text_values = TRUE)
+
+t1 <- floor(matrix(runif(42, -30, 150), ncol = 7)) # create timesteps 2 and 3 randomly
+t2 <- floor(matrix(runif(42, -250, 50), ncol = 7))
+
+# create dummy stars object ----
+make_dummy_stars <- function(x, y, d1, d2, aff) {
+  m = warped_highres[[1]][1:x,1:y,1] # underlying raster doesn't matter because it's just dummy construct
+  dim(m) = c(x = x, y = y) # named dim
+  dummy = st_as_stars(m)
+  attr(dummy, "dimensions")[[1]]$delta = d1
+  attr(dummy, "dimensions")[[2]]$delta = d2
+  attr(attr(dummy, "dimensions"), "raster")$affine = c(aff, 0.0)
+  return(dummy)
+}
+
+s <- make_dummy_stars(6, 7, 2.5, -.5714286, -1.14) # mainly used, perspective
+f <- make_dummy_stars(6, 7, 1, 1, 0) # flat
+highres <- make_dummy_stars(12, 14, 1.25, -.2857143, -.57) # for resampling
+lowres <- make_dummy_stars(3, 4, 5, -1, -2) # for resampling
+
+# matrices from image ----
+make_matrix <- function(image, band, n = 42, ncol = 7, t = 0) {
+  # this is based on an input image with >= 4 input bands
+  # n is meant to cut off NAs, ncol is y, t is random matrix for time difference
+  return(matrix(image[,,,band][[1]][1:n], ncol = ncol) - t)
+  # before: b3 <- matrix(warped[,,,1][[1]][1:42], ncol = 7) - t2
+}
+
+# now use function: 
+b1 <- make_matrix(warped, 1)
+b2 <- make_matrix(warped, 1, t = t1)
+b3 <- make_matrix(warped, 1, t = t2)
+g1 <- make_matrix(warped, 2)
+g2 <- make_matrix(warped, 2, t = t1)
+g3 <- make_matrix(warped, 2, t = t2)
+r1 <- make_matrix(warped, 3)
+r2 <- make_matrix(warped, 3, t = t1)
+r3 <- make_matrix(warped, 3, t = t2)
+n1 <- make_matrix(warped, 4)
+n2 <- make_matrix(warped, 4, t = t1)
+n3 <- make_matrix(warped, 4, t = t2)
+
+# plot functions ----
+plt <- function(x, yoffset = 0, add, li = TRUE, pal, print_geom = TRUE, border = .75, breaks = "equal") {
+  # pal is color palette
+  attr(x, "dimensions")[[2]]$offset = attr(x, "dimensions")[[2]]$offset + yoffset 
+  l = st_as_sf(x, as_points = FALSE)
+  if (li)
+    pal <- lighten(pal, 0.2) # + rnorm(1, 0, 0.1))
+  if (! add)
+    plot(l, axes = FALSE, breaks = breaks, pal = pal, reset = FALSE, border = grey(border), key.pos = NULL, main = NULL, xlab = "time")
+  else
+    plot(l, axes = TRUE, breaks = breaks, pal = pal, add = TRUE, border = grey(border))
+  u <- st_union(l)
+  # print(u)
+  if(print_geom) {
+    plot(st_geometry(u), add = TRUE, col = NA, border = 'black', lwd = 2.5)
+  } else {
+    # not print geometry
+  }
+}
+
+pl_stack <- function(s, x, y, add = TRUE, nrM, imgY = 7, inner = 1) {
+  # nrM is the timestep {1, 2, 3}, cause this function
+  # prints all 4 bands at once
+  attr(s, "dimensions")[[1]]$offset = x
+  attr(s, "dimensions")[[2]]$offset = y
+  # m <- r[[1]][y + 1:nrow,x + 1:ncol,1]
+  m <- eval(parse(text=paste0("n", nrM)))
+  s[[1]] <- m[,c(imgY:1)] # turn around to have same orientation as flat plot
+  plt(s, 0, TRUE,  pal = purples)
+  m <- eval(parse(text=paste0("r", nrM)))
+  s[[1]] <- m[,c(imgY:1)]
+  plt(s, 1*inner, TRUE,  pal = reds)
+  m <- eval(parse(text=paste0("g", nrM)))
+  s[[1]] <- m[,c(imgY:1)]
+  plt(s, 2*inner, TRUE,  pal = greens)
+  m <- eval(parse(text=paste0("b", nrM)))
+  s[[1]] <- m[,c(imgY:1)]
+  plt(s, 3*inner, TRUE, pal = blues) # li FALSE deleted
+}
+
+# flat plot function
+# prints any dummy stars with any single matrix to position
+pl <- function(s, x, y, add = TRUE, randomize = FALSE, pal, m, print_geom = TRUE, border = .75, breaks = "equal") {
+  # m is matrix to replace image with
+  # m <- t(m)
+  attr(s, "dimensions")[[1]]$offset = x
+  attr(s, "dimensions")[[2]]$offset = y
+  # print(m)
+  s[[1]] <- m
+  plt(s, 0, add = TRUE, pal = pal, print_geom = print_geom, border = border, breaks = breaks)
+  #plot(s, text_values = TRUE)
+}
+
+print_segments <- function(x, y, seg, by = 1, lwd = 4, col = "black") {
+  seg <- seg * by
+  seg[,1] <- seg[,1] + x
+  seg[,3] <- seg[,3] + x
+  seg[,2] <- seg[,2] + y
+  seg[,4] <- seg[,4] + y
+  segments(seg[,1], seg[,2], seg[,3], seg[,4], lwd = lwd, col = col)
+}
+
+# time series ----
+
+# from: cube1_ts_6x7_bigger.png
+offset = 26
+plot.new()
+#par(mar = c(3, 2, 7, 2))
+par(mar = c(0, 0, 0, 0))
+#plot.window(xlim = c(10, 50), ylim = c(-3, 10), asp = 1)
+plot.window(xlim = c(-15, 75), ylim = c(-3, 10), asp = 1)
+pl_stack(s, 0, 0, nrM = 3)
+pl_stack(s, offset, 0, nrM = 2)
+pl_stack(s, 2 * offset, 0, nrM = 1)
+# po <- matrix(c(0,-8,7,0,15,3.5,  0,1,1,5,5,14), ncol = 2)
+heads <- matrix(c(3.5, 3.5 + offset, 3.5 + 2*offset, 14,14,14), ncol = 2)
+points(heads, pch = 16) # 4 or 16
+segments(c(-8, 7, 0, 15), c(-1,-1,3,3), 3.5, 14) # first stack pyramid
+segments(c(-8, 7, 0, 15) + offset, c(-1,-1,3,3), 3.5 + offset, 14) # second stack pyramid
+segments(c(-8, 7, 0, 15) + 2*offset, c(-1,-1,3,3), 3.5 + 2*offset, 14) # third stack pyramid
+arrows(-13, 14, 72, 14, angle = 20, lwd = 2)  # timeline
+text(7.5, 3.8, "x", col = "black")
+text(-10, -2.5, "bands", srt = 90, col = "black")
+text(-4.5, 1.8, "y", srt = 27.5, col = "black")
+y <- 15.8
+text(69, y, "time", col = "black")
+text(3.5, y, "2020-10-01", col = "black")
+text(3.5 + offset, y, "2020-10-13", col = "black")
+text(3.5 + 2*offset, y, "2020-10-25", col = "black")
+
+```
+
+![x, y, 밴드, 시간의 네 차원을 가진 4차원 래스터 데이터 큐브](https://r-spatial.org/book/06-Cubes_files/figure-html/fig-cube4d-1.png){#fig-6-2}
+
+그림 6.2는 4차원 래스터 데이터 큐브를 보여준다(Appel and Pebesma 2019). 여기서 스펙트럼 차원(“밴드”)을 가진 3차원 래스터 데이터 큐브가 네 번째 차원인 시간 축을 따라 조직된다. 컬러 이미지 데이터는 항상 세 개의 밴드(파란색, 녹색, 빨간색)를 가지며, 이 예제는 스펙트럼 원격탐사 데이터에서 일반적으로 발견되는 네 번째 밴드(근적외선, NIR)를 포함하고 있다.
+
+그림 6.3은 정확히 동일한 데이터를 보여주지만, 평면적으로 배열한 패싯 플롯(또는 산점도 행렬)으로 나타내고 있다. 플롯의 두 차원($x$ 및 $y$)은 기본적으로는 *밴드*와 *시간* 차원을 의미하지만, 세부 플롯 내부에서는 실제 좌표계를 의미한다.
+
+```{r}
+#| echo: false
+#| eval: false
+#| label: fig-6-3
+#| fig-cap: "두 차원에 의거해 평면적으로 배열된 4차원 래스터 데이터"
+
+# flat ----
+xlabels <- seq(attr(warped, "dimensions")[[1]]$offset + attr(warped, "dimensions")[[1]]$delta / 2, length.out = attr(warped, "dimensions")[[1]]$to, by = attr(warped, "dimensions")[[1]]$delta)
+ylabels <- seq(attr(warped, "dimensions")[[2]]$offset + attr(warped, "dimensions")[[2]]$delta / 2, length.out = attr(warped, "dimensions")[[2]]$to, by = attr(warped, "dimensions")[[2]]$delta)
+
+print_labels <- function(x, y, off, lab, horizontal, cex = 1) {
+  if(horizontal) { # x
+    for(i in 0:(length(lab)-1)) {
+      text(x + i*off, y, lab[i+1], cex = cex, srt = 90)
+    }
+  } else { # y
+    lab <- lab[length(lab):0]
+    for(i in 0:(length(lab)-1)) {
+      text(x, y + i*off, lab[i+1], cex = cex)
+    }
+  }
+}
+
+# before: width=1000, xlim(-2, 33), date labels x=31
+plot.new()
+# par(mar = c(0,0,0,0))
+par(mar = c(3,0,0,0))
+plot.window(xlim = c(-2, 40), ylim = c(0, 25), asp = 1)
+pl(f, 7, 0, pal = blues, m = b1)
+pl(f, 7, 10, pal = blues, m = b2)
+pl(f, 7, 20, pal = blues, m = b3)
+pl(f, 14, 0, pal = greens, m = g1)
+pl(f, 14, 10, pal = greens, m = g2)
+pl(f, 14, 20, pal = greens, m = g3)
+pl(f, 21, 0, pal = reds, m = r1)
+pl(f, 21, 10, pal = reds, m = r2)
+pl(f, 21, 20, pal = reds, m = r3)
+pl(f, 28, 0, pal = purples, m = n1)
+pl(f, 28, 10, pal = purples, m = n2)
+pl(f, 28, 20, pal = purples, m = n3)
+print_labels(28.5, -2, 1, xlabels, horizontal = TRUE, cex = 0.7)
+print_labels(36, 0.5, 1, ylabels, horizontal = FALSE, cex = 0.7)
+# arrows(6, 27, 6, 0, angle = 20, lwd = 2)
+# text(5, 14, "time", srt = 90, col = "black")
+text(10, 28, "blue", col = "black")
+text(17, 28, "green", col = "black")
+text(24, 28, "red", col = "black")
+text(31, 28, "nir", col = "black")
+text(3, 23.5, "2020-10-01", col = "black")
+text(3, 13.5, "2020-10-13", col = "black")
+text(3, 3.5, "2020-10-25", col = "black")
+
+```
+
+![두 차원에 의거해 평면적으로 배열된 4차원 래스터 데이터](https://r-spatial.org/book/06-Cubes_files/figure-html/fig-cube4d2-1.png){#fig-6-3}
+
+## 차원, 속성, 서포트
+
+$$
+Z=f(x,y,t)
+$$
+
+$$
+\{Z_1,Z_2,...,Z_p\}=f(x,y,t)
+$$
+
+$$
+\{Z_1,Z_2,...,Z_p\}=f(D_1,D_2,...,D_n)
+$$
+
+### 정규 차원, GDAL'의 지오트랜스폼
+
+$$
+x=o_x+(i-1)d_x
+$$
+
+$$
+x=o_x+(i-a)d_x+(j-1)a_1
+$$
+
+$$
+y=o_y+(i-1)a_2+(j-1)d_y
+$$
+
+### 큐브 차원과 서포트
+
+## 데이터 큐브에 작용하는 오퍼레이션
+
+### 큐브를 잘게 쪼개기: 필터
+
+### 차원에 함수를 적용하기
+
+### 차원을 줄이기
+
+## 래스터 큐브를 벡터 큐브로 애그리게이팅하기
+
+## 차원을 속성으로 교체하기
+
+$$
+\{Z_1,Z_2,...,Z_p\}=f(D_1,D_2,...,D_n)
+$$
+
+$$
+Z=f(D_1,D_2,...,D_n,D_{n+1})
+$$
+
+## 기타 동적 공간데이터
+
+## 연습문제

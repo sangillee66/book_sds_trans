@@ -35,7 +35,7 @@
     "href": "06.html",
     "title": "6  데이터 큐브",
     "section": "",
-    "text": "장 7",
+    "text": "6.1 4차원 데이터 큐브\n그림 6.2는 4차원 래스터 데이터 큐브를 보여준다(Appel and Pebesma 2019). 여기서 스펙트럼 차원(“밴드”)을 가진 3차원 래스터 데이터 큐브가 네 번째 차원인 시간 축을 따라 조직된다. 컬러 이미지 데이터는 항상 세 개의 밴드(파란색, 녹색, 빨간색)를 가지며, 이 예제는 스펙트럼 원격탐사 데이터에서 일반적으로 발견되는 네 번째 밴드(근적외선, NIR)를 포함하고 있다.\n그림 6.3은 정확히 동일한 데이터를 보여주지만, 평면적으로 배열한 패싯 플롯(또는 산점도 행렬)으로 나타내고 있다. 플롯의 두 차원(\\(x\\) 및 \\(y\\))은 기본적으로는 밴드와 시간 차원을 의미하지만, 세부 플롯 내부에서는 실제 좌표계를 의미한다.",
     "crumbs": [
       "공간데이터",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span>"
@@ -488,6 +488,83 @@
     "crumbs": [
       "공간데이터",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>속성과 서포트</span>"
+    ]
+  },
+  {
+    "objectID": "06.html#차원-속성-서포트",
+    "href": "06.html#차원-속성-서포트",
+    "title": "6  데이터 큐브",
+    "section": "\n6.2 차원, 속성, 서포트",
+    "text": "6.2 차원, 속성, 서포트\n\\[\nZ=f(x,y,t)\n\\]\n\\[\n\\{Z_1,Z_2,...,Z_p\\}=f(x,y,t)\n\\]\n\\[\n\\{Z_1,Z_2,...,Z_p\\}=f(D_1,D_2,...,D_n)\n\\]\n\n6.2.1 정규 차원, GDAL’의 지오트랜스폼\n\\[\nx=o_x+(i-1)d_x\n\\]\n\\[\nx=o_x+(i-a)d_x+(j-1)a_1\n\\]\n\\[\ny=o_y+(i-1)a_2+(j-1)d_y\n\\]\n\n6.2.2 큐브 차원과 서포트",
+    "crumbs": [
+      "공간데이터",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span>"
+    ]
+  },
+  {
+    "objectID": "06.html#데이터-큐브에-작용하는-오퍼레이션",
+    "href": "06.html#데이터-큐브에-작용하는-오퍼레이션",
+    "title": "6  데이터 큐브",
+    "section": "\n6.3 데이터 큐브에 작용하는 오퍼레이션",
+    "text": "6.3 데이터 큐브에 작용하는 오퍼레이션\n\n6.3.1 큐브를 잘게 쪼개기: 필터\n\n6.3.2 차원에 함수를 적용하기\n\n6.3.3 차원을 줄이기",
+    "crumbs": [
+      "공간데이터",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span>"
+    ]
+  },
+  {
+    "objectID": "06.html#래스터-큐브를-벡터-큐브로-애그리게이팅하기",
+    "href": "06.html#래스터-큐브를-벡터-큐브로-애그리게이팅하기",
+    "title": "6  데이터 큐브",
+    "section": "\n6.4 래스터 큐브를 벡터 큐브로 애그리게이팅하기",
+    "text": "6.4 래스터 큐브를 벡터 큐브로 애그리게이팅하기",
+    "crumbs": [
+      "공간데이터",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span>"
+    ]
+  },
+  {
+    "objectID": "06.html#차원을-속성으로-교체하기",
+    "href": "06.html#차원을-속성으로-교체하기",
+    "title": "6  데이터 큐브",
+    "section": "\n6.5 차원을 속성으로 교체하기",
+    "text": "6.5 차원을 속성으로 교체하기\n\\[\n\\{Z_1,Z_2,...,Z_p\\}=f(D_1,D_2,...,D_n)\n\\]\n\\[\nZ=f(D_1,D_2,...,D_n,D_{n+1})\n\\]",
+    "crumbs": [
+      "공간데이터",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span>"
+    ]
+  },
+  {
+    "objectID": "06.html#기타-동적-공간데이터",
+    "href": "06.html#기타-동적-공간데이터",
+    "title": "6  데이터 큐브",
+    "section": "\n6.6 기타 동적 공간데이터",
+    "text": "6.6 기타 동적 공간데이터",
+    "crumbs": [
+      "공간데이터",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span>"
+    ]
+  },
+  {
+    "objectID": "06.html#연습문제",
+    "href": "06.html#연습문제",
+    "title": "6  데이터 큐브",
+    "section": "\n6.7 연습문제",
+    "text": "6.7 연습문제\n\n\n\n그림 6.1: 위도, 경도, 시간의 세 차원을 가지 래스터 데이터 큐브\n그림 6.2: x, y, 밴드, 시간의 네 차원을 가진 4차원 래스터 데이터 큐브\n그림 6.3: 두 차원에 의거해 평면적으로 배열된 4차원 래스터 데이터",
+    "crumbs": [
+      "공간데이터",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span>"
+    ]
+  },
+  {
+    "objectID": "06.html#차원-데이터-큐브",
+    "href": "06.html#차원-데이터-큐브",
+    "title": "6  데이터 큐브",
+    "section": "",
+    "text": "그림 6.2: x, y, 밴드, 시간의 네 차원을 가진 4차원 래스터 데이터 큐브\n\n\n\n\n\n\n\n\n\n그림 6.3: 두 차원에 의거해 평면적으로 배열된 4차원 래스터 데이터",
+    "crumbs": [
+      "공간데이터",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span>"
     ]
   }
 ]
