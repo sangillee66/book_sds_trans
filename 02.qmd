@@ -407,7 +407,7 @@ plot(uk, border = "orange", col = NA, add = TRUE)
 
 Lott (2015)는 CRS의 인코딩과 CRS 간의 변환을 WKT(well-known text) 통해 나타내는 표준을 정리한 바 있다. 이 표준(및 포맷)을 비공식적으로 WKT-2라고 부른다. 앞에서 언급했듯이, GDAL과 PROJ는 이 표준을 지원한다. 예로서 특정 CRS(`EPSG:4326`)은 WKT-2로 다음과 같이 표시된다.
 
-``` R
+``` r
 GEOGCRS["WGS 84",
     ENSEMBLE["World Geodetic System 1984 ensemble",
         MEMBER["World Geodetic System 1984 (Transit)"],
