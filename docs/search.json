@@ -110,7 +110,7 @@
     "href": "07.html",
     "title": "7  sf와 stars",
     "section": "",
-    "text": "7.1 sf 패키지",
+    "text": "7.1 sf 패키지\nR 패키지 sf(Pebesma 2018)는 기존의 R 패키지인 sp, rgeos 및 rgdal의 벡터 부분을 대체하고 성공적으로 이어받기 위해 개발되었으며, 산업계 및 오픈 소스 프로젝트에서 볼 수 있는 표준 기반 접근법에 더 가까이 다가가고, 최신 버전의 오픈소스 지리공간 소프트웨어 스택(그림 1.7)을 기반으로 하며, 필요 시 R 공간 소프트웨어와 타이디버스(Wickham et al. 2019)의 통합을 가능하게 한다.\n이를 위해 sf는 R에 네이티브로 심플 피처 접근(Herring et al. 2011)을 제공한다. 이 패키지는 여러 타이디버스 패키지, 특히 ggplot2, dplyr, tidyr와의 인터페이스를 제공하며, GDAL을 통해 데이터를 읽고 쓰고, GEOS(투영 좌표의 경우) 또는 s2geometry(타원체 좌표의 경우)를 사용하여 기하학적 연산을 수행하며, PROJ를 이용해 좌표 변환 또는 좌표 전환 작업을 수행할 수 있다. 외부 C++ 라이브러리와의 인터페이싱(연결)은 Rcpp 패키지(Eddelbuettel 2013)를 통해 이루어진다.\nsf는 sf 객체로 심플 피처를 나타내며, 이는 data.frame 또는 티블(tibble)의 하위 클래스이다. sf 객체는 최소 하나 이상의 sfc 클래스의 지오메트리 리스트 열(list-column)을 포함하는데, 각 요소는 sfg 클래스의 R 객체로서 지오메트리 정보를 담고 있다. 지오메트리 리스트 열은 data.frame 또는 티블 내에서 변수처럼 작동하지만, 숫자나 문자형 변수와 같은 기본 벡터보다 더 복잡한 구조를 가지고 있다(부록 B.3 참조).\nsf 객체는 다음과 같은 메타데이터를 가진다.\nsfc 지오메트리 리스트 열은 st_geometry함수를 통해 sf 객체에서 추출되며, 다음과 같은 메타데이터를 가진다\n이러한 속성들의 값을 확인하거나 수정하기 위해 st_bbox, st_crs, st_set_crs, st_agr, st_set_agr, st_precision, st_set_precision 같은 함수를 사용할 수 있다.",
     "crumbs": [
       "공간데이터사이언스와 R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars</span>"
@@ -583,7 +583,7 @@
     "href": "07.html#sec-sf",
     "title": "7  sf와 stars",
     "section": "",
-    "text": "7.1.1 생성\n\n\n7.1.2 불러오기와 쓰기\n\n\n7.1.3 부분을 골라내기\n\n\n7.1.4 바이너리 프레디케이트\n\n\n7.1.5 타이디버스",
+    "text": "(활성화된) 지오메트리 열의 이름: sf_column 속성에 저장되어 있음.\n각 비기하 변수의 속성-지오메트리 관계 (5.1절 참조): agr 속성에 저장되어 있음.\n\n\n\n좌표참조계: crs 속성에 저장되어 있음.\n바운딩 박스: bbox 속성에 저장되어 있음.\n정밀도: precision 속성에 저장되어 있음.\n지오메트리 수: n_empty 속성에 저장되어 있음.\n\n\n\n7.1.1 생성\n다음과 같은 방식으로 sf 객체를 생성할 수 있다.\n\nlibrary(sf)\n# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE\np1 &lt;- st_point(c(7.35, 52.42))\np2 &lt;- st_point(c(7.22, 52.18))\np3 &lt;- st_point(c(7.44, 52.19))\nsfc &lt;- st_sfc(list(p1, p2, p3), crs = 'OGC:CRS84')\nst_sf(elev = c(33.2, 52.1, 81.2), \n      marker = c(\"Id01\", \"Id02\", \"Id03\"), geom = sfc)\n# Simple feature collection with 3 features and 2 fields\n# Geometry type: POINT\n# Dimension:     XY\n# Bounding box:  xmin: 7.22 ymin: 52.2 xmax: 7.44 ymax: 52.4\n# Geodetic CRS:  WGS 84\n#   elev marker              geom\n# 1 33.2   Id01 POINT (7.35 52.4)\n# 2 52.1   Id02 POINT (7.22 52.2)\n# 3 81.2   Id03 POINT (7.44 52.2)\n\n\n\n\n\n\n그림 7.1: sf 객체의 구조\n\n\n그림 7.1은 출력된 구성 요소에 대한 설명을 제공한다. 객체를 처음부터 생성하는 대신, R에서의 공간데이터는 보통 외부 소스에서 읽어오며, 그 외부 소스에는 다음과 같은 것이 있다.\n\n외부 파일\n데이터베이스 내의 테이블(또는 테이블 집합)\n웹서비스에서 호출을 통해 획득된 데이터셋\nR 패키지에 포함되어 있는 데이터셋\n\n7.1.2 읽어오기와 쓰기\n외부 “데이터 소스”(파일, 웹서비스 또는 문자열)로부터 데이터셋을 읽어오는 것은 st_read() 함수를 사용하여 수행된다.\n\nlibrary(sf)\n(file &lt;- system.file(\"gpkg/nc.gpkg\", package = \"sf\"))\n# [1] \"/home/edzer/R/x86_64-pc-linux-gnu-library/4.3/sf/gpkg/nc.gpkg\"\nnc &lt;- st_read(file)\n# Reading layer `nc.gpkg' from data source \n#   `/home/edzer/R/x86_64-pc-linux-gnu-library/4.3/sf/gpkg/nc.gpkg' \n#   using driver `GPKG'\n# Simple feature collection with 100 features and 14 fields\n# Geometry type: MULTIPOLYGON\n# Dimension:     XY\n# Bounding box:  xmin: -84.3 ymin: 33.9 xmax: -75.5 ymax: 36.6\n# Geodetic CRS:  NAD27\n\n여기서 파일 이름과 경로는 sf 패키지에서 읽어오는 것인데, sf 패키지를 설치하는 과정에서 설정된 것이므로 어떤 컴퓨터에서건 예외없이 읽어들여진다.\nst_read() 명령어는 두 개의 아규먼트(데이터 소스 이름(dsn)과 레이어(layer))를 가진다. 위의 예에서 geopackage(GPKG) 파일은 단일 레이어만 포함하고 있으며, 해당 레이어가 불러들여진 것이다. 만약 여러 레이어가 포함되어 있었다면, 첫 번째 레이어가 읽히고 경고 메시지가 표출되었을 것이다. 데이터셋의 사용 가능한 레이어는 다음과 같이 조회할 수 있다.\n\nst_layers(file)\n# Driver: GPKG \n# Available layers:\n#   layer_name geometry_type features fields crs_name\n# 1    nc.gpkg Multi Polygon      100     14    NAD27\n\n심플 피처 객체는 st_write 함수를 사용하여 저장할수 있다.\n\n(file = tempfile(fileext = \".gpkg\"))\n# [1] \"/tmp/Rtmpm9lGRF/file361e653fae4a9.gpkg\"\nst_write(nc, file, layer = \"layer_nc\")\n# Writing layer `layer_nc' to data source \n#   `/tmp/Rtmpm9lGRF/file361e653fae4a9.gpkg' using driver `GPKG'\n# Writing 100 features with 14 fields and geometry type Multi Polygon.\n\n여기서 파일 형식(GPKG)은 파일 이름 익스텐션에서 파생된다. st_write() 함수의 append 아규먼트 설정을 통해 기존 레이어에 레코드를 추가하거나 아예 레이어를 교체할 수 있는데, append 아규먼트 설정되지 않으면 레이어가 이미 존재할 경우 오류가 발생한다. 타이디버스 스타일의 write_sf() 함수는 append가 설정되지 않은 경우 오류 표출 없이 레이어를 교체한다. 또한, st_delete() 함수를 사용하여 레이어를 삭제할 수 있으며, 이는 특히 데이터베이스의 테이블과 연결되어 있는 레이어를 다룰 때 편리하다.\nWKT-2 좌표참조계를 지원하는 파일 형식의 경우, st_read()와 st_write()는 이를 읽고 쓸 수 있다. 그러나 csv와 같은 간단한 포맷에서는 이 기능이 작동하지 않는다. 또한, 셰이프파일(shapefile) 형식은 CRS에 대해 매우 제한된 인코딩만 지원한다.\n\n7.1.3 부분을 골라내기\n매우 일반적인 작업 중 하나는 객체의 일부분을 골라내기(subset)하는 것이며, 베이스 R에서는 이를 위해 대괄호 기호([) 를 사용한다. data.frame 객체에 적용되는 규칙을 sf 객체에 그대로 적용할 수 있다. 예를 들어, 다음과 같은 코드를 통해 레코드 2에서 5와 열 3에서 7을 선택할 수 있다.\n\nnc[2:5, 3:7]\n\n여기에 몇몇 옵션을 부가적으로 적용할 수 있다.\n\ndrop 아규먼트가 디폴트로 FALSE로 설정되어 있는데, 지오메트리 열이 항상 선택되며 sf 객체가 반환된다. TRUE로 설정되면, 지오메트리열이 선택되지 않으면 해당 열이 제거된 data.frame이 반환된다.\n공간(sf, sfc 또는 sfg) 객체를 첫 번째 아규먼트로 사용한 선택은 해당 객체와 공간적으로 교차하는 피처를 선택하는 결과를 가져온다(다음 절 참조). 다른 프레디케이트를 선택하고자 할 경우, op 아규먼트를 설정하여 st_covers와 같은 함수 또는 3.2.2절에 나열된 다른 이항 프레디케이트 함수로 지정할 수 있다.\n\n7.1.4 바이너리 프레디케이트\nst_intersects, st_covers와 같은 이항 프레디케이트 함수(3.2.2절 참조)는 두 개의 피처 집합 또는 피처 지오메트리를 입력받아 모든 쌍에 대해 조건이 TRUE인지 FALSE인지를 반환한다. 대규모 집합의 경우, 이는 일반적으로 대부분 FALSE 값으로 채워진 거대한 행렬을 생성할 수 있으며, 이러한 이유로 기본적으로 희소 표현(sparse representation)이 반환된다(역자주: 희소 표현은 메모리 사용을 최적화하고, 데이터 처리를 더욱 효율적으로 만들어 준다. 희소 표현을 일반적으로 TRUE 값만을 저장하고, FALSE 값은 저장하지 않는다.)\n\nnc5 &lt;- nc[1:5, ]\nnc7 &lt;- nc[1:7, ]\n(i &lt;- st_intersects(nc5, nc7))\n# Sparse geometry binary predicate list of length 5, where the\n# predicate was `intersects'\n#  1: 1, 2\n#  2: 1, 2, 3\n#  3: 2, 3\n#  4: 4, 7\n#  5: 5, 6\n\n\n\n\n\n\n\n\n그림 7.2: 노스케롤라이나의 첫 7개의 카운티\n\n\n\n\n그림 7.2는 첫 다섯 개 카운티와 첫 일곱 개 카운티의 교차를 이해하는 방법을 보여준다. 다음과 같은 방식으로 희소 논리 행렬을 조밀한 행렬(dense matrix)로 변환할 수 있다.\n\nas.matrix(i)\n#       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]\n# [1,]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE\n# [2,]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE\n# [3,] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE\n# [4,] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE\n# [5,] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE\n\nnc5의 개별 카운티가 교차하는 nc7 카운티의 수는 다음과 같이 계산할 수 있다.\n\nlengths(i)\n\n[1] 2 3 2 2 2\n\n# [1] 2 3 2 2 2\n\n역으로 nc7의 개별 카운티가 교차하는 nc5의 카운티의 수는 다음과 같이 계산할 수 있다.\n\nlengths(t(i))\n# [1] 2 3 2 1 1 1 1\n\n객체 i 가 sgbp(sparse geometrical binary predicate) 클래스의 한 객체라고 했을 때, 객체 i는 정수 벡터의 리스트로 주어지는데, 리스트의 각 요소는 논리 프레디케이트 행렬의 한 행을 나타내고, 논리 프레디케이트 행렬은 해당 행에 대해 TRUE 값을 갖는 열의 인덱스를 보유하고 있다. 이 객체는 사용된 프레디케이트 및 총 열 수와 같은 메타데이터도 포함하고 있다. sgbp 객체에 적용할 수 있는 메소드에 다음과 같은 것들이 있다.\n\nmethods(class = \"sgbp\")\n#  [1] as.data.frame as.matrix     coerce        dim          \n#  [5] initialize    Ops           print         show         \n#  [9] slotsFromS3   t            \n# see '?methods' for accessing help and source code\n\nsgbp 클래스의 객체에서 사용 가능한 유일한 Ops 메서드는 !(부정 연산자)이다.\n\n7.1.5 타이디버스",
     "crumbs": [
       "공간데이터사이언스와 R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars</span>"
@@ -593,7 +593,7 @@
     "objectID": "07.html#공간적-조인",
     "href": "07.html#공간적-조인",
     "title": "7  sf와 stars",
-    "section": "7.2 공간적 조인",
+    "section": "\n7.2 공간적 조인",
     "text": "7.2 공간적 조인\n\n7.2.1 샘플링, 그리딩, 인터폴레이팅",
     "crumbs": [
       "공간데이터사이언스와 R",
@@ -604,7 +604,7 @@
     "objectID": "07.html#타원좌표",
     "href": "07.html#타원좌표",
     "title": "7  sf와 stars",
-    "section": "7.3 타원좌표",
+    "section": "\n7.3 타원좌표",
     "text": "7.3 타원좌표",
     "crumbs": [
       "공간데이터사이언스와 R",
@@ -626,8 +626,8 @@
     "objectID": "07.html#벡터-데이터-큐브-사례",
     "href": "07.html#벡터-데이터-큐브-사례",
     "title": "7  sf와 stars",
-    "section": "7.5 벡터 데이터 큐브 사례",
-    "text": "7.5 벡터 데이터 큐브 사례\n\n7.5.1 사례: 대기질 시계열 애그리게이팅하기\n\n\n7.5.2 사례: 브리스톨 출발지-도착지 데이터 큐브\n\n\n7.5.3 타이디 어레이 데이터\n\n\n7.5.4 벡터 데이터 큐브를 위한 파일 포멧",
+    "section": "\n7.5 벡터 데이터 큐브 사례",
+    "text": "7.5 벡터 데이터 큐브 사례\n\n7.5.1 사례: 대기질 시계열 애그리게이팅하기\n\n7.5.2 사례: 브리스톨 출발지-도착지 데이터 큐브\n\n7.5.3 타이디 어레이 데이터\n\n7.5.4 벡터 데이터 큐브를 위한 파일 포멧",
     "crumbs": [
       "공간데이터사이언스와 R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars</span>"
@@ -648,8 +648,8 @@
     "objectID": "07.html#좌표변환-및-좌표전환",
     "href": "07.html#좌표변환-및-좌표전환",
     "title": "7  sf와 stars",
-    "section": "7.7 좌표변환 및 좌표전환",
-    "text": "7.7 좌표변환 및 좌표전환\n\n7.7.1 데이텀 그리드, proj.db, cdn.proj.org. 로컬 캐쉬\n\n\n7.7.2 변환 파이프라인\n\n\n7.7.3 축 순서와 방향",
+    "section": "\n7.7 좌표변환 및 좌표전환",
+    "text": "7.7 좌표변환 및 좌표전환\n\n7.7.1 데이텀 그리드, proj.db, cdn.proj.org. 로컬 캐쉬\n\n7.7.2 변환 파이프라인\n\n7.7.3 축 순서와 방향",
     "crumbs": [
       "공간데이터사이언스와 R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars</span>"
@@ -659,7 +659,7 @@
     "objectID": "07.html#래스터-변환-및-워프",
     "href": "07.html#래스터-변환-및-워프",
     "title": "7  sf와 stars",
-    "section": "7.8 래스터 변환 및 워프",
+    "section": "\n7.8 래스터 변환 및 워프",
     "text": "7.8 래스터 변환 및 워프",
     "crumbs": [
       "공간데이터사이언스와 R",
@@ -670,8 +670,8 @@
     "objectID": "07.html#연습문제",
     "href": "07.html#연습문제",
     "title": "7  sf와 stars",
-    "section": "7.9 연습문제",
-    "text": "7.9 연습문제",
+    "section": "\n7.9 연습문제",
+    "text": "7.9 연습문제\n\n\n\n그림 7.1: sf 객체의 구조\n그림 7.2: 노스케롤라이나의 첫 7개의 카운티",
     "crumbs": [
       "공간데이터사이언스와 R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars</span>"
@@ -681,8 +681,8 @@
     "objectID": "07.html#stars-패키지",
     "href": "07.html#stars-패키지",
     "title": "7  sf와 stars",
-    "section": "7.4 stars 패키지",
-    "text": "7.4 stars 패키지\n\n7.4.1 래스터 데이터의 불러오기와 쓰기\n\n\n7.4.2 stars 데이터 큐브 일부분 골라내기\n\n\n7.4.3 잘라내기\n\n\n7.4.4 stars 객체를 차원 다시 부여하기와 결합하기\n\n\n7.4.5 포인트 샘플 추출하기, 애그리게이팅하기\n\n\n7.4.6 예측 모델\n\n\n7.4.7 래스터 데이터 플로팅\n\n\n7.4.8 래스터 데이터 분석하기\n\n\n7.4.9 곡선 래스터\n\n\n7.4.10 GOAL utils",
+    "section": "\n7.4 stars 패키지",
+    "text": "7.4 stars 패키지\n\n7.4.1 래스터 데이터의 불러오기와 쓰기\n\n7.4.2 stars 데이터 큐브 일부분 골라내기\n\n7.4.3 잘라내기\n\n7.4.4 stars 객체를 차원 다시 부여하기와 결합하기\n\n7.4.5 포인트 샘플 추출하기, 애그리게이팅하기\n\n7.4.6 예측 모델\n\n7.4.7 래스터 데이터 플로팅\n\n7.4.8 래스터 데이터 분석하기\n\n7.4.9 곡선 래스터\n\n7.4.10 GOAL utils",
     "crumbs": [
       "공간데이터사이언스와 R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars</span>"
@@ -692,7 +692,7 @@
     "objectID": "07.html#래스터-투-벡터와-벡터-투-래스터",
     "href": "07.html#래스터-투-벡터와-벡터-투-래스터",
     "title": "7  sf와 stars",
-    "section": "7.6 래스터-투-벡터와 벡터-투-래스터",
+    "section": "\n7.6 래스터-투-벡터와 벡터-투-래스터",
     "text": "7.6 래스터-투-벡터와 벡터-투-래스터\n\n7.6.1 벡터-투-래스터",
     "crumbs": [
       "공간데이터사이언스와 R",
