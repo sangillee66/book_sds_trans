@@ -554,6 +554,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>sgbp</code> 클래스의 객체에서 사용 가능한 유일한 <code>Ops</code> 메서드는 <code>!</code>(부정 연산자)이다.</p>
 </section><section id="타이디버스" class="level3" data-number="7.1.5"><h3 data-number="7.1.5" class="anchored" data-anchor-id="타이디버스">
 <span class="header-section-number">7.1.5</span> 타이디버스</h3>
+<p><strong>tidyverse</strong> 패키지는 다양한 데이터사이언스 패키지를 함께 로드한다(Wickham and Grolemund 2017; Wickham et al.&nbsp;2019). <strong>sf</strong> 패키지는 <strong>tidyverse</strong> 스타일의 읽기 및 쓰기 함수인 read_sf()와 write_sf()를 제공하며, 이 함수들은 다음과 같은 특징이 있다.</p>
+<ul>
+<li><p><code>data.frame</code> 대신 <code>tibble</code>을 반환한다.</p></li>
+<li><p>출력 내용을 인쇄하지 않는다.</p></li>
+<li><p>기본적으로 기본 데이터를 덮어쓴다.</p></li>
+</ul>
+<p><code>sf</code> 객체에 사용될 수 있는 <strong>tidyverse</strong> 로 <code>filter</code>, <code>select</code>, <code>group_by</code>, <code>ungroup</code>, <code>mutate</code>, <code>transmute</code>, <code>rowwise</code>, <code>rename</code>, <code>slice</code>, <code>summarise</code>, <code>distinct</code>, <code>gather</code>, <code>pivot_longer</code>, <code>spread</code>, <code>nest</code>, <code>unnest</code>, <code>unite</code>, <code>separate</code>, <code>separate_rows</code>, <code>sample_n</code>, 및 <code>sample_frac</code>등과 같은 것이 있다. 대부분의 함수는 <code>sf</code> 객체의 메타데이터를 관리하기만 할 뿐 지오메트리 정보를 건드리지 않는다. 사용자가 지오메트리를 제거하고자 할 경우, <code>st_drop_geometry</code>를 사용하거나 선택하기 전에 간단히 <code>tibble</code> 또는 <code>data.frame</code>으로 강제 변환(coerce)할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">nc</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">BIR74</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co"># # A tibble: 3 × 1</span></span>
+<span><span class="co">#   BIR74</span></span>
+<span><span class="co">#   &lt;dbl&gt;</span></span>
+<span><span class="co"># 1  1091</span></span>
+<span><span class="co"># 2   487</span></span>
+<span><span class="co"># 3  3188</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>sf</code> 객체에 대한 <code>summarise</code> 함수는 두 가지 특별한 아규먼트를 가지고 있다</p>
+<ul>
+<li><p><code>do_union</code> (기본값: TRUE): 그룹화된 지오메트리가 반환 시 유니언(합집합)되는지 여부를 결정하여, 유효한 지오메트리가 형성하도록 한다.</p></li>
+<li><p><code>is_coverage</code> (기본값: FALSE): 그룹화된 지오메트리가 커버리지(겹침이 없는 경우)를 형성하는 경우, 이를 TRUE로 설정하면 유니언 과정이 빨라진다.</p></li>
+</ul>
+<p><code>distinct</code> 함수는 고유한 레코드를 선택하며, <code>st_equals</code> 함수는 지오메트리의 고유성을 평가한다.</p>
+<p><code>filter</code> 함수는 일반적인 프레디케이트와 함께 사용할 수 있으며, 공간적 프레디케이트를 사용하고자 할 경우, 예를 들어 오렌지 카운티에서 50km 이내에 있는 모든 카운티를 선택하려면 다음과 같이 사용할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orange</span> <span class="op">&lt;-</span> <span class="va">nc</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">NAME</span> <span class="op">==</span> <span class="st">"Orange"</span><span class="op">)</span></span>
+<span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">st_is_within_distance</a></span><span class="op">(</span><span class="va">nc</span>, <span class="va">orange</span>, </span>
+<span>                            <span class="fu">units</span><span class="fu">::</span><span class="fu"><a href="https://r-quantities.github.io/units/reference/units.html">set_units</a></span><span class="op">(</span><span class="fl">50</span>, <span class="va">km</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">o50</span> <span class="op">&lt;-</span> <span class="va">nc</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">o50</span><span class="op">)</span></span>
+<span><span class="co"># [1] 17</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(여기서 <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter</a></code>를 사용하는 것은 베이스 R의 <code>filter</code> 함수와의 혼동을 피하기 위함이다.)</p>
+<p>그림 7.3은 이 분석의 결과를 보여주며, 카운티 경계 주위에 버퍼도 추가되어 있다. 이 버퍼는 설명을 위한 것이며, 카운티를 선택하는 데 사용되지는 않았음을 주의하라.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-7-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="07_files/figure-html/fig-7-3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="07_files/figure-html/fig-7-3-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.3: 오렌지 카운티(오렌지색), 반경 50km 내의 카운티(검은색), 오랜지 카운티 주변의 버퍼(갈색), 나머지 카운티(회색)
+</figcaption></figure>
+</div>
+</div>
+</div>
 </section></section><section id="공간적-조인" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="공간적-조인">
 <span class="header-section-number">7.2</span> 공간적 조인</h2>
 <section id="샘플링-그리딩-인터폴레이팅" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="샘플링-그리딩-인터폴레이팅">
@@ -613,6 +659,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="hidden" aria-hidden="true">
 <span class="glightbox-desc lightbox-desc-1">그림&nbsp;7.1: sf 객체의 구조</span>
 <span class="glightbox-desc lightbox-desc-2">그림&nbsp;7.2: 노스케롤라이나의 첫 7개의 카운티</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;7.3: 오렌지 카운티(오렌지색), 반경 50km 내의 카운티(검은색), 오랜지 카운티 주변의 버퍼(갈색), 나머지 카운티(회색)</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1012,7 +1059,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
