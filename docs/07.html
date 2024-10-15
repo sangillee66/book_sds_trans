@@ -99,7 +99,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script><link rel="stylesheet" href="styles.css">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-sidebar floating">
 
@@ -314,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#sec-sf" id="toc-sec-sf" class="nav-link active" data-scroll-target="#sec-sf"><span class="header-section-number">7.1</span> sf 패키지</a>
   <ul class="collapse">
 <li><a href="#%EC%83%9D%EC%84%B1" id="toc-생성" class="nav-link" data-scroll-target="#%EC%83%9D%EC%84%B1"><span class="header-section-number">7.1.1</span> 생성</a></li>
-  <li><a href="#%EC%9D%BD%EC%96%B4%EC%98%A4%EA%B8%B0%EC%99%80-%EC%93%B0%EA%B8%B0" id="toc-읽어오기와-쓰기" class="nav-link" data-scroll-target="#%EC%9D%BD%EC%96%B4%EC%98%A4%EA%B8%B0%EC%99%80-%EC%93%B0%EA%B8%B0"><span class="header-section-number">7.1.2</span> 읽어오기와 쓰기</a></li>
+  <li><a href="#%EC%9D%BD%EA%B8%B0%EC%99%80-%EC%93%B0%EA%B8%B0" id="toc-읽기와-쓰기" class="nav-link" data-scroll-target="#%EC%9D%BD%EA%B8%B0%EC%99%80-%EC%93%B0%EA%B8%B0"><span class="header-section-number">7.1.2</span> 읽기와 쓰기</a></li>
   <li><a href="#%EB%B6%80%EB%B6%84%EC%9D%84-%EA%B3%A8%EB%9D%BC%EB%82%B4%EA%B8%B0" id="toc-부분을-골라내기" class="nav-link" data-scroll-target="#%EB%B6%80%EB%B6%84%EC%9D%84-%EA%B3%A8%EB%9D%BC%EB%82%B4%EA%B8%B0"><span class="header-section-number">7.1.3</span> 부분을 골라내기</a></li>
   <li><a href="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%ED%94%84%EB%A0%88%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8" id="toc-바이너리-프레디케이트" class="nav-link" data-scroll-target="#%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%ED%94%84%EB%A0%88%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8"><span class="header-section-number">7.1.4</span> 바이너리 프레디케이트</a></li>
   <li><a href="#%ED%83%80%EC%9D%B4%EB%94%94%EB%B2%84%EC%8A%A4" id="toc-타이디버스" class="nav-link" data-scroll-target="#%ED%83%80%EC%9D%B4%EB%94%94%EB%B2%84%EC%8A%A4"><span class="header-section-number">7.1.5</span> 타이디버스</a></li>
@@ -339,30 +364,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%8C%EB%A1%9C%ED%8C%85" id="toc-래스터-데이터-플로팅" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%8C%EB%A1%9C%ED%8C%85"><span class="header-section-number">7.4.7</span> 래스터 데이터 플로팅</a></li>
   <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%ED%95%98%EA%B8%B0" id="toc-래스터-데이터-분석하기" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D%ED%95%98%EA%B8%B0"><span class="header-section-number">7.4.8</span> 래스터 데이터 분석하기</a></li>
   <li><a href="#%EA%B3%A1%EC%84%A0-%EB%9E%98%EC%8A%A4%ED%84%B0" id="toc-곡선-래스터" class="nav-link" data-scroll-target="#%EA%B3%A1%EC%84%A0-%EB%9E%98%EC%8A%A4%ED%84%B0"><span class="header-section-number">7.4.9</span> 곡선 래스터</a></li>
-  <li><a href="#goal-utils" id="toc-goal-utils" class="nav-link" data-scroll-target="#goal-utils"><span class="header-section-number">7.4.10</span> GOAL utils</a></li>
+  <li><a href="#gdal-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0" id="toc-gdal-유틸리티" class="nav-link" data-scroll-target="#gdal-%EC%9C%A0%ED%8B%B8%EB%A6%AC%ED%8B%B0"><span class="header-section-number">7.4.10</span> GDAL 유틸리티</a></li>
   </ul>
 </li>
   <li>
-<a href="#%EB%B2%A1%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C-%EC%82%AC%EB%A1%80" id="toc-벡터-데이터-큐브-사례" class="nav-link" data-scroll-target="#%EB%B2%A1%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C-%EC%82%AC%EB%A1%80"><span class="header-section-number">7.5</span> 벡터 데이터 큐브 사례</a>
+<a href="#%EB%B2%A1%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C%EC%9D%98-%EC%98%88%EC%A0%9C" id="toc-벡터-데이터-큐브의-예제" class="nav-link" data-scroll-target="#%EB%B2%A1%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C%EC%9D%98-%EC%98%88%EC%A0%9C"><span class="header-section-number">7.5</span> 벡터 데이터 큐브의 예제</a>
   <ul class="collapse">
-<li><a href="#%EC%82%AC%EB%A1%80-%EB%8C%80%EA%B8%B0%EC%A7%88-%EC%8B%9C%EA%B3%84%EC%97%B4-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%ED%8C%85%ED%95%98%EA%B8%B0" id="toc-사례-대기질-시계열-애그리게이팅하기" class="nav-link" data-scroll-target="#%EC%82%AC%EB%A1%80-%EB%8C%80%EA%B8%B0%EC%A7%88-%EC%8B%9C%EA%B3%84%EC%97%B4-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%ED%8C%85%ED%95%98%EA%B8%B0"><span class="header-section-number">7.5.1</span> 사례: 대기질 시계열 애그리게이팅하기</a></li>
-  <li><a href="#%EC%82%AC%EB%A1%80-%EB%B8%8C%EB%A6%AC%EC%8A%A4%ED%86%A8-%EC%B6%9C%EB%B0%9C%EC%A7%80-%EB%8F%84%EC%B0%A9%EC%A7%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C" id="toc-사례-브리스톨-출발지-도착지-데이터-큐브" class="nav-link" data-scroll-target="#%EC%82%AC%EB%A1%80-%EB%B8%8C%EB%A6%AC%EC%8A%A4%ED%86%A8-%EC%B6%9C%EB%B0%9C%EC%A7%80-%EB%8F%84%EC%B0%A9%EC%A7%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C"><span class="header-section-number">7.5.2</span> 사례: 브리스톨 출발지-도착지 데이터 큐브</a></li>
+<li><a href="#%EC%98%88%EC%A0%9C-%EB%8C%80%EA%B8%B0%EC%A7%88-%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EB%8C%80%ED%95%9C-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%EC%85%98-%EC%8B%A4%ED%96%89" id="toc-예제-대기질-시계열-데이터에-대한-애그리게이션-실행" class="nav-link" data-scroll-target="#%EC%98%88%EC%A0%9C-%EB%8C%80%EA%B8%B0%EC%A7%88-%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EB%8C%80%ED%95%9C-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%EC%85%98-%EC%8B%A4%ED%96%89"><span class="header-section-number">7.5.1</span> 예제: 대기질 시계열 데이터에 대한 애그리게이션 실행</a></li>
+  <li><a href="#%EC%98%88%EC%A0%9C-%EB%B8%8C%EB%A6%AC%EC%8A%A4%ED%86%A8-%EC%B6%9C%EB%B0%9C%EC%A7%80-%EB%8F%84%EC%B0%A9%EC%A7%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C" id="toc-예제-브리스톨-출발지-도착지-데이터-큐브" class="nav-link" data-scroll-target="#%EC%98%88%EC%A0%9C-%EB%B8%8C%EB%A6%AC%EC%8A%A4%ED%86%A8-%EC%B6%9C%EB%B0%9C%EC%A7%80-%EB%8F%84%EC%B0%A9%EC%A7%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C"><span class="header-section-number">7.5.2</span> 예제: 브리스톨 출발지-도착지 데이터 큐브</a></li>
   <li><a href="#%ED%83%80%EC%9D%B4%EB%94%94-%EC%96%B4%EB%A0%88%EC%9D%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0" id="toc-타이디-어레이-데이터" class="nav-link" data-scroll-target="#%ED%83%80%EC%9D%B4%EB%94%94-%EC%96%B4%EB%A0%88%EC%9D%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0"><span class="header-section-number">7.5.3</span> 타이디 어레이 데이터</a></li>
   <li><a href="#%EB%B2%A1%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C%EB%A5%BC-%EC%9C%84%ED%95%9C-%ED%8C%8C%EC%9D%BC-%ED%8F%AC%EB%A9%A7" id="toc-벡터-데이터-큐브를-위한-파일-포멧" class="nav-link" data-scroll-target="#%EB%B2%A1%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C%EB%A5%BC-%EC%9C%84%ED%95%9C-%ED%8C%8C%EC%9D%BC-%ED%8F%AC%EB%A9%A7"><span class="header-section-number">7.5.4</span> 벡터 데이터 큐브를 위한 파일 포멧</a></li>
   </ul>
 </li>
   <li>
-<a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%ED%88%AC-%EB%B2%A1%ED%84%B0%EC%99%80-%EB%B2%A1%ED%84%B0-%ED%88%AC-%EB%9E%98%EC%8A%A4%ED%84%B0" id="toc-래스터-투-벡터와-벡터-투-래스터" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%ED%88%AC-%EB%B2%A1%ED%84%B0%EC%99%80-%EB%B2%A1%ED%84%B0-%ED%88%AC-%EB%9E%98%EC%8A%A4%ED%84%B0"><span class="header-section-number">7.6</span> 래스터-투-벡터와 벡터-투-래스터</a>
+<a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%B2%A1%ED%84%B0-%EC%A0%84%ED%99%98%EA%B3%BC-%EB%B2%A1%ED%84%B0-%EB%9E%98%EC%8A%A4%ED%84%B0-%EC%A0%84%ED%99%98" id="toc-래스터-벡터-전환과-벡터-래스터-전환" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%B2%A1%ED%84%B0-%EC%A0%84%ED%99%98%EA%B3%BC-%EB%B2%A1%ED%84%B0-%EB%9E%98%EC%8A%A4%ED%84%B0-%EC%A0%84%ED%99%98"><span class="header-section-number">7.6</span> 래스터-벡터 전환과 벡터-래스터 전환</a>
   <ul class="collapse">
-<li><a href="#%EB%B2%A1%ED%84%B0-%ED%88%AC-%EB%9E%98%EC%8A%A4%ED%84%B0" id="toc-벡터-투-래스터" class="nav-link" data-scroll-target="#%EB%B2%A1%ED%84%B0-%ED%88%AC-%EB%9E%98%EC%8A%A4%ED%84%B0"><span class="header-section-number">7.6.1</span> 벡터-투-래스터</a></li>
+<li><a href="#%EB%B2%A1%ED%84%B0-%EB%9E%98%EC%8A%A4%ED%84%B0-%EC%A0%84%ED%99%98" id="toc-벡터-래스터-전환" class="nav-link" data-scroll-target="#%EB%B2%A1%ED%84%B0-%EB%9E%98%EC%8A%A4%ED%84%B0-%EC%A0%84%ED%99%98"><span class="header-section-number">7.6.1</span> 벡터-래스터 전환</a></li>
   </ul>
 </li>
   <li>
 <a href="#%EC%A2%8C%ED%91%9C%EB%B3%80%ED%99%98-%EB%B0%8F-%EC%A2%8C%ED%91%9C%EC%A0%84%ED%99%98" id="toc-좌표변환-및-좌표전환" class="nav-link" data-scroll-target="#%EC%A2%8C%ED%91%9C%EB%B3%80%ED%99%98-%EB%B0%8F-%EC%A2%8C%ED%91%9C%EC%A0%84%ED%99%98"><span class="header-section-number">7.7</span> 좌표변환 및 좌표전환</a>
   <ul class="collapse">
-<li><a href="#%EB%8D%B0%EC%9D%B4%ED%85%80-%EA%B7%B8%EB%A6%AC%EB%93%9C-proj.db-cdn.proj.org.-%EB%A1%9C%EC%BB%AC-%EC%BA%90%EC%89%AC" id="toc-데이텀-그리드-proj.db-cdn.proj.org.-로컬-캐쉬" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%85%80-%EA%B7%B8%EB%A6%AC%EB%93%9C-proj.db-cdn.proj.org.-%EB%A1%9C%EC%BB%AC-%EC%BA%90%EC%89%AC"><span class="header-section-number">7.7.1</span> 데이텀 그리드, proj.db, cdn.proj.org. 로컬 캐쉬</a></li>
-  <li><a href="#%EB%B3%80%ED%99%98-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8" id="toc-변환-파이프라인" class="nav-link" data-scroll-target="#%EB%B3%80%ED%99%98-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8"><span class="header-section-number">7.7.2</span> 변환 파이프라인</a></li>
-  <li><a href="#%EC%B6%95-%EC%88%9C%EC%84%9C%EC%99%80-%EB%B0%A9%ED%96%A5" id="toc-축-순서와-방향" class="nav-link" data-scroll-target="#%EC%B6%95-%EC%88%9C%EC%84%9C%EC%99%80-%EB%B0%A9%ED%96%A5"><span class="header-section-number">7.7.3</span> 축 순서와 방향</a></li>
+<li><a href="#st_crs-%ED%95%A8%EC%88%98" id="toc-st_crs-함수" class="nav-link" data-scroll-target="#st_crs-%ED%95%A8%EC%88%98"><span class="header-section-number">7.7.1</span> <code>st_crs</code> 함수</a></li>
+  <li><a href="#st_transform%ED%95%A8%EC%88%98%EC%99%80-st_project-%ED%95%A8%EC%88%98" id="toc-st_transform함수와-st_project-함수" class="nav-link" data-scroll-target="#st_transform%ED%95%A8%EC%88%98%EC%99%80-st_project-%ED%95%A8%EC%88%98"><span class="header-section-number">7.7.2</span> <code>st_transform</code>함수와 <code>st_project</code> 함수</a></li>
+  <li><a href="#sf_proj_info-%ED%95%A8%EC%88%98" id="toc-sf_proj_info-함수" class="nav-link" data-scroll-target="#sf_proj_info-%ED%95%A8%EC%88%98"><span class="header-section-number">7.7.3</span> <code>sf_proj_info</code> 함수</a></li>
+  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%85%80-%EA%B7%B8%EB%A6%AC%EB%93%9C-proj.db-cdn.proj.org.-%EB%A1%9C%EC%BB%AC-%EC%BA%90%EC%89%AC" id="toc-데이텀-그리드-proj.db-cdn.proj.org.-로컬-캐쉬" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%85%80-%EA%B7%B8%EB%A6%AC%EB%93%9C-proj.db-cdn.proj.org.-%EB%A1%9C%EC%BB%AC-%EC%BA%90%EC%89%AC"><span class="header-section-number">7.7.4</span> 데이텀 그리드, proj.db, cdn.proj.org. 로컬 캐쉬</a></li>
+  <li><a href="#%EB%B3%80%ED%99%98-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8" id="toc-변환-파이프라인" class="nav-link" data-scroll-target="#%EB%B3%80%ED%99%98-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8"><span class="header-section-number">7.7.5</span> 변환 파이프라인</a></li>
+  <li><a href="#%EC%B6%95-%EC%88%9C%EC%84%9C%EC%99%80-%EB%B0%A9%ED%96%A5" id="toc-축-순서와-방향" class="nav-link" data-scroll-target="#%EC%B6%95-%EC%88%9C%EC%84%9C%EC%99%80-%EB%B0%A9%ED%96%A5"><span class="header-section-number">7.7.6</span> 축 순서와 방향</a></li>
   </ul>
 </li>
   <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%B3%80%ED%99%98-%EB%B0%8F-%EC%9B%8C%ED%94%84" id="toc-래스터-변환-및-워프" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%B3%80%ED%99%98-%EB%B0%8F-%EC%9B%8C%ED%94%84"><span class="header-section-number">7.8</span> 래스터 변환 및 워프</a></li>
@@ -383,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 10월 11일</p>
+      <p class="date-modified">2024년 10월 15일</p>
     </div>
   </div>
     
@@ -446,8 +474,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>데이터베이스 내의 테이블(또는 테이블 집합)</p></li>
 <li><p>웹서비스에서 호출을 통해 획득된 데이터셋</p></li>
 <li><p>R 패키지에 포함되어 있는 데이터셋</p></li>
-</ul></section><section id="읽어오기와-쓰기" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="읽어오기와-쓰기">
-<span class="header-section-number">7.1.2</span> 읽어오기와 쓰기</h3>
+</ul></section><section id="읽기와-쓰기" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="읽기와-쓰기">
+<span class="header-section-number">7.1.2</span> 읽기와 쓰기</h3>
 <p>외부 “데이터 소스”(파일, 웹서비스 또는 문자열)로부터 데이터셋을 읽어오는 것은 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수를 사용하여 수행된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
@@ -532,20 +560,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>nc5</code>의 개별 카운티가 교차하는 <code>nc7</code> 카운티의 수는 다음과 같이 계산할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 3 2 2 2</code></pre>
-</div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># [1] 2 3 2 2 2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span><span class="co"># [1] 2 3 2 2 2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>역으로 <code>nc7</code>의 개별 카운티가 교차하는 <code>nc5</code>의 카운티의 수는 다음과 같이 계산할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># [1] 2 3 2 1 1 1 1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>객체 <code>i</code> 가 <code>sgbp</code>(sparse geometrical binary predicate) 클래스의 한 객체라고 했을 때, 객체 <code>i</code>는 정수 벡터의 리스트로 주어지는데, 리스트의 각 요소는 논리 프레디케이트 행렬의 한 행을 나타내고, 논리 프레디케이트 행렬은 해당 행에 대해 TRUE 값을 갖는 열의 인덱스를 보유하고 있다. 이 객체는 사용된 프레디케이트 및 총 열 수와 같은 메타데이터도 포함하고 있다. sgbp 객체에 적용할 수 있는 메소드에 다음과 같은 것들이 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/methods.html">methods</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"sgbp"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/methods.html">methods</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"sgbp"</span><span class="op">)</span></span>
 <span><span class="co">#  [1] as.data.frame as.matrix     coerce        dim          </span></span>
 <span><span class="co">#  [5] initialize    Ops           print         show         </span></span>
 <span><span class="co">#  [9] slotsFromS3   t            </span></span>
@@ -562,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><code>sf</code> 객체에 사용될 수 있는 <strong>tidyverse</strong> 로 <code>filter</code>, <code>select</code>, <code>group_by</code>, <code>ungroup</code>, <code>mutate</code>, <code>transmute</code>, <code>rowwise</code>, <code>rename</code>, <code>slice</code>, <code>summarise</code>, <code>distinct</code>, <code>gather</code>, <code>pivot_longer</code>, <code>spread</code>, <code>nest</code>, <code>unnest</code>, <code>unite</code>, <code>separate</code>, <code>separate_rows</code>, <code>sample_n</code>, 및 <code>sample_frac</code>등과 같은 것이 있다. 대부분의 함수는 <code>sf</code> 객체의 메타데이터를 관리하기만 할 뿐 지오메트리 정보를 건드리지 않는다. 사용자가 지오메트리를 제거하고자 할 경우, <code>st_drop_geometry</code>를 사용하거나 선택하기 전에 간단히 <code>tibble</code> 또는 <code>data.frame</code>으로 강제 변환(coerce)할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">nc</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">BIR74</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co"># # A tibble: 3 × 1</span></span>
 <span><span class="co">#   BIR74</span></span>
@@ -579,7 +604,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>distinct</code> 함수는 고유한 레코드를 선택하며, <code>st_equals</code> 함수는 지오메트리의 고유성을 평가한다.</p>
 <p><code>filter</code> 함수는 일반적인 프레디케이트와 함께 사용할 수 있으며, 공간적 프레디케이트를 사용하고자 할 경우, 예를 들어 오렌지 카운티에서 50km 이내에 있는 모든 카운티를 선택하려면 다음과 같이 사용할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orange</span> <span class="op">&lt;-</span> <span class="va">nc</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">NAME</span> <span class="op">==</span> <span class="st">"Orange"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">orange</span> <span class="op">&lt;-</span> <span class="va">nc</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">NAME</span> <span class="op">==</span> <span class="st">"Orange"</span><span class="op">)</span></span>
 <span><span class="va">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">st_is_within_distance</a></span><span class="op">(</span><span class="va">nc</span>, <span class="va">orange</span>, </span>
 <span>                            <span class="fu">units</span><span class="fu">::</span><span class="fu"><a href="https://r-quantities.github.io/units/reference/units.html">set_units</a></span><span class="op">(</span><span class="fl">50</span>, <span class="va">km</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">o50</span> <span class="op">&lt;-</span> <span class="va">nc</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -626,10 +651,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">7.3</span> 타원 좌표</h2>
 <p>비투영 데이터는 경위도로 표현된 타원체 좌표를 가진다. 4.1절에서 설명된 대로, 포인트간 “직선”은 최단 곡선 경로(“측지선”)이다. 기본적으로 <strong>sf</strong> 패키지는 <code>s2geometry</code> 라이브러리의 기하학적 연산을 사용하며, 이는 <strong>s2</strong> 패키지를 통해 이루어진다(Dunnington, Pebesma, and Rubak 2023). 예를 들어, 아래의 지점은 특정 폴리곤 <em>내부</em>에 존재한다(그림 7.5의 왼쪽 그림: 정사 도법).</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="st">"POINT(50 50.1)"</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"OGC:CRS84"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">pt</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="st">"POINT(50 50.1)"</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"OGC:CRS84"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">pt</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="st">"POLYGON((40 40, 60 40, 60 50, 40 50, 40 40))"</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="st">"POLYGON((40 40, 60 40, 60 50, 40 50, 40 40))"</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"OGC:CRS84"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">pol</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">st_intersects</a></span><span class="op">(</span><span class="va">pt</span>, <span class="va">pol</span><span class="op">)</span></span>
 <span><span class="co"># Sparse geometry binary predicate list of length 1, where the</span></span>
@@ -650,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>sf</strong> 패키지가 타원체 좌표를 마치 데카르트 좌표처럼 사용하도록 하려면, <strong>s2</strong> 사용을 비활성화하면 된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/s2.html">sf_use_s2</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co"># Spherical geometry (s2) switched off</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">st_intersects</a></span><span class="op">(</span><span class="va">pol</span>, <span class="va">pt</span><span class="op">)</span></span>
 <span><span class="co"># although coordinates are longitude/latitude, st_intersects assumes</span></span>
@@ -686,7 +711,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">7.4.1</span> 래스터 데이터의 읽기와 쓰기</h3>
 <p>래스터 데이터는 일반적으로 파일을 불러온다. 우리는 브라질의 올린다 시에 대한 30m 해상도의 Landsat 7 데이터셋(밴드 1-5 및 7)을 사용한다. 패키지 <strong>stars</strong>에서 규칙 비회전 그리드에 대한 예제 GeoTIFF 파일을 읽을 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"tif/L7_ETMs.tif"</span>, package <span class="op">=</span> <span class="st">"stars"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"tif/L7_ETMs.tif"</span>, package <span class="op">=</span> <span class="st">"stars"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/">stars</a></span><span class="op">)</span></span>
 <span><span class="co"># Loading required package: abind</span></span>
 <span><span class="op">(</span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/read_stars.html">read_stars</a></span><span class="op">(</span><span class="va">tif</span><span class="op">)</span><span class="op">)</span></span>
@@ -719,7 +744,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><code>stars</code> 클래스의 객체 <code>r</code>은 길이가 1인 간단한 리스트로 구성되어 있으며, 3차원 어레이를 포함한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
 <span><span class="co"># [1] 1</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">r</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># [1] "array"</span></span>
@@ -729,22 +754,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>또한, 이 객체는 어레이 차원이 무엇을 나타내는지 알기 위해 필요한 모든 메타데이터를 포함한 디멘션 테이블을 속성으로 가지고 있다. 이는 다음을 통해 얻어진다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_dimensions</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_dimensions</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>어레이의 공간적 범위에 대한 정보를 다음과 같이 얻을 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
 <span><span class="co">#    xmin    ymin    xmax    ymax </span></span>
 <span><span class="co">#  288776 9110729  298723 9120761</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>write_stars</code> 함수를 통해 래스터 데이터를 로컬 디스크에 저장할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".tif"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".tif"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">tf</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>파일 확장자를 통해 데이터 형식(이 경우, GeoTIFF)이 지정된다. 단순 피처와 마찬가지로 읽기 및 쓰기 작업은 GDAL 라이브러리를 사용하며, 래스터 데이터에 사용할 수 있는 드라이버 목록은 다음을 통해 확인할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_drivers.html">st_drivers</a></span><span class="op">(</span><span class="st">"raster"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_drivers.html">st_drivers</a></span><span class="op">(</span><span class="st">"raster"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="stars-데이터-큐브로부터-일부분-골라내기" class="level3" data-number="7.4.2"><h3 data-number="7.4.2" class="anchored" data-anchor-id="stars-데이터-큐브로부터-일부분-골라내기">
 <span class="header-section-number">7.4.2</span> <code>stars</code> 데이터 큐브로부터 일부분 골라내기</h3>
@@ -755,7 +780,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>예를 들어, <code>r[1:2, 101:200,, 5:10]</code>는 <code>r</code>에서 속성 1-2를 선택하고, 디멘션 1에 대해 인덱스 101-200, 차원 3에 대해 인덱스 5-10을 선택함을 의미한다. 차원 2를 통한 선택은 이루어지지 않는다. 속성의 경우, 속성 이름, 인덱스 또는 논리 벡터를 사용할 수 있다. 차원의 경우에는 논리 벡터가 지원되지 않는다. 불연속 범위 선택은 규칙 시퀀스일 때만 지원된다. 기본적으로 <code>drop</code>은 <code>FALSE</code>로 설정되어 있으며, <code>TRUE</code>로 설정하면 단일 값을 가진 차원은 모두 제거된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">250</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fl">4</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">250</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fl">4</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#    x    y band </span></span>
 <span><span class="co">#  100   50    1</span></span>
 <span><span class="va">r</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">250</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fl">4</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -764,7 +789,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>특정 범위의 차원 <em>값</em>을 선택하기 위해 <code>filter</code> 함수를 사용할 수 있는데, 이는 <code>dplyr</code> 패키지를 우선적으로 로드해야 한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">x</span> <span class="op">&gt;</span> <span class="fl">289000</span>, <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">290000</span><span class="op">)</span></span>
 <span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
 <span><span class="co"># attribute(s):</span></span>
@@ -778,7 +803,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>이는 차원의 오프셋을 변경한다. 특정 큐브 슬라이스는 <code>slice</code> 함수를 사용하여 얻을 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">band</span>, <span class="fl">3</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">band</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
 <span><span class="co"># attribute(s):</span></span>
 <span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
@@ -793,7 +818,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">7.4.3</span> 잘라내기</h3>
 <p>부분 집합을 생성하는 또 다른 방법에 <code>sf</code>, <code>sfc</code> 또는 <code>bbox</code> 클래스의 공간 객체를 사용하는 방법이 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_buffer</a></span><span class="op">(</span><span class="fu">units</span><span class="fu">::</span><span class="fu"><a href="https://r-quantities.github.io/units/reference/units.html">set_units</a></span><span class="op">(</span><span class="fl">500</span>, <span class="va">m</span><span class="op">)</span><span class="op">)</span></span>
@@ -823,7 +848,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>원형 공간 객체의 외부에 존재하는 픽셀에는 NA 값이 할당되는 것을 볼 수 있다. 이 원형 객체는 여전히 <code>r</code>의 <code>offset</code>과 <code>delta</code> 값에 대한 차원 인덱스를 가지고 있다. 다음과 같은 방식으로 <code>offset</code> 값을 재설정할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span><span class="op">[</span><span class="va">b</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_normalize.html">st_normalize</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_dimensions</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span><span class="op">[</span><span class="va">b</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_normalize.html">st_normalize</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_dimensions</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#      from to  offset delta            refsys point x/y</span></span>
 <span><span class="co"># x       1 37  293222  28.5 SIRGAS 2000 / ... FALSE [x]</span></span>
 <span><span class="co"># y       1 36 9116258 -28.5 SIRGAS 2000 / ... FALSE [y]</span></span>
@@ -831,7 +856,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>기본적으로, 결과 래스터는 선택 객체의 범위로 잘린다. 입력 객체와 동일한 차원을 가진 객체는 다음과 같은 방식으로 얻을 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span><span class="op">[</span><span class="va">b</span>, crop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span><span class="op">[</span><span class="va">b</span>, crop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
 <span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
 <span><span class="co"># attribute(s):</span></span>
 <span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.   NA's</span></span>
@@ -844,13 +869,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>stars</code> 객체의 잘라내기는 <code>st_crop</code> 함수를 사용하여 직접 수행할 수도 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">b</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">b</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="stars-객체의-차원재부여-및-결합" class="level3" data-number="7.4.4"><h3 data-number="7.4.4" class="anchored" data-anchor-id="stars-객체의-차원재부여-및-결합">
 <span class="header-section-number">7.4.4</span> stars 객체의 차원재부여 및 결합</h3>
 <p><code>stars</code> 패키지는 다양한 어레이 조작을 수행하기 위해 패키지 <code>abind</code> (Plate and Heiberger 2016)를 사용한다. 한 예로 어레이를 순열하여 전치하는 <code>aperm</code> 함수이다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/aperm.html">aperm</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/aperm.html">aperm</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
 <span><span class="co"># attribute(s):</span></span>
 <span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
@@ -864,7 +889,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>stars</code> 객체에 대한 메서드가 제공되며, 결과 객체의 차원 순서를 순열한다.</p>
 <p>속성과 차원을 교환할 수 있으며, 이는 <code>split</code>과 <code>merge</code>를 사용하여 수행된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">rs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">rs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># stars object with 2 dimensions and 6 attributes</span></span>
 <span><span class="co"># attribute(s):</span></span>
 <span><span class="co">#     Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
@@ -891,7 +916,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>split</code> 함수는 밴드 차원을 2차원 어레이의 여섯 개 속성에 분배하며, <code>merge</code> 함수는 거꾸로 수행한다. <code>st_redimension</code> 함수는 단일 어레이 차원을 두 개의 새로운 차원으로 분할하는 것과 같은 보다 일반적인 작업에 사용된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/redimension.html">st_redimension</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">349</span>, y <span class="op">=</span> <span class="fl">352</span>, b1 <span class="op">=</span> <span class="fl">3</span>, b2 <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/redimension.html">st_redimension</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">349</span>, y <span class="op">=</span> <span class="fl">352</span>, b1 <span class="op">=</span> <span class="fl">3</span>, b2 <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># stars object with 4 dimensions and 1 attribute</span></span>
 <span><span class="co"># attribute(s):</span></span>
 <span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
@@ -905,7 +930,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>동일한 차원을 가진 여러 개의 <code>stars</code> 객체는 <code>c</code>를 사용하여 결합할 수 있다. 결합된 어레이는 추가적인 속성으로 취급하는 것이 디폴트 설정이지만, <code>along</code> 아규먼트를 지정하면 어레이를 새로운 차선을 따라 병합할 수도 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">r</span>, along <span class="op">=</span> <span class="st">"new_dim"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">r</span>, along <span class="op">=</span> <span class="st">"new_dim"</span><span class="op">)</span></span>
 <span><span class="co"># stars object with 4 dimensions and 1 attribute</span></span>
 <span><span class="co"># attribute(s), summary of first 1e+05 cells:</span></span>
 <span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
@@ -922,7 +947,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">7.4.5</span> 포인트 샘플 추출하기, 애그리게이팅하기</h3>
 <p>래스터 데이터 큐브 분석의 매우 일반적인 사용 사례는 특정 위치에서 값을 추출하거나 특정 지오메트리에 대해 집계값을 계산하는 것이다. <code>st_extract</code> 함수는 포인트 값을 추출한다. 우리는 <code>r</code> 객체의 바운딩 박스 내의 몇 개의 무작위로 샘플링 포인트에 대해 이 오퍼레이션을 수행할 것이다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">115517</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">115517</span><span class="op">)</span></span>
 <span><span class="va">pts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
 <span><span class="op">(</span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_extract.html">st_extract</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">pts</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
@@ -940,7 +965,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>이것은 20개의 포인트와 6개의 밴드를 가진 벡터 데이터 큐브를 생성한다(시드를 설정하게 되면, 반복 실행에서 동일한 샘플의 사용이 보장된다. 따라서 포인트의 무작위 생성을 재실행하고자 하는 경우는 시드를 설정해서는 안된다).</p>
 <p>데이터 큐브에서 정보를 추출하는 또 다른 방법은 집계값을 산출하는 것이다. 이를 수행하는 한 가지 방법은 공간 폴리곤 또는 라인에 의거해 값을 공간적으로 집계하는 것이다(6.4절 참조). 예를 들어, 그림 1.4(d)에 표시된 세 개의 원 각각에 대해 여섯 개 밴드의 최대 픽셀 값을 계산할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">circles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">circles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_buffer</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">circles</span>, <span class="va">max</span><span class="op">)</span></span>
 <span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
@@ -984,7 +1009,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>이 그림에서 포인트 8, 14, 15, 18 및 19는 수부에 위치하고 있으며, 나머지는 육지부에 있다는 것을 “육안”으로 확인할 수 있다. 선형 판별(“최대 우도”) 분류기를 사용하여, 우리는 그림 7.8에 나타난 모델 예측 결과를 얻을 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
 <span><span class="va">trn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_extract.html">st_extract</a></span><span class="op">(</span><span class="va">rs</span>, <span class="va">pts</span><span class="op">)</span></span>
 <span><span class="va">trn</span><span class="op">$</span><span class="va">cls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"land"</span>, <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">trn</span><span class="op">$</span><span class="va">cls</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">14</span>, <span class="fl">15</span>, <span class="fl">18</span>, <span class="fl">19</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"water"</span></span>
@@ -1007,38 +1032,741 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>우리는 또한 그림 7.8에 플로팅된 레이어가 클래스 레이블을 가진 범주형 변수임을 알 수 있다.</p>
 </section><section id="래스터-데이터-플로팅" class="level3" data-number="7.4.7"><h3 data-number="7.4.7" class="anchored" data-anchor-id="래스터-데이터-플로팅">
 <span class="header-section-number">7.4.7</span> 래스터 데이터 플로팅</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-7-9" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="07_files/figure-html/fig-7-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="07_files/figure-html/fig-7-9-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.9: 30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>베이스 플롯 함수를 <code>stars</code> 객체에 적용할 수 있는데, <code>plot(r)</code>로 생성된 플롯은 그림 7.9에 나타나 있다. 기본 색상 스케일은 회색 톤을 사용하며, 모든 밴드의 데이터 분위수에 맞춰 명암 대비가 조정된다(“히스토그램 평활화”)(역자주: 히스토그램 평활화는 데이터의 분토를 재조정하여 시각적으로 더 유용하고 세부 사항을 더 잘 볼 수 있게 하는 기법을 말한다. 예를 들어, 어두운 이미지에서는 어두운 영역의 픽셀 값이 많이 몰려 있는데, 히스토그램 평활화를 적용하면 이 픽셀 값의 범위를 더 넓은 범위로 확장(stretch)시켜 이미지를 밝고 명확하게 보이도록 할 수 있다.) <code>breaks = "equal"</code>로 설정하면 급폭이 동일하게 설정되는 등간격 분류법이 적용되며, 계급 단절값을 임의로 지정할 수도 있다. 그런데 더 익숙한 플로팅 방식은 그림 7.10에 나타난 RGB 또는 폴스 컬러 합성일 것이다.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-7-10" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="07_files/figure-html/fig-7-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="07_files/figure-html/fig-7-10-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.10: 컬러 합성의 두 가지 예
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>보다 자세한 사항은 8장에서 다루어진다.</p>
 </section><section id="래스터-데이터-분석하기" class="level3" data-number="7.4.8"><h3 data-number="7.4.8" class="anchored" data-anchor-id="래스터-데이터-분석하기">
 <span class="header-section-number">7.4.8</span> 래스터 데이터 분석하기</h3>
+<p><code>stars</code> 객체의 개별 엘리먼트에 대해서는, 수리 함수의 적용이 어레이에 직접적으로 이루어진다. 이는 사용자가 함수를 호출하여 표현식(expression)을 생성하는 것이 가능하다는 것을 의미한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># L7_ETMs.tif     0    3.99   4.23 4.12    4.45 5.54</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to  offset delta            refsys point x/y</span></span>
+<span><span class="co"># x       1 349  288776  28.5 SIRGAS 2000 / ... FALSE [x]</span></span>
+<span><span class="co"># y       1 352 9120761 -28.5 SIRGAS 2000 / ... FALSE [y]</span></span>
+<span><span class="co"># band    1   6      NA    NA                NA    NA</span></span>
+<span><span class="va">r</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># L7_ETMs.tif     1      62   77.5 77.1    94.9  266</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to  offset delta            refsys point x/y</span></span>
+<span><span class="co"># x       1 349  288776  28.5 SIRGAS 2000 / ... FALSE [x]</span></span>
+<span><span class="co"># y       1 352 9120761 -28.5 SIRGAS 2000 / ... FALSE [y]</span></span>
+<span><span class="co"># band    1   6      NA    NA                NA    NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>혹은 특정 값들을 마스킹 처리할 수도 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r2</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
+<span><span class="va">r2</span><span class="op">[</span><span class="va">r</span> <span class="op">&lt;</span> <span class="fl">50</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">r2</span></span>
+<span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.   NA's</span></span>
+<span><span class="co"># L7_ETMs.tif    50      64     75   79      90  255 149170</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to  offset delta            refsys point x/y</span></span>
+<span><span class="co"># x       1 349  288776  28.5 SIRGAS 2000 / ... FALSE [x]</span></span>
+<span><span class="co"># y       1 352 9120761 -28.5 SIRGAS 2000 / ... FALSE [y]</span></span>
+<span><span class="co"># band    1   6      NA    NA                NA    NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>혹은 마스킹을 해제할 수도 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">r2</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="va">r2</span></span>
+<span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># L7_ETMs.tif     0      54     69   63      86  255</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to  offset delta            refsys point x/y</span></span>
+<span><span class="co"># x       1 349  288776  28.5 SIRGAS 2000 / ... FALSE [x]</span></span>
+<span><span class="co"># y       1 352 9120761 -28.5 SIRGAS 2000 / ... FALSE [y]</span></span>
+<span><span class="co"># band    1   6      NA    NA                NA    NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>stars</code> 객체의 개별 차원에 대해서는, 선택된 어레이 차원에 함수를 적용하는 것이 가능하며, 이는 <code>apply</code> 함수가 어레이에 대해 수행하는 방식과 유사하다(6.3.3절). 예를 들어, 각 픽셀에 대해 6개 밴드 값의 평균을 계산할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#       Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># mean  25.5    53.3   68.3 68.9      82  255</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#   from  to  offset delta            refsys point x/y</span></span>
+<span><span class="co"># x    1 349  288776  28.5 SIRGAS 2000 / ... FALSE [x]</span></span>
+<span><span class="co"># y    1 352 9120761 -28.5 SIRGAS 2000 / ... FALSE [y]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>더 유의미한 함수로는 예를 들어 NDVI(Normalized Difference Vegetation Index, 정규화 식생 지수 )를 계산하는 것이 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ndvi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">b1</span>, <span class="va">b2</span>, <span class="va">b3</span>, <span class="va">b4</span>, <span class="va">b5</span>, <span class="va">b6</span><span class="op">)</span> <span class="op">(</span><span class="va">b4</span> <span class="op">-</span> <span class="va">b3</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">b4</span> <span class="op">+</span> <span class="va">b3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, <span class="va">ndvi</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#         Min. 1st Qu.  Median    Mean 3rd Qu.  Max.</span></span>
+<span><span class="co"># ndvi  -0.753  -0.203 -0.0687 -0.0643   0.187 0.587</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#   from  to  offset delta            refsys point x/y</span></span>
+<span><span class="co"># x    1 349  288776  28.5 SIRGAS 2000 / ... FALSE [x]</span></span>
+<span><span class="co"># y    1 352 9120761 -28.5 SIRGAS 2000 / ... FALSE [y]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>혹은, 다음과 같이 정의할 수도 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ndvi2</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">-</span><span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">+</span><span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>밴드 수가 많을 경우 이러한 방식은 더 편리하지만, 각 픽셀에 대해 호출해야 하므로 위에서 정의한 <code>ndvi</code> 함수보다 훨씬 느리다. 반면 <code>ndvi</code> 함수는 모든 픽셀이나 큰 픽셀 덩어리에 대해 한 번 호출할 수 있다. 전체 이미지에 대해 각 밴드의 평균은 다음과 같이 계산된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"band"</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#   band mean</span></span>
+<span><span class="co"># 1    1 79.1</span></span>
+<span><span class="co"># 2    2 67.6</span></span>
+<span><span class="co"># 3    3 64.4</span></span>
+<span><span class="co"># 4    4 59.2</span></span>
+<span><span class="co"># 5    5 83.2</span></span>
+<span><span class="co"># 6    6 60.0</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>결과는 <code>data.frame</code>의 형태로 막바로 출력해 볼 수 있을 만큼 작다. 이 두 가지 예에서는 전체 디멘션이 사라진다. 그러나 그렇지 않은 경우도 종종 발생한다(6.3.2절). 예를 들어, 각 밴드에 대해 세 개의 사분위수를 계산할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"band"</span><span class="op">)</span>, <span class="va">quantile</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># L7_ETMs.tif    32    60.8   66.5 69.8    78.8  112</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#          from to        values</span></span>
+<span><span class="co"># quantile    1  3 25%, 50%, 75%</span></span>
+<span><span class="co"># band        1  6          NULL</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이렇게 하면 세 개의 값으로 이루어진 새로운 차원인 <code>quantile</code>이 <em>생성</em>된다. 또는 각 픽셀에 대해 여섯 개의 밴드 값에 대한 세 개의 사분위수를 다음과 같은 방식으로 얻을 수도 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span>, <span class="va">quantile</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># L7_ETMs.tif     4      55   69.2 67.2    81.2  255</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#          from  to  offset delta            refsys point</span></span>
+<span><span class="co"># quantile    1   3      NA    NA                NA    NA</span></span>
+<span><span class="co"># x           1 349  288776  28.5 SIRGAS 2000 / ... FALSE</span></span>
+<span><span class="co"># y           1 352 9120761 -28.5 SIRGAS 2000 / ... FALSE</span></span>
+<span><span class="co">#                 values x/y</span></span>
+<span><span class="co"># quantile 25%, 50%, 75%    </span></span>
+<span><span class="co"># x                 NULL [x]</span></span>
+<span><span class="co"># y                 NULL [y]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section><section id="곡선-래스터" class="level3" data-number="7.4.9"><h3 data-number="7.4.9" class="anchored" data-anchor-id="곡선-래스터">
 <span class="header-section-number">7.4.9</span> 곡선 래스터</h3>
-</section><section id="goal-utils" class="level3" data-number="7.4.10"><h3 data-number="7.4.10" class="anchored" data-anchor-id="goal-utils">
-<span class="header-section-number">7.4.10</span> GOAL utils</h3>
-</section></section><section id="벡터-데이터-큐브-사례" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="벡터-데이터-큐브-사례">
-<span class="header-section-number">7.5</span> 벡터 데이터 큐브 사례</h2>
-<section id="사례-대기질-시계열-애그리게이팅하기" class="level3" data-number="7.5.1"><h3 data-number="7.5.1" class="anchored" data-anchor-id="사례-대기질-시계열-애그리게이팅하기">
-<span class="header-section-number">7.5.1</span> 사례: 대기질 시계열 애그리게이팅하기</h3>
-</section><section id="사례-브리스톨-출발지-도착지-데이터-큐브" class="level3" data-number="7.5.2"><h3 data-number="7.5.2" class="anchored" data-anchor-id="사례-브리스톨-출발지-도착지-데이터-큐브">
-<span class="header-section-number">7.5.2</span> 사례: 브리스톨 출발지-도착지 데이터 큐브</h3>
+<p>비규칙 래스터가 발생하는 여러 가지 이유가 있다(그림 1.6). 우선, 데이터가 지구의 형태를 그대로 반영하고 있을 때, 규칙 래스터는 곡면인 지구의 표면에 맞지 않는다. 다른 이유에는 다음과 같은 것들이 있다.</p>
+<ul>
+<li><p>규칙 래스터 데이터를 다른 좌표참조계로 전환하거나 변환할 경우, 리샘플링, 즉 워핑(7.8절)을 하지 않으면 곡선 형태가 된다. 그런데 워핑은 항상 데이터 손실을 초래하며, 이는 가역적이지 않다.</p></li>
+<li><p>관측이 비규칙 래스터를 초래할 수 있다. 품질이 낮은 위성 영상의 경우, 위성의 진행 방향에서는 규칙 래스터가 되지만(<span class="math inline">\(x\)</span> 또는 <span class="math inline">\(y\)</span>와 정렬되지 않음), 그와 수직인 방향에서는 직각(rectilinear) 래스터가 된다(예: 센서가 시야<em>각</em>을 일정한 간격으로 분할하여 관측을 수행하는 경우).</p></li>
+</ul></section><section id="gdal-유틸리티" class="level3" data-number="7.4.10"><h3 data-number="7.4.10" class="anchored" data-anchor-id="gdal-유틸리티">
+<span class="header-section-number">7.4.10</span> GDAL 유틸리티</h3>
+<p>GDAL 라이브러리는 일반적으로 데이터 변환 및 처리를 위한 여러 실행 가능한 바이너리, 즉 GDAL 명령줄 유틸리티와 함께 제공된다. 이러한 유틸리티 중 여러 개(파이썬으로 작성된 것을 제외한 모든 유틸리티)는 “GDAL Algorithms C API”를 통해 GDAL 라이브러리의 C 함수로도 사용 가능하다. GDAL 라이브러리와 연동되어 있는 <code>sf</code>와 같은 R 패키지가 이러한 C API 알고리즘을 사용한다면, 사용자는 R 패키지 외에 추가로 GDAL 바이너리 명령줄 유틸리티를 설치할 필요가 없다는 의미이다.</p>
+<p><code>sf</code> 패키지는 <code>gdal_utils</code> 함수를 통해 이러한 C API 알고리즘을 호출할 수 있으며, 첫 번째 인수는 <code>gdal</code> 접두사를 제거한 해당 유틸리티의 이름이다.</p>
+<ul>
+<li><p><code>info</code>: GDAL(래스터) 데이터셋에 대한 정보를 출력한다.</p></li>
+<li><p><code>warp</code>: 래스터를 새로운 래스터로 변환한다(CRS의 전환 포함).</p></li>
+<li><p><code>rasterize</code>: 벡터 데이터셋을 래스터화한다.</p></li>
+<li><p><code>translate</code>: 래스터 파일을 다른 형식으로 변환한다.</p></li>
+<li><p><code>vectortranslate</code>: 벡터 파일을 다른 형식으로 변환한다(ogr2ogr에 해당).</p></li>
+<li><p><code>buildvrt</code>: 가상 래스터 타일(여러 파일의 결합을 통해 생성된 단일 래스터)을 생성한다.</p></li>
+<li><p><code>demprocessing</code>: DEM(digital data model, 디지털고도모델)에 대한 다양한 프로세싱을 수행한다.</p></li>
+<li><p><code>nearblack</code>: 거의 검정색/흰색 경계를 검정색으로 변환한다.</p></li>
+<li><p><code>grid</code>: 흩어진 데이터로부터 규칙 그리드를 생성한다.</p></li>
+<li><p><code>mdiminfo</code>: 다차원 어레이에 대한 정보를 출력한다.</p></li>
+<li><p><code>mdimtranslate</code>: 다차원 어레이를 다른 형식으로 변환한다.</p></li>
+</ul>
+<p>이러한 유틸리티는 기본적으로 파일에서 작동하며, <code>sf</code> 또는 <code>stars</code> 객체에 직접적으로 작용하지는 않는다. 그러나 <code>stars_proxy</code> 객체는 본질적으로 파일에 대한 포인터이며, 다른 객체들도 파일로 기록될 수 있다. 이러한 유틸리티 중 몇몇은 (항상 혹은 선택적으로) <code>st_mosaic</code>, <code>st_warp</code>, 또는 <code>st_write</code>와 같은 함수를 통해 사용된다. R의 <strong>gdalUtilities</strong> (O’Brien 2022) 패키지는 <code><a href="https://r-spatial.github.io/sf/reference/gdal_utils.html">sf::gdal_utils</a></code>에 덧붙여 사용자 편의성을 위한 래퍼 함수를 제공하는데, 함수의 아규먼트 이름이 바이너리 유틸리티의 명령줄 아규먼트와 정확히 일치한다.</p>
+</section></section><section id="벡터-데이터-큐브의-예제" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="벡터-데이터-큐브의-예제">
+<span class="header-section-number">7.5</span> 벡터 데이터 큐브의 예제</h2>
+<section id="예제-대기질-시계열-데이터에-대한-애그리게이션-실행" class="level3" data-number="7.5.1"><h3 data-number="7.5.1" class="anchored" data-anchor-id="예제-대기질-시계열-데이터에-대한-애그리게이션-실행">
+<span class="header-section-number">7.5.1</span> 예제: 대기질 시계열 데이터에 대한 애그리게이션 실행</h3>
+<p>유럽 대기질 데이터를 사례로 벡터 데이터 큐브에 대한 애그리게이션 작업을 설명한다. 동일한 데이터가 Gräler, Pebesma, Heuvelink (2016)에서 사용되었으며, 12장과 13장에서도 사용될 예정이다. 독일의 농촌 지역 관측소의 1998~2009년 데이터로부터 일평균 <span class="math inline">\(\text{PM}_{10}\)</span> 값을 계산하였다.</p>
+<p><code>air</code> 데이터 매트릭스, 날짜 벡터인 <code>date</code>s, 그리고 <code>SpatialPoints</code> 객체인 <code>stations</code>을 결합해 <code>stars</code> 객체를 생성할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/air.rda"</span><span class="op">)</span> <span class="co"># this loads several datasets in .GlobalEnv</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">air</span><span class="op">)</span></span>
+<span><span class="co"># space  time </span></span>
+<span><span class="co">#    70  4383</span></span>
+<span><span class="va">stations</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">st</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_dimensions</a></span><span class="op">(</span>station <span class="op">=</span> <span class="va">st</span>, time <span class="op">=</span> <span class="va">dates</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">aq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>PM10 <span class="op">=</span> <span class="va">air</span><span class="op">)</span>, dimensions <span class="op">=</span> <span class="va">d</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#       Min. 1st Qu. Median Mean 3rd Qu. Max.   NA's</span></span>
+<span><span class="co"># PM10     0    9.92   14.8 17.7      22  274 157659</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#         from   to     offset  delta refsys point</span></span>
+<span><span class="co"># station    1   70         NA     NA WGS 84  TRUE</span></span>
+<span><span class="co"># time       1 4383 1998-01-01 1 days   Date FALSE</span></span>
+<span><span class="co">#                                          values</span></span>
+<span><span class="co"># station POINT (9.59 53.7),...,POINT (9.45 49.2)</span></span>
+<span><span class="co"># time                                       NULL</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그림 7.11에서 시간 시계열이 상당히 길지만, 큰 결측값 간격도 있다는 것을 알 수 있다. 그림 7.12는 평균 <span class="math inline">\(\text{PM}_{10}\)</span> 값과 함께 측정소의 공간 분포를 보여준다.</p>
+<div id="fig-7-11" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airst-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airst-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.11: 시간과 스테이션별로 계산된 PM10 값에 대한 시공간 다이어그램
+</figcaption></figure>
+</div>
+<div id="fig-7-12" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airmap-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" data-glightbox="description: .lightbox-desc-12"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airmap-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.12: 관측 스테이션별 PM10 평균값
+</figcaption></figure>
+</div>
+<p>간단한 실습 차원에서, 측정 스테이션별 시간 시계열 데이터를 지역 평균으로 집계할 수 있다. 이를 위해 <code>stars</code> 객체에 대한 <code>aggregate</code> 메소드를 사용한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">aq</span>, <span class="va">de_nuts1</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#       Min. 1st Qu. Median Mean 3rd Qu. Max.  NA's</span></span>
+<span><span class="co"># PM10  1.08    10.9   15.3 17.9    21.8  172 25679</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from   to     offset  delta refsys point</span></span>
+<span><span class="co"># geom    1   16         NA     NA WGS 84 FALSE</span></span>
+<span><span class="co"># time    1 4383 1998-01-01 1 days   Date FALSE</span></span>
+<span><span class="co">#                                       values</span></span>
+<span><span class="co"># geom MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span>
+<span><span class="co"># time                                    NULL</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그리고, 아래의 코드를 통해 임의로 선택한 여섯 개의 날짜에 대한 지도를 보여줄 수 있다(그림 7.13).</p>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">&gt;=</span> <span class="st">"2008-01-01"</span>, <span class="va">time</span> <span class="op">&lt;</span> <span class="st">"2008-01-07"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>key.pos <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-7-13" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airagg-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" data-glightbox="description: .lightbox-desc-13"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airagg-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.13: 임의의 6일에 대한 지역 평균 PM10
+</figcaption></figure>
+</div>
+<p>또한 다음의 코드를 이용해 단일 주에 대한 평균 값의 시계열 플롯을 생성할 수 있다(그림 7.14).</p>
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://joshuaulrich.github.io/xts/">xts</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/xts/man/as.xts.html">as.xts</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span>, main <span class="op">=</span> <span class="va">de_nuts1</span><span class="op">$</span><span class="va">NAME_1</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-7-14" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airts-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" data-glightbox="description: .lightbox-desc-14"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airts-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.14: 단일 스테이션에 대한 지역 평균 PM10의 시계열
+</figcaption></figure>
+</div>
+</section><section id="예제-브리스톨-출발지-도착지-데이터-큐브" class="level3" data-number="7.5.2"><h3 data-number="7.5.2" class="anchored" data-anchor-id="예제-브리스톨-출발지-도착지-데이터-큐브">
+<span class="header-section-number">7.5.2</span> 예제: 브리스톨 출발지-도착지 데이터 큐브</h3>
+<p>이 예제에 사용된 데이터는 Lovelace, Nowosad, Muenchow (2019)에서 가져온 것으로, 출발지-목적지(OD) 매트릭스이다. 구체적으로 A 지역에서 B 지역으로 이동하는 사람의 수를 교통 수단별로 나타낸 것이다. 102개의 지역에 대한 피처 지오메트리는 <code>sf</code> 객체인 <code>bristol_zones</code>에 포함되어 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">spDataLarge</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">bristol_zones</span><span class="op">)</span>, axes <span class="op">=</span> <span class="cn">TRUE</span>, graticule <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">bristol_zones</span><span class="op">)</span><span class="op">[</span><span class="fl">33</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">'red'</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-7-15" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-bristol1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" data-glightbox="description: .lightbox-desc-15"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-bristol1-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.15: 영국 브리스톨의 102개 구역 현황(33번 구역(E02003043)이 빨간색으로 표시되어 있음)
+</figcaption></figure>
+</div>
+<p><code>bristol_od</code> 테이블에 데이터가 저장되어 있는데, OD 쌍(이동량이 0인 경우는 제외)가 레코드로, 서로 다른 교통수단이 변수로 들어가 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">bristol_od</span><span class="op">)</span></span>
+<span><span class="co"># # A tibble: 6 × 7</span></span>
+<span><span class="co">#   o         d           all bicycle  foot car_driver train</span></span>
+<span><span class="co">#   &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co"># 1 E02002985 E02002985   209       5   127         59     0</span></span>
+<span><span class="co"># 2 E02002985 E02002987   121       7    35         62     0</span></span>
+<span><span class="co"># 3 E02002985 E02003036    32       2     1         10     1</span></span>
+<span><span class="co"># 4 E02002985 E02003043   141       1     2         56    17</span></span>
+<span><span class="co"># 5 E02002985 E02003049    56       2     4         36     0</span></span>
+<span><span class="co"># 6 E02002985 E02003054    42       4     0         21     0</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>제외된 무이동 OD 쌍의 갯수는 모든 OD 조합의 수에서 데이터에 포함된 OD 쌍의 갯수를 빼면 구할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">bristol_zones</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">bristol_od</span><span class="op">)</span> </span>
+<span><span class="co"># [1] 7494</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>우리는 출발지, 목적지, 교통 수단을 차원으로 가지는 3차원 벡터 데이터 큐브를 형성할 것이다. 이를 위해 먼저 <code>pivot_longer</code>를 사용하여 <code>bristol_od</code> 테이블을 정리하여 출발지(o), 목적지(d), 교통 수단(mode), 및 수(count)라는 변수를 갖도록 한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create O-D-mode array:</span></span>
+<span><span class="va">bristol_tidy</span> <span class="op">&lt;-</span> <span class="va">bristol_od</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">all</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, names_to <span class="op">=</span> <span class="st">"mode"</span>, values_to <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">bristol_tidy</span><span class="op">)</span></span>
+<span><span class="co"># # A tibble: 6 × 4</span></span>
+<span><span class="co">#   o         d         mode           n</span></span>
+<span><span class="co">#   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;</span></span>
+<span><span class="co"># 1 E02002985 E02002985 bicycle        5</span></span>
+<span><span class="co"># 2 E02002985 E02002985 foot         127</span></span>
+<span><span class="co"># 3 E02002985 E02002985 car_driver    59</span></span>
+<span><span class="co"># 4 E02002985 E02002985 train          0</span></span>
+<span><span class="co"># 5 E02002985 E02002987 bicycle        7</span></span>
+<span><span class="co"># 6 E02002985 E02002987 foot          35</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그리고 나서 0으로 채워진 3차원 어레이 <code>a</code>를 생성한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">od</span> <span class="op">&lt;-</span> <span class="va">bristol_tidy</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="st">"o"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">nod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">od</span><span class="op">)</span></span>
+<span><span class="va">mode</span> <span class="op">&lt;-</span> <span class="va">bristol_tidy</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="st">"mode"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">nmode</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">mode</span><span class="op">)</span></span>
+<span><span class="va">a</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">0L</span>,  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">nod</span>, <span class="va">nod</span>, <span class="va">nmode</span><span class="op">)</span>, </span>
+<span>    dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>o <span class="op">=</span> <span class="va">od</span>, d <span class="op">=</span> <span class="va">od</span>, mode <span class="op">=</span> <span class="va">mode</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
+<span><span class="co"># [1] 102 102   4</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>해당 어레이의 세 차원에 구역 이름(o, d)과 교통 수단 이름(mode)이 부여된 것을 확인할 수 있다. 이렇게 함으로써 <code>bristol_tidy</code>의 각 행은 해당 어레이의 한 단위(엔트리)에 해당하게 된다. <code>bristol_tidy</code> 테이블에 있는 인덱스(<code>o</code>, <code>d</code> 및 <code>mode</code>)와 값(<code>n</code>)을 이용해 해당 어레이(<code>a</code>)의 비제로 부분을 채울 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">bristol_tidy</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"o"</span>, <span class="st">"d"</span>, <span class="st">"mode"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> </span>
+<span>        <span class="va">bristol_tidy</span><span class="op">$</span><span class="va">n</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>bristol_zones</code>의 구역과 <code>bristol_tidy</code>의 구역 이름 간에 순서 불일치가 발생할 수 있기 때문에 다음의 조치를 취한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="va">od</span>, <span class="va">bristol_zones</span><span class="op">$</span><span class="va">geo_code</span><span class="op">)</span></span>
+<span><span class="va">zones</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">bristol_zones</span><span class="op">)</span><span class="op">[</span><span class="va">order</span><span class="op">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>순서가 이미 올바른 경우도 있지만, 이러한 가정을 배제한 채 위의 코드를 실행하는 것이 좋다. 다음으로 존과 교통수단을 이용해 <code>stars</code> 디멘션 객체를 생성한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/">stars</a></span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_dimensions</a></span><span class="op">(</span>o <span class="op">=</span> <span class="va">zones</span>, d <span class="op">=</span> <span class="va">zones</span>, mode <span class="op">=</span> <span class="va">mode</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#      from  to refsys point                                  values</span></span>
+<span><span class="co"># o       1 102 WGS 84 FALSE MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span>
+<span><span class="co"># d       1 102 WGS 84 FALSE MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span>
+<span><span class="co"># mode    1   4     NA FALSE                       bicycle,...,train</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>a</code>와 <code>d</code>로부터 최종적으로 <code>stars</code> 객체를 생성한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">odm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>N <span class="op">=</span> <span class="va">a</span><span class="op">)</span>, dimensions <span class="op">=</span> <span class="va">d</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#    Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># N     0       0      0  4.8       0 1296</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to refsys point                                  values</span></span>
+<span><span class="co"># o       1 102 WGS 84 FALSE MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span>
+<span><span class="co"># d       1 102 WGS 84 FALSE MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span>
+<span><span class="co"># mode    1   4     NA FALSE                       bicycle,...,train</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이 3차원 어레이로부터 단일 슬라이스를 추출할 수 있다. 예를 들어 구역 33에 대한 데이터를 <code>odm[,,33]</code>을 통해 추출한 후 플롯을 그릴 수 있다(그림 7.16).</p>
+<div class="cell">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/abind/man/adrop.html">adrop</a></span><span class="op">(</span><span class="va">odm</span><span class="op">[</span>,,<span class="fl">33</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span>, logz <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-7-16" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odm33-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" data-glightbox="description: .lightbox-desc-16"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odm33-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.16: 33번 존에 대한 OD 데이터를 추출한 후 교통수단별로 지도화하였다.
+</figcaption></figure>
+</div>
+<p>이렇게 하여 서브셋을 생성하면, 첫 번째 아규먼트가 비어 있으므로 모든 속성(여기서는 하나만 존재함: N)을 선택하고, 두 번째 아규먼트가 비어 있어 모든 출발지를 선택하며, 세 번째 아규먼트로 목적지 구역 33을 선택하고, 네 번째 아규먼트는 비어 있어 모든 교통 수단을 선택하게 된다.</p>
+<p>우리가 이 특정 구역을 목적지로 선택한 이유는 해당 구역이 가장 많은 여행자를 가지고 있기 때문이다. 이는 목적지별로 모든 출발지와 여행 수단을 합산하여 확인할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">odm</span>, <span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">d</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co"># [1] 33</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>다른 애그리게이션도 실행할 수 있다. 예를 들어 OD(102 x 102)의 총통행량을 다음과 같이 구할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">odm</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#      Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># sum     0       0      0 19.2      19 1434</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#   from  to refsys point                                  values</span></span>
+<span><span class="co"># o    1 102 WGS 84 FALSE MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span>
+<span><span class="co"># d    1 102 WGS 84 FALSE MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>교통 수단별로 출발지 총계를 구할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">odm</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#      Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># sum     1    57.5    214  490     771 2903</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to refsys point                                  values</span></span>
+<span><span class="co"># o       1 102 WGS 84 FALSE MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span>
+<span><span class="co"># mode    1   4     NA FALSE                       bicycle,...,train</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>교통 수단별로 도착지 총계를 구할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">odm</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#      Min. 1st Qu. Median Mean 3rd Qu.  Max.</span></span>
+<span><span class="co"># sum     0      13    104  490     408 12948</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to refsys point                                  values</span></span>
+<span><span class="co"># d       1 102 WGS 84 FALSE MULTIPOLYGON (...,...,MULTIPOLYGON (...</span></span>
+<span><span class="co"># mode    1   4     NA FALSE                       bicycle,...,train</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>모드별로 합산된 출발지 총계를 구할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">o</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">odm</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>모드별로 합산된 도착지 총계를 구할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply</a></span><span class="op">(</span><span class="va">odm</span>, <span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>o</code>와 <code>d</code>를 결합한 후 함께 플롯할 수 있다(그림 7.17).</p>
+<div class="cell">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">o</span>, <span class="va">d</span>, along <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>od <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"origin"</span>, <span class="st">"destination"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, logz <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-7-17" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odjoined-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" data-glightbox="description: .lightbox-desc-17"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odjoined-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.17: 출발지별 총 통근(왼쪽) 또는 목적지별 총 통근(오른쪽)
+</figcaption></figure>
+</div>
+<p>이 지도가 현상의 본질을 호도할 수 있다는 우려가 있을 수 있다. 왜냐하면 실질적인 값의 크기(컬러) 뿐만 아니라 구역의 면적 역시 시각적으로 느끼는 양의 크기에 영향을 주기 때문이다. 이러한 점을 감안하여 밀도값(카운트/<span class="math inline">\(\text{km}^2\)</span>)을 계산하여 나타낼 수 있다(그림 7.18)(역자주: 지도학적 원칙으로 보자면, 카운트를 코로플레스 맵으로 나타내는 것은 적절하지 않다. 따라서 보다 좋은 방법은 카운트를 도형표현도로 나타내는 것이다).</p>
+<div class="cell">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-quantities.github.io/units/">units</a></span><span class="op">)</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-quantities.github.io/units/reference/units.html">set_units</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">o</span><span class="op">)</span><span class="op">)</span>, <span class="va">km</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">o</span><span class="op">$</span><span class="va">sum_km</span> <span class="op">&lt;-</span> <span class="va">o</span><span class="op">$</span><span class="va">sum</span> <span class="op">/</span> <span class="va">a</span></span>
+<span><span class="va">d</span><span class="op">$</span><span class="va">sum_km</span> <span class="op">&lt;-</span> <span class="va">d</span><span class="op">$</span><span class="va">sum</span> <span class="op">/</span> <span class="va">a</span></span>
+<span><span class="va">od</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">o</span><span class="op">[</span><span class="st">"sum_km"</span><span class="op">]</span>, <span class="va">d</span><span class="op">[</span><span class="st">"sum_km"</span><span class="op">]</span>, along <span class="op">=</span> </span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>od <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"origin"</span>, <span class="st">"destination"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">od</span>, logz <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-7-18" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odbykm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" data-glightbox="description: .lightbox-desc-18"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odbykm-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.18: 출발지별 총 통근 밀도(왼쪽) 또는 목적지별 총 통근 밀도(오른쪽)
+</figcaption></figure>
+</div>
+<p>카운트를 정규화하는 또 다른 방법은 값을 면적이 아닌 인구수로 나누는 것이다.</p>
 </section><section id="타이디-어레이-데이터" class="level3" data-number="7.5.3"><h3 data-number="7.5.3" class="anchored" data-anchor-id="타이디-어레이-데이터">
 <span class="header-section-number">7.5.3</span> 타이디 어레이 데이터</h3>
+<p>Wickham(2014)의 타이디 데이터 논문은 3차원 데이터를 어레이 데이터 형식보다는 각 행이 (지역, 클래스, 연도, 값)으로 구성된 긴(비정규화된) 테이블 형식으로 처리되는 것이 더 좋다고 제안한다. 이는 가능하기만 하다면 늘 좋은 방법이다. 그러나 이 옵션이 불가능한 경우가 있는데, 기본 처리 및 저장의 목적에서 그러하다. 그 이유는 다음과 같다.</p>
+<ul>
+<li><p>많은 어레이 데이터는 처음부터 어레이 데이터로 수집되거나 생성된다. 예를 들어, 원격탐사를 통해 수집된 데이터 혹은 기후 모델을 통해 생성된 데이터</p></li>
+<li><p>어레이 형식을 긴 테이블 형태로 전환하는 것이 그 역보다 훨씬 쉽다.</p></li>
+<li><p>긴 테이블 형식의 데이터가 훨씬 더 많은 메모리를 요구한다. 왜냐하면 <span class="math inline">\(n_i\)</span>가 디멘션 <span class="math inline">\(i\)</span>의 기수(크기)일 때, 디멘션 값이 차지하는 메모리 공간은 <span class="math inline">\(O(\sum{n_i})\)</span>가 아니라 <span class="math inline">\(O(\prod{n_i})\)</span>로 주어지기 때문이다.</p></li>
+<li><p>결측값이 있는 셀이 삭제되면, 긴 테이블 형식은 어레이 형식에 내재된 인덱싱을 상실하게 된다.</p></li>
+</ul>
+<p>이 주장을 극단적으로 표현하자면, 모든 이미지, 비디오 및 음성 데이터가 어레이 형식으로 저장된다고 가정해 보자. 실제로 이를 긴 테이블 형식으로 저장해야 한다고 주장하는 사람은 거의 없을 것이다. 그럼에도 불구하고 <code>tsibble</code>(Wang et al.&nbsp;2022)과 같은 R 패키지는 긴 테이블 형식을 취하고 있는데, 동일한 시간 스텝을 가진 다수의 공간적 피처에 대해 순서를 매기는 것은 매우 모호한 작업임에도 불구하고 어쨋던 인덱싱을 해야한다는 문제점이 있을 수 있다. 이러한 문제는 <code>stars</code>에서 제공하는 어레이 형식을 사용함으로써 <em>자동</em>으로 해결된다. 물론 조밀한 어레이를 사용해야한다는 대가를 치루는 것이기도 하다.</p>
+<p><code>stars</code> 패키지는 어레이 집합을 처리하는 문제에 있어서는 타이디 데이터 원칙(tidy manifesto)을 따르려 하며, 특히 하나 이상의 차원이 공간 및/또는 시간을 참조하는 경우에 대해서는 특별히 더 그러하다.</p>
 </section><section id="벡터-데이터-큐브를-위한-파일-포멧" class="level3" data-number="7.5.4"><h3 data-number="7.5.4" class="anchored" data-anchor-id="벡터-데이터-큐브를-위한-파일-포멧">
 <span class="header-section-number">7.5.4</span> 벡터 데이터 큐브를 위한 파일 포멧</h3>
-</section></section><section id="래스터-투-벡터와-벡터-투-래스터" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="래스터-투-벡터와-벡터-투-래스터">
-<span class="header-section-number">7.6</span> 래스터-투-벡터와 벡터-투-래스터</h2>
-<section id="벡터-투-래스터" class="level3" data-number="7.6.1"><h3 data-number="7.6.1" class="anchored" data-anchor-id="벡터-투-래스터">
-<span class="header-section-number">7.6.1</span> 벡터-투-래스터</h3>
+<p>정규 테이블 형식(긴 테이블 형식을 포함)은 하나의 대안이지만 사용하기에는 불편하다. 위의 출발지-목적지 데이터 예제와 13장에서 다를 내용은 테이블 형식에서 벡터 데이터 큐브를 재구성하는 것이 매우 복잡하다는 점을 잘 보여준다. NetCDF나 Zarr와 같은 어레이 형식은 어레이 데이터를 저장하기 위해 설계되었다. 그러나 이러한 형식은 모든 데이터 구조에 사용할 수 있으며, 일단 작성된 파일은 재사용하기 어려운 위험이 있다. 포인트, (멀티)라인스트링 또는 (멀티)폴리곤으로 구성된 단일 지오메트리 디멘션을 가진 벡터 큐브의 경우, CF 규칙(Eaton et al.&nbsp;2022)은 이러한 지오메트리를 인코딩하는 방법을 설명한다. <code><a href="https://r-spatial.github.io/stars/reference/mdim.html">stars::read_mdim</a></code>과 <code><a href="https://r-spatial.github.io/stars/reference/mdim.html">stars::write_mdim</a></code>은 이러한 규칙을 따르는 벡터 데이터 큐브를 읽고 쓸 수 있다.</p>
+</section></section><section id="래스터-벡터-전환과-벡터-래스터-전환" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="래스터-벡터-전환과-벡터-래스터-전환">
+<span class="header-section-number">7.6</span> 래스터-벡터 전환과 벡터-래스터 전환</h2>
+<p>1.3절에서 래스터-벡터 변환과 벡터-래스터 변환에 대한 몇 가지 예제를 이미 다루었다. 이 절에서는 코드와 예제를 추가하고자 한다.</p>
+<section id="벡터-래스터-전환" class="level3" data-number="7.6.1"><h3 data-number="7.6.1" class="anchored" data-anchor-id="벡터-래스터-전환">
+<span class="header-section-number">7.6.1</span> 벡터-래스터 전환</h3>
+<p><code>st_as_stars</code> 함수는 객체를 <code>stars</code> 객체로 변환하는 메소드로로 설계되었다. 그러나 모든 <code>stars</code> 객체가 래스터 객체인 것은 아니며, <code>sf</code> 객체에 이 메소들 적용하면 지오메트리를 공간적(벡터) 디멘션으로 하고 속성을 속성 디멘션으로 가지는 벡터 데이터 큐브가 생성된다. 피처 <em>지오메트리</em>(<code>sfc</code>) 객체가 주어지면, <code>st_as_stars</code> 함수는 이를 래스터한다(섹션 7.8과 그림 7.19).</p>
+<div class="cell">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"gpkg/nc.gpkg"</span>, package<span class="op">=</span><span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>key.pos <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-7-19" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="07_files/figure-html/fig-7-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" data-glightbox="description: .lightbox-desc-19"><img src="07_files/figure-html/fig-7-19-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.19: st_as_stars 함수를 활용한 백터 지오메트리의 래스터화
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p><code>st_as_stars</code> 함수는 셀 크기, 셀 수 및/또는 범위를 제어하는 파라미터를 설정할 수 있다. 반환되는 셀 값은 지오메트리 밖에 중심점이 있는 셀의 경우는 0이고, 지오메트리 내부 또는 경계에 중심점이 있는 셀의 경우는 1이다. 기존 피처를 래스터화하는 것은 <code>st_rasterize</code> 함수를 사용하여 수행되며, 이는 그림 1.5에서도 볼 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">NAME</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">SID74</span>, <span class="va">SID79</span>, <span class="va">name</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_rasterize.html">st_rasterize</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 3 attributes</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#      SID74           SID79            name       </span></span>
+<span><span class="co">#  Min.   : 0      Min.   : 0      Sampson :  655  </span></span>
+<span><span class="co">#  1st Qu.: 3      1st Qu.: 3      Columbus:  648  </span></span>
+<span><span class="co">#  Median : 5      Median : 6      Robeson :  648  </span></span>
+<span><span class="co">#  Mean   : 8      Mean   :10      Bladen  :  604  </span></span>
+<span><span class="co">#  3rd Qu.:10      3rd Qu.:13      Wake    :  590  </span></span>
+<span><span class="co">#  Max.   :44      Max.   :57      (Other) :30952  </span></span>
+<span><span class="co">#  NA's   :30904   NA's   :30904   NA's    :30904  </span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#   from  to offset   delta refsys point x/y</span></span>
+<span><span class="co"># x    1 461  -84.3  0.0192  NAD27 FALSE [x]</span></span>
+<span><span class="co"># y    1 141   36.6 -0.0192  NAD27 FALSE [y]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>라인과 포인트 지오메트리고 이와 유사하게 래스터화할 수 있다(그림 7.20).</p>
+<div class="cell">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_cast.html">st_cast</a></span><span class="op">(</span><span class="st">"MULTILINESTRING"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">CNTY_ID</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_rasterize.html">st_rasterize</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>key.pos <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-7-20" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="07_files/figure-html/fig-7-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" data-glightbox="description: .lightbox-desc-20"><img src="07_files/figure-html/fig-7-20-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;7.20: 노스캐롤라이나 카운티 경계를 래스터로 전환하기
+</figcaption></figure>
+</div>
+</div>
+</div>
 </section></section><section id="좌표변환-및-좌표전환" class="level2" data-number="7.7"><h2 data-number="7.7" class="anchored" data-anchor-id="좌표변환-및-좌표전환">
 <span class="header-section-number">7.7</span> 좌표변환 및 좌표전환</h2>
-<section id="데이텀-그리드-proj.db-cdn.proj.org.-로컬-캐쉬" class="level3" data-number="7.7.1"><h3 data-number="7.7.1" class="anchored" data-anchor-id="데이텀-그리드-proj.db-cdn.proj.org.-로컬-캐쉬">
-<span class="header-section-number">7.7.1</span> 데이텀 그리드, proj.db, cdn.proj.org. 로컬 캐쉬</h3>
-</section><section id="변환-파이프라인" class="level3" data-number="7.7.2"><h3 data-number="7.7.2" class="anchored" data-anchor-id="변환-파이프라인">
-<span class="header-section-number">7.7.2</span> 변환 파이프라인</h3>
-</section><section id="축-순서와-방향" class="level3" data-number="7.7.3"><h3 data-number="7.7.3" class="anchored" data-anchor-id="축-순서와-방향">
-<span class="header-section-number">7.7.3</span> 축 순서와 방향</h3>
+<section id="st_crs-함수" class="level3" data-number="7.7.1"><h3 data-number="7.7.1" class="anchored" data-anchor-id="st_crs-함수">
+<span class="header-section-number">7.7.1</span> <code>st_crs</code> 함수</h3>
+<p><code>sf</code> 또는 <code>stars</code> 클래스의 공간 객체는 CRS(좌표참조계)를 포함하고 있다. <code>st_crs</code> 함수를 사용하여 해당 객체의 CRS를 확인하거나 다른 CRS로 교체할 수 있다. 또한, <code>st_set_crs</code>함수를 사용하여 CRS를 설정하거나 교체할 수 있다. CRS는 EPSG 코드로 설정할 수 있으며, 예를 들어 <code>st_crs(4326)</code>는 <code>st_crs('EPSG:4326')</code>로 변환된다. 또는 “+proj=utm +zone=25 +south”와 같은 PROJ.4 문자열, “WGS84”와 같은 이름, 또는 “OGC”와 같이 기관명이 앞에 붙은 이름으로 설정할 수 있다. 대안으로는 WKT, WKT-2(섹션 2.5) 또는 PROJJSON 형식의 CRS 정의가 있다. <code>st_crs</code> 함수에 의해 반환된 객체는 다음의 두 개의 필드를 포함한다.</p>
+<ul>
+<li><p><code>wkt</code>: WKT-2 형식으로 표현된 CRS</p></li>
+<li><p><code>input</code>: 사용자 입력(있는 경우), 또는 CRS에 대한 인간가독설명(가능한 경우)</p></li>
+</ul>
+<p>PROJ.4 문자열은 일부 CRS을 정의하는 데 사용할 수 있지만, CRS를 대표하는 데는 사용할 수 없다. 예를 들어, <code>crs</code> 객체의 WKT-2를 <code>$proj4string</code> 메서드를 사용하여 <code>proj4string</code>으로 전환하려면 다음과 같이 할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="st">"OGC:CRS84"</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="va">proj4string</span></span>
+<span><span class="co"># [1] "+proj=longlat +datum=WGS84 +no_defs"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그런데, 이 과정이 성공적으로 이루어졌다 하더라도, 보통 정보의 손실이 수반되고 가역적으로 전환되지 않는다. PROJ.4 문자열을 CRS를 정의하기 위해 사용하는 경우(예를 들어 파라미터가 지정되어 있는 투영 CRS), 투영 CRS가 WGS84 데이텀과 관련되는 한은 문제가 없다.</p>
+</section><section id="st_transform함수와-st_project-함수" class="level3" data-number="7.7.2"><h3 data-number="7.7.2" class="anchored" data-anchor-id="st_transform함수와-st_project-함수">
+<span class="header-section-number">7.7.2</span> <code>st_transform</code>함수와 <code>st_project</code> 함수</h3>
+<p><code>sf</code> 또는 <code>stars</code> 객체에 대한 좌표 변환이나 좌표 전환은 <code>st_transform</code>함수를 사용하여 수행된다. 이 함수의 첫 번째 아규먼트는 CRS가 설정된 <code>sf</code> 또는 <code>stars</code> 클래스의 공간 객체이고, 두 번째 아규먼트는 <code>crs</code> 객체(또는 <code>st_crs</code> 함수로 변환 가능한 값)이다. 소스 <code>crs</code>에서 타깃 <code>crs</code>로 변환 혹은 전환할 수 있는 방법이 여러 가지인 경우, PROJ는 가장 높은 명시(declared) 정확도를 가진 방법을 선택한다. 더 세밀한 옵션은 7.7.5에서 설명된다. 규칙 래스터 디멘션을 가진 <code>stars</code> 객체의 경우, <code>st_transform</code> 함수는 좌표만 변환하며 항상 곡선형 그리드를 생성한다. 새로운 CRS에서 규칙 래스터를 생성하려면 재그리딩(regridding)을 사용하는 <code>st_warp</code> 함수를 활용하면 된다(Section 7.8).</p>
+<p><code>sf</code>나 <code>stars</code> 객체가 아닌 상황에서의 좌표 변환 혹은 좌표 전환은 저수준(lower-level) 함수인 <code>sf_project</code>를 통해 이루어진다. 이 함수는 좌표가 담긴 행렬과 소스 및 타깃 CRS(<code>crs</code>)를 입력으로 받아, 변환된 혹은 전환된 좌표를 반환한다.</p>
+</section><section id="sf_proj_info-함수" class="level3" data-number="7.7.3"><h3 data-number="7.7.3" class="anchored" data-anchor-id="sf_proj_info-함수">
+<span class="header-section-number">7.7.3</span> <code>sf_proj_info</code> 함수</h3>
+<p><code>sf_proj_info</code> 함수는 PROJ 소프트웨어에서 사용 가능한 투영, 타원체, 단위 및 본초 자오선에 대한 정보를 조회하는 데 사용된다. 이 함수는 단일 매개변수 <code>type</code>을 받으며, 이 매개변수는 다음과 같은 값을 가질 수 있다.</p>
+<ul>
+<li><p><code>type = "proj"</code>: 사용 가능한 투영법의 짧은 이름과 긴 이름을 나열한다. 짧은 이름은 “+proj=name” 문자열에서 사용할 수 있다.</p></li>
+<li><p><code>type = "ellps"</code>: 사용 가능한 타원체를 나열하며, 이름, 긴 이름 및 타원체의 파라미터 정보를 포함한다.</p></li>
+<li><p><code>type = "units"</code>: 사용 가능한 길이 단위를 나열하고, 미터로의 변환 상수 정보를 포함한다.</p></li>
+<li><p><code>type = "prime_meridians"</code>: 본초 자오선을 나열하고, 그리니치 자오선과의 상대적 위치 정보를 포함한다.</p></li>
+</ul></section><section id="데이텀-그리드-proj.db-cdn.proj.org.-로컬-캐쉬" class="level3" data-number="7.7.4"><h3 data-number="7.7.4" class="anchored" data-anchor-id="데이텀-그리드-proj.db-cdn.proj.org.-로컬-캐쉬">
+<span class="header-section-number">7.7.4</span> 데이텀 그리드, proj.db, cdn.proj.org. 로컬 캐쉬</h3>
+<p>데이텀 그리드(2.4절)는 로컬에 설치하거나 PROJ 측량 그리드 CDN(https://cdn.proj.org/)에서 불러 올 수 있다. 로컬에 설치된 경우, 데이텀 그리드는 PROJ 검색 경로를 통해 불러올 수 있는데, 이 경로는 다음과 같이 표시된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_search_paths</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># [1] "/home/edzer/.local/share/proj" "/usr/share/proj"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>핵심 PROJ 데이터베이스는 <code>proj.db</code>로, 일반적으로 다음 위치에서 불러올 수 있는 sqlite3 데이터베이스이다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_search_paths</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, <span class="va">.Platform</span><span class="op">$</span><span class="va">file.sep</span>, </span>
+<span>       <span class="st">"proj.db"</span><span class="op">)</span></span>
+<span><span class="co"># [1] "/usr/share/proj/proj.db"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>각 PROJ 릴리스에 포함된 EPSG 데이터베이스 스냅샷의 버전은 <code>proj.db</code>의 <code>"metadata"</code> 테이블에 명시되어 있으며, <strong>sf</strong>에서 사용되는 PROJ 런타임의 버전은 다음과 같이 표시된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf_extSoftVersion.html">sf_extSoftVersion</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="st">"PROJ"</span><span class="op">]</span></span>
+<span><span class="co">#    PROJ </span></span>
+<span><span class="co"># "9.1.1"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>특정 좌표 변환에 필요한 데이텀 그리드가 로컬에 없을 경우, PROJ는 PROJ CDN의 온라인 데이텀 그리드를 검색하게 된다. 단 아래의 결과가 <code>TRUE</code>인 경우이다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_network</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># [1] FALSE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>디폴트는 FALSE로 설정되어 있지만, 이를 TRUE로 바꾸면 해당 네트워크 리소스의 URL을 반환한다. 이 리소스는 더 빠르거나 제한이 덜한 다른 리소스로 설정할 수도 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_network</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># [1] "https://cdn.proj.org"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>CDN에서 데이텀 그리드를 조회한 후, PROJ는 조회된 그리드의 <em>일부분</em>(디폴트는 전체 그리드가 아님)을 로컬 캐시에 기록한다. 이 캐시는 사용자 디렉토리의 또 다른 sqlite3 데이터베이스로 다음과 같이 표시된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_search_paths</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># [1] "/home/edzer/.local/share/proj/cache.db"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>차후의 데이텀 그리드 조회는 이 데이터베이스에 대해 우선적으로 이루어진다.</p>
+</section><section id="변환-파이프라인" class="level3" data-number="7.7.5"><h3 data-number="7.7.5" class="anchored" data-anchor-id="변환-파이프라인">
+<span class="header-section-number">7.7.5</span> 변환 파이프라인</h3>
+<p>내부적으로 PROJ는 소스 CRS에서 타겟 CRS로 가는 오퍼레이션 시퀀스를 나타내기 위해 이른바 <em>좌표 오퍼레이션 파이프라인</em>(coordinate operation pipeline)을 사용한다. 소스에서 타겟으로 가는 여러 옵션이 있을 경우, <code>st_transform</code> 함수는 가장 높은 정확도를 가진 옵션을 선택한다. 사용 가능한 옵션을 조회하려면 <code>sf_proj_pipelines</code> 함수를 사용하면 된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_pipelines</a></span><span class="op">(</span><span class="st">"OGC:CRS84"</span>, <span class="st">"EPSG:22525"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Candidate coordinate operations found:  5 </span></span>
+<span><span class="co"># Strict containment:     FALSE </span></span>
+<span><span class="co"># Axis order auth compl:  FALSE </span></span>
+<span><span class="co"># Source:  OGC:CRS84 </span></span>
+<span><span class="co"># Target:  EPSG:22525 </span></span>
+<span><span class="co"># Best instantiable operation has accuracy: 2 m</span></span>
+<span><span class="co"># Description: axis order change (2D) + Inverse of Corrego Alegre</span></span>
+<span><span class="co">#              1970-72 to WGS 84 (2) + UTM zone 25S</span></span>
+<span><span class="co"># Definition:  +proj=pipeline +step +proj=unitconvert +xy_in=deg</span></span>
+<span><span class="co">#              +xy_out=rad +step +inv +proj=hgridshift</span></span>
+<span><span class="co">#              +grids=br_ibge_CA7072_003.tif +step</span></span>
+<span><span class="co">#              +proj=utm +zone=25 +south +ellps=intl</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>해당 변환에서 가장 높은 정확도를 보이는 파이프라인이 요약되어 있고 특정한 데이텀 그리드의 사용이 지정되어 있음을 알 수 있다. 만약 네트워크 검색을 활성화하지 않았다면, 다른 결과를 얻었을 것이다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_network</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co"># character(0)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_pipelines</a></span><span class="op">(</span><span class="st">"OGC:CRS84"</span>, <span class="st">"EPSG:22525"</span><span class="op">)</span></span>
+<span><span class="co"># Candidate coordinate operations found:  5 </span></span>
+<span><span class="co"># Strict containment:     FALSE </span></span>
+<span><span class="co"># Axis order auth compl:  FALSE </span></span>
+<span><span class="co"># Source:  OGC:CRS84 </span></span>
+<span><span class="co"># Target:  EPSG:22525 </span></span>
+<span><span class="co"># Best instantiable operation has accuracy: 2 m</span></span>
+<span><span class="co"># Description: axis order change (2D) + Inverse of Corrego Alegre</span></span>
+<span><span class="co">#              1970-72 to WGS 84 (2) + UTM zone 25S</span></span>
+<span><span class="co"># Definition:  +</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이 경우에는 데이텀 그리드에 대한 사항이 누락되어 있음을 볼 수 있다. <code>sf_proj_pipelines</code>이 반환하는 객체는 서브클래스화된 데이터 프레임으로, 다음과 같은 열을 포함한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+<span><span class="co"># [1] "id"           "description"  "definition"   "has_inverse" </span></span>
+<span><span class="co"># [5] "accuracy"     "axis_order"   "grid_count"   "instantiable"</span></span>
+<span><span class="co"># [9] "containment"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>예를 들어 다음과 같이 정확도를 나열할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">accuracy</span><span class="op">)</span></span>
+<span><span class="co"># [1]  2  5  5  8 NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>여기서 NA는 “대략적인 정확도”를 의미하며, 이는 30~120m 범위 내의 한 값을 가진다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">accuracy</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Candidate coordinate operations found:  1 </span></span>
+<span><span class="co"># Strict containment:     FALSE </span></span>
+<span><span class="co"># Axis order auth compl:  FALSE </span></span>
+<span><span class="co"># Source:  OGC:CRS84 </span></span>
+<span><span class="co"># Target:  EPSG:22525 </span></span>
+<span><span class="co"># Best instantiable operation has only ballpark accuracy </span></span>
+<span><span class="co"># Description: Ballpark geographic offset from WGS 84 (CRS84) to</span></span>
+<span><span class="co">#              Corrego Alegre 1970-72 + UTM zone 25S</span></span>
+<span><span class="co"># Definition:  +proj=pipeline +step +proj=unitconvert +xy_in=deg</span></span>
+<span><span class="co">#              +xy_out=rad +step +proj=utm +zone=25</span></span>
+<span><span class="co">#              +south +ellps=intl</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>st_transform</code> 함수가 선택한 가장 정확한 파이프라인이 디폴트이지만, <code>pipeline</code> 아규먼트를 지정하면 결과를 바꿀 수도 있다. 이 경우 <code>p$definition</code>에 있는 옵션 중 하나를 선택하면 된다.</p>
+</section><section id="축-순서와-방향" class="level3" data-number="7.7.6"><h3 data-number="7.7.6" class="anchored" data-anchor-id="축-순서와-방향">
+<span class="header-section-number">7.7.6</span> 축 순서와 방향</h3>
+<p>2.5절에서 언급한 것처럼, EPSG:4326은 첫 번째 축이 위도와 관련되고 두 번째 축이 경도와 관련되도록 정의한다. 이것은 수많은 다른 타원체 CRS에서도 마찬가지이다. 이러한 방식은 해당 기관(EPSG)이 규정한 것이지만, 현재 대부분의 데이터셋은 이러한 방식으로 저장되지 않는다. 대부분의 다른 소프트웨어와 마찬가지로, <strong>sf</strong> 패키지는 이를 무시하고 디폴트로 타원체 좌표 쌍을 (경도, 위도)로 해석한다. 하지만 해당 기관의 규정을 준수하는 데이터 원천(예를 들어 WFS 서비스)이 생산한 데이터를 읽어야 할 경우 다음과 같이 지정할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_axis_order</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이렇게 하면 sf가 GDAL과 PROJ 루틴을 호출할 때 규정 준수(위도, 경도 순서)가 항상 전제되게 할 수 있다. 이러한 규정 준수에 많은 문제가 발생할 수 있다고 예상되며, 예를 들어 데이터를 플로팅할 때 문제가 드러난다. sf 객체를 위한 플롯 메소드는 축 순서 규정을 준수하며 플로팅 전에 변환 파이프라인 <code>"+proj=pipeline +step +proj=axisswap +order=2,1"</code>을 사용하여 위경도의 순서를 바꾸지만, <code>ggplot2</code> 패키지의 <code>geom_sf</code>는 이러한 수정 과정을 거치지 않는다. 앞서 언급한 바와 같이, <code>EPSG:4326</code>에서 발견되는 축 순서 상의 모호성은 <code>OGC:CRS84</code>로 교체하면 모두 해결된다.</p>
+<p>축의 순서와는 다른 문제로, 모든 CRS가 북쪽과 동쪽 방향을 양의 값으로 지정하지는 않는다는 점 또한 매우 중요하다. R의 대부분의 플로팅 함수는 위와는 반대로 정의된 축을 가진 데이터와는 제대로 작동하지 않는다. 축의 방향과 단위에 대한 정보는 다음과 같이 검색할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="fl">4326</span><span class="op">)</span><span class="op">$</span><span class="va">axes</span></span>
+<span><span class="co">#                 name orientation</span></span>
+<span><span class="co"># 1  Geodetic latitude           1</span></span>
+<span><span class="co"># 2 Geodetic longitude           3</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="fl">4326</span><span class="op">)</span><span class="op">$</span><span class="va">ud_unit</span></span>
+<span><span class="co"># 1 [°]</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="st">"EPSG:2053"</span><span class="op">)</span><span class="op">$</span><span class="va">axes</span></span>
+<span><span class="co">#       name orientation</span></span>
+<span><span class="co"># 1  Westing           4</span></span>
+<span><span class="co"># 2 Southing           2</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="st">"EPSG:2053"</span><span class="op">)</span><span class="op">$</span><span class="va">ud_unit</span></span>
+<span><span class="co"># 1 [m]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section></section><section id="래스터-변환-및-워프" class="level2" data-number="7.8"><h2 data-number="7.8" class="anchored" data-anchor-id="래스터-변환-및-워프">
 <span class="header-section-number">7.8</span> 래스터 변환 및 워프</h2>
+<p>래스터 데이터셋에 대해 <code>st_transform</code> 함수를 사용할 때는 다음과 같이 할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tif</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"tif/L7_ETMs.tif"</span>, package <span class="op">=</span> <span class="st">"stars"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/read_stars.html">read_stars</a></span><span class="op">(</span><span class="va">tif</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="st">'OGC:CRS84'</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max.</span></span>
+<span><span class="co"># L7_ETMs.tif     1      54     69 68.9      86  255</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to refsys point                    values x/y</span></span>
+<span><span class="co"># x       1 349 WGS 84 FALSE [349x352] -34.9,...,-34.8 [x]</span></span>
+<span><span class="co"># y       1 352 WGS 84 FALSE [349x352] -8.04,...,-7.95 [y]</span></span>
+<span><span class="co"># band    1   6     NA    NA                      NULL    </span></span>
+<span><span class="co"># curvilinear grid</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이제 곡선형 그리드가 생성되는 것을 볼 수 있으며, 이는 새로운 CRS에 의거해 모든 그리드 셀의 좌표가 재계산되므로 더 이상 규칙 그리드로 존재할 수 없음을 의미한다. 이러한 데이터를 플로팅하면 속도가 극단적으로 느린데, 각 그리드 셀에 대해 작은 폴리곤이 우선적으로 계산되고 그 후에 플로팅되기 때문이다. 이것의 이점은 정보가 손실되지 않는다는 것으로 투영 이후에도 그리드 셀의 값은 동일하게 유지된다.</p>
+<p>규칙 그리드를 투입하여 새로운 CRS에서도 규칙 그리드를 산출하려면 워프(warp) 오퍼레이션을 적용해야 한다. 즉, 새로운 위치에 그리드를 재생성하고 새로운 그리드 셀에 값을 할당하는 특정한 규칙을 사용해야 한다. 이러한 규칙에 가장 가까운 값을 사용하거나 어떤 형태의 보간법을 사용하는 것이 포함될 수 있다. 이 오퍼레이션은 정보의 손실이 발생하며 불가역적이다.</p>
+<p>워프를 수행하는 가장 좋은 방법은 타깃 그리드를 <code>stars</code> 객체로 지정하는 것이다. 타깃 CRS만 지정할 경우, 문제에 전혀 적합하지 않은 기본 옵션이 선택될 수 있다. 타깃 CRS만 사용하는 예시 워크플로우는 다음과 같다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/read_stars.html">read_stars</a></span><span class="op">(</span><span class="va">tif</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_warp.html">st_warp</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="st">'OGC:CRS84'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_dimensions</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#      from  to offset     delta refsys x/y</span></span>
+<span><span class="co"># x       1 350  -34.9  0.000259 WGS 84 [x]</span></span>
+<span><span class="co"># y       1 352  -7.95 -0.000259 WGS 84 [y]</span></span>
+<span><span class="co"># band    1   6     NA        NA     NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이는 상당한 근사 래스터를 생성하지만, 변환도 상대적으로 작다. 소스 래스터와 정확히 동일한 행과 열을 갖는 타깃 래스터를 먼저 생성하려는 워크플로우의 경우 다음과 같이 하면 된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/read_stars.html">read_stars</a></span><span class="op">(</span><span class="va">tif</span><span class="op">)</span></span>
+<span><span class="va">grd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>        <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>        <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="st">'OGC:CRS84'</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>        <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>        <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span>nx <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">[</span><span class="st">"x"</span><span class="op">]</span>, ny <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">[</span><span class="st">"y"</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_warp.html">st_warp</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">grd</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 3 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#              Min. 1st Qu. Median Mean 3rd Qu. Max. NA's</span></span>
+<span><span class="co"># L7_ETMs.tif     1      54     69 68.9      86  255 6180</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#      from  to offset     delta refsys x/y</span></span>
+<span><span class="co"># x       1 349  -34.9   0.00026 WGS 84 [x]</span></span>
+<span><span class="co"># y       1 352  -7.95 -0.000259 WGS 84 [y]</span></span>
+<span><span class="co"># band    1   6     NA        NA     NA</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>여기서 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span>의 방향의 그리드 해상도가 조금 달라진 점을 확인할 수 있다.</p>
 </section><section id="연습문제" class="level2" data-number="7.9"><h2 data-number="7.9" class="anchored" data-anchor-id="연습문제">
 <span class="header-section-number">7.9</span> 연습문제</h2>
+<p>R을 사용하여 다음 연습문제를 해결하시오.</p>
+<ol type="1">
+<li><p><code>nc</code> 카운티 중 <code>LINESTRING(-84 35, -78 35)</code>와 교차하는 카운티의 이름을 찾아보라. 이를 위해 [를 사용하고, 대안으로 <code>st_join</code> 함수를 사용하라.</p></li>
+<li><p><code>sf_use_s2(FALSE)</code>를 설정한 후에 이 작업을 반복하고, 차이를 <em>계산</em>하라(힌트: <code>setdiff</code>를 사용). 차이가 나타나는 카운티는 색상 ’#88000088’로 채색하라.</p></li>
+<li><p>두 지점 사이의 직선과 대권을 하나의 플롯에 그려보라. 현재 사용 중인 투영법에서는 R은 직선을 항상 직선으로 그린다는 점을 명심하라. <code>st_segmentize</code> 함수를 사용하여 직선 상이나 타원 좌표의 대원(큰 원) 상에 포인트를 추가하라.</p></li>
+<li><p>NDVI(정규화 차이 식생 지수)는 <code>(NIR-R)/(NIR+R)</code>로 계산되며, 여기서 NIR은 근적외선 밴드, R은 빨간색 밴드이다. <code>L7_ETMs.tif</code> 파일을 객체 <code>x</code>에 읽고, <code>split(x, "band")</code>를 사용하여 밴드 차원을 속성으로 분리하라. 그런 다음 NIR(밴드 4)과 R(밴드 3) 속성을 직접 사용하는 표현식을 사용하여 이 객체에 NDVI 속성을 추가하라.</p></li>
+<li><p><code>L7_ETMs.tif</code> 이미지에 대해 밴드 차원을 축소하여 NDVI를 계산하라. 이를 위해 <code>st_apply</code> 함수와 <code>ndvi = function(x) { (x[4]-x[3])/(x[4]+x[3]) }</code> 함수를 사용하라. 결과를 플로팅하고, 결과를 GeoTIFF 형식으로 저장하라.</p></li>
+<li><p><code>L7_ETMs.tif</code>에서 읽은 <code>stars</code> 객체를 <code>st_transform</code> 함수를 사용하여 <code>OGC:CRS84</code>로 변환하라. 객체를 출력하라. 이것이 규칙 그리드인가? 첫 번째 밴드를 <code>axes=TRUE</code> 및 <code>border=NA</code> 아규먼트를 사용하여 플로팅하고, 왜 이렇게 시간이 오래 걸리는지 설명하라.</p></li>
+<li><p><code>L7_ETMs.tif</code> 객체를 <code>st_warp</code> 함수를 사용하여 <code>OGC:CRS84</code>로 변환하고, 결과 객체를 <code>axes=TRUE</code>로 플로팅하라. 왜 <code>st_transform</code> 함수에 비해 플롯이 훨씬 더 빨리 생성되는지 설명하라.</p></li>
+<li><p>래스터 <code>L7_ETMs</code>의 벡터 재현을 사용하여 <code>POINT(293716 9113692)</code>를 중심으로 반지름 75m인 원형 영역과의 인터센션을 플로팅하고, 이 원의 면적-가중 평균 픽셀 값을 계산하라. 벡터 데이터를 사용하여 애그리게이트한 값과 래스터 데이터를 사용하여 애그리게이트한 값을 (디폴트인 <code>exact=FALSE</code> 및 <code>exact=TRUE</code> 사용) 비교하라. 차이점을 설명하라.</p></li>
+</ol>
 
 
 <div class="hidden" aria-hidden="true">
@@ -1050,6 +1778,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="glightbox-desc lightbox-desc-6">그림&nbsp;7.6: Landsat 7 (band 1) 이미지의 원형 중심부</span>
 <span class="glightbox-desc lightbox-desc-7">그림&nbsp;7.7: 트레이닝 데이터로 사용되는 무작위 샘플 포인트: 빨간색은 해양부이고 노란색을 육지부이다.</span>
 <span class="glightbox-desc lightbox-desc-8">그림&nbsp;7.8: 육지부/수부 구분을 위한 선형 판별 분류기로 그림 7.7의 트레이닝 데이터에 기반한 결과임.</span>
+<span class="glightbox-desc lightbox-desc-9">그림&nbsp;7.9: 30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다</span>
+<span class="glightbox-desc lightbox-desc-10">그림&nbsp;7.10: 컬러 합성의 두 가지 예</span>
+<span class="glightbox-desc lightbox-desc-11">그림&nbsp;7.11: 시간과 스테이션별로 계산된 PM10 값에 대한 시공간 다이어그램</span>
+<span class="glightbox-desc lightbox-desc-12">그림&nbsp;7.12: 관측 스테이션별 PM10 평균값</span>
+<span class="glightbox-desc lightbox-desc-13">그림&nbsp;7.13: 임의의 6일에 대한 지역 평균 PM10</span>
+<span class="glightbox-desc lightbox-desc-14">그림&nbsp;7.14: 단일 스테이션에 대한 지역 평균 PM10의 시계열</span>
+<span class="glightbox-desc lightbox-desc-15">그림&nbsp;7.15: 영국 브리스톨의 102개 구역 현황(33번 구역(E02003043)이 빨간색으로 표시되어 있음)</span>
+<span class="glightbox-desc lightbox-desc-16">그림&nbsp;7.16: 33번 존에 대한 OD 데이터를 추출한 후 교통수단별로 지도화하였다.</span>
+<span class="glightbox-desc lightbox-desc-17">그림&nbsp;7.17: 출발지별 총 통근(왼쪽) 또는 목적지별 총 통근(오른쪽)</span>
+<span class="glightbox-desc lightbox-desc-18">그림&nbsp;7.18: 출발지별 총 통근 밀도(왼쪽) 또는 목적지별 총 통근 밀도(오른쪽)</span>
+<span class="glightbox-desc lightbox-desc-19">그림&nbsp;7.19: st_as_stars 함수를 활용한 백터 지오메트리의 래스터화</span>
+<span class="glightbox-desc lightbox-desc-20">그림&nbsp;7.20: 노스캐롤라이나 카운티 경계를 래스터로 전환하기</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
