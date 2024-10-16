@@ -364,7 +364,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 10월 2일</p>
+      <p class="date-modified">2024년 10월 16일</p>
     </div>
   </div>
     
@@ -382,17 +382,13 @@ window.Quarto = {
 <p>이제 공간적 위치를 타원체 좌표 또는 데카르트 좌표로 표현하는 방법에 대해 자세하게 설명하고자 한다. 다음 섹션에서는 시간 및 공간 참조계과 R에서 이러한 참조계를 처리하는 방법에 대해 다룰 것이다.</p>
 </section><section id="타원좌표계" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="타원좌표계">
 <span class="header-section-number">2.2</span> 타원좌표계</h2>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-2-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="02_files/figure-html/fig-2-1-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-polar-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-polar-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.1: 2차원 극 좌표계와 데카르트 좌표계
 </figcaption></figure>
-</div>
-</div>
 </div>
 <p>그림 2.1은 2차원 극 좌표계와 데카르트 좌표계를 보여주고 있다. 해당 지점의 데카르트 좌표는 <span class="math inline">\((x,y)=(3,4)\)</span>으로 주어지고, 극 좌표는 <span class="math inline">\((r,\phi)=(5,\text{arctan(4/3)})\)</span>으로 주어지는데 <span class="math inline">\(\text{arctan(4/3)}\)</span>는 대략 <span class="math inline">\(0.93\)</span> 라디안 혹은 <span class="math inline">\(53^\circ\)</span>이다. 여기서 <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, <span class="math inline">\(r\)</span>은 모두 길이 단위이고 <span class="math inline">\(\phi\)</span>는 각도 단위(무단위 길이/길이 비)라는 점에 유의할 필요가 있다. 데카르트 좌표와 극 좌표 간의 변환은 매우 간단하다.</p>
 <p><span class="math display">\[
@@ -411,43 +407,27 @@ r=\sqrt{x^2+y^2}, \quad \phi=\text{atan2}(y,x)
 <li><p><span class="math inline">\(\phi\)</span>는 위도로, <span class="math inline">\((x,y)\)</span> 평면과 해당 벡터가 이루는 각도이다.</p></li>
 </ul>
 <p>그림 2.2는 데카르트 지심 좌표계와 타원체 좌표계를 보여준다.</p>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-2-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="02_files/figure-html/fig-2-2-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-sphere-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-sphere-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.2: 세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)
 </figcaption></figure>
 </div>
-</div>
-</div>
 <p><span class="math inline">\(\lambda\)</span>는 <span class="math inline">\(-180^\circ\)</span>에서 <span class="math inline">\(180^\circ\)</span> 사이의 값(혹은 <span class="math inline">\(0^\circ\)</span>에서 <span class="math inline">\(360^\circ\)</span> 사이의 값)을 갖고, <span class="math inline">\(\phi\)</span>는 <span class="math inline">\(-90^\circ\)</span>에서 <span class="math inline">\(90^\circ\)</span> 사이의 값을 갖는다. 타원체가 아니라 고정된 반지름 갖는 구체 <em>상</em>의 위치만을 상정할 경우 위의 <span class="math inline">\(r\)</span>을 생략한 <span class="math inline">\((\lambda,\phi)\)</span> 만으로도 모든 위치를 규정하기에 충분하다.</p>
 <p>이것은 단지 <em>하나의</em> 정의일 뿐이며, 예를 들어 위도 대신 해당 벡터와 <span class="math inline">\(z\)</span> 축 사이의 각도인 극각을 측정할 수도 있다는 점에 유의해야 한다. 좌표값을 <span class="math inline">\((\phi,\lambda)\)</span>의 형태로 나타내는 오랜 전통이 있지만 이 책에서는 경도-위도 형식(<span class="math inline">\(\lambda,\phi\)</span>)을 사용할 것이다. 그림 2.2에 표시된 지점은 각도값으로 구성된 <span class="math inline">\((\lambda,\phi)\)</span> 혹은 타원체 좌표값을 가지며 도 단위로 주어진다.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>POINT (60 47)</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># POINT (60 47)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>지심좌표값은 미터 단위로 주어진다.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>POINT Z (2178844 3773868 4641765)</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># POINT Z (2178844 3773868 4641765)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>타원체 상의 지점에 대해서는 각도를 나타내는 두 가지 방법이 있다(그림 2.3). 하나는 타원체의 중심을 기준으로 측정된 각도(<span class="math inline">\(\psi\)</span>), 또는 해당 지점을 지나는 접선에 수직으로 측정된 각도(<span class="math inline">\(\phi\)</span>)이다.</p>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-2-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="02_files/figure-html/fig-2-3-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-ellipse-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-ellipse-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.3: 타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)
 </figcaption></figure>
-</div>
-</div>
 </div>
 </section><section id="투영좌표계-거리" class="level3" data-number="2.2.2"><h3 data-number="2.2.2" class="anchored" data-anchor-id="투영좌표계-거리">
 <span class="header-section-number">2.2.2</span> 투영좌표계, 거리</h3>
@@ -470,13 +450,9 @@ s_{ij}=r|\phi_1-\phi_2|=r\theta
 \]</span></p>
 <p>타원체 상의 두 지점 간의 호의 길이를 계산하는 것은 훨씬 더 복잡하다. Karney (2013)은 이와 관련하여 심도 있는 논의를 제공하였으며, PROJ 라이브러리의 일부인 GeographicLib에서 구현된 방법에 대한 자세한 설명을 제시한다.</p>
 <p>이 거리 측정 방식들이 실제로 서로 다른 값을 산출함을 보여주기 위해, 우리는 베를린과 파리 간의 거리를 계산했다. WGS84 타원체와 완전 구체에 각각에 대해 거리를 계산했는데, gc_는 대권거리를, str_은 지심좌표값을 이용한 직선거리를 나타낸다.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Units: [km]
- gc_ellipse str_ellipse   gc_sphere  str_sphere 
-     879.70      879.00      877.46      876.77 </code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Units: [km]</span></span>
+<span><span class="co">#  gc_ellipse str_ellipse   gc_sphere  str_sphere </span></span>
+<span><span class="co">#      879.70      879.00      877.46      876.77</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="한정-공간과-비한정-공간" class="level3" data-number="2.2.3"><h3 data-number="2.2.3" class="anchored" data-anchor-id="한정-공간과-비한정-공간">
 <span class="header-section-number">2.2.3</span> 한정 공간과 비한정 공간</h3>
 <p>2차원 및 3차원 유클리드 공간(<span class="math inline">\(R^2\)</span>와 <span class="math inline">\(R^3\)</span>)는 비한정 공간이다. 이 공간의 모든 선은 무한한 길이를 가지며, 면적이나 부피는 자연적인 상한이 없다. 이와는 대조적으로 구(<span class="math inline">\(S^1\)</span>) 혹은 구체(<span class="math inline">\(S^2\)</span>)의 공간은 한정 공간이다. 무한히 많은 점이 있을 수는 있지만, 원의 길이와 면적, 구의 반지름, 면적 및 부피는 유한하다.</p>
@@ -519,29 +495,21 @@ s_{ij}=r|\phi_1-\phi_2|=r\theta
 <li><p>축 순서(경도, 위도)를 다르게 정의하는 것이 가능하다.</p></li>
 </ul>
 <p>많은 개선이 이루어졌으며, 변환의 정확도는 이제 1미터 이하일 수 있다. 흥미로운 점은 마지막 부분이다. 수십년 동안 타원체 좌표를 가진 공간데이터의 축 순서(경도, 위도)를 자명한 것으로 가정할 수 있었지만, 이제는 더 이상 그렇지 않다. 섹션 7.7.6에서 이를 처리하는 방법을 살펴볼 것이다.</p>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-2-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-4-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="02_files/figure-html/fig-2-4-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-horizontalgrid-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-horizontalgrid-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.4: 영국의 OSGB 1936(EPSG:4277)를 ETRS89(EPSG:4258)로 변환하는데 사용되는 수평 데이텀 그리드
 </figcaption></figure>
 </div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-2-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_files/figure-html/fig-2-5-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="02_files/figure-html/fig-2-5-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-verticalgrid-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/02-Spaces_files/figure-html/fig-verticalgrid-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;2.5: 영국의 ETRS89(EPSG:4937를 ODN 고도(EPSG:5701)로 변환하는데 사용되는 수직 데이텀 그리드
 </figcaption></figure>
-</div>
-</div>
 </div>
 <p>그림 2.4에 나타나 있는 수평 데이텀 그리드와 그림 2.5에 나타나 있는 수직 데이텀 그리드의 예는 cdn.proj.org로부터 다운로드 받았다. 데이텀 그리드는 픽셀별 정화도 값을 포함할 수 있다.</p>
 </section><section id="wkt-2" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="wkt-2">
@@ -991,7 +959,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

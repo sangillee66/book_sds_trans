@@ -117,7 +117,7 @@ LINESTRING의 지오메트리를 갖는 도로망을 예를 들어보자. 데이
 
 속성-지오메트리 관계를 적절히 정의하고, 속성-지오메트리 관계에 대한 정보가 부존하거나 지오메트리의 변화(서포트의 변화)가 정보의 변화를 야기하는 경우에 대해 경고 메시지를 표출하는 것은 공간데이터의 *서포트*와 관련된 일반적인 공간데이터 분석 오류(Stasch et al. 2014)를 피하는 데 도움이 될 수 있다.
 
-## 합형과 요약
+## 애그리게이션과 서머라이즈
 
 테이블 레코드의 합형은 다음의 두 간계를 통해 이루어진다.
 
@@ -137,9 +137,9 @@ R 패키지인 dplyr은 이를 수행하기 위해 두 단계를 사용한다. �
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-5-1
 #| fig-cap: "SID74가 네 개의 지역별로 합산되었다."
-
 nc <- read_sf(system.file("gpkg/nc.gpkg", package = "sf"))
 # encode quadrant by two logicals:
 nc$lng <- st_coordinates(st_centroid(st_geometry(nc)))[,1] > -79
@@ -149,31 +149,38 @@ nc.grp["SID74"] |> st_transform('EPSG:32119') |>
   plot(graticule = TRUE, axes = TRUE)
 ```
 
+![SID74가 네 개의 지역별로 합산되었다.](https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png){#fig-5-1}
+
 결합된 카운티 폴리곤을 지도로 나타내는 것은 기술적으로 아무런 문제가 없지만, 그룹 합계가 그룹화된 카운티에 관련된 것이 아니라 개별 카운티와 관련된 것이라는 잘못된 암시를 줄 수 있다. 이러한 방식의 합형의 특징은 각 레코드가 하나의 그룹에만 할당된다는 점이다. 이렇게 하면 그룹별 합계의 총합이 그룹화 이전 데이터의 총합과 동일하다는 장점이 있다. 즉, 정량적인 변수의 경우, 정보가 손실되거나 추가되는 일이 없다. 새로 형성된 기오메트리는 원 레코드의 지오메트리를 그룹에 의거해 유니온한 결과이다.
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-5-2
 #| fig-cap: "노스케롤라이나 카운티 상의 타깃 블록"
-
 nc <- st_transform(nc, 2264)
 gr <- st_sf(
    label = apply(expand.grid(1:10, LETTERS[10:1])[,2:1], 1, paste0, collapse = " "),
    geom = st_make_grid(nc))
 plot(st_geometry(nc), reset = FALSE, border = 'grey')
 plot(st_geometry(gr), add = TRUE)
-
 ```
+
+![노스케롤라이나 카운티 상의 타깃 블](https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png){#fig-5-2}
 
 지오메트리의 결합 없이 그룹별 합산값을 산출할 필요가 있을 수 있다. 이 경우, 우리는 공간적 프리디케이트를 사용하는데, 하나의 레코드가 여러개의 그룹과 관련될 수 있다. 그림 5.2의 직사각형을 타깃 에어리어로 하여 직사각형별로 교차하는 카운티의 유병자를 합산하게 되면 전체 합계는 훨씬 더 큰 값을 갖게 될 것이다.
 
 ```{r}
 #| echo: false
-
+#| eval: false
 a <- aggregate(nc["SID74"], gr, sum)
 c(sid74_sum_counties = sum(nc$SID74),
   sid74_sum_rectangles = sum(a$SID74, na.rm = TRUE))
+```
 
+``` R
+#   sid74_sum_counties sid74_sum_rectangles 
+#                  667                 2621
 ```
 
 반대로 contains 또는 covers와 같은 다른 프리디케이트를 사용하면 훨씬 더 적은 값이 산출된다. 왜냐하면 많은 카운티가 직사각형 속에 완전히 포함되지 않기 때문이다. 그러나 이러한 결과가 좋을 수 있는 상황도 충분히 존재할 수 있다.
@@ -280,13 +287,14 @@ GDAL의 벡터 API는 필드 도메인(field domains)이라고 불리는 것을 
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-5-3
 #| fig-cap: "면적-가중 인터폴레이션의 예제 데이터"
-
 g <- st_make_grid(st_bbox(st_as_sfc("LINESTRING(0 0,1 1)")), n = c(2,2))
 par(mar = rep(0,4))
 plot(g)
 plot(g[1] * diag(c(3/4, 1)) + c(0.25, 0.125), add = TRUE, lty = 2)
 text(c(.2, .8, .2, .8), c(.2, .2, .8, .8), c(1,2,4,8), col = 'red')
-
 ```
+
+![면적-가중 인터폴레이션의 예제 데이터](https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png){#fig-5-3}

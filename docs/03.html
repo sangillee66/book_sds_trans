@@ -384,7 +384,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 10월 4일</p>
+      <p class="date-modified">2024년 10월 16일</p>
     </div>
   </div>
     
@@ -454,17 +454,13 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-3-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_files/figure-html/fig-3-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="03_files/figure-html/fig-3-1-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.1: 심플 피처 지오메트리의 주요 유형
 </figcaption></figure>
-</div>
-</div>
 </div>
 <p>그림 3.1은 이러한 기본 지오메트리 유형의 예를 보여준다. 지오메트리를 표현한 사람이 읽을 수 있는 WKT 표기법은 다음과 같다.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">POINT</span> (<span class="dv">0</span> <span class="dv">1</span>)</span>
@@ -487,17 +483,9 @@ window.Quarto = {
 </section><section id="심플-지오메트리-타당한-지오메트리-링-디렉션" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="심플-지오메트리-타당한-지오메트리-링-디렉션">
 <span class="header-section-number">3.1.2</span> 심플 지오메트리, 타당한 지오메트리, 링 디렉션</h3>
 <p>라인리스팅은 자기 교차하지 않을 때 심플이라고 부를 수 있다.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>LINESTRING (0 0, 1 1, 2 2, 0 2, 1 1, 2 0)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>is_simple 
-    FALSE </code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># LINESTRING (0 0, 1 1, 2 2, 0 2, 1 1, 2 0)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># is_simple </span></span>
+<span><span class="co">#     FALSE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>타당한 폴리곤과 멀티폴리곤은 다음의 모든 프로프티를 보유한다.</p>
 <ul>
 <li><p>폴리곤 링은 닫혀있다(첫번째 포인트와 마지막 포인트는 동일하다)</p></li>
@@ -517,41 +505,17 @@ window.Quarto = {
 </ul>
 <p>M 속성이 버텍스의 프로퍼티라는 점을 염두에 두면 M 좌표는 유용하게 사용될 수 있을 것으로 보인다. 예를 들어, LINESTRING을 통해 일종의 경로 데이터를 엔코딩한다고 하면, 개별 버텍스에 시간 속성을 할당할 수 있다. 그러나 경로가 자기-교차하게 되면 비타당 혹은 비심플(non-simple)이 된다. 자기-교차성을 검토하기 위해 X 좌표와 Y 좌표만을 고려할 때는 드러나지 않는다.</p>
 <p>Z와 M은 자주 사용되지 않으며, 이를 유용하게 활용할 수 있는 소프트웨어 지원도 (아직) 드물다. 그래도 Z와 M의 WKT 표현은 비교적 쉽게 이해할 수 있다.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>POINT Z (1 3 2)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>POINT M (1 3 2)</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>LINESTRING ZM (3 1 2 4, 4 4 2 2)</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># POINT Z (1 3 2)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># POINT M (1 3 2)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># LINESTRING ZM (3 1 2 4, 4 4 2 2)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="엠프티-지오메트리" class="level3" data-number="3.1.4"><h3 data-number="3.1.4" class="anchored" data-anchor-id="엠프티-지오메트리">
 <span class="header-section-number">3.1.4</span> 엠프티 지오메트리</h3>
 <p>피쳐 지오메트리 프레임워크에서 매우 중요한 개념이 엠프티(empty) 지오메트리이다. 엠프티 지오메트리는 기하학적 오퍼레이션(3.2절)을 실행할 때 자연스럽게 생성된다. 예를 들어 <code>POINT (0 0)</code>과 <code>POINT (1 1)</code>의 인터섹션 여부를 검토한다고 하자.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>GEOMETRYCOLLECTION EMPTY</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># GEOMETRYCOLLECTION EMPTY</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>두 포인트는 교차하지 않으므로 엠프티 집합이 도출된다. 엠프티 포인트를 비어있지 않은 지오메트리와 결합하면(합집합을 구하면) 엠프티 포인트는 소실된다.</p>
 <p>모든 지오메트리 유형은 엠프티 지오메트리를 나타내는 특정한 값을 가지고 있다.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>POINT EMPTY</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>LINESTRING M EMPTY</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># POINT EMPTY</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># LINESTRING M EMPTY</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>엠프티 집합이 생성된다는 점에서는 동일하고 단지 디멘션만 다를 뿐이다(3.2절 참조).</p>
 </section><section id="개의-부수적인-지오메트리" class="level3" data-number="3.1.5"><h3 data-number="3.1.5" class="anchored" data-anchor-id="개의-부수적인-지오메트리">
 <span class="header-section-number">3.1.5</span> 10개의 부수적인 지오메트리</h3>
@@ -645,25 +609,17 @@ window.Quarto = {
 <li><p>라인의 경계는 종점에 의해 형성되고, 선상의 모든 비종점이 내부를 구성한다.</p></li>
 <li><p>포인트는 0차원의 내부를 가지지만, 경계는 없다.</p></li>
 </ul>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-3-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_files/figure-html/fig-3-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="03_files/figure-html/fig-3-2-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.2: DE-9IM: 폴리곤의 내부, 경계, 외부(행)와 라인스트링의 내부, 경계, 외부(열) 간의 인터섹션
 </figcaption></figure>
 </div>
-</div>
-</div>
 <p>그림 3.2는 폴리곤과 라인스트링의 I, B 및 E 간의 인터섹션을 빨간색으로 표시한 것이다. 개별 그래프의 제목에 인터섹션의 결과 도출되는 디멘션(0, 1, 2, 또는 F)이 표시되어 있다. 폴리곤 지오메트리와 라인 지오메트리의 관계는 바로 이러한 디멘션의 연속(concatenation)이다.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>     [,1]       
-[1,] "1020F1102"</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#      [,1]       </span></span>
+<span><span class="co"># [1,] "1020F1102"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>첫 세 문자는 <em>첫 번째</em> 지오메트리(폴리곤)의 내부와 관련이 있다. 그림 3.2에는 첫 번째 지오메트리가 행에 배열되어 있다. 더 나아가 지오메트리의 쌍에 대해 <em>마스크(mask) 문자열</em>로 표현된 특정한 조건의 만족 여부도 질의할 수 있다. 예를 들어, 문자열 <code>"0******"</code>는 두 번째 지오메트리가 첫 번째 지오메트리의 내부와 하나 이상의 경계 점을 공유할 때 <code>TRUE</code>로 평가된다. 여기서 기호 <code>*</code>는 디멘션(0, 1, 2 또는 F)을 의미하는 것으로 네 개 중 어는 것도 올 수 있다. 마스크 문자열 <code>"T********"</code>은 내부가 서로 교차하는 지오메트리 쌍을 찾아내느데, 여기서 기호 T는 차원 디멘션이 0, 1, 2이면서 비엠프티 인터섹션인 경우를 의미한다.</p>
 <p>더 나아가 바이너리 프리디케이트는 DE-9IM에서 규정된 정의를 활용함으로써 일반 언어 동사로 표현될 수 있다. 예를 들어, 프리디케이트 <code>equals</code>는 관계 <code>"T*F**FFF*"</code>와 동일하다. 어떤 두 지오메트리가 이러한 관계를 만족한다면, 그 둘은 (위상적으로)는 동일하지만, 노드의 순서가 다를 수 있다.</p>
 <p>바이너리 프리디케이트를 나열하면 다음과 같다.</p>
@@ -887,17 +843,13 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-3-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_files/figure-html/fig-3-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="03_files/figure-html/fig-3-3-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.3: 포인트의 집합, 왼편은 컨벡스 헐(빨간색), 가운데는 보로노이 폴리곤, 오른편은 들로네 삼각망
 </figcaption></figure>
-</div>
-</div>
 </div>
 </section><section id="바이너리-변환자" class="level3" data-number="3.2.6"><h3 data-number="3.2.6" class="anchored" data-anchor-id="바이너리-변환자">
 <span class="header-section-number">3.2.6</span> 바이너리 변환자</h3>
@@ -939,26 +891,22 @@ window.Quarto = {
 <span class="header-section-number">3.2.7</span> 에너리 변환자</h3>
 <p>에너리 변환자는 지오메트리의 집합에 작용한다. <code>union</code>을 적용하면 모든 지오메트리의 결합 결과를 얻을 수 있다. 이런 방식이 아니라면, 동일한 차원을 가진 지오메트리 집합은 MULTI-유형 지오메트리로 결합하거나 GEOMETRYCOLLECTION으로 결합할 수 있다. 이 경우, <code>union</code>을 적용하지 않았기 때문에 두 폴리곤 링이 공유 경계선을 가질 때와 같이 타당하지 않은 지오메트리가 생성될 수 있다.</p>
 <p>에너리 <code>intersection</code>과 <code>difference</code>의 경우 형식적으로는 단일 아규먼트를 취하지만 모든 쌍, 세 쌍, 네 쌍 등에 대해 순차적으로 작동한다. 그림 3.4를 살펴보자. 세 개의 상자가 모두 겹치는 영역을 어떻게 식별할 수 있을까? 바이너리 intersection을 사용하면 모든 쌍(1-1, 1-2, 1-3, 2-1, 2-2, 2-3, 3-1, 3-2, 3-3)에 대한 intersection을 얻을 수 있다. 하지만 두 개 이상의 지오메트리가 교차하는 영역을 식별할 수는 없다. 그림 3.4의 오른쪽 그림은 에너리 intersection을 보여주는데, 한 개, 두 개, 또는 <em>더 많은</em> 지오메트리의 교차를 통해 생성된 7개의 겹치지 않는 고유한 지오메트리를 확인할 수 있다.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><a href="03_files/figure-html/왼쪽- 세 개의 겹치는 정사각형이 있는데, 모든 사각형이 겹치는 부분을 어떻게 확인할 수 있을까 오른쪽- 서로 겹치지 않는 고유한 에너리 교차-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="03_files/figure-html/왼쪽- 세 개의 겹치는 정사각형이 있는데, 모든 사각형이 겹치는 부분을 어떻게 확인할 수 있을까 오른쪽- 서로 겹치지 않는 고유한 에너리 교차-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
+<div id="fig-3-4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="img-fluid figure-img"></a>
 </div>
-</div>
-</div>
-<p>유사하게, 집합 <span class="math inline">\(\{s_1,s_2,s_3,...\}\)</span>에 에너리 difference를 적용하여 <span class="math inline">\(\{s_1,s_2-s_1,s_3-s_2-s_1,...\}\)</span>를 생성할 수 있다. 결과가 그림 3.5에 나타나 있는데, 왼편에는 원래 집합을 보여주고 있고, 오른편에는 투입 지오메트리의 순서를 바꾼 후의 집합을 보여주고 있다. 이는 결과가 입력 지오메트리의 순서에 의존한다는 사실을 명확히 하기 위함이다. 결과로 얻어진 지오메트리는 서로 겹치지 않는다.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-3-5" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_files/figure-html/fig-3-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="03_files/figure-html/fig-3-5-1.png" class="img-fluid figure-img" width="672"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;3.4: 박스를 서로다른 순서에 따라 differece를 적용한 결과: 왼쪽은 원리 순서이고 오른쪽은 반대 순서
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.4: 왼쪽: 세 개의 겹치는 정사각형이 있는데, 모든 사각형이 겹치는 부분을 어떻게 확인할 수 있을까 오른쪽: 서로 겹치지 않는 고유한 에너리 교차
 </figcaption></figure>
 </div>
+<p>유사하게, 집합 <span class="math inline">\(\{s_1,s_2,s_3,...\}\)</span>에 에너리 difference를 적용하여 <span class="math inline">\(\{s_1,s_2-s_1,s_3-s_2-s_1,...\}\)</span>를 생성할 수 있다. 결과가 그림 3.5에 나타나 있는데, 왼편에는 원래 집합을 보여주고 있고, 오른편에는 투입 지오메트리의 순서를 바꾼 후의 집합을 보여주고 있다. 이는 결과가 입력 지오메트리의 순서에 의존한다는 사실을 명확히 하기 위함이다. 결과로 얻어진 지오메트리는 서로 겹치지 않는다.</p>
+<div id="fig-3-5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="img-fluid figure-img"></a>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.5: 박스를 서로다른 순서에 따라 differece를 적용한 결과: 왼쪽은 원리 순서이고 오른쪽은 반대 순서
+</figcaption></figure>
 </div>
 </section></section><section id="정밀도" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="정밀도">
 <span class="header-section-number">3.3</span> 정밀도</h2>
@@ -998,13 +946,21 @@ d_i=d_0+[i\times \delta,(i+1)\times \delta)
 <div class="cell-output-display">
 <div id="fig-3-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_files/figure-html/fig-3-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="03_files/figure-html/fig-3-6-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="03_files/figure-html/fig-3-6-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="03_files/figure-html/fig-3-6-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;3.5: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.
+그림&nbsp;3.6: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.
 </figcaption></figure>
 </div>
 </div>
+</div>
+<div id="fig-3-6" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;3.7: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.
+</figcaption></figure>
 </div>
 <p>시간 차원을 좌측 닫힘 및 우측 개방 구간으로 세분하는 것은 매우 일반적이며, 이는 R의 <strong>xts</strong> 패키지와 같은 시계열 소프트웨어의 암묵적인 기본 가정이다. 즉, 시간 스탬프(시점)는 시간 간격의 시작을 나타낸다. 다른 모델이 결합될 수도 있다. 예를 들어, 심플 피처 폴리곤을 사용하여 공간을 세분하고 이를 정규 시간 테셀레이션과 결합하여 시공간 벡터 데이터 큐브 개념을 구현할 수 있다. 래스터 및 벡터 데이터 큐브에 대한 논의는 6장에서 다룬다.</p>
 <p>위에서 언급한 것처럼, <span class="math inline">\(R^2\)</span>에 대한 정규 테셀레이션을 생성하는데 활용될 수 있는 폴리곤으로 정사각형 외에 삼각형과 육각형도 있다. 3차원 구체로 확장하면 더 많아지는데, 큐브, 정팔면체, 정이십면체, 정십이면체 등을 포함한다. 큐브를 기반으로 하는 공간 인덱스는 s2geometry이며, H3 라이브러리는 정이십면체를 사용하는데, 밀집화를 위해 (주로) 육각형을 사용한다. 지구 전체를 포괄하는 모자이크 역시 이산 글로벌 그리드라고 불린다.</p>
@@ -1036,8 +992,10 @@ d_i=d_0+[i\times \delta,(i+1)\times \delta)
 <span class="glightbox-desc lightbox-desc-1">그림&nbsp;3.1: 심플 피처 지오메트리의 주요 유형</span>
 <span class="glightbox-desc lightbox-desc-2">그림&nbsp;3.2: DE-9IM: 폴리곤의 내부, 경계, 외부(행)와 라인스트링의 내부, 경계, 외부(열) 간의 인터섹션</span>
 <span class="glightbox-desc lightbox-desc-3">그림&nbsp;3.3: 포인트의 집합, 왼편은 컨벡스 헐(빨간색), 가운데는 보로노이 폴리곤, 오른편은 들로네 삼각망</span>
-<span class="glightbox-desc lightbox-desc-5">그림&nbsp;3.4: 박스를 서로다른 순서에 따라 differece를 적용한 결과: 왼쪽은 원리 순서이고 오른쪽은 반대 순서</span>
-<span class="glightbox-desc lightbox-desc-6">그림&nbsp;3.5: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;3.4: 왼쪽: 세 개의 겹치는 정사각형이 있는데, 모든 사각형이 겹치는 부분을 어떻게 확인할 수 있을까 오른쪽: 서로 겹치지 않는 고유한 에너리 교차</span>
+<span class="glightbox-desc lightbox-desc-5">그림&nbsp;3.5: 박스를 서로다른 순서에 따라 differece를 적용한 결과: 왼쪽은 원리 순서이고 오른쪽은 반대 순서</span>
+<span class="glightbox-desc lightbox-desc-6">그림&nbsp;3.6: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.</span>
+<span class="glightbox-desc lightbox-desc-7">그림&nbsp;3.7: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1437,7 +1395,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -39,7 +39,7 @@ $R^2$에서는 $x$와 $y$ 좌표의 범위로 바운딩 박스를 쉽게 정의�
 
 ```{r}
 #| echo: false
-
+#| eval: false
 library(sf) |> suppressPackageStartupMessages()
 library(maps) |> suppressPackageStartupMessages()
 library(dplyr) |> suppressPackageStartupMessages()
@@ -47,47 +47,67 @@ map(fill = TRUE, plot = FALSE) |>
   st_as_sf() |>
   filter(ID == "Antarctica") -> a
 st_bbox(a)
+```
 
+``` R
+#   xmin   ymin   xmax   ymax 
+# -180.0  -85.2  179.6  -60.5
 ```
 
 이 바운딩 박스는 명백히 `ymin`이 -90이고 `xmax`가 180인 지역을 포함하지 않는다. 바운딩 캡은 해당 지역을 포함한다.
 
 ```{r}
 #| echo: false
-
+#| eval: false
 library(s2)
 s2_bounds_cap(a)
+```
 
+``` R
+#   lng lat angle
+# 1   0 -90  29.5
 ```
 
 해당 지역을 포함하는 또 다른 지오메트리에 바운딩 *직사각형*(rectangle)이 있다.
 
 ```{r}
 #| echo: false
-
+#| eval: false
 s2_bounds_rect(a)
+```
 
+``` R
+#   lng_lo lat_lo lng_hi lat_hi
+# 1   -180    -90    180  -60.5
 ```
 
 반대자오선을 가로지르는 지역의 예로 피지 제도를 들 수 있는데, 피지 제도의 바운딩 박스는 다음과 같이 주어진다.
 
 ```{r}
 #| echo: false
-
+#| eval: false
 map(fill = TRUE, plot = FALSE) |>
   st_as_sf() |>
   filter(ID == "Fiji") -> Fiji
 st_bbox(Fiji)
+```
 
+``` R
+#   xmin   ymin   xmax   ymax 
+# -179.9  -21.7  180.2  -12.5
 ```
 
 지구를 한바퀴 도는 정도의 크기이다. 동일한 지역에 대한 바운딩 직사각형은 다음과 같이 주어진다.
 
 ```{r}
 #| echo: false
-
+#| eval: false
 s2_bounds_rect(Fiji)
+```
 
+``` R
+#   lng_lo lat_lo lng_hi lat_hi
+# 1    175  -21.7   -178  -12.5
 ```
 
 여기서 `lng_lo`가 `lng_hi` 보다 더 *큰* 값을 갖는데, 이는 바운딩 직사각형이 반대자오선을 가로지른다는 것을 나타낸다. 좌표 범위를 가지고 이러한 위치 관계를 추로하는 것은 불가능하다.
@@ -106,6 +126,7 @@ s2_bounds_rect(Fiji)
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-4-1
 #| fig-cap: "남극 폴리곤으로 (a)와 (c)는 POINT(-180 90)을 통과하지 않고, (b)와 (d)는 POINT(-180 -90)과 POINT(180 -90)을 통과한다."
 
@@ -134,8 +155,9 @@ ne |>
   st_transform(3031) |>
   plot()
 title("d (not valid)")
-
 ```
+
+![남극 폴리곤으로 (a)와 (c)는 POINT(-180 90)을 통과하지 않고, (b)와 (d)는 POINT(-180 -90)과 POINT(180 -90)을 통과한다.](https://r-spatial.org/book/04-Spherical_files/figure-html/fig-antarctica-1.png){#fig-4-1}
 
 ## 연습문제
 

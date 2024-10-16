@@ -11,6 +11,8 @@ execute:
   error: false
   freeze: auto
 editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
 
 # 좌표계 {#sec-coord}
@@ -33,6 +35,7 @@ VIM(International Vocabulary of Metrology, BIPM et al., 2012)는 콴티티에 �
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-2-1
 #| fig-cap: "2차원 극 좌표계와 데카르트 좌표계"
 
@@ -54,6 +57,8 @@ text(3.3, 0.3, label = "x", col = 'blue')
 text(0.3, 4.3, label = "y", col = 'blue')
 
 ```
+
+![2차원 극 좌표계와 데카르트 좌표계](https://r-spatial.org/book/02-Spaces_files/figure-html/fig-polar-1.png){#fig-2-1}
 
 그림 2.1은 2차원 극 좌표계와 데카르트 좌표계를 보여주고 있다. 해당 지점의 데카르트 좌표는 $(x,y)=(3,4)$으로 주어지고, 극 좌표는 $(r,\phi)=(5,\text{arctan(4/3)})$으로 주어지는데 $\text{arctan(4/3)}$는 대략 $0.93$ 라디안 혹은 $53^\circ$이다. 여기서 $x$, $y$, $r$은 모두 길이 단위이고 $\phi$는 각도 단위(무단위 길이/길이 비)라는 점에 유의할 필요가 있다. 데카르트 좌표와 극 좌표 간의 변환은 매우 간단하다.
 
@@ -81,6 +86,7 @@ $$
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-2-2
 #| fig-cap: "세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)"
 library(sf) |> suppressPackageStartupMessages()
@@ -189,31 +195,42 @@ text(pt[1,1]+20000, pt[1,2]-50000, labels = expression(lambda), col = 'red') # l
 
 ```
 
+![세 개의 거리로 표현되는 데카르트 지심 좌표계(왼편)와 두 개의 각도와 하나의 타원체고로 표현되는 타원체 좌표계(오른편)](https://r-spatial.org/book/02-Spaces_files/figure-html/fig-sphere-1.png){#fig-2-2}
+
 $\lambda$는 $-180^\circ$에서 $180^\circ$ 사이의 값(혹은 $0^\circ$에서 $360^\circ$ 사이의 값)을 갖고, $\phi$는 $-90^\circ$에서 $90^\circ$ 사이의 값을 갖는다. 타원체가 아니라 고정된 반지름 갖는 구체 *상*의 위치만을 상정할 경우 위의 $r$을 생략한 $(\lambda,\phi)$ 만으로도 모든 위치를 규정하기에 충분하다.
 
 이것은 단지 *하나의* 정의일 뿐이며, 예를 들어 위도 대신 해당 벡터와 $z$ 축 사이의 각도인 극각을 측정할 수도 있다는 점에 유의해야 한다. 좌표값을 $(\phi,\lambda)$의 형태로 나타내는 오랜 전통이 있지만 이 책에서는 경도-위도 형식($\lambda,\phi$)을 사용할 것이다. 그림 2.2에 표시된 지점은 각도값으로 구성된 $(\lambda,\phi)$ 혹은 타원체 좌표값을 가지며 도 단위로 주어진다.
 
 ```{r}
 #| echo: false
-#| message: true
+#| message: false
 library(sf)
 p <- st_as_sfc("POINT(60 47)", crs = 'OGC:CRS84')
 p[[1]]
+```
+
+``` r
+# POINT (60 47)
 ```
 
 지심좌표값은 미터 단위로 주어진다.
 
 ```{r}
 #| echo: false
-#| message: true
+#| message: false
 p <- st_as_sfc("POINT(60 47)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent")
 p[[1]]
+```
+
+``` r
+# POINT Z (2178844 3773868 4641765)
 ```
 
 타원체 상의 지점에 대해서는 각도를 나타내는 두 가지 방법이 있다(그림 2.3). 하나는 타원체의 중심을 기준으로 측정된 각도($\psi$), 또는 해당 지점을 지나는 접선에 수직으로 측정된 각도($\phi$)이다.
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-2-3
 #| fig-cap: "타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)"
 
@@ -237,6 +254,8 @@ text(1.2, 0.5, label = parse(text = "psi"), col = 'red')
 text(3, 0.5, label = parse(text = "phi"), col = 'blue')
 
 ```
+
+![타원체 상의 각도: 측지 위도(푸른색)와 지심 위도(붉은색)](https://r-spatial.org/book/02-Spaces_files/figure-html/fig-ellipse-1.png){#fig-2-3}
 
 ### 투영좌표계, 거리
 
@@ -272,6 +291,7 @@ $$
 
 ```{r}
 #| echo: false
+#| eval: false
 
 pts <- st_sfc(st_point(c(13.4050, 52.5200)), st_point(c(2.3522, 48.8566)), crs = 'OGC:CRS84')
 s2_orig <- sf_use_s2(FALSE)
@@ -287,7 +307,12 @@ res <- c(d1, d3, d2, d4) # note order
 # print as km, re-add names:
 sf_use_s2(s2_orig) # back to what it was before changing
 res |> units::set_units(km) |> setNames(names(res)) |> print(digits = 5)
+```
 
+``` r
+# Units: [km]
+#  gc_ellipse str_ellipse   gc_sphere  str_sphere 
+#      879.70      879.00      877.46      876.77
 ```
 
 ### 한정 공간과 비한정 공간
@@ -362,6 +387,7 @@ PROJ.4에서는 모든 좌표변환이 WGS84로의 변환을 거쳐야 했다. �
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-2-4
 #| fig-cap: "영국의 OSGB 1936(EPSG:4277)를 ETRS89(EPSG:4258)로 변환하는데 사용되는 수평 데이텀 그리드"
 
@@ -385,8 +411,11 @@ plot(r[,,,1:2], axes = TRUE, hook = hook, key.pos = 4)
 
 ```
 
+![영국의 OSGB 1936(EPSG:4277)를 ETRS89(EPSG:4258)로 변환하는데 사용되는 수평 데이텀 그리드](https://r-spatial.org/book/02-Spaces_files/figure-html/fig-horizontalgrid-1.png){#fig-2-4}
+
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-2-5
 #| fig-cap: "영국의 ETRS89(EPSG:4937를 ODN 고도(EPSG:5701)로 변환하는데 사용되는 수직 데이텀 그리드"
 
@@ -401,11 +430,44 @@ plot(uk, border = "orange", col = NA, add = TRUE)
 
 ```
 
+![영국의 ETRS89(EPSG:4937를 ODN 고도(EPSG:5701)로 변환하는데 사용되는 수직 데이텀 그리드](https://r-spatial.org/book/02-Spaces_files/figure-html/fig-verticalgrid-1.png){#fig-2-5}
+
 그림 2.4에 나타나 있는 수평 데이텀 그리드와 그림 2.5에 나타나 있는 수직 데이텀 그리드의 예는 cdn.proj.org로부터 다운로드 받았다. 데이텀 그리드는 픽셀별 정화도 값을 포함할 수 있다.
 
 ## WKT-2
 
 Lott (2015)는 CRS의 인코딩과 CRS 간의 변환을 WKT(well-known text) 통해 나타내는 표준을 정리한 바 있다. 이 표준(및 포맷)을 비공식적으로 WKT-2라고 부른다. 앞에서 언급했듯이, GDAL과 PROJ는 이 표준을 지원한다. 예로서 특정 CRS(`EPSG:4326`)은 WKT-2로 다음과 같이 표시된다.
+
+```{r}
+#| echo: false
+#| eval: false
+GEOGCRS["WGS 84",
+    ENSEMBLE["World Geodetic System 1984 ensemble",
+        MEMBER["World Geodetic System 1984 (Transit)"],
+        MEMBER["World Geodetic System 1984 (G730)"],
+        MEMBER["World Geodetic System 1984 (G873)"],
+        MEMBER["World Geodetic System 1984 (G1150)"],
+        MEMBER["World Geodetic System 1984 (G1674)"],
+        MEMBER["World Geodetic System 1984 (G1762)"],
+        MEMBER["World Geodetic System 1984 (G2139)"],
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]],
+        ENSEMBLEACCURACY[2.0]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["geodetic latitude (Lat)",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["geodetic longitude (Lon)",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    USAGE[
+        SCOPE["Horizontal component of 3D system."],
+        AREA["World."],
+        BBOX[-90,-180,90,180]],
+    ID["EPSG",4326]]
+```
 
 ``` r
 GEOGCRS["WGS 84",

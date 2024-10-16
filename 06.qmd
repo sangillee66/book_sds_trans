@@ -11,6 +11,8 @@ execute:
   error: false
   freeze: auto
 editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
 
 # 데이터 큐브 {#sec-datacube}
@@ -25,6 +27,7 @@ editor: visual
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-6-1
 #| fig-cap: "위도, 경도, 시간의 세 차원을 가지 래스터 데이터 큐브"
 
@@ -89,6 +92,8 @@ text(-5,  6.5, "latitude", srt = 25, col = 'black')
 text( 5,  8.5, "longitude", srt = 0, col = 'black')
 
 ```
+
+![위도, 경도, 시간의 세 차원을 가지 래스터 데이터 큐브](https://r-spatial.org/book/06-Cubes_files/figure-html/fig-cube-1.png){#fig-6-1}
 
 ## 4차원 데이터 큐브
 

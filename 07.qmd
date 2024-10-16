@@ -87,7 +87,7 @@ st_sf(elev = c(33.2, 52.1, 81.2),
 외부 "데이터 소스"(파일, 웹서비스 또는 문자열)로부터 데이터셋을 읽어오는 것은 `st_read()` 함수를 사용하여 수행된다.
 
 ```{r}
-#| results: false
+#| eval: false
 library(sf)
 (file <- system.file("gpkg/nc.gpkg", package = "sf"))
 # [1] "/home/edzer/R/x86_64-pc-linux-gnu-library/4.3/sf/gpkg/nc.gpkg"
@@ -151,7 +151,7 @@ nc[2:5, 3:7]
 `st_intersects`, `st_covers`와 같은 이항 프레디케이트 함수(3.2.2절 참조)는 두 개의 피처 집합 또는 피처 지오메트리를 입력받아 모든 쌍에 대해 조건이 TRUE인지 FALSE인지를 반환한다. 대규모 집합의 경우, 이는 일반적으로 대부분 FALSE 값으로 채워진 거대한 행렬을 생성할 수 있으며, 이러한 이유로 기본적으로 희소 표현(sparse representation)이 반환된다(역자주: 희소 표현은 메모리 사용을 최적화하고, 데이터 처리를 더욱 효율적으로 만들어 준다. 희소 표현을 일반적으로 TRUE 값만을 저장하고, FALSE 값은 저장하지 않는다.)
 
 ```{r}
-#| output: false
+#| eval: false
 nc5 <- nc[1:5, ]
 nc7 <- nc[1:7, ]
 (i <- st_intersects(nc5, nc7))
@@ -166,6 +166,7 @@ nc7 <- nc[1:7, ]
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-7-2
 #| fig-cap: "노스케롤라이나의 첫 7개의 카운티"
 library(sf)
@@ -175,10 +176,12 @@ cc = st_coordinates(st_centroid(st_geometry(nc7)))
 text(cc, labels = 1:nrow(nc7), col = "blue")
 ```
 
+![노스케롤라이나의 첫 7개의 카운티](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-fig57-1.png){#fig-7-2}
+
 그림 7.2는 첫 다섯 개 카운티와 첫 일곱 개 카운티의 교차를 이해하는 방법을 보여준다. 다음과 같은 방식으로 희소 논리 행렬을 조밀한 행렬(dense matrix)로 변환할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 as.matrix(i)
 #       [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]
 # [1,]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
@@ -191,7 +194,7 @@ as.matrix(i)
 `nc5`의 개별 카운티가 교차하는 `nc7` 카운티의 수는 다음과 같이 계산할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 lengths(i)
 # [1] 2 3 2 2 2
 ```
@@ -199,7 +202,7 @@ lengths(i)
 역으로 `nc7`의 개별 카운티가 교차하는 `nc5`의 카운티의 수는 다음과 같이 계산할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 lengths(t(i))
 # [1] 2 3 2 1 1 1 1
 ```
@@ -207,7 +210,7 @@ lengths(t(i))
 객체 `i` 가 `sgbp`(sparse geometrical binary predicate) 클래스의 한 객체라고 했을 때, 객체 `i`는 정수 벡터의 리스트로 주어지는데, 리스트의 각 요소는 논리 프레디케이트 행렬의 한 행을 나타내고, 논리 프레디케이트 행렬은 해당 행에 대해 TRUE 값을 갖는 열의 인덱스를 보유하고 있다. 이 객체는 사용된 프레디케이트 및 총 열 수와 같은 메타데이터도 포함하고 있다. sgbp 객체에 적용할 수 있는 메소드에 다음과 같은 것들이 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 methods(class = "sgbp")
 #  [1] as.data.frame as.matrix     coerce        dim          
 #  [5] initialize    Ops           print         show         
@@ -230,7 +233,7 @@ methods(class = "sgbp")
 `sf` 객체에 사용될 수 있는 **tidyverse** 로 `filter`, `select`, `group_by`, `ungroup`, `mutate`, `transmute`, `rowwise`, `rename`, `slice`, `summarise`, `distinct`, `gather`, `pivot_longer`, `spread`, `nest`, `unnest`, `unite`, `separate`, `separate_rows`, `sample_n`, 및 `sample_frac`등과 같은 것이 있다. 대부분의 함수는 `sf` 객체의 메타데이터를 관리하기만 할 뿐 지오메트리 정보를 건드리지 않는다. 사용자가 지오메트리를 제거하고자 할 경우, `st_drop_geometry`를 사용하거나 선택하기 전에 간단히 `tibble` 또는 `data.frame`으로 강제 변환(coerce)할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 library(tidyverse) |> suppressPackageStartupMessages()
 nc |> as_tibble() |> select(BIR74) |> head(3)
 # # A tibble: 3 × 1
@@ -252,7 +255,7 @@ nc |> as_tibble() |> select(BIR74) |> head(3)
 `filter` 함수는 일반적인 프레디케이트와 함께 사용할 수 있으며, 공간적 프레디케이트를 사용하고자 할 경우, 예를 들어 오렌지 카운티에서 50km 이내에 있는 모든 카운티를 선택하려면 다음과 같이 사용할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 orange <- nc |> dplyr::filter(NAME == "Orange")
 wd <- st_is_within_distance(nc, orange, 
                             units::set_units(50, km))
@@ -267,6 +270,7 @@ nrow(o50)
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-7-3
 #| fig-cap: "오렌지 카운티(오렌지색), 반경 50km 내의 카운티(검은색), 오랜지 카운티 주변의 버퍼(갈색), 나머지 카운티(회색)"
 og <- st_geometry(orange)
@@ -278,6 +282,8 @@ plot(buf50, add = TRUE, col = NA, border = 'brown')
 plot(st_geometry(nc), add = TRUE, border = 'grey')
 ```
 
+![오렌지 카운티(오렌지색), 반경 50km 내의 카운티(검은색), 오랜지 카운티 주변의 버퍼(갈색), 나머지 카운티(회색)](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-orangebuffer-1.png){#fig-7-3}
+
 ## 공간적 조인
 
 일반적인 조인(왼쪽, 오른쪽 또는 내부 조인)에서는 두 테이블 사이에서 하나 이상의 속성이 일치할 때 조인이 이루어진다. 공간적 조인도 이와 유사하지만, 레코드를 조인하는 기준은 속성의 일치가 아니라 공간적 프레디케이트이다. 이로 인해 공간적으로 일치하는 레코드를 정의하는 다양한 선택지가 있으며, 이는 3.2.2절에 나열된 바이너리 프레디케이트를 사용하여 결정할 수 있다. "왼쪽," "오른쪽," "내부," 또는 "전체" 조인의 개념은 비공간 조인과 동일하게 유지되는데, 이 경우는 공간적 일치를 상정하지 않은 상태에서 레코드의 조인을 처리할 때이다.
@@ -286,6 +292,7 @@ plot(st_geometry(nc), add = TRUE, border = 'grey')
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-7-4
 #| fig-cap: "largest = TRUE 아규먼트를 적용한 st_join 함수의 예: 아래쪽 그림의 폴리곤과 가장 넓은 면적이 겹치는 위쪽 그림의 폴리곤 라벨이 아래쪽 폴리곤에 할당되어 있다."
 # example of largest = TRUE:
@@ -309,6 +316,8 @@ text(st_coordinates(st_centroid(st_geometry(nc_j))), labels = nc_j$label, cex = 
 plot(st_geometry(gr), border = '#88ff88aa', add = TRUE)
 ```
 
+![largest = TRUE 아규먼트를 적용한 st_join 함수의 예: 아래쪽 그림의 폴리곤과 가장 넓은 면적이 겹치는 위쪽 그림의 폴리곤 라벨이 아래쪽 폴리곤에 할당되어 있다.](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-largest-1.png){#fig-7-4}
+
 결과의 복잡성을 줄이는 또 다른 방법은 조인 후에 `aggregate` 함수를 사용하여 모든 일치하는 레코드를 결합함과 동시에 지오메트리도 병합하는 것이다. 이에 대한 자세한 내용은 5.4절을 참고하라.
 
 ### 샘플링, 그리딩, 인터폴레이팅
@@ -324,11 +333,12 @@ plot(st_geometry(gr), border = '#88ff88aa', add = TRUE)
 비투영 데이터는 경위도로 표현된 타원체 좌표를 가진다. 4.1절에서 설명된 대로, 포인트간 "직선"은 최단 곡선 경로("측지선")이다. 기본적으로 **sf** 패키지는 `s2geometry` 라이브러리의 기하학적 연산을 사용하며, 이는 **s2** 패키지를 통해 이루어진다(Dunnington, Pebesma, and Rubak 2023). 예를 들어, 아래의 지점은 특정 폴리곤 *내부*에 존재한다(그림 7.5의 왼쪽 그림: 정사 도법).
 
 ```{r}
+#| eval: false
 "POINT(50 50.1)" |> st_as_sfc(crs = "OGC:CRS84") -> pt
 ```
 
 ```{r}
-#| output: false
+#| eval: false
 "POLYGON((40 40, 60 40, 60 50, 40 50, 40 40))" |>
   st_as_sfc(crs = "OGC:CRS84") -> pol
 st_intersects(pt, pol)
@@ -339,6 +349,7 @@ st_intersects(pt, pol)
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-7-5
 #| fig-cap: "인터섹션의 결과는 측지선 혹은 대권호를 사용하느냐(왼쪽) 데카르트 좌표계를 사용하느냐에 따라 달라진다."
 par(mfrow = c(1, 2))
@@ -352,10 +363,12 @@ plot(pol, axes = TRUE, graticule = TRUE, main = 'GEOS')
 plot(pt, add = TRUE, pch = 16, col = 'red')
 ```
 
+![인터섹션의 결과는 측지선 혹은 대권호를 사용하느냐(왼쪽) 데카르트 좌표계를 사용하느냐에 따라 달라진다.](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-figs2-1.png){#fig-7-5}
+
 **sf** 패키지가 타원체 좌표를 마치 데카르트 좌표처럼 사용하도록 하려면, **s2** 사용을 비활성화하면 된다.
 
 ```{r}
-#| output: false
+#| eval: false
 old <- sf_use_s2(FALSE)
 # Spherical geometry (s2) switched off
 st_intersects(pol, pt)
@@ -407,7 +420,7 @@ sf_use_s2(old) # restore
 래스터 데이터는 일반적으로 파일을 불러온다. 우리는 브라질의 올린다 시에 대한 30m 해상도의 Landsat 7 데이터셋(밴드 1-5 및 7)을 사용한다. 패키지 **stars**에서 규칙 비회전 그리드에 대한 예제 GeoTIFF 파일을 읽을 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 tif <- system.file("tif/L7_ETMs.tif", package = "stars")
 library(stars)
 # Loading required package: abind
@@ -452,7 +465,7 @@ library(stars)
 `stars` 클래스의 객체 `r`은 길이가 1인 간단한 리스트로 구성되어 있으며, 3차원 어레이를 포함한다.
 
 ```{r}
-#| output: false
+#| eval: false
 length(r)
 # [1] 1
 class(r[[1]])
@@ -465,14 +478,14 @@ dim(r[[1]])
 또한, 이 객체는 어레이 차원이 무엇을 나타내는지 알기 위해 필요한 모든 메타데이터를 포함한 디멘션 테이블을 속성으로 가지고 있다. 이는 다음을 통해 얻어진다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_dimensions(r)
 ```
 
 어레이의 공간적 범위에 대한 정보를 다음과 같이 얻을 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_bbox(r)
 #    xmin    ymin    xmax    ymax 
 #  288776 9110729  298723 9120761
@@ -481,7 +494,7 @@ st_bbox(r)
 `write_stars` 함수를 통해 래스터 데이터를 로컬 디스크에 저장할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 tf <- tempfile(fileext = ".tif")
 write_stars(r, tf)
 ```
@@ -489,7 +502,7 @@ write_stars(r, tf)
 파일 확장자를 통해 데이터 형식(이 경우, GeoTIFF)이 지정된다. 단순 피처와 마찬가지로 읽기 및 쓰기 작업은 GDAL 라이브러리를 사용하며, 래스터 데이터에 사용할 수 있는 드라이버 목록은 다음을 통해 확인할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_drivers("raster")
 ```
 
@@ -504,7 +517,7 @@ st_drivers("raster")
 예를 들어, `r[1:2, 101:200,, 5:10]`는 `r`에서 속성 1-2를 선택하고, 디멘션 1에 대해 인덱스 101-200, 차원 3에 대해 인덱스 5-10을 선택함을 의미한다. 차원 2를 통한 선택은 이루어지지 않는다. 속성의 경우, 속성 이름, 인덱스 또는 논리 벡터를 사용할 수 있다. 차원의 경우에는 논리 벡터가 지원되지 않는다. 불연속 범위 선택은 규칙 시퀀스일 때만 지원된다. 기본적으로 `drop`은 `FALSE`로 설정되어 있으며, `TRUE`로 설정하면 단일 값을 가진 차원은 모두 제거된다.
 
 ```{r}
-#| output: false
+#| eval: false
 r[,1:100, seq(1, 250, 5), 4] |> dim()
 #    x    y band 
 #  100   50    1
@@ -516,7 +529,7 @@ r[,1:100, seq(1, 250, 5), 4, drop = TRUE] |> dim()
 특정 범위의 차원 *값*을 선택하기 위해 `filter` 함수를 사용할 수 있는데, 이는 `dplyr` 패키지를 우선적으로 로드해야 한다.
 
 ```{r}
-#| output: false
+#| eval: false
 library(dplyr, warn.conflicts = FALSE)
 filter(r, x > 289000, x < 290000)
 # stars object with 3 dimensions and 1 attribute
@@ -533,7 +546,7 @@ filter(r, x > 289000, x < 290000)
 이는 차원의 오프셋을 변경한다. 특정 큐브 슬라이스는 `slice` 함수를 사용하여 얻을 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 slice(r, band, 3)
 # stars object with 2 dimensions and 1 attribute
 # attribute(s):
@@ -552,7 +565,7 @@ slice(r, band, 3)
 부분 집합을 생성하는 또 다른 방법에 `sf`, `sfc` 또는 `bbox` 클래스의 공간 객체를 사용하는 방법이 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 b <- st_bbox(r) |>
     st_as_sfc() |>
     st_centroid() |>
@@ -573,16 +586,19 @@ r[b]
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: "fig-7-6"
 #| fig-cap: "Landsat 7 (band 1) 이미지의 원형 중심부"
 plot(r[b][,,,1], reset = FALSE)
 plot(b, border = 'brown', lwd = 2, col = NA, add = TRUE)
 ```
 
+![Landsat 7 (band 1) 이미지의 원형 중심부](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-circr-1.png){#fig-7-6}
+
 원형 공간 객체의 외부에 존재하는 픽셀에는 NA 값이 할당되는 것을 볼 수 있다. 이 원형 객체는 여전히 `r`의 `offset`과 `delta` 값에 대한 차원 인덱스를 가지고 있다. 다음과 같은 방식으로 `offset` 값을 재설정할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 r[b] |> st_normalize() |> st_dimensions()
 #      from to  offset delta            refsys point x/y
 # x       1 37  293222  28.5 SIRGAS 2000 / ... FALSE [x]
@@ -593,7 +609,7 @@ r[b] |> st_normalize() |> st_dimensions()
 기본적으로, 결과 래스터는 선택 객체의 범위로 잘린다. 입력 객체와 동일한 차원을 가진 객체는 다음과 같은 방식으로 얻을 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 r[b, crop = FALSE]
 # stars object with 3 dimensions and 1 attribute
 # attribute(s):
@@ -609,7 +625,7 @@ r[b, crop = FALSE]
 `stars` 객체의 잘라내기는 `st_crop` 함수를 사용하여 직접 수행할 수도 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_crop(r, b)
 ```
 
@@ -618,7 +634,7 @@ st_crop(r, b)
 `stars` 패키지는 다양한 어레이 조작을 수행하기 위해 패키지 `abind` (Plate and Heiberger 2016)를 사용한다. 한 예로 어레이를 순열하여 전치하는 `aperm` 함수이다.
 
 ```{r}
-#| output: false
+#| eval: false
 aperm(r, c(3, 1, 2))
 # stars object with 3 dimensions and 1 attribute
 # attribute(s):
@@ -636,7 +652,7 @@ aperm(r, c(3, 1, 2))
 속성과 차원을 교환할 수 있으며, 이는 `split`과 `merge`를 사용하여 수행된다.
 
 ```{r}
-#| output: false
+#| eval: false
 (rs <- split(r))
 # stars object with 2 dimensions and 6 attributes
 # attribute(s):
@@ -666,7 +682,7 @@ merge(rs, name = "band") |> setNames("L7_ETMs")
 `split` 함수는 밴드 차원을 2차원 어레이의 여섯 개 속성에 분배하며, `merge` 함수는 거꾸로 수행한다. `st_redimension` 함수는 단일 어레이 차원을 두 개의 새로운 차원으로 분할하는 것과 같은 보다 일반적인 작업에 사용된다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_redimension(r, c(x = 349, y = 352, b1 = 3, b2 = 2))
 # stars object with 4 dimensions and 1 attribute
 # attribute(s):
@@ -683,7 +699,7 @@ st_redimension(r, c(x = 349, y = 352, b1 = 3, b2 = 2))
 동일한 차원을 가진 여러 개의 `stars` 객체는 `c`를 사용하여 결합할 수 있다. 결합된 어레이는 추가적인 속성으로 취급하는 것이 디폴트 설정이지만, `along` 아규먼트를 지정하면 어레이를 새로운 차선을 따라 병합할 수도 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 c(r, r, along = "new_dim")
 # stars object with 4 dimensions and 1 attribute
 # attribute(s), summary of first 1e+05 cells:
@@ -704,7 +720,7 @@ c(r, r, along = "new_dim")
 래스터 데이터 큐브 분석의 매우 일반적인 사용 사례는 특정 위치에서 값을 추출하거나 특정 지오메트리에 대해 집계값을 계산하는 것이다. `st_extract` 함수는 포인트 값을 추출한다. 우리는 `r` 객체의 바운딩 박스 내의 몇 개의 무작위로 샘플링 포인트에 대해 이 오퍼레이션을 수행할 것이다.
 
 ```{r}
-#| output: false
+#| eval: false
 set.seed(115517)
 pts <- st_bbox(r) |> st_as_sfc() |> st_sample(20)
 (e <- st_extract(r, pts))
@@ -726,7 +742,7 @@ pts <- st_bbox(r) |> st_as_sfc() |> st_sample(20)
 데이터 큐브에서 정보를 추출하는 또 다른 방법은 집계값을 산출하는 것이다. 이를 수행하는 한 가지 방법은 공간 폴리곤 또는 라인에 의거해 값을 공간적으로 집계하는 것이다(6.4절 참조). 예를 들어, 그림 1.4(d)에 표시된 세 개의 원 각각에 대해 여섯 개 밴드의 최대 픽셀 값을 계산할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 circles <- st_sample(st_as_sfc(st_bbox(r)), 3) |>
     st_buffer(500)
 aggregate(r, circles, max)
@@ -767,6 +783,7 @@ R에서의 일반적인 모델 예측 워크플로우는 다음과 같다.
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-7-7
 #| fig-cap: "트레이닝 데이터로 사용되는 무작위 샘플 포인트: 빨간색은 해양부이고 노란색을 육지부이다."
 plot(r[,,,1], reset = FALSE)
@@ -775,10 +792,12 @@ col[c(8, 14, 15, 18, 19)] = "red"
 st_as_sf(e) |> st_coordinates() |> text(labels = 1:20, col = col)
 ```
 
+![트레이닝 데이터로 사용되는 무작위 샘플 포인트: 빨간색은 해양부이고 노란색을 육지부이다.](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-rsample-1.png){#fig-7-7}
+
 이 그림에서 포인트 8, 14, 15, 18 및 19는 수부에 위치하고 있으며, 나머지는 육지부에 있다는 것을 "육안"으로 확인할 수 있다. 선형 판별("최대 우도") 분류기를 사용하여, 우리는 그림 7.8에 나타난 모델 예측 결과를 얻을 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 rs <- split(r)
 trn <- st_extract(rs, pts)
 trn$cls <- rep("land", 20)
@@ -791,10 +810,13 @@ pr <- predict(rs, model)
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-7-8
 #| fig-cap: "육지부/수부 구분을 위한 선형 판별 분류기로 그림 7.7의 트레이닝 데이터에 기반한 결과임."
 plot(pr[1], key.pos = 4, key.width = lcm(3.5), key.length = lcm(2))
 ```
+
+![육지부/수부 구분을 위한 선형 판별 분류기로 그림 7.7의 트레이닝 데이터에 기반한 결과임.](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lda-1.png){#fig-7-8}
 
 우리는 또한 그림 7.8에 플로팅된 레이어가 클래스 레이블을 가진 범주형 변수임을 알 수 있다.
 
@@ -802,21 +824,27 @@ plot(pr[1], key.pos = 4, key.width = lcm(3.5), key.length = lcm(2))
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-7-9
 #| fig-cap: "30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다"
 plot(r)
 ```
 
+![30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-firststars-1.png)
+
 베이스 플롯 함수를 `stars` 객체에 적용할 수 있는데, `plot(r)`로 생성된 플롯은 그림 7.9에 나타나 있다. 기본 색상 스케일은 회색 톤을 사용하며, 모든 밴드의 데이터 분위수에 맞춰 명암 대비가 조정된다(“히스토그램 평활화”)(역자주: 히스토그램 평활화는 데이터의 분토를 재조정하여 시각적으로 더 유용하고 세부 사항을 더 잘 볼 수 있게 하는 기법을 말한다. 예를 들어, 어두운 이미지에서는 어두운 영역의 픽셀 값이 많이 몰려 있는데, 히스토그램 평활화를 적용하면 이 픽셀 값의 범위를 더 넓은 범위로 확장(stretch)시켜 이미지를 밝고 명확하게 보이도록 할 수 있다.) `breaks = "equal"`로 설정하면 급폭이 동일하게 설정되는 등간격 분류법이 적용되며, 계급 단절값을 임의로 지정할 수도 있다. 그런데 더 익숙한 플로팅 방식은 그림 7.10에 나타난 RGB 또는 폴스 컬러 합성일 것이다.
 
 ```{r}
 #| echo: false
+#| eval: false
 #| label: fig-7-10
 #| fig-cap: "컬러 합성의 두 가지 예"
 par(mfrow = c(1, 2))
 plot(r, rgb = c(3,2,1), reset = FALSE, main = "RGB")    # rgb
 plot(r, rgb = c(4,3,2), main = "False colour (NIR-R-G)") # false colour
 ```
+
+![컬러 합성의 두 가지 예](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-starsrgb-1.png){#fig-7-10}
 
 보다 자세한 사항은 8장에서 다루어진다.
 
@@ -825,7 +853,7 @@ plot(r, rgb = c(4,3,2), main = "False colour (NIR-R-G)") # false colour
 `stars` 객체의 개별 엘리먼트에 대해서는, 수리 함수의 적용이 어레이에 직접적으로 이루어진다. 이는 사용자가 함수를 호출하여 표현식(expression)을 생성하는 것이 가능하다는 것을 의미한다.
 
 ```{r}
-#| output: false
+#| eval: false
 log(r)
 # stars object with 3 dimensions and 1 attribute
 # attribute(s):
@@ -851,7 +879,7 @@ r + 2 * log(r)
 혹은 특정 값들을 마스킹 처리할 수도 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 r2 <- r
 r2[r < 50] <- NA
 r2
@@ -869,7 +897,7 @@ r2
 혹은 마스킹을 해제할 수도 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 r2[is.na(r2)] <- 0
 r2
 # stars object with 3 dimensions and 1 attribute
@@ -886,7 +914,7 @@ r2
 `stars` 객체의 개별 차원에 대해서는, 선택된 어레이 차원에 함수를 적용하는 것이 가능하며, 이는 `apply` 함수가 어레이에 대해 수행하는 방식과 유사하다(6.3.3절). 예를 들어, 각 픽셀에 대해 6개 밴드 값의 평균을 계산할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_apply(r, c("x", "y"), mean)
 # stars object with 2 dimensions and 1 attribute
 # attribute(s):
@@ -901,7 +929,7 @@ st_apply(r, c("x", "y"), mean)
 더 유의미한 함수로는 예를 들어 NDVI(Normalized Difference Vegetation Index, 정규화 식생 지수 )를 계산하는 것이 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 ndvi <- function(b1, b2, b3, b4, b5, b6) (b4 - b3)/(b4 + b3)
 st_apply(r, c("x", "y"), ndvi)
 # stars object with 2 dimensions and 1 attribute
@@ -917,14 +945,14 @@ st_apply(r, c("x", "y"), ndvi)
 혹은, 다음과 같이 정의할 수도 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 ndvi2 <- function(x) (x[4]-x[3])/(x[4]+x[3])
 ```
 
 밴드 수가 많을 경우 이러한 방식은 더 편리하지만, 각 픽셀에 대해 호출해야 하므로 위에서 정의한 `ndvi` 함수보다 훨씬 느리다. 반면 `ndvi` 함수는 모든 픽셀이나 큰 픽셀 덩어리에 대해 한 번 호출할 수 있다. 전체 이미지에 대해 각 밴드의 평균은 다음과 같이 계산된다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_apply(r, c("band"), mean) |> as.data.frame()
 #   band mean
 # 1    1 79.1
@@ -938,7 +966,7 @@ st_apply(r, c("band"), mean) |> as.data.frame()
 결과는 `data.frame`의 형태로 막바로 출력해 볼 수 있을 만큼 작다. 이 두 가지 예에서는 전체 디멘션이 사라진다. 그러나 그렇지 않은 경우도 종종 발생한다(6.3.2절). 예를 들어, 각 밴드에 대해 세 개의 사분위수를 계산할 수 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_apply(r, c("band"), quantile, c(.25, .5, .75))
 # stars object with 2 dimensions and 1 attribute
 # attribute(s):
@@ -953,7 +981,7 @@ st_apply(r, c("band"), quantile, c(.25, .5, .75))
 이렇게 하면 세 개의 값으로 이루어진 새로운 차원인 `quantile`이 *생성*된다. 또는 각 픽셀에 대해 여섯 개의 밴드 값에 대한 세 개의 사분위수를 다음과 같은 방식으로 얻을 수도 있다.
 
 ```{r}
-#| output: false
+#| eval: false
 st_apply(r, c("x", "y"), quantile, c(.25, .5, .75))
 # stars object with 3 dimensions and 1 attribute
 # attribute(s):
@@ -1090,6 +1118,7 @@ plot(as.xts(a)[,4], main = de_nuts1$NAME_1[4])
 이 예제에 사용된 데이터는 Lovelace, Nowosad, Muenchow (2019)에서 가져온 것으로, 출발지-목적지(OD) 매트릭스이다. 구체적으로 A 지역에서 B 지역으로 이동하는 사람의 수를 교통 수단별로 나타낸 것이다. 102개의 지역에 대한 피처 지오메트리는 `sf` 객체인 `bristol_zones`에 포함되어 있다.
 
 ```{r}
+#| echo: false
 #| eval: false
 library(spDataLarge)
 plot(st_geometry(bristol_zones), axes = TRUE, graticule = TRUE)
@@ -1335,6 +1364,7 @@ Wickham(2014)의 타이디 데이터 논문은 3차원 데이터를 어레이 �
 `st_as_stars` 함수는 객체를 `stars` 객체로 변환하는 메소드로로 설계되었다. 그러나 모든 `stars` 객체가 래스터 객체인 것은 아니며, `sf` 객체에 이 메소들 적용하면 지오메트리를 공간적(벡터) 디멘션으로 하고 속성을 속성 디멘션으로 가지는 벡터 데이터 큐브가 생성된다. 피처 *지오메트리*(`sfc`) 객체가 주어지면, `st_as_stars` 함수는 이를 래스터한다(섹션 7.8과 그림 7.19).
 
 ```{r}
+#| eval: false
 #| label: fig-7-19
 #| fig-cap: "st_as_stars 함수를 활용한 백터 지오메트리의 래스터화"
 file <- system.file("gpkg/nc.gpkg", package="sf")
@@ -1343,6 +1373,8 @@ read_sf(file) |>
     st_as_stars() |>
     plot(key.pos = 4)
 ```
+
+![st_as_stars 함수를 활용한 백터 지오메트리의 래스터화](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-asstars-1.png){#fig-7-19}
 
 `st_as_stars` 함수는 셀 크기, 셀 수 및/또는 범위를 제어하는 파라미터를 설정할 수 있다. 반환되는 셀 값은 지오메트리 밖에 중심점이 있는 셀의 경우는 0이고, 지오메트리 내부 또는 경계에 중심점이 있는 셀의 경우는 1이다. 기존 피처를 래스터화하는 것은 `st_rasterize` 함수를 사용하여 수행되며, 이는 그림 1.5에서도 볼 수 있다.
 
@@ -1372,6 +1404,7 @@ read_sf(file) |>
 라인과 포인트 지오메트리고 이와 유사하게 래스터화할 수 있다(그림 7.20).
 
 ```{r}
+#| eval: false
 #| label: fig-7-20
 #| fig-cap: "노스캐롤라이나 카운티 경계를 래스터로 전환하기"
 read_sf(file) |>
@@ -1380,6 +1413,8 @@ read_sf(file) |>
     st_rasterize() |>
     plot(key.pos = 4)
 ```
+
+![노스캐롤라이나 카운티 경계를 래스터로 전환하기](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lineras-1.png){#fig-7-20}
 
 ## 좌표변환 및 좌표전환
 
