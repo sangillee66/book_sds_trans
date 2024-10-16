@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>공간데이터사이언스 개론 - 8&nbsp; 공간데이터의 시각화</title>
+<title>공간데이터사이언스 개론 - 8&nbsp; 공간데이터의 플로팅</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-plotting" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 시각화</span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-plotting" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -228,7 +228,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 시각화</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -365,7 +365,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-plotting" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 시각화</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-plotting" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></h1>
 </div>
 
 
@@ -388,12 +388,12 @@ window.Quarto = {
 </header><p>타임라인과 함께, 지도는 가장 강력한 그래프 중 하나일 것이다. 그건 아마도 지도 상의 공간과 현실 공간(현재 어디에 있고, 한때 어디에 있었는지)을 즉시 연관 지을 수 있기 때문일 것이다. 최근 시각화에 대한 두 권의 책(Healy 2018; Wilke 2019)은 지리공간 데이터 또는 지도를 시각화하는 방법에 대한 장을 포함하고 있다. 여기에서는 어떤 지도가 좋고 나쁜지를 논하는 것이 아니라, 지도를 제작할 수 있는 다양한 가능성, 그 과정에서 마주할 수 있는 도전 과제들, 그리고 이를 해결할 수 있는 가능한 방법들을 살펴볼 것이다.</p>
 <section id="sec-every" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="sec-every">
 <span class="header-section-number">8.1</span> 모든 지도는 투영법을 가지고 있다.</h2>
-<p>세상은 둥글지만, 플로팅 장치는 평평하다. 2.2.2절에서 언급했듯이, 세상을 평평한 장치에 어떤 방식으로든 시각화할 때마다 우리는 특정한 투영법을 적용하고 있는 것이다. 즉, 타원체 좌표를 데카르트 좌표로 전환하는 것이다. 이는 우리가 아무것도 하지 않는다고 생각하는 경우(그림 8.1의 왼쪽)나, 우주에서 본 것처럼 세상을 “있는 그대로” 보여주는 경우(그림 8.1의 오른쪽)도 마찬가지이다.</p>
+<p>세상은 둥글지만, 플로팅 장치는 평평하다. 2.2.2절에서 언급했듯이, 세상을 평평한 장치에 어떤 방식으로든 플로팅한다는 것은 우리가 특정한 투영법을 적용하고 있는 것을 의미한다. 즉, 타원체 좌표를 특정한 방식으로 데카르트 좌표로 전환하고 있는 것이다. 이는 우리가 아무것도 하지 않았다고 생각하는 경우(역자주: 투영법을 적용하지 않았다고 생각하는 경우)(그림 8.1의 왼쪽)나, 우주에서 본 것처럼 세상을 “있는 그대로” 보여준다고 생각하는 경우(그림 8.1의 오른쪽)에도 마찬가지이다. 평면 상의 모든 지도는 투영법을 가지고 있다.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-8-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="08_files/figure-html/fig-8-1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="08_files/figure-html/fig-8-1-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="08_files/figure-html/fig-8-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="08_files/figure-html/fig-8-1-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.1: 국가 경계: 왼쪽은 경위도를 xy 좌표로 선형 변환한 것이고(플라트 카레 도법), 오른쪽은 무한 거리에서 지구를 바라본 것 같은 방식으로 나타낸 것(정사 도법)이다.
@@ -401,7 +401,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>왼쪽 지도는 다음과 같은 코드를 통해 그려졌다.</p>
+<p>왼쪽 지도는 다음의 코드로 그렸다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/">rnaturalearth</a></span><span class="op">)</span></span>
@@ -428,7 +428,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-8-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="08_files/figure-html/fig-8-2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="08_files/figure-html/fig-8-2-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="08_files/figure-html/fig-8-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="08_files/figure-html/fig-8-2-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.2: 등장방형 도법이 적용된 독일. 왼쪽 지도의 단위는 도이고 정거원통 도법이 적용된 오른쪽 지도의 단위는 미터이다.
@@ -510,7 +510,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-8-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="08_files/figure-html/fig-8-3-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="08_files/figure-html/fig-8-3-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="08_files/figure-html/fig-8-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="08_files/figure-html/fig-8-3-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.3: 범례가 있는 베이스 플롯에 주석 달기
@@ -534,7 +534,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div id="fig-8-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="08_files/figure-html/fig-8-4-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="08_files/figure-html/fig-8-4-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="08_files/figure-html/fig-8-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="08_files/figure-html/fig-8-4-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.4: 다중 슬라이스를 가진 stars 플롯에 주석 달기
@@ -964,7 +964,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":false,"closeEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

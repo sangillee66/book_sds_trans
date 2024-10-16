@@ -228,7 +228,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 시각화</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -942,24 +942,12 @@ d_i=d_0+[i\times \delta,(i+1)\times \delta)
 \]</span></p>
 <p>여기서 <span class="math inline">\(d_0\)</span>는 오프셋값, <span class="math inline">\(\delta\)</span>는 구간(셀 또는 픽셀) 크기, 셀 인덱스인 <span class="math inline">\(i\)</span>는 임의의 값을 취할 수 있지만 연속적인 정수값이어야한다. <span class="math inline">\(\delta\)</span>는 <span class="math inline">\(y\)</span>-축(북거)에 대해서는 보통 음의 값을 취하는데 래스터의 행은 남쪽으로 갈수록 증가하는 반면 <span class="math inline">\(y\)</span>-좌표값은 감소하는 것과 보조를 맞추기 위함이다.</p>
 <p>일반적인 폴리곤 테셀레이션에서는 두 개의 폴리곤이 공유하는 경계에 위치한 점의 할당이 모호하지만, 정규 테셀레이션에서는 좌측 닫힘 “[” 및 우측 개방 “)” 구간을 사용하기 때문에 이러한 모호성이 해소된다. 이는 <span class="math inline">\(y\)</span>-좌표에 음의 <span class="math inline">\(\delta\)</span>값이 <span class="math inline">\(x\)</span>-좌표에 양의 <span class="math inline">\(\delta\)</span>값이 적용된 적용된 래스터의 경우, 각 셀의 모서리 점들 중 좌측 상단의 것만이 해당 셀의 부분으로 간주된다는 것을 의미한다. 이로 인해 발생할 수 있는 예기치 못한 결과중 한 예가 그림 3.6에 나타나 있다.</p>
-<div class="cell">
-<div class="cell-output-display">
 <div id="fig-3-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="03_files/figure-html/fig-3-6-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="03_files/figure-html/fig-3-6-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.6: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.
-</figcaption></figure>
-</div>
-</div>
-</div>
-<div id="fig-3-6" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="img-fluid figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;3.7: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.
 </figcaption></figure>
 </div>
 <p>시간 차원을 좌측 닫힘 및 우측 개방 구간으로 세분하는 것은 매우 일반적이며, 이는 R의 <strong>xts</strong> 패키지와 같은 시계열 소프트웨어의 암묵적인 기본 가정이다. 즉, 시간 스탬프(시점)는 시간 간격의 시작을 나타낸다. 다른 모델이 결합될 수도 있다. 예를 들어, 심플 피처 폴리곤을 사용하여 공간을 세분하고 이를 정규 시간 테셀레이션과 결합하여 시공간 벡터 데이터 큐브 개념을 구현할 수 있다. 래스터 및 벡터 데이터 큐브에 대한 논의는 6장에서 다룬다.</p>
@@ -995,7 +983,6 @@ d_i=d_0+[i\times \delta,(i+1)\times \delta)
 <span class="glightbox-desc lightbox-desc-4">그림&nbsp;3.4: 왼쪽: 세 개의 겹치는 정사각형이 있는데, 모든 사각형이 겹치는 부분을 어떻게 확인할 수 있을까 오른쪽: 서로 겹치지 않는 고유한 에너리 교차</span>
 <span class="glightbox-desc lightbox-desc-5">그림&nbsp;3.5: 박스를 서로다른 순서에 따라 differece를 적용한 결과: 왼쪽은 원리 순서이고 오른쪽은 반대 순서</span>
 <span class="glightbox-desc lightbox-desc-6">그림&nbsp;3.6: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.</span>
-<span class="glightbox-desc lightbox-desc-7">그림&nbsp;3.7: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀의 내부로 간주되기 때문에 대각선 아래에서 붉은 선에 접촉한 셀들도 래스터로 전환되었다.</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1395,7 +1382,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
