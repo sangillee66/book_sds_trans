@@ -181,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 시각화</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -286,7 +286,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#벡터-데이터-sf" id="toc-벡터-데이터-sf" class="nav-link active" data-scroll-target="#벡터-데이터-sf"><span class="header-section-number">9.1</span> 벡터 데이터: <code>sf</code></a>
+  <ul class="collapse">
+  <li><a href="#로컬-디스크로부터-불러오기" id="toc-로컬-디스크로부터-불러오기" class="nav-link" data-scroll-target="#로컬-디스크로부터-불러오기"><span class="header-section-number">9.1.1</span> 로컬 디스크로부터 불러오기</a></li>
+  <li><a href="#데이터베이스로부터-불러오기-dbplyr" id="toc-데이터베이스로부터-불러오기-dbplyr" class="nav-link" data-scroll-target="#데이터베이스로부터-불러오기-dbplyr"><span class="header-section-number">9.1.2</span> 데이터베이스로부터 불러오기, dbplyr</a></li>
+  <li><a href="#온라인-리소스-혹은-웹-서비스로부터-불러오기" id="toc-온라인-리소스-혹은-웹-서비스로부터-불러오기" class="nav-link" data-scroll-target="#온라인-리소스-혹은-웹-서비스로부터-불러오기"><span class="header-section-number">9.1.3</span> 온라인 리소스 혹은 웹 서비스로부터 불러오기</a></li>
+  <li><a href="#api-openstreetmap" id="toc-api-openstreetmap" class="nav-link" data-scroll-target="#api-openstreetmap"><span class="header-section-number">9.1.4</span> API, OpenStreetMap</a></li>
+  <li><a href="#geoparquet와-geoarrow" id="toc-geoparquet와-geoarrow" class="nav-link" data-scroll-target="#geoparquet와-geoarrow"><span class="header-section-number">9.1.5</span> GeoParquet와 GeoArrow</a></li>
+  </ul></li>
+  <li><a href="#래스터-데이터-stars" id="toc-래스터-데이터-stars" class="nav-link" data-scroll-target="#래스터-데이터-stars"><span class="header-section-number">9.2</span> 래스터 데이터: <code>stars</code></a>
+  <ul class="collapse">
+  <li><a href="#stars-프록시-객체" id="toc-stars-프록시-객체" class="nav-link" data-scroll-target="#stars-프록시-객체"><span class="header-section-number">9.2.1</span> <code>stars</code> 프록시 객체</a></li>
+  <li><a href="#프록시-객체에-대한-오퍼레이션" id="toc-프록시-객체에-대한-오퍼레이션" class="nav-link" data-scroll-target="#프록시-객체에-대한-오퍼레이션"><span class="header-section-number">9.2.2</span> 프록시 객체에 대한 오퍼레이션</a></li>
+  <li><a href="#원격-래스터-리소스" id="toc-원격-래스터-리소스" class="nav-link" data-scroll-target="#원격-래스터-리소스"><span class="header-section-number">9.2.3</span> 원격 래스터 리소스</a></li>
+  </ul></li>
+  <li><a href="#대용량-데이터-큐브" id="toc-대용량-데이터-큐브" class="nav-link" data-scroll-target="#대용량-데이터-큐브"><span class="header-section-number">9.3</span> 대용량 데이터 큐브</a>
+  <ul class="collapse">
+  <li><a href="#검색과-처리" id="toc-검색과-처리" class="nav-link" data-scroll-target="#검색과-처리"><span class="header-section-number">9.3.1</span> 검색과 처리</a></li>
+  <li><a href="#클라우드-네이티브-스토리지-zarr" id="toc-클라우드-네이티브-스토리지-zarr" class="nav-link" data-scroll-target="#클라우드-네이티브-스토리지-zarr"><span class="header-section-number">9.3.2</span> 클라우드 네이티브 스토리지: Zarr</a></li>
+  <li><a href="#데이터-api-gee-openeo" id="toc-데이터-api-gee-openeo" class="nav-link" data-scroll-target="#데이터-api-gee-openeo"><span class="header-section-number">9.3.3</span> 데이터 API: GEE, openEO</a></li>
+  </ul></li>
+  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제"><span class="header-section-number">9.4</span> 연습문제</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -305,7 +331,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 26일</p>
+      <p class="date-modified">2024년 10월 17일</p>
     </div>
   </div>
     
@@ -316,8 +342,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>이 장에서는 R을 사용하여 대용량 공간 및 시공간 데이터셋을 처리하는 방법을 설명하며, <strong>sf</strong>와 <strong>stars</strong> 패키지의 활용에 초점을 맞춘다. 여기서 대용량의 의미를 다음의 세가지로 분류하고자 한다.</p>
+<ul>
+<li><p>작업 메모리에 맞추기 어려울 만큼 크다.</p></li>
+<li><p>로컬 하드 드라이브에 맞추기 어려울 만큼 크다.</p></li>
+<li><p>로컬 관리 인프라(네트워크 부착 스토리지)에 다운로드하기 어려울 만큼 크다.</p></li>
+</ul>
+<p>이 세 가지 범주는 (현재) 대략적으로 기가바이트(Gigabyte), 테라바이트(Terabyte), 페타바이트(Petabyte) 크기의 데이터셋에 해당한다고 볼 수 있다. 크기 고려 사항 외에도 접근 및 처리 속도도 중요한 역할을 하며, 특히 초대용량 데이터셋이나 인터랙티브 애플리케이션의 경우 더욱 그렇다. 클라우드 네이티브 지리공간 포맷은 클라우드 인프라에서의 처리에 최적화된 포맷으로, 컴퓨팅 및 저장 비용의 측면에서 최적화될 필요가 있다.</p>
+<p>다음과 같은 방식으로 비용을 절감할 수 있다.</p>
+<ul>
+<li><p>압축. 클라우드-최적화 GeoTIFF에 사용되는 LERC(제한 오류 래스터 압축) 알고리즘이나 ZARR 어레이 데이터에 사용되는 BLOSC 압축기와 같은 압축 기술이다.</p></li>
+<li><p>공간 하위 영역에 대한 빠른 접근 또는 컬럼-지향 데이터 접근. 전자는 클라우드-최적화 GeoTIFF에 대해 HTTP 래인지 리퀘스트를 통해 이루어지며, 후자는 GeoParquet 및 GeoArrow 포맷에 주로 적용된다.</p></li>
+<li><p>점진적인 해상도로 데이터에 접근 및 보기(우선 저해상도 데이터를 제공하고, 이후 필요에 따라 해상도를 점진적으로 높여가는 방식). 점진적 JPEG 포맷이나 이미지 피라미드(또는 오버뷰) 같은 것이 실행 예시이다.</p></li>
+<li><p>데이터 접근의 최적화. 해당 클라우드 스토리지의 구조와 동작 방식에 맞추거나 해당 객체 스토리지 프로토콜이 제공하는 기능을 활용하는 등의 방식을 통해 최적화를 수행한다.</p></li>
+</ul>
+<p>이 분야에는 만능 해결책이 없다는 점에 유의해야 한다. 특정 접근 패턴에 맞춰 스토리지를 최적화하면 다른 방식으로의 접근 속도가 느려질 수 있다. 예를 들어, 래스터 데이터가 서로 다른 공간 해상도에서 공간 영역에 대한 최적 접근을 위해 저장되면, 픽셀 시계열로 데이터를 읽는 속도가 매우 느릴 수 있다. 압축은 스토리지 및 대역폭(전송) 비용을 낮추지만, 읽을 때는 압축 해제 과정이 필요하기 때문에 처리 비용이 증가한다.</p>
+<section id="벡터-데이터-sf" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="벡터-데이터-sf"><span class="header-section-number">9.1</span> 벡터 데이터: <code>sf</code></h2>
+<section id="로컬-디스크로부터-불러오기" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="로컬-디스크로부터-불러오기"><span class="header-section-number">9.1.1</span> 로컬 디스크로부터 불러오기</h3>
+</section>
+<section id="데이터베이스로부터-불러오기-dbplyr" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="데이터베이스로부터-불러오기-dbplyr"><span class="header-section-number">9.1.2</span> 데이터베이스로부터 불러오기, dbplyr</h3>
+</section>
+<section id="온라인-리소스-혹은-웹-서비스로부터-불러오기" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="온라인-리소스-혹은-웹-서비스로부터-불러오기"><span class="header-section-number">9.1.3</span> 온라인 리소스 혹은 웹 서비스로부터 불러오기</h3>
+</section>
+<section id="api-openstreetmap" class="level3" data-number="9.1.4">
+<h3 data-number="9.1.4" class="anchored" data-anchor-id="api-openstreetmap"><span class="header-section-number">9.1.4</span> API, OpenStreetMap</h3>
+</section>
+<section id="geoparquet와-geoarrow" class="level3" data-number="9.1.5">
+<h3 data-number="9.1.5" class="anchored" data-anchor-id="geoparquet와-geoarrow"><span class="header-section-number">9.1.5</span> GeoParquet와 GeoArrow</h3>
+</section>
+</section>
+<section id="래스터-데이터-stars" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="래스터-데이터-stars"><span class="header-section-number">9.2</span> 래스터 데이터: <code>stars</code></h2>
+<section id="stars-프록시-객체" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="stars-프록시-객체"><span class="header-section-number">9.2.1</span> <code>stars</code> 프록시 객체</h3>
+</section>
+<section id="프록시-객체에-대한-오퍼레이션" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="프록시-객체에-대한-오퍼레이션"><span class="header-section-number">9.2.2</span> 프록시 객체에 대한 오퍼레이션</h3>
+</section>
+<section id="원격-래스터-리소스" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="원격-래스터-리소스"><span class="header-section-number">9.2.3</span> 원격 래스터 리소스</h3>
+</section>
+</section>
+<section id="대용량-데이터-큐브" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="대용량-데이터-큐브"><span class="header-section-number">9.3</span> 대용량 데이터 큐브</h2>
+<section id="검색과-처리" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="검색과-처리"><span class="header-section-number">9.3.1</span> 검색과 처리</h3>
+</section>
+<section id="클라우드-네이티브-스토리지-zarr" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="클라우드-네이티브-스토리지-zarr"><span class="header-section-number">9.3.2</span> 클라우드 네이티브 스토리지: Zarr</h3>
+</section>
+<section id="데이터-api-gee-openeo" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="데이터-api-gee-openeo"><span class="header-section-number">9.3.3</span> 데이터 API: GEE, openEO</h3>
+</section>
+</section>
+<section id="연습문제" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="연습문제"><span class="header-section-number">9.4</span> 연습문제</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -709,8 +795,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./08.html" class="pagination-link  aria-label=" &lt;span="" 시각화&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 시각화</span></span>
+      <a href="./08.html" class="pagination-link  aria-label=" &lt;span="" 플로팅&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -724,4 +810,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
