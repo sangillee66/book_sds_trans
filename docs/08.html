@@ -391,7 +391,7 @@ window.Quarto = {
 <p>세상은 둥글지만, 플로팅 장치는 평평하다. 2.2.2절에서 언급했듯이, 세상을 평평한 장치에 어떤 방식으로든 플로팅한다는 것은 우리가 특정한 투영법을 적용하고 있는 것을 의미한다. 즉, 타원체 좌표를 특정한 방식으로 데카르트 좌표로 전환하고 있는 것이다. 이는 우리가 아무것도 하지 않았다고 생각하는 경우(역자주: 투영법을 적용하지 않았다고 생각하는 경우)(그림 8.1의 왼쪽)나, 우주에서 본 것처럼 세상을 “있는 그대로” 보여준다고 생각하는 경우(그림 8.1의 오른쪽)에도 마찬가지이다. 평면 상의 모든 지도는 투영법을 가지고 있다.</p>
 <div id="fig-8-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-world-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-world-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-world-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-world-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.1: 국가 경계: 왼쪽은 경위도를 xy 좌표로 선형 변환한 것이고(플라트 카레 도법), 오른쪽은 무한 거리에서 지구를 바라본 것 같은 방식으로 나타낸 것(정사 도법)이다.
@@ -422,7 +422,7 @@ window.Quarto = {
 <p>그림 8.2에 나타난 두 지도를 보면, 축의 값들을 제외하고는 두 지도는 동일하다는 점을 알 수 있다. 왼쪽 지도의 축 값은 타원 좌표(도 단위)이고, 오른쪽 지도의 축 값은 투영 좌표(데카르트 좌표)(미터 단위)이다.</p>
 <div id="fig-8-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-eqc-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-eqc-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-eqc-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-eqc-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.2: 등장방형 도법이 적용된 독일. 왼쪽 지도의 단위는 도이고 정거원통 도법이 적용된 오른쪽 지도의 단위는 미터이다.
@@ -477,7 +477,7 @@ window.Quarto = {
 <p>이 함수의 <code>n</code> 아규먼트를 통해 계급의 수를 설정할 수 있고, style 아규먼트를 통해 서로다른 계급구분 방식을 선택할 수 있다. 사용가능한 옵션에 “fixed”, “sd”, “equal”, “pretty”, “quantile”, “kmeans”, “hclust”, “bclust”, “fisher”, 또는 “jenks”가 있다. <code>n</code>이 지정되었다 하더라도 “pretty”를 선택하면 무효화될 수 있고, <code>n</code>이 제공되지 않으면 <code>nclass.Sturges</code>가 사용된다. 자동으로 n을 선택할 수 있는 두 가지 다른 방법도 있다. 관측값의 수가 3000개를 초과하는 경우, “fisher”와 “jenks”의 경우 10% 샘플이 사용되어 계급을 생성한다.</p>
 </section><section id="그래티큘-및-관련-요소" class="level3" data-number="8.2.3"><h3 data-number="8.2.3" class="anchored" data-anchor-id="그래티큘-및-관련-요소">
 <span class="header-section-number">8.2.3</span> 그래티큘 및 관련 요소</h3>
-<p>그래티큘은 일정한 위도 또는 경도를 따라 지도상에 그으진 선의 네트워크이다. 그림 1.1에서는 회색으로 그려져 있고, 그림 1.2에서는 흰색으로 그려져 있다. 그래티큘은 기본적으로 위치에 대한 참조물로서 지도에 그려진다. 그림 1.1의 첫 번째 지도에서는 플로팅된 지역이 북위 35도, 서경 80도 근처에 있음을 읽을 수 있다. 투영 좌표에 기반한 그래티큘은 모든 선이 직선으로 나타나고 좌표값이 특정 지점으로부터의 거리를 나타내므로 경위도 그래티큘에 비해 쓰임새가 크지 않다(역자주: 통상적으로 투영 좌표에 기반한 격자망은 그래티큘이라 부르지 않고 그리드(grid)라고 부른다). 그래도 독도자가 이러한 그래티큘에 익숙하고 좌표값의 단위가 주어져 있다면, 크기나 거리를 해석하는데 도움을 줄 수 있을 것이다. 그래티큘의 형태는 사용된 투영법의 특성을 반영한다. 따라서 그래트큘을 통해 투영법에 대한 정보를 얻을 수 있다. 등장방형 도법이나 메르카토르 도법은 수직선 및 수평선을 가지며, 원추 도법은 직선이지만 간격이 넓어지는 경선(meridian)을 가지며, 많은 정적 도법에서 경선은 곡선으로 나타난다(역자주: 이것은 지나친 일반화의 오류이다. 세계 전체를 나타내는 타원형 형태의 정적 도법(예를 들어: 에케르트 IV 도법)에서 경선이 곡선으로 표현되긴 하지만, 원통 도법이나 원추 도법 계열의 정적 도법에서는 경위선이 모두 직선으로 나타난다).</p>
+<p>그래티큘은 일정한 위도 또는 경도를 따라 지도상에 그으진 선의 네트워크이다. 그림 1.1에서는 회색으로 그려져 있고, 그림 1.2에서는 흰색으로 그려져 있다. 그래티큘은 기본적으로 위치에 대한 참조물로서 지도에 그려진다. 그림 1.1의 첫 번째 지도에서는 플로팅된 지역이 북위 35도, 서경 80도 근처에 있음을 읽을 수 있다. 투영 좌표에 기반한 그래티큘은 모든 선이 직선으로 나타나고 좌표값이 특정 지점으로부터의 거리를 나타내므로 경위도 그래티큘에 비해 쓰임새가 크지 않다(역자주: 통상적으로 투영 좌표에 기반한 격자망은 그래티큘이라 부르지 않고 그리드(grid)라고 부른다). 그래도 독도자가 이러한 그래티큘에 익숙하고 좌표값의 단위가 주어져 있다면, 크기나 거리를 해석하는데 도움을 줄 수 있을 것이다. 그래티큘의 형태는 사용된 투영법의 특성을 반영한다. 따라서 그래트큘을 통해 투영법에 대한 정보를 얻을 수 있다. 등장방형 도법이나 메르카토르 도법은 수직선 및 수평선을 가지며, 원추 도법은 직선이지만 간격이 넓어지는 경선(meridian)을 가지며, 많은 정적 도법에서 경선은 곡선으로 나타난다(역자주: 이것은 지나친 일반화이다. 세계 전체를 나타내는 타원형 형태의 정적 도법(예를 들어: 에케르트 IV 도법)에서 경선이 곡선으로 표현되긴 하지만, 원통 도법(정축의 경우)에서는 경위선이 모두 직선으로 나타난다).</p>
 <p>그림 8.1과 대부분의 다른 지도들에서, 실제적인 참조물 구실을 하는 것은 그래티큘이라기 보다는 주 경계, 국가 경계, 해안선, 강, 도로, 철도 등과 같은 지리적 사상들이다. 이러한 요소들이 지도상에 적절히 배치된다면 그래티큘은 생략하는 것이 좋다. 그래티큘이 생략되면 일반적인 플롯의 중요 구성요소인 축, 눈금, 레이블이 사라지므로, 실질적인 지도 데이터로 채울 수 있는 많은 플로팅 공간이 남겨지게 된다.</p>
 </section></section><section id="베이스-plot" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="베이스-plot">
 <span class="header-section-number">8.3</span> 베이스 <code>plot</code>
@@ -502,7 +502,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-figreset-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-figreset-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-figreset-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-figreset-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.3: 범례가 있는 베이스 플롯에 주석 달기
@@ -524,7 +524,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-starshook-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-starshook-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-starshook-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-starshook-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.4: 다중 슬라이스를 가진 stars 플롯에 주석 달기
@@ -573,7 +573,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-ggplotstars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-ggplotstars-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-ggplotstars-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-ggplotstars-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.5: ggplot2와 geom_stars로 제작된 단순 패싯 래스터 플롯
@@ -595,7 +595,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapnc-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapnc-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapnc-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapnc-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.6: tmap: tm_polygon() 함수에 두 개의 속성을 동시에 지정하여 플로팅하기
@@ -608,7 +608,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-7" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapstars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapstars-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapstars-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapstars-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.7: tmap을 활용하여 제작된 단순한 래스터 플롯
@@ -1043,7 +1043,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
