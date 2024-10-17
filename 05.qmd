@@ -178,7 +178,7 @@ c(sid74_sum_counties = sum(nc$SID74),
   sid74_sum_rectangles = sum(a$SID74, na.rm = TRUE))
 ```
 
-``` R
+``` r
 #   sid74_sum_counties sid74_sum_rectangles 
 #                  667                 2621
 ```
