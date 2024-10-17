@@ -41,21 +41,306 @@ editor: visual
 
 ### 로컬 디스크로부터 불러오기
 
+`st_read` 함수는 GDAL을 사용하여 디스크에서 벡터 데이터를 읽은 후, 해당 데이터를 작업 메모리에 유지한다. 파일이 너무 커서 작업 메모리에 모두 로드할 수 없을 경우, 파일의 일부만 읽는 여러 가지 옵션이 존재한다. 첫 번째 방법은 `wkt_filter` 아규먼트에 지오메트리 정보를 포함한 WKT 텍스트 문자열을 설정하는 것이다. 이 경우, 해당 지오메트리와 교차하는 타깃 파일의 지오메트리 정보만 반환된다. 아래에 사례가 있다.
+
+```{r}
+#| eval: false
+library(sf)
+# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE
+file <- system.file("gpkg/nc.gpkg", package = "sf")
+c(xmin = -82,ymin = 36, xmax = -80, ymax = 37) |>
+    st_bbox() |> st_as_sfc() |> st_as_text() -> bb
+read_sf(file, wkt_filter = bb) |> nrow() # out of 100
+# Re-reading with feature count reset from 17 to 16
+# [1] 16
+```
+
+여기에서는 `st_read` 대신 `read_sf`가 사용되었는데, 출력을 억제하기 위해서이다.
+
+두 번째 옵션은 `st_read`의 `query` 아규먼트를 사용하는 것으로, 이는 "OGR SQL"로 작성된 어떤 쿼리도 다 가능하다. 예를 들어, 특정 레이어에서 피처를 선택하거나 필드를 제한하는데 사용될 수 있다. 아래에 사례가 있다.
+
+```{r}
+#| eval: false
+q <- "select BIR74,SID74,geom from 'nc.gpkg' where BIR74 > 1500"
+read_sf(file, query = q) |> nrow()
+# [1] 61
+```
+
+`nc.gpkg`는 레이어 이름이며, 이는 `st_layers`를 사용하여 파일에서 확인할 수 있다. 레코드의 시퀀스는 LIMIT과 OFFSET을 사용하여 읽을 수 있으며, 51-60번째 레코드를 읽으려면 다음과 같이 한다.
+
+```{r}
+#| eval: false
+q <- "select BIR74,SID74,geom from 'nc.gpkg' LIMIT 10 OFFSET 50"
+read_sf(file, query = q) |> nrow()
+# [1] 10
+```
+
+추가적인 쿼리 옵션으로는 지오메트리 유형 또는 폴리곤 면적을 기준으로 선택하는 것이 있다. 쿼리되는 데이터셋이 공간 데이터베이스인 경우, 해당 쿼리는 GDAL이 해석하지 않고 데이터베이스로 전달된다. 이는 더 강력한 기능을 사용할 수 있음을 의미한다. 자세한 정보는 GDAL 문서의 "OGR SQL 방언(dialect)" 부분에서 확인할 수 있다.
+
+대용량 파일이나 디렉터리가 압축되어 있는 경우, `/vsizip`(Zip 파일), `/vsigzip`(Gzip 파일), 또는 `/vsitar`(Tar 파일) 접두사를 파일 경로 앞에 붙여 압축을 풀지 않고도 파일을 읽을 수 있다. 압축 파일의 종류에 따라 접두어를 쓰고, 그 다음에 zip 파일의 경로를 쓰고, 그 다음에 압축 파일 내 해당 파일의 이름을 쓰면 된다. 이런 방식으로 파일을 읽으면 컴퓨팅 자원을 더 많이 소모할 수 있다.
+
 ### 데이터베이스로부터 불러오기, dbplyr
+
+GDAL은 여러 공간 데이터베이스를 지원하며, 앞서 언급한 바와 같이 `query` 아규먼트에 포함된 SQL 문을 데이터베이스에 전달하지만, DBI R 데이터베이스 드라이버를 사용하여 공간 데이터베이스에 직접 읽고 쓰는 것이 유리한 경우도 있다. 이러한 예시는 다음과 같다.
+
+```{r}
+#| eval: false
+pg <- DBI::dbConnect(
+    RPostgres::Postgres(),
+    host = Sys.getenv("DB_HOST"),
+    user = Sys.getenv("DB_USERNAME"),
+    dbname = "postgis")
+read_sf(pg, query = 
+        "select BIR74,wkb_geometry from nc limit 3") |> nrow()
+# [1] 3
+```
+
+여기에서, 데이터베이스 호스트와 사용자 이름은 환경 변수에서 가져오고, 데이터베이스 이름은 `postgis`이다.
+
+공간 쿼리는 보통 아래와 같은 모습이다.
+
+```{r}
+#| eval: false
+q <- "SELECT BIR74,wkb_geometry FROM nc WHERE \
+ST_Intersects(wkb_geometry, 'SRID=4267;POINT (-81.50 36.43)');"
+read_sf(pg, query = q) |> nrow()
+# [1] 1
+```
+
+여기서, 인터섹션 연산은 데이터베이스 내에서 수행되며, 공간 인덱스가 존재할 경우 이를 사용한다. 데이터베이스 백엔드를 사용하여 `dplyr`을 활용할 때도 동일한 메커니즘이 작동한다.
+
+```{r}
+#| eval: false
+library(dplyr, warn.conflicts = FALSE)
+nc_db <- tbl(pg, "nc")
+```
+
+`dplyr` 문법 속에서 공간 쿼리가 작성될 수 있으며, 해당 쿼리는 데이터베이스로 전달된다.
+
+```{r}
+#| eval: false
+nc_db |> 
+     filter(ST_Intersects(wkb_geometry, 
+                        'SRID=4267;POINT (-81.50 36.43)')) |>
+     collect()
+# # A tibble: 1 × 16
+#   ogc_fid  area perimeter cnty_ cnty_id name  fips  fipsno cress_id
+#     <int> <dbl>     <dbl> <dbl>   <dbl> <chr> <chr>  <dbl>    <int>
+# 1       1 0.114      1.44  1825    1825 Ashe  37009  37009        5
+# # ℹ 7 more variables: bir74 <dbl>, sid74 <dbl>, nwbir74 <dbl>,
+# #   bir79 <dbl>, sid79 <dbl>, nwbir79 <dbl>,
+# #   wkb_geometry <pq_gmtry>
+nc_db |> filter(ST_Area(wkb_geometry) > 0.1) |> head(3)
+# # Source:   SQL [3 x 16]
+# # Database: postgres  [edzer@localhost:5432/postgis]
+#   ogc_fid  area perimeter cnty_ cnty_id name   fips  fipsno cress_id
+#     <int> <dbl>     <dbl> <dbl>   <dbl> <chr>  <chr>  <dbl>    <int>
+# 1       1 0.114      1.44  1825    1825 Ashe   37009  37009        5
+# 2       3 0.143      1.63  1828    1828 Surry  37171  37171       86
+# 3       5 0.153      2.21  1832    1832 North… 37131  37131       66
+# # ℹ 7 more variables: bir74 <dbl>, sid74 <dbl>, nwbir74 <dbl>,
+# #   bir79 <dbl>, sid79 <dbl>, nwbir79 <dbl>,
+# #   wkb_geometry <pq_gmtry>
+```
+
+(참고로, PostGIS의 `ST_Area` 함수는 `nc`의 `AREA` 필드와 동일한 면적을 계산하는데, 사실 아무런 의미가 없는 값이다. 왜냐하면 경위도 좌표를 마치 투영 좌표로 취급하여 계산한 면적이기 때문이다.)
 
 ### 온라인 리소스 혹은 웹 서비스로부터 불러오기
 
+GDAL 드라이버는 URL이 `https://`로 시작하는 온라인 리소스에서 읽는 것을 지원하며, 이때 URL 앞에 `/vsicurl/`을 붙인다. 특정 클라우드에 특화된 유사한 드라이버도 여러 가지가 있으며, Amazon S3의 경우 `/vsis3/`, Google Cloud Storage의 경우 `/vsigs/`, Azure의 경우 `/vsiaz/`, Alibaba Cloud의 경우 `/vsioss/`, OpenStack Swift Object Storage의 경우 `/vsiswift/`를 사용한다. `/vsicurl/`을 사용하는 예시는 9.3.2절에 있다.
+
+위의 접두사와 /vsizip/를 결합하면 압축된 온라인 리소스에서 파일을 읽을 수 있다. 파일 형식에 따라 다르겠지만, 보통 이런 방식으로 정보를 읽으면 파일 전체를 읽어야 하거나 심지어 여러 번 읽어야 할 수 있으며, 항상 리소스를 처리하는 가장 효율적인 방법이 아닐 수도 있다. 클라우드 네이티브 포맷은 HTTP 리퀘스트에 효과적으로 작동하도록 최적화되어 있다.
+
 ### API, OpenStreetMap
+
+지리공간 데이터를 위한 웹 서비스는 사용자의 요청에 따라 데이터를 실시간으로 생성하고 이를 API를 통해 접근할 수 있게 해준다. 예를 들어, OpenStreetMap의 데이터는 GDAL 벡터 드라이버와 같은 것을 통해 일괄 다운로드하여 로컬에서 활용하는 것이 가능하다. 그러나 사용자는 보통 일부 데이터만을 얻고자 하거나 소규모 쿼리에 데이터를 사용하고자 한다. OpenStreetMap 데이터를 쿼리하는 여러 R 패키지가 존재한다.
+
+-   **OpenStreetMap** 패키지(Fellows와 Jan Peter Stotz의 JMapViewer 라이브러리, 2019)는 데이터를 래스터 타일로 다운로드하며, 보통 다른 피처를 플로팅하는 배경 또는 참조로 사용된다.
+
+-   **osmdata** 패키지(Mark Padgham 외, 2017)는 **sf** 또는 **sp** 형식의 포인트, 라인 또는 폴리곤으로 벡터 데이터를 다운로드한다.
+
+-   **osmar** 패키지(CRAN 아카이브에서 다운로드 가능)는 벡터 데이터를 반환하지만, 도로 요소가 어떻게 연결되어 있는지를 포함한 네트워크 토폴로지(`igraph` 객체 형태)도 제공하며, 최단 경로를 계산하는 함수도 포함되어 있다.
+
+올바르게 구성된 API 호출이 URL의 형태로 주어지면, 세세한 옵션 설정이 가능한 GDAL OSM 드라이버(`st_read` 함수에서 사용 가능)가 “.osm” 파일(xml)을 읽고 다음과 같은 다섯 개의 레이어가 포함된 데이터 세트를 반환한다. 중요 태그를 가진 `points`, 면적이 없는 “way” 피처를 가진 `lines`, “relation” 피처를 가진 `multilinestrings`, “relation” 피처를 가진 `miltipolygons`, 그리고 `other_relations`. 다음은 매우 작은 영역에 대한 단순한 OpenStreetMap에 대한 쿼리의 사례를 보여준다.
+
+```{r}
+#| eval: false
+download.file(paste0("https://openstreetmap.org/api/0.6/map?",
+       "bbox=7.595,51.969,7.598,51.970"),
+    "data/ms.osm", method = "auto")
+```
+
+다운로드된 파일로부터 lines 레이어를 읽어 첫 번째 속성을 아래와 같이 플롯할 수 있다(그림 9.1).
+
+```{r}
+#| eval: false
+#| label: fig-9-1
+#| fig-cap: "OpenStreetMap 벡터 데이터"
+o <- read_sf("data/ms.osm", "lines")
+p <- read_sf("data/ms.osm", "multipolygons")
+st_bbox(c(xmin = 7.595, ymin = 51.969, 
+          xmax = 7.598, ymax = 51.970), crs = 'OGC:CRS84') |>
+    st_as_sfc() |>
+    plot(axes = TRUE, lwd = 2, lty = 2, cex.axis = .5)
+plot(o[,1], lwd = 2, add = TRUE)
+plot(st_geometry(p), border = NA, col = '#88888888', add = TRUE)
+```
+
+![OpenStreetMap 벡터 데이터](https://r-spatial.org/book/09-Large_files/figure-html/fig-overpass-1.png){#fig-9-1}
+
+Overpass API는 OpenStreetMap 데이터에 대해 더 일반적이고 강력한 쿼리 기능을 제공한다.
 
 ### GeoParquet와 GeoArrow
 
+클라우드 네이티브 분석에 특화된 두 가지 포맷은 Apache 프로젝트인 Parquet와 Arrow에서 파생되었다. 두 형식 모두 테이블 데이터에 대한 컬럼 지향 스토리지를 제공하는데, 대부분의 다른 데이터베이스가 취하고 있는 레코드 지향 스토리지에 비해 많은 레코드에서 단일 필드를 읽어내는 속도가 빠르다. 두 형식의 Geo 확장에는 다음이 포함된다.
+
+-   지오메트리 컬럼을 저장하는 방법으로, WKB(well-known binary) 또는 WKT(well-known text)로 저장할 수 있으며, 서브 지오메트리가 미리 인덱스된 보다 효율적인 형식으로 저장할 수도 있다.
+
+-   CRS의 저장
+
+이 책을 쓰고 있는 시점 기준으로, 두 포맷 모두 활발히 개발 중이며, GDAL 버전 3.5부터는 이들을 읽거나 생성하기 위한 드라이버가 제공된다. 두 포맷 모두 압축 저장을 지원한다. 차이점은 (Geo)Parquet가 퍼시스턴트 스토리지(역자주: 데이터를 장기적으로 훼손없이 저장하는 방식)에 더 중점을 두고 있는 반면, (Geo)Arrow는 빠른 접근과 빠른 계산에 더 중점을 두고 있다는 것이다. 예를 들어, Arrow는 인메모리 포맷(역자주: 데이터를 주기억장치에 저장하여 처리하는 방식)과 온디스크 포맷(역자주: 데이터를 저장 매체에 저장하는 방식) 모두로 사용할 수 있다.
+
 ## 래스터 데이터: `stars`
+
+래스터 데이터셋을 다룰 때 발생하는 가장 일반적인 문제는 파일의 용량이 너무 크다는 점 뿐만 아니라(단일 Sentinel-2 타일은 약 1GB), 관심 있는 지역과 기간에 대한 데이터를 얻기 위해서는 수천 또는 수백만 개의 이러한 파일이 필요하다는 점이다. 2022년, Sentinel 위성 운영 프로그램인 Copernicus는 매일 160TB의 이미지 데이터를 산출했다. 이는 데이터를 로컬 디스크에 다운로드하고, 메모리에 로드한 다음, 분석하는 전통적인 R 사용 패턴은 더 이상 작동하지 않을 것임을 의미한다.
+
+Google Earth Engine (Gorelick et al. 2017), Sentinel Hub, 또는 openEO.cloud와 같은 클라우드 기반 지구 관측 프로세싱 플랫폼은 이러한 점을 인식하고 사용자가 페타바이트 범위의 데이터셋을 쉽게 다루고 상호작용할 수 있도록 해준다. 이러한 플랫폼은 다음과 같은 특성을 공유한다.
+
+-   계산은 가능한 한 늦게 수행된다(지연 평가)
+
+-   사용자가 요청한 데이터만 계산되고 반환되며, 그 이상은 하지 않는다.
+
+-   중간 결과를 저장하지 않고 즉석(on-the-fly) 계산을 선호한다.
+
+-   유용한 결과를 가진 지도가 신속하게 생성되고 표시되어 인터렉티브 모델 개발을 가능하게 한다.
+
+이것은 데이터베이스 및 클라우드 기반 분석 환경에 대한 `dbplyr` 인터페이스와 유사하지만, 우리가 *무엇*을 신속하게 보고자하는가에서 차이가 난다. `dbplyr`의 지연 테이블에서는 처음 *n*개의 레코드를 빨리 보고 싶어 하지만, 여기서는 결과에 대한 빠른 *개요*를 보고 싶어한다. 그것도 전체 지역 또는 일부 지역에 대한 지도 형식의 개요를 보고 싶어한다. 이를 위해 해상도는 손해본다(원본(관측) 해상도가 아닌 화면 해상도로 디스플레이 된다).
+
+예를 들어, 화면에서 미국의 결과를 "보고자" 할 때 1000 x 1000 픽셀의 해상도가 필요하다면, 이만큼의 픽셀에 대한 결과만 계산하면 된다. 이는 대략 3000m x 3000m 그리드 셀로 구성된 데이터에 해당한다. Sentinel-2 데이터의 경우 해상도가 10m이므로, 300배로 다운샘플링하여 3km x 3km 해상도로 작업할 수 있다. 이 경우, 기본 10m x 10m 해상도로 작업할 때와 비교하여 처리, 저장 및 네트워크 요구 사항이 $300^2\approx10^5$배 줄어든다. 언급된 플랫폼에서는 지도를 확대하면 더 세밀한 해상도와 더 작은 범위에서 추가 계산이 촉발된다.
+
+이러한 원리에 따른 간단한 최적화 중 하나는 `stars` 객체의 플롯 방법이 작동하는 방식이다. 대용량 래스터를 플로팅할 경우, 플롯하기 전에 어레이를 다운샘플링하여 시간을 대폭 절약한다. 다운샘플링 정도는 플로팅 영역의 크기와 플로팅 해상도(픽셀 밀도)에 의거해 결정된다. PDF와 같은 벡터 장치의 경우, R은 플롯 해상도를 75 dpi로 설정하며, 이는 픽셀당 0.3mm에 해당한다. 플롯을 확대하면 이 사실이 드러날 수 있지만, 확대된 장치에 다시 플롯하면 목표 밀도로 플롯이 생성된다. `geom_stars`의 경우, 사용자가 `downsample` 비율을 지정해야 하는데, 이는 **ggplot2**의 해당 함수를 통해 장치 크기를 설정할 수 있는 방법이 없기 때문이다.
 
 ### `stars` 프록시 객체
 
+작업 메모리에 맞추기 어려울 만큼 큰 데이터셋을 처리하기 위해 **stars**는 `stars_proxy` 객체를 제공한다. 어떻게 사용하는지를 보여주기 위해, 대용량 데이터셋(총 약 1GB)을 포함한 R 데이터 패키지인 **starsdata** 패키지를 사용할 것이다. 이는 다음과 같이 설치할 수 있다.
+
+```{r}
+#| eval: false
+options(timeout = 600) # or larger in case of slow network
+install.packages("starsdata", 
+  repos = "http://cran.uni-muenster.de/pebesma/", type = "source")
+```
+
+다음과 같이 **starsdata** 패키지에서 Sentinel-2 이미지를 "불러올" 수 있다.
+
+```{r}
+#| eval: false
+library(stars) |> suppressPackageStartupMessages()
+f <- paste0("sentinel/S2A_MSIL1C_20180220T105051_N0206",
+           "_R051_T32ULE_20180221T134037.zip")
+granule <- system.file(file = f, package = "starsdata")
+file.size(granule)
+# [1] 7.69e+08
+base_name <- strsplit(basename(granule), ".zip")[[1]]
+s2 <- paste0("SENTINEL2_L1C:/vsizip/", granule, "/", base_name, 
+    ".SAFE/MTD_MSIL1C.xml:10m:EPSG_32632")
+(p <- read_stars(s2, proxy = TRUE))
+# stars_proxy object with 1 attribute in 1 file(s):
+# $EPSG_32632
+# [1] "[...]/MTD_MSIL1C.xml:10m:EPSG_32632"
+# 
+# dimension(s):
+#      from    to offset delta            refsys    values x/y
+# x       1 10980  3e+05    10 WGS 84 / UTM z...      NULL [x]
+# y       1 10980  6e+06   -10 WGS 84 / UTM z...      NULL [y]
+# band    1     4     NA    NA                NA B4,...,B8
+object.size(p)
+# 12576 bytes
+```
+
+이 과정에서 실제로는 픽셀 값을 전혀 불러오지 않으며, 데이터셋에 대한 참조를 유지하고 디멘션 테이블을 채울 뿐이다. (복잡한 s2 이름을 통해 .zip 파일 내의 115개 파일 중 무엇이 올바른 파일인지를 GDAL이 찾을 수 있도록 한다.)
+
+프록시 객체의 아이디어에 기반해 다음과 같은 표현식을 생성할 수 있다.
+
+```{r}
+#| eval: false
+p2 <- p * 2
+```
+
+하지만 이 경우 계산은 미루어진다. 실제로 데이터가 필요할 때만 `p * 2`가 평가된다. 데이터가 필요할 때는 다음과 같다.
+
+-   데이터를 플롯할 때
+
+-   `write_stars`를 사용하여 객체를 디스크에 쓸 때
+
+-   `st_as_stars`를 사용하여 객체를 명시적으로 메모리에 불러올 때
+
+전체 객체를 담기에 메모리가 부족한 경우, `plot`과 `write_stars`는 이를 처리하기 위해 서로 다른 전략을 선택한다.
+
+-   `plot`은 모든 픽셀이 아닌 화면에 표시될 수 있는 픽셀만 다운샘플링하여 가져온다.
+
+-   `write_stars`는 데이터를 청크 단위로 읽고 처리한 후, 기록한다.
+
+```{r}
+#| echo: false
+#| eval: false
+#| label: fig-9-2
+#| fig-cap: "Sentinel-2의 10m 밴드를 다운샘플링한 경우"
+plot(p)
+# downsample set to 18
+```
+
+![Sentinel-2의 10m 밴드를 다운샘플링한 경우](https://r-spatial.org/book/09-Large_files/figure-html/fig-plotp-1.png){#fig-9-2}
+
+고밀도 공간 이미지에 대해서는 다운샘플링과 청크 처리가 구현되지만, 고밀도 시계열이나 기타 고밀도 차원에 대해서는 구현되지 않는다. 예를 들어, 그림 9.2에 표시된 `plot(p)`의 출력은 각 밴드에서 사용할 수 있는 10,980 x 10,980 픽셀이 아닌, 플롯 장치에서 볼 수 있는 픽셀만 가져온다. 적용된 다운샘플링 비율은 다음과 같이 구할 수 있다.
+
+```{r}
+#| echo: false
+#| eval: false
+(ds <- floor(sqrt(prod(dim(p)) / prod(dev.size("px")))))
+# [1] 19
+```
+
+``` R
+# [1] 19
+```
+
+숫자가 의미하는 바는 원본 이미지의 19 x 19 서브 이미지마다 단 하나의 픽셀만 읽고 플롯되었다는 것이다.
+
 ### 프록시 객체에 대한 오퍼레이션
 
+`stars_proxy` 객체를 위해 여러 전용 메소드가 제공된다.
+
+```{r}
+#| eval: false
+methods(class = "stars_proxy")
+#  [1] [               [[<-            [<-             adrop          
+#  [5] aggregate       aperm           as.data.frame   c              
+#  [9] coerce          dim             droplevels      filter         
+# [13] hist            image           initialize      is.na          
+# [17] Math            merge           mutate          Ops            
+# [21] plot            predict         print           pull           
+# [25] rename          select          show            slice          
+# [29] slotsFromS3     split           st_apply        st_as_sf       
+# [33] st_as_stars     st_crop         st_dimensions<- st_downsample  
+# [37] st_mosaic       st_normalize    st_redimension  st_sample      
+# [41] st_set_bbox     transmute       write_stars    
+# see '?methods' for accessing help and source code
+```
+
+우리는 이미 `plot`과 `print`의 작동은 살펴보았고 `dim`은 차원 메타데이터 테이블에서 차원을 읽어온다.
+
+실제로 데이터를 가져오는 세 가지 메소드는 `st_as_stars`, `plot`, 그리고 `write_stars`이다. `st_as_stars`는 실제 데이터를 `stars` 객체로 읽어오며, 이때 `downsample` 아규먼트가 다운샘플링 비율을 제어한다. `plot`도 이 작업을 수행하며, 장치 해상도에 적합한 다운샘플링 값을 선택하고 객체를 플롯한다. `write_stars`는 `stars_proxy` 객체를 디스크에 기록한다.
+
+`stars_proxy` 객체를 위한 다른 모든 메소드는 래스터 데이터에 실질적으로 작용하는 것을 아니고, 객체에 연결된 작업 목록에 오퍼레이션을 추가하지만 한다. 실제 래스터 데이터가 불어와지면, 예를 들어 `plot` 또는 `st_as_stars`가 호출되면, 그 때 이 목록의 명령이 실행된다.
+
+`st_crop`는 읽힐 래스터의 범위(영역)를 제한한다. `c`는 `stars_proxy` 객체를 결합한다. 역시 실제 데이터를 결합하는 것은 아니다. `adrop`은 빈 차원을 제거하고, `aperm`은 차원 순서를 변경한다.
+
+`write_stars`는 입력을 청크 단위로 읽고 처리한다. 이 메소드는 사용자가 공간 청크의 크기를 제어할 수 있도록 해주는 `chunk_size` 아규먼트를 가진다.
+
 ### 원격 래스터 리소스
+
+“클라우드 최적화 GeoTIFF”(COG)와 같은 포맷은 효율성과 자원 친화성을 염두에 두고 설계되었다. 예를 들어, 메타데이터만 읽거나 (전체 이미지를 낮은 해상도로 표시한) 오버뷰만 읽거나 `/vsixxx/` 메커니즘을 사용하여 특정 공간 영역만을 읽는 데 유용하다(9.1.3절 참조). COG는 GDAL의 GeoTIFF 드라이버를 사용하여 생성할 수 있으며, `write_stars` 호출에서 적절한 데이터셋 생성 옵션을 설정하면 된다.
 
 ## 대용량 데이터 큐브
 
