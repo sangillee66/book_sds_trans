@@ -368,7 +368,7 @@ stars::read_mdim 함수를 통해 전체 데이터 큐브를 읽을 수도 있�
 
 원격(클라우드 기반) Zarr 파일을 읽기 위해서는 URL 앞에 형식 및 접근 프로토콜에 대한 지시자를 추가해야 한다.
 
-``` R
+``` r
 dsn = paste0('ZARR:"/vsicurl/https://ncsa.osn.xsede.org',
        '/Pangeo/pangeo-forge/gpcp-feedstock/gpcp.zarr"')
 ```

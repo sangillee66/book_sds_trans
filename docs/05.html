@@ -449,7 +449,7 @@ window.Quarto = {
 <p>노스캐롤라이나 카운티의 예는 그림 5.1에 나타나 있다. 타원 좌표 POINT(-79, 35.5)를 기준으로 사분면을 설정하고 카운티의 센트로이드가 어느 사분면에 위치하느냐에 따라 카운티를 그룹화하고, 각 그룹별로 질병 사례 수를 합산했다. 그 결과, 그룹별로 통합된 지오메트리가 생성되었음을 알 수 있다(3.2.6절 참조). 이러한 그룹별 합형은 필수적인데, 만일 카운티 지오메트리를 단순히 한데 묶어 MULTIPOLYGON을 생성했다면 수 많은 중복 경계가 생겨나 유효하지 않은 지오메트리가 생성되었을 것이기 때문이다(3.1.2절 참조).</p>
 <div id="fig-5-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.1: SID74가 네 개의 지역별로 합산되었다.
@@ -458,7 +458,7 @@ window.Quarto = {
 <p>결합된 카운티 폴리곤을 지도로 나타내는 것은 기술적으로 아무런 문제가 없지만, 그룹 합계가 그룹화된 카운티에 관련된 것이 아니라 개별 카운티와 관련된 것이라는 잘못된 암시를 줄 수 있다. 이러한 방식의 합형의 특징은 각 레코드가 하나의 그룹에만 할당된다는 점이다. 이렇게 하면 그룹별 합계의 총합이 그룹화 이전 데이터의 총합과 동일하다는 장점이 있다. 즉, 정량적인 변수의 경우, 정보가 손실되거나 추가되는 일이 없다. 새로 형성된 기오메트리는 원 레코드의 지오메트리를 그룹에 의거해 유니온한 결과이다.</p>
 <div id="fig-5-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.2: 노스케롤라이나 카운티 상의 타깃 블
@@ -540,7 +540,7 @@ window.Quarto = {
 </ol>
 <div id="fig-5-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.3: 면적-가중 인터폴레이션의 예제 데이터
@@ -951,7 +951,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

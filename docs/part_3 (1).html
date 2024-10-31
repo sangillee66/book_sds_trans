@@ -69,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -210,7 +181,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 시각화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -334,7 +305,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 10월 31일</p>
+      <p class="date-modified">2024년 9월 26일</p>
     </div>
   </div>
     
@@ -345,27 +316,6 @@ window.Quarto = {
 </header>
 
 
-<p>이 책의 첫 번째 파트와 두 번째 파트에서는 ’공간데이터 모델’과 관련된 많은 개념에 대해 알아보았다. 다음의 주제들이 다루어졌다.</p>
-<ul>
-<li><p>실제 현상과 숫자의 관계(2장)</p></li>
-<li><p>다양한 공간에서 좌표가 정의되는 방식(2장과 4장)</p></li>
-<li><p>단순 피처 지오메트리(3장), 두 점 사이의 직선을 이용해 라인스트링과 폴리곤을 정의하는 방법</p></li>
-<li><p>지오메트리 유형의 집합(3.1절)</p></li>
-<li><p>서포트 및 피처 속성과 지오메트리의 관련 방식(5장)</p></li>
-<li><p>단순 테셀레이션이 시공간 체적(볼륨)을 설명하는 방식(6장)</p></li>
-<li><p>이 개념들을 데이터사이언스 소프트웨어로 적용하는 방법(7장)</p></li>
-</ul>
-<p>이 책의 세 번째이자 가장 분량이 많은 이 파트에서는 공간데이터의 <em>통계적</em> 모델링을 다룬다. 과학으로서 <em>통계학</em>은 관측값의 변동성을 기술하고 이해하며, 미래 관측값을 예측하는 데 중점을 둔다. 관측값은 보통 다음과 같이 모델링된다.</p>
-<p><span class="math display">\[
-\text{관측값}=\text{설명된 부분}+\text{잔차}
-\]</span></p>
-<p>여기서 “잔차”는 측정 오차를 포함한 예측 변수로 설명되지 않는 변동성을 의미할 뿐만 아니라 낮은 모델 적합도 또는 모델 오지정(missification)이 야기한 변동성을 의미한다. 공간데이터의 경우, 다음과 같이 항이 하나 더 추가된다.</p>
-<p><span class="math display">\[
-\text{관측값}=\text{설명된 부분}+\text{매끄러운 부분}+\text{잔차}
-\]</span></p>
-<p>여기서 “매끄러운 부분”은 외부 예측 변수로는 설명되지 않지만, 명확하게 “매끄러운” 공간 패턴을 보여주는 변동성을 의미하며, “잔차”는 이러한 패턴을 나타내지 않는 “거친” 변동성을 의미한다. 이러한 “매끄러운” 항은 예를 들어 좌표상의 기본 함수(스플라인, 스무더)로 모델링하거나, 공간적 상관성을 띠는 랜덤 항으로 모델링할 수 있다.</p>
-<p>10장에서는 공간데이터에 대한 통계적 모델링을 소개한다. 이를 통해 후속 장을 준비하는 동시에, 후속 장에서는 자세히 다루지 않는 여러 사항을 다룬다. 또한 이 장은 첫번째 파트에서 다룬 개념들, 특히 5장에서 다룬 ‘서포트’ 개념과의 연결을 시도한다.</p>
-<p>공간 데이터의 통계적 모델링에 대한 상세한 내용 뿐만 아니라 전산 소프트웨어의 사용 방법에 대한 세세한 내용까지를 단 한 권의 책에 모두 담는 일은 애당초 불가능하다. 예를 들어, <code>spatstat</code> 책(Baddeley, Rubak, and Turner, 2015)은 오직 공간 포인트 패턴 데이터와 R에 대한 내용만을 다루는데도 분량이 약 850페이지에 달한다. 이 세 번째 파트에서는 ‘고전적인’ 공간통계학적 주제 세 가지에 집중한다: 포인트 패턴 분석(11장), 지구통계학적 데이터(12장, 13장), 그리고 래티스(지역) 데이터(14-17장). 내용 중간중간에 통계 방법론 및 R 실행과 관련된 참고 사항을 가능한 많이 제시하도록 노력할 것이다.</p>
 
 
 
