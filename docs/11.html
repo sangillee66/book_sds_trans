@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>공간데이터사이언스 개론 - 11&nbsp; 포인트패턴 분석</title>
+<title>공간데이터사이언스 개론 - 11&nbsp; 포인트 패턴 분석</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴 분석</span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -181,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 시각화</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -210,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -286,14 +286,25 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#관측-윈도우" id="toc-관측-윈도우" class="nav-link active" data-scroll-target="#관측-윈도우"><span class="header-section-number">11.1</span> 관측 윈도우</a></li>
+  <li><a href="#crs" id="toc-crs" class="nav-link" data-scroll-target="#crs"><span class="header-section-number">11.2</span> CRS</a></li>
+  <li><a href="#속성이-있는-포인트-패턴-선형-네트워크-상의-포인트" id="toc-속성이-있는-포인트-패턴-선형-네트워크-상의-포인트" class="nav-link" data-scroll-target="#속성이-있는-포인트-패턴-선형-네트워크-상의-포인트"><span class="header-section-number">11.3</span> 속성이 있는 포인트 패턴, 선형 네트워크 상의 포인트</a></li>
+  <li><a href="#공간-샘플링과-포인트-프로세스를-시뮬레이션하기" id="toc-공간-샘플링과-포인트-프로세스를-시뮬레이션하기" class="nav-link" data-scroll-target="#공간-샘플링과-포인트-프로세스를-시뮬레이션하기"><span class="header-section-number">11.4</span> 공간 샘플링과 포인트 프로세스를 시뮬레이션하기</a></li>
+  <li><a href="#구체-상의-포인트를-시뮬레이션하기" id="toc-구체-상의-포인트를-시뮬레이션하기" class="nav-link" data-scroll-target="#구체-상의-포인트를-시뮬레이션하기"><span class="header-section-number">11.5</span> 구체 상의 포인트를 시뮬레이션하기</a></li>
+  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제"><span class="header-section-number">11.6</span> 연습문제</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴 분석</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></h1>
 </div>
 
 
@@ -305,7 +316,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 26일</p>
+      <p class="date-modified">2024년 10월 31일</p>
     </div>
   </div>
     
@@ -316,8 +327,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>포인트 패턴 분석은 공간 상의 포인트 패턴을 기술하거나 그러한 패턴을 야기한 프로세스에 대한 추론을 행한다. 여기서 핵심적인 사항은 포인트들의 위치 정보인데, 이러한 위치는 샘플링을 위한 통제 지점이 아니라, 특정한 프로세스의 산물(동물 목격 지점, 사고 지점, 발병 지점, 수목 지점 등)이다. 이것은 모든 지점에서 해당 현상이 발생하지만 관측값은 우리가 통제한 관측 지점에서만 획득된 것이라고 보는 지구통계학적 프로세스(12장)와 대조된다. 그러므로, 지구통계학적 연구의 주된 관심은 관측 지점에 있는 것이 아니라 비관측 지점의 값을 추정하는 데 있다. 포인트 패턴 분석은 해당 지역의 모든 지점에서 관측이 이루어질 수 있다고 가정한다. 이는 특정 지점에 포인트가 없다면 해당 지점에서 관측이 이루어지지 않았다는 것이 아니라(지구통계학적 프로세스) 관측은 이루어졌지만 현상이 발생하지 않았다는 것을 의미한다. 확률 과정(random process)의 용어로 말하자면, 포인트 패턴 분석에서 위치는 확률 변수이지만, 지구통계학적 분석에서 측정 변수는 고정 위치를 가진 랜덤 필드이다.</p>
+<p>이 장에서는 <strong>spatstat</strong> 패키지(Baddeley, Turner, Rubak 2022)를 활용한 포인트 패턴 분석의 기초만을 다룬다. 포인트 패턴 이론과 <strong>spatstat</strong> 및 관련 패키지의 사용에 대한 포괄적인 내용은 Baddeley, Rubak, Turner(2015)의 <strong>spatstat</strong> 책에 잘 나타나 있다. 이 장에서는 특정 주제만을 다루게 되는데, 해당 주제가 누락된 주제에 비해 더 중요하다는 의미는 전혀 아니다. <strong>spatstat</strong> 패키지와 보다 공간데이터사이언스 지향 패키지인 <strong>sf</strong> 및 <strong>stars</strong> 간의 인터페이스를 설명하는데 공간을 할애하려 한다. 포인트 패턴 분석을 소개하는 또 다른 책으로는 Stoyan et al.(2017)가 있다. 시공간 포인트 프로세스 분석용 R 패키지인 <strong>stpp</strong>(Gabriel et al.&nbsp;2022)에 대한 내용은 Gabriel, Rowlingson, Diggle(2013)를 참고할 수 있다.</p>
+<p>포인트 패턴 분석에서 중요한 개념은 포인트 <em>패턴</em>과 포인트 <em>프로세스</em>를 구분하는 것이다. 포인트 프로세스는 포인트 패턴을 생성하는 확률 과정(stochastic process)이다. 데이터셋은 항상 포인트 패턴이며, 추론은 우리가 관찰한 패턴을 생성할 수 있는 프로세스의 특성을 파악하는 것이다. 공간 포인트 프로세스의 특성에는 다음이 포함된다.</p>
+<ul>
+<li><p>1차 특성: 강도 함수는 단위 면적당 포인트의 수를 측정하며, 이 함수는 <em>이질적</em>(inhomogeneous) 포인트 프로세스의 경우 공간적으로 변동한다.</p></li>
+<li><p>2차 특성: 주어진 강도 함수(고정 혹은 변동) 하에서, 포인트들이 <em>서로</em> 독립적으로 분포하는지, 서로 끌어당기는 경향이 있는지(군집화), 또는 서로 밀어내는 경향이 있는지(완전 공간 무작위성(complete spatial randomness)보다 더 규칙적으로 분포하는지)를 묘사한다.</p></li>
+</ul>
+<section id="관측-윈도우" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="관측-윈도우"><span class="header-section-number">11.1</span> 관측 윈도우</h2>
+</section>
+<section id="crs" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="crs"><span class="header-section-number">11.2</span> CRS</h2>
+</section>
+<section id="속성이-있는-포인트-패턴-선형-네트워크-상의-포인트" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="속성이-있는-포인트-패턴-선형-네트워크-상의-포인트"><span class="header-section-number">11.3</span> 속성이 있는 포인트 패턴, 선형 네트워크 상의 포인트</h2>
+</section>
+<section id="공간-샘플링과-포인트-프로세스를-시뮬레이션하기" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="공간-샘플링과-포인트-프로세스를-시뮬레이션하기"><span class="header-section-number">11.4</span> 공간 샘플링과 포인트 프로세스를 시뮬레이션하기</h2>
+</section>
+<section id="구체-상의-포인트를-시뮬레이션하기" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="구체-상의-포인트를-시뮬레이션하기"><span class="header-section-number">11.5</span> 구체 상의 포인트를 시뮬레이션하기</h2>
+</section>
+<section id="연습문제" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="연습문제"><span class="header-section-number">11.6</span> 연습문제</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -724,4 +760,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
