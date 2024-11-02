@@ -11,6 +11,8 @@ execute:
   error: false
   freeze: auto
 editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
 
 # 포인트 패턴 분석 {#sec-point}
@@ -27,12 +29,320 @@ editor: visual
 
 ## 관측 윈도우
 
+포인트 패턴을 관측 윈도우를 가진다. 다음의 코드를 통해 무작위 포인트 패턴을 생성한다.
+
+```{r}
+#| eval: false
+library(sf)
+# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE
+n <- 30
+set.seed(13531) # remove this to create another random sequence
+xy <- data.frame(x = runif(n), y = runif(n)) |> 
+    st_as_sf(coords = c("x", "y"))
+```
+
+이 포인트들은 $[0,1]\times[1,0]$ 영역 내에 고르게 분포하고 있는데, 완전히 공간적으로 무작위로 분포하고 표현할 수도 있다. 그런데 영역의 크기가 확대되면 고르게 분포하고 있다는 말을 하기 어려워 진다. 예를 들어 아래의 코드로 두 개의 정사각형 영역(`w1`과 `w2`)을 생성한다(그림 11.1).
+
+```{r}
+#| eval: false
+w1 <- st_bbox(c(xmin = 0, ymin = 0, xmax = 1, ymax = 1)) |> 
+        st_as_sfc() 
+w2 <- st_sfc(st_point(c(1, 0.5))) |> st_buffer(1.2)
+```
+
+![관찰 윈도우(회색)에 따라 동일한 포인트 패턴이 공간적으로 완전히 무작위로 나타날 수도 있고(왼쪽), 군집을 이루고 있는 것으로 나타날 수도 있다(오른쪽).](https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png){#fig-11-1}
+
+**spatstat** 패키지는 포인트 패턴을 `ppp` 클라스의 객체로 저장한다. 모든 `ppp` 객체는 포인트 위치 정보와 관측 윈도우(`owin` 클라스의 객체)를 가진다. 다음과 같이 포인트로부터 ppp 객체로 생성할 수 있다.
+
+```{r}
+#| eval: false
+library(spatstat) |> suppressPackageStartupMessages()
+as.ppp(xy)
+# Planar point pattern: 30 points
+# window: rectangle = [0.009, 0.999] x [0.103, 0.996] units
+```
+
+여기서 윈도우가 지정되지 않으면 포인트들의 바운딩 박스가 관측 윈도우로 사용됨을 볼 수 있다. 데이터셋의 첫 번째 피처로 폴리곤 지오메트리를 추가하면, 해당 폴리곤이 관측 윈도우로 사용된다.
+
+```{r}
+#| eval: false
+(pp1 <- c(w1, st_geometry(xy)) |> as.ppp())
+# Planar point pattern: 30 points
+# window: polygonal boundary
+# enclosing rectangle: [0, 1] x [0, 1] units
+c1 <- st_buffer(st_centroid(w2), 1.2)
+(pp2 <- c(c1, st_geometry(xy)) |> as.ppp())
+# Planar point pattern: 30 points
+# window: polygonal boundary
+# enclosing rectangle: [-0.2, 2.2] x [-0.7, 1.7] units
+```
+
+포인트 패턴의 등질성(homogeneity)(역자주: 기대 밀도가 어는 지점에서나 동일한가의 여부)을 검정하기 위해 적절한 방격 레이아웃(그림 11.2에는 3 $\times$ 3 레이아웃이 나타나 있다)를 사용하여 방격 빈도(quadrat count)(방격별 포인트 수)를 구할 수 있다.
+
+```{r}
+#| eval: false
+par(mfrow = c(1, 2), mar = rep(0, 4))
+q1 <- quadratcount(pp1, nx=3, ny=3)
+q2 <- quadratcount(pp2, nx=3, ny=3)
+plot(q1, main = "")
+plot(xy, add = TRUE)
+plot(q2, main = "")
+plot(xy, add = TRUE)
+```
+
+![두 포인트 패턴의 3 X 3 방격 빈도](https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png){#fig-11-2}
+
+이 방격 빈도 정보를 활용해 다음과 같이 $\chi^2$ 검정을 수행한다.
+
+```{r}
+#| eval: false
+quadrat.test(pp1, nx=3, ny=3)
+# Warning: Some expected counts are small; chi^2 approximation may be
+# inaccurate
+# 
+#   Chi-squared test of CSR using quadrat counts
+# 
+# data:  pp1
+# X2 = 8, df = 8, p-value = 0.9
+# alternative hypothesis: two.sided
+# 
+# Quadrats: 9 tiles (irregular windows)
+quadrat.test(pp2, nx=3, ny=3)
+# Warning: Some expected counts are small; chi^2 approximation may be
+# inaccurate
+# 
+#   Chi-squared test of CSR using quadrat counts
+# 
+# data:  pp2
+# X2 = 43, df = 8, p-value = 2e-06
+# alternative hypothesis: two.sided
+# 
+# Quadrats: 9 tiles (irregular windows)
+```
+
+이는 두 번째 사례가 CSR(완전공간무작위성) 패턴이 아님을 나타낸다. 경고 메시지에서 언급된 것처럼 기대 빈도 수가 너무 적기 때문에 유의 확률(p-값)을 매우 신중하게 해석해야 한다.
+
+`density` 함수를 통해 커널 밀도를 계산할 수 있으며 커널의 형태와 탐색반경에 조정할 수 있다. 탐색반경 파라미터인 `sigma`는 `bw.diggle` 함수의 교차 검증을 통해 지정되며, 그림 11.3에 생성된 밀도면이 나타나 있다.
+
+```{r}
+#| eval: false
+den1 <- density(pp1, sigma = bw.diggle)
+den2 <- density(pp2, sigma = bw.diggle)
+```
+
+![두 포인트 패턴에 대한 커널 밀도면](https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png){#fig-11-3}
+
+이러한 방식으로 생성된 밀도 맵은 명백히 래스터 이미지이며, 이를 `stars` 객체로 전환할 수 있다.
+
+```{r}
+#| eval: false
+library(stars)
+# Loading required package: abind
+s1 <- st_as_stars(den1)
+(s2 <- st_as_stars(den2))
+# stars object with 2 dimensions and 1 attribute
+# attribute(s):
+#        Min.  1st Qu. Median Mean 3rd Qu. Max. NA's
+# v  6.28e-15 0.000153  0.304 6.77    13.1 42.7 3492
+# dimension(s):
+#   from  to offset   delta x/y
+# x    1 128   -0.2  0.0187 [x]
+# y    1 128    1.7 -0.0187 [y]
+```
+
+밀도면 하부 체적(역자주: 각 셀별로 면적과 밀도값을 곱하여 셀 체적을 구하고 모든 셀에 대한 이 체적값을 합한 값을 의미한다)을 계산하면 샘플 크기(30)와 유사해진다는 것을 다음의 코드를 통해 확인할 수 있다.
+
+```{r}
+#| eval: false
+s1$a <- st_area(s1) |> suppressMessages()
+s2$a <- st_area(s2) |> suppressMessages()
+with(s1, sum(v * a, na.rm = TRUE))
+# [1] 29
+with(s2, sum(v * a, na.rm = TRUE))
+# [1] 30.7
+```
+
+여기에 밀도면을 외부 변수의 함수로 나타내는 모델링을 적용하면 좀 더 흥미로운 결과를 얻을 수 있다. 예를 들어, `pp2`의 밀도를 푸아송 포인트 패턴 프로세스으로 모델링하고자 한다고 가정해 보자(즉, 포인트 간에 상호작용이 없음을 가정). 여기서 밀도 강조는 "클러스터" 중심으로부터의 거리의 함수이며, 이 거리값은 `stars` 객체에 포함되어 있다.
+
+```{r}
+#| eval: false
+pt <- st_sfc(st_point(c(0.5, 0.5)))
+st_as_sf(s2, as_points = TRUE, na.rm = FALSE) |>
+  st_distance(pt) -> s2$dist
+```
+
+그런 다음 `ppm`을 사용하여 밀도를 모델링할 수 있으며, 포인트 패턴 객체의 *이름*이 `formula`의 왼쪽에 사용된다.
+
+```{r}
+#| eval: false
+(m <- ppm(pp2 ~ dist, data = list(dist = as.im(s2["dist"]))))
+# Nonstationary Poisson process
+# Fitted to point pattern dataset 'pp2'
+# 
+# Log intensity:  ~dist
+# 
+# Fitted trend coefficients:
+# (Intercept)        dist 
+#        4.54       -4.24 
+# 
+#             Estimate  S.E. CI95.lo CI95.hi Ztest  Zval
+# (Intercept)     4.54 0.341    3.87    5.21   *** 13.32
+# dist           -4.24 0.700   -5.62   -2.87   *** -6.06
+```
+
+반환된 객체는 `ppm` 클래스이며, 이를 플롯할 수 있다. 그림 11.4는 예측 밀도면을 보여준다. 예측 표준 오차도 플롯할 수 있다.
+
+![ppm 모델에 의거한 예측 밀도면](https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png){#fig-11-4}
+
+모델에는 예측 메소드도 있어, 이를 통해 `im` 객체를 반환하며, 이 객체는 다음과 같이 `stars` 객체로 전환될 수 있다.
+
+```{r}
+#| eval: false
+predict(m, covariates = list(dist = as.im(s2["dist"]))) |>
+    st_as_stars()
+# stars object with 2 dimensions and 1 attribute
+# attribute(s):
+#      Min. 1st Qu. Median Mean 3rd Qu. Max. NA's
+# v  0.0698   0.529   2.13 6.62     7.3 89.7 3492
+# dimension(s):
+#   from  to offset   delta x/y
+# x    1 128   -0.2  0.0187 [x]
+# y    1 128    1.7 -0.0188 [y]
+```
+
 ## CRS
 
-## 속성이 있는 포인트 패턴, 선형 네트워크 상의 포인트
+**spatstat** 패키지의 모든 루틴은 데카르트 좌표계를 가진 2차원 데이터를 위해 설계되어 있다. 타원 좌표계를 가진 객체를 전환하려고 하면 오류가 발생한다.
+
+```{r}
+#| eval: false
+system.file("gpkg/nc.gpkg", package = "sf") |> 
+    read_sf() |>
+    st_geometry() |>
+    st_centroid() |>
+    as.ppp()
+# Error: Only projected coordinates may be converted to spatstat
+# class objects
+```
+
+**spatstat** 패키지의 데이터 구조로 전환되고 나면, 처음 사용했던 CSR이 손실된다. 이를 `sf` 또는 `stars` 객체로 되돌리기 위해서는 `st_set_crs`를 사용하면 된다.
+
+## 마크 포인트 패턴, 선형 네트워크 상의 포인트
+
+**spatstat** 패키지에서는 몇 가지 추가 데이터 유형을 서로 전환할 수 있다. 마크(marked) 포인트 패턴은 각 포인트에 대해 범주형 레이블 또는 숫자 레이블을 가진 포인트 패턴이다. **spatstat** 패키지에 포함되어 있는 마크 포인트 패턴으로 `longleaf` 소나무 데이터셋이 있는데, 이 데이터셋에는 가슴 높이에서의 나무 직경이 숫자 마크로 포함되어 있다.
+
+```{r}
+#| eval: false
+longleaf
+# Marked planar point pattern: 584 points
+# marks are numeric, of storage type  'double'
+# window: rectangle = [0, 200] x [0, 200] metres
+ll <- st_as_sf(longleaf)
+print(ll, n = 3)
+# Simple feature collection with 585 features and 2 fields
+# Geometry type: GEOMETRY
+# Dimension:     XY
+# Bounding box:  xmin: 0 ymin: 0 xmax: 200 ymax: 200
+# CRS:           NA
+# First 3 features:
+#    spatstat.geom..marks.x.  label                           geom
+# NA                      NA window POLYGON ((0 0, 200 0, 200 2...
+# 1                     32.9  point                POINT (200 8.8)
+# 2                     53.5  point                 POINT (199 10)
+```
+
+값은 다음과 같이 ppp객체로 다시 전환할 수 있다.
+
+```{r}
+#| eval: false
+as.ppp(ll)
+# Warning in as.ppp.sf(ll): only first attribute column is used for
+# marks
+# Marked planar point pattern: 584 points
+# marks are numeric, of storage type  'double'
+# window: polygonal boundary
+# enclosing rectangle: [0, 200] x [0, 200] units
+```
+
+**spatstat** 패키지의 `psp` 클래스의 선분은 LINESTRING 지오메트리를 가진 `sf` 피처로 전환 및 재전환이 가능한데, 관측 윈도우를 가진 POLYGON 피처 하나를 우선적으로 포함하게 된다.
+
+```{r}
+#| eval: false
+print(st_as_sf(copper$SouthLines), n = 5)
+# Simple feature collection with 91 features and 1 field
+# Geometry type: GEOMETRY
+# Dimension:     XY
+# Bounding box:  xmin: -0.335 ymin: 0.19 xmax: 35 ymax: 158
+# CRS:           NA
+# First 5 features:
+#     label                           geom
+# 1  window POLYGON ((-0.335 0.19, 35 0...
+# 2 segment LINESTRING (3.36 0.19, 10.4...
+# 3 segment LINESTRING (12.5 0.263, 11....
+# 4 segment LINESTRING (11.2 0.197, -0....
+# 5 segment LINESTRING (6.35 12.8, 16.5...
+```
+
+마지막으로, 선형 네트워크상의 포인트 패턴은 **spatstat** 패키지에서 `lpp` 객체로 표현되는데 다음과 같이 `sf` 객체로 전환할 수 있다.
+
+```{r}
+#| eval: false
+print(st_as_sf(chicago), n = 5)
+# Simple feature collection with 620 features and 4 fields
+# Geometry type: GEOMETRY
+# Dimension:     XY
+# Bounding box:  xmin: 0.389 ymin: 153 xmax: 1280 ymax: 1280
+# CRS:           NA
+# First 5 features:
+#     label seg tp marks                           geom
+# 1  window  NA NA  <NA> POLYGON ((0.389 153, 1282 1...
+# 2 segment  NA NA  <NA> LINESTRING (0.389 1254, 110...
+# 3 segment  NA NA  <NA> LINESTRING (110 1252, 111 1...
+# 4 segment  NA NA  <NA> LINESTRING (110 1252, 198 1...
+# 5 segment  NA NA  <NA> LINESTRING (198 1277, 198 1...
+```
+
+여기서는 첫 다섯 개 피처만 나타나 있어 금방 알아챌 수는 없지만, `label` 변수를 통해 알 수 있듯이 포인트들도 이 객체에 포함되어 있다.
+
+```{r}
+#| eval: false
+table(st_as_sf(chicago)$label)
+# 
+#   point segment  window 
+#     116     503       1
+```
+
+네트워크의 *구조*에 대한 정보(역자주: 네트워크 연결성에 대한 위상 정보), 즉 LINESTRING 지오메트리가 어떻게 연결되어 있는지는 `sf` 객체에 포함되어 있지 않다. 이런 측면에서 **sfnetworks** 패키지(van der Meer et al. 2022)는 좋은 대안일 수 있는데, 네트워크 위상 정보를 다룰 수 있을 뿐만 아니라 OpenStreetMaps에서 가져온 네트워크 데이터를 **spatstat** 패키지로 전달할 수도 있다.
 
 ## 공간 샘플링과 포인트 프로세스를 시뮬레이션하기
 
+**sf** 패키지에는 MULTIPOINT, 선형 또는 폴리곤 지오메트리에서 포인트를 샘플링하는 `st_sample` 메소드가 포함되어 있으며, 다양한 공간 샘플링 전략을 사용한다. 이 메소드는 기본적으로 “random”, “hexagonal”, “Fibonacci”(11.5절), 및 “regular” 옵션을 지원하는데, 여기서 “regular”는 정사각형 격자에서 샘플링하는 것을 의미하고 “hexagonal”은 본질적으로 삼각형 격자를 제공한다. “random” 유형만 요청된 포인트의 수를 정확히 반환하고, 다른 유형에서는 근사값만을 반환한다.
+
+`st_sample` 함수는 **spatstat** 패키지의 포인트 프로세스 시뮬레이션 함수와도 인터페이스를 제공하는데, 샘플링 유형에 대해 다른 값을 선택하는 경우가 해당된다. 예를 들어, `type = Thomas`로 설정하면 **spatstat** 함수 `rThomas`가 호출된다(그림 11.5).
+
+```{r}
+#| eval: false
+kappa <- 30 / st_area(w2) # intensity
+th <- st_sample(w2, kappa = kappa, mu = 3, scale = 0.05, 
+    type = "Thomas")
+nrow(th)
+# [1] 90
+```
+
+![mu =3, scale = 0.05로 설정한 Thomas 프로세스](https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png){#fig-11-5}
+
+`?rThomas`를 실행하며 파라미터 `kappa`, `mu`, 및 `scale`의 의미에 대한 자세한 설명을 얻을 수 있다. 포인트 프로세스 시뮬레이션을 수행할 때는 샘플 크기가 아닌 강도가 주어진다. 이 방법으로 얻어진 관측 윈도우 내의 샘플 크기는 하나의 확률 변수가 된다.
+
 ## 구체 상의 포인트를 시뮬레이션하기
 
+`sf`에서 기본적으로 지원하는 또 다른 공간 무작위 샘플링 유형은 구면에서의 무작위 포인트 시뮬레이션이다. 그림 11.6에 한 예시가 나타나 있으며, 포인트들이 모두 해양에만 존재한다. 구면에 규칙적 포인트 패턴을 시뮬레이션 하려면 `st_sample` 함수에서 아규먼트로 `type = "Fibonacci"`로 지정하면 된다(González 2010).
+
+![구체의 해양부에 한정된 샘플 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법의 지도 상에 나타나 있다.](https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png){#fig-11-6}
+
 ## 연습문제
+
+1.  **spatstat** 패키지에서 `plot(longleaf)`로 얻은 플롯과 동일한 것을 `ggplot2` 패키지의 `geom_sf()` 함수와 `sf::plot()`을 사용하여 생성하라.
+
+2.  12장에서 사용된 NO$_2$ 데이터의 샘플 위치를 적절한 관측 윈도우와 함께 `ppp` 객체로 전환하라.
+
+3.  NO$_2$ 데이터셋을 가지고 밀도를 계산하고 밀도면을 플롯하라. 밀도면을 `stars` 객체로 전환하고, 표면 하부 체적을 계산하라.
