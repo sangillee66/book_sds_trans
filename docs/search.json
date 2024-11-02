@@ -1049,5 +1049,137 @@
       "공간통계분석과 공간모델링",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>포인트 패턴 분석</span>"
     ]
+  },
+  {
+    "objectID": "12.html",
+    "href": "12.html",
+    "title": "12  공간적 인터폴레이션",
+    "section": "",
+    "text": "12.1 첫 번째 데이터셋\n\\[\n\\hat{z}(s_0)=\\frac{\\sum^n_{i=1} w_iz(s_i)}{\\sum^n_{i=1}w_i}\n\\]",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span>"
+    ]
+  },
+  {
+    "objectID": "12.html#샘플-베리오그램",
+    "href": "12.html#샘플-베리오그램",
+    "title": "12  공간적 인터폴레이션",
+    "section": "12.2 샘플 베리오그램",
+    "text": "12.2 샘플 베리오그램\n\\[\n\\hat{\\gamma}(h_i)=\\frac{1}{2N(h_i)}\\sum^{N(h_i)}_{j=1}(z(s_i)-z(s_i+h'))^2,\\quad h_{i,0}\\le h' \\lt h_{i,1}\n\\]",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span>"
+    ]
+  },
+  {
+    "objectID": "12.html#베리오그램-모델-적합",
+    "href": "12.html#베리오그램-모델-적합",
+    "title": "12  공간적 인터폴레이션",
+    "section": "12.3 베리오그램 모델 적합",
+    "text": "12.3 베리오그램 모델 적합\n\\[\n\\sum^n_{i=1}w_i(\\gamma (h_i)-\\hat{\\gamma}(h_i))^2,\n\\]",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span>"
+    ]
+  },
+  {
+    "objectID": "12.html#크리깅-인터폴레이션",
+    "href": "12.html#크리깅-인터폴레이션",
+    "title": "12  공간적 인터폴레이션",
+    "section": "12.4 크리깅 인터폴레이션",
+    "text": "12.4 크리깅 인터폴레이션",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span>"
+    ]
+  },
+  {
+    "objectID": "12.html#에어리어-평균-블록-크리깅",
+    "href": "12.html#에어리어-평균-블록-크리깅",
+    "title": "12  공간적 인터폴레이션",
+    "section": "12.5 에어리어 평균: 블록 크리깅",
+    "text": "12.5 에어리어 평균: 블록 크리깅",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span>"
+    ]
+  },
+  {
+    "objectID": "12.html#조건적-시뮬레이션",
+    "href": "12.html#조건적-시뮬레이션",
+    "title": "12  공간적 인터폴레이션",
+    "section": "12.6 조건적 시뮬레이션",
+    "text": "12.6 조건적 시뮬레이션",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span>"
+    ]
+  },
+  {
+    "objectID": "12.html#경향면-모델",
+    "href": "12.html#경향면-모델",
+    "title": "12  공간적 인터폴레이션",
+    "section": "12.7 경향면 모델",
+    "text": "12.7 경향면 모델\n\\[\nZ(s)=\\sum^p_{j=0} \\beta_jX_j(s)+e(s)\n\\]\n\n12.7.1 모집단 그리드",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span>"
+    ]
+  },
+  {
+    "objectID": "12.html#연습문제",
+    "href": "12.html#연습문제",
+    "title": "12  공간적 인터폴레이션",
+    "section": "12.8 연습문제",
+    "text": "12.8 연습문제",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span>"
+    ]
+  },
+  {
+    "objectID": "13.html",
+    "href": "13.html",
+    "title": "13  다변량 및 시공간 지구통계학",
+    "section": "",
+    "text": "13.1 대기질 데이터셋 준비",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>다변량 및 시공간 지구통계학</span>"
+    ]
+  },
+  {
+    "objectID": "13.html#다변량-지구통계학",
+    "href": "13.html#다변량-지구통계학",
+    "title": "13  다변량 및 시공간 지구통계학",
+    "section": "13.2 다변량 지구통계학",
+    "text": "13.2 다변량 지구통계학\n\\[\nZ_1(s)=X_i\\beta_i+e_1(s)\n\\]\n\\[\n...\n\\]\n\\[\nZ_n(s)=X_n\\beta_n+e_n(s)\n\\]",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>다변량 및 시공간 지구통계학</span>"
+    ]
+  },
+  {
+    "objectID": "13.html#시공간-지구통계학",
+    "href": "13.html#시공간-지구통계학",
+    "title": "13  다변량 및 시공간 지구통계학",
+    "section": "13.3 시공간 지구통계학",
+    "text": "13.3 시공간 지구통계학\n\n13.3.1 시공간 베리오그램 모델\n\n\n13.3.2 불규칙 시공간 데이터",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>다변량 및 시공간 지구통계학</span>"
+    ]
+  },
+  {
+    "objectID": "13.html#연습문제",
+    "href": "13.html#연습문제",
+    "title": "13  다변량 및 시공간 지구통계학",
+    "section": "13.4 연습문제",
+    "text": "13.4 연습문제",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>다변량 및 시공간 지구통계학</span>"
+    ]
   }
 ]

@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -286,7 +315,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#대기질-데이터셋-준비" id="toc-대기질-데이터셋-준비" class="nav-link active" data-scroll-target="#대기질-데이터셋-준비"><span class="header-section-number">13.1</span> 대기질 데이터셋 준비</a></li>
+  <li><a href="#다변량-지구통계학" id="toc-다변량-지구통계학" class="nav-link" data-scroll-target="#다변량-지구통계학"><span class="header-section-number">13.2</span> 다변량 지구통계학</a></li>
+  <li><a href="#시공간-지구통계학" id="toc-시공간-지구통계학" class="nav-link" data-scroll-target="#시공간-지구통계학"><span class="header-section-number">13.3</span> 시공간 지구통계학</a>
+  <ul class="collapse">
+  <li><a href="#시공간-베리오그램-모델" id="toc-시공간-베리오그램-모델" class="nav-link" data-scroll-target="#시공간-베리오그램-모델"><span class="header-section-number">13.3.1</span> 시공간 베리오그램 모델</a></li>
+  <li><a href="#불규칙-시공간-데이터" id="toc-불규칙-시공간-데이터" class="nav-link" data-scroll-target="#불규칙-시공간-데이터"><span class="header-section-number">13.3.2</span> 불규칙 시공간 데이터</a></li>
+  </ul></li>
+  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제"><span class="header-section-number">13.4</span> 연습문제</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -305,7 +347,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 26일</p>
+      <p class="date-modified">2024년 11월 2일</p>
     </div>
   </div>
     
@@ -316,8 +358,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="대기질-데이터셋-준비" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="대기질-데이터셋-준비"><span class="header-section-number">13.1</span> 대기질 데이터셋 준비</h2>
+</section>
+<section id="다변량-지구통계학" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="다변량-지구통계학"><span class="header-section-number">13.2</span> 다변량 지구통계학</h2>
+<p><span class="math display">\[
+Z_1(s)=X_i\beta_i+e_1(s)
+\]</span></p>
+<p><span class="math display">\[
+...
+\]</span></p>
+<p><span class="math display">\[
+Z_n(s)=X_n\beta_n+e_n(s)
+\]</span></p>
+</section>
+<section id="시공간-지구통계학" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="시공간-지구통계학"><span class="header-section-number">13.3</span> 시공간 지구통계학</h2>
+<section id="시공간-베리오그램-모델" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="시공간-베리오그램-모델"><span class="header-section-number">13.3.1</span> 시공간 베리오그램 모델</h3>
+</section>
+<section id="불규칙-시공간-데이터" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="불규칙-시공간-데이터"><span class="header-section-number">13.3.2</span> 불규칙 시공간 데이터</h3>
+</section>
+</section>
+<section id="연습문제" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="연습문제"><span class="header-section-number">13.4</span> 연습문제</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -724,4 +793,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>

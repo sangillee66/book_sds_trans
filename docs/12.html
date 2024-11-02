@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -286,7 +315,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#첫-번째-데이터셋" id="toc-첫-번째-데이터셋" class="nav-link active" data-scroll-target="#첫-번째-데이터셋"><span class="header-section-number">12.1</span> 첫 번째 데이터셋</a></li>
+  <li><a href="#샘플-베리오그램" id="toc-샘플-베리오그램" class="nav-link" data-scroll-target="#샘플-베리오그램"><span class="header-section-number">12.2</span> 샘플 베리오그램</a></li>
+  <li><a href="#베리오그램-모델-적합" id="toc-베리오그램-모델-적합" class="nav-link" data-scroll-target="#베리오그램-모델-적합"><span class="header-section-number">12.3</span> 베리오그램 모델 적합</a></li>
+  <li><a href="#크리깅-인터폴레이션" id="toc-크리깅-인터폴레이션" class="nav-link" data-scroll-target="#크리깅-인터폴레이션"><span class="header-section-number">12.4</span> 크리깅 인터폴레이션</a></li>
+  <li><a href="#에어리어-평균-블록-크리깅" id="toc-에어리어-평균-블록-크리깅" class="nav-link" data-scroll-target="#에어리어-평균-블록-크리깅"><span class="header-section-number">12.5</span> 에어리어 평균: 블록 크리깅</a></li>
+  <li><a href="#조건적-시뮬레이션" id="toc-조건적-시뮬레이션" class="nav-link" data-scroll-target="#조건적-시뮬레이션"><span class="header-section-number">12.6</span> 조건적 시뮬레이션</a></li>
+  <li><a href="#경향면-모델" id="toc-경향면-모델" class="nav-link" data-scroll-target="#경향면-모델"><span class="header-section-number">12.7</span> 경향면 모델</a>
+  <ul class="collapse">
+  <li><a href="#모집단-그리드" id="toc-모집단-그리드" class="nav-link" data-scroll-target="#모집단-그리드"><span class="header-section-number">12.7.1</span> 모집단 그리드</a></li>
+  </ul></li>
+  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제"><span class="header-section-number">12.8</span> 연습문제</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -305,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 26일</p>
+      <p class="date-modified">2024년 11월 2일</p>
     </div>
   </div>
     
@@ -316,8 +361,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="첫-번째-데이터셋" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="첫-번째-데이터셋"><span class="header-section-number">12.1</span> 첫 번째 데이터셋</h2>
+<p><span class="math display">\[
+\hat{z}(s_0)=\frac{\sum^n_{i=1} w_iz(s_i)}{\sum^n_{i=1}w_i}
+\]</span></p>
+</section>
+<section id="샘플-베리오그램" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="샘플-베리오그램"><span class="header-section-number">12.2</span> 샘플 베리오그램</h2>
+<p><span class="math display">\[
+\hat{\gamma}(h_i)=\frac{1}{2N(h_i)}\sum^{N(h_i)}_{j=1}(z(s_i)-z(s_i+h'))^2,\quad h_{i,0}\le h' \lt h_{i,1}
+\]</span></p>
+</section>
+<section id="베리오그램-모델-적합" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="베리오그램-모델-적합"><span class="header-section-number">12.3</span> 베리오그램 모델 적합</h2>
+<p><span class="math display">\[
+\sum^n_{i=1}w_i(\gamma (h_i)-\hat{\gamma}(h_i))^2,
+\]</span></p>
+</section>
+<section id="크리깅-인터폴레이션" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="크리깅-인터폴레이션"><span class="header-section-number">12.4</span> 크리깅 인터폴레이션</h2>
+</section>
+<section id="에어리어-평균-블록-크리깅" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="에어리어-평균-블록-크리깅"><span class="header-section-number">12.5</span> 에어리어 평균: 블록 크리깅</h2>
+</section>
+<section id="조건적-시뮬레이션" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="조건적-시뮬레이션"><span class="header-section-number">12.6</span> 조건적 시뮬레이션</h2>
+</section>
+<section id="경향면-모델" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="경향면-모델"><span class="header-section-number">12.7</span> 경향면 모델</h2>
+<p><span class="math display">\[
+Z(s)=\sum^p_{j=0} \beta_jX_j(s)+e(s)
+\]</span></p>
+<section id="모집단-그리드" class="level3" data-number="12.7.1">
+<h3 data-number="12.7.1" class="anchored" data-anchor-id="모집단-그리드"><span class="header-section-number">12.7.1</span> 모집단 그리드</h3>
+</section>
+</section>
+<section id="연습문제" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="연습문제"><span class="header-section-number">12.8</span> 연습문제</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -724,4 +808,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>

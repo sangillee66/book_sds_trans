@@ -14,3 +14,37 @@ editor: visual
 ---
 
 # 공간적 인터폴레이션 {#sec-interpolation}
+
+## 첫 번째 데이터셋
+
+$$
+\hat{z}(s_0)=\frac{\sum^n_{i=1} w_iz(s_i)}{\sum^n_{i=1}w_i}
+$$
+
+## 샘플 베리오그램
+
+$$
+\hat{\gamma}(h_i)=\frac{1}{2N(h_i)}\sum^{N(h_i)}_{j=1}(z(s_i)-z(s_i+h'))^2,\quad h_{i,0}\le h' \lt h_{i,1}
+$$
+
+## 베리오그램 모델 적합
+
+$$
+\sum^n_{i=1}w_i(\gamma (h_i)-\hat{\gamma}(h_i))^2,
+$$
+
+## 크리깅 인터폴레이션
+
+## 에어리어 평균: 블록 크리깅
+
+## 조건적 시뮬레이션
+
+## 경향면 모델
+
+$$
+Z(s)=\sum^p_{j=0} \beta_jX_j(s)+e(s)
+$$
+
+### 모집단 그리드
+
+## 연습문제
