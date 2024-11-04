@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>공간데이터사이언스 개론 - 12&nbsp; 공간적 인터폴레이션</title>
 <style>
 code{white-space: pre-wrap;}
@@ -20,8 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -41,7 +71,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -67,12 +99,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -97,17 +124,12 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script>
-
-<link rel="stylesheet" href="styles.css">
+</script><link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -118,13 +140,9 @@ window.Quarto = {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">공간데이터사이언스 개론</a> 
         <div class="sidebar-tools-main">
@@ -139,7 +157,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서장</span></a>
@@ -153,8 +171,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></a>
@@ -191,7 +209,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_2.html" class="sidebar-item-text sidebar-link">
@@ -200,8 +218,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
@@ -220,7 +238,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_3.html" class="sidebar-item-text sidebar-link">
@@ -229,8 +247,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
@@ -279,7 +297,7 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -288,8 +306,8 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R 스페셜 패키지</span></span></a>
@@ -308,36 +326,32 @@ window.Quarto = {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">목차</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#첫-번째-데이터셋" id="toc-첫-번째-데이터셋" class="nav-link active" data-scroll-target="#첫-번째-데이터셋"><span class="header-section-number">12.1</span> 첫 번째 데이터셋</a></li>
-  <li><a href="#샘플-베리오그램" id="toc-샘플-베리오그램" class="nav-link" data-scroll-target="#샘플-베리오그램"><span class="header-section-number">12.2</span> 샘플 베리오그램</a></li>
-  <li><a href="#베리오그램-모델-적합" id="toc-베리오그램-모델-적합" class="nav-link" data-scroll-target="#베리오그램-모델-적합"><span class="header-section-number">12.3</span> 베리오그램 모델 적합</a></li>
-  <li><a href="#크리깅-인터폴레이션" id="toc-크리깅-인터폴레이션" class="nav-link" data-scroll-target="#크리깅-인터폴레이션"><span class="header-section-number">12.4</span> 크리깅 인터폴레이션</a></li>
-  <li><a href="#에어리어-평균-블록-크리깅" id="toc-에어리어-평균-블록-크리깅" class="nav-link" data-scroll-target="#에어리어-평균-블록-크리깅"><span class="header-section-number">12.5</span> 에어리어 평균: 블록 크리깅</a></li>
-  <li><a href="#조건적-시뮬레이션" id="toc-조건적-시뮬레이션" class="nav-link" data-scroll-target="#조건적-시뮬레이션"><span class="header-section-number">12.6</span> 조건적 시뮬레이션</a></li>
-  <li><a href="#경향면-모델" id="toc-경향면-모델" class="nav-link" data-scroll-target="#경향면-모델"><span class="header-section-number">12.7</span> 경향면 모델</a>
+<li><a href="#%EC%B2%AB-%EB%B2%88%EC%A7%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B" id="toc-첫-번째-데이터셋" class="nav-link active" data-scroll-target="#%EC%B2%AB-%EB%B2%88%EC%A7%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B"><span class="header-section-number">12.1</span> 첫 번째 데이터셋</a></li>
+  <li><a href="#%EC%83%98%ED%94%8C-%EB%B2%A0%EB%A6%AC%EC%98%A4%EA%B7%B8%EB%9E%A8" id="toc-샘플-베리오그램" class="nav-link" data-scroll-target="#%EC%83%98%ED%94%8C-%EB%B2%A0%EB%A6%AC%EC%98%A4%EA%B7%B8%EB%9E%A8"><span class="header-section-number">12.2</span> 샘플 베리오그램</a></li>
+  <li><a href="#%EB%B2%A0%EB%A6%AC%EC%98%A4%EA%B7%B8%EB%9E%A8-%EB%AA%A8%EB%8D%B8-%EC%A0%81%ED%95%A9" id="toc-베리오그램-모델-적합" class="nav-link" data-scroll-target="#%EB%B2%A0%EB%A6%AC%EC%98%A4%EA%B7%B8%EB%9E%A8-%EB%AA%A8%EB%8D%B8-%EC%A0%81%ED%95%A9"><span class="header-section-number">12.3</span> 베리오그램 모델 적합</a></li>
+  <li><a href="#%ED%81%AC%EB%A6%AC%EA%B9%85-%EC%9D%B8%ED%84%B0%ED%8F%B4%EB%A0%88%EC%9D%B4%EC%85%98" id="toc-크리깅-인터폴레이션" class="nav-link" data-scroll-target="#%ED%81%AC%EB%A6%AC%EA%B9%85-%EC%9D%B8%ED%84%B0%ED%8F%B4%EB%A0%88%EC%9D%B4%EC%85%98"><span class="header-section-number">12.4</span> 크리깅 인터폴레이션</a></li>
+  <li><a href="#%EC%97%90%EC%96%B4%EB%A6%AC%EC%96%B4-%ED%8F%89%EA%B7%A0-%EB%B8%94%EB%A1%9D-%ED%81%AC%EB%A6%AC%EA%B9%85" id="toc-에어리어-평균-블록-크리깅" class="nav-link" data-scroll-target="#%EC%97%90%EC%96%B4%EB%A6%AC%EC%96%B4-%ED%8F%89%EA%B7%A0-%EB%B8%94%EB%A1%9D-%ED%81%AC%EB%A6%AC%EA%B9%85"><span class="header-section-number">12.5</span> 에어리어 평균: 블록 크리깅</a></li>
+  <li><a href="#%EC%A1%B0%EA%B1%B4%EC%A0%81-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98" id="toc-조건적-시뮬레이션" class="nav-link" data-scroll-target="#%EC%A1%B0%EA%B1%B4%EC%A0%81-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98"><span class="header-section-number">12.6</span> 조건적 시뮬레이션</a></li>
+  <li>
+<a href="#%EA%B2%BD%ED%96%A5%EB%A9%B4-%EB%AA%A8%EB%8D%B8" id="toc-경향면-모델" class="nav-link" data-scroll-target="#%EA%B2%BD%ED%96%A5%EB%A9%B4-%EB%AA%A8%EB%8D%B8"><span class="header-section-number">12.7</span> 경향면 모델</a>
   <ul class="collapse">
-  <li><a href="#모집단-그리드" id="toc-모집단-그리드" class="nav-link" data-scroll-target="#모집단-그리드"><span class="header-section-number">12.7.1</span> 모집단 그리드</a></li>
-  </ul></li>
-  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제"><span class="header-section-number">12.8</span> 연습문제</a></li>
+<li><a href="#%EB%AA%A8%EC%A7%91%EB%8B%A8-%EA%B7%B8%EB%A6%AC%EB%93%9C" id="toc-모집단-그리드" class="nav-link" data-scroll-target="#%EB%AA%A8%EC%A7%91%EB%8B%A8-%EA%B7%B8%EB%A6%AC%EB%93%9C"><span class="header-section-number">12.7.1</span> 모집단 그리드</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
+</li>
+  <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"><span class="header-section-number">12.8</span> 연습문제</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title d-none d-lg-block"><span id="sec-interpolation" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></h1>
 </div>
 
@@ -350,7 +364,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 11월 2일</p>
+      <p class="date-modified">2024년 11월 4일</p>
     </div>
   </div>
     
@@ -358,53 +372,230 @@ window.Quarto = {
   
 
 
-</header>
-
-
-<section id="첫-번째-데이터셋" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="첫-번째-데이터셋"><span class="header-section-number">12.1</span> 첫 번째 데이터셋</h2>
+</header><p>공간적 인터폴레이션은 관측된 위치를 바탕으로 관측되지 않은 공간 위치에서 공간적으로 연속적인 변수(필드)의 값을 추정하는 활동이다. 공간적 인터폴레이션을 위한 통계적 방법론을 지구통계학(geostatistics)이라고 부르며, 공간적으로 연속적인 현상의 모델링, 예측, 시뮬레이션에 중점을 둔다. 공간적 인터폴레이션의 전형적인 상황은 결측값 문제이다. 즉, 한정된 샘플 위치 <span class="math inline">\(s_i,i=1,...,n\)</span> 에서 특정 현상의 속성 <span class="math inline">\(Z(s)\)</span>가 관측되었다고 했을 때, 이를 바탕으로 연구 지역 내의 모든 위치 <span class="math inline">\(s_0\)</span>에서 해당 속성 값을 알아내고자 한다. 결국 관측되지 않은 위치에 대해 속성값을 예측해야 하는 상황이다. 이러한 과정을 크리깅(kriging) 또는 가우시안 프로세스 예측(Gaussian Process prediction)이라고도 부른다. <span class="math inline">\(Z(s)\)</span>에 화이트 노이즈 성분인 <span class="math inline">\(\epsilon\)</span>가 포함된 경우 <span class="math inline">\(Z(s)=S(s)+\epsilon\)</span> (측정 에러 포함)로 주어질 수 있는데, 이 경우 <span class="math inline">\(Z(s)\)</span> 대신 <span class="math inline">\(S(s)\)</span>를 예측하거나 시뮬레이션하는 것이 대안적 목표가 될 수 있다. 이것을 보통 <em>공간 필터링</em>(spatial filtering) 또는 <em>평활화</em>(smoothing)라고 부른다.</p>
+<p>이 장에서는 지구통계학적 데이터를 다루는 간단한 접근법, 간단한 인터폴레이션 기법, 그리고 공간적 자기상관, 공간 예측 및 시뮬레이션 모델링에 대해 다룬다. 13장에서는 다변량 및 시공간 지구통계하적 모델과 같은 보다 더 복잡한 모델에 중점을 둔다. 우리는 <strong>gstat</strong> 패키지(Pebesma and Graeler 2022; Pebesma 2004)를 주로 사용하게 되는데, 이 패키지는 비교적 다양한 비베이지안 지구통계적 분석 모델과 옵션을 제공하는 사용한다. R로 구현된 베이지안 방법은 Diggle, Tawn, and Moyeed (1998), Diggle and Ribeiro Jr.&nbsp;(2007), Blangiardo and Cameletti (2015), Wikle, Zammit-Mangion, and Cressie (2019)에서 찾을 수 있다. 대용량 데이터셋에 활용되는 기법의 개요와 비교는 Heaton et al.&nbsp;(2018)에서 제공된다.</p>
+<section id="첫-번째-데이터셋" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="첫-번째-데이터셋">
+<span class="header-section-number">12.1</span> 첫 번째 데이터셋</h2>
+<p><strong>gstat</strong> 패키지에 포함되어 있는 평균 NO₂ 데이터셋을 읽어 들인다. 이것은 13장에서 준비된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">no2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"external/no2.csv"</span>, </span>
+<span>    package <span class="op">=</span> <span class="st">"gstat"</span><span class="op">)</span>, show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이 데이터셋에 UTM 투영을 적용하여 <code>sf</code> 객체로 전환한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
+<span><span class="co"># Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE</span></span>
+<span><span class="va">crs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="st">"EPSG:32632"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">no2</span>, crs <span class="op">=</span> <span class="st">"OGC:CRS84"</span>, coords <span class="op">=</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"station_longitude_deg"</span>, <span class="st">"station_latitude_deg"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">crs</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">no2.sf</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그리고 나서, 국가 행정 경계를 불러 들이고, <code>ggplot</code> 패키지를 이용해 지도를 그린다(그림 12.1)</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"data/de_nuts1.gpkg"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">crs</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">de</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-12-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-12-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-plotDE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-plotDE-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.1: 독일의 농촌 지역 관측소들에 높은 평균 NO2 값이 집중해 있다.
+</figcaption></figure>
+</div>
+<p>이 데이터를 바탕으로 공간적 인터폴레이션을 수행하려면 먼저 인터폴레이션을 할 위치를 결정해야 한다. 이는 보통 연구 대상 지역 전체를 덮는 규칙적 그리드를 사용하여 수행된다. 객체 <code>de</code>의 국가 윤곽에 맞추어 독일 전역을 커버하는 10 km × 10 km의 규칙적 그리드를 생성한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/">stars</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span>dx <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">grd</span></span>
+<span><span class="va">grd</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#         Min. 1st Qu. Median Mean 3rd Qu. Max. NA's</span></span>
+<span><span class="co"># values     0       0      0    0       0    0 2076</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#   from to  offset  delta            refsys x/y</span></span>
+<span><span class="co"># x    1 65  280741  10000 WGS 84 / UTM z... [x]</span></span>
+<span><span class="co"># y    1 87 6101239 -10000 WGS 84 / UTM z... [y]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그리드 셀의 크기를 너무 세밀하게 하지 않은 것은 플롯 상에서 눈으로 확인해 보려는 의도이다.</p>
+<p>가장 간단한 공간적 인터폴레이션 기법은 역거리 가중법(inverse distance weighted)일 것이다. 인터폴레이션이 적용되는 지점으로부터의 거리의 역비례에 따라 가중치를 부여하여 가중 평균을 산출하는 기법이다.</p>
 <p><span class="math display">\[
 \hat{z}(s_0)=\frac{\sum^n_{i=1} w_iz(s_i)}{\sum^n_{i=1}w_i}
 \]</span></p>
-</section>
-<section id="샘플-베리오그램" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="샘플-베리오그램"><span class="header-section-number">12.2</span> 샘플 베리오그램</h2>
+<p>여기서 <span class="math inline">\(w_i=|s_0-s_i|^{-p}\)</span>으로 주어진다. 역거리를 위한 지수(<span class="math inline">\(p\)</span>)는 보통 2가 사용되는데, 교차 검증을 통해 최적화할 수도 있다. <strong>gstat</strong> 패키지의 <code>idw</code> 함수를 활용하면 역거리 가중 인터폴레이션을 수행할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/gstat/">gstat</a></span><span class="op">)</span></span>
+<span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/krige.html">idw</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, <span class="va">no2.sf</span>, <span class="va">grd</span><span class="op">)</span></span>
+<span><span class="co"># [inverse distance weighted interpolation]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>결과는 그림 12.2에 나타나 있다.</p>
+<div id="fig-12-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-12-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-idw-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-idw-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.2: 독일 NO2 집중도에 대한 역거리 가중 인터폴레이션의 결과
+</figcaption></figure>
+</div>
+</section><section id="샘플-베리오그램" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="샘플-베리오그램">
+<span class="header-section-number">12.2</span> 샘플 베리오그램</h2>
+<p>지구통계학적 방법을 사용하여 공간 예측을 수행하려면 먼저 평균과 공간적 자기상관을 위한 모델을 수립해야 한다. 가장 단순한 모델은 <span class="math inline">\(Z(s)=m+e(s)\)</span>로 주어질 수 있는데, 평균은 알려지지 않은 고정값 <span class="math inline">\(m\)</span>이고 공간적 자기상관은 <span class="math inline">\(\gamma (h)=0.5E(Z(s)-Z(s+h))^2\)</span>의 형태로 주어지는 베리오그램(variogram)을 통해 모델화된다. 유한 분산 <span class="math inline">\(C(0)\)</span>를 가진 프로세스의 경우는 <span class="math inline">\(\gamma (h)=C(0)-C(h)\)</span>가 성립하는데, 이는 베리오그램이 코베리오그램(covariogram) 또는 공분산 함수(covariance function)와 관련되어 있음을 보여준다.</p>
+<p>샘플 베리오그램은 거리 인터벌 <span class="math inline">\(h_i=[h_{i,0},h_{i,1}]\)</span>별 <span class="math inline">\(\gamma(h)\)</span>에 대한 추정값을 계산함으로써 획득된다.</p>
 <p><span class="math display">\[
 \hat{\gamma}(h_i)=\frac{1}{2N(h_i)}\sum^{N(h_i)}_{j=1}(z(s_i)-z(s_i+h'))^2,\quad h_{i,0}\le h' \lt h_{i,1}
 \]</span></p>
-</section>
-<section id="베리오그램-모델-적합" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="베리오그램-모델-적합"><span class="header-section-number">12.3</span> 베리오그램 모델 적합</h2>
+<p>여기에서 <span class="math inline">\(N(h_i)\)</span>는 거리 구간 <span class="math inline">\(h_i\)</span>에 해당하는 모든 샘플 쌍의 개수를 의미한다(역자주: 샘플 쌍의 거리가 해당 거리 구간 내에 포함되는 모든 샘플 쌍의 개수). <strong>gstat</strong> 패키지의 <code>variogram</code> 함수를 통해 샘플 베리오그램을 계산할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/variogram.html">variogram</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, <span class="va">no2.sf</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그림 12.3은 베리오그램의 결과를 플롯으로 나타낸 것이다.</p>
+<div id="fig-12-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-12-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-vgm-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-vgm-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.3: 샘플 베리오그램 플롯
+</figcaption></figure>
+</div>
+<p><code>variogram</code> 함수는 내장된 디폴트 값을 최대 거리(<code>cutoff</code>: 경계 상자의 대각선 길이의 삼분의 일)와 (상수) 구간 너비(<code>width</code>: <code>cutoff</code>를 15로 나눈 값)에 적용하는데. 디폴트 값은 다음을 통해 변경할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/variogram.html">variogram</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, <span class="va">no2.sf</span>, cutoff <span class="op">=</span> <span class="fl">100000</span>, width <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>새로운 값의 결과는 그림 12.4에 나타나 있다.</p>
+<div id="fig-12-4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-12-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-vgm2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-vgm2-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.4: 디폴트 값을 조정해 생성된 샘플 베리오그램
+</figcaption></figure>
+</div>
+<p>공식 NO₂ ~ 1은 데이터 파일(NO₂)에서 관심 변수를 선택하고 평균 모델을 지정하는 데 사용된다. 여기서 ~1은 절편만 있는(알려지지 않은 고정 평균) 모델을 지정한다.</p>
+</section><section id="베리오그램-모델-적합" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="베리오그램-모델-적합">
+<span class="header-section-number">12.3</span> 베리오그램 모델 적합</h2>
+<p>공간 예측을 진행하기 위해서는 위에서 도출한 거리 구간별 추정값이 아니라 이론적으로 모든 거리 <span class="math inline">\(h\)</span>에 적용될 수 있는 베리오그램 <em>모델</em> <span class="math inline">\(\gamma(h)\)</span>가 필요하다. 위의 구간별 추정값을 하나의 직선으로 연결하거나 구간별 추정값을 해당 구간에 대한 고정값이라고 가정하게 되면 문제가 발생한다. 즉, 이것은 비양수 정의 공분산 행렬(non-positive definite covariance matrices)을 갖는 통계 모델을 전제하는 것이 되고, 이것을 예측에 사용하는 것은 불가능한다.</p>
+<p>이를 피하기 위해 우리는 파라메트릭 모델 <span class="math inline">\(\gamma (h)\)</span>를 적합하여 추정값 <span class="math inline">\(\hat{\gamma} (h)\)</span>를 구한다. 여기서 <span class="math inline">\(\hat{\gamma} (h)\)</span>는 <span class="math inline">\(\gamma (h)\)</span>를 추정하는 데 관여한 모든 <span class="math inline">\(h'\)</span> 값의 평균값으로 설정한다. 예를 들어, 다음과 같은 지수 베리오그램 모델을 적합할 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v.m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/fit.variogram.html">fit.variogram</a></span><span class="op">(</span><span class="va">v</span>, <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/vgm.html">vgm</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">"Exp"</span>, <span class="fl">50000</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>결과는 그림 12.5에 나타나 있다.</p>
+<div id="fig-12-5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-12-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-fitvariogrammodel-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-fitvariogrammodel-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.5: 샘플 베리오그램(가운데가 비어 있는 점) 상에 가중 최소 제곱법(실선) 및 최대 우도 추정법(점선)을 사용하여 적합한 모델이 표시되어 있다.
+</figcaption></figure>
+</div>
+<p>라인의 적합에 다음을 최소화하는 가중 최소 제곱법이 적용되었다.</p>
 <p><span class="math display">\[
 \sum^n_{i=1}w_i(\gamma (h_i)-\hat{\gamma}(h_i))^2,
 \]</span></p>
-</section>
-<section id="크리깅-인터폴레이션" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="크리깅-인터폴레이션"><span class="header-section-number">12.4</span> 크리깅 인터폴레이션</h2>
-</section>
-<section id="에어리어-평균-블록-크리깅" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="에어리어-평균-블록-크리깅"><span class="header-section-number">12.5</span> 에어리어 평균: 블록 크리깅</h2>
-</section>
-<section id="조건적-시뮬레이션" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="조건적-시뮬레이션"><span class="header-section-number">12.6</span> 조건적 시뮬레이션</h2>
-</section>
-<section id="경향면-모델" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="경향면-모델"><span class="header-section-number">12.7</span> 경향면 모델</h2>
+<p>여기에서 가중치의 디폴트값은 <span class="math inline">\(N(h_i)/h^2\)</span>으로 주어진다. <code>fit.method</code> 아규먼트를 통해 다른 가중치 옵션을 선택할 수 있다.</p>
+<p>가중 최소 제곱법 적합의 대안으로 최대 우도(ML) 또는 제한 최대 우도(parameter estimation) 모수 추정법을 사용할 수 있으며(Kitanidis and Lane 1985), 이 사례에서는 그림 12.5에서 점선으로 나타난 것처럼 상대적으로 유사한 적합 모델이 도출된다. ML 유형 접근법의 장점은 방정식 12.1에서 거리 구간 <span class="math inline">\(h_i\)</span>나 방정식 12.2에서 가중치 <span class="math inline">\(w_i\)</span>를 선택할 필요가 없다는 것이다. 단점으로는 데이터가 다변량 정규 분포를 보인다는 강한 가정에 기반하고 있고, 더 큰 데이터셋의 경우 관측 수만큼의 선형 시스템을 반복적으로 풀어야 한다는 점 등이 있다. Heaton et al.&nbsp;(2018)은 대규모 데이터셋에 모델을 적합하는 데 특화된 접근법을 비교한다.</p>
+</section><section id="크리깅-인터폴레이션" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="크리깅-인터폴레이션">
+<span class="header-section-number">12.4</span> 크리깅 인터폴레이션</h2>
+<p>일반적으로 인터폴레이션은 연구 대상 지역을 덮는 규칙적인 그리드 상의 지점들을 대상으로 이루어진다. 먼저 해당 지역을 커버하면서 그 외부는 <code>NA</code>로 채워진 래스터(<code>stars</code> 객체)를 생성한다.</p>
+<p>크리깅은 연구 대상 지역 내의 임의의 지점 <span class="math inline">\(Z(s_0)\)</span>에 대한 속성값을 예측한다. <strong>gstat</strong> 패키지의 <code>krige</code> 함수를 통해 NO₂를 크리깅할 수 있으며, 이때 경향면 모델, 데이터, 예측 그리드, 베리오그램 모델을 아규먼트로 전달한다(그림 12.6).</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/krige.html">krige</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, <span class="va">no2.sf</span>, <span class="va">grd</span>, <span class="va">v.m</span><span class="op">)</span></span>
+<span><span class="co"># [using ordinary kriging]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/geom_stars.html">geom_stars</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">k</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">var1.pred</span>, x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_cast.html">st_cast</a></span><span class="op">(</span><span class="va">de</span>, <span class="st">"MULTILINESTRING"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">no2.sf</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>lims_method <span class="op">=</span> <span class="st">"geometry_bbox"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-12-6" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-12-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-krigeovergermany-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-krigeovergermany-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.6: 독일 NO2 집중도에 대한 크리깅의 결과
+</figcaption></figure>
+</div>
+</section><section id="에어리어-평균-블록-크리깅" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="에어리어-평균-블록-크리깅">
+<span class="header-section-number">12.5</span> 에어리어 평균: 블록 크리깅</h2>
+<p>에어리어 평균을 계산하는 방법은 여러 가지가 있다. 가장 간단한 방법은 대상 폴리곤 내부에 포함된 포인트 샘플의 평균을 취하는 것이다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">no2.sf</span><span class="op">[</span><span class="st">"NO2"</span><span class="op">]</span>, by <span class="op">=</span> <span class="va">de</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>더 복잡한 방법으로는 블록 크리깅(block kriging, Journel and Huijbregts 1978)이 있는데, 타깃 지역의 평균값을 추정하기 위해 모든 데이터를 활용한다. <code>krige</code> 함수에서 <code>newdata</code> 인수에 타깃 지역(폴리곤)을 전달하여 이를 수행한다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/krige.html">krige</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, <span class="va">no2.sf</span>, <span class="va">de</span>, <span class="va">v.m</span><span class="op">)</span></span>
+<span><span class="co"># [using ordinary kriging]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>두 지도를 하나의 객체로 병합하여 단일 플롯을 생성한다(그림 12.7).</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">b</span><span class="op">$</span><span class="va">sample</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">$</span><span class="va">NO2</span></span>
+<span><span class="va">b</span><span class="op">$</span><span class="va">kriging</span> <span class="op">&lt;-</span> <span class="va">b</span><span class="op">$</span><span class="va">var1.pred</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">b</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sample</span>, <span class="va">kriging</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, names_to <span class="op">=</span> <span class="st">"var"</span>, values_to <span class="op">=</span> <span class="st">"NO2"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">b2</span></span>
+<span><span class="va">b2</span><span class="op">$</span><span class="va">var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">b2</span><span class="op">$</span><span class="va">var</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sample"</span>, <span class="st">"kriging"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">b2</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">NO2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">var</span><span class="op">)</span> <span class="op">+</span></span>
+<span>     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">sf.colors</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-12-7" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-12-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggregations-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggregations-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.7: 단순 평균계산(왼쪽)과 블록 크리깅(오른쪽)을 통해 계산된 NO2의 집계값
+</figcaption></figure>
+</div>
+<p>패턴은 유사하지만, 단순 평균계산을 통한 샘플 평균이 블록 크리깅의 값보다 변동성이 더 크다는 것을 알 수 있다. 이는 크리깅의 평활화 효과 때문일 수 있는데, 집계 영역 외부의 데이터 포인트에도 가중치가 부여되기 때문이다.</p>
+<p>표준 오차에 대한 대략적인 추정치는 <span class="math inline">\(\sqrt{(\sigma^2 /n)}\)</span>를 통해 얻을 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">no2.sf</span><span class="op">[</span><span class="st">"NO2"</span><span class="op">]</span>, <span class="va">de</span>, <span class="va">SE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>샘플이 공간적으로 무작위 표본 추출을 통해 얻어진 경우, 디자인-기반 추론(10.4절)에서 실제 추정치가 이와 같았을 것이다. 블록 크리깅 분산은 모델-기반 추정치로, 크리깅의 부산물로 계산된다. 그림 12.8에서 두 값을 비교해 보면, 단순 평균계산 접근법이 블록 크리깅에 비해 구역 평균의 예측 오차가 더 큰 변동성을 보일 뿐만 아니라 값도 더 크다는 것을 확인할 수 있다.</p>
+<div id="fig-12-8" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-12-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggrSE-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggrSE-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-12-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;12.8: 단순 평균계산법(왼쪽)과 블록 크리깅(오른쪽)을 통해 획득된 평균 NO2의 표준 오차
+</figcaption></figure>
+</div>
+</section><section id="조건적-시뮬레이션" class="level2" data-number="12.6"><h2 data-number="12.6" class="anchored" data-anchor-id="조건적-시뮬레이션">
+<span class="header-section-number">12.6</span> 조건적 시뮬레이션</h2>
+<p><span class="math inline">\(Z(s)\)</span></p>
+<p><span class="math inline">\(g(Z(s))\)</span></p>
+<p><span class="math inline">\(g(\cdot)\)</span></p>
+<p><span class="math inline">\(Z(s)\)</span></p>
+</section><section id="경향면-모델" class="level2" data-number="12.7"><h2 data-number="12.7" class="anchored" data-anchor-id="경향면-모델">
+<span class="header-section-number">12.7</span> 경향면 모델</h2>
 <p><span class="math display">\[
 Z(s)=\sum^p_{j=0} \beta_jX_j(s)+e(s)
 \]</span></p>
-<section id="모집단-그리드" class="level3" data-number="12.7.1">
-<h3 data-number="12.7.1" class="anchored" data-anchor-id="모집단-그리드"><span class="header-section-number">12.7.1</span> 모집단 그리드</h3>
-</section>
-</section>
-<section id="연습문제" class="level2" data-number="12.8">
-<h2 data-number="12.8" class="anchored" data-anchor-id="연습문제"><span class="header-section-number">12.8</span> 연습문제</h2>
+<p><span class="math inline">\(X_0(s)=1\)</span></p>
+<p><span class="math inline">\(\beta_0\)</span></p>
+<p><span class="math inline">\(\beta_j\)</span></p>
+<p><span class="math inline">\(e(s)\)</span></p>
+<section id="모집단-그리드" class="level3" data-number="12.7.1"><h3 data-number="12.7.1" class="anchored" data-anchor-id="모집단-그리드">
+<span class="header-section-number">12.7.1</span> 모집단 그리드</h3>
+</section></section><section id="연습문제" class="level2" data-number="12.8"><h2 data-number="12.8" class="anchored" data-anchor-id="연습문제">
+<span class="header-section-number">12.8</span> 연습문제</h2>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;12.1: 독일의 농촌 지역 관측소들에 높은 평균 NO2 값이 집중해 있다.</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;12.2: 독일 NO2 집중도에 대한 역거리 가중 인터폴레이션의 결과</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;12.3: 샘플 베리오그램 플롯</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;12.4: 디폴트 값을 조정해 생성된 샘플 베리오그램</span>
+<span class="glightbox-desc lightbox-desc-5">그림&nbsp;12.5: 샘플 베리오그램(가운데가 비어 있는 점) 상에 가중 최소 제곱법(실선) 및 최대 우도 추정법(점선)을 사용하여 적합한 모델이 표시되어 있다.</span>
+<span class="glightbox-desc lightbox-desc-6">그림&nbsp;12.6: 독일 NO2 집중도에 대한 크리깅의 결과</span>
+<span class="glightbox-desc lightbox-desc-7">그림&nbsp;12.7: 단순 평균계산(왼쪽)과 블록 크리깅(오른쪽)을 통해 계산된 NO2의 집계값</span>
+<span class="glightbox-desc lightbox-desc-8">그림&nbsp;12.8: 단순 평균계산법(왼쪽)과 블록 크리깅(오른쪽)을 통해 획득된 평균 NO2의 표준 오차</span>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -790,10 +981,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./11.html" class="pagination-link  aria-label=" &lt;span="" 패턴="" 분석&lt;="" span&gt;"="">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./11.html" class="pagination-link  aria-label=">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span>
       </a>          
   </div>
@@ -804,8 +993,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
-
-
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+</body></html>

@@ -15,35 +15,237 @@ editor: visual
 
 # 공간적 인터폴레이션 {#sec-interpolation}
 
+공간적 인터폴레이션은 관측된 위치를 바탕으로 관측되지 않은 공간 위치에서 공간적으로 연속적인 변수(필드)의 값을 추정하는 활동이다. 공간적 인터폴레이션을 위한 통계적 방법론을 지구통계학(geostatistics)이라고 부르며, 공간적으로 연속적인 현상의 모델링, 예측, 시뮬레이션에 중점을 둔다. 공간적 인터폴레이션의 전형적인 상황은 결측값 문제이다. 즉, 한정된 샘플 위치 $s_i,i=1,...,n$ 에서 특정 현상의 속성 $Z(s)$가 관측되었다고 했을 때, 이를 바탕으로 연구 지역 내의 모든 위치 $s_0$에서 해당 속성 값을 알아내고자 한다. 결국 관측되지 않은 위치에 대해 속성값을 예측해야 하는 상황이다. 이러한 과정을 크리깅(kriging) 또는 가우시안 프로세스 예측(Gaussian Process prediction)이라고도 부른다. $Z(s)$에 화이트 노이즈 성분인 $\epsilon$가 포함된 경우 $Z(s)=S(s)+\epsilon$ (측정 에러 포함)로 주어질 수 있는데, 이 경우 $Z(s)$ 대신 $S(s)$를 예측하거나 시뮬레이션하는 것이 대안적 목표가 될 수 있다. 이것을 보통 *공간 필터링*(spatial filtering) 또는 *평활화*(smoothing)라고 부른다.
+
+이 장에서는 지구통계학적 데이터를 다루는 간단한 접근법, 간단한 인터폴레이션 기법, 그리고 공간적 자기상관, 공간 예측 및 시뮬레이션 모델링에 대해 다룬다. 13장에서는 다변량 및 시공간 지구통계하적 모델과 같은 보다 더 복잡한 모델에 중점을 둔다. 우리는 **gstat** 패키지(Pebesma and Graeler 2022; Pebesma 2004)를 주로 사용하게 되는데, 이 패키지는 비교적 다양한 비베이지안 지구통계적 분석 모델과 옵션을 제공하는 사용한다. R로 구현된 베이지안 방법은 Diggle, Tawn, and Moyeed (1998), Diggle and Ribeiro Jr. (2007), Blangiardo and Cameletti (2015), Wikle, Zammit-Mangion, and Cressie (2019)에서 찾을 수 있다. 대용량 데이터셋에 활용되는 기법의 개요와 비교는 Heaton et al. (2018)에서 제공된다.
+
 ## 첫 번째 데이터셋
+
+**gstat** 패키지에 포함되어 있는 평균 NO₂ 데이터셋을 읽어 들인다. 이것은 13장에서 준비된다.
+
+```{r}
+#| eval: false
+library(tidyverse) |> suppressPackageStartupMessages()
+no2 <- read_csv(system.file("external/no2.csv", 
+    package = "gstat"), show_col_types = FALSE)
+```
+
+이 데이터셋에 UTM 투영을 적용하여 `sf` 객체로 전환한다.
+
+```{r}
+#| eval: false
+library(sf)
+# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE
+crs <- st_crs("EPSG:32632")
+st_as_sf(no2, crs = "OGC:CRS84", coords = 
+    c("station_longitude_deg", "station_latitude_deg")) |>
+    st_transform(crs) -> no2.sf
+```
+
+그리고 나서, 국가 행정 경계를 불러 들이고, `ggplot` 패키지를 이용해 지도를 그린다(그림 12.1)
+
+```{r}
+#| eval: false
+read_sf("data/de_nuts1.gpkg") |> st_transform(crs) -> de
+```
+
+![독일의 농촌 지역 관측소들에 높은 평균 NO2 값이 집중해 있다.](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-plotDE-1.png){#fig-12-1}
+
+이 데이터를 바탕으로 공간적 인터폴레이션을 수행하려면 먼저 인터폴레이션을 할 위치를 결정해야 한다. 이는 보통 연구 대상 지역 전체를 덮는 규칙적 그리드를 사용하여 수행된다. 객체 `de`의 국가 윤곽에 맞추어 독일 전역을 커버하는 10 km × 10 km의 규칙적 그리드를 생성한다.
+
+```{r}
+#| eval: false
+library(stars) |> suppressPackageStartupMessages()
+st_bbox(de) |>
+  st_as_stars(dx = 10000) |>
+  st_crop(de) -> grd
+grd
+# stars object with 2 dimensions and 1 attribute
+# attribute(s):
+#         Min. 1st Qu. Median Mean 3rd Qu. Max. NA's
+# values     0       0      0    0       0    0 2076
+# dimension(s):
+#   from to  offset  delta            refsys x/y
+# x    1 65  280741  10000 WGS 84 / UTM z... [x]
+# y    1 87 6101239 -10000 WGS 84 / UTM z... [y]
+```
+
+그리드 셀의 크기를 너무 세밀하게 하지 않은 것은 플롯 상에서 눈으로 확인해 보려는 의도이다.
+
+가장 간단한 공간적 인터폴레이션 기법은 역거리 가중법(inverse distance weighted)일 것이다. 인터폴레이션이 적용되는 지점으로부터의 거리의 역비례에 따라 가중치를 부여하여 가중 평균을 산출하는 기법이다.
 
 $$
 \hat{z}(s_0)=\frac{\sum^n_{i=1} w_iz(s_i)}{\sum^n_{i=1}w_i}
 $$
 
+여기서 $w_i=|s_0-s_i|^{-p}$으로 주어진다. 역거리를 위한 지수($p$)는 보통 2가 사용되는데, 교차 검증을 통해 최적화할 수도 있다. **gstat** 패키지의 `idw` 함수를 활용하면 역거리 가중 인터폴레이션을 수행할 수 있다.
+
+```{r}
+#| eval: false
+library(gstat)
+i <- idw(NO2~1, no2.sf, grd)
+# [inverse distance weighted interpolation]
+```
+
+결과는 그림 12.2에 나타나 있다.
+
+![독일 NO2 집중도에 대한 역거리 가중 인터폴레이션의 결과](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-idw-1.png){#fig-12-2}
+
 ## 샘플 베리오그램
+
+지구통계학적 방법을 사용하여 공간 예측을 수행하려면 먼저 평균과 공간적 자기상관을 위한 모델을 수립해야 한다. 가장 단순한 모델은 $Z(s)=m+e(s)$로 주어질 수 있는데, 평균은 알려지지 않은 고정값 $m$이고 공간적 자기상관은 $\gamma (h)=0.5E(Z(s)-Z(s+h))^2$의 형태로 주어지는 베리오그램(variogram)을 통해 모델화된다. 유한 분산 $C(0)$를 가진 프로세스의 경우는 $\gamma (h)=C(0)-C(h)$가 성립하는데, 이는 베리오그램이 코베리오그램(covariogram) 또는 공분산 함수(covariance function)와 관련되어 있음을 보여준다.
+
+샘플 베리오그램은 거리 인터벌 $h_i=[h_{i,0},h_{i,1}]$별 $\gamma(h)$에 대한 추정값을 계산함으로써 획득된다.
 
 $$
 \hat{\gamma}(h_i)=\frac{1}{2N(h_i)}\sum^{N(h_i)}_{j=1}(z(s_i)-z(s_i+h'))^2,\quad h_{i,0}\le h' \lt h_{i,1}
 $$
 
+여기에서 $N(h_i)$는 거리 구간 $h_i$에 해당하는 모든 샘플 쌍의 개수를 의미한다(역자주: 샘플 쌍의 거리가 해당 거리 구간 내에 포함되는 모든 샘플 쌍의 개수). **gstat** 패키지의 `variogram` 함수를 통해 샘플 베리오그램을 계산할 수 있다.
+
+```{r}
+#| eval: false
+v <- variogram(NO2~1, no2.sf)
+```
+
+그림 12.3은 베리오그램의 결과를 플롯으로 나타낸 것이다.
+
+![샘플 베리오그램 플롯](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-vgm-1.png){#fig-12-3}
+
+`variogram` 함수는 내장된 디폴트 값을 최대 거리(`cutoff`: 경계 상자의 대각선 길이의 삼분의 일)와 (상수) 구간 너비(`width`: `cutoff`를 15로 나눈 값)에 적용하는데. 디폴트 값은 다음을 통해 변경할 수 있다.
+
+```{r}
+#| eval: false
+v0 <- variogram(NO2~1, no2.sf, cutoff = 100000, width = 10000)
+```
+
+새로운 값의 결과는 그림 12.4에 나타나 있다.
+
+![디폴트 값을 조정해 생성된 샘플 베리오그램](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-vgm2-1.png){#fig-12-4}
+
+공식 NO₂ \~ 1은 데이터 파일(NO₂)에서 관심 변수를 선택하고 평균 모델을 지정하는 데 사용된다. 여기서 \~1은 절편만 있는(알려지지 않은 고정 평균) 모델을 지정한다.
+
 ## 베리오그램 모델 적합
+
+공간 예측을 진행하기 위해서는 위에서 도출한 거리 구간별 추정값이 아니라 이론적으로 모든 거리 $h$에 적용될 수 있는 베리오그램 *모델* $\gamma(h)$가 필요하다. 위의 구간별 추정값을 하나의 직선으로 연결하거나 구간별 추정값을 해당 구간에 대한 고정값이라고 가정하게 되면 문제가 발생한다. 즉, 이것은 비양수 정의 공분산 행렬(non-positive definite covariance matrices)을 갖는 통계 모델을 전제하는 것이 되고, 이것을 예측에 사용하는 것은 불가능한다.
+
+이를 피하기 위해 우리는 파라메트릭 모델 $\gamma (h)$를 적합하여 추정값 $\hat{\gamma} (h)$를 구한다. 여기서 $\hat{\gamma} (h)$는 $\gamma (h)$를 추정하는 데 관여한 모든 $h'$ 값의 평균값으로 설정한다. 예를 들어, 다음과 같은 지수 베리오그램 모델을 적합할 수 있다.
+
+```{r}
+#| eval: false
+v.m <- fit.variogram(v, vgm(1, "Exp", 50000, 1))
+```
+
+결과는 그림 12.5에 나타나 있다.
+
+![샘플 베리오그램(가운데가 비어 있는 점) 상에 가중 최소 제곱법(실선) 및 최대 우도 추정법(점선)을 사용하여 적합한 모델이 표시되어 있다.](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-fitvariogrammodel-1.png){#fig-12-5}
+
+라인의 적합에 다음을 최소화하는 가중 최소 제곱법이 적용되었다.
 
 $$
 \sum^n_{i=1}w_i(\gamma (h_i)-\hat{\gamma}(h_i))^2,
 $$
 
+여기에서 가중치의 디폴트값은 $N(h_i)/h^2$으로 주어진다. `fit.method` 아규먼트를 통해 다른 가중치 옵션을 선택할 수 있다.
+
+가중 최소 제곱법 적합의 대안으로 최대 우도(ML) 또는 제한 최대 우도(parameter estimation) 모수 추정법을 사용할 수 있으며(Kitanidis and Lane 1985), 이 사례에서는 그림 12.5에서 점선으로 나타난 것처럼 상대적으로 유사한 적합 모델이 도출된다. ML 유형 접근법의 장점은 방정식 12.1에서 거리 구간 $h_i$나 방정식 12.2에서 가중치 $w_i$를 선택할 필요가 없다는 것이다. 단점으로는 데이터가 다변량 정규 분포를 보인다는 강한 가정에 기반하고 있고, 더 큰 데이터셋의 경우 관측 수만큼의 선형 시스템을 반복적으로 풀어야 한다는 점 등이 있다. Heaton et al. (2018)은 대규모 데이터셋에 모델을 적합하는 데 특화된 접근법을 비교한다.
+
 ## 크리깅 인터폴레이션
+
+일반적으로 인터폴레이션은 연구 대상 지역을 덮는 규칙적인 그리드 상의 지점들을 대상으로 이루어진다. 먼저 해당 지역을 커버하면서 그 외부는 `NA`로 채워진 래스터(`stars` 객체)를 생성한다.
+
+크리깅은 연구 대상 지역 내의 임의의 지점 $Z(s_0)$에 대한 속성값을 예측한다. **gstat** 패키지의 `krige` 함수를 통해 NO₂를 크리깅할 수 있으며, 이때 경향면 모델, 데이터, 예측 그리드, 베리오그램 모델을 아규먼트로 전달한다(그림 12.6).
+
+```{r}
+#| eval: false
+k <- krige(NO2~1, no2.sf, grd, v.m)
+# [using ordinary kriging]
+```
+
+```{r}
+#| eval: false
+ggplot() + geom_stars(data = k, aes(fill = var1.pred, x = x, y = y)) + 
+    xlab(NULL) + ylab(NULL) +
+    geom_sf(data = st_cast(de, "MULTILINESTRING")) + 
+    geom_sf(data = no2.sf) +
+    coord_sf(lims_method = "geometry_bbox")
+```
+
+![독일 NO2 집중도에 대한 크리깅의 결과](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-krigeovergermany-1.png){#fig-12-6}
 
 ## 에어리어 평균: 블록 크리깅
 
+에어리어 평균을 계산하는 방법은 여러 가지가 있다. 가장 간단한 방법은 대상 폴리곤 내부에 포함된 포인트 샘플의 평균을 취하는 것이다.
+
+```{r}
+#| eval: false
+a <- aggregate(no2.sf["NO2"], by = de, FUN = mean)
+```
+
+더 복잡한 방법으로는 블록 크리깅(block kriging, Journel and Huijbregts 1978)이 있는데, 타깃 지역의 평균값을 추정하기 위해 모든 데이터를 활용한다. `krige` 함수에서 `newdata` 인수에 타깃 지역(폴리곤)을 전달하여 이를 수행한다.
+
+```{r}
+#| eval: false
+b <- krige(NO2~1, no2.sf, de, v.m)
+# [using ordinary kriging]
+```
+
+두 지도를 하나의 객체로 병합하여 단일 플롯을 생성한다(그림 12.7).
+
+```{r}
+#| eval: false
+b$sample <- a$NO2
+b$kriging <- b$var1.pred
+```
+
+```{r}
+#| eval: false
+b |> select(sample, kriging) |> 
+        pivot_longer(1:2, names_to = "var", values_to = "NO2") -> b2
+b2$var <- factor(b2$var, levels = c("sample", "kriging"))
+ggplot() + geom_sf(data = b2, mapping = aes(fill = NO2)) + facet_wrap(~var) +
+     scale_fill_gradientn(colors = sf.colors(20))
+```
+
+![단순 평균계산(왼쪽)과 블록 크리깅(오른쪽)을 통해 계산된 NO2의 집계값](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggregations-1.png){#fig-12-7}
+
+패턴은 유사하지만, 단순 평균계산을 통한 샘플 평균이 블록 크리깅의 값보다 변동성이 더 크다는 것을 알 수 있다. 이는 크리깅의 평활화 효과 때문일 수 있는데, 집계 영역 외부의 데이터 포인트에도 가중치가 부여되기 때문이다.
+
+표준 오차에 대한 대략적인 추정치는 $\sqrt{(\sigma^2 /n)}$를 통해 얻을 수 있다.
+
+```{r}
+#| eval: false
+SE <- function(x) sqrt(var(x)/length(x))
+a <- aggregate(no2.sf["NO2"], de, SE)
+```
+
+샘플이 공간적으로 무작위 표본 추출을 통해 얻어진 경우, 디자인-기반 추론(10.4절)에서 실제 추정치가 이와 같았을 것이다. 블록 크리깅 분산은 모델-기반 추정치로, 크리깅의 부산물로 계산된다. 그림 12.8에서 두 값을 비교해 보면, 단순 평균계산 접근법이 블록 크리깅에 비해 구역 평균의 예측 오차가 더 큰 변동성을 보일 뿐만 아니라 값도 더 크다는 것을 확인할 수 있다.
+
+![단순 평균계산법(왼쪽)과 블록 크리깅(오른쪽)을 통해 획득된 평균 NO2의 표준 오차](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggrSE-1.png){#fig-12-8}
+
 ## 조건적 시뮬레이션
+
+$Z(s)$
+
+$g(Z(s))$
+
+$g(\cdot)$
+
+$Z(s)$
 
 ## 경향면 모델
 
 $$
 Z(s)=\sum^p_{j=0} \beta_jX_j(s)+e(s)
 $$
+
+$X_0(s)=1$
+
+$\beta_0$
+
+$\beta_j$
+
+$e(s)$
 
 ### 모집단 그리드
 
