@@ -15,9 +15,110 @@ editor: visual
 
 # 다변량 및 시공간 지구통계학 {#sec-geostatistics}
 
+12장에 제시된 간단한 인터폴레이션 기법을 바탕으로, 이 장에서는 다변량 지구통계학과 시공간 지구통계학을 다룬다. 다변량 지구통계학은 Bivand, Pebesma, & Gómez-Rubio(2013)에 잘 나타나 있기 때문에 여기서는 간략하게만 다룬다. 시공간 지구통계학은 NO₂ 대기 질 데이터의 사례 연구를 통해 다루고자 한다. 인구 밀도를 공변량으로 사용한 시공간 인터폴레이션 기법이 제시된다.
+
 ## 대기질 데이터셋 준비
 
+여기서 사용할 데이터셋은 유럽 환경청(EEA)에서 얻은 대기 질 데이터셋이다. 유럽 회원국들은 이 기관에 대기 질 측정 결과를 보고한다. 이른바 *검증된* 데이터는 회원국에 의해 품질이 관리되며, 연단위로 보고된다. 이 데이터는 정책 준수 평가와 (대응) 조치의 기초가 된다.
+
+EEA의 대기 질 전자 보고(e-reporting) 웹사이트를 통해 유럽 회원국들이 보고한 데이터에 접근할 수 있다. 우리는 기본 측정 데이터인 시간별(시계열) 데이터를 다운로드하기로 결정했다. 웹 양식을 통해 우리의 데이터 선택 규준이 손쉽게 HTTP `GET` 요청으로 변환된다. 독일(`CountryCode=DE`)의 2017년(`Year_from`, `Year_to`)의 모든 검증된(`Source=E1a`) $NO_2$(`Pollutant=8`) 데이터를 선택하는 URL이 생성되었다. 이 URL은 여러개의 CSV 파일과 연결된 URL 정보가 들어있는 텍스트 파일을 반환한다. 개별 CSV 파일에는 개별 측정 측정 스테이션에 대해 전 기간에 대한 시간별 측정값이 들어 있다. 파일을 다운로드하고 dos2unix 명령줄 유틸리티를 활용하여 인코딩 변환하였다.
+
+다음으로, 스테이션 메타데이터가 포함된 단일 파일을 제외하고 나머지 모든 파일을 리스트 형태로 읽어들인다.
+
+```{r}
+#| eval: false
+files <- list.files("aq", pattern = "*.csv", full.names = TRUE)
+files <- setdiff(files, "aq/AirBase_v8_stations.csv") # metadata file
+r <- lapply(files, function(f) read.csv(f))
+```
+
+그런 다음 시간 변수를 `POSIXct` 변수로 변환하고, 다음과 같이 시간 순서로 정렬한다.
+
+```{r}
+#| eval: false
+Sys.setenv(TZ = "UTC") # don't use local time zone
+r <- lapply(r, function(f) {
+        f$t = as.POSIXct(f$DatetimeBegin) 
+        f[order(f$t), ] 
+    }
+)
+```
+
+이 데이터셋에서 시간별 데이터가 없는 작은 하위 데이터셋을 제거한다.
+
+```{r}
+#| eval: false
+r <- r[sapply(r, nrow) > 1000]
+names(r) <- sapply(r,
+               function(f) unique(f$AirQualityStationEoICode))
+length(r) == length(unique(names(r)))
+# [1] TRUE
+```
+
+그런 다음 **xts** 패키지의 `cbind` 함수를 사용하여 모든 파일을 병합하여 시간을 기준으로 매칭 레코드를 결합한다.
+
+```{r}
+#| eval: false
+library(xts) |> suppressPackageStartupMessages()
+r <- lapply(r, function(f) xts(f$Concentration, f$t))
+aq <- do.call(cbind, r)
+```
+
+이 데이터셋에 추가적인 선택을 실행하였는데, 측정된 시간별 값이 75%가 유효한 스테이션을 선택하는 것이다. 즉, 25% 이상의 결측 시간별 값을 가진 스테이션은 제외한다. `mean(is.na(x))` 함수가 벡터 `x`에서 결측 값의 비율을 계산해 주기 때문에, 이 함수를 열(스테이션)에 적용하면 된다.
+
+```{r}
+#| eval: false
+sel <- apply(aq, 2, function(x) mean(is.na(x)) < 0.25)
+aqsel <- aq[, sel]
+```
+
+다음으로, 스테이션 메타데이터를 읽어 들이고, 독일("DE")의 농촌 배경 스테이션에 해당하는 내용만을 골라낸다.
+
+```{r}
+#| eval: false
+library(tidyverse) |> suppressPackageStartupMessages()
+read.csv("aq/AirBase_v8_stations.csv", sep = "\t") |>
+    as_tibble() |> 
+    filter(country_iso_code == "DE",
+           station_type_of_area == "rural",
+           type_of_station == "Background") -> a2
+```
+
+포함되어 있던 좌표값을 이용해, (정적) 스테이션 메타데이터를 가진 `sf` 객체를 생성한다.
+
+```{r}
+#| eval: false
+library(sf) |> suppressPackageStartupMessages()
+a2.sf <- st_as_sf(a2, crs = 'OGC:CRS84',
+  coords = c("station_longitude_deg", "station_latitude_deg"))
+```
+
+이제 위에서 정리한 대기 질 측정 데이터에서 농촌 배경 유형의 스테이션에 해당 되는 것만을 골라내야 하는데, 스테이션의 코드 정보는 메타데이터를 정리한 `a2`에 저장되어 있었다.
+
+```{r}
+#| eval: false
+sel <- colnames(aqsel) %in% a2$station_european_code
+aqsel <- aqsel[, sel]
+dim(aqsel)
+# [1] 8760   74
+```
+
+스테이션별로 평균을 계산하고 그것을 스테이션 위치 객체와 조인한다.
+
+```{r}
+#| eval: false
+tb <- tibble(NO2 = apply(aqsel, 2, mean, na.rm = TRUE), 
+            station_european_code = colnames(aqsel))
+crs <- st_crs('EPSG:32632')
+right_join(a2.sf, tb) |> st_transform(crs) -> no2.sf 
+read_sf("data/de_nuts1.gpkg") |> st_transform(crs) -> de
+```
+
+그림 12.1에는 이렇게 계산된 스테이션별 평균 NO$_2$ 농도와 국가 경계가 나타나 있다.
+
 ## 다변량 지구통계학
+
+다변량 지구통계학은 여러 변수를 결합하여 모델링, 예측 및 시뮬레이션하는 것을 의미한다. 이것을 수식으로 표현하면 다음과 같다.
 
 $$
 Z_1(s)=X_i\beta_i+e_1(s)
@@ -31,10 +132,188 @@ $$
 Z_n(s)=X_n\beta_n+e_n(s)
 $$
 
+이러한 모델을 위해서는 각 변수별로 관측치, 경향면 모델, 베리오그램이 필요할 뿐만 아니라 각 변수쌍별로 잔차의 교차-베리오그램이 필요하다. 교차-베리오그램은 $e_i(s)$와 $e_j(s+h)$ 간의 공분산을 나타낸다. 이 교차-공분산이 0이 아니라면, $e_j(s+h)$의 정보는 $e_i(s)$를 예측(또는 시뮬레이션)하는 데 도움이 될 수 있다. 이는 특히 $Z_j(s)$가 $Z_i(s)$ 보다 더 조밀하게 샘플링된 경우에 그러하다. 이러한 방식의 예측과 시뮬레이션을 코크리깅(cokriging) 및 코시뮬레이션(cosimulation)이라고 부른다. 데모 스크립트를 실행하면 **gstat** 패키지를 사용한 예제를 살펴볼 수 있다.
+
+```{r}
+#| eval: false
+library(gstat)
+demo(cokriging)
+demo(cosimulation)
+```
+
+좀 더 자세한 사항은 Bivand, Pebesma, & Gómez-Rubio(2013)를 참고하라.
+
+다양한 변수가 동일한 위치에서 관측되는 경우, 예를 들어 다양한 대기 질 변수가 스테이션에서 함께 측정되는 경우, 코크리깅(cokriging)을 사용하는 통계적 이익이 미미한 것으로 드러나는 경우가 있다. 그러나 진정한 다변량 모델링을 원한다면 코크리깅을 수행하는 것이 맞다. 코크리깅을 통해 예측 벡터 $\hat{Z}(s_0)=(\hat{Z}_1(s_0),...,\hat{Z}_n(s_0))$를 얻을 뿐만 아니라 예측 오차의 전체 공분산 행렬도 얻을 수 있다(Ver Hoef and Cressie 1993). 이 예측 오차 공분산 행렬을 이용하면, $\hat{Z}(s_0)$의 어떠한 선형 조합, 예를 들어 $\hat{Z}_2(s_0)-\hat{Z}_1(s_0)$에 대한 표준 오차를 얻을 수 있다.
+
+베리오그램 및 교차-베리오그램을 자동으로 계산하고 적합할 수 있지만, 변수의 수가 많아질수록 다변량 지구통계 모델링은 관리하기 어려워진다. 필요한 베리오그램 및 교차-베리오그램의 수가 $n(n+1)/2$로 늘어나기 때문이다.
+
+여러 변수라는 의미가 동일한 변수에 대한 여러 시점의 변수를 의미하는 경우라도 다변량(코크리깅) 예측 접근 방식을 사용할 수 있다. 하지만 이 경우 두 시점 사이의 특정 시점에 대해 인터폴레이션 하는 것은 불가능하다. 이런 경우, 혹은 여러 시간 인스턴스에서 관측된 데이터를 처리해야 하는 경우, $Z(s,t)$처럼 연속적인 시공간 *결합* 함수를 통해 변동성을 모델링할 수 있다. 다음 절에서 이를 다룰 것이다.
+
 ## 시공간 지구통계학
+
+시공간 지구통계 프로세스는 시공간의 모든 위치에서 변수 값이 존재한다는 전제에 기반한다. 이것을 $Z(s,t)$로 나타낼 수 있고, 여기서 $s$와 $t$는 시공간 상에서 연속적으로 정의되는 인덱스이다. 관측치 $Z(s_i,t_j)$와 베리오그램(공변동) 모델 $\gamma(s,t)$가 주어지면, 표준 가우시안 프로세스 이론을 활용해 임의의 시공간 위치 $(s_0,t_0)$의 속성값 $Z(s_0,t_0)$를 예측할 수 있다.
+
+최근에 시공간 지구통계 데이터의 처리 및 모델링에 관한 현대적인 접근을 다룬 몇 권의 책이 출간되었다. 예를 들어 Wikle, Zammit-Mangion, & Cressie(2019)와 Blangiardo & Cameletti(2015)가 있다. 여기서는 Gräler, Pebesma, & Heuvelink(2016)를 참고하고, 이전 장에서 사용한 데이터셋을 활용한 간단한 예제를 제시할 것이다.
 
 ### 시공간 베리오그램 모델
 
+이 장의 서두에서 NO$_2$의 시공간 매트릭스 데이터를 `aq` 객체에 저장했고, 이것으로부터 완전한 레코드를 보유한 농촌 배경 관측소만을 선택해 `aqsel` 객체로 만들었다. 최종 74개 관측소의 공간 위치를 다음과 같이 선택할 수 있다.
+
+```{r}
+#| eval: false
+sfc <- st_geometry(a2.sf)[match(colnames(aqsel),
+                           a2.sf$station_european_code)] |>
+  st_transform(crs)
+```
+
+그리고 나서 마침내 시간과 스테이션을 디멘션으로 가지는 `stars` 벡터 큐브를 구축한다.
+
+```{r}
+#| eval: false
+library(stars)
+# Loading required package: abind
+st_as_stars(NO2 = as.matrix(aqsel)) |>
+    st_set_dimensions(names = c("time", "station")) |>
+    st_set_dimensions("time", index(aqsel)) |>
+    st_set_dimensions("station", sfc) -> no2.st
+no2.st
+# stars object with 2 dimensions and 1 attribute
+# attribute(s):
+#      Min. 1st Qu. Median Mean 3rd Qu. Max.  NA's
+# NO2  -8.1    3.02   5.66 8.39    10.4  197 16134
+# dimension(s):
+#         from   to         offset   delta            refsys point
+# time       1 8760 2017-01-01 UTC 1 hours           POSIXct    NA
+# station    1   74             NA      NA WGS 84 / UTM z...  TRUE
+#                                          values
+# time                                       NULL
+# station POINT (439814 ...,...,POINT (456668 ...
+```
+
+이 데이터를 바탕으로 다음과 같이 시공간 베리오그램을 구성한다.
+
+```{r}
+#| eval: false
+library(gstat)
+```
+
+```{r}
+#| eval: false
+v.st <- variogramST(NO2~1, no2.st[,1:(24*31)], tlags = 0:48, 
+    cores = getOption("mc.cores", 2))
+```
+
+결과는 그림 13.1에 나타나 있다.
+
+![2017년 독일의 농촌 배경 스테이션의 시간별 NO$_2$ 농도에 대한 시공간 샘플 베리오그램으로 오른쪽의 컬러는 시간 지체를 나타내며(노란색이 더 늦은 시간을 나타냄) 거리의 단위는 미터이다.](https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotvariograms-1.png){#fig-13-1}
+
+이 샘플 베리오그램에 대해 특정한 베리오그램 모델을 적합할 수 있다. 여기에서는 비교적 유연한 모델인 곱-합(product-sum) 모델(Gräler, Pebesma, 및 Heuvelink 2016)을 적용하고자 하는데, 다음과 같이 적합된다.
+
+```{r}
+#| eval: false
+# product-sum
+prodSumModel <- vgmST("productSum",
+    space = vgm(150, "Exp", 200000, 0),
+    time = vgm(20, "Sph", 6, 0),
+    k = 2)
+#v.st$dist = v.st$dist / 1000
+StAni <- estiStAni(v.st, c(0,200000))
+(fitProdSumModel <- fit.StVariogram(v.st, prodSumModel,
+    fit.method = 7, stAni = StAni, method = "L-BFGS-B",
+    control = list(parscale = c(1,100000,1,1,0.1,1,10)),
+    lower = rep(0.0001, 7)))
+# space component: 
+#   model    psill range
+# 1   Nug   0.0166     0
+# 2   Exp 152.7046 83590
+# time component: 
+#   model   psill range
+# 1   Nug  0.0001  0.00
+# 2   Sph 25.5736  5.77
+# k: 0.00397635996859073
+```
+
+그림 13.2에 결과가 나타나 있으며, 와이어 프레임으로도 플롯할 수 있다(그림 13.3). 이 모델의 적합은 선택된 파라미터에 다소 민감한데, 사용 가능한 관측 네트워크 관측소의 수가 상대적으로 적은 수(74개)이기 때문일 수 있다.
+
+![샘플 베리오그램에 적합된 곱-합 모델](https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-prodsummodelplot-1.png){#fig-13-2}
+
+![적합된 시공간 베리오그램 모델에 대한 와이어 프레임 플롯](https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-modelwire-1.png){#fig-13-3}
+
+시공간 베리오그램을 적합하는 전략과 대체 모델에 대해서는 Gräler, Pebesma, & Heuvelink(2016)을 참고할 수 있다.
+
+이 적합 모델과 주어진 관측치를 바탕으로, 우리는 시공간의 임의의 위치에 대한 크리깅 또는 시뮬레이션을 수행할 수 있다. 예를 들어, 누락된 시계열 값을 추정(또는 시뮬레이션)하는데 사용할 수 있다. 이런 경우는 흔히 발생하며, 이에 대한 대처로서 12.4절에서는 관측치의 최대 25%를 배제한 시계열 평균을 계산한 바 있다. 보다 더 합리적인 옵션은, 해당 결측치를 (시공간적) 이웃의 관측치에 기반한 추정값 혹은 시뮬레이션한 값으로 대체한 후 연간 평균 값을 계산하는 것이다.
+
+보다 일반적인 관점에서 임의의 시공간 위치에서 추정을 수행하는 것이 가능하며, 이러한 과정을 특정 위치에서 시계열 값을 예측하는 것과 공간 슬라이스를 예측하는 것을 통해 설명할 것이다(Gräler, Pebesma, and Heuvelink 2016). 이를 위해 두 개의 공간 지점을 무작위로 선택하고 그 두 지점에 대한 모든 시간 인스턴스를 가진 `stars` 객체를 생성한다.
+
+```{r}
+#| eval: false
+set.seed(1331)
+pt <- st_sample(de, 2)
+t <- st_get_dimension_values(no2.st, 1)
+st_as_stars(list(pts = matrix(1, length(t), length(pt)))) |>
+    st_set_dimensions(names = c("time", "station")) |>
+    st_set_dimensions("time", t) |>
+    st_set_dimensions("station", pt) -> new_pt
+```
+
+그리고 `krigeST` 함수를 사용하여 이 두 지점에서의 시공간 예측값을 얻는다.
+
+```{r}
+#| eval: false
+no2.st <- st_transform(no2.st, crs)
+new_ts <- krigeST(NO2~1, data = no2.st["NO2"], newdata = new_pt,
+         nmax = 50, stAni = StAni, modelList = fitProdSumModel,
+         progress = FALSE)
+```
+
+결과는 그림 13.4에 나타나 있다.
+
+![선택된 두 지점에 대한 시공간 예측의 시계열 플롯](https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotxts-1.png){#fig-13-4}
+
+또한, 2017년 한 해 동안 일정한 시간 간격으로 생성된 일련의 래스터 지도들에 대한 시공간 예측을 생성할 수 있으며, 이는 다음과 같이 수행된다.
+
+```{r}
+#| eval: false
+st_bbox(de) |>
+  st_as_stars(dx = 10000) |>
+  st_crop(de) -> grd
+d <- dim(grd)
+t4 <- t[(1:4 - 0.5) * (3*24*30)]
+st_as_stars(pts = array(1, c(d[1], d[2], time = length(t4)))) |>
+    st_set_dimensions("time", t4) |>
+    st_set_dimensions("x", st_get_dimension_values(grd, "x")) |>
+    st_set_dimensions("y", st_get_dimension_values(grd, "y")) |>
+    st_set_crs(crs) -> grd.st
+```
+
+그리고 예측은 다음과 같이 수행된다.
+
+```{r}
+#| eval: false
+new_int <- krigeST(NO2~1, data = no2.st["NO2"], newdata = grd.st,
+         nmax = 200, stAni = StAni, modelList = fitProdSumModel,
+         progress = FALSE)
+names(new_int)[2] = "NO2"
+```
+
+결과는 그림 13.5에 나타나 있다.
+
+![네 개의 시점에 대해 수행된 시공간 예측의 결과](https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-stpredictions-1.png){#fig-13-5}
+
+여기서는 `nmax` 아규먼트의 값을 크게 설정할 필요가 있었는데, 이는 이산적인 이웃의 선택에서 시간과 공간을 *모두* 고려해야 하고 이로 인해 발생할 수 있는 시각적 왜곡(날카로운 경계)을 줄이기 위한 조치이다.
+
 ### 불규칙 시공간 데이터
 
+관측 지점이 계속해서 변화하거나 고정된 관측 지점이라 하더라도 시간 프레임이 일관성이 없는 경우, `stars` 객체(벡터 데이터 큐브)는 이러한 데이터를 잘 다루지 못한다. 이러한 불규칙 시공간 관측치는 **sftime** 패키지(Teickner, Pebesma, and Graeler 2022)에서 제공하는 `sftime` 객체로 표현할 수 있다. `sftime` 객체는 기본적으로 `sf` 객체인데, 지정된 시간 컬럼을 가지고 있다. 이 사용 예시는 **gstat** 패키지에서 제공되는 `demo(sftime)`에서 찾을 수 있다.
+
 ## 연습문제
+
+1.  섹션 13.1에서 "관측 스테이션이 최소 75%의 완전한 데이터를 가져야 한다"는 기준을 적용할 때, 스테이션의 몇 %가 제거되는가?
+
+2.  `no2.st`의 시간당 시계열 데이터에서 `aggregate` 함수를 사용하여 일별 평균 농도를 계산하고, 이에 대한 시공간 베리오그램을 계산하시오. 이를 시간별 베리오그램과 비교하시오.
+
+3.  그림 13.5에 표시된 날짜의 일별 평균 값에 대한 시공간 인터폴레이션을 수행하고 그 결과를 비교하시오.
+
+4.  13.2절에서 소개된 데모 스크립트의 예를 따라, 그림 13.5에 표시된 네 날의 일별 평균 스테이션 데이터를 사용하여 코크리깅을 수행하시오.
+
+5.  시공간 크리깅에 대한 위의 접근법이 가지는 차별점은 무엇인가?

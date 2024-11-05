@@ -171,7 +171,7 @@ ggplot() + geom_stars(data = k, aes(fill = var1.pred, x = x, y = y)) +
     coord_sf(lims_method = "geometry_bbox")
 ```
 
-![독일 NO$_2$ 집중도에 대한 크리깅의 결과](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-krigeovergermany-1.png){#fig-12-6}
+![독일 NO$_2$ 농도에 대한 크리깅의 결과](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-krigeovergermany-1.png){#fig-12-6}
 
 ## 에어리어 평균: 블록 크리깅
 
@@ -207,7 +207,7 @@ ggplot() + geom_sf(data = b2, mapping = aes(fill = NO2)) + facet_wrap(~var) +
      scale_fill_gradientn(colors = sf.colors(20))
 ```
 
-![단순 평균계산(왼쪽)과 블록 크리깅(오른쪽)을 통해 계산된 NO$_2$의 집계값](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggregations-1.png){#fig-12-7}
+![단순 평균계산(왼쪽)과 블록 크리깅(오른쪽)을 통해 계산된 NO$_2$ 농도의 집계값](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggregations-1.png){#fig-12-7}
 
 패턴은 유사하지만, 단순 평균계산을 통한 샘플 평균이 블록 크리깅의 값보다 변동성이 더 크다는 것을 알 수 있다. 이는 크리깅의 평활화 효과 때문일 수 있는데, 집계 영역 외부의 데이터 포인트에도 가중치가 부여되기 때문이다.
 
@@ -221,7 +221,7 @@ a <- aggregate(no2.sf["NO2"], de, SE)
 
 샘플이 공간적으로 무작위 표본 추출을 통해 얻어진 경우, 디자인-기반 추론(10.4절)에서 실제 추정치가 이와 같았을 것이다. 블록 크리깅 분산은 모델-기반 추정치로, 크리깅의 부산물로 계산된다. 그림 12.8에서 두 값을 비교해 보면, 단순 평균계산 접근법이 블록 크리깅에 비해 구역 평균의 예측 오차가 더 큰 변동성을 보일 뿐만 아니라 값도 더 크다는 것을 확인할 수 있다.
 
-![단순 평균계산법(왼쪽)과 블록 크리깅(오른쪽)을 통해 획득된 평균 NO$_2$의 표준 오차](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggrSE-1.png){#fig-12-8}
+![단순 평균계산법(왼쪽)과 블록 크리깅(오른쪽)을 통해 획득된 평균 NO$_2$ 농도의 표준 오차](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-aggrSE-1.png){#fig-12-8}
 
 ## 조건부 시뮬레이션
 
@@ -262,7 +262,7 @@ set.seed(13341)
 
 `nmax` 아규먼트의 설정을 통해 크리깅 추정 시 포함할 최근접 이웃의 (최대) 개수를 제한하는 것이 필요하다. 왜냐하면 단계가 진해되면서 데이터셋이 계속 증가하기 때문에 계산 시간이 길어지고 메모리 요구량이 커지기 때문이다. 조건부 시뮬레이션의 결과가 그림 12.9에 나타나 있다.
 
-![NO2에 대한 6가지의 조건부 시뮬레이션 결과](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-plotkrigingvalues-1.png){#fig-12-9}
+![NO$_2$ 농도에 대한 6가지의 조건부 시뮬레이션 결과](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-plotkrigingvalues-1.png){#fig-12-9}
 
 `gstat` 패키지에는 최근 조건부 시뮬레이션의 대체 기법이 추가되었으며, 원형 임베딩(circular embedding) 기법을 구현한 `krigeSimCE`(Davies와 Bryant, 2013)와 터닝 밴드(turning band) 기법을 구현한 `krigeSTSimTB`(Schlather, 2011)가 있다. 이러한 기법들은 대규모 데이터셋이나 시공간 데이터셋의 조건부 시뮬레이션에 유용하다.
 
@@ -360,7 +360,7 @@ summary(lm(NO2~sqrt(pop_dens), no2.sf))
 
 해당 선형 관계는 그림 12.11의 산점도에 나타나 있다.
 
-![농촌 지역 대기질 관측소의 2017년 연평균 NO$_2$ 집중도와 인구 밀도의 산점도](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-no2scat-1.png){#fig-12-11}
+![농촌 지역 대기질 관측소의 2017년 연평균 NO$_2$ 농도와 인구 밀도의 산점도](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-no2scat-1.png){#fig-12-11}
 
 이 새로운 모델에서의 예측을 수행하기 위해서는 먼저 잔차 베리오그램을 모델링해야 한다(그림 12.12).
 
@@ -382,7 +382,7 @@ kr <- krige(NO2 ~ sqrt(pop_dens), no2.sf,
 # [using universal kriging]
 ```
 
-![인구 밀도를 경향성 변수로 사용한 크리깅의 NO$_2$ 예측값](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-residualkriging-1.png){#fig-12-13}
+![인구 밀도를 경향성 변수로 사용한 크리깅의 NO$_2$ 농도 예측값](https://r-spatial.org/book/12-Interpolation_files/figure-html/fig-residualkriging-1.png){#fig-12-13}
 
 (오디네리) 크리깅과 비교할 때 몇 가지 뚜렷한 차이를 볼 수 있다. 인구 밀도를 경향면으로 사용한 크리깅의 결과 지도는 측정 스테이션의 극단적인 값이 아니라 인구 밀도의 극단적인 값을 따르는 경향이 있으며, 값의 범위도 오디네리 크리깅의 범위 보다 넓다. 그러나 "농촌 배경"의 범주에 속하는 측정 스테이션만 사용되어 인구 밀도가 전체적으로 낮은 특성이 있다는 점에서 해석에 신중을 기할 필요가 있다. 그림 12.11의 산점도의 x-축을 보면 측정 스테이션의 인구 밀도 값이 인구 밀도 지도에 나타나 있는 값의 범위에 비해 훨씬 제한적이라는 사실을 알 수 있으며, 따라서 오른쪽 지도는 그림 12.11에 나타난 관계를 강하게 인터폴레이션한 결과이다.
 
