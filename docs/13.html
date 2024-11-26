@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
-
-<head>
-
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.4.549" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-
-
-<title>공간데이터사이언스 개론 – 13  다변량 및 시공간 지구통계학</title>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>공간데이터사이언스 개론 - 13&nbsp; 다변량 및 시공간 지구통계학</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,8 +53,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
-<script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./14.html" rel="next">
+<link href="./12.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -85,12 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -115,45 +124,29 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script>
-
-<link rel="stylesheet" href="styles.css" />
+</script><link rel="stylesheet" href="styles.css">
 </head>
-
-<body>
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" 
-        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환"
-        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"></h1>
+        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span id="sec-geostatistics" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="/">
-      공간데이터사이언스 개론
-      </a> 
+      <a href="./">공간데이터사이언스 개론</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/sangillee66/book_sds_trans"  title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/sangillee66/book_sds_trans" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -164,147 +157,147 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서장</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="/part_1.html" class="sidebar-item-text sidebar-link">
+            <a href="./part_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">공간데이터</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>1</span>  <span class='chapter-title'>시작하기</span></span></a>
+  <a href="./01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>좌표계</span></span></a>
+  <a href="./02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">좌표계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>3</span>  <span class='chapter-title'>지오메트리</span></span></a>
+  <a href="./03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>4</span>  <span class='chapter-title'>구체 지오메트리</span></span></a>
+  <a href="./04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구체 지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>5</span>  <span class='chapter-title'>속성과 서포트</span></span></a>
+  <a href="./05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">속성과 서포트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span></span></a>
+  <a href="./06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터 큐브</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="/part_2.html" class="sidebar-item-text sidebar-link">
+            <a href="./part_2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">공간데이터사이언스와 R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars</span></span></a>
+  <a href="./07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>공간데이터의 플로팅</span></span></a>
+  <a href="./08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>대용량 데이터와 클라우드 네이티브</span></span></a>
+  <a href="./09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="/part_3.html" class="sidebar-item-text sidebar-link">
+            <a href="./part_3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">공간통계분석과 공간모델링</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>공간데이터의 통계적 모델링</span></span></a>
+  <a href="./10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>11</span>  <span class='chapter-title'>포인트 패턴 분석</span></span></a>
+  <a href="./11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span></span></a>
+  <a href="./12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/13.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class='chapter-number'>13</span>  <span class='chapter-title'>다변량 및 시공간 지구통계학</span></span></a>
+  <a href="./13.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>14</span>  <span class='chapter-title'>근접성과 에어리어 데이터</span></span></a>
+  <a href="./14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">근접성과 에어리어 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>15</span>  <span class='chapter-title'>공간적 자기상관 측도</span></span></a>
+  <a href="./15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">공간적 자기상관 측도</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>16</span>  <span class='chapter-title'>공간적 회귀분석</span></span></a>
+  <a href="./16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">공간적 회귀분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모델</span></span></a>
+  <a href="./17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모델</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -313,41 +306,50 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>A</span>  <span class='chapter-title'>R 스페셜 패키지</span></span></a>
+  <a href="./A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R 스페셜 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>B</span>  <span class='chapter-title'>R 기초</span></span></a>
+  <a href="./B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R 기초</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EB%8C%80%EA%B8%B0%EC%A7%88-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B-%EC%A4%80%EB%B9%84" id="toc-대기질-데이터셋-준비" class="nav-link active" data-scroll-target="#%EB%8C%80%EA%B8%B0%EC%A7%88-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B-%EC%A4%80%EB%B9%84"><span class="header-section-number">13.1</span> 대기질 데이터셋 준비</a></li>
+  <li><a href="#%EB%8B%A4%EB%B3%80%EB%9F%89-%EC%A7%80%EA%B5%AC%ED%86%B5%EA%B3%84%ED%95%99" id="toc-다변량-지구통계학" class="nav-link" data-scroll-target="#%EB%8B%A4%EB%B3%80%EB%9F%89-%EC%A7%80%EA%B5%AC%ED%86%B5%EA%B3%84%ED%95%99"><span class="header-section-number">13.2</span> 다변량 지구통계학</a></li>
+  <li>
+<a href="#%EC%8B%9C%EA%B3%B5%EA%B0%84-%EC%A7%80%EA%B5%AC%ED%86%B5%EA%B3%84%ED%95%99" id="toc-시공간-지구통계학" class="nav-link" data-scroll-target="#%EC%8B%9C%EA%B3%B5%EA%B0%84-%EC%A7%80%EA%B5%AC%ED%86%B5%EA%B3%84%ED%95%99"><span class="header-section-number">13.3</span> 시공간 지구통계학</a>
+  <ul class="collapse">
+<li><a href="#%EC%8B%9C%EA%B3%B5%EA%B0%84-%EB%B2%A0%EB%A6%AC%EC%98%A4%EA%B7%B8%EB%9E%A8-%EB%AA%A8%EB%8D%B8" id="toc-시공간-베리오그램-모델" class="nav-link" data-scroll-target="#%EC%8B%9C%EA%B3%B5%EA%B0%84-%EB%B2%A0%EB%A6%AC%EC%98%A4%EA%B7%B8%EB%9E%A8-%EB%AA%A8%EB%8D%B8"><span class="header-section-number">13.3.1</span> 시공간 베리오그램 모델</a></li>
+  <li><a href="#%EB%B6%88%EA%B7%9C%EC%B9%99-%EC%8B%9C%EA%B3%B5%EA%B0%84-%EB%8D%B0%EC%9D%B4%ED%84%B0" id="toc-불규칙-시공간-데이터" class="nav-link" data-scroll-target="#%EB%B6%88%EA%B7%9C%EC%B9%99-%EC%8B%9C%EA%B3%B5%EA%B0%84-%EB%8D%B0%EC%9D%B4%ED%84%B0"><span class="header-section-number">13.3.2</span> 불규칙 시공간 데이터</a></li>
+  </ul>
+</li>
+  <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"><span class="header-section-number">13.4</span> 연습문제</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span id="sec-geostatistics" class="quarto-section-identifier"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span id="sec-geostatistics" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></h1>
 </div>
 
 
@@ -367,95 +369,78 @@ window.Quarto = {
   
 
 
-</header>
-
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">목차</h2>
-   
-  <ul>
-  <li><a href="#대기질-데이터셋-준비" id="toc-대기질-데이터셋-준비"><span class="header-section-number">13.1</span> 대기질 데이터셋 준비</a></li>
-  <li><a href="#다변량-지구통계학" id="toc-다변량-지구통계학"><span class="header-section-number">13.2</span> 다변량 지구통계학</a></li>
-  <li><a href="#시공간-지구통계학" id="toc-시공간-지구통계학"><span class="header-section-number">13.3</span> 시공간 지구통계학</a>
-  <ul>
-  <li><a href="#시공간-베리오그램-모델" id="toc-시공간-베리오그램-모델"><span class="header-section-number">13.3.1</span> 시공간 베리오그램 모델</a></li>
-  <li><a href="#불규칙-시공간-데이터" id="toc-불규칙-시공간-데이터"><span class="header-section-number">13.3.2</span> 불규칙 시공간 데이터</a></li>
-  </ul></li>
-  <li><a href="#연습문제" id="toc-연습문제"><span class="header-section-number">13.4</span> 연습문제</a></li>
-  </ul>
-</nav>
-<p>12장에 제시된 간단한 인터폴레이션 기법을 바탕으로, 이 장에서는 다변량 지구통계학과 시공간 지구통계학을 다룬다. 다변량 지구통계학은 Bivand, Pebesma, &amp; Gómez-Rubio(2013)에 잘 나타나 있기 때문에 여기서는 간략하게만 다룬다. 시공간 지구통계학은 NO₂ 대기 질 데이터의 사례 연구를 통해 다루고자 한다. 인구 밀도를 공변량으로 사용한 시공간 인터폴레이션 기법이 제시된다.</p>
-<section id="대기질-데이터셋-준비" class="level2" data-number="13.1">
-<h2 data-number="13.1"><span class="header-section-number">13.1</span> 대기질 데이터셋 준비</h2>
+</header><p>12장에 제시된 간단한 인터폴레이션 기법을 바탕으로, 이 장에서는 다변량 지구통계학과 시공간 지구통계학을 다룬다. 다변량 지구통계학은 Bivand, Pebesma, &amp; Gómez-Rubio(2013)에 잘 나타나 있기 때문에 여기서는 간략하게만 다룬다. 시공간 지구통계학은 NO₂ 대기 질 데이터의 사례 연구를 통해 다루고자 한다. 인구 밀도를 공변량으로 사용한 시공간 인터폴레이션 기법이 제시된다.</p>
+<section id="대기질-데이터셋-준비" class="level2" data-number="13.1"><h2 data-number="13.1" class="anchored" data-anchor-id="대기질-데이터셋-준비">
+<span class="header-section-number">13.1</span> 대기질 데이터셋 준비</h2>
 <p>여기서 사용할 데이터셋은 유럽 환경청(EEA)에서 얻은 대기 질 데이터셋이다. 유럽 회원국들은 이 기관에 대기 질 측정 결과를 보고한다. 이른바 <em>검증된</em> 데이터는 회원국에 의해 품질이 관리되며, 연단위로 보고된다. 이 데이터는 정책 준수 평가와 (대응) 조치의 기초가 된다.</p>
 <p>EEA의 대기 질 전자 보고(e-reporting) 웹사이트를 통해 유럽 회원국들이 보고한 데이터에 접근할 수 있다. 우리는 기본 측정 데이터인 시간별(시계열) 데이터를 다운로드하기로 결정했다. 웹 양식을 통해 우리의 데이터 선택 규준이 손쉽게 HTTP <code>GET</code> 요청으로 변환된다. 독일(<code>CountryCode=DE</code>)의 2017년(<code>Year_from</code>, <code>Year_to</code>)의 모든 검증된(<code>Source=E1a</code>) <span class="math inline">\(NO_2\)</span>(<code>Pollutant=8</code>) 데이터를 선택하는 URL이 생성되었다. 이 URL은 여러개의 CSV 파일과 연결된 URL 정보가 들어있는 텍스트 파일을 반환한다. 개별 CSV 파일에는 개별 측정 측정 스테이션에 대해 전 기간에 대한 시간별 측정값이 들어 있다. 파일을 다운로드하고 dos2unix 명령줄 유틸리티를 활용하여 인코딩 변환하였다.</p>
 <p>다음으로, 스테이션 메타데이터가 포함된 단일 파일을 제외하고 나머지 모든 파일을 리스트 형태로 읽어들인다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;aq&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;*.csv&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(files, <span class="st">&quot;aq/AirBase_v8_stations.csv&quot;</span>) <span class="co"># metadata file</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">lapply</span>(files, <span class="cf">function</span>(f) <span class="fu">read.csv</span>(f))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="st">"aq"</span>, pattern <span class="op">=</span> <span class="st">"*.csv"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">files</span>, <span class="st">"aq/AirBase_v8_stations.csv"</span><span class="op">)</span> <span class="co"># metadata file</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">files</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>그런 다음 시간 변수를 <code>POSIXct</code> 변수로 변환하고, 다음과 같이 시간 순서로 정렬한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">TZ =</span> <span class="st">&quot;UTC&quot;</span>) <span class="co"># don&#39;t use local time zone</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">lapply</span>(r, <span class="cf">function</span>(f) {</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        f<span class="sc">$</span>t <span class="ot">=</span> <span class="fu">as.POSIXct</span>(f<span class="sc">$</span>DatetimeBegin) </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        f[<span class="fu">order</span>(f<span class="sc">$</span>t), ] </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>TZ <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span> <span class="co"># don't use local time zone</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">r</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="va">f</span><span class="op">$</span><span class="va">t</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct</a></span><span class="op">(</span><span class="va">f</span><span class="op">$</span><span class="va">DatetimeBegin</span><span class="op">)</span> </span>
+<span>        <span class="va">f</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">f</span><span class="op">$</span><span class="va">t</span><span class="op">)</span>, <span class="op">]</span> </span>
+<span>    <span class="op">}</span></span>
+<span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>이 데이터셋에서 시간별 데이터가 없는 작은 하위 데이터셋을 제거한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> r[<span class="fu">sapply</span>(r, nrow) <span class="sc">&gt;</span> <span class="dv">1000</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(r) <span class="ot">&lt;-</span> <span class="fu">sapply</span>(r,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               <span class="cf">function</span>(f) <span class="fu">unique</span>(f<span class="sc">$</span>AirQualityStationEoICode))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(r) <span class="sc">==</span> <span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">names</span>(r)))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="va">r</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">nrow</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">r</span>,</span>
+<span>               <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">f</span><span class="op">$</span><span class="va">AirQualityStationEoICode</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># [1] TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>그런 다음 <strong>xts</strong> 패키지의 <code>cbind</code> 함수를 사용하여 모든 파일을 병합하여 시간을 기준으로 매칭 레코드를 결합한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xts) <span class="sc">|&gt;</span> <span class="fu">suppressPackageStartupMessages</span>()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">lapply</span>(r, <span class="cf">function</span>(f) <span class="fu">xts</span>(f<span class="sc">$</span>Concentration, f<span class="sc">$</span>t))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>aq <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, r)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://joshuaulrich.github.io/xts/">xts</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">r</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/pkg/xts/man/xts.html">xts</a></span><span class="op">(</span><span class="va">f</span><span class="op">$</span><span class="va">Concentration</span>, <span class="va">f</span><span class="op">$</span><span class="va">t</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">aq</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">cbind</span>, <span class="va">r</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>이 데이터셋에 추가적인 선택을 실행하였는데, 측정된 시간별 값이 75%가 유효한 스테이션을 선택하는 것이다. 즉, 25% 이상의 결측 시간별 값을 가진 스테이션은 제외한다. <code>mean(is.na(x))</code> 함수가 벡터 <code>x</code>에서 결측 값의 비율을 계산해 주기 때문에, 이 함수를 열(스테이션)에 적용하면 된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sel <span class="ot">&lt;-</span> <span class="fu">apply</span>(aq, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">mean</span>(<span class="fu">is.na</span>(x)) <span class="sc">&lt;</span> <span class="fl">0.25</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>aqsel <span class="ot">&lt;-</span> aq[, sel]</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">aq</span>, <span class="fl">2</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">0.25</span><span class="op">)</span></span>
+<span><span class="va">aqsel</span> <span class="op">&lt;-</span> <span class="va">aq</span><span class="op">[</span>, <span class="va">sel</span><span class="op">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>다음으로, 스테이션 메타데이터를 읽어 들이고, 독일(“DE”)의 농촌 배경 스테이션에 해당하는 내용만을 골라낸다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="sc">|&gt;</span> <span class="fu">suppressPackageStartupMessages</span>()</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;aq/AirBase_v8_stations.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(country_iso_code <span class="sc">==</span> <span class="st">&quot;DE&quot;</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>           station_type_of_area <span class="sc">==</span> <span class="st">&quot;rural&quot;</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>           type_of_station <span class="sc">==</span> <span class="st">&quot;Background&quot;</span>) <span class="ot">-&gt;</span> a2</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"aq/AirBase_v8_stations.csv"</span>, sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country_iso_code</span> <span class="op">==</span> <span class="st">"DE"</span>,</span>
+<span>           <span class="va">station_type_of_area</span> <span class="op">==</span> <span class="st">"rural"</span>,</span>
+<span>           <span class="va">type_of_station</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">a2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>포함되어 있던 좌표값을 이용해, (정적) 스테이션 메타데이터를 가진 <code>sf</code> 객체를 생성한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf) <span class="sc">|&gt;</span> <span class="fu">suppressPackageStartupMessages</span>()</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>a2.sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(a2, <span class="at">crs =</span> <span class="st">&#39;OGC:CRS84&#39;</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;station_longitude_deg&quot;</span>, <span class="st">&quot;station_latitude_deg&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">a2.sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">a2</span>, crs <span class="op">=</span> <span class="st">'OGC:CRS84'</span>,</span>
+<span>  coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"station_longitude_deg"</span>, <span class="st">"station_latitude_deg"</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>이제 위에서 정리한 대기 질 측정 데이터에서 농촌 배경 유형의 스테이션에 해당 되는 것만을 골라내야 하는데, 스테이션의 코드 정보는 메타데이터를 정리한 <code>a2</code>에 저장되어 있었다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sel <span class="ot">&lt;-</span> <span class="fu">colnames</span>(aqsel) <span class="sc">%in%</span> a2<span class="sc">$</span>station_european_code</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>aqsel <span class="ot">&lt;-</span> aqsel[, sel]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(aqsel)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 8760   74</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">aqsel</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">a2</span><span class="op">$</span><span class="va">station_european_code</span></span>
+<span><span class="va">aqsel</span> <span class="op">&lt;-</span> <span class="va">aqsel</span><span class="op">[</span>, <span class="va">sel</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">aqsel</span><span class="op">)</span></span>
+<span><span class="co"># [1] 8760   74</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>스테이션별로 평균을 계산하고 그것을 스테이션 위치 객체와 조인한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">NO2 =</span> <span class="fu">apply</span>(aqsel, <span class="dv">2</span>, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">station_european_code =</span> <span class="fu">colnames</span>(aqsel))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>crs <span class="ot">&lt;-</span> <span class="fu">st_crs</span>(<span class="st">&#39;EPSG:32632&#39;</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">right_join</span>(a2.sf, tb) <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(crs) <span class="ot">-&gt;</span> no2.sf </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sf</span>(<span class="st">&quot;data/de_nuts1.gpkg&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(crs) <span class="ot">-&gt;</span> de</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>NO2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">aqsel</span>, <span class="fl">2</span>, <span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, </span>
+<span>            station_european_code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">aqsel</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">crs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="st">'EPSG:32632'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">a2.sf</span>, <span class="va">tb</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">crs</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">no2.sf</span> </span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"data/de_nuts1.gpkg"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">crs</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">de</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>그림 12.1에는 이렇게 계산된 스테이션별 평균 NO<span class="math inline">\(_2\)</span> 농도와 국가 경계가 나타나 있다.</p>
-</section>
-<section id="다변량-지구통계학" class="level2" data-number="13.2">
-<h2 data-number="13.2"><span class="header-section-number">13.2</span> 다변량 지구통계학</h2>
+</section><section id="다변량-지구통계학" class="level2" data-number="13.2"><h2 data-number="13.2" class="anchored" data-anchor-id="다변량-지구통계학">
+<span class="header-section-number">13.2</span> 다변량 지구통계학</h2>
 <p>다변량 지구통계학은 여러 변수를 결합하여 모델링, 예측 및 시뮬레이션하는 것을 의미한다. 이것을 수식으로 표현하면 다음과 같다.</p>
 <p><span class="math display">\[
 Z_1(s)=X_i\beta_i+e_1(s)
@@ -468,181 +453,167 @@ Z_n(s)=X_n\beta_n+e_n(s)
 \]</span></p>
 <p>이러한 모델을 위해서는 각 변수별로 관측치, 경향면 모델, 베리오그램이 필요할 뿐만 아니라 각 변수쌍별로 잔차의 교차-베리오그램이 필요하다. 교차-베리오그램은 <span class="math inline">\(e_i(s)\)</span>와 <span class="math inline">\(e_j(s+h)\)</span> 간의 공분산을 나타낸다. 이 교차-공분산이 0이 아니라면, <span class="math inline">\(e_j(s+h)\)</span>의 정보는 <span class="math inline">\(e_i(s)\)</span>를 예측(또는 시뮬레이션)하는 데 도움이 될 수 있다. 이는 특히 <span class="math inline">\(Z_j(s)\)</span>가 <span class="math inline">\(Z_i(s)\)</span> 보다 더 조밀하게 샘플링된 경우에 그러하다. 이러한 방식의 예측과 시뮬레이션을 코크리깅(cokriging) 및 코시뮬레이션(cosimulation)이라고 부른다. 데모 스크립트를 실행하면 <strong>gstat</strong> 패키지를 사용한 예제를 살펴볼 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gstat)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(cokriging)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(cosimulation)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/gstat/">gstat</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/demo.html">demo</a></span><span class="op">(</span><span class="va">cokriging</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/demo.html">demo</a></span><span class="op">(</span><span class="va">cosimulation</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>좀 더 자세한 사항은 Bivand, Pebesma, &amp; Gómez-Rubio(2013)를 참고하라.</p>
 <p>다양한 변수가 동일한 위치에서 관측되는 경우, 예를 들어 다양한 대기 질 변수가 스테이션에서 함께 측정되는 경우, 코크리깅(cokriging)을 사용하는 통계적 이익이 미미한 것으로 드러나는 경우가 있다. 그러나 진정한 다변량 모델링을 원한다면 코크리깅을 수행하는 것이 맞다. 코크리깅을 통해 예측 벡터 <span class="math inline">\(\hat{Z}(s_0)=(\hat{Z}_1(s_0),...,\hat{Z}_n(s_0))\)</span>를 얻을 뿐만 아니라 예측 오차의 전체 공분산 행렬도 얻을 수 있다(Ver Hoef and Cressie 1993). 이 예측 오차 공분산 행렬을 이용하면, <span class="math inline">\(\hat{Z}(s_0)\)</span>의 어떠한 선형 조합, 예를 들어 <span class="math inline">\(\hat{Z}_2(s_0)-\hat{Z}_1(s_0)\)</span>에 대한 표준 오차를 얻을 수 있다.</p>
 <p>베리오그램 및 교차-베리오그램을 자동으로 계산하고 적합할 수 있지만, 변수의 수가 많아질수록 다변량 지구통계 모델링은 관리하기 어려워진다. 필요한 베리오그램 및 교차-베리오그램의 수가 <span class="math inline">\(n(n+1)/2\)</span>로 늘어나기 때문이다.</p>
 <p>여러 변수라는 의미가 동일한 변수에 대한 여러 시점의 변수를 의미하는 경우라도 다변량(코크리깅) 예측 접근 방식을 사용할 수 있다. 하지만 이 경우 두 시점 사이의 특정 시점에 대해 인터폴레이션 하는 것은 불가능하다. 이런 경우, 혹은 여러 시간 인스턴스에서 관측된 데이터를 처리해야 하는 경우, <span class="math inline">\(Z(s,t)\)</span>처럼 연속적인 시공간 <em>결합</em> 함수를 통해 변동성을 모델링할 수 있다. 다음 절에서 이를 다룰 것이다.</p>
-</section>
-<section id="시공간-지구통계학" class="level2" data-number="13.3">
-<h2 data-number="13.3"><span class="header-section-number">13.3</span> 시공간 지구통계학</h2>
+</section><section id="시공간-지구통계학" class="level2" data-number="13.3"><h2 data-number="13.3" class="anchored" data-anchor-id="시공간-지구통계학">
+<span class="header-section-number">13.3</span> 시공간 지구통계학</h2>
 <p>시공간 지구통계 프로세스는 시공간의 모든 위치에서 변수 값이 존재한다는 전제에 기반한다. 이것을 <span class="math inline">\(Z(s,t)\)</span>로 나타낼 수 있고, 여기서 <span class="math inline">\(s\)</span>와 <span class="math inline">\(t\)</span>는 시공간 상에서 연속적으로 정의되는 인덱스이다. 관측치 <span class="math inline">\(Z(s_i,t_j)\)</span>와 베리오그램(공변동) 모델 <span class="math inline">\(\gamma(s,t)\)</span>가 주어지면, 표준 가우시안 프로세스 이론을 활용해 임의의 시공간 위치 <span class="math inline">\((s_0,t_0)\)</span>의 속성값 <span class="math inline">\(Z(s_0,t_0)\)</span>를 예측할 수 있다.</p>
 <p>최근에 시공간 지구통계 데이터의 처리 및 모델링에 관한 현대적인 접근을 다룬 몇 권의 책이 출간되었다. 예를 들어 Wikle, Zammit-Mangion, &amp; Cressie(2019)와 Blangiardo &amp; Cameletti(2015)가 있다. 여기서는 Gräler, Pebesma, &amp; Heuvelink(2016)를 참고하고, 이전 장에서 사용한 데이터셋을 활용한 간단한 예제를 제시할 것이다.</p>
-<section id="시공간-베리오그램-모델" class="level3" data-number="13.3.1">
-<h3 data-number="13.3.1"><span class="header-section-number">13.3.1</span> 시공간 베리오그램 모델</h3>
+<section id="시공간-베리오그램-모델" class="level3" data-number="13.3.1"><h3 data-number="13.3.1" class="anchored" data-anchor-id="시공간-베리오그램-모델">
+<span class="header-section-number">13.3.1</span> 시공간 베리오그램 모델</h3>
 <p>이 장의 서두에서 NO<span class="math inline">\(_2\)</span>의 시공간 매트릭스 데이터를 <code>aq</code> 객체에 저장했고, 이것으로부터 완전한 레코드를 보유한 농촌 배경 관측소만을 선택해 <code>aqsel</code> 객체로 만들었다. 최종 74개 관측소의 공간 위치를 다음과 같이 선택할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sfc <span class="ot">&lt;-</span> <span class="fu">st_geometry</span>(a2.sf)[<span class="fu">match</span>(<span class="fu">colnames</span>(aqsel),</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                           a2.sf<span class="sc">$</span>station_european_code)] <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sfc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">a2.sf</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">aqsel</span><span class="op">)</span>,</span>
+<span>                           <span class="va">a2.sf</span><span class="op">$</span><span class="va">station_european_code</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">crs</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>그리고 나서 마침내 시간과 스테이션을 디멘션으로 가지는 <code>stars</code> 벡터 큐브를 구축한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stars)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required package: abind</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">st_as_stars</span>(<span class="at">NO2 =</span> <span class="fu">as.matrix</span>(aqsel)) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;station&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="st">&quot;time&quot;</span>, <span class="fu">index</span>(aqsel)) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="st">&quot;station&quot;</span>, sfc) <span class="ot">-&gt;</span> no2.st</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>no2.st</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># attribute(s):</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#      Min. 1st Qu. Median Mean 3rd Qu. Max.  NA&#39;s</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># NO2  -8.1    3.02   5.66 8.39    10.4  197 16134</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># dimension(s):</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#         from   to         offset   delta            refsys point</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># time       1 8760 2017-01-01 UTC 1 hours           POSIXct    NA</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># station    1   74             NA      NA WGS 84 / UTM z...  TRUE</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#                                          values</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># time                                       NULL</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># station POINT (439814 ...,...,POINT (456668 ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/">stars</a></span><span class="op">)</span></span>
+<span><span class="co"># Loading required package: abind</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span>NO2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">aqsel</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"time"</span>, <span class="st">"station"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span><span class="st">"time"</span>, <span class="fu"><a href="https://rdrr.io/pkg/zoo/man/index.html">index</a></span><span class="op">(</span><span class="va">aqsel</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span><span class="st">"station"</span>, <span class="va">sfc</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">no2.st</span></span>
+<span><span class="va">no2.st</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#      Min. 1st Qu. Median Mean 3rd Qu. Max.  NA's</span></span>
+<span><span class="co"># NO2  -8.1    3.02   5.66 8.39    10.4  197 16134</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#         from   to         offset   delta            refsys point</span></span>
+<span><span class="co"># time       1 8760 2017-01-01 UTC 1 hours           POSIXct    NA</span></span>
+<span><span class="co"># station    1   74             NA      NA WGS 84 / UTM z...  TRUE</span></span>
+<span><span class="co">#                                          values</span></span>
+<span><span class="co"># time                                       NULL</span></span>
+<span><span class="co"># station POINT (439814 ...,...,POINT (456668 ...</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>이 데이터를 바탕으로 다음과 같이 시공간 베리오그램을 구성한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gstat)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/gstat/">gstat</a></span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>v.st <span class="ot">&lt;-</span> <span class="fu">variogramST</span>(NO2<span class="sc">~</span><span class="dv">1</span>, no2.st[,<span class="dv">1</span><span class="sc">:</span>(<span class="dv">24</span><span class="sc">*</span><span class="dv">31</span>)], <span class="at">tlags =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">48</span>, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">cores =</span> <span class="fu">getOption</span>(<span class="st">&quot;mc.cores&quot;</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v.st</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/variogramST.html">variogramST</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, <span class="va">no2.st</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="op">(</span><span class="fl">24</span><span class="op">*</span><span class="fl">31</span><span class="op">)</span><span class="op">]</span>, tlags <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">48</span>, </span>
+<span>    cores <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span><span class="op">(</span><span class="st">"mc.cores"</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>결과는 그림 13.1에 나타나 있다.</p>
-<div id="fig-13-1" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-13-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotvariograms-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotvariograms-1.png" class="img-fluid" /></a>
+<div id="fig-13-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-13-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotvariograms-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotvariograms-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림 13.1: 2017년 독일의 농촌 배경 스테이션의 시간별 NO<span class="math inline">\(_2\)</span> 농도에 대한 시공간 샘플 베리오그램으로 오른쪽의 컬러는 시간 지체를 나타내며(노란색이 더 늦은 시간을 나타냄) 거리의 단위는 미터이다.
-</figcaption>
-</figure>
+그림&nbsp;13.1: 2017년 독일의 농촌 배경 스테이션의 시간별 NO<span class="math inline">\(_2\)</span> 농도에 대한 시공간 샘플 베리오그램으로 오른쪽의 컬러는 시간 지체를 나타내며(노란색이 더 늦은 시간을 나타냄) 거리의 단위는 미터이다.
+</figcaption></figure>
 </div>
 <p>이 샘플 베리오그램에 대해 특정한 베리오그램 모델을 적합할 수 있다. 여기에서는 비교적 유연한 모델인 곱-합(product-sum) 모델(Gräler, Pebesma, 및 Heuvelink 2016)을 적용하고자 하는데, 다음과 같이 적합된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># product-sum</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>prodSumModel <span class="ot">&lt;-</span> <span class="fu">vgmST</span>(<span class="st">&quot;productSum&quot;</span>,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">space =</span> <span class="fu">vgm</span>(<span class="dv">150</span>, <span class="st">&quot;Exp&quot;</span>, <span class="dv">200000</span>, <span class="dv">0</span>),</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="fu">vgm</span>(<span class="dv">20</span>, <span class="st">&quot;Sph&quot;</span>, <span class="dv">6</span>, <span class="dv">0</span>),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">k =</span> <span class="dv">2</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#v.st$dist = v.st$dist / 1000</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>StAni <span class="ot">&lt;-</span> <span class="fu">estiStAni</span>(v.st, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">200000</span>))</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>(fitProdSumModel <span class="ot">&lt;-</span> <span class="fu">fit.StVariogram</span>(v.st, prodSumModel,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit.method =</span> <span class="dv">7</span>, <span class="at">stAni =</span> StAni, <span class="at">method =</span> <span class="st">&quot;L-BFGS-B&quot;</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">control =</span> <span class="fu">list</span>(<span class="at">parscale =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100000</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>)),</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">lower =</span> <span class="fu">rep</span>(<span class="fl">0.0001</span>, <span class="dv">7</span>)))</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># space component: </span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   model    psill range</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 1   Nug   0.0166     0</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 2   Exp 152.7046 83590</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># time component: </span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   model   psill range</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 1   Nug  0.0001  0.00</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 2   Sph 25.5736  5.77</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># k: 0.00397635996859073</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># product-sum</span></span>
+<span><span class="va">prodSumModel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/vgmST.html">vgmST</a></span><span class="op">(</span><span class="st">"productSum"</span>,</span>
+<span>    space <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/vgm.html">vgm</a></span><span class="op">(</span><span class="fl">150</span>, <span class="st">"Exp"</span>, <span class="fl">200000</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>    time <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/vgm.html">vgm</a></span><span class="op">(</span><span class="fl">20</span>, <span class="st">"Sph"</span>, <span class="fl">6</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>    k <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#v.st$dist = v.st$dist / 1000</span></span>
+<span><span class="va">StAni</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/estiStAni.html">estiStAni</a></span><span class="op">(</span><span class="va">v.st</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">200000</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">fitProdSumModel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/fit.StVariogram.html">fit.StVariogram</a></span><span class="op">(</span><span class="va">v.st</span>, <span class="va">prodSumModel</span>,</span>
+<span>    fit.method <span class="op">=</span> <span class="fl">7</span>, stAni <span class="op">=</span> <span class="va">StAni</span>, method <span class="op">=</span> <span class="st">"L-BFGS-B"</span>,</span>
+<span>    control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>parscale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100000</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0.1</span>,<span class="fl">1</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    lower <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.0001</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># space component: </span></span>
+<span><span class="co">#   model    psill range</span></span>
+<span><span class="co"># 1   Nug   0.0166     0</span></span>
+<span><span class="co"># 2   Exp 152.7046 83590</span></span>
+<span><span class="co"># time component: </span></span>
+<span><span class="co">#   model   psill range</span></span>
+<span><span class="co"># 1   Nug  0.0001  0.00</span></span>
+<span><span class="co"># 2   Sph 25.5736  5.77</span></span>
+<span><span class="co"># k: 0.00397635996859073</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>그림 13.2에 결과가 나타나 있으며, 와이어 프레임으로도 플롯할 수 있다(그림 13.3). 이 모델의 적합은 선택된 파라미터에 다소 민감한데, 사용 가능한 관측 네트워크 관측소의 수가 상대적으로 적은 수(74개)이기 때문일 수 있다.</p>
-<div id="fig-13-2" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-13-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-prodsummodelplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-prodsummodelplot-1.png" class="img-fluid" /></a>
+<div id="fig-13-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-13-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-prodsummodelplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-prodsummodelplot-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림 13.2: 샘플 베리오그램에 적합된 곱-합 모델
-</figcaption>
-</figure>
+그림&nbsp;13.2: 샘플 베리오그램에 적합된 곱-합 모델
+</figcaption></figure>
 </div>
-<div id="fig-13-3" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-13-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-modelwire-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-modelwire-1.png" class="img-fluid" /></a>
+<div id="fig-13-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-13-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-modelwire-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-modelwire-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림 13.3: 적합된 시공간 베리오그램 모델에 대한 와이어 프레임 플롯
-</figcaption>
-</figure>
+그림&nbsp;13.3: 적합된 시공간 베리오그램 모델에 대한 와이어 프레임 플롯
+</figcaption></figure>
 </div>
 <p>시공간 베리오그램을 적합하는 전략과 대체 모델에 대해서는 Gräler, Pebesma, &amp; Heuvelink(2016)을 참고할 수 있다.</p>
 <p>이 적합 모델과 주어진 관측치를 바탕으로, 우리는 시공간의 임의의 위치에 대한 크리깅 또는 시뮬레이션을 수행할 수 있다. 예를 들어, 누락된 시계열 값을 추정(또는 시뮬레이션)하는데 사용할 수 있다. 이런 경우는 흔히 발생하며, 이에 대한 대처로서 12.4절에서는 관측치의 최대 25%를 배제한 시계열 평균을 계산한 바 있다. 보다 더 합리적인 옵션은, 해당 결측치를 (시공간적) 이웃의 관측치에 기반한 추정값 혹은 시뮬레이션한 값으로 대체한 후 연간 평균 값을 계산하는 것이다.</p>
 <p>보다 일반적인 관점에서 임의의 시공간 위치에서 추정을 수행하는 것이 가능하며, 이러한 과정을 특정 위치에서 시계열 값을 예측하는 것과 공간 슬라이스를 예측하는 것을 통해 설명할 것이다(Gräler, Pebesma, and Heuvelink 2016). 이를 위해 두 개의 공간 지점을 무작위로 선택하고 그 두 지점에 대한 모든 시간 인스턴스를 가진 <code>stars</code> 객체를 생성한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1331</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> <span class="fu">st_sample</span>(de, <span class="dv">2</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">st_get_dimension_values</span>(no2.st, <span class="dv">1</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">st_as_stars</span>(<span class="fu">list</span>(<span class="at">pts =</span> <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="fu">length</span>(t), <span class="fu">length</span>(pt)))) <span class="sc">|&gt;</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;station&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="st">&quot;time&quot;</span>, t) <span class="sc">|&gt;</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="st">&quot;station&quot;</span>, pt) <span class="ot">-&gt;</span> new_pt</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1331</span><span class="op">)</span></span>
+<span><span class="va">pt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample</a></span><span class="op">(</span><span class="va">de</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_get_dimension_values</a></span><span class="op">(</span><span class="va">no2.st</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">t</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">pt</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"time"</span>, <span class="st">"station"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span><span class="st">"time"</span>, <span class="va">t</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span><span class="st">"station"</span>, <span class="va">pt</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">new_pt</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>그리고 <code>krigeST</code> 함수를 사용하여 이 두 지점에서의 시공간 예측값을 얻는다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>no2.st <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(no2.st, crs)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>new_ts <span class="ot">&lt;-</span> <span class="fu">krigeST</span>(NO2<span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> no2.st[<span class="st">&quot;NO2&quot;</span>], <span class="at">newdata =</span> new_pt,</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">nmax =</span> <span class="dv">50</span>, <span class="at">stAni =</span> StAni, <span class="at">modelList =</span> fitProdSumModel,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">progress =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">no2.st</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">no2.st</span>, <span class="va">crs</span><span class="op">)</span></span>
+<span><span class="va">new_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/krigeST.html">krigeST</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, data <span class="op">=</span> <span class="va">no2.st</span><span class="op">[</span><span class="st">"NO2"</span><span class="op">]</span>, newdata <span class="op">=</span> <span class="va">new_pt</span>,</span>
+<span>         nmax <span class="op">=</span> <span class="fl">50</span>, stAni <span class="op">=</span> <span class="va">StAni</span>, modelList <span class="op">=</span> <span class="va">fitProdSumModel</span>,</span>
+<span>         progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>결과는 그림 13.4에 나타나 있다.</p>
-<div id="fig-13-4" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-13-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotxts-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotxts-1.png" class="img-fluid" /></a>
+<div id="fig-13-4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-13-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotxts-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-plotxts-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림 13.4: 선택된 두 지점에 대한 시공간 예측의 시계열 플롯
-</figcaption>
-</figure>
+그림&nbsp;13.4: 선택된 두 지점에 대한 시공간 예측의 시계열 플롯
+</figcaption></figure>
 </div>
 <p>또한, 2017년 한 해 동안 일정한 시간 간격으로 생성된 일련의 래스터 지도들에 대한 시공간 예측을 생성할 수 있으며, 이는 다음과 같이 수행된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_bbox</span>(de) <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_stars</span>(<span class="at">dx =</span> <span class="dv">10000</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_crop</span>(de) <span class="ot">-&gt;</span> grd</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">dim</span>(grd)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>t4 <span class="ot">&lt;-</span> t[(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span> <span class="sc">-</span> <span class="fl">0.5</span>) <span class="sc">*</span> (<span class="dv">3</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">30</span>)]</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">st_as_stars</span>(<span class="at">pts =</span> <span class="fu">array</span>(<span class="dv">1</span>, <span class="fu">c</span>(d[<span class="dv">1</span>], d[<span class="dv">2</span>], <span class="at">time =</span> <span class="fu">length</span>(t4)))) <span class="sc">|&gt;</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="st">&quot;time&quot;</span>, t4) <span class="sc">|&gt;</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="st">&quot;x&quot;</span>, <span class="fu">st_get_dimension_values</span>(grd, <span class="st">&quot;x&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_dimensions</span>(<span class="st">&quot;y&quot;</span>, <span class="fu">st_get_dimension_values</span>(grd, <span class="st">&quot;y&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_set_crs</span>(crs) <span class="ot">-&gt;</span> grd.st</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span>dx <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop</a></span><span class="op">(</span><span class="va">de</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">grd</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">grd</span><span class="op">)</span></span>
+<span><span class="va">t4</span> <span class="op">&lt;-</span> <span class="va">t</span><span class="op">[</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="fl">3</span><span class="op">*</span><span class="fl">24</span><span class="op">*</span><span class="fl">30</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span>pts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">d</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">d</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">t4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span><span class="st">"time"</span>, <span class="va">t4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_get_dimension_values</a></span><span class="op">(</span><span class="va">grd</span>, <span class="st">"x"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_set_dimensions</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_get_dimension_values</a></span><span class="op">(</span><span class="va">grd</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_set_crs</a></span><span class="op">(</span><span class="va">crs</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">grd.st</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>그리고 예측은 다음과 같이 수행된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>new_int <span class="ot">&lt;-</span> <span class="fu">krigeST</span>(NO2<span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> no2.st[<span class="st">&quot;NO2&quot;</span>], <span class="at">newdata =</span> grd.st,</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">nmax =</span> <span class="dv">200</span>, <span class="at">stAni =</span> StAni, <span class="at">modelList =</span> fitProdSumModel,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">progress =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(new_int)[<span class="dv">2</span>] <span class="ot">=</span> <span class="st">&quot;NO2&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">new_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/krigeST.html">krigeST</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, data <span class="op">=</span> <span class="va">no2.st</span><span class="op">[</span><span class="st">"NO2"</span><span class="op">]</span>, newdata <span class="op">=</span> <span class="va">grd.st</span>,</span>
+<span>         nmax <span class="op">=</span> <span class="fl">200</span>, stAni <span class="op">=</span> <span class="va">StAni</span>, modelList <span class="op">=</span> <span class="va">fitProdSumModel</span>,</span>
+<span>         progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">new_int</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">=</span> <span class="st">"NO2"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>결과는 그림 13.5에 나타나 있다.</p>
-<div id="fig-13-5" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-13-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-stpredictions-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-stpredictions-1.png" class="img-fluid" /></a>
+<div id="fig-13-5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-13-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-stpredictions-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/13-Geostatistics_files/figure-html/fig-stpredictions-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-13-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림 13.5: 네 개의 시점에 대해 수행된 시공간 예측의 결과
-</figcaption>
-</figure>
+그림&nbsp;13.5: 네 개의 시점에 대해 수행된 시공간 예측의 결과
+</figcaption></figure>
 </div>
 <p>여기서는 <code>nmax</code> 아규먼트의 값을 크게 설정할 필요가 있었는데, 이는 이산적인 이웃의 선택에서 시간과 공간을 <em>모두</em> 고려해야 하고 이로 인해 발생할 수 있는 시각적 왜곡(날카로운 경계)을 줄이기 위한 조치이다.</p>
-</section>
-<section id="불규칙-시공간-데이터" class="level3" data-number="13.3.2">
-<h3 data-number="13.3.2"><span class="header-section-number">13.3.2</span> 불규칙 시공간 데이터</h3>
+</section><section id="불규칙-시공간-데이터" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="불규칙-시공간-데이터">
+<span class="header-section-number">13.3.2</span> 불규칙 시공간 데이터</h3>
 <p>관측 지점이 계속해서 변화하거나 고정된 관측 지점이라 하더라도 시간 프레임이 일관성이 없는 경우, <code>stars</code> 객체(벡터 데이터 큐브)는 이러한 데이터를 잘 다루지 못한다. 이러한 불규칙 시공간 관측치는 <strong>sftime</strong> 패키지(Teickner, Pebesma, and Graeler 2022)에서 제공하는 <code>sftime</code> 객체로 표현할 수 있다. <code>sftime</code> 객체는 기본적으로 <code>sf</code> 객체인데, 지정된 시간 컬럼을 가지고 있다. 이 사용 예시는 <strong>gstat</strong> 패키지에서 제공되는 <code>demo(sftime)</code>에서 찾을 수 있다.</p>
-</section>
-</section>
-<section id="연습문제" class="level2" data-number="13.4">
-<h2 data-number="13.4"><span class="header-section-number">13.4</span> 연습문제</h2>
+</section></section><section id="연습문제" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="연습문제">
+<span class="header-section-number">13.4</span> 연습문제</h2>
 <ol type="1">
 <li><p>섹션 13.1에서 “관측 스테이션이 최소 75%의 완전한 데이터를 가져야 한다”는 기준을 적용할 때, 스테이션의 몇 %가 제거되는가?</p></li>
 <li><p><code>no2.st</code>의 시간당 시계열 데이터에서 <code>aggregate</code> 함수를 사용하여 일별 평균 농도를 계산하고, 이에 대한 시공간 베리오그램을 계산하시오. 이를 시간별 베리오그램과 비교하시오.</p></li>
@@ -650,23 +621,16 @@ Z_n(s)=X_n\beta_n+e_n(s)
 <li><p>13.2절에서 소개된 데모 스크립트의 예를 따라, 그림 13.5에 표시된 네 날의 일별 평균 스테이션 데이터를 사용하여 코크리깅을 수행하시오.</p></li>
 <li><p>시공간 크리깅에 대한 위의 접근법이 가지는 차별점은 무엇인가?</p></li>
 </ol>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-int-navbar-title">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">14</span>  <span class="chapter-title">근접성과 에어리어 데이터</span></span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 인터폴레이션</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html서장">서장</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">공간데이터</span> <span class="hidden" data-render-id="quarto-int-sidebar:/01.html&lt;span-class=&#39;chapter-number&#39;&gt;1&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;시작하기&lt;/span&gt;"><span class="chapter-number">1</span>  <span class="chapter-title">시작하기</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/02.html&lt;span-class=&#39;chapter-number&#39;&gt;2&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;좌표계&lt;/span&gt;"><span class="chapter-number">2</span>  <span class="chapter-title">좌표계</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/03.html&lt;span-class=&#39;chapter-number&#39;&gt;3&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;지오메트리&lt;/span&gt;"><span class="chapter-number">3</span>  <span class="chapter-title">지오메트리</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/04.html&lt;span-class=&#39;chapter-number&#39;&gt;4&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;구체-지오메트리&lt;/span&gt;"><span class="chapter-number">4</span>  <span class="chapter-title">구체 지오메트리</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/05.html&lt;span-class=&#39;chapter-number&#39;&gt;5&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;속성과-서포트&lt;/span&gt;"><span class="chapter-number">5</span>  <span class="chapter-title">속성과 서포트</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/06.html&lt;span-class=&#39;chapter-number&#39;&gt;6&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;데이터-큐브&lt;/span&gt;"><span class="chapter-number">6</span>  <span class="chapter-title">데이터 큐브</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">공간데이터사이언스와 R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/07.html&lt;span-class=&#39;chapter-number&#39;&gt;7&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;sf와-stars&lt;/span&gt;"><span class="chapter-number">7</span>  <span class="chapter-title">sf와 stars</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/08.html&lt;span-class=&#39;chapter-number&#39;&gt;8&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간데이터의-플로팅&lt;/span&gt;"><span class="chapter-number">8</span>  <span class="chapter-title">공간데이터의 플로팅</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/09.html&lt;span-class=&#39;chapter-number&#39;&gt;9&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;대용량-데이터와-클라우드-네이티브&lt;/span&gt;"><span class="chapter-number">9</span>  <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">공간통계분석과 공간모델링</span> <span class="hidden" data-render-id="quarto-int-sidebar:/10.html&lt;span-class=&#39;chapter-number&#39;&gt;10&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간데이터의-통계적-모델링&lt;/span&gt;"><span class="chapter-number">10</span>  <span class="chapter-title">공간데이터의 통계적 모델링</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/11.html&lt;span-class=&#39;chapter-number&#39;&gt;11&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;포인트-패턴-분석&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/12.html&lt;span-class=&#39;chapter-number&#39;&gt;12&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-인터폴레이션&lt;/span&gt;"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 인터폴레이션</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/13.html&lt;span-class=&#39;chapter-number&#39;&gt;13&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;다변량-및-시공간-지구통계학&lt;/span&gt;"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/14.html&lt;span-class=&#39;chapter-number&#39;&gt;14&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;근접성과-에어리어-데이터&lt;/span&gt;"><span class="chapter-number">14</span>  <span class="chapter-title">근접성과 에어리어 데이터</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/15.html&lt;span-class=&#39;chapter-number&#39;&gt;15&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-자기상관-측도&lt;/span&gt;"><span class="chapter-number">15</span>  <span class="chapter-title">공간적 자기상관 측도</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/16.html&lt;span-class=&#39;chapter-number&#39;&gt;16&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-회귀분석&lt;/span&gt;"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/17.html&lt;span-class=&#39;chapter-number&#39;&gt;17&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간계량경제학적-모델&lt;/span&gt;"><span class="chapter-number">17</span>  <span class="chapter-title">공간계량경제학적 모델</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-4">부록</span> <span class="hidden" data-render-id="quarto-int-sidebar:/A.html&lt;span-class=&#39;chapter-number&#39;&gt;A&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-스페셜-패키지&lt;/span&gt;"><span class="chapter-number">A</span>  <span class="chapter-title">R 스페셜 패키지</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/B.html&lt;span-class=&#39;chapter-number&#39;&gt;B&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-기초&lt;/span&gt;"><span class="chapter-number">B</span>  <span class="chapter-title">R 기초</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/references.htmlReferences">References</span> <span class="hidden" data-render-id="quarto-breadcrumbs-공간통계분석과-공간모델링">공간통계분석과 공간모델링</span> <span class="hidden" data-render-id="quarto-breadcrumbs-&lt;span-class=&#39;chapter-number&#39;&gt;13&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;다변량-및-시공간-지구통계학&lt;/span&gt;"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></p>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-metatitle">공간데이터사이언스 개론 - <span id="sec-geostatistics" class="quarto-section-identifier"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">공간데이터사이언스 개론 - <span id="sec-geostatistics" class="quarto-section-identifier"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">공간데이터사이언스 개론 - <span id="sec-geostatistics" class="quarto-section-identifier"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></span> <span class="hidden" data-render-id="quarto-metasitename">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
-</div>
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림 13.1: 2017년 독일의 농촌 배경 스테이션의 시간별 NO<span class="math inline">\(_2\)</span> 농도에 대한 시공간 샘플 베리오그램으로 오른쪽의 컬러는 시간 지체를 나타내며(노란색이 더 늦은 시간을 나타냄) 거리의 단위는 미터이다.</span>
-<span class="glightbox-desc lightbox-desc-2">그림 13.2: 샘플 베리오그램에 적합된 곱-합 모델</span>
-<span class="glightbox-desc lightbox-desc-3">그림 13.3: 적합된 시공간 베리오그램 모델에 대한 와이어 프레임 플롯</span>
-<span class="glightbox-desc lightbox-desc-4">그림 13.4: 선택된 두 지점에 대한 시공간 예측의 시계열 플롯</span>
-<span class="glightbox-desc lightbox-desc-5">그림 13.5: 네 개의 시점에 대해 수행된 시공간 예측의 결과</span>
-</div>
-</section>
 
-</main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림&nbsp;13.1: 2017년 독일의 농촌 배경 스테이션의 시간별 NO<span class="math inline">\(_2\)</span> 농도에 대한 시공간 샘플 베리오그램으로 오른쪽의 컬러는 시간 지체를 나타내며(노란색이 더 늦은 시간을 나타냄) 거리의 단위는 미터이다.</span>
+<span class="glightbox-desc lightbox-desc-2">그림&nbsp;13.2: 샘플 베리오그램에 적합된 곱-합 모델</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;13.3: 적합된 시공간 베리오그램 모델에 대한 와이어 프레임 플롯</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;13.4: 선택된 두 지점에 대한 시공간 예측의 시계열 플롯</span>
+<span class="glightbox-desc lightbox-desc-5">그림&nbsp;13.5: 네 개의 시점에 대해 수행된 시공간 예측의 결과</span>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1052,21 +1016,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a  href="/12.html" class="pagination-link  aria-label="&lt;span class=&#39;chapter-number&#39;&gt;12&lt;/span&gt;  &lt;span class=&#39;chapter-title&#39;&gt;공간적 인터폴레이션&lt;/span&gt;">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 인터폴레이션</span></span>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./12.html" class="pagination-link  aria-label=">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a  href="/14.html" class="pagination-link" aria-label="&lt;span class=&#39;chapter-number&#39;&gt;14&lt;/span&gt;  &lt;span class=&#39;chapter-title&#39;&gt;근접성과 에어리어 데이터&lt;/span&gt;">
-        <span class="nav-page-text"><span class='chapter-number'>14</span>  <span class='chapter-title'>근접성과 에어리어 데이터</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./14.html" class="pagination-link" aria-label="<span class='chapter-number'>14</span>&nbsp; <span class='chapter-title'>근접성과 에어리어 데이터</span>">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">근접성과 에어리어 데이터</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
@@ -1092,6 +1054,5 @@ window.onload = () => {
 };
           </script>
 
-</body>
 
-</html>
+</body></html>
