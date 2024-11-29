@@ -641,4 +641,102 @@ table(droplevels(interaction(addNA(pol_pres15$hs_C),
 
 ### rgeoda 패키지
 
+**rgeoda**(Li and Anselin 2022) 패키지는 Geoda의 R 래퍼 패키지로, **spdep** 패키지와 유사한 기능을 제공함으로써 에어리어 데이터에서의 공간적 자기상관을 탐색할 수 있게 해준다. 활성 객체는 컴파일된 작업 공간의 메모리 주소를 참조하는 포인터로 관리된다. 즉 모든 오퍼레이션이 컴파일된 코드를 통해 실행되기 때문에(GeoDa와 동일한 방식) **rgeoda** 패키지는 빠른 성능을 자랑한다. 그러나 수정이나 기능 확장이 필요할 때는 유연성이 떨어진다.
+
+```{r}
+#| eval: false
+library(rgeoda)
+Geoda_w <- queen_weights(pol_pres15)
+summary(Geoda_w)
+#                      name               value
+# 1 number of observations:                2495
+# 2          is symmetric:                 TRUE
+# 3               sparsity: 0.00228786229774178
+# 4        # min neighbors:                   1
+# 5        # max neighbors:                  13
+# 6       # mean neighbors:    5.70821643286573
+# 7     # median neighbors:                   6
+# 8           has isolates:               FALSE
+```
+
+비교를 위해, 2015년 폴란드 대통령 선거 투표율에 대한 다변량 $C_i$를 지표를 살펴보자.
+
+```{r}
+#| eval: false
+lisa <- local_multigeary(Geoda_w, 
+    pol_pres15[c("I_turnout", "II_turnout")], 
+    cpu_threads = max(detectCores() - 1, 1),
+    permutations = 99999, seed = 1)
+```
+
+연접 이웃을 비교 하면 위에서 `poly2nb` 함수를 통해 규정된 것과 동일하다.
+
+```{r}
+#| eval: false
+all.equal(card(nb_q), lisa_num_nbrs(lisa), 
+          check.attributes = FALSE)
+# [1] TRUE
+```
+
+다변량 $C_i$ 값도 위와 동일하다.
+
+```{r}
+#| eval: false
+all.equal(lisa_values(lisa), c(locMvC_p),
+          check.attributes = FALSE)
+# [1] TRUE
+```
+
+한 가지 차이점은 **rgeoda**에서 사용하는 접힌(folded) 양측 순위-기반 순열 유의확률 값의 범위가 $[0,0.5]$로 제한된다는 점이며, 이는 **spdep**에서도 계산되지만, 다르게 처리될 수 있다는 것이다.
+
+```{r}
+#| eval: false
+apply(attr(locMvC_p, "pseudo-p")[,c("Pr(z != E(Ci)) Sim", 
+                                "Pr(folded) Sim")], 2, range)
+#      Pr(z != E(Ci)) Sim Pr(folded) Sim
+# [1,]             0.0002         0.0001
+# [2,]             0.9990         0.4995
+```
+
+이것은 $[0,1]$ 범위에서 $0.005$에 해당하는 컷오프 값이 $[0,0.05]$ 범위에서는 $0.0025$에 해당한다는 의미이다.
+
+```{r}
+#| eval: false
+locMvC_p |> hotspot(Prname = "Pr(folded) Sim",
+                    cutoff = 0.0025) -> pol_pres15$hs_MvCa
+```
+
+따라서 `local_multigeary` 함수는 클러스터 핵심 클래스를 설정할 때 기본 컷오프 값인 $0,05$를 사용했지만, 우리는 컷오프 값을 더 엄격하게 설정하고 `lisa` 객체의 출력 구성 요소에 FDR 조정을 적용하여 결과를 더 신뢰성 있게 만들 수 있다.
+
+```{r}
+#| eval: false
+mvc <- factor(lisa_clusters(lisa), levels=0:2,
+              labels = lisa_labels(lisa)[1:3])
+is.na(mvc) <- p.adjust(lisa_pvalues(lisa), "fdr") >= 0.0025
+pol_pres15$geoda_mvc <- droplevels(mvc)
+```
+
+regoda 순열 방식을 통해 약 80개의 추가 관측값이 흥미로운 케이스인 것으로 확인되었으며, 구현 세부 사항에 대한 추가 분석이 여전히 진행 중이다.
+
+```{r}
+#| eval: false
+addmargins(table(spdep = addNA(pol_pres15$hs_MvCa),
+                 rgeoda = addNA(pol_pres15$geoda_mvc)))
+#           rgeoda
+# spdep      Positive <NA>  Sum
+#   Positive      249    4  253
+#   <NA>           75 2167 2242
+#   Sum           324 2171 2495
+```
+
+![FDR 조정 다변량 기어리 핫스팟 클러스터 지도로 양측검정이고 *흥미로운* 컷오프값으로 $[0,0.5]$ 범위에서 0.0025가 .적용되었다. 왼편 패널은 합산 투표율을 **spdep**에 적용한 결과이고, 오른편 패널은 합산 투표율을 **rgeoda**에 적용한 결과이다. 행 표준화 이웃이 적용되었다.](https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmultix-1.png){#fig-15-9}
+
 ## 연습문제
+
+1.  체스판의 조인-카운트 통계값이 `rook`과 `queen` 이웃 간에 매우 상이하게 나타나는 이유를 설명하라.
+
+2.  15.1절에서 보여준 시뮬레이션을 체스판 다각형과 행 표준화된 `queen` 연접 이웃을 사용하여 반복하라. 공간적 자기상관이 보통 (피할 수 없는) 데이터의 모델 오지정을 나타낸다는 것을 이해하는 것이 중요한 이유를 설명하라.
+
+3.  국지적 공간적 자기상관 통계량에 FDR 조정이 권장되는 이유를 설명하라.
+
+4.  물음 2의 시뮬레이션 데이터에 대해 분석적 조건 접근법과 안장점 근사법을 사용한 $I_i$의 표준편차 값(검정 통계값)을 비교하라. 안장점 근사법의 장단점을 설명하라.

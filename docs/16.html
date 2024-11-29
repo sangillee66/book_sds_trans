@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -286,7 +315,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#마르코프-랜덤-필드와-다수준-모델" id="toc-마르코프-랜덤-필드와-다수준-모델" class="nav-link active" data-scroll-target="#마르코프-랜덤-필드와-다수준-모델"><span class="header-section-number">16.1</span> 마르코프 랜덤 필드와 다수준 모델</a>
+  <ul class="collapse">
+  <li><a href="#보스턴-주택가격-데이터셋" id="toc-보스턴-주택가격-데이터셋" class="nav-link" data-scroll-target="#보스턴-주택가격-데이터셋"><span class="header-section-number">16.1.1</span> 보스턴 주택가격 데이터셋</a></li>
+  </ul></li>
+  <li><a href="#보스턴-데이터셋에-대한-다수준-모델" id="toc-보스턴-데이터셋에-대한-다수준-모델" class="nav-link" data-scroll-target="#보스턴-데이터셋에-대한-다수준-모델"><span class="header-section-number">16.2</span> 보스턴 데이터셋에 대한 다수준 모델</a>
+  <ul class="collapse">
+  <li><a href="#iid-랜덤-효과-lme4-패키지의-활용" id="toc-iid-랜덤-효과-lme4-패키지의-활용" class="nav-link" data-scroll-target="#iid-랜덤-효과-lme4-패키지의-활용"><span class="header-section-number">16.2.1</span> IID 랜덤 효과: lme4 패키지의 활용</a></li>
+  <li><a href="#iid와-car-랜덤-효과-hglm-패키지의-활용" id="toc-iid와-car-랜덤-효과-hglm-패키지의-활용" class="nav-link" data-scroll-target="#iid와-car-랜덤-효과-hglm-패키지의-활용"><span class="header-section-number">16.2.2</span> IID와 CAR 랜덤 효과: hglm 패키지의 활용</a></li>
+  <li><a href="#iid와-icar-랜덤-효과-r2bayesx-패키지의-활용" id="toc-iid와-icar-랜덤-효과-r2bayesx-패키지의-활용" class="nav-link" data-scroll-target="#iid와-icar-랜덤-효과-r2bayesx-패키지의-활용"><span class="header-section-number">16.2.3</span> IID와 ICAR 랜덤 효과: R2BayesX 패키지의 활용</a></li>
+  <li><a href="#iid-icar-lerouzx-랜덤-효과-inla-패키지의-활용" id="toc-iid-icar-lerouzx-랜덤-효과-inla-패키지의-활용" class="nav-link" data-scroll-target="#iid-icar-lerouzx-랜덤-효과-inla-패키지의-활용"><span class="header-section-number">16.2.4</span> IID, ICAR, Lerouzx 랜덤 효과: INLA 패키지의 활용</a></li>
+  <li><a href="#icar-랜덤-효과-mgcv-패키지의-gam-함수의-활용" id="toc-icar-랜덤-효과-mgcv-패키지의-gam-함수의-활용" class="nav-link" data-scroll-target="#icar-랜덤-효과-mgcv-패키지의-gam-함수의-활용"><span class="header-section-number">16.2.5</span> ICAR 랜덤 효과: mgcv 패키지의 gam() 함수의 활용</a></li>
+  <li><a href="#상위-수준-랜덤-효과-요약" id="toc-상위-수준-랜덤-효과-요약" class="nav-link" data-scroll-target="#상위-수준-랜덤-효과-요약"><span class="header-section-number">16.2.6</span> 상위-수준 랜덤 효과: 요약</a></li>
+  </ul></li>
+  <li><a href="#연습문제" id="toc-연습문제" class="nav-link" data-scroll-target="#연습문제"><span class="header-section-number">16.3</span> 연습문제</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -305,7 +353,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 26일</p>
+      <p class="date-modified">2024년 11월 29일</p>
     </div>
   </div>
     
@@ -316,8 +364,54 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="마르코프-랜덤-필드와-다수준-모델" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="마르코프-랜덤-필드와-다수준-모델"><span class="header-section-number">16.1</span> 마르코프 랜덤 필드와 다수준 모델</h2>
+<p><span class="math display">\[
+Y=X\beta+Zu+\epsilon
+\]</span></p>
+<p><span class="math display">\[
+\Sigma^{-1}=[(I-\rho W)'(I-\rho W)]
+\]</span></p>
+<p><span class="math display">\[
+\Sigma^{-1}=(I=\rho W)
+\]</span></p>
+<p><span class="math display">\[
+\Sigma^{-1}=M=\text{diag}(n_i)-W
+\]</span></p>
+<p><span class="math display">\[
+\Sigma^{-1}=[(1-\rho)I_n+
+\rho M]
+\]</span></p>
+<section id="보스턴-주택가격-데이터셋" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="보스턴-주택가격-데이터셋"><span class="header-section-number">16.1.1</span> 보스턴 주택가격 데이터셋</h3>
+</section>
+</section>
+<section id="보스턴-데이터셋에-대한-다수준-모델" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="보스턴-데이터셋에-대한-다수준-모델"><span class="header-section-number">16.2</span> 보스턴 데이터셋에 대한 다수준 모델</h2>
+<section id="iid-랜덤-효과-lme4-패키지의-활용" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="iid-랜덤-효과-lme4-패키지의-활용"><span class="header-section-number">16.2.1</span> IID 랜덤 효과: lme4 패키지의 활용</h3>
+</section>
+<section id="iid와-car-랜덤-효과-hglm-패키지의-활용" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="iid와-car-랜덤-효과-hglm-패키지의-활용"><span class="header-section-number">16.2.2</span> IID와 CAR 랜덤 효과: hglm 패키지의 활용</h3>
+</section>
+<section id="iid와-icar-랜덤-효과-r2bayesx-패키지의-활용" class="level3" data-number="16.2.3">
+<h3 data-number="16.2.3" class="anchored" data-anchor-id="iid와-icar-랜덤-효과-r2bayesx-패키지의-활용"><span class="header-section-number">16.2.3</span> IID와 ICAR 랜덤 효과: R2BayesX 패키지의 활용</h3>
+</section>
+<section id="iid-icar-lerouzx-랜덤-효과-inla-패키지의-활용" class="level3" data-number="16.2.4">
+<h3 data-number="16.2.4" class="anchored" data-anchor-id="iid-icar-lerouzx-랜덤-효과-inla-패키지의-활용"><span class="header-section-number">16.2.4</span> IID, ICAR, Lerouzx 랜덤 효과: INLA 패키지의 활용</h3>
+</section>
+<section id="icar-랜덤-효과-mgcv-패키지의-gam-함수의-활용" class="level3" data-number="16.2.5">
+<h3 data-number="16.2.5" class="anchored" data-anchor-id="icar-랜덤-효과-mgcv-패키지의-gam-함수의-활용"><span class="header-section-number">16.2.5</span> ICAR 랜덤 효과: mgcv 패키지의 gam() 함수의 활용</h3>
+</section>
+<section id="상위-수준-랜덤-효과-요약" class="level3" data-number="16.2.6">
+<h3 data-number="16.2.6" class="anchored" data-anchor-id="상위-수준-랜덤-효과-요약"><span class="header-section-number">16.2.6</span> 상위-수준 랜덤 효과: 요약</h3>
+</section>
+</section>
+<section id="연습문제" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="연습문제"><span class="header-section-number">16.3</span> 연습문제</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -724,4 +818,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>

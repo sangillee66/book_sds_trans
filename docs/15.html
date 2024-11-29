@@ -369,7 +369,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 11월 27일</p>
+      <p class="date-modified">2024년 11월 29일</p>
     </div>
   </div>
     
@@ -891,8 +891,86 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <p>다변량 <span class="math inline">\(C_i\)</span>에서는 흥미로운 케이스로 나타난 관측개체들 중 47개는 단변량 <span class="math inline">\(C_i\)</span> 어디에서도 흥미로운 케이스로 나타나지 않은 것이다(FDR, 기준값 0.005). 1차 및 2차 라운드에서 모두 흥미로운 것으로 나타난 관측값은 거의 모두 다변량에서도 흥미로운 것으로 간주되지만, 두 라운드 중 하나에서만 흥미로운 것으로 나타난 관측값의 경우는 보다 혼재된 결과가 도출되었다.</p>
 </section><section id="rgeoda-패키지" class="level3" data-number="15.3.4"><h3 data-number="15.3.4" class="anchored" data-anchor-id="rgeoda-패키지">
 <span class="header-section-number">15.3.4</span> rgeoda 패키지</h3>
+<p><strong>rgeoda</strong>(Li and Anselin 2022) 패키지는 Geoda의 R 래퍼 패키지로, <strong>spdep</strong> 패키지와 유사한 기능을 제공함으로써 에어리어 데이터에서의 공간적 자기상관을 탐색할 수 있게 해준다. 활성 객체는 컴파일된 작업 공간의 메모리 주소를 참조하는 포인터로 관리된다. 즉 모든 오퍼레이션이 컴파일된 코드를 통해 실행되기 때문에(GeoDa와 동일한 방식) <strong>rgeoda</strong> 패키지는 빠른 성능을 자랑한다. 그러나 수정이나 기능 확장이 필요할 때는 유연성이 떨어진다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">rgeoda</span><span class="op">)</span></span>
+<span><span class="va">Geoda_w</span> <span class="op">&lt;-</span> <span class="fu">queen_weights</span><span class="op">(</span><span class="va">pol_pres15</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">Geoda_w</span><span class="op">)</span></span>
+<span><span class="co">#                      name               value</span></span>
+<span><span class="co"># 1 number of observations:                2495</span></span>
+<span><span class="co"># 2          is symmetric:                 TRUE</span></span>
+<span><span class="co"># 3               sparsity: 0.00228786229774178</span></span>
+<span><span class="co"># 4        # min neighbors:                   1</span></span>
+<span><span class="co"># 5        # max neighbors:                  13</span></span>
+<span><span class="co"># 6       # mean neighbors:    5.70821643286573</span></span>
+<span><span class="co"># 7     # median neighbors:                   6</span></span>
+<span><span class="co"># 8           has isolates:               FALSE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>비교를 위해, 2015년 폴란드 대통령 선거 투표율에 대한 다변량 <span class="math inline">\(C_i\)</span>를 지표를 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lisa</span> <span class="op">&lt;-</span> <span class="fu">local_multigeary</span><span class="op">(</span><span class="va">Geoda_w</span>, </span>
+<span>    <span class="va">pol_pres15</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"I_turnout"</span>, <span class="st">"II_turnout"</span><span class="op">)</span><span class="op">]</span>, </span>
+<span>    cpu_threads <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    permutations <span class="op">=</span> <span class="fl">99999</span>, seed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>연접 이웃을 비교 하면 위에서 <code>poly2nb</code> 함수를 통해 규정된 것과 동일하다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/card.html">card</a></span><span class="op">(</span><span class="va">nb_q</span><span class="op">)</span>, <span class="fu">lisa_num_nbrs</span><span class="op">(</span><span class="va">lisa</span><span class="op">)</span>, </span>
+<span>          check.attributes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co"># [1] TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>다변량 <span class="math inline">\(C_i\)</span> 값도 위와 동일하다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="fu">lisa_values</span><span class="op">(</span><span class="va">lisa</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">locMvC_p</span><span class="op">)</span>,</span>
+<span>          check.attributes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co"># [1] TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>한 가지 차이점은 <strong>rgeoda</strong>에서 사용하는 접힌(folded) 양측 순위-기반 순열 유의확률 값의 범위가 <span class="math inline">\([0,0.5]\)</span>로 제한된다는 점이며, 이는 <strong>spdep</strong>에서도 계산되지만, 다르게 처리될 수 있다는 것이다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">locMvC_p</span>, <span class="st">"pseudo-p"</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Pr(z != E(Ci)) Sim"</span>, </span>
+<span>                                <span class="st">"Pr(folded) Sim"</span><span class="op">)</span><span class="op">]</span>, <span class="fl">2</span>, <span class="va">range</span><span class="op">)</span></span>
+<span><span class="co">#      Pr(z != E(Ci)) Sim Pr(folded) Sim</span></span>
+<span><span class="co"># [1,]             0.0002         0.0001</span></span>
+<span><span class="co"># [2,]             0.9990         0.4995</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이것은 <span class="math inline">\([0,1]\)</span> 범위에서 <span class="math inline">\(0.005\)</span>에 해당하는 컷오프 값이 <span class="math inline">\([0,0.05]\)</span> 범위에서는 <span class="math inline">\(0.0025\)</span>에 해당한다는 의미이다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">locMvC_p</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/hotspotmap.html">hotspot</a></span><span class="op">(</span>Prname <span class="op">=</span> <span class="st">"Pr(folded) Sim"</span>,</span>
+<span>                    cutoff <span class="op">=</span> <span class="fl">0.0025</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">pol_pres15</span><span class="op">$</span><span class="va">hs_MvCa</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>따라서 <code>local_multigeary</code> 함수는 클러스터 핵심 클래스를 설정할 때 기본 컷오프 값인 <span class="math inline">\(0,05\)</span>를 사용했지만, 우리는 컷오프 값을 더 엄격하게 설정하고 <code>lisa</code> 객체의 출력 구성 요소에 FDR 조정을 적용하여 결과를 더 신뢰성 있게 만들 수 있다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mvc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu">lisa_clusters</span><span class="op">(</span><span class="va">lisa</span><span class="op">)</span>, levels<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">2</span>,</span>
+<span>              labels <span class="op">=</span> <span class="fu">lisa_labels</span><span class="op">(</span><span class="va">lisa</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">mvc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="fu">lisa_pvalues</span><span class="op">(</span><span class="va">lisa</span><span class="op">)</span>, <span class="st">"fdr"</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">0.0025</span></span>
+<span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">geoda_mvc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span><span class="op">(</span><span class="va">mvc</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>regoda 순열 방식을 통해 약 80개의 추가 관측값이 흥미로운 케이스인 것으로 확인되었으며, 구현 세부 사항에 대한 추가 분석이 여전히 진행 중이다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html">addmargins</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span>spdep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">addNA</a></span><span class="op">(</span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">hs_MvCa</span><span class="op">)</span>,</span>
+<span>                 rgeoda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">addNA</a></span><span class="op">(</span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">geoda_mvc</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#           rgeoda</span></span>
+<span><span class="co"># spdep      Positive &lt;NA&gt;  Sum</span></span>
+<span><span class="co">#   Positive      249    4  253</span></span>
+<span><span class="co">#   &lt;NA&gt;           75 2167 2242</span></span>
+<span><span class="co">#   Sum           324 2171 2495</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-15-9" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmultix-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmultix-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+그림&nbsp;15.9: FDR 조정 다변량 기어리 핫스팟 클러스터 지도로 양측검정이고 <em>흥미로운</em> 컷오프값으로 <span class="math inline">\([0,0.5]\)</span> 범위에서 0.0025가 .적용되었다. 왼편 패널은 합산 투표율을 <strong>spdep</strong>에 적용한 결과이고, 오른편 패널은 합산 투표율을 <strong>rgeoda</strong>에 적용한 결과이다. 행 표준화 이웃이 적용되었다.
+</figcaption></figure>
+</div>
 </section></section><section id="연습문제" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="연습문제">
 <span class="header-section-number">15.4</span> 연습문제</h2>
+<ol type="1">
+<li><p>체스판의 조인-카운트 통계값이 <code>rook</code>과 <code>queen</code> 이웃 간에 매우 상이하게 나타나는 이유를 설명하라.</p></li>
+<li><p>15.1절에서 보여준 시뮬레이션을 체스판 다각형과 행 표준화된 <code>queen</code> 연접 이웃을 사용하여 반복하라. 공간적 자기상관이 보통 (피할 수 없는) 데이터의 모델 오지정을 나타낸다는 것을 이해하는 것이 중요한 이유를 설명하라.</p></li>
+<li><p>국지적 공간적 자기상관 통계량에 FDR 조정이 권장되는 이유를 설명하라.</p></li>
+<li><p>물음 2의 시뮬레이션 데이터에 대해 분석적 조건 접근법과 안장점 근사법을 사용한 <span class="math inline">\(I_i\)</span>의 표준편차 값(검정 통계값)을 비교하라. 안장점 근사법의 장단점을 설명하라.</p></li>
+</ol>
 
 
 <div class="hidden" aria-hidden="true">
@@ -904,6 +982,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <span class="glightbox-desc lightbox-desc-6">그림&nbsp;15.6: 국지적 모런 통계량의 FDR 조정 하스팟 클러스터 지도로 양측검정이고 흥미로운 컷오프값으로 0.005가 적용되었다. 왼쪽 패널에는 가중 유형 모델의 안장점 근사에 근거한 유의확률이, 오른편 패널에는 가중 유형 정확 접근법에 의거한 유의확률 의 결과가 나타나 있다. 투표율 데이터에 행 표준화 이웃이 적용되었다.</span>
 <span class="glightbox-desc lightbox-desc-7">그림&nbsp;15.7: FDR 조정 하스팟 클러스터 지도로 양측검정이고 흥미로운 컷오프값으로 0.005가 적용되었다. 왼쪽 패널에는 국지적 모런 통계량에 의한 공간 클러스터, 가운데 패널에는 국지적 게티스-오드 통계량에 의한 공간 클러스터, 오른편 패널에는 국지적 기어리 통계량에 의한 공간 클러스터가 나타나 있다. 투표율 데이터에 행 표준화 이웃이 적용되었다.</span>
 <span class="glightbox-desc lightbox-desc-8">그림&nbsp;15.8: FDR 조정 하스팟 클러스터 지도로 양측검정이고 흥미로운 컷오프값으로 0.005가 적용되었다. 왼쪽 패널에는 첫 번째 라운드 투표율에 대한 공간 클러스터, 가운데 패널에는 두 번째 라운드 투표율에 대한 공간 클러스터, 오른편 패널에는 두 라운드 모두의 투표율에 대한 공간 클러스터가 나타나 있다. 행 표준화 이웃이 적용되었다.</span>
+<span class="glightbox-desc lightbox-desc-9">그림&nbsp;15.9: FDR 조정 다변량 기어리 핫스팟 클러스터 지도로 양측검정이고 <em>흥미로운</em> 컷오프값으로 <span class="math inline">\([0,0.5]\)</span> 범위에서 0.0025가 .적용되었다. 왼편 패널은 합산 투표율을 <strong>spdep</strong>에 적용한 결과이고, 오른편 패널은 합산 투표율을 <strong>rgeoda</strong>에 적용한 결과이다. 행 표준화 이웃이 적용되었다.</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1303,7 +1382,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

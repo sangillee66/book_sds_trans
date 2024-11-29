@@ -14,3 +14,44 @@ editor: visual
 ---
 
 # 공간적 회귀분석 {#sec-regression}
+
+## 마르코프 랜덤 필드와 다수준 모델
+
+$$
+Y=X\beta+Zu+\epsilon
+$$
+
+$$
+\Sigma^{-1}=[(I-\rho W)'(I-\rho W)]
+$$
+
+$$
+\Sigma^{-1}=(I=\rho W)
+$$
+
+$$
+\Sigma^{-1}=M=\text{diag}(n_i)-W
+$$
+
+$$
+\Sigma^{-1}=[(1-\rho)I_n+
+\rho M]
+$$
+
+### 보스턴 주택가격 데이터셋
+
+## 보스턴 데이터셋에 대한 다수준 모델
+
+### IID 랜덤 효과: lme4 패키지의 활용
+
+### IID와 CAR 랜덤 효과: hglm 패키지의 활용
+
+### IID와 ICAR 랜덤 효과: R2BayesX 패키지의 활용
+
+### IID, ICAR, Lerouzx 랜덤 효과: INLA 패키지의 활용
+
+### ICAR 랜덤 효과: mgcv 패키지의 gam() 함수의 활용
+
+### 상위-수준 랜덤 효과: 요약
+
+## 연습문제
