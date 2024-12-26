@@ -368,22 +368,32 @@ window.Quarto = {
 <p>물론, 일반화 최소제곱 모델이나 <strong>nlme</strong> 및 기타 여러 패키지에서 제공하는 (일반화) 선형 또는 비선형 혼합효과 모델에서 공간적 자기상관을 다루는 데 반드시 이웃 관계 그래프를 사용할 필요는 없다(Pinheiro and Bates, 2000). 관측값 간의 거리 함수를 사용하거나 공간적 자기상관을 모델링하기 위해 베리오그램을 적합하는 것 역시 공간적 회귀 모델의 일종이라고 말할 수 있다. 이러한 접근은 기저 과정에 대한 더 명확한 이해를 제공한다고 평가되었으며(Wall, 2004), 지구통계학에 기반을 두고 있다. 예를 들어, <strong>glmmTMB</strong> 패키지는 이 접근법을 활용해 공간적 회귀분석을 성공적으로 수행한다(Brooks et al., 2017). 하지만 본 장에서는 공간 가중치 행렬을 사용하는 공간적 회귀분석만을 고려할 것이다.</p>
 <section id="마르코프-랜덤-필드와-다수준-모델" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="마르코프-랜덤-필드와-다수준-모델"><span class="header-section-number">16.1</span> 마르코프 랜덤 필드와 다수준 모델</h2>
+<p>질병 지도화(disease mapping) 연구에서는 공간적으로 구조화된 임의 효과를 다루기 위해 조건부(conditional) 자기회귀(CAR) 모델과 내재적(intrinsic) 자기회귀(ICAR) 모델을 사용하는 광범위한 연구가 존재한다. 이러한 모델은 다수준 모델로 확장될 수 있으며, 공간적으로 구조화된 임의 효과가 모델의 서로 다른 수준에서 적용될 수 있다(Bivand et al., 2017). 여러 변형을 시도하기 위해, 우리는 트랙트(tract) 수준과 모델 출력 구역 집계(model output zone aggregated) 수준을 두 단계로 나누어 이웃이 없는 관측값을 제거해야 한다. 트랙트 수준에서 이웃 관계가 줄어들면 모델 출력 구역 수준에서도 이웃이 없는 결과가 발생할 수 있기 때문이다. 모델 추정 함수의 대부분은 <code>family</code> 아규먼트를 사용하며, 이웃 간 관계를 마르코프 랜덤 필드로 표현한 공간 랜덤 효과를 통해 각 관측값에 대해 일반화 선형 혼합효과 모델을 적합한다. 다수준 모델의 경우, 랜덤 효과는 그룹 수준에서 모델화될 수 있으며, 아래의 예시에 적용되어 있다.</p>
+<p>공간적 회귀분석을 혼합 효과 모델에 의거해 설명하는 Pinheiro and Bates (2000)와 McCulloch and Searle (2001)의 논리가 중요한데, Gómez-Rubio (2019)의 표현식을 딸라 설명하고자 한다. 반응 변수 <span class="math inline">\(Y\)</span>, 고정 공변량 <span class="math inline">\(X\)</span>, 회귀계수 <span class="math inline">\(\beta\)</span>, 오차 항 <span class="math inline">\(\epsilon_i\sim N(0, \sigma^2), i=1,...,n\)</span>이 주어진 상태에서 랜덤 효과 <span class="math inline">\(u\)</span>가 첨가되면, 가우시안 선형 혼합 효과 모델은 다음과 같이 정의된다.</p>
 <p><span class="math display">\[
 Y=X\beta+Zu+\epsilon
 \]</span></p>
+<p>여기서 <span class="math inline">\(Z\)</span>는 랜덤 효과를 위한 고정 디자인 행렬이다. 만약 <span class="math inline">\(n\)</span>개의 랜덤 효과가 있다면, <span class="math inline">\(n \times n\)</span> 단위 행렬이 되고, 만일 관측값이 <span class="math inline">\(m\)</span>개의 그룹으로 집계되어 <span class="math inline">\(m&lt;n\)</span>의 랜덤 효과만 있다면 각 관측값이 어느 그룹에 속하는지를 나타내는 <span class="math inline">\(n \times m\)</span>행렬이 된다. 랜덤 효과는 다변량 정규 분포 <span class="math inline">\(u\sim N(0,\sigma_u^2 \sum)\)</span>로 모델화되며, <span class="math inline">\(\sigma_u^2 \sum\)</span>은 랜덤 효과의 분산-공분산 행렬이다.</p>
+<p>CAR 모델(Besag, 1974)과 SAR(simultaneous autoregressive) 모델(Ord, 1975; Hepple, 1976)이 분리되어 발전해 왔는데, 이러한 구분의 유익함은 사실 별로 없다. CAR 모델과 SAR 모델은 밀접하게 연관되어 있음에도 불구하고 , 이 두 분야는 유사한 모델을 적용하는 경험을 공유하는데 어려움을 겪고 있다. 이러한 어려움은 CAR과 SAR 모델을 정리한 핵심 저작(Ripley, 1981, 1988; Cressie, 1993)을 참고하는 경우에도 마찬가지이다. Ripley는 SAR의 분산을 제시한 바 있는데(Ripley, 1981, 89), 여기서는 <span class="math inline">\(\sum^{-1}\)</span>(정밀도 행렬로도 알려짐)로 나타낸다.</p>
 <p><span class="math display">\[
 \Sigma^{-1}=[(I-\rho W)'(I-\rho W)]
 \]</span></p>
+<p>여기서 <span class="math inline">\(\rho\)</span>는 공간적 자기상관 파라미터이고, <span class="math inline">\(W\)</span>는 공간적 의존성을 나타내는 비단일(non-singular) 공간 가중치 행렬이다. CAR 분산을 다음과 같이 주어진다.</p>
 <p><span class="math display">\[
 \Sigma^{-1}=(I=\rho W)
 \]</span></p>
+<p>여기서 <span class="math inline">\(W\)</span>는 대칭적이고 엄격히 양의 정의인 공간 가중치 행렬이다. 내재적 CAR 모델의 경우, 공간적 자가상관 파라미터를 추정하지 않으며 다음과 같은 형태로 주어진다.</p>
 <p><span class="math display">\[
 \Sigma^{-1}=M=\text{diag}(n_i)-W
 \]</span></p>
+<p>여기서 <span class="math inline">\(W\)</span>는 앞서 언급한 것처럼 대칭적이고 엄격히 양의 정의인 공간 가중치 행렬이며,<br>
+<span class="math inline">\(n_i\)</span>은 <span class="math inline">\(W\)</span>의 행 합산값을 나타낸다. Besag-York-Mollié 모델은 내재적 CAR 공간 구조화된 랜덤 효과와 비구조화된 랜덤 효과를 포함한다. Leroux 모델은 비구조화된 랜덤 효과와 공간 구조화된 랜덤 효과의 행렬 구성 요소를 결합하며, 공간 구조화된 랜덤 효과는 내재적 CAR의 정의를 따르는 것으로 간주된다.</p>
 <p><span class="math display">\[
 \Sigma^{-1}=[(1-\rho)I_n+
 \rho M]
 \]</span></p>
+<p>이 모델들의 정의에 대해서는 Gómez-Rubio (2020)를 참조할 수 있고, Besag-York-Mollié와 Leroux 모델에 영향을 미치는 추정 문제에 대해서는 Gerber and Furrer (2015)에서 다루어진다.</p>
+<p>에어리어 데이터 모델링의 이론적 기초를 다루고 있는 최근의 서적(Gaetan and Guyon, 2010; Van Lieshout, 2019)은 SAR 모델과 CAR 모델의 유사성을 몇몇 장에서 지적하고 있다. 배경 정보에 관심이 있는 독자는 이 서적들을 참고하면 된다.</p>
 <section id="보스턴-주택가격-데이터셋" class="level3" data-number="16.1.1">
 <h3 data-number="16.1.1" class="anchored" data-anchor-id="보스턴-주택가격-데이터셋"><span class="header-section-number">16.1.1</span> 보스턴 주택가격 데이터셋</h3>
 </section>
