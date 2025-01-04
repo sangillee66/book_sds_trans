@@ -1401,5 +1401,60 @@
       "공간통계분석과 공간모델링",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>공간적 회귀분석</span>"
     ]
+  },
+  {
+    "objectID": "17.html",
+    "href": "17.html",
+    "title": "17  공간계량경제학적 모델",
+    "section": "",
+    "text": "17.1 정의\n\\[\n\\textbf{y}=\\textbf{X}\\beta+\\textbf{u},\\qquad \\textbf{u}=\\rho_\\text {Err} \\textbf{Wu}+\\epsilon,\n\\]\n\\[\n\\textbf{u}=(\\textbf{I}-\\rho_\\text{Err}\\textbf{W})^{-1}\\epsilon,\\quad \\textbf{y}=\\textbf{X}\\beta+(\\textbf{I}-\\rho_\\text{Err}\\textbf{W})^{-1}\\epsilon,\\quad (\\textbf{I}-\\rho_\\text{Err}\\textbf{W})\\textbf{y}=(\\textbf{I}-\\rho_\\text{Err}\\textbf{W})\\textbf{X}\\beta+\\epsilon.\n\\]\n\\[\n\\textbf{y}=\\rho_\\text{Lag}\\textbf{Wy}+\\textbf{X}\\beta+\\textbf{WX}\\gamma+\\textbf{u},\\qquad \\textbf{u}=\\rho_\\text{Err}\\textbf{Wu}+\\epsilon\n\\]\n\\[\n(\\textbf{I}-\\rho_{\\text Err}\\textbf{W})(\\textbf{I}-\\rho_{\\text Lag}\\textbf{W})\\textbf{y}=(\\textbf{I}-\\rho_{\\text Err}\\textbf{W})(\\textbf{X}\\beta+\\textbf{WX}\\gamma)+\\epsilon\n\\]\n\\[\n\\textbf{y}=(\\textbf{I}-\\rho_\\text{Lag}\\textbf{W})^{-1}(\\textbf{X}\\beta+\\textbf{WX}\\gamma)+(\\textbf{I}-\\rho_\\text{Lag}\\textbf{W})^{-1}(\\textbf{I}-\\rho_\\text{Err}\\textbf{W})^{-1}\\epsilon.\n\\]",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모델</span>"
+    ]
+  },
+  {
+    "objectID": "17.html#최대우도추정-spatialreg-패키지의-활용",
+    "href": "17.html#최대우도추정-spatialreg-패키지의-활용",
+    "title": "17  공간계량경제학적 모델",
+    "section": "17.2 최대우도추정: spatialreg 패키지의 활용",
+    "text": "17.2 최대우도추정: spatialreg 패키지의 활용\n\n\n\n모델\n모델명\n최대우도추정 함수\n\n\n\n\nSEM\n공간에러\nerrorsarlm(..., Durbin=FALSE)\n\n\nSEM\n공간에러\nspautolm(..., family=\"SAR\")\n\n\nSDEM\n공간더빈에러\nerrorsarlm(..., Durbin=TRUE)\n\n\nSLM\n공간지체\nlagsarlm(..., Durbin=FALSE)\n\n\nSDM\n공간더빈\nlagsarlm(..., Durbin=TRUE)\n\n\nSAC\n공간자기회귀결합\nsacsarlm(..., Durbin=FALSE)\n\n\nGNM\n일반 포함\nsacsarlm(..., Durbin=TRUE)\n\n\n\n\n17.2.1 보스턴 주택 가격 데이터셋 예시",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모델</span>"
+    ]
+  },
+  {
+    "objectID": "17.html#영향",
+    "href": "17.html#영향",
+    "title": "17  공간계량경제학적 모델",
+    "section": "17.3 영향",
+    "text": "17.3 영향",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모델</span>"
+    ]
+  },
+  {
+    "objectID": "17.html#예측",
+    "href": "17.html#예측",
+    "title": "17  공간계량경제학적 모델",
+    "section": "17.4 예측",
+    "text": "17.4 예측",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모델</span>"
+    ]
+  },
+  {
+    "objectID": "17.html#연습문제",
+    "href": "17.html#연습문제",
+    "title": "17  공간계량경제학적 모델",
+    "section": "17.5 연습문제",
+    "text": "17.5 연습문제",
+    "crumbs": [
+      "공간통계분석과 공간모델링",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모델</span>"
+    ]
   }
 ]

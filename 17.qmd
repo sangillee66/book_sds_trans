@@ -14,3 +14,45 @@ editor: visual
 ---
 
 # 공간계량경제학적 모델 {#sec-econometrics}
+
+## 정의
+
+$$
+\textbf{y}=\textbf{X}\beta+\textbf{u},\qquad \textbf{u}=\rho_\text {Err} \textbf{Wu}+\epsilon,
+$$
+
+$$
+\textbf{u}=(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon,\quad \textbf{y}=\textbf{X}\beta+(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon,\quad (\textbf{I}-\rho_\text{Err}\textbf{W})\textbf{y}=(\textbf{I}-\rho_\text{Err}\textbf{W})\textbf{X}\beta+\epsilon.
+$$
+
+$$
+\textbf{y}=\rho_\text{Lag}\textbf{Wy}+\textbf{X}\beta+\textbf{WX}\gamma+\textbf{u},\qquad \textbf{u}=\rho_\text{Err}\textbf{Wu}+\epsilon
+$$
+
+$$
+(\textbf{I}-\rho_{\text Err}\textbf{W})(\textbf{I}-\rho_{\text Lag}\textbf{W})\textbf{y}=(\textbf{I}-\rho_{\text Err}\textbf{W})(\textbf{X}\beta+\textbf{WX}\gamma)+\epsilon
+$$
+
+$$
+\textbf{y}=(\textbf{I}-\rho_\text{Lag}\textbf{W})^{-1}(\textbf{X}\beta+\textbf{WX}\gamma)+(\textbf{I}-\rho_\text{Lag}\textbf{W})^{-1}(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon.
+$$
+
+## 최대우도추정: spatialreg 패키지의 활용
+
+| 모델 | 모델명           | 최대우도추정 함수               |
+|------|------------------|---------------------------------|
+| SEM  | 공간에러         | `errorsarlm(..., Durbin=FALSE)` |
+| SEM  | 공간에러         | `spautolm(..., family="SAR")`   |
+| SDEM | 공간더빈에러     | `errorsarlm(..., Durbin=TRUE)`  |
+| SLM  | 공간지체         | `lagsarlm(..., Durbin=FALSE)`   |
+| SDM  | 공간더빈         | `lagsarlm(..., Durbin=TRUE)`    |
+| SAC  | 공간자기회귀결합 | `sacsarlm(..., Durbin=FALSE)`   |
+| GNM  | 일반 포함        | `sacsarlm(..., Durbin=TRUE)`    |
+
+### 보스턴 주택 가격 데이터셋 예시
+
+## 영향
+
+## 예측
+
+## 연습문제
