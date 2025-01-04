@@ -11,6 +11,8 @@ execute:
   error: false
   freeze: auto
 editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
 
 # 공간적 회귀분석 {#sec-regression}
@@ -63,18 +65,368 @@ $$
 
 ### 보스턴 주택가격 데이터셋
 
+여기서는 보스턴 주택 데이터셋을 사용할 것이다. 이 데이터셋은 센서스 트랙트 경계에 맞추어 재구성되었다(Bivand 2017). 원 데이터셋은 506개의 센서스 트랙트로 구성되었으며, 깨끗한 공기에 대한 지불 의사를 추정하기 위해 헤도닉 모델을 사용했다. 반응 변수는 1970년 센서스의 주택 가치에 대한 서열 응답(클래스)에 대한 카운트로부터 생성되었다. 이 반응 변수는 센서스 원본에서 좌측 및 우측 검열되었으며, 가우시안 분포로 처리되었다. 주요 공변량은 연간 질소산화물(NOX) 수준을 보여주는 기상 모델에 기반하여 생성되었으며 소수의 모델 산출 구역 단위로 주어진다. 주택 응답 수는 트랙트와 모델 출력 존별로도 다르다. 다른 공변량도 여러 개 포함되어 있으며, 일부는 트랙트 수준에서 측정되었고, 일부는 타운 단위로만 측정되었는데, 이 타운들은 대체로 대기오염 모델 출력 존과 일치한다.
+
+우리는 먼저 **spData** 패캐지(Bivand, Nowosad, and Lovelace 2022)에서 506개 트랙트 데이터셋을 불러온 뒤, 인접성 이웃 객체를 생성하고 이를 기반으로 행 표준화된 공간 가중치 객체를 생성한다.
+
+```{r}
+#| eval: false
+library(sf)
+library(spData)
+boston_506 <- st_read(system.file("shapes/boston_tracts.shp",
+                      package = "spData")[1], quiet = TRUE)
+```
+
+```{r}
+#| eval: false
+nb_q <- spdep::poly2nb(boston_506)
+lw_q <- spdep::nb2listw(nb_q, style = "W")
+```
+
+중위 주택 가격 데이터를 살펴보면, 검열된 값들은 결측값으로 지정되었으며, 이로 인해 17개의 트랙트가 영향을 받았음을 알 수 있다.
+
+```{r}
+#| eval: false
+table(boston_506$censored)
+# 
+#  left    no right 
+#     2   489    15
+```
+
+```{r}
+#| eval: false
+summary(boston_506$median)
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+#    5600   16800   21000   21749   24700   50000      17
+```
+
+다음으로, 비검열 주택 가격값을 가진 나머지 489개 트랙트로 서브셋을 만들고, 여기에 맞추어 이웃 객체도 조정한다. 이렇게 하면 이웃이 없는 관측값이 하나 존재하게 된다.
+
+```{r}
+#| eval: false
+boston_506$CHAS <- as.factor(boston_506$CHAS)
+boston_489 <- boston_506[!is.na(boston_506$median),]
+nb_q_489 <- spdep::poly2nb(boston_489)
+lw_q_489 <- spdep::nb2listw(nb_q_489, style = "W",
+                            zero.policy = TRUE)
+```
+
+상위 집계 수준을 정의하는 `NOX_ID` 변수를 활용하여 트랙트 수준의 데이터를 대기오염 모델 출력 구역으로 집계한다. 이웃 객체와 행 표준화된 공간 가중치 객체를 생성하고, `NOX` 변수는 평균값을 사용해 재계산하고, 찰스강 상의 관측단위인지 아닌지에 대한 더미 변수 `CHAS`도 재계산한다. 여기서는 5.3.1절에서 설명한 원칙, 즉 공간적으로 외연적인 변수와 내포적인 변수를 다르게 취급하는 원칙을 따른다. `NOX`와 `CHAS`는 모두 카운트 변수가 아니기 때문에 합계를 통해 재계산할 수 없다.
+
+```{r}
+#| eval: false
+agg_96 <- list(as.character(boston_506$NOX_ID))
+boston_96 <- aggregate(boston_506[, "NOX_ID"], by = agg_96,
+                       unique)
+nb_q_96 <- spdep::poly2nb(boston_96)
+lw_q_96 <- spdep::nb2listw(nb_q_96)
+boston_96$NOX <- aggregate(boston_506$NOX, agg_96, mean)$x
+boston_96$CHAS <-
+    aggregate(as.integer(boston_506$CHAS)-1, agg_96, max)$x
+```
+
+반응 변수의 집계는 **matrixStats** 패키지의 `weightedMedian` 함수를 통해 이루어지는데, 주택 가격 클래스의 중간값을 기준으로 계산된다. 주택 가격 클래스별 주택 수를 산출하는 것이 매우 중요한데, 센서스 공표 데이터를 검증하는데 사용될 수도 있다. 트랙트 수준에서 `weightedMedian`을 적용하면 공표 값이 계산되어 나오는 것을 확인할 수 있다. 반응 변수에 대한 집계 결과, 두 개의 출력 구역의 가중 중위값이 주택 가격에 대한 최상위 클래스의 한계 값인 5만 달러는 초과하는 것으로 확인되어 최종적으로 제거되었다. 이렇게 큰 가중 중위값은 최상의 클래스의 중간값을 어떻게 설정하는냐와 관련된 문제이기도 하다. 주택 가격 클래스별 주택 수를 계산하는 것은 공간적으로 외연적인 집계에 해당하므로 재계산을 위한 함수로 합계를 적용하는 것이 적절하다.
+
+```{r}
+#| eval: false
+nms <- names(boston_506)
+ccounts <- 23:31
+for (nm in nms[c(22, ccounts, 36)]) {
+  boston_96[[nm]] <- aggregate(boston_506[[nm]], agg_96, sum)$x
+}
+br2 <- 
+  c(3.50, 6.25, 8.75, 12.5, 17.5, 22.5, 30, 42.5, 60) * 1000
+counts <- as.data.frame(boston_96)[, nms[ccounts]]
+f <- function(x) matrixStats::weightedMedian(x = br2, w = x,
+                                     interpolate = TRUE)
+boston_96$median <- apply(counts, 1, f)
+is.na(boston_96$median) <- boston_96$median > 50000
+summary(boston_96$median)
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+#    9009   20417   23523   25263   30073   49496       2
+```
+
+나머지 공변량은 트랙트 수준의 센스서 인구 수를 활용하여 가중 평균을 산출함으로서(Bivand 2017) 집계 절차를 진행한다. 공변량들이 카운트 데이터가 아니라 공간적으로 내포적인 변수이기 때문에 이렇게 한다. 이 집계 과정을 이어서 서브세팅을 한다.
+
+```{r}
+#| eval: false
+POP <- boston_506$POP
+f <- function(x) matrixStats::weightedMean(x[,1], x[,2])
+for (nm in nms[c(9:11, 14:19, 21, 33)]) {
+  s0 <- split(data.frame(boston_506[[nm]], POP), agg_96)
+  boston_96[[nm]] <- sapply(s0, f)
+}
+boston_94 <- boston_96[!is.na(boston_96$median),]
+nb_q_94 <- spdep::subset.nb(nb_q_96, !is.na(boston_96$median))
+lw_q_94 <- spdep::nb2listw(nb_q_94, style="W")
+```
+
+이제 두 개의 데이터셋이 두 개의 서로 다른 수준에서 존재한다. 즉, 하위 수준인 센서스 트랙트 수준과 상위 수준인 대기오염 모델 출력 구역 수준이다. 하나는 검열된 관측값을 포함하고 있고, 다른 하나는 이를 제외한 데이터이다.
+
+```{r}
+#| eval: false
+boston_94a <- aggregate(boston_489[,"NOX_ID"], 
+                        list(boston_489$NOX_ID), unique)
+nb_q_94a <- spdep::poly2nb(boston_94a)
+NOX_ID_no_neighs <-
+        boston_94a$NOX_ID[which(spdep::card(nb_q_94a) == 0)]
+boston_487 <- boston_489[is.na(match(boston_489$NOX_ID,
+                                     NOX_ID_no_neighs)),]
+boston_93 <- aggregate(boston_487[, "NOX_ID"],
+                       list(ids = boston_487$NOX_ID), unique)
+row.names(boston_93) <- as.character(boston_93$NOX_ID)
+nb_q_93 <- spdep::poly2nb(boston_93,
+        row.names = unique(as.character(boston_93$NOX_ID)))
+```
+
+원래 모델은 트랙트별 중위 주택 가격의 로그값과 NOX 값의 제곱의 관련성에 관한 것이었는데, 주로 트랙트별 주택 가격과 관련된 다른 공변량(예: 총 방 수, 총 연령, 민족, 사회적 지위, 중심가까지 거리, 가장 가까운 방사형 도로까지 거리, 범죄율, 도시 수준 변수 등)을 포함하였다(Bivand 2017). 이 데이터를 활용하여 공간 회귀 모델을 적합할 때 발생할 수 있는 문제들에 대해 살펴볼 것이다. 이 데이터는 다수준 이슈를 다루는데도 유용하다.
+
 ## 보스턴 데이터셋에 대한 다수준 모델
+
+ZN, INDUS, NOX, RAD, TAX, 및 PTRATIO 변수는 TASSIM 구역 내에서 변동이 거의 없음을 보여주며, 따라서 다수준 모델에서는 랜덤 효과가 이들의 영향을 흡수할 수 있다.
+
+```{r}
+#| eval: false
+form <- formula(log(median) ~ CRIM + ZN + INDUS + CHAS + 
+                I((NOX*10)^2) + I(RM^2) + AGE + log(DIS) +
+                log(RAD) + TAX + PTRATIO + I(BB/100) + 
+                log(I(LSTAT/100)))
+```
 
 ### IID 랜덤 효과: lme4 패키지의 활용
 
+**lme4** 패키지(Bates et al. 2022)는 모델 출력 구역 수준에서 독립동일분포(IID)를 보이는 비구조적 랜덤 효과를 추가할 수 있게 해준다. 이는 모델 포뮬러에 랜덤 효과 항을 업데이트하는 방식으로 이루어진다.
+
+```{r}
+#| eval: false
+library(Matrix)
+library(lme4)
+MLM <- lmer(update(form, . ~ . + (1 | NOX_ID)), 
+            data = boston_487, REML = FALSE)
+```
+
+랜덤 효과를 `"sf"` 객체에 복사하여 나중에 지도로 표현할 수 있다.
+
+```{r}
+#| eval: false
+boston_93$MLM_re <- ranef(MLM)[[1]][,1]
+```
+
 ### IID와 CAR 랜덤 효과: hglm 패키지의 활용
+
+동일한 모델을 **hglm** 패키지를 사용하여 추정할 수 있는데(Alam, Ronnegard, and Shen 2019), 랜덤 효과 항을 나타내는 한쪽 방향 포뮬러(one-sided formula)를 추가하는 방식으로 이루어진다.
+
+```{r}
+#| eval: false
+library(hglm) |> suppressPackageStartupMessages()
+suppressWarnings(HGLM_iid <- hglm(fixed = form,
+                                  random = ~1 | NOX_ID,
+                                  data = boston_487,
+                                  family = gaussian()))
+boston_93$HGLM_re <- unname(HGLM_iid$ranef)
+```
+
+**hglm** 패키지는 공간적으로 구조화된 SAR과 CAR 랜덤 효과도 다룰 수 있게 확장되었으며, 이 경우 희소 공간 가중치 행렬이 필요하다(Alam, Rönnegård, and Shen 2015). 여기서는 이진 공간 가중치를 사용한다.
+
+```{r}
+#| eval: false
+library(spatialreg)
+W <- as(spdep::nb2listw(nb_q_93, style = "B"), "CsparseMatrix")
+```
+
+`and.family` 아규먼트를 사용하여 상위 수준에서 CAR 모델을 적합한다. 이 때 인덱싱 변수인 `NOX_ID`의 값이 $W$의 행 이름과 일치하도록 한다.
+
+```{r}
+#| eval: false
+suppressWarnings(HGLM_car <- hglm(fixed = form,
+                                  random = ~ 1 | NOX_ID,
+                                  data = boston_487,
+                                  family = gaussian(),
+                                  rand.family = CAR(D=W)))
+boston_93$HGLM_ss <- HGLM_car$ranef[,1]
+```
 
 ### IID와 ICAR 랜덤 효과: R2BayesX 패키지의 활용
 
+**R2BayesX** 패키지(Umlauf et al. 2022)는 공간 다수준 모델을 포함한 다양한 구조화된 가법(additive) 회귀 모델을 지원한다. 지원 모델 중 하나가 상위 레벨에서의 IID 비구조적 랜덤 효과 모델인데, `sx` 모델 항에 `"re"` 사양을 사용하면 된다(Umlauf et al. 2015). "MCMC" 메소드를 선택한다.
+
+```{r}
+#| eval: false
+library(R2BayesX) |> suppressPackageStartupMessages()
+```
+
+```{r}
+#| eval: false
+BX_iid <- bayesx(update(form, . ~ . + sx(NOX_ID, bs = "re")),
+                 family = "gaussian", data = boston_487,
+                 method = "MCMC", iterations = 12000,
+                 burnin = 2000, step = 2, seed = 123)
+```
+
+```{r}
+#| eval: false
+boston_93$BX_re <- BX_iid$effects["sx(NOX_ID):re"][[1]]$Mean
+```
+
+상위 수준의 `"nb"` 객체를 토대로 `"mrf"` (Markov Random Field) 공간적으로 구조화된 내재적 CAR 랜덤 효과 사양을 선택한다. `"nb"` 객체의 `"region.id"` 속성은 `sx` 효과 항의 인덱싱 변수와 일치하는 값을 포함할 필요가 있는데, 이는 설계 행렬 $Z$의 내부 구조화를 용이하게 하려는 것이다.
+
+```{r}
+#| eval: false
+RBX_gra <- nb2gra(nb_q_93)
+all.equal(row.names(RBX_gra), attr(nb_q_93, "region.id"))
+# [1] TRUE
+```
+
+위의 내재적 CAR 모델 정의에서 본 것처럼, 이웃 수는 대각선에 입력되지만, 현재 구현에서는 희소가 아닌 밀집 행렬을 사용한다.
+
+```{r}
+#| eval: false
+all.equal(unname(diag(RBX_gra)), spdep::card(nb_q_93))
+# [1] TRUE
+```
+
+`sx` 모델 항은 여전히 인덱싱 변수를 포함하며, 이제 내재적 CAR 정밀 행렬을 통과한다.
+
+```{r}
+#| eval: false
+BX_mrf <- bayesx(update(form, . ~ . + sx(NOX_ID, bs = "mrf",
+                                         map = RBX_gra)), 
+                 family = "gaussian", data = boston_487,
+                 method = "MCMC", iterations = 12000,
+                 burnin = 2000, step = 2, seed = 123)
+```
+
+```{r}
+#| eval: false
+boston_93$BX_ss <- BX_mrf$effects["sx(NOX_ID):mrf"][[1]]$Mean
+```
+
 ### IID, ICAR, Lerouzx 랜덤 효과: INLA 패키지의 활용
 
-### ICAR 랜덤 효과: mgcv 패키지의 gam() 함수의 활용
+Bivand, Gómez-Rubio, and Rue (2015) 및 Gómez-Rubio (2020)는 **INLA** 패키지(Rue, Lindgren, and Teixeira Krainski 2022)와 공간 회귀 모델에 대한 `inla` 모델 적합 함수의 사용을 설명한다.
+
+```{r}
+#| eval: false
+library(INLA) |> suppressPackageStartupMessages()
+```
+
+세부적인 차이는 있지만, 고정 모델 공식을 무구조 랜덤 효과 항으로 업데이트하는 접근 방식은 위에서 본 것과 매우 유사하다.
+
+```{r}
+#| eval: false
+INLA_iid <- inla(update(form, . ~ . + f(NOX_ID, model = "iid")),
+                 family = "gaussian", data = boston_487)
+```
+
+```{r}
+#| eval: false
+boston_93$INLA_re <- INLA_iid$summary.random$NOX_ID$mean
+```
+
+대부분의 구현과 마찬가지로, 공간 가중치와 인덱싱 변수를 일치시키는 데 주의가 필요하다. 여기서는 `NOX_ID` 변수를 직접적으로 사용하는 대신, 1부터 93까지의 인덱스를 사용하는 방식을 취한다.
+
+```{r}
+#| eval: false
+ID2 <- as.integer(as.factor(boston_487$NOX_ID))
+```
+
+동일한 희소 이진 공간 가중치 행렬이 사용되며, 내재적 CAR 표현은 내부적으로 생성된다.
+
+```{r}
+#| eval: false
+INLA_ss <- inla(update(form, . ~ . + f(ID2, model = "besag",
+                                       graph = W)),
+                family = "gaussian", data = boston_487)
+```
+
+```{r}
+#| eval: false
+boston_93$INLA_ss <- INLA_ss$summary.random$ID2$mean
+```
+
+Gómez-Rubio (2020)에 의해 제공된 희소 Leroux 표현은 다음과 같이 구성될 수 있다:
+
+```{r}
+#| eval: false
+M <- Diagonal(nrow(W), rowSums(W)) - W
+Cmatrix <- Diagonal(nrow(M), 1) -  M
+```
+
+이 모델은 지정된 정밀 행렬과 함께 `"generic1"` 모델을 사용하여 추정할 수 있다.
+
+```{r}
+#| eval: false
+INLA_lr <- inla(update(form, . ~ . + f(ID2, model = "generic1",
+                                       Cmatrix = Cmatrix)),
+                family = "gaussian", data = boston_487)
+```
+
+```{r}
+#| eval: false
+boston_93$INLA_lr <- INLA_lr$summary.random$ID2$mean
+```
+
+### ICAR 랜덤 효과: mgcv 패키지의 `gam()` 함수의 활용
+
+비슷한 방식으로, **mgcv** 패키지의 `gam` 함수(Wood 2022)는 `"nb"` 객체를 사용하여 `"mrf"` 항을 포함할 수 있다. 이 경우, `"nb"` 객체는 `"region.id"` 속성의 내용을 이웃 목록 구성 요소의 이름으로 복사해야 하며, 인덱싱 변수는 범주형이어야 한다(Wood 2017).
+
+```{r}
+#| eval: false
+library(mgcv)
+names(nb_q_93) <- attr(nb_q_93, "region.id")
+boston_487$NOX_ID <- as.factor(boston_487$NOX_ID)
+```
+
+공간적으로 구조화된 항의 지정 방식은 위의 예들과 다소 차이가 있지만, 결과는 동일하다. `bayesx`의 `"REML"` 방법은 이 경우 `gam`의 `"REML"`을 사용하는 것과 동일한 결과를 산출한다.
+
+```{r}
+#| eval: false
+GAM_MRF <- gam(update(form, . ~ . + s(NOX_ID, bs = "mrf",
+                                      xt = list(nb = nb_q_93))),
+               data = boston_487, method = "REML")
+```
+
+상위 수준의 랜덤 효과는 예측을 통해 추출할 수 있다. 동일한 상위 수준의 공기 질 모델 출력 구역에 속하는 모든 하위 수준 트랙트의 값은 동일하다는 것을 확인할 수 있다.
+
+```{r}
+#| eval: false
+ssre <- predict(GAM_MRF, type = "terms", 
+                se = FALSE)[, "s(NOX_ID)"]
+all(sapply(tapply(ssre, list(boston_487$NOX_ID), c),
+           function(x) length(unique(round(x, 8))) == 1))
+# [1] TRUE
+```
+
+따라서 각 상위 수준 단위에 대해 첫 번째 값을 반환할 수 있다.
+
+```{r}
+#| eval: false
+boston_93$GAM_ss <- aggregate(ssre, list(boston_487$NOX_ID), 
+                              head, n=1)$x
+```
 
 ### 상위-수준 랜덤 효과: 요약
 
+`hglm`, `bayesx`, `inla`, 그리고 `gam`의 경우, 이산적 반응 변수를 모델링하는 것 역시 가능하다. `bayesx,` `inla`, `gam`의 경우는 해당 공변량에 대한 기능 형태 적합의 일반화를 용이하게 한다.
+
+안타깝게도 이 다수준 모델들이 추정한 공기 질 변수의 회귀계수는 별로 도움이 되지 않는다. 모두 음의 값을 보인 것은 예상대로이지만, 모델 출력 구역 수준 효과와, IID 또는 공간적으로 구조화된 효과가 포함되면서 관찰 스케일의 영향을 해당 스케일(상위 스케일)에서의 공변수의 영향으로부터 분리해 내는 것이 어렵게 되었다.
+
+Figure 16.1은 공기 질 모델 출력 구역 수준의 IID 랜덤 효과가 네 가지 모델 적합 함수 모두에서 매우 유사하다는 것을 보여준다. 모든 지도에서 중앙 도심 구역은 강한 음의 랜덤 효과 값을 보인다. 그런데 중앙 도심 근방에서는 강한 양의 값이 나타나고, 교외 지역은 제로에 가까운 값이 나타난다.
+
+![공기 질 모델 출력 구역 수준의 IID 랜덤 효과(**lme4**, **hglm**, **INLA** 및 **R2BayesX**를 사용하여 추정). 응답(`log(median)`)의 범위는 2.1893이다.](https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png){#fig-16-1}
+
+Figure 16.2는 공간적으로 구조화된 랜덤 효과가 서로 매우 유사하며, "SAR" 공간적 평활도가 랜덤 효과 항이 취하는 값의 범위를 고려할 때 "CAR" 평활도보다 약간 더 부드럽다는 것을 보여준다.
+
+![공기 질 모델 출력 구역 수준의 공간적으로 구조화된 랜덤 효과(**lme4**, **hglm**, **INLA**, **R2BayesX** 및 **mgcv**를 사용하여 추정).](https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png)
+
+다수준 데이터를 다룰 수 있는 공간 회귀 모델 적합 함수에 대한 보다 철저한 비교 연구가 여전히 필요하지만, 최근 몇 년간 상당한 진전이 있었다. Vranckx, Neyens, and Faes (2019) 질병 매핑 공간 회귀에 대한 비교 연구를 진행했는데, 주로 기대 빈도를 오프셋으로 설정한 포아송 회귀 프레임워크에 초점을 맞춘 것이다. Bivand and Gómez-Rubio (2021)는 공간 가중치 행렬을 사용하여 공간 생존 모델을 추정하는 방법과 공간 프로빗 모델 간의 비교를 다룬다.
+
 ## 연습문제
+
+1.  **HSAR** 패키지(<https://cran.r-project.org/src/contrib/Archive/HSAR/HSAR_0.5.1.tar.gz>)의 아테네 주택 데이터(**spData** 패키지 2.2.1 버전에 포함되어 있음)를 이용하여 다수준 데이터셋을 생성하라. 각 자치구 부서의 속성 값이 각 자치구 부서 내에 위치한 모든 포인트 관측 값에 복사되는 시점은 언제인가?
+
+2.  상위 수준과 하위 수준 모두에서 이웃 객체를 생성하고, 상위 수준과 하위 수준 모두에서 `greensp`의 공간적 자기상관을 테스트하라. 자치구 부서의 녹지 면적(제곱 미터)을 포인트 서포트를 가지는 부동산 수준으로 복사한 것의 주요 결과는 무엇인가?
+
+3.  위의 공식 객체를 사용하여 상위 수준의 변수를 추가하는 것이 합리적인지 평가하라. **mgcv** 패키지의 `gam` 함수를 사용하여 선형 혼합 효과 모델을 적합하라(자치구 부서에 대한 식별 변수인 `num_dep`를 사용하여 IID 지정). 하위 수준 변수만 사용한 모델과 하위 및 상위 수준 변수를 모두 사용한 모델을 비교하라. 결론이 달라지는가?
+
+4.  IID 랜덤 효과를 `"mrf"` 마르코프 랜덤 필드와 위에서 생성한 연접 이웃 객체로 대체함으로써 분석을 완수하시오. 자치구 부서 수준 변수, 예를 들어 `greensp`와 같은 변수에 근거하여 결론을 내는 것이 합리적인지에 대해 견해를 밝히시오.
