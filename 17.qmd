@@ -99,8 +99,349 @@ Bivand, Millo, and Piras (2021)는 공간계량경제학적 분석을 위한 R �
 
 ### 보스턴 주택 가격 데이터셋 예시
 
+예제는 Bivand (2017)를 기반으로 16장에서 생성된 객체들을 사용한다.
+
+```{r}
+#| eval: false
+library(spatialreg)
+eigs_489 <- eigenw(lw_q_489)
+SDEM_489 <- errorsarlm(form, data = boston_489, 
+      listw = lw_q_489, Durbin = TRUE, zero.policy = TRUE,
+      control = list(pre_eig = eigs_489))
+SEM_489 <- errorsarlm(form, data = boston_489, 
+      listw = lw_q_489, zero.policy = TRUE,
+      control = list(pre_eig = eigs_489))
+```
+
+디폴트인 `"eigen"` 방법을 사용하기 위해 미리 계산된 고유값을 `control` 리스트 아규먼트를 사용하여 전달한다.
+
+```{r}
+#| eval: false
+cbind(data.frame(model=c("SEM", "SDEM")), 
+      rbind(broom::tidy(Hausman.test(SEM_489)), 
+            broom::tidy(Hausman.test(SDEM_489))))[,1:4]
+#   model statistic  p.value parameter
+# 1   SEM      52.0 2.83e-06        14
+# 2  SDEM      48.7 6.48e-03        27
+```
+
+489개의 트랙트 데이터셋에 대한 두 가지 Hausman 검정 결과는 회귀 계수가 비공간적 회귀분석의 회귀계수와는 유의미하게 다르다는 것을 시사하며, 이는 공간 프로세스의 발자국이 일치하지 않음을 함축한다.
+
+```{r}
+#| eval: false
+eigs_94 <- eigenw(lw_q_94)
+SDEM_94 <- errorsarlm(form, data=boston_94, listw=lw_q_94,
+                      Durbin = TRUE,
+                      control = list(pre_eig=eigs_94))
+# Warning in RET$pfunction("adjusted", ...): Completion with error >
+# abseps
+
+# Warning in RET$pfunction("adjusted", ...): Completion with error >
+# abseps
+
+# Warning in RET$pfunction("adjusted", ...): Completion with error >
+# abseps
+
+# Warning in RET$pfunction("adjusted", ...): Completion with error >
+# abseps
+SEM_94 <- errorsarlm(form, data = boston_94, listw = lw_q_94,
+                     control = list(pre_eig = eigs_94))
+```
+
+94개의 대기 오염 모델 출력 구역에 대한 Hausman 검정은 계수 간 큰 차이를 발견하지 못했다.
+
+```{r}
+#| eval: false
+cbind(data.frame(model=c("SEM", "SDEM")), 
+      rbind(broom::tidy(Hausman.test(SEM_94)), 
+            broom::tidy(Hausman.test(SDEM_94))))[, 1:4]
+#   model statistic p.value parameter
+# 1   SEM     15.66   0.335        14
+# 2  SDEM      9.21   0.999        27
+```
+
+이러한 결과는 SEM과 SDEM 모델이 대기 오염 모델 출력 구역 수준에서 최소 제곱법이나 SLX에 거의 추가적인 차이를 만들지 않았다는 점을 보여준다. 우도비 검정을 통해 이러한 사실을 확인할 수 있다.
+
+```{r}
+#| eval: false
+cbind(data.frame(model=c("SEM", "SDEM")),
+      rbind(broom::tidy(LR1.Sarlm(SEM_94)),
+            broom::tidy(LR1.Sarlm(SDEM_94))))[,c(1, 4:6)]
+#   model statistic p.value parameter
+# 1   SEM     2.593   0.107         1
+# 2  SDEM     0.216   0.642         1
+```
+
+**spatialreg** 패키지의 `LR.Sarlm()` 함수를 사용하면 중첩(nested) 모델 간에 우도비 검정을 실행할 수 있지만, 여기서는 **lmtest** 패키지의 `lrtest()` 함수를 사용하는데 결과는 동일하다. 트랙트와 모델 출력 구역 모두에서 공간 지체 공변량을 포함하는 모델이 보다 선호된다는 결과가 산출된다.
+
+```{r}
+#| eval: false
+o <- lmtest::lrtest(SEM_489, SDEM_489)
+attr(o, "heading")[2] <- "Model 1: SEM_489\nModel 2: SDEM_489"
+o
+# Likelihood ratio test
+# 
+# Model 1: SEM_489
+# Model 2: SDEM_489
+#   #Df LogLik Df Chisq Pr(>Chisq)    
+# 1  16    274                        
+# 2  29    311 13  74.4    1.2e-10 ***
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+```{r}
+#| eval: false
+o <- lmtest::lrtest(SEM_94, SDEM_94)
+attr(o, "heading")[2] <- "Model 1: SEM_94\nModel 2: SDEM_94"
+o
+# Likelihood ratio test
+# 
+# Model 1: SEM_94
+# Model 2: SDEM_94
+#   #Df LogLik Df Chisq Pr(>Chisq)    
+# 1  16   59.7                        
+# 2  29   81.3 13  43.2    4.2e-05 ***
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+SLX 모델은 최소제곱법을 사용하여 적합되며, 로그 우도 값을 반환하여 잔차에 공간적 과정 요소가 포함될 필요가 있는지를 테스트할 수 있게 해준다. 트랙트 데이터셋에서는 분명히 그렇다는 결과가 도출되었다.
+
+```{r}
+#| eval: false
+SLX_489 <- lmSLX(form, data = boston_489, listw = lw_q_489,
+                 zero.policy = TRUE)
+o <- lmtest::lrtest(SLX_489, SDEM_489)
+attr(o, "heading")[2] <- "Model 1: SLX_489\nModel 2: SDEM_489"
+o
+# Likelihood ratio test
+# 
+# Model 1: SLX_489
+# Model 2: SDEM_489
+#   #Df LogLik Df Chisq Pr(>Chisq)    
+# 1  28    231                        
+# 2  29    311  1   159     <2e-16 ***
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+그러나 산출 존 데이터에 대해서는 반대의 결과가 도출되었다.
+
+```{r}
+#| eval: false
+SLX_94 <- lmSLX(form, data = boston_94, listw = lw_q_94)
+o <- lmtest::lrtest(SLX_94, SDEM_94)
+attr(o, "heading")[2] <- "Model 1: SLX_94\nModel 2: SDEM_94"
+o
+# Likelihood ratio test
+# 
+# Model 1: SLX_94
+# Model 2: SDEM_94
+#   #Df LogLik Df Chisq Pr(>Chisq)
+# 1  28   81.2                    
+# 2  29   81.3  1  0.22       0.64
+```
+
+이러한 결과는 주택 단위 수를 트랙트와 출력 구역별로 집계하여 사례 가중치를 사용할 때도 유지된다.
+
+```{r}
+#| eval: false
+SLX_489w <- lmSLX(form, data = boston_489, listw = lw_q_489,
+                  weights = units, zero.policy = TRUE)
+SDEM_489w <- errorsarlm(form, data = boston_489,
+                        listw = lw_q_489, Durbin = TRUE,
+                        weights = units, zero.policy = TRUE,
+                        control = list(pre_eig = eigs_489))
+o <- lmtest::lrtest(SLX_489w, SDEM_489w)
+attr(o, "heading")[2] <- "Model 1: SLX_489w\nModel 2: SDEM_489w"
+o
+# Likelihood ratio test
+# 
+# Model 1: SLX_489w
+# Model 2: SDEM_489w
+#   #Df LogLik Df Chisq Pr(>Chisq)    
+# 1  28    311                        
+# 2  29    379  1   136     <2e-16 ***
+# ---
+# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+```{r}
+#| eval: false
+SLX_94w <- lmSLX(form, data = boston_94, listw = lw_q_94,
+                 weights = units)
+SDEM_94w <- errorsarlm(form, data = boston_94, listw = lw_q_94,
+                       Durbin = TRUE, weights = units,
+                       control = list(pre_eig = eigs_94))
+o <- lmtest::lrtest(SLX_94w, SDEM_94w)
+attr(o, "heading")[2] <- "Model 1: SLX_94w\nModel 2: SDEM_94w"
+o
+# Likelihood ratio test
+# 
+# Model 1: SLX_94w
+# Model 2: SDEM_94w
+#   #Df LogLik Df Chisq Pr(>Chisq)
+# 1  28   97.5                    
+# 2  29   98.0  1  0.92       0.34
+```
+
+이 경우와 Bivand (2017)에서 제시된 논거를 바탕으로 가중치 사용은 정당화된다. 주택 단위 수가 트랙트의 경우는 5개에서 3,031개로 다양하고, 대기 오렴 모델 출력 구역의 경우는 25개에서 12,411개로 다양하기 때문이다. 이러한 이유로, 그리고 가중치 일반화 중첩 모델(GNM)이 개발되지 않았다는 이유로, GNM을 일반적인 모델에서 더 단순한 모델로 테스트하는 출발점으로 삼을 수 없다. 대신, SDEM 모델을 출발점으로 삼고 Hausman 테스트를 사용하여 관측 단위 선택의 지침을 구한다.
+
 ## 영향
+
+글로벌 영향은 공간 지체 반응 변수를 포함하는 모델(SLM, SDM, SAC, GNM)의 적합 결과를 보고하는 데 있어 핵심적인 사항으로 이해되고 있다(LeSage와 Pace 2009). 글로벌 영향을 공간 지체 공변량(SLX, SDEM)을 포함하는 다른 모델로 확장하는 시도도 이루어졌다(Elhorst 2010; Bivand 2012; Halleck Vega와 Elhorst 2015). SLM, SDM, SAC, GNM 모델은 최대 우도 또는 GMM을 사용하여 적합시킬 때 계수의 분산-공분산 행렬을 사용할 수 있으며, 계수 값을 평균으로 삼고 추정된 분산-공분산 행렬로부터 분산을 가져와 다변량 정규 분포를 설정하고 그것으로부터 랜덤 샘플을 추출할 수 있다. 베이지안 방법을 사용하여 적합하는 경우라면, 샘플은 사전에 주어진다. SDEM의 경우, 비지체 공변량의 회귀 계수에 대한 샘플은 직접적인 영향을 나타내고, 공간 지체 공변량의 계수에 대한 샘플은 간접적인 영향을 나타내며, 이들의 합은 총 영향을 나타낸다.
+
+SLX와 SDEM 모델에서는 추론을 위해 샘플링이 필요하지 않으므로 최대 우도를 사용하여 적합한 모델에 대해 선형 결합을 사용한다. 여기서는 공기 오염 변수에 대해서만 결과를 보여준다. 모델 출력 보고 방법에 대한 문제를 완전히 해결한 연구는 아직 발간되지 않았다. 개별 공변량에 대해 세 가지 영향력 값을 보고해야 하기 때문이다. 공간 지체 공변량이 포함될 경우, 두 개의 계수는 세 가지 영향으로 대체된다. 여기서는 공기 오염 변수에 대해 그 예를 보여준다.
+
+```{r}
+#| eval: false
+sum_imp_94_SDEM <- summary(impacts(SDEM_94))
+rbind(Impacts = sum_imp_94_SDEM$mat[5,], 
+      SE = sum_imp_94_SDEM$semat[5,])
+#           Direct Indirect   Total
+# Impacts -0.01276 -0.01845 -0.0312
+# SE       0.00235  0.00472  0.0053
+```
+
+SLX와 SDEM 모델에서 직접적인 영향은 같은 관측 단위에서 공기 오염 변화가 응답에 미치는 결과이고, 간접적인(지역적인) 영향은 인접한 관측 단위에서 공기 오염 변화가 응답에 미치는 결과이다.
+
+```{r}
+#| eval: false
+sum_imp_94_SLX <- summary(impacts(SLX_94))
+rbind(Impacts = sum_imp_94_SLX$mat[5,], 
+      SE = sum_imp_94_SLX$semat[5,])
+#          Direct Indirect    Total
+# Impacts -0.0128 -0.01874 -0.03151
+# SE       0.0028  0.00556  0.00611
+```
+
+같은 방법을 가중 공간 회귀 분석에 적용하면, 공기 오염이 주택 가치에 미치는 총 영향은 감소하지만 여전히 유의미하다.
+
+```{r}
+#| eval: false
+sum_imp_94_SDEMw <- summary(impacts(SDEM_94w))
+rbind(Impacts = sum_imp_94_SDEMw$mat[5,], 
+      SE = sum_imp_94_SDEMw$semat[5,])
+#           Direct Indirect    Total
+# Impacts -0.00592 -0.01076 -0.01668
+# SE       0.00269  0.00531  0.00559
+```
+
+전체적으로, 공기 오염 모델 출력 구역 수준으로 집계된 공간 지체 공변량만 포함하는 가중 공간 회귀 모델이 대부분의 모델 오지정 오류를 해결하는 것처럼 보이며, Bivand (2017)에서 더 자세히 논의되어 있는 바와 같이, 이는 오지정된 대체 모델들보다 훨씬 더 큰 오염 제거에 대한 지불 의향이 있다는 점을 보여준다.
+
+```{r}
+#| eval: false
+sum_imp_94_SLXw <- summary(impacts(SLX_94w))
+rbind(Impacts = sum_imp_94_SLXw$mat[5,], 
+      SE = sum_imp_94_SLXw$semat[5,])
+#           Direct Indirect    Total
+# Impacts -0.00620 -0.01221 -0.01842
+# SE       0.00326  0.00628  0.00629
+```
 
 ## 예측
 
+보스턴 구역 데이터셋에서 응답 변수인 중위 주택 가격 17개의 관측치가 제한되어 있다. 우리는 `"Sarlm"` 객체에 대한 `predict()` 메서드를 사용하여 이 값을 채울 것이다. 이 메서드는 Goulard, Laurent, and Thomas-Agnan (2017)을 기반으로 Martin Gubri에 의해 다시 작성되었으며, Laurent와 Margaretic (2021)도 참조할 수 있다. `pred.type` 아규먼트는 해당 논문에서 제시된 예측 전략을 지정한다.
+
+이 예시를 SDEM 모델의 다양한 변종을 `pred.type`의 설정을 통해 시도하고 샘플 외 예측을 수행해 보면 차이가 있음을 알 수 있으며, 이는 연구할 만한 중요한 영역임을 시사한다. 누락 변수 처리에 대한 몇 가지 대안이 제시된바 있다(Gómez-Rubio, Bivand, and Rue 2015; Suesse 2018). 예측에 대한 관심이 증가하는 또 다른 이유는 예측이 기계 학습 접근 방식의 기본 요소라는 점이다. 기계 학습에서는 검증 및 테스트 데이터셋을 위한 예측이 모델 사양 선택을 이끈다. 의존성을 가진 공간 데이터로부터 훈련 및 기타 데이터셋을 선택하는 것은 여전히 해결되지 않은 문제로, 독립적인 데이터와는 분명히 다른 복잡성을 지니고 있다.
+
+여기에서는 검열(censored) 트랙트 관측값에 대해 세 가지 서로 다른 예측 유형을 사용하여 예측값을 산출하고, USD 단위의 주택 중위값으로 복원하기 위해 지수 연산을 적용한다. `newdata` 객체의 `row.names()`가 공간 가중치 행렬의 `"region.id"` 속성과 일치하여 샘플 외 예측이 가능해진다는 점에 유의해야 한다.
+
+```{r}
+#| eval: false
+nd <- boston_506[is.na(boston_506$median),]
+t0 <- exp(predict(SDEM_489, newdata = nd, listw = lw_q,
+                  pred.type = "TS", zero.policy  =TRUE))
+suppressWarnings(t1 <- exp(predict(SDEM_489, newdata = nd,
+                                    listw = lw_q,
+                                    pred.type = "KP2",
+                                    zero.policy = TRUE)))
+suppressWarnings(t2 <- exp(predict(SDEM_489, newdata = nd,
+                                    listw = lw_q,
+                                    pred.type = "KP5",
+                                    zero.policy = TRUE)))
+```
+
+우리는 INLA의 `"slm"` 모델을 사용하여 모델 적합 함수 호출 과정에서 누락된 반응 변수 값을 예측할 수도 있다. `"slm"` 모델이 아직 실험적인 상태이므로 약간의 설정 코드가 필요하다.
+
+```{r}
+#| eval: false
+library(INLA)
+# Loading required package: foreach
+# Loading required package: parallel
+# Loading required package: sp
+# This is INLA_23.04.24 built 2023-04-24 19:15:35 UTC.
+#  - See www.r-inla.org/contact-us for how to get help.
+#  - To enable PARDISO sparse library; see inla.pardiso()
+# 
+# Attaching package: 'INLA'
+# The following object is masked _by_ '.GlobalEnv':
+# 
+#     f
+W <- as(lw_q, "CsparseMatrix")
+n <- nrow(W)
+e <- eigenw(lw_q)
+re.idx <- which(abs(Im(e)) < 1e-6)
+rho.max <- 1 / max(Re(e[re.idx]))
+rho.min <- 1 / min(Re(e[re.idx]))
+rho <- mean(c(rho.min, rho.max))
+boston_506$idx <- 1:n
+zero.variance = list(prec = list(initial = 25, fixed = TRUE))
+args.slm <- list(rho.min = rho.min, rho.max = rho.max, W = W,
+                 X = matrix(0, n, 0), Q.beta = matrix(1,0,0))
+hyper.slm <- list(prec = list(prior = "loggamma", 
+                              param = c(0.01, 0.01)),
+                  rho = list(initial = 0, prior = "logitbeta",
+                             param = c(1,1)))
+WX <- create_WX(model.matrix(update(form, CMEDV ~ .), 
+                             data = boston_506), lw_q)
+SDEM_506_slm <- inla(update(form, 
+                            . ~ . + WX + f(idx, model = "slm",
+                                         args.slm = args.slm,
+                                         hyper = hyper.slm)),
+                 data = boston_506, family = "gaussian",
+                 control.family = list(hyper = zero.variance),
+                 control.compute = list(dic = TRUE, cpo = TRUE))
+mv_mean <- exp(SDEM_506_slm$summary.fitted.values$mean[
+               which(is.na(boston_506$median))])
+```
+
+INLA는 또한 예측값에 대한 주변 분포(marginal distribution)의 격자형 추정치를 제공하며, 이를 통해 예측값과 관련된 불확실성을 평가할 수 있다.
+
+```{r}
+#| eval: false
+data.frame(fit_TS = t0[,1], fit_KP2 = c(t1), fit_KP5 = c(t2),
+    INLA_slm = mv_mean, censored = 
+      boston_506$censored[as.integer(attr(t0, "region.id"))])
+#     fit_TS fit_KP2 fit_KP5 INLA_slm censored
+# 13   23912   29477   28147    31112    right
+# 14   28126   27001   28516    31314    right
+# 15   30553   36184   32476    41298    right
+# 17   18518   19621   18878    21160    right
+# 43    9564    6817    7561     6830     left
+# 50    8371    7196    7383     6885     left
+# 312  51477   53301   54173    56274    right
+# 313  45921   45823   47095    46447    right
+# 314  44196   44586   45361    42805    right
+# 317  43427   45707   45442    48025    right
+# 337  39879   42072   41127    41462    right
+# 346  44708   46694   46108    45847    right
+# 355  48188   49068   48911    49138    right
+# 376  42881   45883   44966    47747    right
+# 408  44294   44615   45670    46164    right
+# 418  38211   43375   41914    43913    right
+# 434  41647   41690   42398    41551    right
+```
+
+공간 회귀를 위한 툴박스는 여전히 완전하지 않았으며, 빈틈을 채우는 데는 시간이 걸릴 것이다. 여러 공간 회귀 전통들이 서로의 이해와 발전을 거의 공유하지 않는 점은 여전히 아쉬운 부분이다.
+
 ## 연습문제
+
+1.  Piras와 Prucha(2014), 그리고 Raymond J. G. M. Florax, Folmer, Rey(2003)를 참조할 때, 사전 테스트 전략을 선택하면, 속성만 포함된 데이터셋과 지자체 구역 변수가 추가된 속성 데이터셋의 선형 모델에서 잔차의 공간적 의존성이 나타나는지 답하시오. 사전 테스트가 어떤 모델을 지목하는지에 대해 답하시오.
+
+2.  지자체 부서 더미 변수의 포함하거나 지자체 부서 체제 모델을 실행하면 잔차의 공간적 의존성을 줄이는 데 도움이 될 수 있을지에 대해 답하시오.
+
+3.  속성만 포함한 모델과 지자체 부서 변수를 추가한 모델에 대해 최대우도법을 사용하여 SEM 모델을 실행하고(GMM 코드 예시는 Bivand, Millo, and Piras (2021)를 참조), 이를 SDEM 모델로 확장하시오. SLX 모델을 실행하고, 해당 모델의 잔차에 대한 공간적 자기상관 테스트 결과를 해석하시오. SEM과 SDEM 모델에 대한 Hausman 테스트가 보여주는 매우 높은 유의성을 해석하시오.
+
+4.  속성만 포함한 모델과 지자체 부서 변수를 추가한 모델에 대해 GNM 모델을 실행하시오. 이러한 모델을 SDM 또는 SDEM 형식으로 단순화할 수 있을지에 대해 답하시오.
