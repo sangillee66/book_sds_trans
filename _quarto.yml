@@ -51,7 +51,7 @@ book:
   appendices:
     - A.qmd
     - B.qmd
-    - references.qmd
+#    - references.qmd
 
 bibliography: references.bib
 

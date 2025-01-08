@@ -14,7 +14,7 @@
     "href": "part_1.html",
     "title": "공간데이터",
     "section": "",
-    "text": "이 첫 번째 파트에서는 공간데이터사이언스의 핵심 개념을 다룬다. 지도, 투영, 벡터와 래스터 데이터 구조, 소프트웨어, 속성과 서포트, 데이터 큐브와 같은 개념들에 대해 배울 것이다. R은 이 파트에서는 별로 중요하지 않다. 주로 텍스트 아웃풋이나 그래프 작성을 위해서만 사용될 것이다. 따라서 내용에 집중한다는 의미에서 R코드 자체를 보여주거나 설명하는 일은 없을 것이다. R은 두 번째 파트에서 집중적으로 다루어진다. 그래도 이 책의 온라인 버전(https://r-spatial.org/book/)을 통해 감춰진 R 코드를 펼쳐 볼 수 있고, 필요한 경우 클립보드에 복사하여 실행해 볼 수 있다. R 코드를 실행한 결과는 # 기호로 시작하며 코드 폰트를 사용하여 나타낸다.\n\n# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE\n\n공간데이터사이언스 문제에 답을 제시하기 위한 R 코드에 대한 보다 상세한 설명은 이 책의 두 번째 파트에서 시작한다. 부록 B — R 기초 에는 R 데이터 구조에 대한 간략한 설명이 나타나 있다. 보다 자세한 사항은 Wickham (2019) 을 참고하라.\n\n\n\n\nWickham, Hadley. 2019. Advanced R. 2nd edition. Boca Raton: Chapman; Hall/CRC.",
+    "text": "이 첫 번째 파트에서는 공간데이터사이언스의 핵심 개념을 다룬다. 지도, 투영, 벡터와 래스터 데이터 구조, 소프트웨어, 속성과 서포트, 데이터 큐브와 같은 개념들에 대해 배울 것이다. R은 이 파트에서는 별로 중요하지 않다. 주로 텍스트 아웃풋이나 그래프 작성을 위해서만 사용될 것이다. 따라서 내용에 집중한다는 의미에서 R코드 자체를 보여주거나 설명하는 일은 없을 것이다. R은 두 번째 파트에서 집중적으로 다루어진다. 그래도 이 책의 온라인 버전(https://r-spatial.org/book/)을 통해 감춰진 R 코드를 펼쳐 볼 수 있고, 필요한 경우 클립보드에 복사하여 실행해 볼 수 있다. R 코드를 실행한 결과는 # 기호로 시작하며 코드 폰트를 사용하여 나타낸다.\n\n# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE\n\n공간데이터사이언스 문제에 답을 제시하기 위한 R 코드에 대한 보다 상세한 설명은 이 책의 두 번째 파트에서 시작한다. 부록 B에는 R 데이터 구조에 대한 간략한 설명이 나타나 있다. 보다 자세한 사항은 Wickham(2014)를 참고하라.",
     "crumbs": [
       "공간데이터"
     ]
@@ -100,7 +100,7 @@
     "href": "index.html#사사",
     "title": "공간데이터사이언스 개론",
     "section": "사사",
-    "text": "사사\n우리는 r-spatial 커뮤니티 전체에 감사하며, 특히 다음에 기여한 분들께 특별한 감사의 마음을 전한다.\n\nr-spatial 패키지를 개발하거나 그 개발에 기여한 분들\n트위터 #rspatial 또는 GitHub에서 디스커션에 참여한 분들\n강좌, 여름 학교, 또는 컨퍼런스에서 의견을 주거나 질문을 한 분들\n\n우리는 s2 패키지를 구현한 Dewey Dunnington, 적극적인 도움을 준 Sahil Bhandari, 6  데이터 큐브 의 그래프 제작을 도와준 Jonathan Bahlmann, 그리고 Claus Wilke와 Jakub Nowosad에게 특별한 감사의 마음을 전한다. 2021년과 2022년에 있었던 “R을 활용한 공간데이터사이언스(Spatial Data Science with R)” 강좌로부터 큰 도움을 받았다. GitHub의 이슈, 풀 리퀘스트 또는 디스커션에 적극적으로 기여한 분들께도 감사의 마음을 표한다.\n\n책 리포지터리에 기여한 분들 (Nowosad, jonathom, JaFro96, singhkpratham, liuyadong, hurielreichel, PPaccioretti, Robinlovelace, Syverpet, jonas-hurst, angela-li, ALanguillaume, florisvdh, ismailsunni, andronaco)\nsf 리포지터리에 기여한 분들 (aecoleman, agila5, andycraig, angela-li, ateucher, barryrowlingson, bbest, BenGraeler, bhaskarvk, Bisaloo, bkmgit, christophertull, chrisyeh96, cmcaine, cpsievert, daissi, dankelley, DavisVaughan, dbaston, dblodgett-usgs, dcooley, demorenoc, dpprdan, drkrynstrng, etiennebr, famuvie, fdetsch, florisvdh, gregleleu, hadley, hughjonesd, huizezhang-sherry, jeffreyhanson, jeroen, jlacko, joethorley, joheisig, JoshOBrien, jwolfson, kadyb, karldw, kendonB, khondula, KHwong12, krlmlr, lambdamoses, lbusett, lcgodoy, lionel-, loicdtx, marwahaha, MatthieuStigler, mdsumner, MichaelChirico, microly, mpadge, mtennekes, nikolai-b, noerw, Nowosad, oliverbeagley, Pakillo, paleolimbot, pat-s, PPaccioretti, prdm0, ranghetti, rCarto, renejuan, rhijmans, rhurlin, rnuske, Robinlovelace, robitalec, rubak, rundel, statnmap, thomasp85, tim-salabim, tyluRp, uribo, Valexandre, wibeasley, wittja01, yutannihilation, Zedseayou)\nstars 리포지터리에 기여한 분들(a-benini, ailich, ateucher, btupper, dblodgett-usgs, djnavarro, ErickChacon, ethanwhite, etiennebr, flahn, floriandeboissieu, gavg712, gdkrmr, jannes-m, jeroen, JoshOBrien, kadyb, kendonB, mdsumner, michaeldorman, mtennekes, Nowosad, pat-s, PPaccioretti, przell, qdread, Rekyt, rhijmans, rubak, rushgeo, statnmap, uribo, yutannihilation)\ns2 리포지토리에 기여한 분들(kylebutts, spiry34, jeroen, eddelbuettel)",
+    "text": "사사\n우리는 r-spatial 커뮤니티 전체에 감사하며, 특히 다음에 기여한 분들께 특별한 감사의 마음을 전한다.\n\nr-spatial 패키지를 개발하거나 그 개발에 기여한 분들\n트위터 #rspatial 또는 GitHub에서 디스커션에 참여한 분들\n강좌, 여름 학교, 또는 컨퍼런스에서 의견을 주거나 질문을 한 분들\n\n우리는 s2 패키지를 구현한 Dewey Dunnington, 적극적인 도움을 준 Sahil Bhandari, 6장의 그래프 제작을 도와준 Jonathan Bahlmann, 그리고 Claus Wilke와 Jakub Nowosad에게 특별한 감사의 마음을 전한다. 2021년과 2022년에 있었던 “R을 활용한 공간데이터사이언스(Spatial Data Science with R)” 강좌로부터 큰 도움을 받았다. GitHub의 이슈, 풀 리퀘스트 또는 디스커션에 적극적으로 기여한 분들께도 감사의 마음을 표한다.\n\n책 리포지터리에 기여한 분들 (Nowosad, jonathom, JaFro96, singhkpratham, liuyadong, hurielreichel, PPaccioretti, Robinlovelace, Syverpet, jonas-hurst, angela-li, ALanguillaume, florisvdh, ismailsunni, andronaco)\nsf 리포지터리에 기여한 분들 (aecoleman, agila5, andycraig, angela-li, ateucher, barryrowlingson, bbest, BenGraeler, bhaskarvk, Bisaloo, bkmgit, christophertull, chrisyeh96, cmcaine, cpsievert, daissi, dankelley, DavisVaughan, dbaston, dblodgett-usgs, dcooley, demorenoc, dpprdan, drkrynstrng, etiennebr, famuvie, fdetsch, florisvdh, gregleleu, hadley, hughjonesd, huizezhang-sherry, jeffreyhanson, jeroen, jlacko, joethorley, joheisig, JoshOBrien, jwolfson, kadyb, karldw, kendonB, khondula, KHwong12, krlmlr, lambdamoses, lbusett, lcgodoy, lionel-, loicdtx, marwahaha, MatthieuStigler, mdsumner, MichaelChirico, microly, mpadge, mtennekes, nikolai-b, noerw, Nowosad, oliverbeagley, Pakillo, paleolimbot, pat-s, PPaccioretti, prdm0, ranghetti, rCarto, renejuan, rhijmans, rhurlin, rnuske, Robinlovelace, robitalec, rubak, rundel, statnmap, thomasp85, tim-salabim, tyluRp, uribo, Valexandre, wibeasley, wittja01, yutannihilation, Zedseayou)\nstars 리포지터리에 기여한 분들(a-benini, ailich, ateucher, btupper, dblodgett-usgs, djnavarro, ErickChacon, ethanwhite, etiennebr, flahn, floriandeboissieu, gavg712, gdkrmr, jannes-m, jeroen, JoshOBrien, kadyb, kendonB, mdsumner, michaeldorman, mtennekes, Nowosad, pat-s, PPaccioretti, przell, qdread, Rekyt, rhijmans, rubak, rushgeo, statnmap, uribo, yutannihilation)\ns2 리포지토리에 기여한 분들(kylebutts, spiry34, jeroen, eddelbuettel)",
     "crumbs": [
       "서장"
     ]
@@ -1455,6 +1455,116 @@
     "crumbs": [
       "공간통계분석과 공간모델링",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모델</span>"
+    ]
+  },
+  {
+    "objectID": "A.html",
+    "href": "A.html",
+    "title": "부록 A — 오래된 공간 R 패키지",
+    "section": "",
+    "text": "rgdal과 rgeos 패키지의 퇴역\n당신이 오랜 R 사용자, 특히 sf와 stars 같은 패키지가 개발되기 이전부터 R을 사용해 왔다면, maptools, sp, rgeos, rgdal 같은 오래된 패키지에 더 익숙할 수 있다. 기존 코드나 오래된 패키지에 의존하는 다른 R 패키지를 새롭게 갱신해야할 필요가 있는지를 궁금해하는 것은 당연한다. 그에 대한 답은 ’그렇다’이다.\nmaptools, rgdal, rgeos 패키지는 2023년 중에 퇴역할 예정이다. 퇴역의 의미는 유지보수가 중단되고, 그 결과로 해당 패키지들이 CRAN에서 아카이브로 전환된다는 것이다. 하지만 소스 코드 저장소는 R-Forge가 유지되는 한 계속 남아 있을 것이다. 퇴역의 한 가지 이유는 관리자가 은퇴했기 때문이고, 더 중요한 이유는 이들 패키지의 역할이 더 새로운 패키지들로 대체되었기 때문이다. 새로운 관리자가 R-Forge 저장소를 인계받을 가능성은 매우 낮아 보인다. 이는 부분적으로 GEOS, GDAL, PROJ 라이브러리의 발전과 함께 이들 패키지의 코드가 점진적으로 변화해 왔으며, 많은 코드가 시대에 뒤떨어진 구조를 포함하고 있어 읽기 어렵기 때문이다.\nrgeos와 rgdal이 퇴역하기 전에, sp 패키지가 rgdal 및 rgeos와 가지고 있는 기존 연결성은 sf 패키지와의 연결성으로 대체될 수 있으며, 실제로 대체될 예정이다. 이는 예를 들어 좌표참조계(CRS) 식별자의 검증, 링이 내부 홀인지 외부 링인지 확인하는 작업 등을 포함한다. maptools의 일부 선택된 함수는 sp로 이전될 가능성도 있다.",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>오래된 공간 R 패키지</span>"
+    ]
+  },
+  {
+    "objectID": "A.html#sf와-sp-패키지의-연속성과-차별성",
+    "href": "A.html#sf와-sp-패키지의-연속성과-차별성",
+    "title": "부록 A — 오래된 공간 R 패키지",
+    "section": "sf와 sp 패키지의 연속성과 차별성",
+    "text": "sf와 sp 패키지의 연속성과 차별성",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>오래된 공간 R 패키지</span>"
+    ]
+  },
+  {
+    "objectID": "A.html#마이그레이션을-위한-코드와-패키지",
+    "href": "A.html#마이그레이션을-위한-코드와-패키지",
+    "title": "부록 A — 오래된 공간 R 패키지",
+    "section": "마이그레이션을 위한 코드와 패키지",
+    "text": "마이그레이션을 위한 코드와 패키지\nsf의 GitHub 사이트 위키 페이지(https://github.com/r-spatial/sf/wiki/Migrating)에는 rgeos, rgdal, sp의 메서드 및 함수와 그에 상응하는 sf 메서드 및 함수의 목록이 포함되어 있다. 이는 기존 코드나 패키지를 변환하는 데 도움이 될 수 있다.\n코드를 마이그레이션하는 간단한 방법은 rgdal 패키지의 readOGR() 함수만 사용하여 파일을 읽는 경우이다. 다른 대안은 sf 패키지의 read_sf() 함수를 사용하는 것이다.\n\nx = as(sf::read_sf(\"file\"), \"Spatial\")\n\n그러나 readOGR() 함수를 사용할 때는 아규먼트를 보다 주의해서 다뤄야 한다. 우리는 rgdal, rgeos, maptools 없이 전체적으로 실행되도록, 가능하면 sp 없이 실행되도록, 이전 책인 Applied Spatial Data Analysis with R (Virgilio Gómez-Rubio, Bivand, Pebesma, Gómez-Rubio, 2013)의 모든 코드를 변환하는 작업을 진행 중이다. 해당 스크립트는 https://github.com/rsbivand/sf_asdar2ed에서 확인할 수 있다.",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>오래된 공간 R 패키지</span>"
+    ]
+  },
+  {
+    "objectID": "A.html#raster와-terra-패키지",
+    "href": "A.html#raster와-terra-패키지",
+    "title": "부록 A — 오래된 공간 R 패키지",
+    "section": "raster와 terra 패키지",
+    "text": "raster와 terra 패키지\nraster 패키지는 2010년부터 R을 사용한 래스터 데이터 분석의 핵심적인 패키지였으며, 이후 “Geographic Data Analysis and Modeling” (Hijmans 2023a) 패키지로 성장하여 모든 종류의 공간 데이터에 사용되고 있다. raster 패키지는 벡터 데이터를 위해 sp 객체를 사용하고, GDAL 라이브러리가 제공하는 형식으로 데이터를 읽고 쓸 때 terra를 사용한다. 후속 패키지인 terra는 “Spatial Data Analysis” (Hijmans 2023b)를 위한 패키지로, “raster 패키지와 매우 비슷하지만 […] 더 많은 기능을 제공하며, 사용하기 더 쉽고, […] 더 빠르다.” terra 패키지는 벡터 데이터를 위한 자체 클래스를 가지고 있지만 많은 sf 객체를 받아들인다. 물론 위에서 열거한 sp 변환 시에 발생하는 것과 유사한 제한 사항이 부과된다. terra 패키지는 GDAL, GEOS, PROJ와의 직접적인 연결을 가지고 있어, 더 이상 다른 패키지가 필요 없다.\nraster 또는 terra 패키지의 래스터 레이어나 래스터 스택은 st_as_stars() 함수를 사용하여 stars 객체로 변환할 수 있다. sf 패키지의 st_as_sf() 함수를 통해 terra 패키지의 SpatVector 객체를 변환할 수 있다.\n로버트 히즈먼(Robert Hijmans)이 저술한 온라인 책 Spatial Data Science with R(https://rspatial.org/terra)은 terra를 활용한 공간 데이터 분석 방법을 자세히 설명하고 있다. sf와 stars 패키지 및 이 책에서 다루는 여러 r-spatial 패키지들은 r-spatial GitHub 조직에 속해 있다(여기서 r과 spatial 사이에 하이픈이 있다는 점에 유의하라. 히즈먼의 조직에는 하이픈이 없다). 해당 조직은 블로그 사이트가 있으며, 이 책에 대한 링크가 https://r-spatial.org/book에서 제공된다.\nsf와 stars 패키지, 그리고 terra 패키지는 많은 공통된 목표를 가지고 있지만, 약간 다른 방식으로 이를 달성하려고 하며, 데이터 분석, 소프트웨어 엔지니어링, 커뮤니티 관리에 대한 상이한 강조점을 가지고 있다. 이러한 차이점이 일부 사용자들에게 혼란을 줄 수 있지만, 우리는 이러한 차이점들이 R 패키지 생태계를 풍요롭게 하고, 사용자에게 유익하며, 다양성과 선택을 장려한다고 믿는다. 또한 이는 사용자가 R을 공간 데이터 문제에 사용할 때 새로운 아이디어를 계속 시도하도록 유도하고, 결국 R spatial의 깃발을 만천하에 더 높이는데 기여할 것으로 믿는다.",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>오래된 공간 R 패키지</span>"
+    ]
+  },
+  {
+    "objectID": "A.html#sf와-sp-패키지의-연결성과-차별성",
+    "href": "A.html#sf와-sp-패키지의-연결성과-차별성",
+    "title": "부록 A — 오래된 공간 R 패키지",
+    "section": "sf와 sp 패키지의 연결성과 차별성",
+    "text": "sf와 sp 패키지의 연결성과 차별성\nsf와 sp에는 여러 차이가 있다. 가장 눈에 띄는 차이는 sp 클래스는 정형적인 S4 클래스를 사용하는 반면, sf는 보다 비공식적인 S3 클래스 계층을 사용한다는 점이다. sf 객체는 data.frame 또는 tibble에서 파생되며, 이로 인해 기존 R 생태계, 특히 tidyverse 패키지 계열과 더 쉽게 연동할 수 있다. sf 객체는 기하 데이터를 리스트-컬럼에 저장하며, 이는 기하 데이터가 항상 리스트 요소로 유지됨을 의미한다. 반면, sp는 데이터 구조를 덜 엄격하게 사용하며, 예를 들어 SpatialPoints나 SpatialPixels의 모든 좌표를 행렬에 저장한다. 이는 특정 문제에 대해 더 높은 성능을 제공하지만 리스트-컬럼으로는 구현할 수 없는 방식이다. sf 객체 x를 sp로 변환하려면 다음과 같이 하면 된다.\n\nlibrary(sp)\ny = as(x, \"Spatial\")\n\n그리고 반대로 sp 객체를 sf로 변환하려면 다음과 같이 하면 된다.\n\nx0 = st_as_sf(y)\n\n이러한 변환에는 몇 가지 제한 사항이 있다.\n\nsp는 LINESTRING과 MULTILINESTRING 지오메트리, 또는 POLYGON과 MULTIPOLYGON 지오메트리를 구분하지 않는다. 예를 들어, LINESTRING을 sp로 변환한 후 다시 변환하면 MULTILINESTRING으로 반환된다.\nsp는 GEOMETRYCOLLECTION 지오메트리를 가지고 있지 않으며, “빅 세븐” (3.1.1절) 범주에 포함되지 않는 지오메트리를 가진 sf 객체를 표현할 수 있는 구조를 가지고 있지 않다.\nsf 또는 sfc 객체 중 혼합된 지오메트리를 가진 GEOMETRY 유형인 경우, 이를 sp 객체로 변환할 수 없다.\n속성-지오메트리 관계 속성은 sp로 변환할 때 손실된다.\n두 개 이상의 지오메트리 리스트-컬럼을 가진 sf 객체는 sp로 변환할 때 부차적인 리스트-컬럼을 잃게 된다.",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>오래된 공간 R 패키지</span>"
+    ]
+  },
+  {
+    "objectID": "A.html#sf와-sp-패키지의-연결성-및-차별성",
+    "href": "A.html#sf와-sp-패키지의-연결성-및-차별성",
+    "title": "부록 A — 오래된 공간 R 패키지",
+    "section": "sf와 sp 패키지의 연결성 및 차별성",
+    "text": "sf와 sp 패키지의 연결성 및 차별성\nsf와 sp에는 여러 차이가 있다. 가장 눈에 띄는 차이는 sp 클래스는 정형적인 S4 클래스를 사용하는 반면, sf는 보다 비공식적인 S3 클래스 계층을 사용한다는 점이다. sf 객체는 data.frame 또는 tibble에서 파생되며, 이로 인해 기존 R 생태계, 특히 tidyverse 패키지 계열과 더 쉽게 연동할 수 있다. sf 객체는 기하 데이터를 리스트-컬럼에 저장하며, 이는 기하 데이터가 항상 리스트 요소로 유지됨을 의미한다. 반면, sp는 데이터 구조를 덜 엄격하게 사용하며, 예를 들어 SpatialPoints나 SpatialPixels의 모든 좌표를 행렬에 저장한다. 이는 특정 문제에 대해 더 높은 성능을 제공하지만 리스트-컬럼으로는 구현할 수 없는 방식이다. sf 객체 x를 sp로 변환하려면 다음과 같이 하면 된다.\n\nlibrary(sp)\ny = as(x, \"Spatial\")\n\n그리고 반대로 sp 객체를 sf로 변환하려면 다음과 같이 하면 된다.\n\nx0 = st_as_sf(y)\n\n이러한 변환에는 몇 가지 제한 사항이 있다.\n\nsp는 LINESTRING과 MULTILINESTRING 지오메트리, 또는 POLYGON과 MULTIPOLYGON 지오메트리를 구분하지 않는다. 예를 들어, LINESTRING을 sp로 변환한 후 다시 변환하면 MULTILINESTRING으로 반환된다.\nsp는 GEOMETRYCOLLECTION 지오메트리를 가지고 있지 않으며, “빅 세븐” (3.1.1절) 범주에 포함되지 않는 지오메트리를 가진 sf 객체를 표현할 수 있는 구조를 가지고 있지 않다.\nsf 또는 sfc 객체 중 혼합된 지오메트리를 가진 GEOMETRY 유형인 경우, 이를 sp 객체로 변환할 수 없다.\n속성-지오메트리 관계 속성은 sp로 변환할 때 손실된다.\n두 개 이상의 지오메트리 리스트-컬럼을 가진 sf 객체는 sp로 변환할 때 부차적인 리스트-컬럼을 잃게 된다.",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>오래된 공간 R 패키지</span>"
+    ]
+  },
+  {
+    "objectID": "B.html",
+    "href": "B.html",
+    "title": "부록 B — R 기초",
+    "section": "",
+    "text": "파이프 오퍼레이터\n|&gt; (파이프) 기호는 ’그렇다면’으로 읽어야 한다.\na |&gt; b() |&gt; c() |&gt; d(n = 10)\n위의 코드는 a를 실행한 후 b를 실행하고, 그 다음에 c, d를 실행하며, n은 10인 경우와 같다는 의미이다. 이 파이프 코드는 다음과 같이 쓸 수 있다.\nd(c(b(a)), n = 10)\n혹은 다음과 같이 쓸 수 있다.\ntmp1 &lt;- b(a)\ntmp2 &lt;- c(tmp1)\ntmp3 &lt;- d(tmp2, n = 10)\n많은 사람들은 이러한 파이프 형태가 읽기 쉽다고 생각할 것이다. 왜냐하면 실행 순서가 읽는 순서대로 왼쪽에서 오른쪽으로 진행되기 때문에. 위의 두 번째 구문에 나타나 있는 포섭 함수 호출처럼, 중간 결과에 대해 이름을 지정할 필요가 없게 된다. 그런데 포섭 함수 호출처럼, 예상과 다른 중간 결과를 디버깅하는 것이 어렵게 된다. 중간 결과는 메모리에 존재하므로 세 번째 구문에 비해 메모리 할당의 절약을 기대할 수는 없다는 점은 유의할 필요가 있다. 원래 파이프 오퍼레이터는 magrittr 패키지에서 %&gt;%의 형태로 제시되었지만, R 4.1.0에서 네이티브 파이프로 수용되어 |&gt; 기호를 사용하고 있다. 어느 쪽을 사용해도 상관이 없다.",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>R 기초</span>"
+    ]
+  },
+  {
+    "objectID": "B.html#데이터-구조",
+    "href": "B.html#데이터-구조",
+    "title": "부록 B — R 기초",
+    "section": "데이터 구조",
+    "text": "데이터 구조\nChambers (2016)에 의해 지적된 바와 같이, “R에서 존재하는 모든 것은 객체이다”. 객체에는 언어 객체나 함수와 같이 특정한 일을 하는 객체뿐만 아니라 데이터 객체와 같은 더 기본적인 “것들”도 포함된다. 다음에서 몇 가지 기본적인 R 데이터 구조에 대해 논의하겠다.\n동질 벡터\n데이터 객체는 데이터를 포함하고 있으며, 때로는 메타데이터도 포함된다. 데이터는 항상 벡터 형태로 존재하며, 벡터는 다양한 유형을 가질 수 있다. 유형은 typeof() 함수를 사용하여 확인할 수 있으며, 벡터의 길이는 length() 함수를 사용하여 확인할 수 있다. 벡터는 c() 함수를 사용하여 개별 요소들을 결합함으로써 생성된다.\n\ntypeof(1:10)\n# [1] \"integer\"\nlength(1:10)\n# [1] 10\ntypeof(1.0)\n# [1] \"double\"\nlength(1.0)\n# [1] 1\ntypeof(c(\"foo\", \"bar\"))\n# [1] \"character\"\nlength(c(\"foo\", \"bar\"))\n# [1] 2\ntypeof(c(TRUE, FALSE))\n# [1] \"logical\"\n\n이런 종류의 벡터를 동질(homegeneous) 벡터라고 부르는데, 이는 이러한 종류의 벡터가 오로지 한 가지 유형의 데이터만을 가질 수 있기 때문이다.\n벡터는 길이가 0일 수 있다는 점에 유의해야 한다.\n\ni &lt;- integer(0)\ntypeof(i)\n# [1] \"integer\"\ni\n# integer(0)\nlength(i)\n# [1] 0\n\n우리는 한 벡터의 요소들을 [ 혹은 [[를 이용하여 불러올 수 있다(할당의 맥락에서는 요소들을 대체할 수 있다).\n\na &lt;- c(1,2,3)\na[2]\n# [1] 2\na[[2]]\n# [1] 2\na[2:3]\n# [1] 2 3\na[2:3] &lt;- c(5,6)\na\n# [1] 1 5 6\na[[3]] &lt;- 10\na\n# [1]  1  5 10\n\n차이점은 [ ]는 인덱스 범위(또는 여러 인덱스)에 대해 작업할 수 있는 반면, [[ ]]는 단일 벡터 값에 대해 작업한다는 것이다.\n이질 벡터: list\n\n두 번째 벡터 유형은 list로, 상이한 유형을 결합할 수 있다는 의미에서 이질(heterogeneous) 벡터라고 불린다.\n\nl &lt;- list(3, TRUE, \"foo\")\ntypeof(l)\n# [1] \"list\"\nlength(l)\n# [1] 3\n\n리스트에는 [ ]와 [[ ]] 사이에 추가적인 구분이 있다. 즉, 단일 [ ]는 항상 리스트를 반환하고, [[ ]]는 리스트 요소의 내용을 반환한다.\n\nl[1]\n# [[1]]\n# [1] 3\nl[[1]]\n# [1] 3\n\n교체의 맥락에서는, 리스트를 제공할 때는 [ ]를 사용하고, 새로운 값을 제공할 때는 [[ ]]를 사용한다.\n\nl[1:2] &lt;- list(4, FALSE)\nl\n# [[1]]\n# [1] 4\n# \n# [[2]]\n# [1] FALSE\n# \n# [[3]]\n# [1] \"foo\"\nl[[3]] &lt;- \"bar\"\nl\n# [[1]]\n# [1] 4\n# \n# [[2]]\n# [1] FALSE\n# \n# [[3]]\n# [1] \"bar\"\n\n리스트 요소에 이름을 지정할 수 있다.\n\nl &lt;- list(first = 3, second = TRUE, third = \"foo\")\nl\n# $first\n# [1] 3\n# \n# $second\n# [1] TRUE\n# \n# $third\n# [1] \"foo\"\n\nl[[\"second\"]]와 같은 방식으로 이름을 사용할 수고, 좀 더 단순한 형태로 사용할 수도 있다.\n\nl$second\n# [1] TRUE\nl$second &lt;- FALSE\nl\n# $first\n# [1] 3\n# \n# $second\n# [1] FALSE\n# \n# $third\n# [1] \"foo\"\n\n이름을 사용하는 것은 편리해 보이지만, 이름 속성에서 이름을 우선 찾아야 한다는 점도 있다(아래 참조).\nNULL과 리스트 요소의 제거\nNULL은 R에서 널(null) 값을 표현하는 방식이다. NULL은 단순 비교에서 상식적인 결과가 도출되지 않는다는 점에서 주의를 요한다.\n\n3 == NULL # not FALSE!\n# logical(0)\nNULL == NULL # not even TRUE!\n# logical(0)\n\n따라서 특별히 취급되어야 하는데, is.null() 함수가 유용하다.\n\nis.null(NULL)\n# [1] TRUE\n\n리스트의 특정 요소를 제거하려면, 제거 대상을 포함하지 않는 새로운 리스트를 생성하면 된다.\n\nl &lt;- l[c(1,3)] # remove second, implicitly\nl\n# $first\n# [1] 3\n# \n# $third\n# [1] \"foo\"\n\n혹은, 제거 대상에 NULL을 할당할 수도 있다.\n\nl$second &lt;- NULL\nl\n# $first\n# [1] 3\n# \n# $third\n# [1] \"foo\"\n\n속성\n임의의 메타데이터 객체를 데이터 객체에 결합하는 것이 가능하다.\n\na &lt;- 1:3\nattr(a, \"some_meta_data\") = \"foo\"\na\n# [1] 1 2 3\n# attr(,\"some_meta_data\")\n# [1] \"foo\"\n\n이 메타데이터를 검색하거나 교체할 수 있다.\n\nattr(a, \"some_meta_data\")\n# [1] \"foo\"\nattr(a, \"some_meta_data\") &lt;- \"bar\"\nattr(a, \"some_meta_data\")\n# [1] \"bar\"\n\n본질적으로 객체의 속성은 이름이 지정된 리스트이며, 우리는 전체 리스트를 다음과 같이 가져오거나 설정할 수 있다.\n\nattributes(a)\n# $some_meta_data\n# [1] \"bar\"\nattributes(a) = list(some_meta_data = \"foo\")\nattributes(a)\n# $some_meta_data\n# [1] \"foo\"\n\nR은 여러 속성을 특별하게 처리하며, 전체 세부 사항은 ?attributes에서 확인할 수 있다. 이제 몇 가지 특별한 속성에 대해 설명하고자 한다.\n객체 클래스와 class 속성\nR의 모든 객체는 “클래스를 가진다”가 의미하는 바처럼, class(obj)는 obj의 클래스에 대한 문자 벡터를 반환한다. 일부 객체는 기본 벡터와 같은 암시적 클래스를 가진다.\n\nclass(1:3)\n# [1] \"integer\"\nclass(c(TRUE, FALSE))\n# [1] \"logical\"\nclass(c(\"TRUE\", \"FALSE\"))\n# [1] \"character\"\n\n클래스를 명시적으로 설정할 수도 있다. attr을 사용하거나 표현식의 왼쪽에서 class를 사용하면 된다.\n\na &lt;- 1:3\nclass(a) &lt;- \"foo\"\na\n# [1] 1 2 3\n# attr(,\"class\")\n# [1] \"foo\"\nclass(a)\n# [1] \"foo\"\nattributes(a)\n# $class\n# [1] \"foo\"\n\n이 경우, 새로 설정된 클래스가 이전의 암시적인 클래스를 덮어쓴다. 이렇게 하면, 클래스 이름을 메서드 이름에 추가하여 foo 클래스에 대한 메서드를 추가할 수 있다.\n\nprint.foo &lt;- function(x, ...) { \n    print(paste(\"an object of class foo with length\", length(x)))\n}\nprint(a)\n# [1] \"an object of class foo with length 3\"\n\n이러한 메서드를 제공하는 목적은 일반적으로 더 사용하기 쉬운 소프트웨어를 만드는 것이지만, 동시에 객체를 더 불투명하게 만들 수도 있다. 클래스 속성이 제거된 후 객체를 출력하여 “무엇으로 구성되어 있는지” 확인하는 것이 때때로 유용할 수 있다.\n\nunclass(a)\n# [1] 1 2 3\n\n좀 더 구체적인 예로, 패키지 sf 패키지를 사용하여 다각형을 만드는 경우를 고려해보자.\n\nlibrary(sf) |&gt; suppressPackageStartupMessages()\np &lt;- st_polygon(list(rbind(c(0,0), c(1,0), c(1,1), c(0,0))))\np\n# POLYGON ((0 0, 1 0, 1 1, 0 0))\n\n이것은 잘 알려진 텍스트 형식(WKT)을 출력한다. 데이터 구조가 어떤지 알아보려면, 다음과 같이 하면 된다.\n\nunclass(p)\n# [[1]]\n#      [,1] [,2]\n# [1,]    0    0\n# [2,]    1    0\n# [3,]    1    1\n# [4,]    0    0\n\n\ndim 속성\ndim 속성은 행렬 또는 어레이(array)의 차원을 설정한다.\n\na &lt;- 1:8\nclass(a)\n# [1] \"integer\"\nattr(a, \"dim\") &lt;- c(2,4) # or: dim(a) = c(2,4)\nclass(a)\n# [1] \"matrix\" \"array\"\na\n#      [,1] [,2] [,3] [,4]\n# [1,]    1    3    5    7\n# [2,]    2    4    6    8\nattr(a, \"dim\") &lt;- c(2,2,2) # or: dim(a) = c(2,2,2)\nclass(a)\n# [1] \"array\"\na\n# , , 1\n# \n#      [,1] [,2]\n# [1,]    1    3\n# [2,]    2    4\n# \n# , , 2\n# \n#      [,1] [,2]\n# [1,]    5    7\n# [2,]    6    8\n\n\nnames 속성\n이름이 지정된 벡터는 names 속성에 이름을 가지고 있다. 위에서 리스트의 예를 봤고, 숫자 벡터의 예는 다음과 같다.\n\na &lt;- c(first = 3, second = 4, last = 5)\na[\"second\"]\n# second \n#      4\nattributes(a)\n# $names\n# [1] \"first\"  \"second\" \"last\"\n\n다른 이름 속성으로는 행렬이나 어레이의 dimnames가 있다. 이는 차원의 이름뿐만 아니라 각 차원에 연관된 값의 레이블도 지정한다.\n\na &lt;- matrix(1:4, 2, 2)\ndimnames(a) &lt;- list(rows = c(\"row1\", \"row2\"),\n                    cols = c(\"col1\", \"col2\"))\na\n#       cols\n# rows   col1 col2\n#   row1    1    3\n#   row2    2    4\nattributes(a)\n# $dim\n# [1] 2 2\n# \n# $dimnames\n# $dimnames$rows\n# [1] \"row1\" \"row2\"\n# \n# $dimnames$cols\n# [1] \"col1\" \"col2\"\n\ndata.frame 객체는 행과 열을 가지며, 각 행과 열에는 이름이 있다.\n\ndf &lt;- data.frame(a = 1:3, b = c(TRUE, FALSE, TRUE))\nattributes(df)\n# $names\n# [1] \"a\" \"b\"\n# \n# $class\n# [1] \"data.frame\"\n# \n# $row.names\n# [1] 1 2 3\n\n\nstructure의 사용\n프로그래밍할 때, 객체를 반환하기 전에 속성을 추가하거나 수정하는 패턴은 매우 일반적이다. 다음의 예시를 보자.\n\nf &lt;- function(x) {\n   a &lt;- create_obj(x) # call some other function\n   attributes(a) &lt;- list(class = \"foo\", meta = 33)\n   a\n}\n\n마지막 두 문장은 다음과 같이 축약할 수 있다.\n\nf &lt;- function(x) {\n   a &lt;- create_obj(x) # call some other function\n   structure(a, class = \"foo\", meta = 33)\n}\n\n여기서 structure() 함수는 첫 번째 아규먼트로 전달된 객체의 속성을 추가 및 교체하거나(값이 NULL인 경우) 속성을 제거한다.",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>R 기초</span>"
+    ]
+  },
+  {
+    "objectID": "B.html#multipolygon-쪼개기",
+    "href": "B.html#multipolygon-쪼개기",
+    "title": "부록 B — R 기초",
+    "section": "MULTIPOLYGON 쪼개기",
+    "text": "MULTIPOLYGON 쪼개기",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>R 기초</span>"
+    ]
+  },
+  {
+    "objectID": "B.html#multipolygon-분할하기",
+    "href": "B.html#multipolygon-분할하기",
+    "title": "부록 B — R 기초",
+    "section": "\nMULTIPOLYGON 분할하기",
+    "text": "MULTIPOLYGON 분할하기\n위의 예를 사용하여 MULTIPOLYGON이 포함된 sf 객체를 여러 조각으로 분해할 수 있다. 예를 들어, nc 데이터셋을 사용한다고 가정해보자.\n\nsystem.file(\"gpkg/nc.gpkg\", package = \"sf\") |&gt; \n    read_sf() -&gt; nc\n\nnc의 속성에서 다음을 볼 수 있다.\n\nattributes(nc)\n# $names\n#  [1] \"AREA\"      \"PERIMETER\" \"CNTY_\"     \"CNTY_ID\"   \"NAME\"     \n#  [6] \"FIPS\"      \"FIPSNO\"    \"CRESS_ID\"  \"BIR74\"     \"SID74\"    \n# [11] \"NWBIR74\"   \"BIR79\"     \"SID79\"     \"NWBIR79\"   \"geom\"     \n# \n# $row.names\n#   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15\n#  [16]  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30\n#  [31]  31  32  33  34  35  36  37  38  39  40  41  42  43  44  45\n#  [46]  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60\n#  [61]  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75\n#  [76]  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90\n#  [91]  91  92  93  94  95  96  97  98  99 100\n# \n# $class\n# [1] \"sf\"         \"tbl_df\"     \"tbl\"        \"data.frame\"\n# \n# $sf_column\n# [1] \"geom\"\n# \n# $agr\n#      AREA PERIMETER     CNTY_   CNTY_ID      NAME      FIPS \n#      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt; \n#    FIPSNO  CRESS_ID     BIR74     SID74   NWBIR74     BIR79 \n#      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt; \n#     SID79   NWBIR79 \n#      &lt;NA&gt;      &lt;NA&gt; \n# Levels: constant aggregate identity\n\ngeom이라는 이름의 지오메트리 컬럼이 있다는 것을 알 수 있다. 이 컬럼만 끄집어 낼 수 있다.\n\nnc$geom\n# Geometry set for 100 features \n# Geometry type: MULTIPOLYGON\n# Dimension:     XY\n# Bounding box:  xmin: -84.3 ymin: 33.9 xmax: -75.5 ymax: 36.6\n# Geodetic CRS:  NAD27\n# First 5 geometries:\n# MULTIPOLYGON (((-81.5 36.2, -81.5 36.3, -81.6 3...\n# MULTIPOLYGON (((-81.2 36.4, -81.2 36.4, -81.3 3...\n# MULTIPOLYGON (((-80.5 36.2, -80.5 36.3, -80.5 3...\n# MULTIPOLYGON (((-76 36.3, -76 36.3, -76 36.3, -...\n# MULTIPOLYGON (((-77.2 36.2, -77.2 36.2, -77.3 3...\n\n해당 컬럼만을 포함한 객체가 다음의 속성을 가지고 있음을 확인할 수 있다.\n\nattributes(nc$geom)\n# $n_empty\n# [1] 0\n# \n# $crs\n# Coordinate Reference System:\n#   User input: NAD27 \n#   wkt:\n# GEOGCRS[\"NAD27\",\n#     DATUM[\"North American Datum 1927\",\n#         ELLIPSOID[\"Clarke 1866\",6378206.4,294.978698213898,\n#             LENGTHUNIT[\"metre\",1]]],\n#     PRIMEM[\"Greenwich\",0,\n#         ANGLEUNIT[\"degree\",0.0174532925199433]],\n#     CS[ellipsoidal,2],\n#         AXIS[\"geodetic latitude (Lat)\",north,\n#             ORDER[1],\n#             ANGLEUNIT[\"degree\",0.0174532925199433]],\n#         AXIS[\"geodetic longitude (Lon)\",east,\n#             ORDER[2],\n#             ANGLEUNIT[\"degree\",0.0174532925199433]],\n#     USAGE[\n#         SCOPE[\"Geodesy.\"],\n#         AREA[\"North and central America: Antigua and Barbuda - onshore. Bahamas - onshore plus offshore over internal continental shelf only. Belize - onshore. British Virgin Islands - onshore. Canada onshore - Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Northwest Territories, Nova Scotia, Nunavut, Ontario, Prince Edward Island, Quebec, Saskatchewan and Yukon - plus offshore east coast. Cuba - onshore and offshore. El Salvador - onshore. Guatemala - onshore. Honduras - onshore. Panama - onshore. Puerto Rico - onshore. Mexico - onshore plus offshore east coast. Nicaragua - onshore. United States (USA) onshore and offshore - Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin and Wyoming - plus offshore . US Virgin Islands - onshore.\"],\n#         BBOX[7.15,167.65,83.17,-47.74]],\n#     ID[\"EPSG\",4267]]\n# \n# $class\n# [1] \"sfc_MULTIPOLYGON\" \"sfc\"             \n# \n# $precision\n# [1] 0\n# \n# $bbox\n#  xmin  ymin  xmax  ymax \n# -84.3  33.9 -75.5  36.6\n\n네 번째 리스트 요소의 내용을 가져온다.\n\nnc$geom[[4]] |&gt; format(width = 60, digits = 5)\n# [1] \"MULTIPOLYGON (((-76.009 36.32, -76.017 36.338, -76.033 36...\"\n\n객체의 클래스가 리스트임을 확인한다.\n\ntypeof(nc$geom[[4]])\n# [1] \"list\"\n\n어떤 속성이 있는지 확인한다.\n\nattributes(nc$geom[[4]])\n# $class\n# [1] \"XY\"           \"MULTIPOLYGON\" \"sfg\"\n\n그리고 length를 확인한다.\n\nlength(nc$geom[[4]])\n# [1] 3\n\n길이는 외부 링의 개수를 나타낸다. 멀티폴리곤은 하나 이상의 폴리곤으로 구성될 수 있다. 대부분의 카운티는 하나의 폴리곤만 가지고 있음을 알 수 있다.\n\nlengths(nc$geom)\n#   [1] 1 1 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\n#  [32] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 2 1 1 1 1 1\n#  [63] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 2 1 1\n#  [94] 1 2 1 1 1 1 1\n\n멀티폴리곤은 폴리곤의 리스트이다.\n\ntypeof(nc$geom[[4]])\n# [1] \"list\"\n\n네 번째 멀티폴리곤의 첫 번째 폴리곤은 다시 리스트이다. 왜냐하면 폴리곤은 외부 링을 가지며, 그 뒤에 여러 개의 내부 링(구멍)이 올 수 있기 때문이다.\n\ntypeof(nc$geom[[4]][[1]])\n# [1] \"list\"\n\n해당 폴리곤이 외부 링 하나만 포함하고 있음을 알 수 있다.\n\nlength(nc$geom[[4]][[1]])\n# [1] 1\n\n해당 폴리곤의 유형, 차원, 첫 번째 좌표 집합를 다음과 같이 출력할 수 있다.\n\ntypeof(nc$geom[[4]][[1]][[1]])\n# [1] \"double\"\ndim(nc$geom[[4]][[1]][[1]])\n# [1] 26  2\nhead(nc$geom[[4]][[1]][[1]])\n#       [,1] [,2]\n# [1,] -76.0 36.3\n# [2,] -76.0 36.3\n# [3,] -76.0 36.3\n# [4,] -76.0 36.4\n# [5,] -76.1 36.3\n# [6,] -76.2 36.4\n\n속성을 변경할 수 있는데, 예를 들어 세 번째 좌표의 위도값을 다음과 같이 변경할 수 있다.\n\nnc$geom[[4]][[1]][[1]][3,2] &lt;- 36.5",
+    "crumbs": [
+      "부록",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>R 기초</span>"
     ]
   }
 ]

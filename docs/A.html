@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>공간데이터사이언스 개론 - 부록 A — R 스페셜 패키지</title>
+<title>공간데이터사이언스 개론 - 부록 A — 오래된 공간 R 패키지</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,8 +17,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -40,8 +70,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -67,35 +96,25 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-
-<link rel="stylesheet" href="styles.css">
+}</script><link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-package" class="quarto-section-identifier">부록 A — R 스페셜 패키지</span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-package" class="quarto-section-identifier">부록 A — 오래된 공간 R 패키지</span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">공간데이터사이언스 개론</a> 
         <div class="sidebar-tools-main">
@@ -110,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서장</span></a>
@@ -124,8 +143,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></a>
@@ -162,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_2.html" class="sidebar-item-text sidebar-link">
@@ -171,8 +190,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
@@ -191,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_3.html" class="sidebar-item-text sidebar-link">
@@ -200,8 +219,8 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
@@ -250,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -259,11 +278,11 @@ ul.task-list li input[type="checkbox"] {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R 스페셜 패키지</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">오래된 공간 R 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,21 +298,24 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#rgdal%EA%B3%BC-rgeos-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%87%B4%EC%97%AD" id="toc-rgdal과-rgeos-패키지의-퇴역" class="nav-link active" data-scroll-target="#rgdal%EA%B3%BC-rgeos-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%87%B4%EC%97%AD">rgdal과 rgeos 패키지의 퇴역</a></li>
+  <li><a href="#sf%EC%99%80-sp-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%EC%97%B0%EA%B2%B0%EC%84%B1-%EB%B0%8F-%EC%B0%A8%EB%B3%84%EC%84%B1" id="toc-sf와-sp-패키지의-연결성-및-차별성" class="nav-link" data-scroll-target="#sf%EC%99%80-sp-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%EC%97%B0%EA%B2%B0%EC%84%B1-%EB%B0%8F-%EC%B0%A8%EB%B3%84%EC%84%B1">sf와 sp 패키지의 연결성 및 차별성</a></li>
+  <li><a href="#%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%BD%94%EB%93%9C%EC%99%80-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-마이그레이션을-위한-코드와-패키지" class="nav-link" data-scroll-target="#%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%BD%94%EB%93%9C%EC%99%80-%ED%8C%A8%ED%82%A4%EC%A7%80">마이그레이션을 위한 코드와 패키지</a></li>
+  <li><a href="#raster%EC%99%80-terra-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-raster와-terra-패키지" class="nav-link" data-scroll-target="#raster%EC%99%80-terra-%ED%8C%A8%ED%82%A4%EC%A7%80">raster와 terra 패키지</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-package" class="quarto-section-identifier">부록 A — R 스페셜 패키지</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span id="sec-package" class="quarto-section-identifier">부록 A — 오래된 공간 R 패키지</span></h1>
 </div>
 
 
@@ -305,7 +327,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2024년 9월 26일</p>
+      <p class="date-modified">2025년 1월 8일</p>
     </div>
   </div>
     
@@ -313,14 +335,42 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><section id="rgdal과-rgeos-패키지의-퇴역" class="level2"><h2 class="anchored" data-anchor-id="rgdal과-rgeos-패키지의-퇴역">rgdal과 rgeos 패키지의 퇴역</h2>
+<p>당신이 오랜 R 사용자, 특히 <strong>sf</strong>와 <strong>stars</strong> 같은 패키지가 개발되기 이전부터 R을 사용해 왔다면, <strong>maptools</strong>, <strong>sp</strong>, <strong>rgeos</strong>, <strong>rgdal</strong> 같은 오래된 패키지에 더 익숙할 수 있다. 기존 코드나 오래된 패키지에 의존하는 다른 R 패키지를 새롭게 갱신해야할 필요가 있는지를 궁금해하는 것은 당연한다. 그에 대한 답은 ’그렇다’이다.</p>
+<p><strong>maptools</strong>, <strong>rgdal</strong>, <strong>rgeos</strong> 패키지는 2023년 중에 퇴역할 예정이다. 퇴역의 의미는 유지보수가 중단되고, 그 결과로 해당 패키지들이 CRAN에서 아카이브로 전환된다는 것이다. 하지만 소스 코드 저장소는 R-Forge가 유지되는 한 계속 남아 있을 것이다. 퇴역의 한 가지 이유는 관리자가 은퇴했기 때문이고, 더 중요한 이유는 이들 패키지의 역할이 더 새로운 패키지들로 대체되었기 때문이다. 새로운 관리자가 R-Forge 저장소를 인계받을 가능성은 매우 낮아 보인다. 이는 부분적으로 GEOS, GDAL, PROJ 라이브러리의 발전과 함께 이들 패키지의 코드가 점진적으로 변화해 왔으며, 많은 코드가 시대에 뒤떨어진 구조를 포함하고 있어 읽기 어렵기 때문이다.</p>
+<p><strong>rgeos</strong>와 <strong>rgdal</strong>이 퇴역하기 전에, <strong>sp</strong> 패키지가 <strong>rgdal</strong> 및 <strong>rgeos</strong>와 가지고 있는 기존 연결성은 <strong>sf</strong> 패키지와의 연결성으로 대체될 수 있으며, 실제로 대체될 예정이다. 이는 예를 들어 좌표참조계(CRS) 식별자의 검증, 링이 내부 홀인지 외부 링인지 확인하는 작업 등을 포함한다. <strong>maptools</strong>의 일부 선택된 함수는 <strong>sp</strong>로 이전될 가능성도 있다.</p>
+</section><section id="sf와-sp-패키지의-연결성-및-차별성" class="level2"><h2 class="anchored" data-anchor-id="sf와-sp-패키지의-연결성-및-차별성">sf와 sp 패키지의 연결성 및 차별성</h2>
+<p><strong>sf</strong>와 <strong>sp</strong>에는 여러 차이가 있다. 가장 눈에 띄는 차이는 <strong>sp</strong> 클래스는 정형적인 S4 클래스를 사용하는 반면, <strong>sf</strong>는 보다 비공식적인 S3 클래스 계층을 사용한다는 점이다. <strong>sf</strong> 객체는 <code>data.frame</code> 또는 <code>tibble</code>에서 파생되며, 이로 인해 기존 R 생태계, 특히 <strong>tidyverse</strong> 패키지 계열과 더 쉽게 연동할 수 있다. <code>sf</code> 객체는 기하 데이터를 리스트-컬럼에 저장하며, 이는 기하 데이터가 항상 리스트 요소로 유지됨을 의미한다. 반면, <strong>sp</strong>는 데이터 구조를 덜 엄격하게 사용하며, 예를 들어 <code>SpatialPoints</code>나 <code>SpatialPixels</code>의 모든 좌표를 행렬에 저장한다. 이는 특정 문제에 대해 더 높은 성능을 제공하지만 리스트-컬럼으로는 구현할 수 없는 방식이다. <code>sf</code> 객체 <code>x</code>를 <strong>sp</strong>로 변환하려면 다음과 같이 하면 된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/sp/">sp</a></span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/methods/as.html">as</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"Spatial"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그리고 반대로 <code>sp</code> 객체를 <strong>sf</strong>로 변환하려면 다음과 같이 하면 된다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x0</span> <span class="op">=</span> <span class="fu">st_as_sf</span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이러한 변환에는 몇 가지 제한 사항이 있다.</p>
+<ul>
+<li><p><strong>sp</strong>는 <code>LINESTRING</code>과 <code>MULTILINESTRING</code> 지오메트리, 또는 <code>POLYGON</code>과 <code>MULTIPOLYGON</code> 지오메트리를 구분하지 않는다. 예를 들어, <code>LINESTRING</code>을 <code>sp</code>로 변환한 후 다시 변환하면 <code>MULTILINESTRING</code>으로 반환된다.</p></li>
+<li><p><strong>sp</strong>는 <code>GEOMETRYCOLLECTION</code> 지오메트리를 가지고 있지 않으며, “빅 세븐” (3.1.1절) 범주에 포함되지 않는 지오메트리를 가진 <code>sf</code> 객체를 표현할 수 있는 구조를 가지고 있지 않다.</p></li>
+<li><p><code>sf</code> 또는 <code>sfc</code> 객체 중 혼합된 지오메트리를 가진 <code>GEOMETRY</code> 유형인 경우, 이를 <code>sp</code> 객체로 변환할 수 없다.</p></li>
+<li><p>속성-지오메트리 관계 속성은 <strong>sp</strong>로 변환할 때 손실된다.</p></li>
+<li><p>두 개 이상의 지오메트리 리스트-컬럼을 가진 sf 객체는 <strong>sp</strong>로 변환할 때 부차적인 리스트-컬럼을 잃게 된다.</p></li>
+</ul></section><section id="마이그레이션을-위한-코드와-패키지" class="level2"><h2 class="anchored" data-anchor-id="마이그레이션을-위한-코드와-패키지">마이그레이션을 위한 코드와 패키지</h2>
+<p><strong>sf</strong>의 GitHub 사이트 위키 페이지(<a href="https://github.com/r-spatial/sf/wiki/Migrating" class="uri">https://github.com/r-spatial/sf/wiki/Migrating</a>)에는 <strong>rgeos</strong>, <strong>rgdal</strong>, <strong>sp</strong>의 메서드 및 함수와 그에 상응하는 <strong>sf</strong> 메서드 및 함수의 목록이 포함되어 있다. 이는 기존 코드나 패키지를 변환하는 데 도움이 될 수 있다.</p>
+<p>코드를 마이그레이션하는 간단한 방법은 <strong>rgdal</strong> 패키지의 <code>readOGR()</code> 함수만 사용하여 파일을 읽는 경우이다. 다른 대안은 <strong>sf</strong> 패키지의 <code>read_sf()</code> 함수를 사용하는 것이다.</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/methods/as.html">as</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"file"</span><span class="op">)</span>, <span class="st">"Spatial"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>그러나 <code>readOGR()</code> 함수를 사용할 때는 아규먼트를 보다 주의해서 다뤄야 한다. 우리는 <strong>rgdal</strong>, <strong>rgeos</strong>, <strong>maptools</strong> 없이 전체적으로 실행되도록, 가능하면 <strong>sp</strong> 없이 실행되도록, 이전 책인 <em>Applied Spatial Data Analysis with R</em> (Virgilio Gómez-Rubio, Bivand, Pebesma, Gómez-Rubio, 2013)의 모든 코드를 변환하는 작업을 진행 중이다. 해당 스크립트는 <a href="https://github.com/rsbivand/sf_asdar2ed" class="uri">https://github.com/rsbivand/sf_asdar2ed</a>에서 확인할 수 있다.</p>
+</section><section id="raster와-terra-패키지" class="level2"><h2 class="anchored" data-anchor-id="raster와-terra-패키지">raster와 terra 패키지</h2>
+<p><strong>raster</strong> 패키지는 2010년부터 R을 사용한 래스터 데이터 분석의 핵심적인 패키지였으며, 이후 “Geographic Data Analysis and Modeling” (Hijmans 2023a) 패키지로 성장하여 모든 종류의 공간 데이터에 사용되고 있다. <strong>raster</strong> 패키지는 벡터 데이터를 위해 <strong>sp</strong> 객체를 사용하고, GDAL 라이브러리가 제공하는 형식으로 데이터를 읽고 쓸 때 <strong>terra</strong>를 사용한다. 후속 패키지인 <strong>terra</strong>는 “Spatial Data Analysis” (Hijmans 2023b)를 위한 패키지로, “raster 패키지와 매우 비슷하지만 […] 더 많은 기능을 제공하며, 사용하기 더 쉽고, […] 더 빠르다.” <strong>terra</strong> 패키지는 벡터 데이터를 위한 자체 클래스를 가지고 있지만 많은 <strong>sf</strong> 객체를 받아들인다. 물론 위에서 열거한 <strong>sp</strong> 변환 시에 발생하는 것과 유사한 제한 사항이 부과된다. <strong>terra</strong> 패키지는 GDAL, GEOS, PROJ와의 직접적인 연결을 가지고 있어, 더 이상 다른 패키지가 필요 없다.</p>
+<p><strong>raster</strong> 또는 <strong>terra</strong> 패키지의 래스터 레이어나 래스터 스택은 <code>st_as_stars()</code> 함수를 사용하여 <code>stars</code> 객체로 변환할 수 있다. <strong>sf</strong> 패키지의 <code>st_as_sf()</code> 함수를 통해 <strong>terra</strong> 패키지의 <code>SpatVector</code> 객체를 변환할 수 있다.</p>
+<p>로버트 히즈먼(Robert Hijmans)이 저술한 온라인 책 <em>Spatial Data Science with R</em>(<a href="https://rspatial.org/terra" class="uri">https://rspatial.org/terra</a>)은 <strong>terra</strong>를 활용한 공간 데이터 분석 방법을 자세히 설명하고 있다. <strong>sf</strong>와 <strong>stars</strong> 패키지 및 이 책에서 다루는 여러 r-spatial 패키지들은 <code>r-spatial</code> GitHub 조직에 속해 있다(여기서 <code>r</code>과 <code>spatial</code> 사이에 하이픈이 있다는 점에 유의하라. 히즈먼의 조직에는 하이픈이 없다). 해당 조직은 블로그 사이트가 있으며, 이 책에 대한 링크가 <a href="https://r-spatial.org/book" class="uri">https://r-spatial.org/book</a>에서 제공된다.</p>
+<p><strong>sf</strong>와 <strong>stars</strong> 패키지, 그리고 <strong>terra</strong> 패키지는 많은 공통된 목표를 가지고 있지만, 약간 다른 방식으로 이를 달성하려고 하며, 데이터 분석, 소프트웨어 엔지니어링, 커뮤니티 관리에 대한 상이한 강조점을 가지고 있다. 이러한 차이점이 일부 사용자들에게 혼란을 줄 수 있지만, 우리는 이러한 차이점들이 R 패키지 생태계를 풍요롭게 하고, 사용자에게 유익하며, 다양성과 선택을 장려한다고 믿는다. 또한 이는 사용자가 R을 공간 데이터 문제에 사용할 때 새로운 아이디어를 계속 시도하도록 유도하고, 결국 R spatial의 깃발을 만천하에 더 높이는데 기여할 것으로 믿는다.</p>
 
 
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -706,10 +756,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./17.html" class="pagination-link  aria-label=" &lt;span="" 모델&lt;="" span&gt;"="">
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./17.html" class="pagination-link  aria-label=">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모델</span></span>
       </a>          
   </div>
@@ -723,5 +771,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer></body></html>

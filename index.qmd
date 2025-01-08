@@ -41,7 +41,7 @@ editor: visual
 
 -   강좌, 여름 학교, 또는 컨퍼런스에서 의견을 주거나 질문을 한 분들
 
-우리는 s2 패키지를 구현한 Dewey Dunnington, 적극적인 도움을 준 Sahil Bhandari, @sec-datacube 의 그래프 제작을 도와준 Jonathan Bahlmann, 그리고 Claus Wilke와 Jakub Nowosad에게 특별한 감사의 마음을 전한다. 2021년과 2022년에 있었던 “R을 활용한 공간데이터사이언스(Spatial Data Science with R)” 강좌로부터 큰 도움을 받았다. GitHub의 이슈, 풀 리퀘스트 또는 디스커션에 적극적으로 기여한 분들께도 감사의 마음을 표한다.
+우리는 s2 패키지를 구현한 Dewey Dunnington, 적극적인 도움을 준 Sahil Bhandari, 6장의 그래프 제작을 도와준 Jonathan Bahlmann, 그리고 Claus Wilke와 Jakub Nowosad에게 특별한 감사의 마음을 전한다. 2021년과 2022년에 있었던 “R을 활용한 공간데이터사이언스(Spatial Data Science with R)” 강좌로부터 큰 도움을 받았다. GitHub의 이슈, 풀 리퀘스트 또는 디스커션에 적극적으로 기여한 분들께도 감사의 마음을 표한다.
 
 -   책 리포지터리에 기여한 분들 (Nowosad, jonathom, JaFro96, singhkpratham, liuyadong, hurielreichel, PPaccioretti, Robinlovelace, Syverpet, jonas-hurst, angela-li, ALanguillaume, florisvdh, ismailsunni, andronaco)
 
