@@ -310,19 +310,13 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R 스페셜 패키지</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">오래된 공간 R 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R 기초</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -656,7 +650,7 @@ Y=X\beta+Zu+\epsilon
 <p>Figure 16.1은 공기 질 모델 출력 구역 수준의 IID 랜덤 효과가 네 가지 모델 적합 함수 모두에서 매우 유사하다는 것을 보여준다. 모든 지도에서 중앙 도심 구역은 강한 음의 랜덤 효과 값을 보인다. 그런데 중앙 도심 근방에서는 강한 양의 값이 나타나고, 교외 지역은 제로에 가까운 값이 나타난다.</p>
 <div id="fig-16-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-16-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-16-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;16.1: 공기 질 모델 출력 구역 수준의 IID 랜덤 효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA</strong> 및 <strong>R2BayesX</strong>를 사용하여 추정). 응답(<code>log(median)</code>)의 범위는 2.1893이다.
@@ -664,7 +658,7 @@ Y=X\beta+Zu+\epsilon
 </div>
 <p>Figure 16.2는 공간적으로 구조화된 랜덤 효과가 서로 매우 유사하며, “SAR” 공간적 평활도가 랜덤 효과 항이 취하는 값의 범위를 고려할 때 “CAR” 평활도보다 약간 더 부드럽다는 것을 보여준다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="공기 질 모델 출력 구역 수준의 공간적으로 구조화된 랜덤 효과(lme4, hglm, INLA, R2BayesX 및 mgcv를 사용하여 추정)."><img src="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png" class="img-fluid figure-img" alt="공기 질 모델 출력 구역 수준의 공간적으로 구조화된 랜덤 효과(lme4, hglm, INLA, R2BayesX 및 mgcv를 사용하여 추정)."></a></p>
+<figure class="figure"><p><a href="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="공기 질 모델 출력 구역 수준의 공간적으로 구조화된 랜덤 효과(lme4, hglm, INLA, R2BayesX 및 mgcv를 사용하여 추정)."><img src="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png" class="img-fluid figure-img" alt="공기 질 모델 출력 구역 수준의 공간적으로 구조화된 랜덤 효과(lme4, hglm, INLA, R2BayesX 및 mgcv를 사용하여 추정)."></a></p>
 <figcaption>공기 질 모델 출력 구역 수준의 공간적으로 구조화된 랜덤 효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA</strong>, <strong>R2BayesX</strong> 및 <strong>mgcv</strong>를 사용하여 추정).</figcaption></figure>
 </div>
 <p>다수준 데이터를 다룰 수 있는 공간 회귀 모델 적합 함수에 대한 보다 철저한 비교 연구가 여전히 필요하지만, 최근 몇 년간 상당한 진전이 있었다. Vranckx, Neyens, and Faes (2019) 질병 매핑 공간 회귀에 대한 비교 연구를 진행했는데, 주로 기대 빈도를 오프셋으로 설정한 포아송 회귀 프레임워크에 초점을 맞춘 것이다. Bivand and Gómez-Rubio (2021)는 공간 가중치 행렬을 사용하여 공간 생존 모델을 추정하는 방법과 공간 프로빗 모델 간의 비교를 다룬다.</p>
@@ -1080,7 +1074,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","loop":false,"closeEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -310,19 +310,13 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R 스페셜 패키지</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">오래된 공간 R 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R 기초</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -462,7 +456,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/images/sf_obj.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/images/sf_obj.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/images/sf_obj.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/images/sf_obj.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.1: sf 객체의 구조
@@ -538,7 +532,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-fig57-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-fig57-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-fig57-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-fig57-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.2: 노스케롤라이나의 첫 7개의 카운티
@@ -611,7 +605,7 @@ window.Quarto = {
 <p>그림 7.3은 이 분석의 결과를 보여주며, 카운티 경계 주위에 버퍼도 추가되어 있다. 이 버퍼는 설명을 위한 것이며, 카운티를 선택하는 데 사용되지는 않았음을 주의하라.</p>
 <div id="fig-7-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-orangebuffer-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-orangebuffer-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-orangebuffer-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-orangebuffer-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.3: 오렌지 카운티(오렌지색), 반경 50km 내의 카운티(검은색), 오랜지 카운티 주변의 버퍼(갈색), 나머지 카운티(회색)
@@ -623,7 +617,7 @@ window.Quarto = {
 <p>공간적 조인을 실행할 때, 각 레코드에 여러 일치하는 레코드가 있을 수 있어 결과 테이블이 매우 커질 수 있다. 이 복잡성을 줄이는 방법으로, 일치하는 레코드 중에서 타깃 지오메트리와 가장 넓은 면적이 겹치는 레코드 하나를 선택하는 방식이 있다. 이 방법의 시각적 예시는 그림 7.4에 나타나 있으며, <code>st_join</code> 함수에서 <code>largest = TRUE</code> 아규먼트를 사용하여 이를 수행할 수 있다.</p>
 <div id="fig-7-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-largest-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-largest-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-largest-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-largest-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.4: largest = TRUE 아규먼트를 적용한 st_join 함수의 예: 아래쪽 그림의 폴리곤과 가장 넓은 면적이 겹치는 위쪽 그림의 폴리곤 라벨이 아래쪽 폴리곤에 할당되어 있다.
@@ -651,7 +645,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-figs2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-figs2-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-figs2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-figs2-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.5: 인터섹션의 결과는 측지선 혹은 대권호를 사용하느냐(왼쪽) 데카르트 좌표계를 사용하느냐에 따라 달라진다.
@@ -820,7 +814,7 @@ window.Quarto = {
 <p>예를 들어, 해당 지역에 대한 직경 500m의 원형 중심부를 추출할 수 있는데, 그림 7.6에는 첫 번째 밴드에 적용한 결과가 나타나 있다.</p>
 <div id="fig-7-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-circr-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-circr-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-circr-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-circr-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.6: Landsat 7 (band 1) 이미지의 원형 중심부
@@ -977,7 +971,7 @@ window.Quarto = {
 <p>이 과정을 설명하기 위해 Landsat 데이터셋에 위에서 추출한 샘플 포인트를 적용해 육지를 바다에서 분리하는 간단한 이진 클래스 예제를 사용할 것이다. 결과는 그림 7.7에 나타나 있다.</p>
 <div id="fig-7-7" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-rsample-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-rsample-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-rsample-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-rsample-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.7: 트레이닝 데이터로 사용되는 무작위 샘플 포인트: 빨간색은 해양부이고 노란색을 육지부이다.
@@ -995,7 +989,7 @@ window.Quarto = {
 <p>여기서 우리는 <code>MASS::</code> 접두사를 사용하여 <strong>MASS</strong> 패키지를 로드하지 않았으며, 이는 <code>dplyr</code>의 <code>select</code> 함수를 가리는 것을 방지하기 위함이다. <code>split</code> 단계는 밴드 차원을 속성으로 변환하여 예측 변수로 투입하기 위해 필요한 단계이다.</p>
 <div id="fig-7-8" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lda-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lda-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lda-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lda-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.8: 육지부/수부 구분을 위한 선형 판별 분류기로 그림 7.7의 트레이닝 데이터에 기반한 결과임.
@@ -1005,13 +999,13 @@ window.Quarto = {
 </section><section id="래스터-데이터-플로팅" class="level3" data-number="7.4.7"><h3 data-number="7.4.7" class="anchored" data-anchor-id="래스터-데이터-플로팅">
 <span class="header-section-number">7.4.7</span> 래스터 데이터 플로팅</h3>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-firststars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9" title="30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-firststars-1.png" class="img-fluid figure-img" alt="30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다"></a></p>
+<figure class="figure"><p><a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-firststars-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9" title="30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-firststars-1.png" class="img-fluid figure-img" alt="30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다"></a></p>
 <figcaption>30m 해상도의 Landsat 6개 밴드를 90m로 다운샘플한 결과, 브라질의 올린다</figcaption></figure>
 </div>
 <p>베이스 플롯 함수를 <code>stars</code> 객체에 적용할 수 있는데, <code>plot(r)</code>로 생성된 플롯은 그림 7.9에 나타나 있다. 기본 색상 스케일은 회색 톤을 사용하며, 모든 밴드의 데이터 분위수에 맞춰 명암 대비가 조정된다(“히스토그램 평활화”)(역자주: 히스토그램 평활화는 데이터의 분토를 재조정하여 시각적으로 더 유용하고 세부 사항을 더 잘 볼 수 있게 하는 기법을 말한다. 예를 들어, 어두운 이미지에서는 어두운 영역의 픽셀 값이 많이 몰려 있는데, 히스토그램 평활화를 적용하면 이 픽셀 값의 범위를 더 넓은 범위로 확장(stretch)시켜 이미지를 밝고 명확하게 보이도록 할 수 있다.) <code>breaks = "equal"</code>로 설정하면 급폭이 동일하게 설정되는 등간격 분류법이 적용되며, 계급 단절값을 임의로 지정할 수도 있다. 그런데 더 익숙한 플로팅 방식은 그림 7.10에 나타난 RGB 또는 폴스 컬러 합성일 것이다.</p>
 <div id="fig-7-10" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-starsrgb-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" data-glightbox="description: .lightbox-desc-10"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-starsrgb-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-starsrgb-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-10" data-gallery="quarto-lightbox-gallery-10"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-starsrgb-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.9: 컬러 합성의 두 가지 예
@@ -1196,7 +1190,7 @@ window.Quarto = {
 <p>그림 7.11에서 시간 시계열이 상당히 길지만, 큰 결측값 간격도 있다는 것을 알 수 있다. 그림 7.12는 평균 <span class="math inline">\(\text{PM}_{10}\)</span> 값과 함께 측정소의 공간 분포를 보여준다.</p>
 <div id="fig-7-11" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airst-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" data-glightbox="description: .lightbox-desc-11"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airst-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airst-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-11" data-gallery="quarto-lightbox-gallery-11"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airst-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.10: 시간과 스테이션별로 계산된 PM10 값에 대한 시공간 다이어그램
@@ -1204,7 +1198,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-12" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airmap-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" data-glightbox="description: .lightbox-desc-12"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airmap-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airmap-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-12" data-gallery="quarto-lightbox-gallery-12"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airmap-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.11: 관측 스테이션별 PM10 평균값
@@ -1233,7 +1227,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-13" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airagg-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" data-glightbox="description: .lightbox-desc-13"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airagg-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airagg-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-13" data-gallery="quarto-lightbox-gallery-13"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airagg-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.12: 임의의 6일에 대한 지역 평균 PM10
@@ -1246,7 +1240,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-14" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airts-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" data-glightbox="description: .lightbox-desc-14"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airts-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airts-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-14" data-gallery="quarto-lightbox-gallery-14"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-airts-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.13: 단일 스테이션에 대한 지역 평균 PM10의 시계열
@@ -1257,7 +1251,7 @@ window.Quarto = {
 <p>이 예제에 사용된 데이터는 Lovelace, Nowosad, Muenchow (2019)에서 가져온 것으로, 출발지-목적지(OD) 매트릭스이다. 구체적으로 A 지역에서 B 지역으로 이동하는 사람의 수를 교통 수단별로 나타낸 것이다. 102개의 지역에 대한 피처 지오메트리는 <code>sf</code> 객체인 <code>bristol_zones</code>에 포함되어 있다.</p>
 <div id="fig-7-15" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-bristol1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" data-glightbox="description: .lightbox-desc-15"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-bristol1-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-bristol1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-15" data-gallery="quarto-lightbox-gallery-15"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-bristol1-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-15-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.14: 영국 브리스톨의 102개 구역 현황(33번 구역(E02003043)이 빨간색으로 표시되어 있음)
@@ -1347,7 +1341,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-16" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odm33-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" data-glightbox="description: .lightbox-desc-16"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odm33-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odm33-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-16" data-gallery="quarto-lightbox-gallery-16"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odm33-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.15: 33번 존에 대한 OD 데이터를 추출한 후 교통수단별로 지도화하였다.
@@ -1411,7 +1405,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-17" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odjoined-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17" data-glightbox="description: .lightbox-desc-17"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odjoined-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odjoined-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-17" data-gallery="quarto-lightbox-gallery-17"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odjoined-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-17-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.16: 출발지별 총 통근(왼쪽) 또는 목적지별 총 통근(오른쪽)
@@ -1429,7 +1423,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-18" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odbykm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" data-glightbox="description: .lightbox-desc-18"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odbykm-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odbykm-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-18" data-gallery="quarto-lightbox-gallery-18"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-odbykm-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-18-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.17: 출발지별 총 통근 밀도(왼쪽) 또는 목적지별 총 통근 밀도(오른쪽)
@@ -1465,7 +1459,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-19" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-asstars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" data-glightbox="description: .lightbox-desc-19"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-asstars-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-asstars-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-19" data-gallery="quarto-lightbox-gallery-19"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-asstars-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-19-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.18: st_as_stars 함수를 활용한 백터 지오메트리의 래스터화
@@ -1503,7 +1497,7 @@ window.Quarto = {
 </div>
 <div id="fig-7-20" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-7-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lineras-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" data-glightbox="description: .lightbox-desc-20"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lineras-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lineras-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-20" data-gallery="quarto-lightbox-gallery-20"><img src="https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lineras-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-20-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;7.19: 노스캐롤라이나 카운티 경계를 래스터로 전환하기
@@ -2140,7 +2134,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","loop":false,"closeEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
