@@ -561,7 +561,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <p>반환된 객체에서 회귀 영향 측정값(hat influence measure)을 추출하여 지도를 그리면(그림 15.2) 경계부에 위치한 공간단위들이 높은 값을 나타내는 것을 볼 수 있다(아마도 행표준화 공간가중치행렬을 적용했기 때문일 수도 있음)(역자주: 경계부의 공간단위는 상대적으로 적은 수의 이웃을 가지며, 행 표준화가 적용되었을 때 상대적으로 높은 가중치를 부여받게 된다.). 대도시 혹은 그 주변 지역에서도 높은 값을 관찰할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-tmap.github.io/tmap/">tmap</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap">tmap</a></span><span class="op">)</span></span>
 <span><span class="co"># Breaking News: tmap 3.x is retiring. Please test v4, e.g. with</span></span>
 <span><span class="co"># remotes::install_github('r-tmap/tmap')</span></span>
 <span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">hat_value</span> <span class="op">&lt;-</span> <span class="va">infl_W</span><span class="op">$</span><span class="va">hat</span></span>
@@ -1376,7 +1376,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
