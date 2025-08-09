@@ -365,7 +365,7 @@ window.Quarto = {
   
 
 
-</header><p>피처 <em>속성</em>(attribute)은 피처(즉 ‘사물’)의 특성을 의미한다. 피처의 지오메트리 자체는 속성으로 간주되지 않지만, 일부 속성은 지오메트리로부터 <em>도출</em>될 수 있다. 예를 들어, <code>LINESTRING</code>의 길이나 <code>POLYGON</code>의 면적은 이러한 도출 속성에 해당한다. 그러나 많은 속성은 다음과 같이 지오메트리로부터 직접 도출되지 않는 비도출 속성이다.</p>
+</header><p>피처 <em>속성</em>(attribute)은 피처(즉 ‘사물’)의 특성을 의미한다. 피처의 지오메트리 자체는 속성으로 간주되지 않지만, 일부 속성은 지오메트리로부터 <em>파생</em>될 수 있다. 예를 들어, <code>LINESTRING</code>의 길이나 <code>POLYGON</code>의 면적은 이러한 공간 파생 속성에 해당한다. 그러나 많은 속성은 다음과 같이 지오메트리로부터 직접 도출되지 않는 비도출 속성이다.</p>
 <ul>
 <li><p>거리나 카운티의 이름</p></li>
 <li><p>카운티의 인구수</p></li>
@@ -945,7 +945,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
