@@ -222,7 +222,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -343,8 +343,8 @@ window.Quarto = {
   <li>
 <a href="#%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC%EC%97%90-%EC%A0%81%EC%9A%A9%EB%90%98%EB%8A%94-%EC%98%A4%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98" id="toc-지오메트리에-적용되는-오퍼레이션" class="nav-link" data-scroll-target="#%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC%EC%97%90-%EC%A0%81%EC%9A%A9%EB%90%98%EB%8A%94-%EC%98%A4%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98"><span class="header-section-number">3.2</span> 지오메트리에 적용되는 오퍼레이션</a>
   <ul class="collapse">
-<li><a href="#%EB%8B%A8%ED%95%AD-%ED%94%84%EB%A6%AC%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8" id="toc-단항-프리디케이트" class="nav-link" data-scroll-target="#%EB%8B%A8%ED%95%AD-%ED%94%84%EB%A6%AC%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8"><span class="header-section-number">3.2.1</span> 단항 프리디케이트</a></li>
-  <li><a href="#%EC%9D%B4%ED%95%AD-%ED%94%84%EB%A6%AC%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8%EC%99%80-de-9im" id="toc-이항-프리디케이트와-de-9im" class="nav-link" data-scroll-target="#%EC%9D%B4%ED%95%AD-%ED%94%84%EB%A6%AC%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8%EC%99%80-de-9im"><span class="header-section-number">3.2.2</span> 이항 프리디케이트와 DE-9IM</a></li>
+<li><a href="#%EB%8B%A8%ED%95%AD-%ED%94%84%EB%A0%88%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8" id="toc-단항-프레디케이트" class="nav-link" data-scroll-target="#%EB%8B%A8%ED%95%AD-%ED%94%84%EB%A0%88%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8"><span class="header-section-number">3.2.1</span> 단항 프레디케이트</a></li>
+  <li><a href="#%EC%9D%B4%ED%95%AD-%ED%94%84%EB%A0%88%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8%EC%99%80-de-9im" id="toc-이항-프레디케이트와-de-9im" class="nav-link" data-scroll-target="#%EC%9D%B4%ED%95%AD-%ED%94%84%EB%A0%88%EB%94%94%EC%BC%80%EC%9D%B4%ED%8A%B8%EC%99%80-de-9im"><span class="header-section-number">3.2.2</span> 이항 프레디케이트와 DE-9IM</a></li>
   <li><a href="#%EB%8B%A8%ED%95%AD-%EC%B8%A1%EB%8F%84" id="toc-단항-측도" class="nav-link" data-scroll-target="#%EB%8B%A8%ED%95%AD-%EC%B8%A1%EB%8F%84"><span class="header-section-number">3.2.3</span> 단항 측도</a></li>
   <li><a href="#%EC%9D%B4%ED%95%AD-%EC%B8%A1%EB%8F%84" id="toc-이항-측도" class="nav-link" data-scroll-target="#%EC%9D%B4%ED%95%AD-%EC%B8%A1%EB%8F%84"><span class="header-section-number">3.2.4</span> 이항 측도</a></li>
   <li><a href="#%EB%8B%A8%ED%95%AD-%EB%B3%80%ED%99%98%EC%9E%90" id="toc-단항-변환자" class="nav-link" data-scroll-target="#%EB%8B%A8%ED%95%AD-%EB%B3%80%ED%99%98%EC%9E%90"><span class="header-section-number">3.2.5</span> 단항 변환자</a></li>
@@ -591,11 +591,11 @@ window.Quarto = {
 <li><p><strong>이항(binary)</strong>: 두 개의 지오메트리 쌍에 적용</p></li>
 <li><p><strong>다항(n-ary)</strong>: 여러 지오메트리 집합에 적용</p></li>
 </ul>
-<section id="단항-프리디케이트" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="단항-프리디케이트">
-<span class="header-section-number">3.2.1</span> 단항 프리디케이트</h3>
-<p>단항 프리디케이트는 하나의 지오메트리의 특정 프로퍼티를 설명한다. <code>is_simple</code>, <code>is_valid</code>, <code>is_empty</code>와 같는 프리디케이트는 각각 지오메트리가 심플한지, 밸리드한지, 엠프티한지의 여부에 대한 논리값을 반환한다. <code>is_longlat</code> 프리디케이트는 주어진 CRS가 경위도 좌표계인지 평면 좌표계인지 여부를 반환한다. <code>is(geometry, class)</code>는 지오메트리가 특정한 클래스에 속하는지 여부를 확인한다.</p>
-</section><section id="이항-프리디케이트와-de-9im" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="이항-프리디케이트와-de-9im">
-<span class="header-section-number">3.2.2</span> 이항 프리디케이트와 DE-9IM</h3>
+<section id="단항-프레디케이트" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="단항-프레디케이트">
+<span class="header-section-number">3.2.1</span> 단항 프레디케이트</h3>
+<p>단항 프레디케이트는 하나의 지오메트리의 특정 프로퍼티를 설명한다. <code>is_simple</code>, <code>is_valid</code>, <code>is_empty</code>와 같는 프레디케이트는 각각 지오메트리가 심플한지, 밸리드한지, 엠프티한지의 여부에 대한 논리값을 반환한다. <code>is_longlat</code> 프레디케이트는 주어진 CRS가 경위도 좌표계인지 평면 좌표계인지 여부를 반환한다. <code>is(geometry, class)</code>는 지오메트리가 특정한 클래스에 속하는지 여부를 확인한다.</p>
+</section><section id="이항-프레디케이트와-de-9im" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="이항-프레디케이트와-de-9im">
+<span class="header-section-number">3.2.2</span> 이항 프레디케이트와 DE-9IM</h3>
 <p>DE-9IM(Dimensionally Extended Nine-Intersection Model)(Clementini, Di Felice, and Oosterom 1993; Egenhofer and Franzosa 1991)은 2차원 공간(<span class="math inline">\(R^2\)</span>)에서 두 지오메트리 간의 정성적 관계를 설명하는 모델이다. 모든 지오메트리는 디멘션 값을 가진다.</p>
 <ul>
 <li><p>포인트 지오메트리: 0</p></li>
@@ -620,8 +620,8 @@ window.Quarto = {
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#      [,1]       </span></span>
 <span><span class="co"># [1,] "1020F1102"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>첫 세 문자는 <em>첫 번째</em> 지오메트리(폴리곤)의 내부에 대한 것으로, 그림 3.2에서는 첫 번째 행에 배열되어 있다(역자주: 위의 9자리 문자는 그림 3.2에 나타난 9개 교차 결과의 차원을 표시한 것이다. 차원 값은 행 단위로 지그재그 방식(왼쪽에서 오른쪽, 다음 행은 오른쪽에서 왼쪽)으로 읽는다). 더 나아가 지오메트리 쌍에 대해 <em>마스크</em>(mask) <em>문자열</em>로 표현된 특정 조건의 만족 여부를 질의할 수 있다(역자주: 마스크 문자열은 원하는 지오메트리 간 공간 관계를 질의하거나 필터링할 수 있게 해준다). 예를 들어, 문자열 <code>"0******"</code>는 두 번째 지오메트리가 첫 번째 지오메트리의 내부와 하나 이상의 경계 점을 공유할 때 <code>TRUE</code>로 평가된다(역자주: 그림 3.2를 예로 든다면, 폴리곤의 내부에 라인의 내부가 포함된 경우를 찾는 것이다). 여기서 기호 <code>*</code>는 디멘션(0, 1, 2 또는 F) 중 어느 것이든 올 수 있음을 의미한다. 이 경우 마스크 문자열을 적용할 수 있는데, <code>"T********"</code>는 내부가 서로 교차하는 모든 지오메트리 쌍을 필터링할 수 있다. 여기서 기호 T는 차원 디멘션이 0, 1, 2이면서 비엠프티 인터섹션인 경우를 뜻한다.</p>
-<p>더 나아가 이항 프리디케이트는 DE-9IM에서 규정된 정의를 활용함으로써 일반 언어 동사로 표현될 수 있다. 예를 들어, 프리디케이트 <code>equals</code>는 관계 <code>"T*F**FFF*"</code>와 동일하다. 어떤 두 지오메트리가 이러한 관계를 만족한다면, 그 둘은 (위상적으로는) 동일하다고 볼 수 있지만, 노드의 순서는 다를 수 있다.</p>
-<p>이항 프리디케이트를 나열하면 다음과 같다.</p>
+<p>더 나아가 이항 프레디케이트는 DE-9IM에서 규정된 정의를 활용함으로써 일반 언어 동사로 표현될 수 있다. 예를 들어, 프레디케이트 <code>equals</code>는 관계 <code>"T*F**FFF*"</code>와 동일하다. 어떤 두 지오메트리가 이러한 관계를 만족한다면, 그 둘은 (위상적으로는) 동일하다고 볼 수 있지만, 노드의 순서는 다를 수 있다.</p>
+<p>이항 프레디케이트를 나열하면 다음과 같다.</p>
 <table class="table">
 <colgroup>
 <col style="width: 33%">
@@ -629,9 +629,9 @@ window.Quarto = {
 <col style="width: 33%">
 </colgroup>
 <thead><tr class="header">
-<th>프리디케이트</th>
+<th>프레디케이트</th>
 <th>의미</th>
-<th>역프리디케이트</th>
+<th>역프레디케이트</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1384,7 +1384,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
