@@ -222,7 +222,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -357,7 +357,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 9일</p>
+      <p class="date-modified">2025년 8월 10일</p>
     </div>
   </div>
     
@@ -383,7 +383,7 @@ window.Quarto = {
 <pre><code>Warning: st_centroid assumes attributes are constant over geometries</code></pre>
 </div>
 </div>
-<p>이러한 경고 메시지가 나타나는 이유는 데이터셋에 전체 폴리곤과 연관된 값을 가진 변수들이 포함되어 있기 때문이다(역자주: 여기서 ’전체 폴리곤과 연관된 값’이란, 폴리곤 내부의 모든 지점이 동일한 값을 가진다는 의미가 아니라, 폴리곤 전체에 대한 합계나 총빈도를 나타내는 값을 뜻한다). 예를 들어, 인구수와 같은 값은 폴리곤 전체와 관련된 것이므로, 폴리곤을 대체하는 <code>POINT</code> 지오메트리와는 직접적인 연관이 없다.</p>
+<p>이러한 경고 메시지가 나타나는 이유는 데이터셋에 전체 폴리곤과 연관된 값을 가진 변수들이 포함되어 있기 때문이다.(역자주: 여기서 ’전체 폴리곤과 연관된 값’이란, 폴리곤 내부의 모든 지점이 동일한 값을 가진다는 의미가 아니라, 폴리곤 전체에 대한 합계나 총빈도를 나타내는 값을 뜻한다.) 예를 들어, 인구수와 같은 값은 폴리곤 전체와 관련된 것이므로, 폴리곤을 대체하는 <code>POINT</code> 지오메트리와는 직접적인 연관이 없다.</p>
 <p>1.6절에서 이미 언급했듯이, 라인과 폴리곤 지오메트리에서 피처 속성 값은 <em>포인트 스포트</em> 또는 <em>블록 스포트</em>를 가질 수 있다. 포인트 스포트는 해당 값이 지오메트리의 <em>모든 지점</em>에 동일하게 적용되는 경우를 말하고, 블록 서포트는 지오메트리 내 <em>모든 지점을 요약</em>하는 경우를 의미한다. 이 외에도 해당 지오메트리보다 더 작거나 더 큰 서포트를 가지는 경우도 가능하다.</p>
 <p>이 장에서는 속성이 지오메트리와 관련되는 방식, 이러한 차이가 데이터 분석에 미치는 영향, 그리고 서로 다른 지오메트리로부터 속성을 도출하는 방법(상향 스케일링과 하향 스케일링)에 대해 설명한다.</p>
 <section id="속성-지오메트리-관계와-서포트" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="속성-지오메트리-관계와-서포트">
@@ -443,7 +443,7 @@ window.Quarto = {
 <p>노스캐롤라이나 카운티의 예는 그림 5.1에 제시되어 있다. 타원 좌표 <code>POINT</code>(-79, 35.5)를 기준점으로 사분면을 설정하고, 각 카운티의 센트로이드가 속한 사분면에 따라 카운티를 그룹화한 뒤, 각 그룹별로 질병 사례 수를 합산하였다. 그 결과, 그룹별로 통합된 지오메트리가 생성되었음을 확인할 수 있다(3.2.6절 참조). 이러한 그룹별 애그리게이션은 필수적이다. 만약 카운티 지오메트리를 단순히 결합하여 <code>MULTIPOLYGON</code>을 생성했다면, 수 많은 중복 경계가 발생하여 밸리드하지 않은 지오메트리가 생성되었을 것이기 때문이다(3.1.2절 참조).</p>
 <div id="fig-5-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.1: SID74가 네 개의 지역별로 합산되었다.
@@ -452,7 +452,7 @@ window.Quarto = {
 <p>결합된 카운티 폴리곤을 지도로 표현하는 데 기술적인 문제는 없지만, 그룹 합계가 그룹화된 카운티가 아니라 개별 카운티에 해당하는 값이라는 잘못된 인상을 줄 수 있다. 이러한 방식의 애그리게이션의 특징은 각 레코드가 하나의 그룹에만 할당된다는 점이다. 이로 인해 그룹별 합계의 총합이 그룹화 이전 데이터의 총합과 동일하다는 유지되는 장점이 있다. 즉, 정량 변수의 경우 정보가 손실되거나 추가되지 않는다. 새로 생성된 지오메트리는 원래 레코드의 지오메트리를 그룹 단위로 유니온(union)한 결과이다.</p>
 <div id="fig-5-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.2: 노스케롤라이나 카운티 상의 타깃 블
@@ -464,7 +464,7 @@ window.Quarto = {
 <p>반대로 <em>contains</em>나 <em>covers</em>와 같은 다른 프레디케이트를 사용하면 훨씬 작아진다. 이는 많은 카운티가 직사각형 안에 완전히 포함되지 않기 때문이다. 그러나 이러한 결과가 오히려 바람직할 수 있는 상황도 있다. 예를 들어, 다음과 같은 경우가 이에 해당한다.</p>
 <ul>
 <li><p><code>POINT</code> 지오메트리를 폴리곤 단위로 애그리게이션하는 경우: 모든 포인트는 자신을 완전히 폴리곤에 할당된다. DE-9IM-기반 GEOG 라이브러리는 이 방식을 사용하며, s2geometry 라이브러리는 ‘반-개방(semi-open)’ 폴리곤을 지정할 수 있게 하여, 폴리곤이 중첩되지 않는 한반드시 하나의 폴리곤에 포인트를 할당한다.</p></li>
-<li><p>작은 폴리곤이나 래스터 픽셀을 더 큰 에어리어로 애그리게이션하는 경우: 예를 들어, 노스케롤라이나의 30m 해상도의 고도 데이터를 카운티별로 평균낼 때, 다중 매치로 인한 데이터 오류는 무시할 수 있을 정도로 작다(역자주: 이는 하나의 폴리곤이나 픽셀 데이터가 여러 카운티에 중복 합산되는 경우를 의미한다.).</p></li>
+<li><p>작은 폴리곤이나 래스터 픽셀을 더 큰 에어리어로 애그리게이션하는 경우: 예를 들어, 노스케롤라이나의 30m 해상도의 고도 데이터를 카운티별로 평균낼 때, 다중 매치로 인한 데이터 오류는 무시할 수 있을 정도로 작다.(역자주: 이는 하나의 폴리곤이나 픽셀 데이터가 여러 카운티에 중복 합산되는 경우를 의미한다.)</p></li>
 <li><p>다대다(many-to-many) 매치에서 최대 면적 매치(single largest area match)가 적용된 경우(그림 7.4 참조)(역자주: 최대 면적 매치란, 겹치는 영역 중 면적이 가장 큰 영역에 모든 값을 할당하는 방식을 의미한다.)</p></li>
 </ul>
 <p>보다 작은 에어리어를 보다 큰 에어리어로 합역하는 보다 포괄적인 접근 방법은 면적-가중 인터폴레이션을 적용하는 것이다.</p>
@@ -507,7 +507,7 @@ window.Quarto = {
 <span class="header-section-number">5.4</span> 업스케일링과 다운스케일링</h2>
 <p>업스케일링(upscaling)과 다운스케일링(downscaling)은 일반적으로 저해상도 데이터에서 고해상도 정보를 얻는 과정(하향 스케일링) 또는 고해상도 데이터에서 저해상도 정보를 얻는 과정(상향 스케일링)을 의미한다. 이 두 과정은 속성과 지오메트리의 관계, 즉 서포트의 변화를 야기한다. 업스케일링은 애그리게이션(aggregation), 다운스케일링은 디스애그리게이션(disaggregation)과 동의어로 사용할 수 있다. 다운스케일링의 가장 단순한 형태는 폴리곤, 라인, 그리드 셀의 값을 주어진 포인트에서 샘플링(또는 추출)하는 것이다. 이는 포인트 서포트를 가진 변수(‘상수’ AGR)에는 적합하지만, 변수 값이 합산값일 경우에는 대략적인 결과만 제공한다. 다운스케일링의 대표적인 도전 과제로는, 첫째 저해상도 기상 예측 모델이나 기후 변화 모델로부터 얻은 변수를 고해상도로 예측하는 것, 둘째 서로 다른 시공간 해상도를 가진 센서를 융합하여 위성 이미지에서 파생된 변수를 고해상도로 예측하는 것이 있다.</p>
 <p>식 5.1과 이에 기반으로 한 식 5.2(공간 외연 변수) 및 식 5.3(공간 내포 변수)는 소스 구역 <span class="math inline">\(S_i\)</span>와 타깃 구역 <span class="math inline">\(T_i\)</span> 간에 겹침이 존재하기만 하면, 두 구역 사이에서 정보를 이동시킬 수 있음을 보여준다. 이는 임의로 더 큰 구역 단위로 이동(애그리게이션)하거나 더 작은 구역 단위로 이동(디스애그리게이션)할 수 있음을 의미한다. 다만 이러한 방식의 타당성은 다음 가정이 얼마나 성립하는지에 달려있다. 즉, 소스 구역에서 공간 외연 변수는 균등하게 분포해야 하고, 공간 내포 변수는 일정한 값을 가져야 한다.</p>
-<p>디스애그리게이션은 라인이나 폴리곤 데이터로부터 포인트 값을 추출하는 것에서 시작된다. 포인트는 면적을 갖지 않으므로(<span class="math inline">\(|A_{ij}|=0\)</span>) 식 5.2와 5.3은 적용할 수 없다. 그러나 지오메트리 내부의 값이 일정하다고 가정할 수 있다면, 공간 내포 변수인 경우 <span class="math inline">\(Y_i(S_i)\)</span> 값을 포인트에 할당할 수 있다. 단, 모든 포인트가 고유하게 하나의 소스 지점 <span class="math inline">\(S_i\)</span>에만 할당될 수 있어야 한다. 폴리곤 데이터를 예로 들자면, 이는 <span class="math inline">\(Y\)</span>가 커버리지 변수(3.4절)여야 함을 의미한다. 반면, 공간 외연 변수의 경우 포인트에 변수값을 추출하는 것은 무의미하다. 항상 0이 추출되기 때문이다(역자주: 공간 외연 변수는 면적에 따라 비례적으로 값이 커지는 것인데, 포인트는 면적이 없으므로 값이 추출될 수 없다).</p>
+<p>디스애그리게이션은 라인이나 폴리곤 데이터로부터 포인트 값을 추출하는 것에서 시작된다. 포인트는 면적을 갖지 않으므로(<span class="math inline">\(|A_{ij}|=0\)</span>) 식 5.2와 5.3은 적용할 수 없다. 그러나 지오메트리 내부의 값이 일정하다고 가정할 수 있다면, 공간 내포 변수인 경우 <span class="math inline">\(Y_i(S_i)\)</span> 값을 포인트에 할당할 수 있다. 단, 모든 포인트가 고유하게 하나의 소스 지점 <span class="math inline">\(S_i\)</span>에만 할당될 수 있어야 한다. 폴리곤 데이터를 예로 들자면, 이는 <span class="math inline">\(Y\)</span>가 커버리지 변수(3.4절)여야 함을 의미한다. 반면, 공간 외연 변수의 경우 포인트에 변수값을 추출하는 것은 무의미하다. 항상 0이 추출되기 때문이다.(역자주: 공간 외연 변수는 면적에 따라 비례적으로 값이 커지는 것인데, 포인트는 면적이 없으므로 값이 추출될 수 없다.)</p>
 <p>영역과 관련된 값이 해당 영역의 <strong>집계</strong> 값인 경우, 면적-가중 인터폴레이션이나 대시매트릭 매핑에서 가정하는 균일 분포 또는 일정한 값이라는 가정은 현실과 거리가 있을 수 있다. 그럼에도 이러한 단순한 접근법이 합리적인 근사치를 제공할 수 있는 경우가 있다. 예를 들어 다음과 같은 상황이다.</p>
 <ul>
 <li><p>소스 구역과 타깃 구역이 거의 동일한 경우</p></li>
@@ -534,7 +534,7 @@ window.Quarto = {
 </ol>
 <div id="fig-5-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.3: 면적-가중 인터폴레이션의 예시 데이터
@@ -945,7 +945,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
