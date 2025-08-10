@@ -351,8 +351,8 @@ window.Quarto = {
   <li><a href="#%EC%BB%AC%EB%9F%AC%EC%99%80-%EC%BB%AC%EB%9F%AC-%EB%8B%A8%EC%A0%88%EA%B0%92" id="toc-컬러와-컬러-단절값" class="nav-link" data-scroll-target="#%EC%BB%AC%EB%9F%AC%EC%99%80-%EC%BB%AC%EB%9F%AC-%EB%8B%A8%EC%A0%88%EA%B0%92"><span class="header-section-number">8.3.3</span> 컬러와 컬러 단절값</a></li>
   </ul>
 </li>
-  <li><a href="#ggplot2-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%A7%80%EB%8F%84-%EC%A0%9C%EC%9E%91" id="toc-ggplot2-패키지를-활용한-지도-제작" class="nav-link" data-scroll-target="#ggplot2-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%A7%80%EB%8F%84-%EC%A0%9C%EC%9E%91"><span class="header-section-number">8.4</span> <code>ggplot2</code> 패키지를 활용한 지도 제작</a></li>
-  <li><a href="#tmap-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%A7%80%EB%8F%84-%EC%A0%9C%EC%9E%91" id="toc-tmap-패키지를-활용한-지도-제작" class="nav-link" data-scroll-target="#tmap-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%A7%80%EB%8F%84-%EC%A0%9C%EC%9E%91"><span class="header-section-number">8.5</span> <code>tmap</code> 패키지를 활용한 지도 제작</a></li>
+  <li><a href="#ggplot2-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%A7%80%EB%8F%84-%EC%A0%9C%EC%9E%91" id="toc-ggplot2-패키지를-활용한-지도-제작" class="nav-link" data-scroll-target="#ggplot2-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%A7%80%EB%8F%84-%EC%A0%9C%EC%9E%91"><span class="header-section-number">8.4</span> ggplot2 패키지를 활용한 지도 제작</a></li>
+  <li><a href="#tmap-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%A7%80%EB%8F%84-%EC%A0%9C%EC%9E%91" id="toc-tmap-패키지를-활용한-지도-제작" class="nav-link" data-scroll-target="#tmap-%ED%8C%A8%ED%82%A4%EC%A7%80%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%A7%80%EB%8F%84-%EC%A0%9C%EC%9E%91"><span class="header-section-number">8.5</span> tmap 패키지를 활용한 지도 제작</a></li>
   <li><a href="#%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C-%EC%A7%80%EB%8F%84-leaflet-mapview-tmap-%ED%8C%A8%ED%82%A4%EC%A7%80" id="toc-인터랙티브-지도-leaflet-mapview-tmap-패키지" class="nav-link" data-scroll-target="#%EC%9D%B8%ED%84%B0%EB%9E%99%ED%8B%B0%EB%B8%8C-%EC%A7%80%EB%8F%84-leaflet-mapview-tmap-%ED%8C%A8%ED%82%A4%EC%A7%80"><span class="header-section-number">8.6</span> 인터랙티브 지도: leaflet, mapview, tmap 패키지</a></li>
   <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"><span class="header-section-number">8.7</span> 연습문제</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
@@ -385,7 +385,7 @@ window.Quarto = {
 <p>지구는 둥글지만, 플로팅 장치는 평면이다. 2.2.2절에서 언급했듯이, 어떤 방식으로든 평면 장치에 지구를 플로팅하는 순간 우리는 특정한 투영법을 적용한 것이다. 즉, 타원체 좌표를 특정한 방식으로 데카르트 좌표로 전환하는 것이다. 이는 우리가 아무것도 하지 않았다고 ‘생각하는’ 경우(역자주: 투영법을 적용하지 않았다고 생각하는 경우)(그림 8.1의 왼쪽)나, 우주에서 본 것처럼 세상을 ‘있는 그대로’ 보여준다고 ‘생각하는’ 경우(그림 8.1의 오른쪽)에도 마찬가지이다. 평면상의 모든 지도는 투영법을 갖는다.</p>
 <div id="fig-8-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-world-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-world-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-world-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-world-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.1: 국가 경계: 왼쪽은 경위도를 x, y 좌표로 선형 변환한 플라트 카레(Plate Carrée) 도법이며, 오른쪽은 무한히 먼 거리에서 지구를 바라본 것 처럼 표현한
@@ -416,7 +416,7 @@ window.Quarto = {
 <p>그림 8.2의 두 지도를 비교해 보면, 축 값만 다를 뿐 두 지도는 동일하다. 왼쪽 지도는 타원체 좌표(도 단위)를, 오른쪽 지도는 투영 좌표(데카르트 좌표)(미터 단위)를 사용한다.</p>
 <div id="fig-8-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-eqc-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-eqc-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-eqc-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-eqc-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.2: 등장방형 도법이 적용된 독일. 왼쪽 지도의 단위는 도이고 정거원통 도법이 적용된 오른쪽 지도의 단위는 미터이다.
@@ -496,7 +496,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-figreset-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-figreset-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-figreset-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-figreset-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.3: 범례가 있는 베이스 플롯에 주석 달기
@@ -518,7 +518,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-starshook-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-starshook-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-starshook-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-starshook-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.4: 다중 슬라이스를 가진 <code>stars</code> 플롯에 주석 달기
@@ -532,7 +532,7 @@ window.Quarto = {
 <span class="header-section-number">8.3.3</span> 컬러와 컬러 단절값</h3>
 <p>베이스 <code>plot</code>에서는 <code>nbreaks</code> 아규먼트로 컬러 단절값의 개수를 설정하고, <code>breaks</code> 아규먼트로 제 컬러 단절값을 담은 숫자 벡터를 지정하거나, <code><a href="https://r-spatial.github.io/classInt/reference/classIntervals.html">classInt::classIntervals()</a></code> 함수의 <code>style</code> 아규먼트에 전달할 스타일 문자열을 지정할 수 있다.</p>
 </section></section><section id="ggplot2-패키지를-활용한-지도-제작" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="ggplot2-패키지를-활용한-지도-제작">
-<span class="header-section-number">8.4</span> <code>ggplot2</code> 패키지를 활용한 지도 제작</h2>
+<span class="header-section-number">8.4</span> ggplot2 패키지를 활용한 지도 제작</h2>
 <p><strong>ggplot2</strong> 패키지(Wickham 외, 2022; Wickham, 2016)는 더 복잡하면서도 보기 좋은 그래프를 만들 수 있게 해준다. 이 패키지에는 <strong>sf</strong> 패키지의 발전과 함께 도입된 <code>geom_sf</code> 레이어가 있어, 아름다운 지도를 만드는 데 도움을 준다. 이에 대한 소개는 Moreno와 Basille(2018)에서 찾을 수 있다. 첫 번째 예시는 그림 1.2에 나와 있으며, 이 플롯에 사용된 코드는 다음과 같다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -566,7 +566,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-ggplotstars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-ggplotstars-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-ggplotstars-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-ggplotstars-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.5: <strong>ggplot2</strong>와 <code><a href="https://r-spatial.github.io/stars/reference/geom_stars.html">geom_stars()</a></code>로 제작된 단순 패싯 래스터 플롯
@@ -574,7 +574,7 @@ window.Quarto = {
 </div>
 <p>더 정교한 <strong>ggplot2</strong> 패키지 기반의 <code>stars</code> 객체 플롯은 <strong>ggspatial</strong> 패키지(Dunnington, 2022)를 사용해 제작할 수 있다. 더 고품질의 지도를 만들기 위한 옵션으로 <strong>tmap</strong> 패키지가 있으며, <strong>ggplot2</strong>와 직접 호환되지는 않지만 형식적으로 유사한 스타일의 지도를 생성할 수 있다(8.5절).</p>
 </section><section id="tmap-패키지를-활용한-지도-제작" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="tmap-패키지를-활용한-지도-제작">
-<span class="header-section-number">8.5</span> <code>tmap</code> 패키지를 활용한 지도 제작</h2>
+<span class="header-section-number">8.5</span> tmap 패키지를 활용한 지도 제작</h2>
 <p><strong>tmap</strong> 패키지(Tennekes, 2022, 2018)는 R에서 공간데이터를 플로팅하는 참선한 접근을 제시한다. 이 패키지는 <strong>grid</strong> 패키지를 기반으로 그래픽 객체를 먼저 구성한 뒤 출력하며, 지도 요소를 <code>+</code> 기호로 연결하는 문법은 <strong>ggplot2</strong> 패키지와 유사하지만, 그 외에는 <strong>ggplot2</strong> 패키지와 완전히 독립적이고 상호 호환되지 않는다. 또한 고품질의 전문 지도를 만들 수 있는 다양한 옵션을 제공하며, 여러 기본값도 신중하게 설계되어 있다. 유사한 두 속성의 지도를 한번에 생성하려면 <code><a href="https://r-tmap.github.io/tmap/reference/tm_polygons.html">tm_polygons()</a></code> 함수에 두 변수를 동시에 지정하면 된다.(역자주: <strong>ggplot2</strong> 패키지로 지도를 제작하는 접근은 ’지도도 그래프다’라는 관점에 서 있다. <strong>tmap</strong> 패키지로 지도를 제작하는 접근은 ’지도는 지도다’라는 관점에 서 있다. <strong>tmap</strong> 패키지는 현존하는 여러 언어의 지도 제작 도구 가운데 지도학적 원칙을 가장 충실히 반영한 도구로 평가되며, 이는 R을 선택할 강력한 이유가 된다. 최근 <strong>tmap</strong> 4.0이 도입되면서 문법이 한층 정교해지고 기능이 보완되었다. 자세한 내용은 <a href="https://r-tmap.github.io/tmap/" class="uri">https://r-tmap.github.io/tmap/</a>를 참조하라.)</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap">tmap</a></span><span class="op">)</span></span>
@@ -588,7 +588,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapnc-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapnc-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapnc-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapnc-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.6: <strong>tmap</strong>: <code>tm_polygon()</code> 함수에 두 개의 속성을 동시에 지정하여 플로팅하기
@@ -601,7 +601,7 @@ window.Quarto = {
 </div>
 <div id="fig-8-7" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-8-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapstars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapstars-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapstars-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="https://r-spatial.org/book/08-Plotting_files/figure-html/fig-tmapstars-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;8.7: <strong>tmap</strong> 패키지를 활용해 제작한 단순한 래스터 플롯
@@ -1034,7 +1034,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
