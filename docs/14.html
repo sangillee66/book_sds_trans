@@ -329,7 +329,7 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EA%B7%BC%EC%A0%91%EC%84%B1%EC%9D%98-%EC%9E%AC%ED%98%84-spdep-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%EA%B2%BD%EC%9A%B0" id="toc-근접성의-재현-spdep-패키지의-경우" class="nav-link active" data-scroll-target="#%EA%B7%BC%EC%A0%91%EC%84%B1%EC%9D%98-%EC%9E%AC%ED%98%84-spdep-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%EA%B2%BD%EC%9A%B0"><span class="header-section-number">14.1</span> 근접성의 재현: spdep 패키지의 경우</a></li>
+<li><a href="#%EA%B7%BC%EC%A0%91%EC%84%B1%EC%9D%98-%ED%91%9C%ED%98%84-spdep-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%EA%B2%BD%EC%9A%B0" id="toc-근접성의-표현-spdep-패키지의-경우" class="nav-link active" data-scroll-target="#%EA%B7%BC%EC%A0%91%EC%84%B1%EC%9D%98-%ED%91%9C%ED%98%84-spdep-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%EA%B2%BD%EC%9A%B0"><span class="header-section-number">14.1</span> 근접성의 표현: spdep 패키지의 경우</a></li>
   <li><a href="#%EC%97%B0%EC%A0%91%EC%84%B1%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%EC%9D%B4%EC%9B%83%EC%9D%98-%EA%B7%9C%EC%A0%95" id="toc-연접성에-기반한-이웃의-규정" class="nav-link" data-scroll-target="#%EC%97%B0%EC%A0%91%EC%84%B1%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%EC%9D%B4%EC%9B%83%EC%9D%98-%EA%B7%9C%EC%A0%95"><span class="header-section-number">14.2</span> 연접성에 기반한 이웃의 규정</a></li>
   <li><a href="#%EA%B7%B8%EB%9E%98%ED%94%84%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%EC%9D%B4%EC%9B%83%EC%9D%98-%EA%B7%9C%EC%A0%95" id="toc-그래프에-기반한-이웃의-규정" class="nav-link" data-scroll-target="#%EA%B7%B8%EB%9E%98%ED%94%84%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%EC%9D%B4%EC%9B%83%EC%9D%98-%EA%B7%9C%EC%A0%95"><span class="header-section-number">14.3</span> 그래프에 기반한 이웃의 규정</a></li>
   <li><a href="#%EA%B1%B0%EB%A6%AC%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%EC%9D%B4%EC%9B%83%EC%9D%98-%EA%B7%9C%EC%A0%95" id="toc-거리에-기반한-이웃의-규정" class="nav-link" data-scroll-target="#%EA%B1%B0%EB%A6%AC%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%EC%9D%B4%EC%9B%83%EC%9D%98-%EA%B7%9C%EC%A0%95"><span class="header-section-number">14.4</span> 거리에 기반한 이웃의 규정</a></li>
@@ -364,8 +364,8 @@ window.Quarto = {
 <p>데이터의 스포트란 개별 관찰 단위(관측 개체)의 물리적 크기(길이, 면적, 부피)를 의미한다(5장 참조). 에어리어 데이터는 기본적으로 폴리곤 스포트를 가지지만, 포인트 서포트를 가지는 것으로 재현할 수도 있다. 예를 들어, 개별 폴리곤의 경우에는 센트로이드를, 멀리폴리곤의 경우에는 가장 큰 폴리곤의 센트로이드를 대표 지점으로 사용할 수 있다. 반대로, 포인트 스포트를 가지는 데이터를 에어리어 데이터로 취급할 수도 있다. 이 경우 포인트를 비중첩 테셀레이션으로 변환해야 하는데, 들로네 삼각망을 통해 보로노이 다이어그램(디리클레 테셀레이션 혹은 티센 폴리곤)을 생성한다. 다른 메트릭을 선택할 수도 있고, 평면이 아닌 네트워크 상의 거리를 사용할 수도 있다. 국지적 공간 분석에서는 가중 보로노이 다이어그램이 활용되기도 한다(Boots and Okabe 2007; Okabe et al.&nbsp;2008; She et al.&nbsp;2015 참조).</p>
 <p>데이터의 원 스포트가 포인트이지만, 기저 공간 프로세스가 관측 개체 간 거리보다 인접성에 의거해 발생하는 경우, 데이터는 총빈도나 총계(예: 투표소 수, 총매출액)일 수 있으며, 또는 관측 개체의 직접적인 속성(예: 투표소의 개방 시간)일 수도 있다. 이러한 모든 경우에는 기저 공간 프로세스를 잘못 재현할 위험이 항상 존재한다. 특히, 연구 지역 전체를 하나의 테셀레이션 체계로 재현하는 경우, 관측값이 기저 공간 프로세스를 온전히 포착했다고 가정하게 되므로 그 위험은 더욱 커진다. 이러한 측면에서 에어리어 데이터는 지구통계학적 데이터와 다르다. 지구통계학적 데이터는 전체 지역에 대해 일정한 방식의 샘플링이 적용되었다는 것을 전제로 하지만, 에어리어 데이터는 그렇지 않다. 또한, 생태 및 환경 분석에서 사용되는 에어리어 샘플링과도 다르다. 후자의 경우는 지역 전체가 아니라 일부 영역을 대상으로 선택적으로 샘플링이 이루어진다.(역자주: 에어리어 데이터는 기본적으로 연구 지역 전체를 상호 배타적(mutually exclusive)이고 완전 포괄적(collectively exhaustive)인 구역으로 분할한 것이다. 즉, 각 구역은 서로 겹치지 않으며, 모든 구역을 합하면 연구 지역 전체를 완전히 덮는다. 이러한 특성 때문에 에어리어 데이터는 지구통계학적 데이터나 부분 샘플링 데이터와는 다른 분석적 전제를 가진다.)</p>
 <p>15~17장에서는 에어리어 데이터를 탐색하고 분석하기 위한 기법들을 다룬다. 이를 위해서는 관측 개체 간 근접성을 나타내는 특정한 방식이 필요하다. 이 장에서는 근접성을 연접성(contiguity)에 의거해 규정하는 방식에 집중한다. 여기서 연접성은 이웃으로 정의된 관측 개체들을 서로 연결한 그래프를 통해 표현된다. 이 그래프는 일반적으로 방향성과 가중치가 없지만, 특정 설정에서는 방향과 가중치가 부여될 수 있으며, 이 경우 대칭성에 관한 추가적인 문제가 발생할 수 있다. 원칙적으로 근접성은 공간상에서 대칭적으로 작동하는 것으로 간주한다. 즉, <span class="math inline">\(i\)</span>가 <span class="math inline">\(j\)</span>에 미치는 영향과 <span class="math inline">\(j\)</span>가 <span class="math inline">\(i\)</span>에 미치는 영향은 동일하다고 본다. 일반적으로 에지 효과(edge effect)는 고려하지 않는다.</p>
-<section id="근접성의-재현-spdep-패키지의-경우" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="근접성의-재현-spdep-패키지의-경우">
-<span class="header-section-number">14.1</span> 근접성의 재현: spdep 패키지의 경우</h2>
+<section id="근접성의-표현-spdep-패키지의-경우" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="근접성의-표현-spdep-패키지의-경우">
+<span class="header-section-number">14.1</span> 근접성의 표현: spdep 패키지의 경우</h2>
 <p>공간적 자기상관을 그래프상의 이웃 관계를 통해 다루는 접근에서는, 해당 그래프가 주어진 것이며 연구자가 이를 선택한 것으로 간주한다. 이는 지구통계학적 접근과는 다른데, 지구통계학에서는 연구자는 경험적 베리오그램에서 거리를 어떻게 구간화할지, 어떤 함수를 적용할지, 그리고 베리오그램 적합을 어떻게 수행할지를 모두 선택한다. 두 접근법 모두 사전 선택을 포함하지만, 기저 상관성을 재현하는 방식에서는 서로 다르다(Wall 2004). 또한, 그래프 기반 이웃 규정 방식을 보다 넓은 맥락에서 설명하는 시도도 있다(Bavaud, 1998).</p>
 <p>이웃 관계 객체를 생성할 때, 이웃이 없는 구역 단위의 존재는 문제를 야기할 수 있다(Bivand and Portnov 2004). 섬이나 강으로 분리된 구역 단위가 이러한 무이웃 구역 단위에 해당하며, 이는 구역 단위에 에어리어 스포터가 적용되고 공유 경계와 같은 위상 관계가 사용되는 경우에 발생한다. 예를 들어, <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">mgcv::gam</a></code>과 같은 모델 적합 함수에서 <code>mrf</code>(마르코프 랜덤 필드) 항을 사용할 때, 방향은 필요하지 않지만 그래프가 분리된 하위 그래프들로 구성되는 있으면 에러가 발생한다.</p>
 <p>이러한 무이웃 문제는 포인트 간 거리를 기준으로 이웃을 규정하는 경우에도 발생할 수 있다. 예를 들어, 거리 임계값이 최근린 이웃 거리보다 작은 경우가 이에 해당한다. 공유 경계 기반의 연접성 규정은 좌표계의 종류(투영 좌표계이든 비투영 경위도 좌표이든)에 영향을 받지 않지만, 모든 포인트 기반 접근법은 결국 거리를 사용하므로, 적용하는 투영법의 선택이 결과에 영향을 미칠 수 있다.</p>
@@ -409,7 +409,7 @@ window.Quarto = {
 </div>
 <div id="fig-14-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-14-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/14-Areal_files/figure-html/fig-plotpolpres15-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/14-Areal_files/figure-html/fig-plotpolpres15-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/14-Areal_files/figure-html/fig-plotpolpres15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/14-Areal_files/figure-html/fig-plotpolpres15-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;14.1: 2015년 폴란드 구역 단위 유형
@@ -542,7 +542,7 @@ window.Quarto = {
 </div>
 <p>컨벡스 헐에서 가장 긴 엣지들이 제거되었지만, 연결되지 않은 이웃 쌍이 발생하면서 ’구멍’이 형성되었다. <code>nb_tri</code>와 <code>nb_soi</code>의 차이는 그림 14.2에서 주황색으로 표시되어 있다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="https://r-spatial.org/book/14-Areal_files/figure-html/fig-plotnbdiff-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="삼각망 이웃(오렌지색과 검은색)과 영향권 이웃(검은색)의 비교. 곳곳에 형성된 구멍은 모두 도시 구역이 농촌 구역으로 완전히 둘러싸여 있는 경우에 해당한다(그림 14.1 참조)."><img src="https://r-spatial.org/book/14-Areal_files/figure-html/fig-plotnbdiff-1.png" class="img-fluid figure-img" alt="삼각망 이웃(오렌지색과 검은색)과 영향권 이웃(검은색)의 비교. 곳곳에 형성된 구멍은 모두 도시 구역이 농촌 구역으로 완전히 둘러싸여 있는 경우에 해당한다(그림 14.1 참조)."></a></p>
+<figure class="figure"><p><a href="https://r-spatial.org/book/14-Areal_files/figure-html/fig-plotnbdiff-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="삼각망 이웃(오렌지색과 검은색)과 영향권 이웃(검은색)의 비교. 곳곳에 형성된 구멍은 모두 도시 구역이 농촌 구역으로 완전히 둘러싸여 있는 경우에 해당한다(그림 14.1 참조)."><img src="https://r-spatial.org/book/14-Areal_files/figure-html/fig-plotnbdiff-1.png" class="img-fluid figure-img" alt="삼각망 이웃(오렌지색과 검은색)과 영향권 이웃(검은색)의 비교. 곳곳에 형성된 구멍은 모두 도시 구역이 농촌 구역으로 완전히 둘러싸여 있는 경우에 해당한다(그림 14.1 참조)."></a></p>
 <figcaption>삼각망 이웃(오렌지색과 검은색)과 영향권 이웃(검은색)의 비교. 곳곳에 형성된 구멍은 모두 도시 구역이 농촌 구역으로 완전히 둘러싸여 있는 경우에 해당한다(그림 14.1 참조).</figcaption></figure>
 </div>
 </section><section id="거리에-기반한-이웃의-규정" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="거리에-기반한-이웃의-규정">
@@ -716,18 +716,18 @@ window.Quarto = {
 </div>
 </section><section id="가중치-지정" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="가중치-지정">
 <span class="header-section-number">14.5</span> 가중치 지정</h2>
-<p>이웃 객체를 기반으로 가중치 객체를 지정한다. 이 과정에서 몇 가지 선택을 해야 한다. <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw()</a></code> 함수는 <code>nb</code> 객체를 바탕으로 <code>listw</code> 가중치 객체를 생성한다. 가중치 객체는 가중치 벡터 리스트와 가중치 스타일이르나타내는 선택값으로 구성된다. 이 때 중요한 사안 중 하나는 비이웃 관측 개체의 처리 방식이며, 이를 <code>zero.policy</code> 아규먼트가 제어한다. 기본값은 <code>FALSE</code>로, 비이웃 관측 개체가 조재하면 오류를 발생시킨다. 이는 관측 개체가 이웃을 갖지 않으면 공간지체값(spatially lagged values)을 계산할 수 없기 때문이다. 일반적으로 비이웃 관측 개체에 대해 공간지체값을 0으로 부여하는데, 이는 제로 값의 가중치 벡터와 데이터 벡터의 교차곱과 동일하기 때문에 <code>zero.policy</code>라는 이름이 붙여졌다.</p>
+<p>이웃 객체를 기반으로 가중치 객체를 지정한다. 이 과정에서 몇 가지 선택을 해야 한다. <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw()</a></code> 함수는 <code>nb</code> 객체를 바탕으로 <code>listw</code> 가중치 객체를 생성한다. 가중치 객체는 가중치 벡터 리스트와 가중치 스타일이르나타내는 선택값으로 구성된다. 이 때 중요한 사안 중 하나는 비이웃 관측 개체의 처리 방식이며, 이를 <code>zero.policy</code> 아규먼트가 제어한다. 기본값은 <code>FALSE</code>로, 비이웃 관측 개체가 조재하면 오류를 발생시킨다. 이는 관측 개체가 이웃을 갖지 않으면 공간 래그값을 계산할 수 없기 때문이다.(역자주: ‘spatially lagged values’는 국내 문헌에서 ‘공간 지연값’ , ‘공간 시차값’, ‘공간 제체값’ 등으로 번역되기도 하지만, 원어의 의미를 그대로 살리기 위해 여기서는 ’공간 래그값’으로 표기한다.) 일반적으로 비이웃 관측 개체에 대해 공간지체값을 0으로 부여하는데, 이는 제로 값의 가중치 벡터와 데이터 벡터의 교차곱과 동일하기 때문에 <code>zero.policy</code>라는 이름이 붙여졌다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">nb2listw</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#  function (neighbours, glist = NULL, style = "W", zero.policy =</span></span>
 <span><span class="co">#    NULL)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>우리는 스타일 선택을 변경했을 때의 결과를 보여주기 위해 아래에서 도우미 함수 <code>spweights.constants</code>를 사용할 것이다. 이 함수는 <code>listw</code> 객체에 대한 상수 값들을 반환한다. 여기서 <span class="math inline">\(n\)</span>은 관측개체의 수이고, <code>n1</code>부터 <code>n3</code>은 <span class="math inline">\(n-1,...,\)</span> <code>nn</code>은 <span class="math inline">\(n^2\)</span>이며, <span class="math inline">\(S_0\)</span>, <span class="math inline">\(S_1\)</span>, <span class="math inline">\(S_2\)</span>는 상수이다. <span class="math inline">\(S_0\)</span>는 가중치의 합이다. 상수에 대한 자세한 논의는 Bivand와 Wong (2018)를 참고하면 된다.</p>
+<p>스타일 선택을 변경했을 때의 결과를 보여주기 위해, 아래에서 도우미 함수 <code>spweights.constants</code>를 사용한다. 이 함수는 <code>listw</code> 객체에 대한 여러 상수 값을 반환한다. 여기서 <span class="math inline">\(n\)</span>은 관측 개체의 수이며, <code>n1</code>부터 <code>n3</code>은 <span class="math inline">\(n-1,...,\)</span> <code>nn</code>은 <span class="math inline">\(n^2\)</span>을 의미한다. <span class="math inline">\(S_0\)</span>, <span class="math inline">\(S_1\)</span>, <span class="math inline">\(S_2\)</span>는 상수로, <span class="math inline">\(S_0\)</span>는 가중치의 합을 나타낸다. 이러한 상수들에 대한 자세한 논의는 Bivand와 Wong (2018)를 참고하면 된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">spweights.constants</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#  function (listw, zero.policy = NULL, adjust.n = TRUE)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>"B"</code> 바이너리 스타일은 이웃 관계에 대해 단위 값(1)을 부여하며, 이웃의 규정을 위한 경계가 존재하는 가장자리 구역단위에 비해 더 많은 이웃을 가질 수 있는 내부 구역에 더 높은 가중치를 부여한다.</p>
+<p><code>"B"</code> 바이너리 스타일은 각 이웃 관계에 단위 값(1)을 부여한다. 이 방식은 이웃을 규정하는 경계가 존재하는 가장자리 구역 단위에 비해, 더 많은 이웃을 가질 수 있는 내부 구역 단위에 상대적으로 더 높은 가중치를 부여하게 된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">nb_q</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">lw_q_B</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -737,7 +737,7 @@ window.Quarto = {
 <span><span class="co">#      n    S0    S1     S2</span></span>
 <span><span class="co"># 1 2495 14242 28484 357280</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>"W"</code> 행표준화 스타일은 연구 지역의 가장자리에 위치하여 반드시 더 적은 수의 이웃을 가질 수 밖에 없는 구역단위에 더 높은 가중치를 부여한다. 행표준화 스타일은 먼저 각 이웃 관계에 대해 단위 값을 가중치로 부여한 후, 이 가중치를 각 구역단위의 가중치 합으로 나눈다. 비이웃 구역단위에서는 0을 0으로 나누게 되므로 “부정(not-a-number)”의 결과가 발생하게 된다. 물론 <code>zero.policy</code>를 <code>TRUE</code>로 설정한 경우에는 문제가 없다. 행표준화 스타일에서는 <span class="math inline">\(S_0\)</span>는 <span class="math inline">\(n\)</span>과 같아진다.</p>
+<p><code>"W"</code> 행표준화 스타일은 연구 지역의 가장자리에 위치하여 필연적으로 더 적은 수의 이웃을 가질 수 밖에 없는 구역 단위에 더 높은 가중치를 부여한다. 이 방식은 먼저 각 이웃 관계에 단위 값을 가중치로 부여한 뒤, 이를 해당 구역 단의의 가중치 합으로 나누어 표준화한다. 비이웃 구역 단위의 경우 0을 0으로 나누게 되어 ‘부정(not-a-number)’ 값이 발생하지만, <code>zero.policy</code>를 <code>TRUE</code>로 설정하면 문제가 없다. 행표준화 스타일에서는 <span class="math inline">\(S_0\)</span>는 <span class="math inline">\(n\)</span>과 같아진다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">nb_q</span> <span class="op">|&gt;</span> </span>
 <span>        <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"W"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">lw_q_W</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -747,7 +747,7 @@ window.Quarto = {
 <span><span class="co">#      n   S0  S1    S2</span></span>
 <span><span class="co"># 1 2495 2495 958 10406</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>역거리 가중치는 많은 애플리케이션에서 사용된다. 밀집된 역거리 행렬이 사용되는 경우 많은 역거리가 거의 0에 가깝고, 특히 공간 프로세스 행렬 자체가 밀집되어 있는 경우 실제적인 의미는 미약하다. 역거리 가중치는 보통의 다음의 절차를 통해 생성된다. 우선 엣지의 길이를 산출하고, 단위를 바꾸고(예시의 경우 미터에서 킬로미터로 변환)어 가중치가 너무 크거나 작지 않도록 하고, 그 값을 역수로 바꾼 후, <code>nb2listw</code>의 <code>glist</code> 인자를 통해 전달한다.</p>
+<p>역거리 가중치는 여러 과학 분야에서 사용된다. 일부에서는 밀집된 역거리 행렬을 사용하지만, 이 경우 많은 역거리 값이 거의 0에 가까워 실제적으로 기여하는 바가 적으며, 특히 공간 프로세스 행렬 자체가 밀집된 경우 그 영향은 더욱 제한적이다. 역거리 가중치는 보통 다음과 같은 절차로 구성된다. 먼저 엣지 길이를 계산하고, 대부분의 가중치 값이 지나치게 크거나 작지 않도록 단위를 변환하며(예: 미터를 킬로미터로 변환), 이를 역수로 변환한 뒤, <code><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw()</a></code> 함수의 <code>glist</code> 인자로 전달한다.(역자주: “밀집된 역거리 행렬에서 많은 값이 0에 가깝다”는 것은, 거리의 역수를 취했을 때 멀리 떨어진 단위들 간의 가중치가 극도로 작아져, 공간 분석에서 거의 영향력을 행사하지 못한다는 의미이다. 특히 공간 프로세스 행렬 자체가 이미 대부분의 단위들 간 연결을 포함하고 있다면, 이러한 미소 가중치는 분석 결과에 실질적인 변화를 주지 않는다.)</p>
 <div class="cell">
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nb_d183</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nbdists.html">nbdists</a></span><span class="op">(</span><span class="va">coords</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -759,12 +759,12 @@ window.Quarto = {
 <span><span class="co">#      n   S0  S1   S2</span></span>
 <span><span class="co"># 1 2495 1841 534 7265</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>비이웃 단위의 경우 디폴트로 가중치 객체가 생성되지 않는다. 이를 통해 분석가가 이후 과정을 결정할 수 있게 한다.</p>
+<p>비이웃 단위의 경우, 기본 설정은 가중치 객체의 생성을 막아 두어, 이후 절차를 어떻게 진행할지에 대해 분석가가 입장을 정하도록 한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html">try</a></span><span class="op">(</span><span class="va">nb_d16</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span>style<span class="op">=</span><span class="st">"B"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">lw_d16_B</span><span class="op">)</span></span>
 <span><span class="co"># Error in nb2listw(nb_d16, style = "B") : Empty neighbour sets found</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>nb</code>와 <code>listw</code> 객체와 관련된 많은 함수에서는 <code>zero.policy</code> 아규먼트를 활용할 수 있다.</p>
+<p><code>nb</code>와 <code>listw</code> 객체와 관련된 많은 함수에서 <code>zero.policy</code> 아규먼트를 사용할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nb_d16</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span>style<span class="op">=</span><span class="st">"B"</span>, zero.policy<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -774,10 +774,10 @@ window.Quarto = {
 <span><span class="co">#      n    S0    S1     S2</span></span>
 <span><span class="co"># 1 2488 15850 31700 506480</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>spweights.constants</code> 함수의 <code>adjust.n</code> 아규먼트는 디폴트로 TRUE로 설정되어 있어, 비이웃 관측개체 수를 차감하기 때문에 <span class="math inline">\(n\)</span>이 작아지며, 통계적 추론에 영향을 미칠 수 있다. 원래 <span class="math inline">\(n\)</span>은 아규먼트를 다르게 지정하면 알 수 있다.</p>
+<p><code><a href="https://r-spatial.github.io/spdep/reference/spweights.constants.html">spweights.constants()</a></code> 함수의 <code>adjust.n</code> 아규먼트는 기본적으로 <code>TRUE</code>로 설정되어 있어, 비이웃 관측 개체 수를 제외하므로 <span class="math inline">\(n\)</span> 값이 작아지고 통계적 추론에 영향을 줄 수 있다. 원래의 <span class="math inline">\(n\)</span> 값은 아규먼트를 다르게 지정하면 확인할 수 있다.</p>
 </section><section id="고차-이웃의-규정" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="고차-이웃의-규정">
 <span class="header-section-number">14.6</span> 고차 이웃의 규정</h2>
-<p>앞에서 살펴본 것처럼 퀸 인접성 기반 이웃 객체의 특성은 다음과 같다.</p>
+<p>앞서 살펴본 퀸 인접성 기반 이웃 객체의 특성은 다음과 같다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nb_q</span></span>
 <span><span class="co"># Neighbour list object:</span></span>
@@ -786,7 +786,7 @@ window.Quarto = {
 <span><span class="co"># Percentage nonzero weights: 0.229 </span></span>
 <span><span class="co"># Average number of links: 5.71</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="math inline">\(i\)</span>가 <span class="math inline">\(j\)</span>의 이웃이고, <span class="math inline">\(j\)</span>가 <span class="math inline">\(k\)</span>의 이웃인 경우, 즉 이웃 그래프에서 두 단계를 거쳐 <span class="math inline">\(i\)</span>에서 <span class="math inline">\(k\)</span>까지의 이웃을 나타내는 객체를 만들고자 한다면, <code>nblag</code>를 사용할 수 있다. 이 함수는 자동으로 <span class="math inline">\(i\)</span> 에서 <span class="math inline">\(i\)</span>로 가는 자기 이웃을 제거한다.</p>
+<p><span class="math inline">\(i\)</span>가 <span class="math inline">\(j\)</span>의 이웃이고, <span class="math inline">\(j\)</span>가 <span class="math inline">\(k\)</span>의 이웃인 경우, 즉 이웃 그래프에서 두 단계를 거쳐 <span class="math inline">\(i\)</span>에서 <span class="math inline">\(k\)</span>로 이어지는 이웃 관계를 나타내는 객체를 만들고자 한다면, <code><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag()</a></code> 함수를 사용할 수 있다. 이 함수는 자동으로 <span class="math inline">\(i\)</span> 에서 <span class="math inline">\(i\)</span>로 가는 자기 이웃 관계를 제거한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">nb_q</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">nb_q2</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co"># Neighbour list object:</span></span>
@@ -795,7 +795,7 @@ window.Quarto = {
 <span><span class="co"># Percentage nonzero weights: 0.529 </span></span>
 <span><span class="co"># Average number of links: 13.2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>nblag_cumul</code> 함수는 주어진 모든 차원의 이웃 목록을 누적한다.</p>
+<p><code><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag_cumul()</a></code> 함수는 지정된 모든 차수의 이웃 목록을 누적하여 반환한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nblag.html">nblag_cumul</a></span><span class="op">(</span><span class="va">nb_q2</span><span class="op">)</span></span>
 <span><span class="co"># Neighbour list object:</span></span>
@@ -804,7 +804,7 @@ window.Quarto = {
 <span><span class="co"># Percentage nonzero weights: 0.758 </span></span>
 <span><span class="co"># Average number of links: 18.9</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>union.nb</code> 집합 연산은 두 개의 객체를 받아들이며, 여기서는 동일한 결과를 생성한다.</p>
+<p><code><a href="https://r-spatial.github.io/spdep/reference/nboperations.html">union.nb()</a></code> 함수의 집합 연산은 두 개의 객체를 입력받아 처리하며, 이 예시에서는 동일한 결과를 생성한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nboperations.html">union.nb</a></span><span class="op">(</span><span class="va">nb_q2</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="va">nb_q2</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># Neighbour list object:</span></span>
@@ -813,46 +813,46 @@ window.Quarto = {
 <span><span class="co"># Percentage nonzero weights: 0.758 </span></span>
 <span><span class="co"># Average number of links: 18.9</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>앞에서 이웃 객체를 그래프 재현으로 전환하였는데, 해당 그래프 객체를 이용하면 그래프를 탐색하는 데 몇 단계가 필요한지에 대한 정보를 얻을 수 있다.</p>
+<p>앞에서 이웃 객체를 그래프 형태로 변환하였는데, 이렇게 생성된 그래프 객체를 이용하면 그래프 탐색에 필요한 단계 수에 관한 정보를 얻을 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r.igraph.org/reference/diameter.html">diameter</a></span><span class="op">(</span><span class="va">g1</span><span class="op">)</span></span>
 <span><span class="co"># [1] 52</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>각 관측개체에서 그래프를 통해 가장 짧은 경로로 도달하는 데 필요한 단계 수를 계산하여 <span class="math inline">\(n \times n\)</span> 크기의 <code>sps</code> 행렬을 생성한다. 이를 통해 동일한 최대 값을 얻을 수 있다.</p>
+<p>각 관측 개체에서 그래프를 통해 최단 경로로 도달하는 데 필요한 단계 수를 계산하여 <span class="math inline">\(n \times n\)</span> 크기의 <code>sps</code> 행렬을 생성한다. 이를 통해 동일한 최대값을 얻을 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">g1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r.igraph.org/reference/shortest.paths.html">shortest.paths</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sps</span></span>
 <span><span class="op">(</span><span class="va">sps</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="fl">2</span>, <span class="va">max</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">spmax</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># [1] 52</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>최대 값을 가진 지방자치단체는 Lutowiska로, 남동부의 말단부에 위치해 우크라이나와 국경을 맞대고 있다.</p>
+<p>최대값을 가진 지방자치단체는 Lutowiska(루토비스카)로, 남동부의 끝에 위치해 있으며 우크라이나와 국경을 접하고 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="va">spmax</span><span class="op">)</span></span>
 <span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">name0</span><span class="op">[</span><span class="va">mr</span><span class="op">]</span></span>
 <span><span class="co"># [1] "Lutowiska"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>그림 14.3은 연접성 기반 이웃과 거리 기반 이웃이 매우 유사하다는 점을 잘 보여준다. 어떤 경우에는 거리 기반 이웃 방법이 선호된다. 왜냐하면 모든 관측개체가 다른 모든 관측개체와 관련된다는 점을 명확히 보여주기 때문이다. 그러나 공간적 자기상관 및 공간 회귀 모델을 위한 검정은 공간적 프로세스 모델의 역(inverse)을 사용하고, 이것은 회귀계수의 벡터와 공간가중행렬의 곱을 여러번 더한 합이므로, 결국 모든 관측개체와 다른 모든 관측개체 간의 관계가 이러한 과정 속에 포함될 수 밖에 없다. 희소 연접 이웃 객체를 사용하면 이러한 복잡한 관계를 명시적으로 만들 필요 없이 풍부한 의존성 구조를 표현할 수 있다.</p>
+<p>그림 14.3은 연접성 기반 이웃이 거리 기반 이웃과 마찬가지로 다른 관측값들과 동일한 유형의 관계를 나타낸다는 점을 보여준다. 일부 접근법에서는 거리 기반 이웃을 선호하는데, 예를 들어 역거리 가중 이웃은 모든 관측값이 서로 어떻게 연결되어 있는지를 명확히 드러내기 때문이다. 그러나 공간적 자기상관 검정이나 공간 회귀 모델 개발 과정에서는 공간 프로세스 모델의 역행렬을 사용하게 된다. 이 역은 계수와 공간가중행렬의 곱을 거듭제곱하여 더한 급수로 표현될 수 있으며, 이는 본질적으로 모든 관측값이 다른 모든 관측값과 관계를 맺고 있음을 전제로 한다. 희소 연접성 기반 이웃 객체는 이러한 의존성 구조를 명시적으로 기술하지 않더라도 풍부한 종속 관계를 포괄할 수 있다.(역자주: 여기서 “공간 프로세스 모델의 역행렬”이란, 공간적 자기상관이나 공간 회귀 모델을 계산할 때 수행되는 수학적 역연산을 의미한다. 이 연산 과정에는 공간가중행렬을 반복적으로 곱하고 더하는 절차가 포함되며, 그 결과 모든 관측값이 서로 영향을 주고받는 관계가 모델에 자동으로 반영된다.)</p>
 <div id="fig-14-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-14-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/14-Areal_files/figure-html/fig-shortestpath-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/14-Areal_files/figure-html/fig-shortestpath-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/14-Areal_files/figure-html/fig-shortestpath-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/14-Areal_files/figure-html/fig-shortestpath-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;14.2: Lutowiska에 이르는 최단 경로 수와 Lutowiska까지의 거리의 관련성. 왼쪽은 Lutowiska에 이르는 최단 경로 수를 나타낸 지도이고, 오른쪽은 Lutowiska에 이르는 최단 경로 수와 Lutowiska까지의 거리의 관계를 나타낸 그래프이다.
+그림&nbsp;14.2: Lutowiska까지의 최단 경로 수와 거리의 관계. 왼쪽 지도는 Lutowiska까지의 최단 경로 수를, 오른쪽 그래프는 최단 경로 수와 거리의 관계를 보여준다.
 </figcaption></figure>
 </div>
 </section><section id="연습문제" class="level2" data-number="14.7"><h2 data-number="14.7" class="anchored" data-anchor-id="연습문제">
 <span class="header-section-number">14.7</span> 연습문제</h2>
 <ol type="1">
-<li><p>어떤 종류의 지오메트리 스포트가 이웃 객체를 생성하는 함수에 적합한가?</p></li>
-<li><p>이웃 객체를 생성하는 함수 중 어떤 것이 평면 재현에만 적합한가?</p></li>
-<li><p>체스판에서 <code>queen</code> 연접성 대신 <code>rook</code> 연접성을 선택하면 어떤 차이가 발생하는가?</p></li>
-<li><p>이웃 집합의 카디널리티(이웃 수)와 행표준화 가중치 사이에는 어떤 관계가 있으며, 이것이 어떻게 엣지 효과(edge effect) 분석을 가능하게 하는가? 연습문제 3에서 만든 체스판을 사용하고, <code>rook</code>와 <code>queen</code> 이웃 각각에 대해 설명하라.</p></li>
+<li><p>어떤 유형의 지오메트리 스포트가 이웃 객체를 생성하는 함수에 적합하지 설명하시오.</p></li>
+<li><p>이웃 객체를 생성하는 함수 중, 평면 재현에만 사용할 수 있는 것은 무엇인지 설명하시오.</p></li>
+<li><p>체스판에서 <code>queen</code> 연접성 대신 <code>rook</code> 연접성을 선택하면 어떤 차이가 발생하는지 설명하시오.</p></li>
+<li><p>이웃 집합의 카디널리티(이웃 수)와 행표준화 가중치 사이에는 어떤 관계가 있으며, 이러한 관계가 어떻게 엣지 효과(edge effect) 분석을 가능하게 하는지 설명하시오. 3번 문제에서 만든 체스판을 사용하여 <code>rook</code> 이웃과 <code>queen</code> 이웃 각각에 대해 설명하시오.</p></li>
 </ol>
 
 
 <div class="hidden" aria-hidden="true">
 <span class="glightbox-desc lightbox-desc-1">그림&nbsp;14.1: 2015년 폴란드 구역 단위 유형</span>
 <span class="glightbox-desc lightbox-desc-2">삼각망 이웃(오렌지색과 검은색)과 영향권 이웃(검은색)의 비교. 곳곳에 형성된 구멍은 모두 도시 구역이 농촌 구역으로 완전히 둘러싸여 있는 경우에 해당한다(그림 14.1 참조).</span>
-<span class="glightbox-desc lightbox-desc-3">그림&nbsp;14.2: Lutowiska에 이르는 최단 경로 수와 Lutowiska까지의 거리의 관련성. 왼쪽은 Lutowiska에 이르는 최단 경로 수를 나타낸 지도이고, 오른쪽은 Lutowiska에 이르는 최단 경로 수와 Lutowiska까지의 거리의 관계를 나타낸 그래프이다.</span>
+<span class="glightbox-desc lightbox-desc-3">그림&nbsp;14.2: Lutowiska까지의 최단 경로 수와 거리의 관계. 왼쪽 지도는 Lutowiska까지의 최단 경로 수를, 오른쪽 그래프는 최단 경로 수와 거리의 관계를 보여준다.</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1252,7 +1252,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
