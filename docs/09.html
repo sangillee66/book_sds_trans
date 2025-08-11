@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>공간데이터사이언스 개론 - 9&nbsp; 대용량 데이터와 클라우드 네이티브</title>
+<title>공간데이터사이언스 개론 - 9&nbsp; 대규모 데이터와 클라우드 네이티브</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-large" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-large" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -234,7 +234,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
@@ -360,7 +360,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-large" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-large" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></h1>
 </div>
 
 
@@ -372,7 +372,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 10일</p>
+      <p class="date-modified">2025년 8월 11일</p>
     </div>
   </div>
     
@@ -380,13 +380,13 @@ window.Quarto = {
   
 
 
-</header><p>이 장에서는 R을 사용하여 대용량 공간 및 시공간 데이터셋을 처리하는 방법을 설명하며, <strong>sf</strong>와 <strong>stars</strong> 패키지의 활용에 초점을 둔다(역자주: 여기서 ’클라우드 네이티브’는 클라우드에서 쓰도록 처음부터 설계된 데이터 형식과 작업 방식이다. 파일을 통째로 내려받지 않고 객체 스토리지에서 필요한 부분만 바로 읽고, 데이터를 잘게 나눠 병렬로 처리하며, 가능하면 데이터를 옮기지 않고 연산을 데이터가 있는 곳에서 실행한다. 전통적인 로컬 파일 중심 방식과 구별된다.) 여기서 ’대용량’은 다음 세 가지로 구분된다.</p>
+</header><p>이 장에서는 R을 사용하여 대규모 공간 및 시공간 데이터셋을 처리하는 방법을 설명하며, <strong>sf</strong>와 <strong>stars</strong> 패키지의 활용에 초점을 둔다.(역자주: 영어 ’large data’의 번역으로 ’대규모 데이터’를 사용하기로 한다. ’대용량’은 주로 저장 용량 측면에서 데이터가 큰 경우를 의미하는 반면, ’대규모’는 데이터의 관측치 수가 매우 많아 규모가 큰 경우를 가리킨다. 따라서 더 포괄적인 의미를 담을 수 있다는 점에서 대규모를 기본적으로 선택한다. 다만, 문맥상 대용량이 더 적합한 경우에는 이를 함께 사용한다.) 여기서 ’대규모’는 다음 세 가지로 구분된다.</p>
 <ul>
 <li><p>작업 메모리에 담기 어려울 만큼 크다.</p></li>
 <li><p>로컬 하드 드라이브 용량에 담기 어려울 만큼 크다.</p></li>
 <li><p>로컬 관리 인프라(네트워크 부착 스토리지)로 다운로드하기 어려울 만큼 크다.</p></li>
 </ul>
-<p>이 세 가지 범주는 (현재 기준) 대략 기가바이트, 테라바이트, 페타바이트 규모의 데이터셋에 대응한다고 볼 수 있다. 크기뿐 아니라 접근과 처리 속도도 중요한 요소이며, 특히 초대용량 데이터셋이나 인터랙티브 애플리케이션에서는 그 중요성이 더욱 커진다. 클라우드 네이티브 지리공간 포맷은 클라우드 인프라에서의 처리를 염두에 둔 형식으로, 컴퓨팅과 저장 비용 측면에서 최적화가 요구된다.</p>
+<p>이 세 가지 범주는 (현재 기준) 대략 기가바이트, 테라바이트, 페타바이트 규모의 데이터셋에 대응한다고 볼 수 있다. 크기뿐 아니라 접근과 처리 속도도 중요한 요소이며, 특히 초대규모 데이터셋이나 인터랙티브 애플리케이션에서는 그 중요성이 더욱 커진다. 클라우드 네이티브 지리공간 포맷은 클라우드 인프라에서의 처리를 염두에 둔 형식으로, 컴퓨팅과 저장 비용 측면에서 최적화가 요구된다.(역자주: 여기서 ’클라우드 네이티브’는 클라우드에서 쓰도록 처음부터 설계된 데이터 형식과 작업 방식이다. 파일을 통째로 내려받지 않고 객체 스토리지에서 필요한 부분만 바로 읽고, 데이터를 잘게 나눠 병렬로 처리하며, 가능하면 데이터를 옮기지 않고 연산을 데이터가 있는 곳에서 실행한다. 전통적인 로컬 파일 중심 방식과 구별된다.)</p>
 <p>다음과 같은 방식으로 비용을 절감할 수 있다.</p>
 <ul>
 <li><p>압축. 클라우드-최적화 GeoTIFF에 사용하는 LERC(제한 오류 래스터 압축)나 ZARR 어레이 데이터에 사용하는 BLOSC 압축기와 같은 기술을 활용한다.</p></li>
@@ -630,7 +630,7 @@ window.Quarto = {
 <p>결과 파일 처리 단계에서는 서로 다른 CRS(예: 여러 UTM 존)를 가진 이미지로부터 더 낮은 공간 또는 시간 해상도의 데이터 큐브를 구성할 수 있다. 이때 이미지 컬렉션에서 정규 데이터 큐브를 생성하는 R 패키지로 <strong>gdalcubes</strong>(Appel 2023; Appel and Pebesma 2019)가 있으며, STAC(Appel, Pebesma, Mohr 2021)을 직접 쿼리해 사용할 이미지를 식별한다.</p>
 </section><section id="클라우드-네이티브-스토리지-zarr" class="level3" data-number="9.3.2"><h3 data-number="9.3.2" class="anchored" data-anchor-id="클라우드-네이티브-스토리지-zarr">
 <span class="header-section-number">9.3.2</span> 클라우드 네이티브 스토리지: Zarr</h3>
-<p>COG가 래스터 이미지의 클라우드 네이티브 스토리지를 제공하는 반면, Zarr은 대용량 다차원 어레이를 위한 클라우드 네이티브 스토리지 포맷이다. Zarr은 NetCDF의 후속 포맷으로 볼 수 있으며, 기후 및 예측 커뮤니티에서 유사한 관례를 따르는 것으로 보인다(Eaton et al.&nbsp;2022). Zarr ’파일’은 실제로 압축된 데이터 청크를 담는 하위 디렉터리를 포함한 디렉터리 구조이다. 선택한 압축 알고리즘과 청킹 전략은 특정 하위 큐브를 읽고 쓰는 속도에 직접적인 영향을 미친다.</p>
+<p>COG가 래스터 이미지의 클라우드 네이티브 스토리지를 제공하는 반면, Zarr은 대규모 다차원 어레이를 위한 클라우드 네이티브 스토리지 포맷이다. Zarr은 NetCDF의 후속 포맷으로 볼 수 있으며, 기후 및 예측 커뮤니티에서 유사한 관례를 따르는 것으로 보인다(Eaton et al.&nbsp;2022). Zarr ’파일’은 실제로 압축된 데이터 청크를 담는 하위 디렉터리를 포함한 디렉터리 구조이다. 선택한 압축 알고리즘과 청킹 전략은 특정 하위 큐브를 읽고 쓰는 속도에 직접적인 영향을 미친다.</p>
 <p><code><a href="https://r-spatial.github.io/stars/reference/mdim.html">stars::read_mdim()</a></code> 함수를 통해 전체 데이터 큐브를 읽을 수도 있고, 옵션을 통해 하위 큐브만 읽을 수도 있다. 각 디멘션별로 오프셋, 픽셀 수, 스텝 크기(낮은 해상도로 읽기)를 지정할 수 있다(Pebesma 2022). 이와 유사하게, <code><a href="https://r-spatial.github.io/stars/reference/mdim.html">stars::write_mdim()</a></code> 함수는 다차원 어레이를 Zarr, NetCDF, GDAL C++ 다차원 배열 API를 지원하는 다른 포맷으로 쓸 수 있다.</p>
 <p>원격(클라우드 기반) Zarr 파일을 읽으려면, URL 앞에 형식과 접근 프로토콜을 나타내는 지시자를 추가해 주어야 한다.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dsn</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'ZARR:"/vsicurl/https://ncsa.osn.xsede.org'</span>,</span>
@@ -660,7 +660,7 @@ window.Quarto = {
 </ul></section><section id="데이터-api-gee-openeo" class="level3" data-number="9.3.3"><h3 data-number="9.3.3" class="anchored" data-anchor-id="데이터-api-gee-openeo">
 <span class="header-section-number">9.3.3</span> 데이터 API: GEE, openEO</h3>
 <p>클라우드 상에 <em>존재하는</em> 가상 머신을 직접 관리하거나 프로그래밍하지 않고도 이미지에 바로 다룰 수 있는 플랫폼으로는 GEE(구글 어스 엔진), openEO, 기후 데이터 스토어가 있다.</p>
-<p>GEE는 대용량 지구 관측 데이터와 모델 산출물에 대한 접근을 제공하는 클라우드 플랫폼이다(Gorelick et al.&nbsp;2017). 이 플랫폼은 6.3절에서 다룬 데이터 큐브 작업을 포함해 강력한 분석 기능을 제공하며, JavaScript와 Python 인터페이스를 지원한다. GEE의 코드는 오픈소스가 아니며, Python이나 R을 통해 서버 측에서 사용자 정의 함수를 업로드해 실행하는 방식은 지원하지 않는다. R의 <strong>rgee</strong> 패키지(Aybar 2022)는 GEE에 대한 R 클라이언트 인터페이스를 제공한다.</p>
+<p>GEE는 대규모 지구 관측 데이터와 모델 산출물에 대한 접근을 제공하는 클라우드 플랫폼이다(Gorelick et al.&nbsp;2017). 이 플랫폼은 6.3절에서 다룬 데이터 큐브 작업을 포함해 강력한 분석 기능을 제공하며, JavaScript와 Python 인터페이스를 지원한다. GEE의 코드는 오픈소스가 아니며, Python이나 R을 통해 서버 측에서 사용자 정의 함수를 업로드해 실행하는 방식은 지원하지 않는다. R의 <strong>rgee</strong> 패키지(Aybar 2022)는 GEE에 대한 R 클라이언트 인터페이스를 제공한다.</p>
 <p>온전히 오픈소스 소프트웨어로 구축된 클라우드 기반 데이터 큐브 처리 플랫폼도 등장하고 있으며, 그중 일부는 openEO API(Schramm et al.&nbsp;2021)를 사용한다. 이 API는 Python 또는 R로 작성한 사용자 정의 함수(UDF)를 허용하며, 함수는 API를 통해 전달되어 픽셀 수준에서 실행된다. 예를 들어 사용자 정의 리듀서를 사용해 디맨션을 애그리게이션하거나 디멘션을 축소할 수 있다. R의 UDF는 처리할 데이터 청크를 <code>stars</code> 객체로 표현하고, Python에서는 <code>xarray</code> 객체를 사용한다.</p>
 <p>기타 플랫폼으로는 Copernicus 기후 데이터 스토어(Raoult et al.&nbsp;2017)와 대기 데이터 스토어가 있으며, 이를 통해 ERA5를 포함한 ECMWF의 대기 및 기후 데이터를 처리할 수 있다. 이 두 스토어에 대한 인터페이스를 제공하는 R 패키지는 <strong>ecmwfr</strong>(Hufkens 2023)이다.</p>
 </section></section><section id="연습문제" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="연습문제">
@@ -1080,7 +1080,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","openEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
