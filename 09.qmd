@@ -352,7 +352,7 @@ S2A_MSIL1C_20180220T105051_N0206_R051_T32ULE_20180221T134037.zip
 
 이 문제의 한 가지 해결책은 카탈로그를 활용하는 것이다. 최근 빠르게 보급 중인 STAC(*Spatiotemporal Asset Catalogue*의 약자)은 바운딩 박스, 날짜, 밴드, 구름 피복률와 같은 속성으로 이미지 컬렉션을 쿼리할 수 있는 API를 제공한다. R의 **rstac** 패키지(Simoes, Carvalho, Brazil Data Cube Team 2023)는 이러한 쿼리를 구성하고, 반환된 항목과 에셋 정보를 관리하기 위한 R 인터페이스를 제공한다.
 
-결과 파일 처리 단계에서는 서로 다른 CRS(예: 여러 UTM 존)를 가진 이미지로부터 더 낮은 공간 또는 시간 해상도의 데이터 큐브를 구성할 수 있다. 이때 이미지 컬렉션에서 정규 데이터 큐브를 생성하는 R 패키지로 **gdalcubes**(Appel 2023; Appel and Pebesma 2019)가 있으며, STAC(Appel, Pebesma, Mohr 2021)을 직접 쿼리해 사용할 이미지를 식별한다.
+결과 파일 처리 단계에서는 서로 다른 CRS(예: 여러 UTM 존)를 가진 이미지로부터 더 낮은 공간 또는 시간 해상도의 데이터 큐브를 구성할 수 있다. 이때 이미지 컬렉션에서 규칙 데이터 큐브를 생성하는 R 패키지로 **gdalcubes**(Appel 2023; Appel and Pebesma 2019)가 있으며, STAC(Appel, Pebesma, Mohr 2021)을 직접 쿼리해 사용할 이미지를 식별한다.
 
 ### 클라우드 네이티브 스토리지: Zarr
 

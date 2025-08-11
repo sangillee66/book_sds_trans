@@ -200,7 +200,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
@@ -299,7 +299,7 @@ window.Quarto = {
   <li>
 <a href="#%EB%94%94%EB%A9%98%EC%85%98-%EC%86%8D%EC%84%B1-%EC%84%9C%ED%8F%AC%ED%8A%B8" id="toc-디멘션-속성-서포트" class="nav-link" data-scroll-target="#%EB%94%94%EB%A9%98%EC%85%98-%EC%86%8D%EC%84%B1-%EC%84%9C%ED%8F%AC%ED%8A%B8"><span class="header-section-number">6.2</span> 디멘션, 속성, 서포트</a>
   <ul class="collapse">
-<li><a href="#%EC%A0%95%EA%B7%9C-%EB%94%94%EB%A9%98%EC%85%98-gdal%EC%9D%98-%EC%A7%80%EC%98%A4%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%BC" id="toc-정규-디멘션-gdal의-지오트랜스폼" class="nav-link" data-scroll-target="#%EC%A0%95%EA%B7%9C-%EB%94%94%EB%A9%98%EC%85%98-gdal%EC%9D%98-%EC%A7%80%EC%98%A4%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%BC"><span class="header-section-number">6.2.1</span> 정규 디멘션, GDAL의 지오트랜스폼</a></li>
+<li><a href="#%EA%B7%9C%EC%B9%99-%EB%94%94%EB%A9%98%EC%85%98-gdal%EC%9D%98-%EC%A7%80%EC%98%A4%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%BC" id="toc-규칙-디멘션-gdal의-지오트랜스폼" class="nav-link" data-scroll-target="#%EA%B7%9C%EC%B9%99-%EB%94%94%EB%A9%98%EC%85%98-gdal%EC%9D%98-%EC%A7%80%EC%98%A4%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%BC"><span class="header-section-number">6.2.1</span> 규칙 디멘션, GDAL의 지오트랜스폼</a></li>
   <li><a href="#%ED%81%90%EB%B8%8C-%EC%B0%A8%EC%9B%90%EA%B3%BC-%EC%84%9C%ED%8F%AC%ED%8A%B8" id="toc-큐브-차원과-서포트" class="nav-link" data-scroll-target="#%ED%81%90%EB%B8%8C-%EC%B0%A8%EC%9B%90%EA%B3%BC-%EC%84%9C%ED%8F%AC%ED%8A%B8"><span class="header-section-number">6.2.2</span> 큐브 차원과 서포트</a></li>
   </ul>
 </li>
@@ -331,7 +331,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 10일</p>
+      <p class="date-modified">2025년 8월 11일</p>
     </div>
   </div>
     
@@ -400,8 +400,8 @@ Z=f(x,y,t)
 <li><p>다분광 래스터 데이터(이미지)</p></li>
 <li><p>다분광 래스터 데이터의 시계열(비디오)</p></li>
 </ul>
-<section id="정규-디멘션-gdal의-지오트랜스폼" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="정규-디멘션-gdal의-지오트랜스폼">
-<span class="header-section-number">6.2.1</span> 정규 디멘션, GDAL의 지오트랜스폼</h3>
+<section id="규칙-디멘션-gdal의-지오트랜스폼" class="level3" data-number="6.2.1"><h3 data-number="6.2.1" class="anchored" data-anchor-id="규칙-디멘션-gdal의-지오트랜스폼">
+<span class="header-section-number">6.2.1</span> 규칙 디멘션, GDAL의 지오트랜스폼</h3>
 <p>데이터 큐브는 보통 다차원 어레이에 저장되며, 1-기반 어레이 인덱스 <span class="math inline">\(i\)</span>와 일정하게 이산화된 차원 변수 <span class="math inline">\(x\)</span> 사이의 일반적인 관계는 다음과 같다.</p>
 <p><span class="math display">\[
 x=o_x+(i-1)d_x
@@ -414,7 +414,7 @@ x=o_x+(i-1)d_x+(j-1)a_1
 <p><span class="math display">\[
 y=o_y+(i-1)a_2+(j-1)d_y
 \]</span></p>
-<p>여기서 <span class="math inline">\(a_1\)</span>과 <span class="math inline">\(a_2\)</span>를 아핀(affine) 파라미터라고 하며, 이것은 GDAL에서 사용하는 이른바 <em>지오변환</em>(geostransform)이다. <span class="math inline">\(a_1=a_2=0\)</span>일 경우, 위 수식은 <span class="math inline">\(d_x=d_y\)</span>인 정사각형 셀을 가진 그림 1.6a의 정규 래스터로 단순화된다. 정수 인덱스의 경우, 좌표는 그리드 셀의 시작 모서리 좌표이며, 셀 면적(픽셀)은 인덱스 값이 <span class="math inline">\(i\)</span>(포함)에서 <span class="math inline">\(i+1\)</span>(제외)로 범위가 설정된 영역을 차지한다. 대부분의 이미지 형식에서 <span class="math inline">\(d_y\)</span>는 음수이며, 이는 이미지 행 인덱스가 <span class="math inline">\(y\)</span>값이 감소함에 따라(남쪽으로) 증가함을 의미한다. 왼쪽 상단 그리드 셀의 <em>중심</em> 좌표를 얻기 위해서는, <span class="math inline">\(d_y\)</span>가 음수인 경우 <span class="math inline">\(i=1.5\)</span>와 <span class="math inline">\(j=1.5\)</span>를 사용한다.</p>
+<p>여기서 <span class="math inline">\(a_1\)</span>과 <span class="math inline">\(a_2\)</span>를 아핀(affine) 파라미터라고 하며, 이것은 GDAL에서 사용하는 이른바 <em>지오변환</em>(geostransform)이다. <span class="math inline">\(a_1=a_2=0\)</span>일 경우, 위 수식은 <span class="math inline">\(d_x=d_y\)</span>인 정사각형 셀을 가진 그림 1.6a의 규칙 래스터로 단순화된다. 정수 인덱스의 경우, 좌표는 그리드 셀의 시작 모서리 좌표이며, 셀 면적(픽셀)은 인덱스 값이 <span class="math inline">\(i\)</span>(포함)에서 <span class="math inline">\(i+1\)</span>(제외)로 범위가 설정된 영역을 차지한다. 대부분의 이미지 형식에서 <span class="math inline">\(d_y\)</span>는 음수이며, 이는 이미지 행 인덱스가 <span class="math inline">\(y\)</span>값이 감소함에 따라(남쪽으로) 증가함을 의미한다. 왼쪽 상단 그리드 셀의 <em>중심</em> 좌표를 얻기 위해서는, <span class="math inline">\(d_y\)</span>가 음수인 경우 <span class="math inline">\(i=1.5\)</span>와 <span class="math inline">\(j=1.5\)</span>를 사용한다.</p>
 <p>직교형 래스터(그림 1.6의 네 번째 사례)의 경우, 어레이 인덱스를 차원 값에 매핑하기 위한 별도의 테이블이 필요하다. 예를 들어 NetCDF 파일은 공간 차원(좌표) 변수의 모든 값을 항상 저장하는데, 이는 주로 공간 그리드 셀의 중심 좌표값이거나 오프셋 값이다. 추가로, 그리드 셀의 경계를 저장하여 직교 차원을 정의하거나, 좌표 변수 값과 셀 경계 간의 관계를 명확히 표현할 수도 있다.</p>
 <p>곡선형 래스터의(그림 1.6의 다섯 번째 사례)의 경우, 모든 <span class="math inline">\(i,j\)</span> 조합을 <span class="math inline">\(x,y\)</span> 쌍에 매핑하는 어레이가 필요하거나, 이를 수행하는 파라미터 함수(투영 또는 역투영 함수)가 필요하다. NetCDF 파일은 일반적으로 이 두 가지를 모두 제공한다. GDAL은 이러한 어레이를 지리위치(geolocation) 어레이라고 부르며, 이에 대한 변환 기능을 폭넓게 지원한다.</p>
 </section><section id="큐브-차원과-서포트" class="level3" data-number="6.2.2"><h3 data-number="6.2.2" class="anchored" data-anchor-id="큐브-차원과-서포트">
@@ -489,7 +489,7 @@ y=o_y+(i-1)a_2+(j-1)d_y
 <p>이 경우, 데이터는 <span class="math inline">\(nmp\)</span>로 구성된 어레이를 형성한다.</p>
 <p>공간데이터사이언스에서 벡터 및 래스터 데이터 큐브를 다루는 것은 매우 유용하다. 이는 많은 변수가 공간적ㆍ시간적으로 변동하며, 디멘션 변경이나 애그리게이션과 같은 작업을 완전히 유연하면서도 체계적인 방식으로 수행할 수 있게 해주기 때문이다. 디멘션 변경의 예는 다음과 같다.</p>
 <ul>
-<li><p>대기질 측정값을 정규 그리드(래스터) 상에 인터폴레이션하는 것(12장)</p></li>
+<li><p>대기질 측정값을 규칙 그리드(래스터) 상에 인터폴레이션하는 것(12장)</p></li>
 <li><p>포인트나 라인 분포 데이터로부터 밀도 값을 추정하는 것, 예를 들어 주 1회 비행기 통과 횟수를 1km 탐색 반경을 기준으로 추정하는 것(11장)</p></li>
 <li><p>기후 모델 예측값을 행정구역별로 요약 지표로 애그리게이션하는 것</p></li>
 <li><p>MODIS(250m 픽셀, 16일 주기)와 Sentinel-2(10m 픽셀, 5일 주기)와 같은 서로 다른 센서의 지구 관측 데이터를 결합하는 것</p></li>
@@ -950,7 +950,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

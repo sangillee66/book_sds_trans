@@ -234,7 +234,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,7 +371,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 10일</p>
+      <p class="date-modified">2025년 8월 11일</p>
     </div>
   </div>
     
@@ -552,7 +552,7 @@ window.Quarto = {
 </div>
 <p>코드를 살펴보면, 패싯 형태의 플롯팅을 위해 사전에 두 개의 속성을 <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> 함수로 스택(길게 피벗)했다는 것을 알 수 있다. 이것이 ‘타이디’ 데이터의 핵심 개념이며, <code>sf</code> 객체에 대한 <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> 함수는 지오메트리 열도 함께 스택한다.</p>
 <p><strong>ggplot2</strong> 패키지는 그래픽 객체를 먼저 생성한 뒤 플롯팅하므로, 모든 요소의 CRS를 제어할 수 있으며 이후 추가되는 객체는 첫 번째 레이어의 CRS로 자동 변환된다. 또한 회색 배경의 얇은 흰색 선(기본값)으로 그래피큘을 표시하며, 특정 데이텀(기본값은 WGS84)을 사용한다. <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>는 다른 <code>geom</code>과 결합할 수 있어, 주석 추가 등 다양한 작업을 수행할 수 있다.</p>
-<p><strong>stars</strong> 패키지의 경우, <code><a href="https://r-spatial.github.io/stars/reference/geom_stars.html">geom_stars()</a></code>가 존재하지만, 집필 시점 기준으로 활용성이 다소 제한적이다. 지도 레이아웃과 벡터 데이터 큐브는 <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>를 사용하고, 정규 래스터는 <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster()</a></code>, 직교형 래스터는<code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect()</a></code>를 추가로 사용한다. 사용자가 다운샘플링 비율을 지정하면 다운샘플링을 수행하지만, 화면 크기에 접근해 자동으로 비율을 선택하는 기능은 없다. 이 정도 기능만으로도 충분한 경우가 많으며, 예를 들어 그림 8.5는 다음 명령으로 생성되었다.</p>
+<p><strong>stars</strong> 패키지의 경우, <code><a href="https://r-spatial.github.io/stars/reference/geom_stars.html">geom_stars()</a></code>가 존재하지만, 집필 시점 기준으로 활용성이 다소 제한적이다. 지도 레이아웃과 벡터 데이터 큐브는 <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code>를 사용하고, 규칙 래스터는 <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster()</a></code>, 직교형 래스터는<code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_rect()</a></code>를 추가로 사용한다. 사용자가 다운샘플링 비율을 지정하면 다운샘플링을 수행하지만, 화면 크기에 접근해 자동으로 비율을 선택하는 기능은 없다. 이 정도 기능만으로도 충분한 경우가 많으며, 예를 들어 그림 8.5는 다음 명령으로 생성되었다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/">stars</a></span><span class="op">)</span></span>
@@ -1028,13 +1028,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./09.html" class="pagination-link" aria-label="<span class='chapter-number'>9</span>&nbsp; <span class='chapter-title'>대용량 데이터와 클라우드 네이티브</span>">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./09.html" class="pagination-link" aria-label="<span class='chapter-number'>9</span>&nbsp; <span class='chapter-title'>대규모 데이터와 클라우드 네이티브</span>">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
