@@ -143,7 +143,7 @@ plot(DE.eqc, axes = TRUE)
 
 -   데이터 값의 범위와 컬러 범위가 비선형적으로 연결되는 일이 흔해, 값의 상대적 차이를 분간하기를 더 어렵게 만든다.
 
-따라서 값의 식별보다 공간적 현상의 연속성 재현이 더 중요한 한해 연속형 컬러 스킴의 사용이정당화될 수 있다. 대표적인 예는 고해상도 디지털 지형 모델을 채색으로 표현하는 경우다. 적절한 컬러 스킴과 팔레트는 `hcl.colors()` 또는 `palette.colors()` 함수에서 찾을 수 있으며, **RColorBrewer**(Neuwirth 2022), **viridis**(Garnier 2021), **colorspace**(Ihaka et al. 2023; Zeileis et al. 2020) 등의 패키지에서도 제공된다.
+따라서 값의 식별보다 공간적 현상의 연속성 재현이 더 중요한 한해 연속형 컬러 스킴의 사용이정당화될 수 있다. 대표적인 예는 고해상도 디지털 지형 모형을 채색으로 표현하는 경우다. 적절한 컬러 스킴과 팔레트는 `hcl.colors()` 또는 `palette.colors()` 함수에서 찾을 수 있으며, **RColorBrewer**(Neuwirth 2022), **viridis**(Garnier 2021), **colorspace**(Ihaka et al. 2023; Zeileis et al. 2020) 등의 패키지에서도 제공된다.
 
 ### 컬러 단절값: `classInt`
 

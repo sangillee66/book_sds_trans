@@ -234,7 +234,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
@@ -251,7 +251,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모형화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,7 +293,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모델</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모형</span></span></a>
   </div>
 </li>
       </ul>
@@ -358,7 +358,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 10일</p>
+      <p class="date-modified">2025년 8월 11일</p>
     </div>
   </div>
     
@@ -462,10 +462,10 @@ s_{ij}=r|\phi_1-\phi_2|=r\theta
 <li><p><strong>CRS</strong>(좌표참조계)는 특정한 데이텀에 의거해 특정한 객체에 부여된 좌표계이다. 측지데이텀과 수직데이텀의 경우, 객체는 지구이다.(역자주: 측지데이텀은 지구 상의 위치를 규정하는 수평데이텀이고 수직데이텀은 말그대로 지표 상의 높이를 규정하는 데이텀이다.)</p></li>
 </ul>
 <p>이 개념에 대한 보다 친절하고 구체적인 설명은 Iliffe와 Lott(2008)에서 찾아볼 수 있다.</p>
-<p>지구의 형태는 규칙적이지 않다. 지표면의 기복이 매우 불규칙하다는 것은 잘 알려져 있지만, 평균해수면 개념과 연결되는 일정한 중력면을 의미하는 지오이드(geoid) 또한 불규칙한 형상을 띤다. 지오이드에 대한 모델 중 가장 일반적으로 사용되는 것은 회전타원체로, 이는 두 개의 동일한 반단축을 가진 타원이다. 이러한 회전타원체를 지구와 어떤 방식으로 일치시킬 것인가는 데이텀을 규정한다. 타원체를 지구의 어느 부분에 맞출지, 또는 어떤 기준점을 사용할지에 따라 타원체의 적합도는 달라질 수 있으며, 이러한 이유로 다양한 데이텀이 존재하게 된다. 어떤 데이텀은 특정 지각판에 대한 적합도에 초점을 맞추기도 하고(ETRS89), 어떤 데이텀은 전 세계적인 평균 적합도를 지향하기도 한다(WGS84). 국지적인 적합도에 치중할수록 해당 지역에서의 위치 근사 오차는 작아진다.</p>
+<p>지구의 형태는 규칙적이지 않다. 지표면의 기복이 매우 불규칙하다는 것은 잘 알려져 있지만, 평균해수면 개념과 연결되는 일정한 중력면을 의미하는 지오이드(geoid) 또한 불규칙한 형상을 띤다. 지오이드에 대한 모형 중 가장 일반적으로 사용되는 것은 회전타원체로, 이는 두 개의 동일한 반단축을 가진 타원이다. 이러한 회전타원체를 지구와 어떤 방식으로 일치시킬 것인가는 데이텀을 규정한다. 타원체를 지구의 어느 부분에 맞출지, 또는 어떤 기준점을 사용할지에 따라 타원체의 적합도는 달라질 수 있으며, 이러한 이유로 다양한 데이텀이 존재하게 된다. 어떤 데이텀은 특정 지각판에 대한 적합도에 초점을 맞추기도 하고(ETRS89), 어떤 데이텀은 전 세계적인 평균 적합도를 지향하기도 한다(WGS84). 국지적인 적합도에 치중할수록 해당 지역에서의 위치 근사 오차는 작아진다.</p>
 <p>위에서 제시된 정의를 살펴보면, 경도와 위도로 표현된 좌표값은 해당 데이텀이 함께 주어질 때에만 지구 좌표계로서의 의미를 가지며, 이로써 해석상의 모호성이 제거될 수 있음을 시사한다.</p>
 <p>특정한 투영법이 적용된 데이터는 반드시 특정한 참조 타원체(데이텀)와 결부되어 있다는 점에 유의해야 한다. 데이텀 전환 없이 투영법만 변경하는 작업을 좌표 전환(coordinate conversion)이라고 하며, 이는 해당 데이텀에 결부된 특정 타원체상의 좌표값을 기준으로 수행된다. 이 좌표 전환 과정은 정보의 손실이 없고 가역적이며, 전환에 사용되는 파라미터와 함수식은 변하지 않는다.</p>
-<p>새로운 데이텀에 따라 좌표를 재계산하는 과정을 좌표 변환(coordinate transformation)이라고 한다. 좌표 전환과 달리, 좌표 변환은 근사적으로 수행된다. 이는 데이텀이 지구에 대한 모델 적합의 결과물이기 때문에, 데이텀 간의 변환 역시 하나의 적합된 모델로 간주되기 때문이다. 변환 함수 또한 경험적으로 도출되며, 적합도나 정확성에 대한 설정에 따라 다양한 변환 경로가 존재할 수 있다.</p>
+<p>새로운 데이텀에 따라 좌표를 재계산하는 과정을 좌표 변환(coordinate transformation)이라고 한다. 좌표 전환과 달리, 좌표 변환은 근사적으로 수행된다. 이는 데이텀이 지구에 대한 모형 적합의 결과물이기 때문에, 데이텀 간의 변환 역시 하나의 적합된 모형으로 간주되기 때문이다. 변환 함수 또한 경험적으로 도출되며, 적합도나 정확성에 대한 설정에 따라 다양한 변환 경로가 존재할 수 있다.</p>
 <p>판 구조론은 글로벌 데이텀을 위한 고정된 객체의 위치가 시간이 흐름에 따라 변화할 수 있음을 보여준다. 이는 데이텀 간의 좌표 변환이 시간에 따라 달라질 수 있음을 시사한다. 예를 들어, 지진과 같은 지각 운동으로 인해 특정 지역의 좌표가 갑작스럽게 변동할 수 있다. 국지적 데이텀은 특정 지각판에 고정시켜 정의할 수도 있지만(예: ETRS89), 이를 보다 역동적으로 설정하여 시간에 따른 위치 변화를 반영하도록 할 수도 있다.</p>
 </section><section id="proj와-지도-정확도" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="proj와-지도-정확도">
 <span class="header-section-number">2.4</span> PROJ와 지도 정확도</h2>
@@ -953,7 +953,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

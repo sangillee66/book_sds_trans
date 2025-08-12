@@ -251,7 +251,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모형화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,7 +293,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모델</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모형</span></span></a>
   </div>
 </li>
       </ul>
@@ -354,7 +354,7 @@ window.Quarto = {
   <li><a href="#%ED%81%B4%EB%A6%AC%ED%95%91" id="toc-클리핑" class="nav-link" data-scroll-target="#%ED%81%B4%EB%A6%AC%ED%95%91"><span class="header-section-number">7.4.3</span> 클리핑</a></li>
   <li><a href="#stars-%EA%B0%9D%EC%B2%B4%EC%9D%98-%EC%B0%A8%EC%9B%90%EC%9E%AC%EB%B6%80%EC%97%AC-%EB%B0%8F-%EA%B2%B0%ED%95%A9" id="toc-stars-객체의-차원재부여-및-결합" class="nav-link" data-scroll-target="#stars-%EA%B0%9D%EC%B2%B4%EC%9D%98-%EC%B0%A8%EC%9B%90%EC%9E%AC%EB%B6%80%EC%97%AC-%EB%B0%8F-%EA%B2%B0%ED%95%A9"><span class="header-section-number">7.4.4</span> stars 객체의 차원재부여 및 결합</a></li>
   <li><a href="#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%83%98%ED%94%8C-%EC%B6%94%EC%B6%9C-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%EC%85%98" id="toc-포인트-샘플-추출-애그리게이션" class="nav-link" data-scroll-target="#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%83%98%ED%94%8C-%EC%B6%94%EC%B6%9C-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%EC%85%98"><span class="header-section-number">7.4.5</span> 포인트 샘플 추출, 애그리게이션</a></li>
-  <li><a href="#%EC%98%88%EC%B8%A1-%EB%AA%A8%EB%8D%B8" id="toc-예측-모델" class="nav-link" data-scroll-target="#%EC%98%88%EC%B8%A1-%EB%AA%A8%EB%8D%B8"><span class="header-section-number">7.4.6</span> 예측 모델</a></li>
+  <li><a href="#%EC%98%88%EC%B8%A1-%EB%AA%A8%ED%98%95" id="toc-예측-모형" class="nav-link" data-scroll-target="#%EC%98%88%EC%B8%A1-%EB%AA%A8%ED%98%95"><span class="header-section-number">7.4.6</span> 예측 모형</a></li>
   <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%8C%EB%A1%9C%ED%8C%85" id="toc-래스터-데이터-플로팅" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%8C%EB%A1%9C%ED%8C%85"><span class="header-section-number">7.4.7</span> 래스터 데이터 플로팅</a></li>
   <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D" id="toc-래스터-데이터-분석" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D"><span class="header-section-number">7.4.8</span> 래스터 데이터 분석</a></li>
   <li><a href="#%EA%B3%A1%EC%84%A0%ED%98%95-%EB%9E%98%EC%8A%A4%ED%84%B0" id="toc-곡선형-래스터" class="nav-link" data-scroll-target="#%EA%B3%A1%EC%84%A0%ED%98%95-%EB%9E%98%EC%8A%A4%ED%84%B0"><span class="header-section-number">7.4.9</span> 곡선형 래스터</a></li>
@@ -672,8 +672,8 @@ window.Quarto = {
 <li><p>변환자(transformer)를 사용할 때, <code>GEOS</code>는 외부 폴리곤 링을 시계 방향으로 노드로 반환하며, 이를 반시계 방향으로 되돌리기 위해 <code>st_sfc(..., check_ring_dir = TRUE)</code>를 사용한다. 반면, <code>s2geometry</code>는 외부 폴리곤 링을 반시계 방향으로 반환한다.</p></li>
 </ul></section><section id="stars-패키지" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="stars-패키지">
 <span class="header-section-number">7.4</span> stars 패키지</h2>
-<p><strong>sp</strong> 패키지가 래스터 데이터 지원 측면에서 정체되어 있는 동안, <strong>raster</strong> 패키지(Hijmans 2023a)는 지난 10여년간 래스터 분석을 위한 강력하고 유연하며 확장 가능한 패키지로서 지배적인 위치를 공고히 해왔다. <strong>raster</strong> 패키지(및 그 후속인 <strong>terra</strong> 패키지(Hijmans 2023b)는 2차원 규칙 래스터 또는 래스터 레이어 집합(‘래스터 스택’)이라는 래스터 데이터 모델에 기반한다. 이러한 모델은 세상이 수많은 레이어로 구성되어 있고, 각 레이어가 특정 주제를 반영한다는 고전적인 정적 ’GIS 뷰’와 일치한다. 그러나 오늘날의 많은 데이터는 동적이며, 시계열 래스터 또는 시계열 래스터 스택의 형태로 제공된다. 기존의 래스터 스택은 이러한 동적 특성을 제대로 반영하지 못하며, 사용자가 각 레이어가 무엇을 나타내는지 별도로 기록해야 한다.</p>
-<p>또한, <strong>raster</strong> 패키지와 그 후속인 <strong>terra</strong> 패키지는 데이터 크기가 로컬 저장소(컴퓨터의 하드 드라이브)보다 크지 않을 때에만 우수한 연산 성능을 발휘한다. 그러나 최근의 데이터셋—예를 들어 위성 이미지, 기후 모델, 기상 예보 데이터—은 로컬 저장소의 용량으로는 더 이상 감당하기 어려운 수준에 도달했다(9장 참조). <strong>spacetime</strong> 패키지(Pebesma 2012, 2022)는 벡터 지오메트리 또는 래스터 그리드 셀의 시계열 분석을 어느 정도 지원하지만, 더 높은 차원의 어레이나 메모리가 한계를 넘어서는 대규모 데이터셋은 여전히 처리하기 어렵다.</p>
+<p><strong>sp</strong> 패키지가 래스터 데이터 지원 측면에서 정체되어 있는 동안, <strong>raster</strong> 패키지(Hijmans 2023a)는 지난 10여년간 래스터 분석을 위한 강력하고 유연하며 확장 가능한 패키지로서 지배적인 위치를 공고히 해왔다. <strong>raster</strong> 패키지(및 그 후속인 <strong>terra</strong> 패키지(Hijmans 2023b)는 2차원 규칙 래스터 또는 래스터 레이어 집합(‘래스터 스택’)이라는 래스터 데이터 모형에 기반한다. 이러한 모형은 세상이 수많은 레이어로 구성되어 있고, 각 레이어가 특정 주제를 반영한다는 고전적인 정적 ’GIS 뷰’와 일치한다. 그러나 오늘날의 많은 데이터는 동적이며, 시계열 래스터 또는 시계열 래스터 스택의 형태로 제공된다. 기존의 래스터 스택은 이러한 동적 특성을 제대로 반영하지 못하며, 사용자가 각 레이어가 무엇을 나타내는지 별도로 기록해야 한다.</p>
+<p>또한, <strong>raster</strong> 패키지와 그 후속인 <strong>terra</strong> 패키지는 데이터 크기가 로컬 저장소(컴퓨터의 하드 드라이브)보다 크지 않을 때에만 우수한 연산 성능을 발휘한다. 그러나 최근의 데이터셋—예를 들어 위성 이미지, 기후 모형, 기상 예보 데이터—은 로컬 저장소의 용량으로는 더 이상 감당하기 어려운 수준에 도달했다(9장 참조). <strong>spacetime</strong> 패키지(Pebesma 2012, 2022)는 벡터 지오메트리 또는 래스터 그리드 셀의 시계열 분석을 어느 정도 지원하지만, 더 높은 차원의 어레이나 메모리가 한계를 넘어서는 대규모 데이터셋은 여전히 처리하기 어렵다.</p>
 <p>여기서는 래스터 및 벡터 데이터 큐브 분석을 위한 패키지로 <strong>stars</strong>를 소개한다. 이 패키지는 다음과 같은 기능을 제공한다.</p>
 <ul>
 <li><p>동적(시간 변화) 래스터 스택을 재현할 수 있다.</p></li>
@@ -959,13 +959,13 @@ window.Quarto = {
 <li><p>시간 간격의 시작을 나타내는 타임스탬프 집합</p></li>
 <li><p><code><a href="https://r-spatial.github.io/stars/reference/make_intervals.html">make_intervals()</a></code> 함수로 정의된 시간 간격 집합</p></li>
 <li><p>‘주’, ‘5일’, ’년’과 같이 기간을 나타내는 문자열</p></li>
-</ul></section><section id="예측-모델" class="level3" data-number="7.4.6"><h3 data-number="7.4.6" class="anchored" data-anchor-id="예측-모델">
-<span class="header-section-number">7.4.6</span> 예측 모델</h3>
-<p><code>R</code>에서의 일반적인 모델 예측 워크플로우는 다음과 같다.</p>
+</ul></section><section id="예측-모형" class="level3" data-number="7.4.6"><h3 data-number="7.4.6" class="anchored" data-anchor-id="예측-모형">
+<span class="header-section-number">7.4.6</span> 예측 모형</h3>
+<p><code>R</code>에서의 일반적인 모형 예측 워크플로우는 다음과 같다.</p>
 <ul>
 <li><p>응답 변수와 예측 변수(공변량)가 포함된 <code>data.frame</code>을 준비한다.</p></li>
-<li><p><code>data.frame</code>을 기반으로 모델 객체를 생성한다.</p></li>
-<li><p>모델 객체와 대상 예측 변수 값이 포함된 <code>data.frame</code>을 사용하여 <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>함수를 호출한다.</p></li>
+<li><p><code>data.frame</code>을 기반으로 모형 객체를 생성한다.</p></li>
+<li><p>모형 객체와 대상 예측 변수 값이 포함된 <code>data.frame</code>을 사용하여 <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>함수를 호출한다.</p></li>
 </ul>
 <p><code>stars</code> 패키지는 <code>stars</code> 객체에 대한 <code>predict</code> 메서드를 제공하며, 이는 위 과정의 마지막 단계를 수행한다. 즉, <code>stars</code> 객체에서 <code>data.frame</code>을 생성한 뒤, <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code>를 호출하고, 예측 값으로 다시 <code>stars</code> 객체를 재구성한다.</p>
 <p>이 과정을 설명하기 위해, Landsat 데이터셋과 앞에서 추출한 샘플 포인트를 이용해, 육지를 바다에서 분리하는 간단한 이진 클래스 예제를 살펴본다. 결과는 그림 7.7에 제시되어 있다.</p>
@@ -977,7 +977,7 @@ window.Quarto = {
 그림&nbsp;7.7: 트레이닝 데이터로 사용된 무작위 샘플 포인트: 빨간색은 해양부이고 노란색을 육지부를 나타낸다.
 </figcaption></figure>
 </div>
-<p>이 그림에서 포인트 8, 14, 15, 18, 19는 수부에, 나머지 포인트는 육지부에 위치함을 “육안”으로 확인할 수 있다. 선형 판별(‘최대 우도’) 분류기를 적용한 결과, 그림 7.8과 같은 모델 예측 결과를 얻을 수 있다.</p>
+<p>이 그림에서 포인트 8, 14, 15, 18, 19는 수부에, 나머지 포인트는 육지부에 위치함을 “육안”으로 확인할 수 있다. 선형 판별(‘최대 우도’) 분류기를 적용한 결과, 그림 7.8과 같은 모형 예측 결과를 얻을 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
 <span><span class="va">trn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_extract.html">st_extract</a></span><span class="op">(</span><span class="va">rs</span>, <span class="va">pts</span><span class="op">)</span></span>
@@ -1434,7 +1434,7 @@ window.Quarto = {
 <span class="header-section-number">7.5.3</span> 타이디 어레이 데이터</h3>
 <p>Wickham(2014)의 타이디 데이터 논문은 3차원 데이터를 어레이 데이터 형식보다는 각 행이 (지역, 클래스, 연도, 값)으로 구성된 긴(비정규화된) 테이블 형식으로 처리되는 것이 더 바람직하다고 제안한다. 이는 가능하다면 항상 좋은 접근이다. 그러나 기본 처리나 저장 목적에서는 이 방법을 적용할 수 없는 경우가 있으며, 그 이유는 다음과 같다.</p>
 <ul>
-<li><p>많은 어레이 데이터는 처음부터 어레이 형식으로 수집되거나 생성된다. 예를 들어, 원격탐사를 통해 수집된 데이터나 기후 모델을 통해 생성된 데이터가 이에 해당한다.</p></li>
+<li><p>많은 어레이 데이터는 처음부터 어레이 형식으로 수집되거나 생성된다. 예를 들어, 원격탐사를 통해 수집된 데이터나 기후 모형을 통해 생성된 데이터가 이에 해당한다.</p></li>
 <li><p>어레이 형식을 긴 테이블 형태로 변환하는 것이 그 반대보다 훨씬 쉽다.</p></li>
 <li><p>긴 테이블 형식의 데이터는 훨씬 더 많은 메모리를 요구한다. 디멘션 <span class="math inline">\(i\)</span>의 기수(크기)를 <span class="math inline">\(n_i\)</span>라고 할 때, 디멘션 값이 차지하는 메모리 공간은 <span class="math inline">\(O(\sum{n_i})\)</span>가 아니라 <span class="math inline">\(O(\prod{n_i})\)</span>로 주어진다.</p></li>
 <li><p>결측값이 있는 셀이 삭제하면, 긴 테이블 형식은 어레이 형식이 내재하고 있는 인덱싱을 상실하게 된다.</p></li>
@@ -2134,7 +2134,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

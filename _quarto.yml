@@ -6,7 +6,7 @@ lang: ko
 
 book:
   title: "공간데이터사이언스 개론"
-  subtitle: "R의 활용"
+  subtitle: "R 프로그래밍 예시"
   author: 
     - name: 이상일
       orcid: 0000-0002-5342-9930

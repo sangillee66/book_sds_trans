@@ -251,7 +251,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모형화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,7 +293,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모델</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모형</span></span></a>
   </div>
 </li>
       </ul>
@@ -528,7 +528,7 @@ window.Quarto = {
 <li><p>계산은 가능한 한 늦게 수행된다(지연 평가)</p></li>
 <li><p>사용자가 요청한 데이터만 계산하고 반환한다.</p></li>
 <li><p>중간 결과를 저장하지 않고 즉석(on-the-fly) 계산을 선호한다.</p></li>
-<li><p>유용한 결과를 가진 지도를 신속히 생성하고 표시하여 인터렉티브 모델 개발을 가능하게 한다.</p></li>
+<li><p>유용한 결과를 가진 지도를 신속히 생성하고 표시하여 인터렉티브 모형 개발을 가능하게 한다.</p></li>
 </ul>
 <p>이는 데이터베이스와 클라우드 기반 분석 환경을 대상으로 하는 <strong><code>dbplyr</code></strong> 패키지의 인터페이스와 유사하지만, 확인하려는 <em>대상</em>이 다르다. <strong>dbplyr</strong> 패키지의 지연 테이블에서는 보통 처음 <em>n</em>개의 레코드를 재빨리 확인하고자 하지만, 여기서는 전체 영역 또는 일부 영역에 대해 지도 형태의 결과 <em>개요</em>를 빠르게 보고자 한다. 이를 위해 해상도는 희생되며, 원본(관측) 해상도가 아니라 화면 해상도로 포시된다.</p>
 <p>예를 들어 화면에서 미국의 결과를 즉시 “보고자” 할 때 1000x1000 픽셀 해상도가 필요하다면, 그만큼의 픽셀에 대한 결과만 계산하면 된다. 이는 대략 3000mx3000m 그리드 셀로 구성된 데이터에 해당한다. Sentinel-2 데이터의 해상도가 10m이므로, 300배로 다운샘플링하여 3kmx3km 해상도로 작업할 수 있다. 이 경우, 기본 10mx10m 해상도로 작업할 때와 비교해 처리, 저장, 네트워크 요구량이 <span class="math inline">\(300^2\approx10^5\)</span>배 줄어든다. 언급한 플랫폼에서는 지도를 확대하면 더 세밀한 해상도와 더 작은 범위에 대한 추가 계산이 촉발된다.</p>
@@ -620,7 +620,7 @@ window.Quarto = {
 <p>COG(Cloud Optimised GeoTIFF)와 같은 포맷은 효율성과 리소스 절약을 염두에 두고 설계되었다. 예를 들어 메타데이터만 읽거나, 오버뷰(전체 이미지를 낮은 해상도로 축약한 버전)만 읽거나 <code>/vsixxx/</code> 메커니즘을 사용해 특정 공간 영역만 부분 읽기할 때 유용하다(9.1.3절 참조). COG는 GDAL의 GeoTIFF 드라이버로 생성할 수 있으며, <code><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars()</a></code> 함수 호출에서 적절한 데이터셋 생성 옵션을 지정하면 된다.</p>
 </section></section><section id="초대규모-데이터-큐브" class="level2" data-number="9.3"><h2 data-number="9.3" class="anchored" data-anchor-id="초대규모-데이터-큐브">
 <span class="header-section-number">9.3</span> 초대규모 데이터 큐브</h2>
-<p>어느 시점에는 다운로드가 사실상 불가능할 만큼 거대한 데이터셋을 분석해야 할 수 있다. 로컬 저장소가 충분하더라도 네트워크 대역폭이 병목이 될 수 있다. 예를 들어, Landsat과 Copernicus(Sentinel-x)의 위성 이미지 아카이브, 1950년부터의 전 세계 대기와 육지 표면, 해양 파도를 모델링한 ERA5(기후 재분석 모델, Hersbach et al.&nbsp;2020) 등이 이에 해당한다. 이런 경우에는 데이터가 있는 클라우드의 가상 머신에 직접 접근하거나, 사용자가 가상 머신과 스토리지관리 없이 계산을 수행할 수 있게 하는 시스템을 이용하는 편이 가장 효과적일 수 있다. 아래에는 이 두 가지 옵션을 논의한다.</p>
+<p>어느 시점에는 다운로드가 사실상 불가능할 만큼 거대한 데이터셋을 분석해야 할 수 있다. 로컬 저장소가 충분하더라도 네트워크 대역폭이 병목이 될 수 있다. 예를 들어, Landsat과 Copernicus(Sentinel-x)의 위성 이미지 아카이브, 1950년부터의 전 세계 대기와 육지 표면, 해양 파도를 모형화한 ERA5(기후 재분석 모형, Hersbach et al.&nbsp;2020) 등이 이에 해당한다. 이런 경우에는 데이터가 있는 클라우드의 가상 머신에 직접 접근하거나, 사용자가 가상 머신과 스토리지관리 없이 계산을 수행할 수 있게 하는 시스템을 이용하는 편이 가장 효과적일 수 있다. 아래에는 이 두 가지 옵션을 논의한다.</p>
 <section id="에셋의-검색과-처리" class="level3" data-number="9.3.1"><h3 data-number="9.3.1" class="anchored" data-anchor-id="에셋의-검색과-처리">
 <span class="header-section-number">9.3.1</span> 에셋의 검색과 처리</h3>
 <p>클라우드 가상 머신에서 작업할 때 첫 단계는 대개 작업 대상 에셋(파일)을 찾는 일이다. 보통 파일 목록을 받아온 뒤, 다음과 같은 파일명 패턴을 파싱하고 싶어진다.</p>
@@ -660,7 +660,7 @@ window.Quarto = {
 </ul></section><section id="데이터-api-gee-openeo" class="level3" data-number="9.3.3"><h3 data-number="9.3.3" class="anchored" data-anchor-id="데이터-api-gee-openeo">
 <span class="header-section-number">9.3.3</span> 데이터 API: GEE, openEO</h3>
 <p>클라우드 상에 <em>존재하는</em> 가상 머신을 직접 관리하거나 프로그래밍하지 않고도 이미지에 바로 다룰 수 있는 플랫폼으로는 GEE(구글 어스 엔진), openEO, 기후 데이터 스토어가 있다.</p>
-<p>GEE는 대규모 지구 관측 데이터와 모델 산출물에 대한 접근을 제공하는 클라우드 플랫폼이다(Gorelick et al.&nbsp;2017). 이 플랫폼은 6.3절에서 다룬 데이터 큐브 작업을 포함해 강력한 분석 기능을 제공하며, JavaScript와 Python 인터페이스를 지원한다. GEE의 코드는 오픈소스가 아니며, Python이나 R을 통해 서버 측에서 사용자 정의 함수를 업로드해 실행하는 방식은 지원하지 않는다. R의 <strong>rgee</strong> 패키지(Aybar 2022)는 GEE에 대한 R 클라이언트 인터페이스를 제공한다.</p>
+<p>GEE는 대규모 지구 관측 데이터와 모형 산출물에 대한 접근을 제공하는 클라우드 플랫폼이다(Gorelick et al.&nbsp;2017). 이 플랫폼은 6.3절에서 다룬 데이터 큐브 작업을 포함해 강력한 분석 기능을 제공하며, JavaScript와 Python 인터페이스를 지원한다. GEE의 코드는 오픈소스가 아니며, Python이나 R을 통해 서버 측에서 사용자 정의 함수를 업로드해 실행하는 방식은 지원하지 않는다. R의 <strong>rgee</strong> 패키지(Aybar 2022)는 GEE에 대한 R 클라이언트 인터페이스를 제공한다.</p>
 <p>온전히 오픈소스 소프트웨어로 구축된 클라우드 기반 데이터 큐브 처리 플랫폼도 등장하고 있으며, 그중 일부는 openEO API(Schramm et al.&nbsp;2021)를 사용한다. 이 API는 Python 또는 R로 작성한 사용자 정의 함수(UDF)를 허용하며, 함수는 API를 통해 전달되어 픽셀 수준에서 실행된다. 예를 들어 사용자 정의 리듀서를 사용해 디맨션을 애그리게이션하거나 디멘션을 축소할 수 있다. R의 UDF는 처리할 데이터 청크를 <code>stars</code> 객체로 표현하고, Python에서는 <code>xarray</code> 객체를 사용한다.</p>
 <p>기타 플랫폼으로는 Copernicus 기후 데이터 스토어(Raoult et al.&nbsp;2017)와 대기 데이터 스토어가 있으며, 이를 통해 ERA5를 포함한 ECMWF의 대기 및 기후 데이터를 처리할 수 있다. 이 두 스토어에 대한 인터페이스를 제공하는 R 패키지는 <strong>ecmwfr</strong>(Hufkens 2023)이다.</p>
 </section></section><section id="연습문제" class="level2" data-number="9.4"><h2 data-number="9.4" class="anchored" data-anchor-id="연습문제">
@@ -1080,7 +1080,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

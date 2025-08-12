@@ -234,7 +234,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
@@ -251,7 +251,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모형화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,7 +293,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모델</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모형</span></span></a>
   </div>
 </li>
       </ul>
@@ -351,7 +351,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 10일</p>
+      <p class="date-modified">2025년 8월 11일</p>
     </div>
   </div>
     
@@ -491,13 +491,13 @@ window.Quarto = {
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">s2</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">v</span> <span class="op">*</span> <span class="va">a</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># [1] 30.7</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>여기에 밀도면을 외부 변수의 함수로 나타내는 모델링을 적용하면 더 흥미로운 결과를 얻을 수 있다. 예를 들어, <code>pp2</code>의 밀도를 푸아송 포인트 패턴 프로세스로 모델링한다고 가정해 보자(즉, 포인트 간에 상호작용이 없다고 가정). 이때 밀도의 변화는 ‘클러스터’ 중심으로부터의 거리의 함수로 설명되며, 해당 거리값은 <code>stars</code> 객체에 포함되어 있다.</p>
+<p>여기에 밀도면을 외부 변수의 함수로 나타내는 모형화를 적용하면 더 흥미로운 결과를 얻을 수 있다. 예를 들어, <code>pp2</code>의 밀도를 푸아송 포인트 패턴 프로세스로 모형화한다고 가정해 보자(즉, 포인트 간에 상호작용이 없다고 가정). 이때 밀도의 변화는 ‘클러스터’ 중심으로부터의 거리의 함수로 설명되며, 해당 거리값은 <code>stars</code> 객체에 포함되어 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_point</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">s2</span>, as_points <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_distance</a></span><span class="op">(</span><span class="va">pt</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">s2</span><span class="op">$</span><span class="va">dist</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>그런 다음 <code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html">ppm()</a></code> 함수를 사용하여 밀도를 모델링할 수 있으며, <code>formula</code>의 왼쪽에는 포인트 패턴 객체의 <em>이름</em>이 위치한다.</p>
+<p>그런 다음 <code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html">ppm()</a></code> 함수를 사용하여 밀도를 모형화할 수 있으며, <code>formula</code>의 왼쪽에는 포인트 패턴 객체의 <em>이름</em>이 위치한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html">ppm</a></span><span class="op">(</span><span class="va">pp2</span> <span class="op">~</span> <span class="va">dist</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.im.html">as.im</a></span><span class="op">(</span><span class="va">s2</span><span class="op">[</span><span class="st">"dist"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># Nonstationary Poisson process</span></span>
@@ -519,10 +519,10 @@ window.Quarto = {
 <a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;11.4: ppm 모델에 기반한 예측 밀도면
+그림&nbsp;11.4: ppm 모형에 기반한 예측 밀도면
 </figcaption></figure>
 </div>
-<p>모델에는 예측 메서드도 있어, 이를 통해 <code>im</code> 객체를 반환하며, 이 객체는 다음과 같이 <code>stars</code> 객체로 전환될 수 있다.</p>
+<p>모형에는 예측 메서드도 있어, 이를 통해 <code>im</code> 객체를 반환하며, 이 객체는 다음과 같이 <code>stars</code> 객체로 전환될 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.im.html">as.im</a></span><span class="op">(</span><span class="va">s2</span><span class="op">[</span><span class="st">"dist"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -663,7 +663,7 @@ window.Quarto = {
 <span class="glightbox-desc lightbox-desc-1">그림&nbsp;11.1: 관찰 윈도우(회색)에 따라 동일한 포인트 패턴이 공간적으로 완전히 무작위로 나타날 수도 있고(왼쪽), 군집을 이루고 있는 것으로 나타날 수도 있다(오른쪽).</span>
 <span class="glightbox-desc lightbox-desc-2">그림&nbsp;11.2: 두 포인트 패턴의 3x3 방격 빈도</span>
 <span class="glightbox-desc lightbox-desc-3">그림&nbsp;11.3: 두 포인트 패턴에 대한 커널 밀도면</span>
-<span class="glightbox-desc lightbox-desc-4">그림&nbsp;11.4: ppm 모델에 기반한 예측 밀도면</span>
+<span class="glightbox-desc lightbox-desc-4">그림&nbsp;11.4: ppm 모형에 기반한 예측 밀도면</span>
 <span class="glightbox-desc lightbox-desc-5">그림&nbsp;11.5: mu =3, scale = 0.05로 설정한 Thomas 프로세스</span>
 <span class="glightbox-desc lightbox-desc-6">그림&nbsp;11.6: 구면에서 해양부에만 제한된 샘플 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법 지도에 표시되어 있다.</span>
 </div>
@@ -1055,7 +1055,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./10.html" class="pagination-link  aria-label=">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모형화</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

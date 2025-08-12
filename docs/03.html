@@ -251,7 +251,7 @@ window.Quarto = {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모형화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,7 +293,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모델</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모형</span></span></a>
   </div>
 </li>
       </ul>
@@ -356,7 +356,7 @@ window.Quarto = {
   <li>
 <a href="#%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80-%ED%85%8C%EC%85%80%EB%A0%88%EC%9D%B4%EC%85%98%EA%B3%BC-%EB%9E%98%EC%8A%A4%ED%84%B0" id="toc-커버리지-테셀레이션과-래스터" class="nav-link" data-scroll-target="#%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80-%ED%85%8C%EC%85%80%EB%A0%88%EC%9D%B4%EC%85%98%EA%B3%BC-%EB%9E%98%EC%8A%A4%ED%84%B0"><span class="header-section-number">3.4</span> 커버리지: 테셀레이션과 래스터</a>
   <ul class="collapse">
-<li><a href="#%ED%86%A0%ED%8F%B4%EB%A1%9C%EC%A7%80-%EB%AA%A8%EB%8D%B8" id="toc-토폴로지-모델" class="nav-link" data-scroll-target="#%ED%86%A0%ED%8F%B4%EB%A1%9C%EC%A7%80-%EB%AA%A8%EB%8D%B8"><span class="header-section-number">3.4.1</span> 토폴로지 모델</a></li>
+<li><a href="#%ED%86%A0%ED%8F%B4%EB%A1%9C%EC%A7%80-%EB%AA%A8%ED%98%95" id="toc-토폴로지-모형" class="nav-link" data-scroll-target="#%ED%86%A0%ED%8F%B4%EB%A1%9C%EC%A7%80-%EB%AA%A8%ED%98%95"><span class="header-section-number">3.4.1</span> 토폴로지 모형</a></li>
   <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%ED%85%8C%EC%85%80%EB%A0%88%EC%9D%B4%EC%85%98" id="toc-래스터-테셀레이션" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%ED%85%8C%EC%85%80%EB%A0%88%EC%9D%B4%EC%85%98"><span class="header-section-number">3.4.2</span> 래스터 테셀레이션</a></li>
   </ul>
 </li>
@@ -453,7 +453,7 @@ window.Quarto = {
 </table>
 <div id="fig-3-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.1: 심플 피처 지오메트리의 주요 유형
@@ -596,7 +596,7 @@ window.Quarto = {
 <p>단항 프레디케이트는 하나의 지오메트리의 특정 프로퍼티를 설명한다. <code>is_simple</code>, <code>is_valid</code>, <code>is_empty</code>와 같는 프레디케이트는 각각 지오메트리가 심플한지, 밸리드한지, 엠프티한지의 여부에 대한 논리값을 반환한다. <code>is_longlat</code> 프레디케이트는 주어진 CRS가 경위도 좌표계인지 평면 좌표계인지 여부를 반환한다. <code>is(geometry, class)</code>는 지오메트리가 특정한 클래스에 속하는지 여부를 확인한다.</p>
 </section><section id="이항-프레디케이트와-de-9im" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="이항-프레디케이트와-de-9im">
 <span class="header-section-number">3.2.2</span> 이항 프레디케이트와 DE-9IM</h3>
-<p>DE-9IM(Dimensionally Extended Nine-Intersection Model)(Clementini, Di Felice, and Oosterom 1993; Egenhofer and Franzosa 1991)은 2차원 공간(<span class="math inline">\(R^2\)</span>)에서 두 지오메트리 간의 정성적 관계를 설명하는 모델이다. 모든 지오메트리는 디멘션 값을 가진다.</p>
+<p>DE-9IM(Dimensionally Extended Nine-Intersection Model)(Clementini, Di Felice, and Oosterom 1993; Egenhofer and Franzosa 1991)은 2차원 공간(<span class="math inline">\(R^2\)</span>)에서 두 지오메트리 간의 정성적 관계를 설명하는 모형이다. 모든 지오메트리는 디멘션 값을 가진다.</p>
 <ul>
 <li><p>포인트 지오메트리: 0</p></li>
 <li><p>라인 지오메트리: 1</p></li>
@@ -610,7 +610,7 @@ window.Quarto = {
 </ul>
 <div id="fig-3-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.2: DE-9IM: 폴리곤의 내부, 경계, 외부(행)와 라인의 내부, 경계, 외부(열) 간의 인터섹션(빨간색으로 표시)
@@ -847,7 +847,7 @@ window.Quarto = {
 </table>
 <div id="fig-3-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.3: 포인트의 집합, 왼편은 컨벡스 헐, 가운데는 보로노이 폴리곤, 오른편은 들로네 삼각망
@@ -895,7 +895,7 @@ window.Quarto = {
 <p>다항 <code>intersection</code>과 <code>difference</code>는 단일 아규먼트를 받는 형식을 취하지만 모든 쌍, 세 쌍, 네 쌍 등에 대해 순차적으로 작동한다. 그림 3.4를 보자. 세 개의 상자가 모두 겹치는 영역을 어떻게 식별할 수 있을까? 이항 <code>intersection</code>을 사용하면 모든 쌍(1-1, 1-2, 1-3, 2-1, 2-2, 2-3, 3-1, 3-2, 3-3)에 대한 인터섹션을 얻을 수 있다. 그러나 두 개 이상의 지오메트리가 동시에 교차하는 영역을 식별할 수 없다. 그림 3.4 오른쪽은 다항 <code>intersection</code>을 보여주며, 한 개, 두 개, 혹은 <em>그 이상의</em> 지오메트리가 교차하여 생성된 7개의 상호 중복이 없는 고유 지오메트리를 확인할 수 있다.</p>
 <div id="fig-3-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.4: 왼쪽: 세 개의 정사각형이 서로 겹치고 있는데, 이들 모두가 겹치는 부분을 어떻게 확인할 수 있을까? 오른쪽: 상호 중복이 없는 고유한 다항 교차
@@ -904,7 +904,7 @@ window.Quarto = {
 <p>유사하게, 집합 <span class="math inline">\(\{s_1,s_2,s_3,...\}\)</span>에 다항 <code>difference</code>를 적용하여 <span class="math inline">\(\{s_1,s_2-s_1,s_3-s_2-s_1,...\}\)</span>를 생성할 수 있다. 결과는 그림 3.5에 나타나 있는데, 왼쪽에는 원래 집합을, 오른쪽에는 투입 지오메트리의 순서를 변경한 후의 집합을 보여준다. 이는 결과가 입력 지오메트리의 순서에 의존함을 명확히 하기 위한 것이다. 결과로 얻어진 지오메트리들은 서로 겹치지 않는다.</p>
 <div id="fig-3-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.5: 박스들에 서로 다른 순서로 <code>differece</code>를 적용한 결과: 왼쪽은 원래 순서이며, 오른편은 반대 순서
@@ -912,7 +912,7 @@ window.Quarto = {
 </div>
 </section></section><section id="정밀도" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="정밀도">
 <span class="header-section-number">3.3</span> 정밀도</h2>
-<p>기하학적 오퍼레이션, 예를 들어 특정 점이 선 위에 있는지 여부를 판단하는 작업은 R에서 사용하는 8바이트 더블과 같은 배정밀도 부동소수점 수로 좌표가 표현될 때 실패할 수 있다. 흔히 선택되는 해결책은 연산 전에 좌표의 정밀도를 제한하는 것이며, 이를 위해 정밀도 모델이 사용된다. 가장 일반적인 방법은 하나의 계수 <span class="math inline">\(p\)</span>를 선택하고, 원래 좌표 <span class="math inline">\(c\)</span>를 반올림하여 새로운 <span class="math inline">\(c'\)</span>를 계산하는 것이다.</p>
+<p>기하학적 오퍼레이션, 예를 들어 특정 점이 선 위에 있는지 여부를 판단하는 작업은 R에서 사용하는 8바이트 더블과 같은 배정밀도 부동소수점 수로 좌표가 표현될 때 실패할 수 있다. 흔히 선택되는 해결책은 연산 전에 좌표의 정밀도를 제한하는 것이며, 이를 위해 정밀도 모형이 사용된다. 가장 일반적인 방법은 하나의 계수 <span class="math inline">\(p\)</span>를 선택하고, 원래 좌표 <span class="math inline">\(c\)</span>를 반올림하여 새로운 <span class="math inline">\(c'\)</span>를 계산하는 것이다.</p>
 <p><span class="math display">\[
 c'=\text {round} (p\cdot c)/p
 \]</span></p>
@@ -932,10 +932,10 @@ c'=\text {round} (p\cdot c)/p
 <li><p>심플 피처 폴리곤들이 서로 겹치지 않고 틈새도 없어야 하지만, 이러한 조건이 항상 보장된다고는 할 수 없다.</p></li>
 <li><p>심플 피처는 인접한 두 폴리곤의 경계에 위치한 포인트를 하나의 폴리곤에만 할당할 수 없는데, 이는 커버리지로서의 해석과 충돌한다.</p></li>
 </ul>
-<section id="토폴로지-모델" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="토폴로지-모델">
-<span class="header-section-number">3.4.1</span> 토폴로지 모델</h3>
-<p>폴리곤 커버리지의 겹침과 틈새가 없도록 보장하는 데이터 모델을 <em>토폴로지</em> 모델이라고 하며, GRASS GIS나 ArcGIS와 같은 지리정보시스템(GIS)에서 그 예를 찾아볼 수 있다. 토폴로지 모델은 폴리곤 경계를 한 번만 저장하고, 경계의 양쪽에 위치한 폴리곤을 등록한다.</p>
-<p>토폴로지 모델에서 동일한 범위 값을 가진 지역들에 대해 (멀티)폴리곤 집합을 도출하는 것은 간단하다. 하지만 폴리곤의 집합으로부터 토폴로지를 재정의하는 역과정을 수행하려면 오류에 대한 임계값 설정과 겹침 및 틈새를 처리하는 구체적인 방법을 고려해야 한다.</p>
+<section id="토폴로지-모형" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="토폴로지-모형">
+<span class="header-section-number">3.4.1</span> 토폴로지 모형</h3>
+<p>폴리곤 커버리지의 겹침과 틈새가 없도록 보장하는 데이터 모형을 <em>토폴로지</em> 모형이라고 하며, GRASS GIS나 ArcGIS와 같은 지리정보시스템(GIS)에서 그 예를 찾아볼 수 있다. 토폴로지 모형은 폴리곤 경계를 한 번만 저장하고, 경계의 양쪽에 위치한 폴리곤을 등록한다.</p>
+<p>토폴로지 모형에서 동일한 범위 값을 가진 지역들에 대해 (멀티)폴리곤 집합을 도출하는 것은 간단하다. 하지만 폴리곤의 집합으로부터 토폴로지를 재정의하는 역과정을 수행하려면 오류에 대한 임계값 설정과 겹침 및 틈새를 처리하는 구체적인 방법을 고려해야 한다.</p>
 </section><section id="래스터-테셀레이션" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="래스터-테셀레이션">
 <span class="header-section-number">3.4.2</span> 래스터 테셀레이션</h3>
 <p>테셀레이션은 2차원 또는 3차원의 공간을 폴리곤으로 구성된 더 작은 요소들로 세분화하는 것을 의미한다. 규칙 테셀레이션은 삼각형, 사각형, 육각형과 같은 규칙 폴리곤으로 이루어진 테셀레이션을 뜻한다. 공간데이터에서 일반적으로 사용되는 정사각형 기반 테셀레이션을 래스터 데이터라고 부른다. 래스터 데이터는 공간 차원 <span class="math inline">\(d\)</span>를 규칙 셀로 나누며, 각 셀 <span class="math inline">\(d_i\)</span> 는 좌측 닫힘 및 우측 개방 범위(구간)로 정의된다.(역자주: 좌측 닫힘 우측 개방 범위란 구간의 왼쪽 끝점은 포함하지만, 오른쪽 끝점은 포함하지 않는다는 의미이다.)</p>
@@ -946,13 +946,13 @@ d_i=d_0+[i\times \delta,(i+1)\times \delta)
 <p>일반적인 폴리곤 테셀레이션에서는 두 폴리곤이 공유하는 경계에 위치한 점의 할당이 모호할 수 있으나, 규칙 테셀레이션에서는 좌측 닫힘(“[”) 및 우측 개방(“)”) 구간을 사용하여 이러한 모호성을 해소한다. 이는 <span class="math inline">\(y\)</span>-좌표에 음의 <span class="math inline">\(\delta\)</span>값이 <span class="math inline">\(x\)</span>-좌표에 양의 <span class="math inline">\(\delta\)</span>값이 적용된 적용된 래스터의 경우 각 셀의 모서리 점들 중 좌측 상단의 것만이 해당 셀의 일부로 간주된다는 의미이다. 이로 인해 발생할 수 있는 예기치 못한 결과 중 하나가 그림 3.6에 나타나 있다.</p>
 <div id="fig-3-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.6: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀 내부로 간주되기 때문에, 대각선 아래에 위치하면서 붉은 선과 접촉한 셀들도 래스터로 전환되었다.
 </figcaption></figure>
 </div>
-<p>시간 차원을 좌측 닫힘 및 우측 개방 구간으로 세분하는 것은 매우 일반적인 방식이며, 이는 R의 <strong>xts</strong> 패키지와 같은 시계열 소프트웨어의 암묵적인 기본 가정이다. 즉, 시간 스탬프(시점)는 시간 간격의 시작을 나타낸다. 다른 모델도 결합될 수 있다. 예를 들어, 심플 피처 폴리곤을 사용해 공간을 세분하고, 이를 규칙 시간 테셀레이션과 결합하여 시공간 벡터 데이터 큐브 개념을 구현할 수 있다. 래스터 및 벡터 데이터 큐브에 관한 논의는 6장에서 다룬다.</p>
+<p>시간 차원을 좌측 닫힘 및 우측 개방 구간으로 세분하는 것은 매우 일반적인 방식이며, 이는 R의 <strong>xts</strong> 패키지와 같은 시계열 소프트웨어의 암묵적인 기본 가정이다. 즉, 시간 스탬프(시점)는 시간 간격의 시작을 나타낸다. 다른 모형도 결합될 수 있다. 예를 들어, 심플 피처 폴리곤을 사용해 공간을 세분하고, 이를 규칙 시간 테셀레이션과 결합하여 시공간 벡터 데이터 큐브 개념을 구현할 수 있다. 래스터 및 벡터 데이터 큐브에 관한 논의는 6장에서 다룬다.</p>
 <p>위에서 언급한 것처럼, <span class="math inline">\(R^2\)</span>에 대한 규칙 테셀레이션을 생성할 때는 정사각형 외에도 삼각형과 육각형 폴리곤을 활용할 수 있다. 3차원 구체로 확장하면 큐브, 정팔면체, 정이십면체, 정십이면체 등 다양한 형태가 포함된다. 큐브 기반 공간 인덱스는 s2geometry이며, H3 라이브러리는 정이십면체를 기반으로 하면서 밀집화 과정에 주로 육각형을 사용한다. 지구 전체를 포괄하는 이러한 모자이크는 일반적으로 <em>이산 글로벌 그리드</em>(discrete global grid)라고 불린다.</p>
 </section></section><section id="네트워크" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="네트워크">
 <span class="header-section-number">3.5</span> 네트워크</h2>
@@ -1384,7 +1384,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

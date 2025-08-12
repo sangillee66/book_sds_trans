@@ -193,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대용량 데이터와 클라우드 네이티브</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모델링</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모형화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모델</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모형</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">오래된 공간 R 패키지</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">예전 R 공간 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#structure%EC%9D%98-%EC%82%AC%EC%9A%A9" id="toc-structure의-사용" class="nav-link" data-scroll-target="#structure%EC%9D%98-%EC%82%AC%EC%9A%A9"><code>structure</code>의 사용</a></li>
   </ul>
 </li>
-  <li><a href="#multipolygon-%EB%B6%84%ED%95%A0%ED%95%98%EA%B8%B0" id="toc-multipolygon-분할하기" class="nav-link" data-scroll-target="#multipolygon-%EB%B6%84%ED%95%A0%ED%95%98%EA%B8%B0"><code>MULTIPOLYGON</code> 분할하기</a></li>
+  <li><a href="#multipolygon-%EA%B0%9D%EC%B2%B4-%EB%B6%84%ED%95%A0%ED%95%98%EA%B8%B0" id="toc-multipolygon-객체-분할하기" class="nav-link" data-scroll-target="#multipolygon-%EA%B0%9D%EC%B2%B4-%EB%B6%84%ED%95%A0%ED%95%98%EA%B8%B0"><code>MULTIPOLYGON</code> 객체 분할하기</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
@@ -329,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 1월 8일</p>
+      <p class="date-modified">2025년 8월 12일</p>
     </div>
   </div>
     
@@ -337,27 +337,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>여기서는 이 책을 읽는 데 도움이 될 수 있는 최소한의 R 기초를 제공한다. R 기초에 대한 보다 자세한 내용은 Wickham (2014) 2장을 보라.</p>
+</header><p>여기서는 이 책을 읽는 데 필요한 최소한의 R 기초를 간략히 소개한다. R 기초에 대한 더 자세한 내용은 Wickham(2014) 2장을 참고하라.</p>
 <section id="파이프-오퍼레이터" class="level2"><h2 class="anchored" data-anchor-id="파이프-오퍼레이터">파이프 오퍼레이터</h2>
-<p><code>|&gt;</code> (파이프) 기호는 ’<em>그렇다면</em>’으로 읽어야 한다.</p>
+<p><code>|&gt;</code> (파이프) 기호는 ’<em>그렇다면</em>’이라고 읽으면 이해하기 쉽다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">|&gt;</span> <span class="fu">b</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">d</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>위의 코드는 <code>a</code>를 실행한 후 <code>b</code>를 실행하고, 그 다음에 <code>c</code>, <code>d</code>를 실행하며, <code>n</code>은 10인 경우와 같다는 의미이다. 이 파이프 코드는 다음과 같이 쓸 수 있다.</p>
+<p>위의 코드는 <code>a</code>를 <code>b()</code> 함수에 전달한 후, 결과를 <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> 함수에 전달하고, 다시 <code>d()</code> 함수에 전달하며, 마지막 호출에서 <code>n = 10</code>을 지정하는 것과 같다. 즉, 다음과 동일하다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">d</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">b</span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>혹은 다음과 같이 쓸 수 있다.</p>
+<p>혹은 중간 결과를 변수에 담아 다음과 같이 쓸 수도 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tmp1</span> <span class="op">&lt;-</span> <span class="fu">b</span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
 <span><span class="va">tmp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">tmp1</span><span class="op">)</span></span>
 <span><span class="va">tmp3</span> <span class="op">&lt;-</span> <span class="fu">d</span><span class="op">(</span><span class="va">tmp2</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>많은 사람들은 이러한 파이프 형태가 읽기 쉽다고 생각할 것이다. 왜냐하면 실행 순서가 읽는 순서대로 왼쪽에서 오른쪽으로 진행되기 때문에. 위의 두 번째 구문에 나타나 있는 포섭 함수 호출처럼, 중간 결과에 대해 이름을 지정할 필요가 없게 된다. 그런데 포섭 함수 호출처럼, 예상과 다른 중간 결과를 디버깅하는 것이 어렵게 된다. 중간 결과는 메모리에 존재하므로 세 번째 구문에 비해 메모리 할당의 절약을 기대할 수는 없다는 점은 유의할 필요가 있다. 원래 파이프 오퍼레이터는 <strong>magrittr</strong> 패키지에서 <code>%&gt;%</code>의 형태로 제시되었지만, R 4.1.0에서 네이티브 파이프로 수용되어 <code>|&gt;</code> 기호를 사용하고 있다. 어느 쪽을 사용해도 상관이 없다.</p>
+<p>많은 사람들은 이러한 파이프 형태가 실행 순서가 읽는 순서(왼쪽에서 오른쪽)를 따르기 때문에 읽기 쉽다고 생각한다. 중첩 함수 호출과 마찬가지로, 중간 결과에 이름을 붙일 필요가 없다. 그러나 중첩 함수 호출과 마찬가지로, 예상과 다른 중간 결과를 디버그하기는 어렵다. 또한 중간 결과는 메모리에 존재하므로, 어느 방식도 메모리 할당을 절약하지 못한다는 점에 유의해야 한다. 이 책에서 사용하는 R 4.1.0에 도입된 네이티브 파이프(<code>|&gt;</code>)는 <strong>magrittr</strong> 패키지의 <code>%&gt;%</code> 파이프로 안전하게 대체할 수 있다.</p>
 </section><section id="데이터-구조" class="level2"><h2 class="anchored" data-anchor-id="데이터-구조">데이터 구조</h2>
-<p>Chambers (2016)에 의해 지적된 바와 같이, “<em>R에서 존재하는 모든 것은 객체이다</em>”. 객체에는 언어 객체나 함수와 같이 특정한 일을 하는 객체뿐만 아니라 데이터 객체와 같은 더 기본적인 “<em>것들</em>”도 포함된다. 다음에서 몇 가지 기본적인 R 데이터 구조에 대해 논의하겠다.</p>
+<p>Chambers (2016)가 언급했듯이, “<em>R에서 존재하는 모든 것은 객체</em>”이다. 여기에는 데이터 객체뿐 아니라 언어 객체나 함수와 같이 특수 객체도 포함된다. 이 절에서는 R의 기본 데이터 구조를 살펴본다.</p>
 <section id="동질-벡터" class="level3"><h3 class="anchored" data-anchor-id="동질-벡터">동질 벡터</h3>
-<p>데이터 객체는 데이터를 포함하고 있으며, 때로는 메타데이터도 포함된다. 데이터는 항상 벡터 형태로 존재하며, 벡터는 다양한 유형을 가질 수 있다. 유형은 <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> 함수를 사용하여 확인할 수 있으며, 벡터의 길이는 <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> 함수를 사용하여 확인할 수 있다. 벡터는 <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> 함수를 사용하여 개별 요소들을 결합함으로써 생성된다.</p>
+<p>데이터 객체는 데이터를 포함하며, 경우에 따라 메타데이터도 가진다. 데이터는 항상 벡터 형태이며, 벡터는 하나의 유형만 가질 수 있다. 유형은 <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> 함수로 확인하고, 길이는 <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> 함수로 확인한다. 벡터는 <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> 함수로 생성한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co"># [1] "integer"</span></span>
@@ -374,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># [1] "logical"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이런 종류의 벡터를 동질(homegeneous) 벡터라고 부르는데, 이는 이러한 종류의 벡터가 오로지 한 가지 유형의 데이터만을 가질 수 있기 때문이다.</p>
-<p>벡터는 길이가 0일 수 있다는 점에 유의해야 한다.</p>
+<p>이런 종류의 벡터를 동질(homogeneous) 벡터라고 부르는데, 이는 한 가지 유형의 데이터만을 포함할 수 있기 때문이다.</p>
+<p>또한 벡터는 길이가 0일 수도 있다는 점에 유의해야 한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">integer</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
@@ -385,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
 <span><span class="co"># [1] 0</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>우리는 한 벡터의 요소들을 <code>[</code> 혹은 <code>[[</code>를 이용하여 불러올 수 있다(할당의 맥락에서는 요소들을 대체할 수 있다).</p>
+<p>벡터의 요소는 <code>[]</code> 혹은 <code>[[]]</code>를 사용하여 추출할 수 있으며, 할당 구문에서는 해당 요소를 다른 값으로 대체할 수도 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">a</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
@@ -401,10 +401,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">a</span></span>
 <span><span class="co"># [1]  1  5 10</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>차이점은 <code>[ ]</code>는 인덱스 <em>범위</em>(또는 여러 인덱스)에 대해 작업할 수 있는 반면, <code>[[ ]]</code>는 단일 벡터 값에 대해 작업한다는 것이다.</p>
+<p>차이점은 <code>[]</code>는 인덱스 <em>범위</em>(또는 복수 인덱스)에 대해 작업할 수 있는 반면, <code>[[]]</code>는 단일 벡터 요소에만 접근한다는 점이다.</p>
 </section><section id="이질-벡터-list" class="level3"><h3 class="anchored" data-anchor-id="이질-벡터-list">이질 벡터: <code>list</code>
 </h3>
-<p>두 번째 벡터 유형은 <code>list</code>로, 상이한 유형을 결합할 수 있다는 의미에서 이질(heterogeneous) 벡터라고 불린다.</p>
+<p>두 번째 벡터 유형은 <code>list</code>로, 서로 다른 유형의 데이터를 함께 담을 수 있다는 점에서 이질(heterogeneous) 벡터라고 불린다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">3</span>, <span class="cn">TRUE</span>, <span class="st">"foo"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span></span>
@@ -412,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span></span>
 <span><span class="co"># [1] 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>리스트에는 <code>[ ]</code>와 <code>[[ ]]</code> 사이에 추가적인 구분이 있다. 즉, 단일 <code>[ ]</code>는 항상 리스트를 반환하고, <code>[[ ]]</code>는 리스트 요소의 <em>내용</em>을 반환한다.</p>
+<p>리스트에서 <code>[]</code>와 <code>[[]]</code>는 추가적인 차이가 있다. <code>[]</code>는 항상 리스트 자체를 반환하는 반면, <code>[[]]</code>는 해당 리스트 요소의 <em>내용</em>을 반환한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="co"># [[1]]</span></span>
@@ -420,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="va">l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co"># [1] 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>교체의 맥락에서는, 리스트를 제공할 때는 <code>[ ]</code>를 사용하고, 새로운 값을 제공할 때는 <code>[[ ]]</code>를 사용한다.</p>
+<p>교체를 수행할 때, 리스트를 지정할 경우에는 <code>[]</code>를 사용하고, 새로운 값을 지정할 경우에는 <code>[[]]</code>를 사용한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">4</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">l</span></span>
@@ -443,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># [[3]]</span></span>
 <span><span class="co"># [1] "bar"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>리스트 요소에 <em>이름</em>을 지정할 수 있다.</p>
+<p>리스트의 각 요소에 <em>이름</em>을 부여할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>first <span class="op">=</span> <span class="fl">3</span>, second <span class="op">=</span> <span class="cn">TRUE</span>, third <span class="op">=</span> <span class="st">"foo"</span><span class="op">)</span></span>
 <span><span class="va">l</span></span>
@@ -456,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># $third</span></span>
 <span><span class="co"># [1] "foo"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>l[["second"]]</code>와 같은 방식으로 이름을 사용할 수고, 좀 더 단순한 형태로 사용할 수도 있다.</p>
+<p><code>l[["second"]]</code>처럼 이름을 사용하거나, 더 간단한 표기법을 사용할 수도 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l</span><span class="op">$</span><span class="va">second</span></span>
 <span><span class="co"># [1] TRUE</span></span>
@@ -471,21 +471,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># $third</span></span>
 <span><span class="co"># [1] "foo"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이름을 사용하는 것은 편리해 보이지만, 이름 속성에서 이름을 우선 찾아야 한다는 점도 있다(아래 참조).</p>
+<p>이름을 사용하는 것은 편리해 보일 수 있지만, 먼저 이름 속성에서 이름을 찾아야 한다는 점에 유의해야 한다(아래 참조).</p>
 </section><section id="null과-리스트-요소의-제거" class="level3"><h3 class="anchored" data-anchor-id="null과-리스트-요소의-제거">NULL과 리스트 요소의 제거</h3>
-<p><code>NULL</code>은 R에서 널(null) 값을 표현하는 방식이다. <code>NULL</code>은 단순 비교에서 상식적인 결과가 도출되지 않는다는 점에서 주의를 요한다.</p>
+<p><code>NULL</code>은 R에서 널(null) 값을 표현하는 방식이다. 단순 비교에서는 직관적이지 않은 결과가 나올 수 있으므로 주의해야 한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">==</span> <span class="cn">NULL</span> <span class="co"># not FALSE!</span></span>
 <span><span class="co"># logical(0)</span></span>
 <span><span class="cn">NULL</span> <span class="op">==</span> <span class="cn">NULL</span> <span class="co"># not even TRUE!</span></span>
 <span><span class="co"># logical(0)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>따라서 특별히 취급되어야 하는데, <code><a href="https://rdrr.io/r/base/NULL.html">is.null()</a></code> 함수가 유용하다.</p>
+<p>따라서 NULL은 특별히 취급할 필요가 있으며, 이를 확인할 때는 <code><a href="https://rdrr.io/r/base/NULL.html">is.null()</a></code> 함수가 유용하다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="co"># [1] TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>리스트의 특정 요소를 제거하려면, 제거 대상을 포함하지 않는 새로운 리스트를 생성하면 된다.</p>
+<p>리스트에서 특정 요소를 제거하려면, 해당 요소를 제외한 새로운 리스트를 만들면 된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l</span> <span class="op">&lt;-</span> <span class="va">l</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span> <span class="co"># remove second, implicitly</span></span>
 <span><span class="va">l</span></span>
@@ -495,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># $third</span></span>
 <span><span class="co"># [1] "foo"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>혹은, 제거 대상에 <code>NULL</code>을 할당할 수도 있다.</p>
+<p>또는, 제거하려는 요소에 <code>NULL</code>을 할당하는 방법도 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">l</span><span class="op">$</span><span class="va">second</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="va">l</span></span>
@@ -506,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># [1] "foo"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="속성" class="level3"><h3 class="anchored" data-anchor-id="속성">속성</h3>
-<p>임의의 메타데이터 객체를 데이터 객체에 결합하는 것이 가능하다.</p>
+<p>예를 들어, 임의의 메타데이터 객체를 데이터 객체에 결합할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">a</span>, <span class="st">"some_meta_data"</span><span class="op">)</span> <span class="op">=</span> <span class="st">"foo"</span></span>
@@ -515,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># attr(,"some_meta_data")</span></span>
 <span><span class="co"># [1] "foo"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이 메타데이터를 검색하거나 교체할 수 있다.</p>
+<p>이 메타데이터는 조회하거나 다른 값으로 교체할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">a</span>, <span class="st">"some_meta_data"</span><span class="op">)</span></span>
 <span><span class="co"># [1] "foo"</span></span>
@@ -523,7 +523,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">a</span>, <span class="st">"some_meta_data"</span><span class="op">)</span></span>
 <span><span class="co"># [1] "bar"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>본질적으로 객체의 속성은 이름이 지정된 리스트이며, 우리는 전체 리스트를 다음과 같이 가져오거나 설정할 수 있다.</p>
+<p>본질적으로 객체의 속성은 이름이 지정된 리스트이며, 전체 리스트를 다음과 같이 불러오거나 설정할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
 <span><span class="co"># $some_meta_data</span></span>
@@ -533,9 +533,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># $some_meta_data</span></span>
 <span><span class="co"># [1] "foo"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>R은 여러 속성을 특별하게 처리하며, 전체 세부 사항은 <code><a href="https://rdrr.io/r/base/attributes.html">?attributes</a></code>에서 확인할 수 있다. 이제 몇 가지 특별한 속성에 대해 설명하고자 한다.</p>
+<p>R은 여러 속성을 특별하게 취급하며, 전체 내용은 <code><a href="https://rdrr.io/r/base/attributes.html">?attributes</a></code>에서 확인할 수 있다. 이제 몇 가지 주요 속성에 대해 살펴보자.</p>
 <section id="객체-클래스와-class-속성" class="level4"><h4 class="anchored" data-anchor-id="객체-클래스와-class-속성">객체 클래스와 <code>class</code> 속성</h4>
-<p>R의 모든 객체는 “클래스를 가진다”가 의미하는 바처럼, <code>class(obj)</code>는 <code>obj</code>의 클래스에 대한 문자 벡터를 반환한다. 일부 객체는 기본 벡터와 같은 <em>암시적</em> 클래스를 가진다.</p>
+<p>R의 모든 객체는 “클래스를 가진다.” <code>class(obj)</code>는 <code>obj</code>의 클래스명을 담은 문자 벡터를 반환한다. 일부 객체는 기본 벡터처럼 <em>암시적</em> 클래스를 가진다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co"># [1] "integer"</span></span>
@@ -544,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TRUE"</span>, <span class="st">"FALSE"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># [1] "character"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>클래스를 명시적으로 설정할 수도 있다. <code>attr</code>을 사용하거나 표현식의 왼쪽에서 <code>class</code>를 사용하면 된다.</p>
+<p>클래스는 명시적으로 설정할 수도 있다. 이를 위해 <code><a href="https://rdrr.io/r/base/attr.html">attr()</a></code> 함수를 사용하거나, 표현식의 왼쪽에 <code>class</code>를 배치하여 지정할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"foo"</span></span>
@@ -558,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># $class</span></span>
 <span><span class="co"># [1] "foo"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이 경우, 새로 설정된 클래스가 이전의 암시적인 클래스를 덮어쓴다. 이렇게 하면, 클래스 이름을 메서드 이름에 추가하여 <code>foo</code> 클래스에 대한 메서드를 추가할 수 있다.</p>
+<p>이 경우 새로 지정된 클래스가 기존의 암시적 클래스를 덮어쓴다. 이렇게 하면 메서드 이름에 클래스 이름을 덧붙여 <code>foo</code> 클래스용 메서드를 정의할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">print.foo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"an object of class foo with length"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -566,19 +566,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
 <span><span class="co"># [1] "an object of class foo with length 3"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이러한 메서드를 제공하는 목적은 일반적으로 더 사용하기 쉬운 소프트웨어를 만드는 것이지만, 동시에 객체를 더 불투명하게 만들 수도 있다. 클래스 속성이 제거된 후 객체를 출력하여 “무엇으로 구성되어 있는지” 확인하는 것이 때때로 유용할 수 있다.</p>
+<p>이러한 메서드를 제공하는 목적은 일반적으로 소프트웨어를 더 쉽게 사용할 수 있도록 하는 것이지만, 동시에 객체를 더 불투명하게 만들 수도 있다. 따라서 클래스 속성을 제거한 후 객체를 출력해 “무엇으로 구성되어 있는지” 확인하는 것이 유용하다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
 <span><span class="co"># [1] 1 2 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>좀 더 구체적인 예로, 패키지 <code>sf</code> 패키지를 사용하여 다각형을 만드는 경우를 고려해보자.</p>
+<p>좀 더 구체적인 예로, <strong>sf</strong> 패키지를 사용해 폴리곤을 생성하는 경우를 생각해보자.</p>
 <div class="cell">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p</span></span>
 <span><span class="co"># POLYGON ((0 0, 1 0, 1 1, 0 0))</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이것은 잘 알려진 텍스트 형식(WKT)을 출력한다. 데이터 구조가 어떤지 알아보려면, 다음과 같이 하면 된다.</p>
+<p>이는 WKT(well-known-text) 형식으로 출력된다. 데이터 구조를 확인하려면 다음과 같이 하면 된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co"># [[1]]</span></span>
@@ -590,7 +590,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="dim-속성" class="level4"><h4 class="anchored" data-anchor-id="dim-속성">
 <code>dim</code> 속성</h4>
-<p><code>dim</code> 속성은 행렬 또는 어레이(array)의 차원을 설정한다.</p>
+<p><code>dim</code> 속성은 행렬이나 어레이(array)의 차원을 설정한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span>
@@ -620,7 +620,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section></section><section id="names-속성" class="level3"><h3 class="anchored" data-anchor-id="names-속성">
 <code>names</code> 속성</h3>
-<p>이름이 지정된 벡터는 <code>names</code> 속성에 이름을 가지고 있다. 위에서 리스트의 예를 봤고, 숫자 벡터의 예는 다음과 같다.</p>
+<p>이름이 지정된 벡터는 <code>names</code> 속성에 해당 이름을 저장한다. 위에서는 리스트 예시를 보았고, 숫자 벡터의 예시는 다음과 같다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>first <span class="op">=</span> <span class="fl">3</span>, second <span class="op">=</span> <span class="fl">4</span>, last <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">a</span><span class="op">[</span><span class="st">"second"</span><span class="op">]</span></span>
@@ -630,7 +630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># $names</span></span>
 <span><span class="co"># [1] "first"  "second" "last"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>다른 이름 속성으로는 행렬이나 어레이의 <code>dimnames</code>가 있다. 이는 차원의 이름뿐만 아니라 각 차원에 연관된 값의 레이블도 지정한다.</p>
+<p>다른 이름 속성으로는 행렬이나 어레이의 <code>dimnames</code>가 있다. 이 속성은 차원의 이름뿐 아니라, 각 차원에 연결된 값의 레이블도 지정한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"row1"</span>, <span class="st">"row2"</span><span class="op">)</span>,</span>
@@ -651,7 +651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># $dimnames$cols</span></span>
 <span><span class="co"># [1] "col1" "col2"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>data.frame</code> 객체는 행과 열을 가지며, 각 행과 열에는 이름이 있다.</p>
+<p><code>data.frame</code> 객체는 행과 열을 가지며, 각각의 행과 열에는 이름이 지정되어 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
@@ -666,7 +666,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section><section id="structure의-사용" class="level3"><h3 class="anchored" data-anchor-id="structure의-사용">
 <code>structure</code>의 사용</h3>
-<p>프로그래밍할 때, 객체를 반환하기 전에 속성을 추가하거나 수정하는 패턴은 매우 일반적이다. 다음의 예시를 보자.</p>
+<p>프로그래밍 시, 객체를 반환하기 전에 속성을 추가하거나 수정하는 패턴은 매우 흔하다. 예를 들어 다음과 같다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>   <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">create_obj</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># call some other function</span></span>
@@ -681,15 +681,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>   <span class="fu"><a href="https://rdrr.io/r/base/structure.html">structure</a></span><span class="op">(</span><span class="va">a</span>, class <span class="op">=</span> <span class="st">"foo"</span>, meta <span class="op">=</span> <span class="fl">33</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>여기서 <code><a href="https://rdrr.io/r/base/structure.html">structure()</a></code> 함수는 첫 번째 아규먼트로 전달된 객체의 속성을 추가 및 교체하거나(값이 <code>NULL</code>인 경우) 속성을 제거한다.</p>
-</section></section><section id="multipolygon-분할하기" class="level2"><h2 class="anchored" data-anchor-id="multipolygon-분할하기">
-<code>MULTIPOLYGON</code> 분할하기</h2>
-<p>위의 예를 사용하여 <code>MULTIPOLYGON</code>이 포함된 <code>sf</code> 객체를 여러 조각으로 분해할 수 있다. 예를 들어, <code>nc</code> 데이터셋을 사용한다고 가정해보자.</p>
+<p>여기서 <code><a href="https://rdrr.io/r/base/structure.html">structure()</a></code> 함수는 첫 번째 아규먼트로 받은 객체의 속성을 추가하거나 교체하고, 값이 <code>NULL</code>이면 해당 속성을 제거한다.</p>
+</section></section><section id="multipolygon-객체-분할하기" class="level2"><h2 class="anchored" data-anchor-id="multipolygon-객체-분할하기">
+<code>MULTIPOLYGON</code> 객체 분할하기</h2>
+<p><code>MULTIPOLYGON</code>이 포함된 <code>sf</code> 객체는 여러 개의 개별 조각으로 분리할 수 있다. 예를 들어, 위의 예시와 같이 <code>nc</code> 데이터셋을 사용한다고 가정해 보자.</p>
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"gpkg/nc.gpkg"</span>, package <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">nc</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>nc</code>의 속성에서 다음을 볼 수 있다.</p>
+<p><code>nc</code> 객체의 속성을 확인하면 다음과 같은 내용을 볼 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">nc</span><span class="op">)</span></span>
 <span><span class="co"># $names</span></span>
@@ -721,7 +721,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#      &lt;NA&gt;      &lt;NA&gt; </span></span>
 <span><span class="co"># Levels: constant aggregate identity</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>geom</code>이라는 이름의 지오메트리 컬럼이 있다는 것을 알 수 있다. 이 컬럼만 끄집어 낼 수 있다.</p>
+<p><code>geom</code>이라는 이름의 지오메트리 컬럼이 있음을 확인할 수 있으며, 이 컬럼만 추출할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span></span>
 <span><span class="co"># Geometry set for 100 features </span></span>
@@ -736,7 +736,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># MULTIPOLYGON (((-76 36.3, -76 36.3, -76 36.3, -...</span></span>
 <span><span class="co"># MULTIPOLYGON (((-77.2 36.2, -77.2 36.2, -77.3 3...</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>해당 컬럼만을 포함한 객체가 다음의 속성을 가지고 있음을 확인할 수 있다.</p>
+<p>해당 컬럼만 포함된 객체가 다음과 같은 속성을 가지고 있음을 확인할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">)</span></span>
 <span><span class="co"># $n_empty</span></span>
@@ -775,17 +775,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#  xmin  ymin  xmax  ymax </span></span>
 <span><span class="co"># -84.3  33.9 -75.5  36.6</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>네 번째 리스트 요소의 <em>내용</em>을 가져온다.</p>
+<p>네 번째 리스트 요소의 <em>내용</em>을 불러온다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">60</span>, digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co"># [1] "MULTIPOLYGON (((-76.009 36.32, -76.017 36.338, -76.033 36..."</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>객체의 클래스가 리스트임을 확인한다.</p>
+<p>해당 객체의 클래스가 리스트임을 확인한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># [1] "list"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>어떤 속성이 있는지 확인한다.</p>
+<p>해당 객체의 속성을 확인한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># $class</span></span>
@@ -796,7 +796,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># [1] 3</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>길이는 외부 링의 개수를 나타낸다. 멀티폴리곤은 하나 이상의 폴리곤으로 구성될 수 있다. 대부분의 카운티는 하나의 폴리곤만 가지고 있음을 알 수 있다.</p>
+<p>길이 속성은 외부 링의 개수를 나타낸다. 멀티폴리곤은 하나 이상의 폴리곤으로 구성될 수 있으며, 대부분의 카운티는 하나의 폴리곤만 가지고 있음을 알 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">)</span></span>
 <span><span class="co">#   [1] 1 1 1 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span></span>
@@ -804,22 +804,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#  [63] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 2 1 1</span></span>
 <span><span class="co">#  [94] 1 2 1 1 1 1 1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>멀티폴리곤은 폴리곤의 리스트이다.</p>
+<p>멀티폴리곤은 여러 폴리곤으로 구성된 리스트이다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># [1] "list"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>네 번째 멀티폴리곤의 <em>첫 번째</em> 폴리곤은 다시 리스트이다. 왜냐하면 폴리곤은 외부 링을 가지며, 그 뒤에 여러 개의 내부 링(구멍)이 올 <em>수</em> 있기 때문이다.</p>
+<p>네 번째 멀티폴리곤의 <em>첫 번째</em> 폴리곤 역시 리스트인데, 이는 폴리곤이 외부 링을 포함하고 그 뒤에 하나 이상의 내부 링(구멍)이 올 <em>수</em> 있기 때문이다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># [1] "list"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>해당 폴리곤이 외부 링 하나만 포함하고 있음을 알 수 있다.</p>
+<p>해당 폴리곤이 외부 링 하나만 가지고 있음을 확인할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># [1] 1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>해당 폴리곤의 유형, 차원, 첫 번째 좌표 집합를 다음과 같이 출력할 수 있다.</p>
+<p>해당 폴리곤의 유형, 차원, 그리고 첫 번째 좌표 집합은 다음과 같이 출력할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># [1] "double"</span></span>
@@ -834,7 +834,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># [5,] -76.1 36.3</span></span>
 <span><span class="co"># [6,] -76.2 36.4</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>속성을 변경할 수 있는데, 예를 들어 세 번째 좌표의 위도값을 다음과 같이 변경할 수 있다.</p>
+<p>속성은 변경 가능하다. 예를 들어, 세 번째 좌표의 위도 값을 다음과 같이 수정할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc</span><span class="op">$</span><span class="va">geom</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">3</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">36.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1228,7 +1228,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./A.html" class="pagination-link  aria-label=" r="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">오래된 공간 R 패키지</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">예전 R 공간 패키지</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
