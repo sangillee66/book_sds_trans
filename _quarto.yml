@@ -53,6 +53,9 @@ book:
     - B.qmd
 #    - references.qmd
 
+# filters: 
+#  - endnotes-per-chapter.lua
+
 bibliography: references.bib
 
 lightbox: true
