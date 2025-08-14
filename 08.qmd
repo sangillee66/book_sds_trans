@@ -165,7 +165,7 @@ cI$brks
 # [1] -2.290 -1.272 -0.698 -0.426 -0.147  0.129  0.470  1.059  2.105
 ```
 
-**classInt** 패키지의 `classIntervals()` 함수에서 `n` 아규먼트로 계급 수를 설정하고, `style` 아규먼트로 계급 구분 방식을 선택한다. 사용 가능한 옵션에 'fixed', 'sd', 'equal', 'pretty', 'quantile', 'kmeans', 'hclust', 'bclust', 'fisher', 'jenks'이다.(역자주: 'sd'는 표준편차 분류법, 'equal'은 등간격 분류법, 'fisher'와 'jenks'는 자연단절 분류법, 'kmeans', 'hclust', 'bclust'는 군집화 기반 계급 구분이다.) `n`을 지정했더라도 'pretty'를 선택하면 무시될 수 있으며, `n`을 지정하지 않으면 `nclass.Sturges()`가 사용된다. 자동으로 `n`을 선택하는 다른 방법도 제공된다. 관측치가 3,000개를 초과하면, 'fisher'와 'jenks'에서는 10% 샘플을 사용해 계급을 산출한다.
+**classInt** 패키지의 `classIntervals()` 함수에서 `n` 인수로 계급 수를 설정하고, `style` 인수로 계급 구분 방식을 선택한다. 사용 가능한 옵션에 'fixed', 'sd', 'equal', 'pretty', 'quantile', 'kmeans', 'hclust', 'bclust', 'fisher', 'jenks'이다.(역자주: 'sd'는 표준편차 분류법, 'equal'은 등간격 분류법, 'fisher'와 'jenks'는 자연단절 분류법, 'kmeans', 'hclust', 'bclust'는 군집화 기반 계급 구분이다.) `n`을 지정했더라도 'pretty'를 선택하면 무시될 수 있으며, `n`을 지정하지 않으면 `nclass.Sturges()`가 사용된다. 자동으로 `n`을 선택하는 다른 방법도 제공된다. 관측치가 3,000개를 초과하면, 'fisher'와 'jenks'에서는 10% 샘플을 사용해 계급을 산출한다.
 
 ### 그래티큘 및 관련 요소
 
@@ -233,7 +233,7 @@ plot(r, hook = hook, key.pos = 4)
 
 ### 컬러와 컬러 단절값
 
-베이스 `plot`에서는 `nbreaks` 아규먼트로 컬러 단절값의 개수를 설정하고, `breaks` 아규먼트로 제 컬러 단절값을 담은 숫자 벡터를 지정하거나, `classInt::classIntervals()` 함수의 `style` 아규먼트에 전달할 스타일 문자열을 지정할 수 있다.
+베이스 `plot`에서는 `nbreaks` 인수로 컬러 단절값의 개수를 설정하고, `breaks` 인수로 제 컬러 단절값을 담은 숫자 벡터를 지정하거나, `classInt::classIntervals()` 함수의 `style` 인수에 전달할 스타일 문자열을 지정할 수 있다.
 
 ## ggplot2 패키지를 활용한 지도 제작
 

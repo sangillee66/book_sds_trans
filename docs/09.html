@@ -372,7 +372,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 11일</p>
+      <p class="date-modified">2025년 8월 13일</p>
     </div>
   </div>
     
@@ -399,7 +399,7 @@ window.Quarto = {
 <span class="header-section-number">9.1</span> 벡터 데이터: sf 패키지</h2>
 <section id="로컬-디스크에서-불러오기" class="level3" data-number="9.1.1"><h3 data-number="9.1.1" class="anchored" data-anchor-id="로컬-디스크에서-불러오기">
 <span class="header-section-number">9.1.1</span> 로컬 디스크에서 불러오기</h3>
-<p><code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수는 GDAL을 사용해 디스크에서 벡터 데이터를 읽은 뒤, 해당 객체를 작업 메모리에 유지한다. 파일이 너무 커서 전부 메모리에 올리기 어렵다면 일부만 읽는 여러 옵션을 사용할 수 있다. 한 가지 방법은 <code>wkt_filter</code> 아규먼트에 지오메트리를 담은 WKT 문자열을 지정하는 것이고, 이 경우 지정한 지오메트리와 인터섹션하는 대상 파일의 지오메트리만 반환된다. 아래에 사례가 제시되어 있다. 여기에서는 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수 대신 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf()</a></code> 함수를 사용했는데, 콘솔 출력을 억제하기 위해서다.</p>
+<p><code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수는 GDAL을 사용해 디스크에서 벡터 데이터를 읽은 뒤, 해당 객체를 작업 메모리에 유지한다. 파일이 너무 커서 전부 메모리에 올리기 어렵다면 일부만 읽는 여러 옵션을 사용할 수 있다. 한 가지 방법은 <code>wkt_filter</code> 인수에 지오메트리를 담은 WKT 문자열을 지정하는 것이고, 이 경우 지정한 지오메트리와 인터섹션하는 대상 파일의 지오메트리만 반환된다. 아래에 사례가 제시되어 있다. 여기에서는 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수 대신 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf()</a></code> 함수를 사용했는데, 콘솔 출력을 억제하기 위해서다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="co"># Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE</span></span>
@@ -410,7 +410,7 @@ window.Quarto = {
 <span><span class="co"># Re-reading with feature count reset from 17 to 16</span></span>
 <span><span class="co"># [1] 16</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>두 번째 옵션은 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수의 <code>query</code> 아규먼트를 사용하는 것으로, 이 아규먼트는 ’OGR SQL’로 작성한 쿼리를 받아 특정 레이어에서 피처를 선택하거나, 반환할 필드를 제한하는데 사용할 수 있다. 아래에 사례가 있다.</p>
+<p>두 번째 옵션은 <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수의 <code>query</code> 인수를 사용하는 것으로, 이 인수는 ’OGR SQL’로 작성한 쿼리를 받아 특정 레이어에서 피처를 선택하거나, 반환할 필드를 제한하는데 사용할 수 있다. 아래에 사례가 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q</span> <span class="op">&lt;-</span> <span class="st">"select BIR74,SID74,geom from 'nc.gpkg' where BIR74 &gt; 1500"</span></span>
 <span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="va">file</span>, query <span class="op">=</span> <span class="va">q</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -426,7 +426,7 @@ window.Quarto = {
 <p>대용량 파일이나 디렉터리가 압축되어 있다면, 경로 앞에 <code>/vsizip</code>(Zip), <code>/vsigzip</code>(Gzip), <code>/vsitar</code>(Tar) 접두사를 붙여 압축 해제 없이 파일을 읽을 수 있다. 사용 방법은 접두사 + 압축 파일 경로 + 압축 내부 파일 경로 순서로 지정하면 된다. 다만 이 방식은 추가적인 압축 해제와 인덱싱 오버헤드로 인해 컴퓨팅 자원을 더 많이 소모할 수 있다.</p>
 </section><section id="데이터베이스에서-불러오기-dbplyr-패키지" class="level3" data-number="9.1.2"><h3 data-number="9.1.2" class="anchored" data-anchor-id="데이터베이스에서-불러오기-dbplyr-패키지">
 <span class="header-section-number">9.1.2</span> 데이터베이스에서 불러오기, dbplyr 패키지</h3>
-<p>GDAL은 여러 공간 데이터베이스를 지원하며, 앞서 설명했듯 <code>query</code> 아규먼트에 담긴 SQL 문을 데이터베이스로 전달한다. 그러나 DBI와 해당 드라이버, 그리고 <strong>dbplyr</strong> 패키지를 사용해 공간 데이터베이스에 직접 읽고 쓰는 편이 더 유리한 경우도 있다. 이러한 사례는 다음과 같다. 여기에서, 데이터베이스 호스트와 사용자 이름은 환경 변수에서 가져오며, 데이터베이스 이름은 <code>postgis</code>이다.</p>
+<p>GDAL은 여러 공간 데이터베이스를 지원하며, 앞서 설명했듯 <code>query</code> 인수에 담긴 SQL 문을 데이터베이스로 전달한다. 그러나 DBI와 해당 드라이버, 그리고 <strong>dbplyr</strong> 패키지를 사용해 공간 데이터베이스에 직접 읽고 쓰는 편이 더 유리한 경우도 있다. 이러한 사례는 다음과 같다. 여기에서, 데이터베이스 호스트와 사용자 이름은 환경 변수에서 가져오며, 데이터베이스 이름은 <code>postgis</code>이다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pg</span> <span class="op">&lt;-</span> <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span></span>
 <span>    <span class="fu">RPostgres</span><span class="fu">::</span><span class="fu"><a href="https://rpostgres.r-dbi.org/reference/Postgres.html">Postgres</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -611,10 +611,10 @@ window.Quarto = {
 <span><span class="co"># see '?methods' for accessing help and source code</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>우리는 이미 <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>과 <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> 함수의 동작을 살펴보았고, <code><a href="https://rdrr.io/r/base/dim.html">dim()</a></code> 함수는 디멘션 메타데이터 테이블에서 디멘션 정보를 읽어 온다.</p>
-<p>실제로 데이터를 가져오는 메서드는 <code><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, <code><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars()</a></code>의 세 가지 함수이다. <code><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars()</a></code> 함수는 실제 데이터를 <code>stars</code> 객체로 읽어오며, 이때 <code>downsample</code> 아규먼트가 다운샘플링 비율을 제어한다. <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> 함수도 데이터를 읽어 오되, 장치 해상도에 맞는 다운샘플링 값을 선택해 객체를 플로팅한다. <code><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars()</a></code> 함수는 <code>stars_proxy</code> 객체를 디스크에 기록한다.</p>
+<p>실제로 데이터를 가져오는 메서드는 <code><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars()</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>, <code><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars()</a></code>의 세 가지 함수이다. <code><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars()</a></code> 함수는 실제 데이터를 <code>stars</code> 객체로 읽어오며, 이때 <code>downsample</code> 인수가 다운샘플링 비율을 제어한다. <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> 함수도 데이터를 읽어 오되, 장치 해상도에 맞는 다운샘플링 값을 선택해 객체를 플로팅한다. <code><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars()</a></code> 함수는 <code>stars_proxy</code> 객체를 디스크에 기록한다.</p>
 <p><code>stars_proxy</code> 객체에 대한 나머지 메서드는 래스터 데이터에 즉시 작용하지 않고, 객체에 연결된 <em>작업</em> 목록에 오퍼레이션을 추가만 한다. 실제 래스터 데이터가 불러오면(예: <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> 또는 <code><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars()</a></code> 함수가 호출 시) 그 시점에 이 목록의 명령이 실행된다.</p>
 <p><code><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop()</a></code> 함수는 읽을 래스터의 범위(영역)를 제한한다. <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> 함수는 <code>stars_proxy</code> 객체를 결합하며, 역시 실제 데이터를 곧바로 결합하는 것은 아니다. <code><a href="https://rdrr.io/pkg/abind/man/adrop.html">adrop()</a></code> 함수는 빈 디멘션을 제거하고, <code><a href="https://rdrr.io/r/base/aperm.html">aperm()</a></code> 함수는 디멘션 순서를 변경한다.</p>
-<p><code><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars()</a></code> 함수는 입력을 청크 단위로 읽고 처리한 뒤 기록하며, 사용자가 공간 청크의 크기를 제어할 수 있도록 <code>chunk_size</code> 아규먼트를 제공한다.</p>
+<p><code><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars()</a></code> 함수는 입력을 청크 단위로 읽고 처리한 뒤 기록하며, 사용자가 공간 청크의 크기를 제어할 수 있도록 <code>chunk_size</code> 인수를 제공한다.</p>
 </section><section id="원격-래스터-리소스" class="level3" data-number="9.2.3"><h3 data-number="9.2.3" class="anchored" data-anchor-id="원격-래스터-리소스">
 <span class="header-section-number">9.2.3</span> 원격 래스터 리소스</h3>
 <p>COG(Cloud Optimised GeoTIFF)와 같은 포맷은 효율성과 리소스 절약을 염두에 두고 설계되었다. 예를 들어 메타데이터만 읽거나, 오버뷰(전체 이미지를 낮은 해상도로 축약한 버전)만 읽거나 <code>/vsixxx/</code> 메커니즘을 사용해 특정 공간 영역만 부분 읽기할 때 유용하다(9.1.3절 참조). COG는 GDAL의 GeoTIFF 드라이버로 생성할 수 있으며, <code><a href="https://r-spatial.github.io/stars/reference/write_stars.html">write_stars()</a></code> 함수 호출에서 적절한 데이터셋 생성 옵션을 지정하면 된다.</p>
@@ -669,11 +669,11 @@ window.Quarto = {
 <ol type="1">
 <li><p>위의 S2 이미지에 대해 <code><a href="https://r-spatial.github.io/stars/reference/st_dimensions.html">st_get_dimension_values()</a></code> 함수를 사용해 밴드 순서를 확인하고, 각 스펙트럴 밴드/색상이 무엇인지 파악하시오.</p></li>
 <li><p>S2 이미지에 대해 <code><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply()</a></code> 함수와 적절한 <code>ndvi()</code> 함수를 사용하여 NDVI를 계산하시오. 결과를 화면에 플로팅한 뒤, GeoTIFF로 저장하시오. 플로팅과 쓰기의 실행 시간 차이에 대해 설명하시오.</p></li>
-<li><p>S2 이미지를 RGB 합성으로 플로팅하시오. 먼저 <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> 함수의 <code>rgb</code> 아규먼트를 사용하고, 이어서 <code><a href="https://r-spatial.github.io/stars/reference/st_rgb.html">st_rgb()</a></code> 함수를 사용하시오.</p></li>
+<li><p>S2 이미지를 RGB 합성으로 플로팅하시오. 먼저 <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> 함수의 <code>rgb</code> 인수를 사용하고, 이어서 <code><a href="https://r-spatial.github.io/stars/reference/st_rgb.html">st_rgb()</a></code> 함수를 사용하시오.</p></li>
 <li><p>S2의 바운딩 박스에서 무작위로 다섯 개의 점을 선택하고, 이 점들에서 밴드 값을 추출하시오. 반환된 객체를 <code>sf</code> 객체로 변환하시오.</p></li>
 <li><p><code>POINT(390000 5940000)</code>을 중심으로 반경 10km 원을 정의하고, <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 사용하여 S2 이미지의 평균 픽셀 값을 계산하시오. 이미지를 30배 다운샘플링한 결과와 원래 해상도의 결과를 비교하고, 두 결과 간의 상대적 차이를 계산하시오.</p></li>
 <li><p>다운샘플링된 S2 이미지에서 <code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code> 함수로 히스토그램을 계산하시오. 각 밴드에 대해서도 동일한 작업을 수행하시오. <strong>ggplot2</strong> 패키지를 사용해 네 개의 히스토그램을 모두 포함하는 단일 플롯을 작성하시오.</p></li>
-<li><p><code><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop()</a></code> 함수를 사용해 S2 이미지를 10km 원이 포함하는 영역으로 클리핑한 뒤 결과를 플로팅하시오. 아규먼트 <code>crop = FALSE</code>를 설정했을 때 어떤 변화가 있는지 살펴보시오.</p></li>
+<li><p><code><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop()</a></code> 함수를 사용해 S2 이미지를 10km 원이 포함하는 영역으로 클리핑한 뒤 결과를 플로팅하시오. 인수 <code>crop = FALSE</code>를 설정했을 때 어떤 변화가 있는지 살펴보시오.</p></li>
 <li><p>다운샘플링된 이미지를 사용하여, 네 개의 밴드에서 모든 픽셀 값이 1000보다 큰지의 여부를 나타내는 논리 레이어를 계산하시오. 네 개의 밴드에 대해 래스터 대수 표현식을 사용하거나 <code><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply()</a></code> 함수를 사용하시오.</p></li>
 </ol>
 
@@ -1080,7 +1080,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
