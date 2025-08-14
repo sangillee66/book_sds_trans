@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>공간데이터사이언스 개론 - 11&nbsp; 포인트패턴분석</title>
+<title>공간데이터사이언스 개론 - 11&nbsp; 포인트 패턴 분석</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -257,7 +257,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -339,7 +339,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></h1>
 </div>
 
 
@@ -359,9 +359,9 @@ window.Quarto = {
   
 
 
-</header><p>포인트패턴분석은 공간상에 나타난 포인트의 분포 패턴을 기술하거나, 그러한 패턴을 생성한 프로세스에 대해 추론하는 기법이다. 여기서 핵심은 포인트의 위치 정보인데, 이 위치는 표본추출을 위해 임의로 정한 지점이 아니라 특정한 프로세스의 결과물이다(예: 동물 목격 지점, 사고 지점, 발병 지점, 수목 위치 등). 이는 모든 지점에서 해당 현상이 존재하지만 관측값은 연구자가 통제한 관측 지점에서만 얻어진다고 보는 지구통계학적 프로세스(12장)와 대조적이다. 지구통계학적 연구의 주된 관심은 관측 지점 자체가 아니라 관측되지 않은 지점의 값을 추정하는 데 있다. 반면, 포인트패턴분석에서는 연구 대상 지역의 모든 지점에서 관측이 이루어질 수 있다고 가정한다. 이 경우, 특정 지점에 포인트가 없다는 것은 관측이 이루어지지 않았다는 뜻이 아니라(지구통계학적 프로세스와의 차이점), 관측은 이루어졌지만 현상이 발생하지 않았다는 의미다. 확률과정(random process)의 관점에서 보면, 포인트패턴분석에서는 위치가 확률변수인 반면, 지구통계학적 분석에서 측정 변수가 고정된 위치를 갖는 랜덤필드(random field)이다.</p>
-<p>이 장에서는 <strong>spatstat</strong> 패키지(Baddeley, Turner, and Rubak 2022)를 활용한 포인트패턴분석의 기초만을 다룬다. 포인트 패턴 이론과 <strong>spatstat</strong> 및 관련 패키지 사용에 대한 포괄적인 내용은 Baddeley, Rubak와 Turner(2015)의 <strong>spatstat</strong> 저서에 잘 정리되어 있다. 여기서는 특정 주제만을 다루지만, 그렇다고 해서 이 주제들이 누락된 다른 주제들보다 더 중요하다는 의미는 아니다. 또한 <strong>spatstat</strong> 패키지와 보다 공간데이터사이언스 지향적인 패키지인 <strong>sf</strong> 및 <strong>stars</strong> 간의 인터페이스 설명에도 지면을 할애한다. 포인트패턴분석을 소개하는 또 다른 참고서로는 Stoyan 등(2017)이 있으며, 시공간 포인트 프로세스 분석용 R 패키지인 <strong>stpp</strong>(Gabriel et al.&nbsp;2022)에 대해서는 Gabriel, Rowlingson와 Diggle(2013)을 참조할 수 있다.</p>
-<p>포인트패턴분석에서 중요한 개념은 포인트 <em>패턴</em>과 포인트 <em>프로세스</em>를 구분하는 것이다. 포인트 프로세스는 포인트 패턴을 생성하는 확률과정(stochastic process)이며, 우리가 다루는 데이터셋은 항상 포인트 패턴이다. 분석의 목적은 관찰된 패턴을 생성했을 가능성이 있는 포인트 프로세스의 특성을 파악하는 데 있다. 공간 포인트 프로세스의 주요 특성은 다음과 같다.</p>
+</header><p>포인트 패턴 분석은 공간상에 나타난 포인트의 분포 패턴을 기술하거나, 그러한 패턴을 생성한 프로세스에 대해 추론하는 기법이다. 여기서 핵심은 포인트의 위치 정보인데, 이 위치는 표본추출을 위해 임의로 정한 지점이 아니라 특정한 프로세스의 결과물이다(예: 동물 목격 지점, 사고 지점, 발병 지점, 수목 위치 등). 이는 모든 지점에서 해당 현상이 존재하지만 관측값은 연구자가 통제한 관측 지점에서만 얻어진다고 보는 지구통계학적 프로세스(12장)와 대조적이다. 지구통계학적 연구의 주된 관심은 관측 지점 자체가 아니라 관측되지 않은 지점의 값을 추정하는 데 있다. 반면, 포인트 패턴 분석에서는 연구 대상 지역의 모든 지점에서 관측이 이루어질 수 있다고 가정한다. 이 경우, 특정 지점에 포인트가 없다는 것은 관측이 이루어지지 않았다는 뜻이 아니라(지구통계학적 프로세스와의 차이점), 관측은 이루어졌지만 현상이 발생하지 않았다는 의미다. 확률과정(random process)의 관점에서 보면, 포인트 패턴 분석에서는 위치가 확률변수인 반면, 지구통계학적 분석에서 측정 변수가 고정된 위치를 갖는 랜덤필드(random field)이다.</p>
+<p>이 장에서는 <strong>spatstat</strong> 패키지(Baddeley, Turner, and Rubak 2022)를 활용한 포인트 패턴 분석의 기초만을 다룬다. 포인트 패턴 이론과 <strong>spatstat</strong> 및 관련 패키지 사용에 대한 포괄적인 내용은 Baddeley, Rubak와 Turner(2015)의 <strong>spatstat</strong> 저서에 잘 정리되어 있다. 여기서는 특정 주제만을 다루지만, 그렇다고 해서 이 주제들이 누락된 다른 주제들보다 더 중요하다는 의미는 아니다. 또한 <strong>spatstat</strong> 패키지와 보다 공간데이터사이언스 지향적인 패키지인 <strong>sf</strong> 및 <strong>stars</strong> 간의 인터페이스 설명에도 지면을 할애한다. 포인트 패턴 분석을 소개하는 또 다른 참고서로는 Stoyan 등(2017)이 있으며, 시공간 포인트 프로세스 분석용 R 패키지인 <strong>stpp</strong>(Gabriel et al.&nbsp;2022)에 대해서는 Gabriel, Rowlingson와 Diggle(2013)을 참조할 수 있다.</p>
+<p>포인트 패턴 분석에서 중요한 개념은 포인트 <em>패턴</em>과 포인트 <em>프로세스</em>를 구분하는 것이다. 포인트 프로세스는 포인트 패턴을 생성하는 확률과정(stochastic process)이며, 우리가 다루는 데이터셋은 항상 포인트 패턴이다. 분석의 목적은 관찰된 패턴을 생성했을 가능성이 있는 포인트 프로세스의 특성을 파악하는 데 있다. 공간 포인트 프로세스의 주요 특성은 다음과 같다.</p>
 <ul>
 <li><p>1차 특성: 강도 함수(intensity function)는 단위 면적당 포인트의 수를 나타내며, <em>이질적</em>(inhomogeneous) 포인트 프로세스에서는 공간적으로 변동한다.</p></li>
 <li><p>2차 특성: 주어진 강도 함수(고정 혹은 변동) 하에서, 포인트들이 <em>서로</em> 독립적으로 분포하는지, 서로 끌어당기는 경향이 있는지(군집화), 혹는 서로 밀어내는 경향이 있는지(완전 공간 무작위성(complete spatial randomness)보다 더 규칙적인 분포인지)를 묘사한다.</p></li>
@@ -385,7 +385,7 @@ window.Quarto = {
 </div>
 <div id="fig-11-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-11-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.1: 관찰 윈도우(회색)에 따라 동일한 포인트 패턴이 공간적으로 완전히 무작위로 나타날 수도 있고(왼쪽), 군집을 이루고 있는 것으로 나타날 수도 있다(오른쪽).
@@ -422,7 +422,7 @@ window.Quarto = {
 </div>
 <div id="fig-11-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-11-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.2: 두 포인트 패턴의 3x3 방격 빈도
@@ -461,7 +461,7 @@ window.Quarto = {
 </div>
 <div id="fig-11-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-11-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.3: 두 포인트 패턴에 대한 커널 밀도면
@@ -516,7 +516,7 @@ window.Quarto = {
 <p>반환된 객체는 <code>ppm</code> 클래스이며, 이를 플로팅할 수 있다. 그림 11.4는 예측된 밀도면을 보여주며, 예측 표준오차 역시 플로팅할 수 있다.</p>
 <div id="fig-11-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-11-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.4: ppm 모형에 기반한 예측 밀도면
@@ -632,7 +632,7 @@ window.Quarto = {
 </div>
 <div id="fig-11-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-11-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.5: mu =3, scale = 0.05로 설정한 Thomas 프로세스
@@ -644,7 +644,7 @@ window.Quarto = {
 <p><strong>sf</strong> 패키지에서 기본적으로 제공하는 또 다른 공간적 무작위 표본추출 유형은 구면에서의 무작위 포인트 시뮬레이션이다. 그림 11.6은 그 한 예시로, 생성된 포인트들이 모두 해양에 위치해 있다. 구면에서 규칙적인 포인트 패턴을 시뮬레이션하려면 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수의 <code>type</code> 인수를 <code>"Fibonacci"</code>로 지정하면 된다(González 2010).</p>
 <div id="fig-11-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-11-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;11.6: 구면에서 해양부에만 제한된 표본 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법 지도에 표시되어 있다.
@@ -1065,7 +1065,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
