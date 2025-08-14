@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.549">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>공간데이터사이언스 개론 - 11&nbsp; 포인트 패턴 분석</title>
+<title>공간데이터사이언스 개론 - 11&nbsp; 포인트패턴분석</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -134,7 +134,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -257,13 +257,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,17 +329,17 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EA%B4%80%EC%B8%A1-%EC%9C%88%EB%8F%84%EC%9A%B0" id="toc-관측-윈도우" class="nav-link active" data-scroll-target="#%EA%B4%80%EC%B8%A1-%EC%9C%88%EB%8F%84%EC%9A%B0"><span class="header-section-number">11.1</span> 관측 윈도우</a></li>
+<li><a href="#%EA%B4%80%EC%B8%A1%EC%9C%88%EB%8F%84%EC%9A%B0" id="toc-관측윈도우" class="nav-link active" data-scroll-target="#%EA%B4%80%EC%B8%A1%EC%9C%88%EB%8F%84%EC%9A%B0"><span class="header-section-number">11.1</span> 관측윈도우</a></li>
   <li><a href="#crs" id="toc-crs" class="nav-link" data-scroll-target="#crs"><span class="header-section-number">11.2</span> CRS</a></li>
   <li><a href="#%EB%A7%88%ED%81%AC-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%8C%A8%ED%84%B4%EA%B3%BC-%EC%84%A0%ED%98%95-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%83%81%EC%9D%98-%ED%8F%AC%EC%9D%B8%ED%8A%B8" id="toc-마크-포인트-패턴과-선형-네트워크-상의-포인트" class="nav-link" data-scroll-target="#%EB%A7%88%ED%81%AC-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%8C%A8%ED%84%B4%EA%B3%BC-%EC%84%A0%ED%98%95-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%83%81%EC%9D%98-%ED%8F%AC%EC%9D%B8%ED%8A%B8"><span class="header-section-number">11.3</span> 마크 포인트 패턴과 선형 네트워크 상의 포인트</a></li>
-  <li><a href="#%EA%B3%B5%EA%B0%84-%EC%83%98%ED%94%8C%EB%A7%81%EA%B3%BC-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EB%A5%BC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%ED%95%98%EA%B8%B0" id="toc-공간-샘플링과-포인트-프로세스를-시뮬레이션하기" class="nav-link" data-scroll-target="#%EA%B3%B5%EA%B0%84-%EC%83%98%ED%94%8C%EB%A7%81%EA%B3%BC-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EB%A5%BC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%ED%95%98%EA%B8%B0"><span class="header-section-number">11.4</span> 공간 샘플링과 포인트 프로세스를 시뮬레이션하기</a></li>
+  <li><a href="#%EA%B3%B5%EA%B0%84%EC%A0%81-%ED%91%9C%EB%B3%B8%EC%B6%94%EC%B6%9C%EA%B3%BC-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EB%A5%BC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%ED%95%98%EA%B8%B0" id="toc-공간적-표본추출과-포인트-프로세스를-시뮬레이션하기" class="nav-link" data-scroll-target="#%EA%B3%B5%EA%B0%84%EC%A0%81-%ED%91%9C%EB%B3%B8%EC%B6%94%EC%B6%9C%EA%B3%BC-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EB%A5%BC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%ED%95%98%EA%B8%B0"><span class="header-section-number">11.4</span> 공간적 표본추출과 포인트 프로세스를 시뮬레이션하기</a></li>
   <li><a href="#%EA%B5%AC%EC%B2%B4-%EC%83%81%EC%9D%98-%ED%8F%AC%EC%9D%B8%ED%8A%B8%EB%A5%BC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%ED%95%98%EA%B8%B0" id="toc-구체-상의-포인트를-시뮬레이션하기" class="nav-link" data-scroll-target="#%EA%B5%AC%EC%B2%B4-%EC%83%81%EC%9D%98-%ED%8F%AC%EC%9D%B8%ED%8A%B8%EB%A5%BC-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%ED%95%98%EA%B8%B0"><span class="header-section-number">11.5</span> 구체 상의 포인트를 시뮬레이션하기</a></li>
   <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"><span class="header-section-number">11.6</span> 연습문제</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></h1>
+<h1 class="title d-none d-lg-block"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></h1>
 </div>
 
 
@@ -351,7 +351,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 13일</p>
+      <p class="date-modified">2025년 8월 14일</p>
     </div>
   </div>
     
@@ -359,16 +359,16 @@ window.Quarto = {
   
 
 
-</header><p>포인트 패턴 분석은 공간상에 나타난 포인트의 분포 패턴을 기술하거나, 그러한 패턴을 생성한 프로세스에 대해 추론하는 기법이다. 여기서 핵심은 포인트의 위치 정보인데, 이 위치는 표본추출을 위해 임의로 정한 지점이 아니라 특정한 프로세스의 결과물이다(예: 동물 목격 지점, 사고 지점, 발병 지점, 수목 위치 등). 이는 모든 지점에서 해당 현상이 존재하지만 관측값은 연구자가 통제한 관측 지점에서만 얻어진다고 보는 지구통계학적 프로세스(12장)와 대조적이다. 지구통계학적 연구의 주된 관심은 관측 지점 자체가 아니라 관측되지 않은 지점의 값을 추정하는 데 있다. 반면, 포인트 패턴 분석에서는 연구 대상 지역의 모든 지점에서 관측이 이루어질 수 있다고 가정한다. 이 경우, 특정 지점에 포인트가 없다는 것은 관측이 이루어지지 않았다는 뜻이 아니라(지구통계학적 프로세스와의 차이점), 관측은 이루어졌지만 현상이 발생하지 않았다는 의미다. 확률 과정(random process)의 관점에서 보면, 포인트 패턴 분석에서는 위치가 확률 변수인 반면, 지구통계학적 분석에서 측정 변수가 고정된 위치를 갖는 랜덤 필드(random field)이다.</p>
-<p>이 장에서는 <strong>spatstat</strong> 패키지(Baddeley, Turner, Rubak 2022)를 활용한 포인트 패턴 분석의 기초만을 다룬다. 포인트 패턴 이론과 <strong>spatstat</strong> 및 관련 패키지 사용에 대한 포괄적인 내용은 Baddeley, Rubak, Turner(2015)의 <strong>spatstat</strong> 저서에 잘 정리되어 있다. 여기서는 특정 주제만을 다루지만, 그렇다고 해서 이 주제들이 누락된 다른 주제들보다 더 중요하다는 의미는 아니다. 또한 <strong>spatstat</strong> 패키지와 보다 공간데이터사이언스 지향적인 패키지인 <strong>sf</strong> 및 <strong>stars</strong> 간의 인터페이스 설명에도 지면을 할애한다. 포인트 패턴 분석을 소개하는 또 다른 참고서로는 Stoyan et al.(2017)가 있으며, 시공간 포인트 프로세스 분석용 R 패키지인 <strong>stpp</strong>(Gabriel et al.&nbsp;2022)에 대해서는 Gabriel, Rowlingson, Diggle(2013)을 참조할 수 있다.</p>
-<p>포인트 패턴 분석에서 중요한 개념은 포인트 <em>패턴</em>과 포인트 <em>프로세스</em>를 구분하는 것이다. 포인트 프로세스는 포인트 패턴을 생성하는 확률 과정(stochastic process)이며, 우리가 다루는 데이터셋은 항상 포인트 패턴이다. 분석의 목적은 관찰된 패턴을 생성했을 가능성이 있는 포인트 프로세스의 특성을 파악하는 데 있다. 공간 포인트 프로세스의 주요 특성은 다음과 같다.</p>
+</header><p>포인트패턴분석은 공간상에 나타난 포인트의 분포 패턴을 기술하거나, 그러한 패턴을 생성한 프로세스에 대해 추론하는 기법이다. 여기서 핵심은 포인트의 위치 정보인데, 이 위치는 표본추출을 위해 임의로 정한 지점이 아니라 특정한 프로세스의 결과물이다(예: 동물 목격 지점, 사고 지점, 발병 지점, 수목 위치 등). 이는 모든 지점에서 해당 현상이 존재하지만 관측값은 연구자가 통제한 관측 지점에서만 얻어진다고 보는 지구통계학적 프로세스(12장)와 대조적이다. 지구통계학적 연구의 주된 관심은 관측 지점 자체가 아니라 관측되지 않은 지점의 값을 추정하는 데 있다. 반면, 포인트패턴분석에서는 연구 대상 지역의 모든 지점에서 관측이 이루어질 수 있다고 가정한다. 이 경우, 특정 지점에 포인트가 없다는 것은 관측이 이루어지지 않았다는 뜻이 아니라(지구통계학적 프로세스와의 차이점), 관측은 이루어졌지만 현상이 발생하지 않았다는 의미다. 확률과정(random process)의 관점에서 보면, 포인트패턴분석에서는 위치가 확률변수인 반면, 지구통계학적 분석에서 측정 변수가 고정된 위치를 갖는 랜덤필드(random field)이다.</p>
+<p>이 장에서는 <strong>spatstat</strong> 패키지(Baddeley, Turner, and Rubak 2022)를 활용한 포인트패턴분석의 기초만을 다룬다. 포인트 패턴 이론과 <strong>spatstat</strong> 및 관련 패키지 사용에 대한 포괄적인 내용은 Baddeley, Rubak와 Turner(2015)의 <strong>spatstat</strong> 저서에 잘 정리되어 있다. 여기서는 특정 주제만을 다루지만, 그렇다고 해서 이 주제들이 누락된 다른 주제들보다 더 중요하다는 의미는 아니다. 또한 <strong>spatstat</strong> 패키지와 보다 공간데이터사이언스 지향적인 패키지인 <strong>sf</strong> 및 <strong>stars</strong> 간의 인터페이스 설명에도 지면을 할애한다. 포인트패턴분석을 소개하는 또 다른 참고서로는 Stoyan 등(2017)이 있으며, 시공간 포인트 프로세스 분석용 R 패키지인 <strong>stpp</strong>(Gabriel et al.&nbsp;2022)에 대해서는 Gabriel, Rowlingson와 Diggle(2013)을 참조할 수 있다.</p>
+<p>포인트패턴분석에서 중요한 개념은 포인트 <em>패턴</em>과 포인트 <em>프로세스</em>를 구분하는 것이다. 포인트 프로세스는 포인트 패턴을 생성하는 확률과정(stochastic process)이며, 우리가 다루는 데이터셋은 항상 포인트 패턴이다. 분석의 목적은 관찰된 패턴을 생성했을 가능성이 있는 포인트 프로세스의 특성을 파악하는 데 있다. 공간 포인트 프로세스의 주요 특성은 다음과 같다.</p>
 <ul>
 <li><p>1차 특성: 강도 함수(intensity function)는 단위 면적당 포인트의 수를 나타내며, <em>이질적</em>(inhomogeneous) 포인트 프로세스에서는 공간적으로 변동한다.</p></li>
 <li><p>2차 특성: 주어진 강도 함수(고정 혹은 변동) 하에서, 포인트들이 <em>서로</em> 독립적으로 분포하는지, 서로 끌어당기는 경향이 있는지(군집화), 혹는 서로 밀어내는 경향이 있는지(완전 공간 무작위성(complete spatial randomness)보다 더 규칙적인 분포인지)를 묘사한다.</p></li>
 </ul>
-<section id="관측-윈도우" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="관측-윈도우">
-<span class="header-section-number">11.1</span> 관측 윈도우</h2>
-<p>포인트 패턴을 관측 윈도우(observation window)를 가진다. 관측 윈도우는 포인트가 기록될 수 있는 공간적 범위를 정의하며, 분석에서 중요한 역할을 한다. 다음 코드는 무작위 포인트 패턴을 생성하는 예시이다.</p>
+<section id="관측윈도우" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="관측윈도우">
+<span class="header-section-number">11.1</span> 관측윈도우</h2>
+<p>포인트 패턴은 관측윈도우(observation window)를 가진다. 관측윈도우는 포인트가 기록될 수 있는 공간적 범위를 정의하며, 분석에서 중요한 역할을 한다. 다음 코드는 무작위 포인트 패턴을 생성하는 예시이다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="co"># Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE</span></span>
@@ -391,14 +391,14 @@ window.Quarto = {
 그림&nbsp;11.1: 관찰 윈도우(회색)에 따라 동일한 포인트 패턴이 공간적으로 완전히 무작위로 나타날 수도 있고(왼쪽), 군집을 이루고 있는 것으로 나타날 수도 있다(오른쪽).
 </figcaption></figure>
 </div>
-<p><strong>spatstat</strong> 패키지는 포인트 패턴을 <code>ppp</code> 클라스의 객체로 저장한다. 모든 <code>ppp</code> 객체는 포인트의 위치 정보와 관측 윈도우(<code>owin</code> 클라스의 객체)를 함께 가진다. 다음 예시는 포인트 데이터를 이용해 <code>ppp</code> 객체를 생성하는 방법을 보여준다.</p>
+<p><strong>spatstat</strong> 패키지는 포인트 패턴을 <code>ppp</code> 클라스의 객체로 저장한다. 모든 <code>ppp</code> 객체는 포인트의 위치 정보와 관측윈도우(<code>owin</code> 클라스의 객체)를 함께 가진다. 다음 예시는 포인트 데이터를 이용해 <code>ppp</code> 객체를 생성하는 방법을 보여준다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://spatstat.org/">spatstat</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.ppp.html">as.ppp</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span></span>
 <span><span class="co"># Planar point pattern: 30 points</span></span>
 <span><span class="co"># window: rectangle = [0.009, 0.999] x [0.103, 0.996] units</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>여기서 관측 윈도우를 별도로 지정되지 않으면, 포인트들의 바운딩 박스가 자동으로 관측 윈도우로 설정된다. 데이터셋의 첫 번째 피처로 폴리곤 지오메트리를 추가하면, 해당 폴리곤이 관측 윈도우로 사용된다.</p>
+<p>여기서 관측윈도우를 별도로 지정되지 않으면, 포인트들의 바운딩박스가 자동으로 관측윈도우로 설정된다. 데이터셋의 첫 번째 피처로 폴리곤 지오메트리를 추가하면, 해당 폴리곤이 관측윈도우로 사용된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">pp1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">w1</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.ppp.html">as.ppp</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># Planar point pattern: 30 points</span></span>
@@ -410,7 +410,7 @@ window.Quarto = {
 <span><span class="co"># window: polygonal boundary</span></span>
 <span><span class="co"># enclosing rectangle: [-0.2, 2.2] x [-0.7, 1.7] units</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>포인트 패턴의 등질성(homogeneity)을 검정하기 위해, 적절한 방격 레이아웃을 설정할 수 있다.(역자주: 포인트 패턴의 등질성은 기대 밀도가 모든 지점에서 동일한지를 의미한다.) 예를 들어, 그림 11.2에는 3x3 레이아웃이 나타나 있다. 이를 사용하여 방격 빈도(quadrat count), 즉 방격별 포인트 수를 구할 수 있다.</p>
+<p>포인트 패턴의 등질성(homogeneity)을 검정하기 위해, 적절한 방격 레이아웃을 설정할 수 있다.(역자주: 포인트 패턴의 등질성은 기대 밀도가 모든 지점에서 동일한지를 의미한다.) 예를 들어, 그림 11.2에는 3 × 3 레이아웃이 나타나 있다. 이를 사용하여 방격 빈도(quadrat count), 즉 방격별 포인트 수를 구할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">q1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/quadratcount.html">quadratcount</a></span><span class="op">(</span><span class="va">pp1</span>, nx<span class="op">=</span><span class="fl">3</span>, ny<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
@@ -453,8 +453,8 @@ window.Quarto = {
 <span><span class="co"># </span></span>
 <span><span class="co"># Quadrats: 9 tiles (irregular windows)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이는 두 번째 사례가 CSR(완전공간무작위성) 패턴이 아님을 시사한다. 경고 메시지에 언급된 대로 기대빈도가 너무 작으므로 유의 확률(p-값)의 해석에는 각별한 주의가 필요하다.</p>
-<p><code><a href="https://rdrr.io/r/stats/density.html">density()</a></code> 함수를 사용하면 커널 밀도를 계산할 수 있으며, 커널의 형태와 탐색 반경을 조정할 수 있다. 탐색 반경을 결정하는 파라미터 <code>sigma</code> 값은 <code><a href="https://rdrr.io/pkg/spatstat.explore/man/bw.diggle.html">bw.diggle()</a></code> 함수의 교차검증을 통해 지정되며, 그림 11.3에 이렇게 생성된 밀도면이 나타나 있다.</p>
+<p>이는 두 번째 사례가 CSR(complete spatial randomness, 완전공간무작위성) 패턴이 아님을 시사한다. 경고 메시지에 언급된 대로 기대빈도가 너무 작으므로 유의 확률(<span class="math inline">\(p\)</span> 값)의 해석에는 각별한 주의가 필요하다.</p>
+<p><code><a href="https://rdrr.io/r/stats/density.html">density()</a></code> 함수를 사용하면 커널 밀도를 계산할 수 있으며, 커널의 형태와 탐색반경을 조정할 수 있다. 탐색반경을 결정하는 파라미터 <code>sigma</code> 값은 <code><a href="https://rdrr.io/pkg/spatstat.explore/man/bw.diggle.html">bw.diggle()</a></code> 함수의 교차검증을 통해 지정되며, 그림 11.3에 이렇게 생성된 밀도면이 나타나 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">den1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">pp1</span>, sigma <span class="op">=</span> <span class="va">bw.diggle</span><span class="op">)</span></span>
 <span><span class="va">den2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">pp2</span>, sigma <span class="op">=</span> <span class="va">bw.diggle</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -482,7 +482,7 @@ window.Quarto = {
 <span><span class="co"># x    1 128   -0.2  0.0187 [x]</span></span>
 <span><span class="co"># y    1 128    1.7 -0.0187 [y]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>밀도면 하부 체적을 계산하면, 다음 코드에서 확인할 수 있듯이 표본 크기(30)와 유사한 값을 얻을 수 있다.(역자주: 여기서 ’밀도면 하부 체적’이란 각 셀별로 면적과 밀도값을 곱하여 셀 체적을 구하고 모든 셀에 대한 이 체적값을 합한 값을 의미한다.)</p>
+<p>밀도면 하부 체적을 계산하면, 다음 코드에서 확인할 수 있듯이 표본크기(30)와 유사한 값을 얻을 수 있다.(역자주: ’밀도면 하부 체적’이란 각 셀별로 면적과 밀도값을 곱하여 셀 체적을 구하고 모든 셀에 대한 이 체적값을 합한 값을 의미한다.)</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">s1</span><span class="op">$</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">s2</span><span class="op">$</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -547,7 +547,7 @@ window.Quarto = {
 <span><span class="co"># Error: Only projected coordinates may be converted to spatstat</span></span>
 <span><span class="co"># class objects</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>spatstat</strong> 패키지의 데이터 구조로 변환되면, 원래의 CRS(좌표참조계) 정보가 손실된다. 이를 다시 <code>sf</code> 또는 <code>stars</code> 객체로 복원하려면 <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_set_crs()</a></code> 함수를 사용해야 된다.</p>
+<p><strong>spatstat</strong> 패키지의 데이터 구조로 변환되면, 원래의 CRS(coordinate reference system, 좌표참조계) 정보가 손실된다. 이를 다시 <code>sf</code> 또는 <code>stars</code> 객체로 복원하려면 <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_set_crs()</a></code> 함수를 사용해야 된다.</p>
 </section><section id="마크-포인트-패턴과-선형-네트워크-상의-포인트" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="마크-포인트-패턴과-선형-네트워크-상의-포인트">
 <span class="header-section-number">11.3</span> 마크 포인트 패턴과 선형 네트워크 상의 포인트</h2>
 <p><strong>spatstat</strong> 패키지에서는 몇 가지 확장된 데이터 유형을 상호 변환할 수 있다. 마크(marked) 포인트 패턴은 각 포인트에 범주형 레이블 또는 숫자형 레이블이 ‘부여된’ 포인트 패턴을 말한다. 예를 들어, <strong>spatstat</strong> 패키지에 포함된 <code>longleaf</code> 소나무 데이터셋은 가슴 높이에서 측정한 나무 직경 값을 숫자형 마크로 포함하고 있다.</p>
@@ -579,7 +579,7 @@ window.Quarto = {
 <span><span class="co"># window: polygonal boundary</span></span>
 <span><span class="co"># enclosing rectangle: [0, 200] x [0, 200] units</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>spatstat</strong> 패키지의 <code>psp</code> 클래스에 속하는 선분은 <code>LINESTRING</code> 지오메트리를 가진 <code>sf</code> 피처로 상호 변환할 수 있으며, 관측 윈도우를 나타내는 <code>POLYGON</code> 피처가 하나 포함된다.</p>
+<p><strong>spatstat</strong> 패키지의 <code>psp</code> 클래스에 속하는 선분은 <code>LINESTRING</code> 지오메트리를 가진 <code>sf</code> 피처로 상호 변환할 수 있으며, 관측윈도우를 나타내는 <code>POLYGON</code> 피처가 하나 포함된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">copper</span><span class="op">$</span><span class="va">SouthLines</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co"># Simple feature collection with 91 features and 1 field</span></span>
@@ -618,11 +618,11 @@ window.Quarto = {
 <span><span class="co">#   point segment  window </span></span>
 <span><span class="co">#     116     503       1</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>네트워크의 <em>구조</em>에 관한 정보, 즉 <code>LINESTRING</code> 지오메트리가 어떻게 연결되어 있는지는 <code>sf</code> 객체에 포함되지 않는다.() 이런 측면에서 <strong>sfnetworks</strong> 패키지(van der Meer et al.&nbsp;2022)는 좋은 대안이 될 수 있다. 이 패키지는 네트워크 위상 정보를 다룰 수 있을 뿐 아니라 OpenStreetMap에서 불러온 네트워크 데이터를 <strong>spatstat</strong> 패키지로 전달하는 기능도 제공한.</p>
-</section><section id="공간-샘플링과-포인트-프로세스를-시뮬레이션하기" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="공간-샘플링과-포인트-프로세스를-시뮬레이션하기">
-<span class="header-section-number">11.4</span> 공간 샘플링과 포인트 프로세스를 시뮬레이션하기</h2>
-<p><strong>sf</strong> 패키지에는 <code>MULTIPOINT</code>, 선형, 또는 폴리곤 지오메트리에서 포인트를 샘플링하는 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 메서드가 있으며, 여러 가지 공간 샘플링 전략을 지원한다. 기본적으로 ‘random’, ‘hexagonal’, ‘Fibonacci’(11.5절 참고), ‘regular’ 옵션을 제공한다. ‘regular’는 정사각형 격자에서의 샘플링을, ’hexagonal’은 사실상 삼각형 격자에 해당하는 샘플링을 의미한다. ’random’ 유형만 요청한 포인트 수를 정확히 반환하며, 다른 유형은 근사값을 반환한다.</p>
-<p><code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수는 샘플링 유형에 다른 값을 지정할 경우, <strong>spatstat</strong> 패키지의 포인트 프로세스 시뮬레이션 함수와도 연동된다. 예를 들어, <code>type = Thomas</code>로 설정하면 <strong>spatstat</strong> 패키지의 <code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">rThomas()</a></code> 함수가 호출된다(그림 11.5).</p>
+<p>네트워크의 <em>구조</em>에 관한 정보, 즉 <code>LINESTRING</code> 지오메트리가 어떻게 연결되어 있는지는 <code>sf</code> 객체에 포함되지 않는다. 이런 측면에서 <strong>sfnetworks</strong> 패키지(van der Meer et al.&nbsp;2022)는 좋은 대안이 될 수 있다. 이 패키지는 네트워크 위상 정보를 다룰 수 있을 뿐 아니라 OpenStreetMap에서 불러온 네트워크 데이터를 <strong>spatstat</strong> 패키지로 전달하는 기능도 제공한.</p>
+</section><section id="공간적-표본추출과-포인트-프로세스를-시뮬레이션하기" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="공간적-표본추출과-포인트-프로세스를-시뮬레이션하기">
+<span class="header-section-number">11.4</span> 공간적 표본추출과 포인트 프로세스를 시뮬레이션하기</h2>
+<p><strong>sf</strong> 패키지에는 <code>MULTIPOINT</code>, 선형, 또는 폴리곤 지오메트리에서 포인트를 표본추출하는 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 메서드가 있으며, 여러 가지 공간적 표본추출(spatial sampling) 전략을 지원한다. 기본적으로 ‘random’, ‘hexagonal’, ‘Fibonacci’(11.5절 참고), ‘regular’ 옵션을 제공한다. ‘regular’는 정사각형 격자에서의 표본추출을, ’hexagonal’은 사실상 삼각형 격자에 해당하는 표본추출을 의미한다. ’random’ 유형만 요청한 포인트 수를 정확히 반환하며, 다른 유형은 근사값을 반환한다.</p>
+<p><code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수는 표본추출 유형에 다른 값을 지정할 경우, <strong>spatstat</strong> 패키지의 포인트 프로세스 시뮬레이션 함수와도 연동된다. 예를 들어, <code>type = Thomas</code>로 설정하면 <strong>spatstat</strong> 패키지의 <code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">rThomas()</a></code> 함수가 호출된다(그림 11.5).</p>
 <div class="cell">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fl">30</span> <span class="op">/</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">w2</span><span class="op">)</span> <span class="co"># intensity</span></span>
 <span><span class="va">th</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample</a></span><span class="op">(</span><span class="va">w2</span>, kappa <span class="op">=</span> <span class="va">kappa</span>, mu <span class="op">=</span> <span class="fl">3</span>, scale <span class="op">=</span> <span class="fl">0.05</span>, </span>
@@ -638,23 +638,23 @@ window.Quarto = {
 그림&nbsp;11.5: mu =3, scale = 0.05로 설정한 Thomas 프로세스
 </figcaption></figure>
 </div>
-<p><code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">?rThomas</a></code>를 실행하면 함수 <code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">rThomas()</a></code>의 매개변수 <code>kappa</code>, <code>mu</code>, <code>scale</code>의 의미를 자세히 확인할 수 있다. 포인트 프로세스 시뮬레이션에서는 표본 크기를 지정하는 대신 강도를 지정한다. 이때 관측 윈도우 내에서 실제로 생성되는 표본 크기는 확률변수가 된다.</p>
+<p><code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">?rThomas</a></code>를 실행하면 함수 <code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">rThomas()</a></code>의 매개변수 <code>kappa</code>, <code>mu</code>, <code>scale</code>의 의미를 자세히 확인할 수 있다. 포인트 프로세스 시뮬레이션에서는 표본크기를 지정하는 대신 강도를 지정한다. 이때 관측윈도우 내에서 실제로 생성되는 표본크기는 확률변수가 된다.</p>
 </section><section id="구체-상의-포인트를-시뮬레이션하기" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="구체-상의-포인트를-시뮬레이션하기">
 <span class="header-section-number">11.5</span> 구체 상의 포인트를 시뮬레이션하기</h2>
-<p><strong>sf</strong> 패키지에서 기본적으로 제공하는 또 다른 공간 무작위 샘플링 유형은 구면에서의 무작위 포인트 시뮬레이션이다. 그림 11.6은 그 한 예시로, 생성된 포인트들이 모두 해양에 위치해 있다. 구면에서 규칙적인 포인트 패턴을 시뮬레이션하려면 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수의 <code>type</code> 인수를 <code>"Fibonacci"</code>로 지정하면 된다(González 2010).</p>
+<p><strong>sf</strong> 패키지에서 기본적으로 제공하는 또 다른 공간적 무작위 표본추출 유형은 구면에서의 무작위 포인트 시뮬레이션이다. 그림 11.6은 그 한 예시로, 생성된 포인트들이 모두 해양에 위치해 있다. 구면에서 규칙적인 포인트 패턴을 시뮬레이션하려면 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수의 <code>type</code> 인수를 <code>"Fibonacci"</code>로 지정하면 된다(González 2010).</p>
 <div id="fig-11-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-11-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;11.6: 구면에서 해양부에만 제한된 샘플 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법 지도에 표시되어 있다.
+그림&nbsp;11.6: 구면에서 해양부에만 제한된 표본 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법 지도에 표시되어 있다.
 </figcaption></figure>
 </div>
 </section><section id="연습문제" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="연습문제">
 <span class="header-section-number">11.6</span> 연습문제</h2>
 <ol type="1">
 <li><p><strong>spatstat</strong> 패키지에서 <code>plot(longleaf)</code>로 생성되는 플롯과 동일한 결과를 <strong>ggplot2</strong> 패키지의 <code>geom_sf()</code> 함수 및 <code><a href="https://r-spatial.github.io/sf/reference/plot.html">sf::plot()</a></code> 함수를 사용하여 구현하시오.</p></li>
-<li><p>12장에서 사용된 NO<span class="math inline">\(_2\)</span> 데이터의 표본 위치를 적절한 관측 윈도우와 함께 <code>ppp</code> 객체로 변환하시오.</p></li>
+<li><p>12장에서 사용된 NO<span class="math inline">\(_2\)</span> 데이터의 표본 위치를 적절한 관측윈도우와 함께 <code>ppp</code> 객체로 변환하시오.</p></li>
 <li><p>NO<span class="math inline">\(_2\)</span> 데이터셋을 사용하여 밀도를 계산하고, 밀도면을 플로팅하시오. 이어서 밀도면을 <code>stars</code> 객체로 변환하고, 표면 하부 체적을 계산하시오.</p></li>
 </ol>
 
@@ -665,7 +665,7 @@ window.Quarto = {
 <span class="glightbox-desc lightbox-desc-3">그림&nbsp;11.3: 두 포인트 패턴에 대한 커널 밀도면</span>
 <span class="glightbox-desc lightbox-desc-4">그림&nbsp;11.4: ppm 모형에 기반한 예측 밀도면</span>
 <span class="glightbox-desc lightbox-desc-5">그림&nbsp;11.5: mu =3, scale = 0.05로 설정한 Thomas 프로세스</span>
-<span class="glightbox-desc lightbox-desc-6">그림&nbsp;11.6: 구면에서 해양부에만 제한된 샘플 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법 지도에 표시되어 있다.</span>
+<span class="glightbox-desc lightbox-desc-6">그림&nbsp;11.6: 구면에서 해양부에만 제한된 표본 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법 지도에 표시되어 있다.</span>
 </div>
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1059,13 +1059,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./12.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>공간적 인터폴레이션</span>">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./12.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>공간적 내삽</span>">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

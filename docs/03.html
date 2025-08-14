@@ -17,40 +17,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -257,13 +223,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -378,7 +344,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 13일</p>
+      <p class="date-modified">2025년 8월 14일</p>
     </div>
   </div>
     
@@ -460,29 +426,29 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p>그림 3.1은 이러한 기본 지오메트리 유형의 예를 보여준다. 지오메트리를 표현하는 사람이 읽을 수 있는 WKT 표기법은 다음과 같다.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">POINT</span> (<span class="dv">0</span> <span class="dv">1</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">MULTIPOINT</span> ((<span class="dv">1</span> <span class="dv">1</span>), (<span class="dv">2</span> <span class="dv">2</span>), (<span class="dv">4</span> <span class="dv">1</span>), (<span class="dv">2</span> <span class="dv">3</span>), (<span class="dv">1</span> <span class="dv">4</span>))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">LINESTRING</span> (<span class="dv">1</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">5</span>, <span class="dv">5</span> <span class="dv">6</span>, <span class="dv">4</span> <span class="dv">6</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">2</span> <span class="dv">3</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">MULTILINESTRING</span> ((<span class="dv">1</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">5</span>, <span class="dv">5</span> <span class="dv">6</span>, <span class="dv">4</span> <span class="dv">6</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">2</span> <span class="dv">3</span>), (<span class="dv">3</span> <span class="dv">0</span>, <span class="dv">4</span> <span class="dv">1</span>, <span class="dv">2</span> <span class="dv">1</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">POLYGON</span> ((<span class="dv">2</span> <span class="dv">1</span>, <span class="dv">3</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">2</span>, <span class="dv">6</span> <span class="dv">3</span>, <span class="dv">5</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">4</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">1</span> <span class="dv">3</span>, <span class="dv">2</span> <span class="dv">1</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="dv">2</span>))</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">MULTIPOLYGON</span> (((<span class="dv">2</span> <span class="dv">1</span>, <span class="dv">3</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">2</span>, <span class="dv">6</span> <span class="dv">3</span>, <span class="dv">5</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">4</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">1</span> <span class="dv">3</span>, <span class="dv">2</span> <span class="dv">1</span>),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="dv">2</span>)), ((<span class="dv">3</span> <span class="dv">7</span>, <span class="dv">4</span> <span class="dv">7</span>, <span class="dv">5</span> <span class="dv">8</span>, <span class="dv">3</span> <span class="dv">9</span>, <span class="dv">2</span> <span class="dv">8</span>, <span class="dv">3</span> <span class="dv">7</span>)))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">GEOMETRYCOLLECTION</span> (</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">POLYGON</span> ((<span class="dv">2</span> <span class="dv">1</span>, <span class="dv">3</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="dv">2</span>, <span class="dv">6</span> <span class="dv">3</span>, <span class="dv">5</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">4</span>, <span class="dv">3</span> <span class="dv">4</span>, <span class="dv">1</span> <span class="dv">3</span>, <span class="dv">2</span> <span class="dv">1</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      (<span class="dv">2</span> <span class="dv">2</span> , <span class="dv">3</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">3</span>, <span class="dv">4</span> <span class="dv">2</span>, <span class="dv">2</span> <span class="dv">2</span>)),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">LINESTRING</span> (<span class="dv">1</span> <span class="dv">6</span>, <span class="dv">5</span> <span class="dv">10</span>, <span class="dv">5</span> <span class="dv">11</span>, <span class="dv">4</span> <span class="dv">11</span>, <span class="dv">3</span> <span class="dv">9</span>, <span class="dv">2</span> <span class="dv">8</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">POINT</span> (<span class="dv">2</span> <span class="dv">5</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">POINT</span> (<span class="dv">5</span> <span class="dv">4</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>POINT (0 1)
+MULTIPOINT ((1 1), (2 2), (4 1), (2 3), (1 4))
+LINESTRING (1 1, 5 5, 5 6, 4 6, 3 4, 2 3)
+MULTILINESTRING ((1 1, 5 5, 5 6, 4 6, 3 4, 2 3), (3 0, 4 1, 2 1))
+POLYGON ((2 1, 3 1, 5 2, 6 3, 5 3, 4 4, 3 4, 1 3, 2 1),
+    (2 2, 3 3, 4 3, 4 2, 2 2))
+MULTIPOLYGON (((2 1, 3 1, 5 2, 6 3, 5 3, 4 4, 3 4, 1 3, 2 1),
+    (2 2, 3 3, 4 3, 4 2, 2 2)), ((3 7, 4 7, 5 8, 3 9, 2 8, 3 7)))
+GEOMETRYCOLLECTION (
+    POLYGON ((2 1, 3 1, 5 2, 6 3, 5 3, 4 4, 3 4, 1 3, 2 1),
+      (2 2 , 3 3, 4 3, 4 2, 2 2)),
+    LINESTRING (1 6, 5 10, 5 11, 4 11, 3 9, 2 8),
+    POINT (2 5),
+    POINT (5 4)
+)</code></pre>
 <p>좌표는 공백으로 구분되며, 포인트들은 쉼표로 구분된다. 집합은 괄호로 묶여 있고, 각 요소는 쉼표로 구분된다. 폴리곤은 외부 링과 (존재할 경우) 내부 링(구멍을 나타냄)으로 구성된다.</p>
 <p>지오메트리의 개별 포인트는 최소 두 개의 좌표를 포함하며, 이 좌표는 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span> 순서로 나열된다. 이 좌표가 타원체 좌표를 나타내는 경우, <span class="math inline">\(x\)</span>는 일반적으로 경도를, <span class="math inline">\(y\)</span>는 위도를 의미하지만, 상황에 따라 위도-경도의 순서로 나열될 수도 있다(2.4절 및 섹션 7.7.6 참조).</p>
 </section><section id="심플-지오메트리-밸리드-지오메트리-링-디렉션" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="심플-지오메트리-밸리드-지오메트리-링-디렉션">
 <span class="header-section-number">3.1.2</span> 심플 지오메트리, 밸리드 지오메트리, 링 디렉션</h3>
 <p><code>LINESTRING</code>은 자기 교차가 없을 때 심플 지오메트리가 된다.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># LINESTRING (0 0, 1 1, 2 2, 0 2, 1 1, 2 0)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># is_simple </span></span>
-<span><span class="co">#     FALSE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code># LINESTRING (0 0, 1 1, 2 2, 0 2, 1 1, 2 0)</code></pre>
+<pre><code># is_simple 
+#     FALSE</code></pre>
 <p>밸리드(valid) 폴리곤과 멀티폴리곤은 다음의 모든 프로퍼티을 갖는다.</p>
 <ul>
 <li><p>폴리곤 링은 닫혀 있어야 한다(즉, 첫번째 포인트와 마지막 포인트는 동일하다)</p></li>
@@ -502,17 +468,17 @@ window.Quarto = {
 </ul>
 <p>M 속성은 버텍스의 프로퍼티여야 한다. 예를 들어, <code>LINESTRING</code>에 이동 경로 데이터를 담기 위해 시간 정보를 <code>M</code> 속성에 인코딩하는 것은 매력적인 방법으로 보인다. 그러나 경로가 자기 교차하면 이러한 <code>LINESTRING</code>은 밸리드하지 않거나 심플하지 않는 상태가 되는데, 이 자기 교차는 <code>X</code>와 <code>Y</code> 좌표만 고려할 때 발생한다.</p>
 <p><code>Z</code>와 <code>M</code>은 자주 사용되지 않으며, 이들을 활용할 수 있는 소프트웨어 지원도 (아직까지는) 드문 편이다. 그래도 이들의 WKT 표현은 비교적 쉽게 이해할 수 있다.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># POINT Z (1 3 2)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># POINT M (1 3 2)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># LINESTRING ZM (3 1 2 4, 4 4 2 2)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code># POINT Z (1 3 2)</code></pre>
+<pre><code># POINT M (1 3 2)</code></pre>
+<pre><code># LINESTRING ZM (3 1 2 4, 4 4 2 2)</code></pre>
 </section><section id="엠프티-지오메트리" class="level3" data-number="3.1.4"><h3 data-number="3.1.4" class="anchored" data-anchor-id="엠프티-지오메트리">
 <span class="header-section-number">3.1.4</span> 엠프티 지오메트리</h3>
 <p>피쳐 지오메트리 프레임워크에서 매우 중요한 개념 중 하나는 엠프티(empty) 지오메트리이다. 엠프티 지오메트리는 기하학적 오퍼레이션(3.2절)을 수행할 때 자연스럽게 생성된다. 예를 들어 <code>POINT (0 0)</code>과 <code>POINT (1 1)</code>의 인터섹션 여부를 검토한다고 하자.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># GEOMETRYCOLLECTION EMPTY</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code># GEOMETRYCOLLECTION EMPTY</code></pre>
 <p>두 포인트는 인터섹트하지 않으므로 엠프티 집합이 도출된다. 엠프티 포인트를 비엠프티 지오메트리와 결합하면(합집합을 구하면) 엠프티 포인트는 사라진다.</p>
 <p>모든 지오메트리 유형은 다음과 같이 엠프티 지오메트리를 나타내는 특별한 값을 가진다.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># POINT EMPTY</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># LINESTRING M EMPTY</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code># POINT EMPTY</code></pre>
+<pre><code># LINESTRING M EMPTY</code></pre>
 <p>엠프티 집합이 생성된다는 점은 동일하고 디멘션이 다를 뿐이다(3.2절 참조).</p>
 </section><section id="개의-부수적인-지오메트리" class="level3" data-number="3.1.5"><h3 data-number="3.1.5" class="anchored" data-anchor-id="개의-부수적인-지오메트리">
 <span class="header-section-number">3.1.5</span> 10개의 부수적인 지오메트리</h3>
@@ -617,8 +583,8 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p>그림 3.2는 폴리곤과 라인의 내부(I), 경계(B), 외부(E) 영역 간의 인터섹션을 빨간색으로 표시한 것이다. 각 그래프의 제목에는 교차 결과로 도출되는 차원(0, 1, 2 또는 F)이 나타나 있다. 폴리곤 지오메트리와 라인 지오메트리 간의 관계는 이러한 차원의 결합으로 표현된다.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#      [,1]       </span></span>
-<span><span class="co"># [1,] "1020F1102"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#      [,1]       
+# [1,] "1020F1102"</code></pre>
 <p>첫 세 문자는 <em>첫 번째</em> 지오메트리(폴리곤)의 내부에 대한 것으로, 그림 3.2에서는 첫 번째 행에 배열되어 있다.(역자주: 위의 9자리 문자는 그림 3.2에 나타난 9개 교차 결과의 차원을 표시한 것이다. 차원 값은 행 단위로 지그재그 방식(왼쪽에서 오른쪽, 다음 행은 오른쪽에서 왼쪽)으로 읽는다.) 더 나아가 지오메트리 쌍에 대해 <em>마스크</em>(mask) <em>문자열</em>로 표현된 특정 조건의 만족 여부를 질의할 수 있다.(역자주: 마스크 문자열은 원하는 지오메트리 간 공간 관계를 질의하거나 필터링할 수 있게 해준다.) 예를 들어, 문자열 <code>"0******"</code>는 두 번째 지오메트리가 첫 번째 지오메트리의 내부와 하나 이상의 경계 점을 공유할 때 <code>TRUE</code>로 평가된다.(역자주: 그림 3.2를 예로 든다면, 폴리곤의 내부에 라인의 내부가 포함된 경우를 찾는 것이다.) 여기서 기호 <code>*</code>는 디멘션(0, 1, 2 또는 F) 중 어느 것이든 올 수 있음을 의미한다. 이 경우 마스크 문자열을 적용할 수 있는데, <code>"T********"</code>는 내부가 서로 교차하는 모든 지오메트리 쌍을 필터링할 수 있다. 여기서 기호 T는 차원 디멘션이 0, 1, 2이면서 비엠프티 인터섹션인 경우를 뜻한다.</p>
 <p>더 나아가 이항 프레디케이트는 DE-9IM에서 규정된 정의를 활용함으로써 일반 언어 동사로 표현될 수 있다. 예를 들어, 프레디케이트 <code>equals</code>는 관계 <code>"T*F**FFF*"</code>와 동일하다. 어떤 두 지오메트리가 이러한 관계를 만족한다면, 그 둘은 (위상적으로는) 동일하다고 볼 수 있지만, 노드의 순서는 다를 수 있다.</p>
 <p>이항 프레디케이트를 나열하면 다음과 같다.</p>
@@ -1384,7 +1350,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

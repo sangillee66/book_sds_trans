@@ -257,13 +257,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -363,7 +363,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 13일</p>
+      <p class="date-modified">2025년 8월 14일</p>
     </div>
   </div>
     
@@ -550,10 +550,10 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </section></section><section id="국지적-측도" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="국지적-측도">
 <span class="header-section-number">15.3</span> 국지적 측도</h2>
 <p>전역적 측도의 한계를 극복하기 위한 노력의 일환으로, 1990년대 초반부터 ’국지적 공간연관성 지표(LISA, local indicators of spatial association)’들이 등장하기 시작했다(Anselin 1995; Getis and Ord 1992, 1996).</p>
-<p>또한, 모런 플롯(혹은 모런 산포도)을 통해 관심 변수와 그 공간래그값(14장 참조) 간의 관련성을 시각화할 수 있게 되었다. 일반적으로 행 표준화 가중치를 사용하면 두 축을 보다 더 직접적으로 비교할 수 있다(Anselin 1996). <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수는 영향력 측정 객체(influence measures object)를 반환하며, 이를 통해 전역적 모런통계량을 나타내는 직선의 기울기에 상대적으로 큰 영향을 미치는 관측 개체를 표시할 수 있다.(역자주: ’영향력 측정 객체’는 회귀 분석 등에서 각 관측 개체가 분석 결과에 미치는 영향을 정량화한 지표들의 집합을 담는 결과 객체를 말한다. 여기에는 레버리지(leverage), Cook’s 거리, DFBETA, DFFITS, 공분산 비율 등과 같이 특정 관측 개체를 제거하거나 변경했을 때 추정치나 적합값이 얼마나 변하는지를 나타내는 통계량이 포함된다. <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수는 Moran 산점도를 작성하면서 이러한 영향력 측정 절차를 표준화된 관측값과 공간래그값 간의 관계에 적용하여, 각 공간단위가 Moran’s I 통계량에 미치는 상대적 영향을 파악할 수 있는 형태로 반환한다.) 그림 15.1에서는 영향력이 큰 관측 개체가 상당히 많다는 점을 확인할 수 있다. 이러한 관측값과 공간래그 관측값의 쌍은 집합적으로 전역적 측도를 구성하지만, 개별적으로도 탐색이 가능하다. 모런 플롯에서 오른쪽 상단 사분면에는 높은 값-높은 값(H-H) 쌍이, 왼쪽 하단 사분면에는 낮은 값-낮은 값(L-L) 쌍이 나타난다. 왼쪽 상단과 오른쪽 하단 사분면에는 각각 낮은 값-높은 값(L-H)과 높은 값-낮은 값(H-L) 쌍이 위치하며, 앞의 두 사분면에 비해 상대적으로 적게 나타난다. <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수에서 사분면은 변수값와 공간래그값의 평균을 기준으로 나뉘지만, 해당 값을 표준화한 경우에는 0을 기준으로 나뉜다.</p>
+<p>또한, 모런 플롯(혹은 모런 산포도)을 통해 관심 변수와 그 공간래그값(14장 참조) 간의 관련성을 시각화할 수 있게 되었다. 일반적으로 행 표준화 가중치를 사용하면 두 축을 보다 더 직접적으로 비교할 수 있다(Anselin 1996). <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수는 영향력 측정 객체(influence measures object)를 반환하며, 이를 통해 전역적 모런통계량을 나타내는 직선의 기울기에 상대적으로 큰 영향을 미치는 관측 개체를 표시할 수 있다.(역자주: ’영향력 측정 객체’는 회귀분석 등에서 각 관측 개체가 분석 결과에 미치는 영향을 정량화한 지표들의 집합을 담는 결과 객체를 말한다. 여기에는 레버리지(leverage), Cook’s 거리, DFBETA, DFFITS, 공분산 비율 등과 같이 특정 관측 개체를 제거하거나 변경했을 때 추정치나 적합값이 얼마나 변하는지를 나타내는 통계량이 포함된다. <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수는 Moran 산점도를 작성하면서 이러한 영향력 측정 절차를 표준화된 관측값과 공간래그값 간의 관계에 적용하여, 각 공간단위가 Moran’s I 통계량에 미치는 상대적 영향을 파악할 수 있는 형태로 반환한다.) 그림 15.1에서는 영향력이 큰 관측 개체가 상당히 많다는 점을 확인할 수 있다. 이러한 관측값과 공간래그 관측값의 쌍은 집합적으로 전역적 측도를 구성하지만, 개별적으로도 탐색이 가능하다. 모런 플롯에서 오른쪽 상단 사분면에는 높은 값-높은 값(H-H) 쌍이, 왼쪽 하단 사분면에는 낮은 값-낮은 값(L-L) 쌍이 나타난다. 왼쪽 상단과 오른쪽 하단 사분면에는 각각 낮은 값-높은 값(L-H)과 높은 값-낮은 값(H-L) 쌍이 위치하며, 앞의 두 사분면에 비해 상대적으로 적게 나타난다. <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수에서 사분면은 변수값와 공간래그값의 평균을 기준으로 나뉘지만, 해당 값을 표준화한 경우에는 0을 기준으로 나뉜다.</p>
 <div id="fig-15-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranplot-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranplot-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranplot-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.1: 투표율에 대한 모런 플롯(행 표준화 공간 가중치 행렬 적용)
@@ -569,7 +569,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <div id="fig-15-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranhat-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranhat-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranhat-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranhat-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.2: 모런 회귀영향측도값의 분포(행 표준화 공간 가중치 행렬 적용)
@@ -584,7 +584,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#  function (x, listw, zero.policy = NULL, na.action = na.fail,</span></span>
 <span><span class="co">#    conditional = TRUE, alternative = "two.sided", mlvar = TRUE,</span></span>
 <span><span class="co">#    spChk = NULL, adjust.x = FALSE)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Bivand와 Wong(2018)는 국지적 모런통계량의 표준편차를 분석적 공식에 기반한 방식과 조건부(conditional) 순열에 기반한 방식으로 비교하였다. 이에 대해 Sauer et al.(2021)은 이러한 비교가 오해에 기반하고 있음을 명확히 보여주었다. Sokal, Oden, Thomson(1998)은 총괄(total) 순열과 조건부 순열에 기반한 국지적 모런통계량의 표준편차 공식을 제시한 바 있는데, Bivand와 Wong(2018)에서 사용된 분석 공식은 이전 관행에 따라 총괄 순열만 사용하였으며, 따라서 시뮬레이션 조건부 순열과 일치하지 않는다.(역자주: 국지적 공간적 자기상관 측도의 맥락에서 ’총괄 혹은 총체적 순열’은 데이터의 모든 값을 대상으로 무작위 재배치를 수행하는 방식이다. 반면 ’조건부 혹은 조건적 순열’은 특정 관측 단위의 값을 고정한 채 나머지 값만 무작위로 재배치한다. 두 방식 모두 랜덤화 가정에 기반하며, 적률(기대값, 분산 등)을 공식을 구하는 분석적 순열로도, 난수 시뮬레이션에 의한 순열 부트스트랩으로도 구현할 수 있다.) 적시에 제안된 풀 리퀘스트 덕분에, 이제 <code><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran()</a></code> 함수는 Sokal, Oden, Thomson(1998)의 부록에 수록된 대안적 공식을 사용한 <code>conditional</code> 논리 인수(기본값은 <code>TRUE</code>)를 포함한다. <code><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran()</a></code> 함수의 <code>mlvar</code>와 <code>adjust.x</code> 인수가 필요한 이유는 Bivand와 Wong(2018)에 설명되어 있으며, 이를 통한 다른 패키지의 결과와 비교할 수 있다. 기본값인 <code>two.sided</code>를 설정하면 다음과 같은 결과를 얻을 수 있다.</p>
+<p>Bivand와 Wong(2018)는 국지적 모런통계량의 표준편차를 분석적 공식에 기반한 방식과 조건부(conditional) 순열에 기반한 방식으로 비교하였다. 이에 대해 Sauer 등(2021)은 이러한 비교가 오해에 기반하고 있음을 명확히 보여주었다. Sokal, Oden과 Thomson(1998)은 총괄(total) 순열과 조건부 순열에 기반한 국지적 모런통계량의 표준편차 공식을 제시한 바 있는데, Bivand와 Wong(2018)에서 사용된 분석 공식은 이전 관행에 따라 총괄 순열만 사용하였으며, 따라서 시뮬레이션 조건부 순열과 일치하지 않는다.(역자주: 국지적 공간적 자기상관 측도의 맥락에서 ’총괄 혹은 총체적 순열’은 데이터의 모든 값을 대상으로 무작위 재배치를 수행하는 방식이다. 반면 ’조건부 혹은 조건적 순열’은 특정 관측 단위의 값을 고정한 채 나머지 값만 무작위로 재배치한다. 두 방식 모두 랜덤화 가정에 기반하며, 적률(기대값, 분산 등)을 공식을 구하는 분석적 순열로도, 난수 시뮬레이션에 의한 순열 부트스트랩으로도 구현할 수 있다.) 적시에 제안된 풀 리퀘스트 덕분에, 이제 <code><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran()</a></code> 함수는 Sokal, Oden과 Thomson(1998)의 부록에 수록된 대안적 공식을 사용한 <code>conditional</code> 논리 인수(기본값은 <code>TRUE</code>)를 포함한다. <code><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran()</a></code> 함수의 <code>mlvar</code>와 <code>adjust.x</code> 인수가 필요한 이유는 Bivand와 Wong(2018)에 설명되어 있으며, 이를 통한 다른 패키지의 결과와 비교할 수 있다. 기본값인 <code>two.sided</code>를 설정하면 다음과 같은 결과를 얻을 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">I_turnout</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran</a></span><span class="op">(</span>listw <span class="op">=</span> <span class="va">lw_q_W</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">locm</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -644,7 +644,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <div id="fig-15-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranPr-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranPr-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranPr-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranPr-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.3: 국지적 모런통계량의 FDR 유의확률 값. 왼쪽 상단 패널은 분석적 조건부 유의확률, 오른쪽 상단 패널은 순열 표준편차를 이용한 조건부 유의확률, 왼쪽 하단 패널은 순열 순위에 기반한 조건부 유의확률을 각각 나타낸다(행 표준화 공간 가중치 행렬 적용)
@@ -686,7 +686,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <div id="fig-15-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-Iihotspots-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-Iihotspots-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-Iihotspots-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-Iihotspots-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.4: 국지적 모런통계량의 FDR 조정 핫스팟 지도(유의수준은 0.005). 왼쪽 상단 패널에는 분석적 조건부 유의확률, 오른쪽 상단 패널은 순열 표준편차 기반 조건부 유의확률, 왼쪽 하단 패널은 순열 순위 기반 조건부 유의확률이 적용된 경우를 보여준다.(행 표준화 공간 가중치 행렬 적용)
@@ -730,7 +730,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <div id="fig-15-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranHsad-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranHsad-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranHsad-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranHsad-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.5: 국지적 모런통계량의 FDR 조정 핫스팟 지도(양측검정, 흥미로움의 판정 기준값 0.005 적용). 왼쪽 상단 패널에는 순열 표준편차를 활용한 조건부 유의확률, 오른쪽 상단 패널은 기본(절편만 있는) 모형의 안장점 근사에 기반한 유의확률, 왼쪽 하단 패널은 가중 기본(절편만 있는) 모형의 안장점 근사에 근거한 유의확률, 오른쪽 하단 패널은 가중 유형 모형의 안장점 근사에 기반한 유의확률을 나타낸다.(행 표준화 공간 가중치 행렬의 적용)
@@ -761,7 +761,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <div id="fig-15-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranHsadex-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranHsadex-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranHsadex-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localmoranHsadex-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.6: 국지적 모런통계량의 FDR 조정 핫스팟 지도(양측검정, 흥미로움의 판정 기준값 0.005 적용). 왼쪽 패널에는 가중 유형 모형의 안장점 근사에 기반한 유의확률이, 오른쪽 패널은 가중 유형 모형의 정확 접근법에 기반한 유의확률이 제시되어 있다.(행 표준화 공간 가중치 행렬의 적용)
@@ -822,7 +822,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <div id="fig-15-7" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localIGC-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-7" data-gallery="quarto-lightbox-gallery-7"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localIGC-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localIGC-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" data-glightbox="description: .lightbox-desc-7"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localIGC-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.7: FDR 조정 핫스팟 지도(양측검정, 흥미로움의 판정 기준값 0.005 적용). 왼쪽 패널은 국지적 모런통계량에 따른 공간 클러스터를, 가운데 패널은 국지적 게티스-오드 통계량에 따른 공간 클러스터를, 오른편 패널은 국지적 기어리통계량에 따른 공간 클러스터를 보여준다.(행 표준화 공간 가중치 행렬의 적용)
@@ -859,7 +859,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <div id="fig-15-8" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmulti-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-8" data-gallery="quarto-lightbox-gallery-8"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmulti-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmulti-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" data-glightbox="description: .lightbox-desc-8"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmulti-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.8: FDR 조정 핫스팟 지도(양측검정, 흥미로움의 판정 기준값 0.005 적용). 왼쪽 패널에는 1차 투표율에 대한 공간 클러스터, 가운데 패널에는 2차 투표율에 대한 공간 클러스터, 오른쪽 패널에는 두 차례 투표율 모두에 대한 공간 클러스터가 나타나 있다.(행 표준화 공간 가중치 행렬의 적용)
@@ -951,7 +951,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </div>
 <div id="fig-15-9" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmultix-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-9" data-gallery="quarto-lightbox-gallery-9"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmultix-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmultix-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" data-glightbox="description: .lightbox-desc-9"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-localCmultix-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;15.9: FDR 조정 다변량 <span class="math inline">\(C_i\)</span> 핫스팟 지도(양측검정, 흥미로움의 판정 기준값은 <span class="math inline">\([0,0.5]\)</span> 범위에서 0.0025 적용). 왼쪽 패널은 합산 투표율을 <strong>spdep</strong> 패키지에 적용한 결과이고, 오른쪽 패널은 합산 투표율을 <strong>rgeoda</strong> 패키지에 적용한 결과이다.(행 표준화 공간 가중치 행렬의 적용)
@@ -1376,7 +1376,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -39,6 +39,7 @@ editor: visual
 
 ```{r}
 #| echo: false
+#| eval: false
 #| warning: true
 
 library(sf) |> suppressPackageStartupMessages()
@@ -49,6 +50,11 @@ system.file("gpkg/nc.gpkg", package="sf") |>
     select(BIR74, SID74, NAME) |>
     st_centroid() -> x
 
+```
+
+```         
+# Warning: st_centroid assumes attributes are constant over
+# geometries
 ```
 
 이러한 경고 메시지가 나타나는 이유는 데이터셋에 전체 폴리곤과 연관된 값을 가진 변수들이 포함되어 있기 때문이다.(역자주: 여기서 ‘전체 폴리곤과 연관된 값’이란, 폴리곤 내부의 모든 지점이 동일한 값을 가진다는 의미가 아니라, 폴리곤 전체에 대한 합계나 총빈도를 나타내는 값을 뜻한다.) 예를 들어, 인구수와 같은 값은 폴리곤 전체와 관련된 것이므로, 폴리곤을 대체하는 `POINT` 지오메트리와는 직접적인 연관이 없다.
@@ -127,7 +133,9 @@ system.file("gpkg/nc.gpkg", package="sf") |>
 
 SQL에서 애그리게이션 과정은 다음의 예시처럼 이루어진다.
 
-`SELECT GroupID, SUM(population) FROM table GROUP BY GroupID;`
+```         
+SELECT GroupID, SUM(population) FROM table GROUP BY GroupID;
+```
 
 여기서 애그리게이션 함수는 `SUM`이고 그룹 프레디케이트는 `GroupID`이다.
 
@@ -178,7 +186,7 @@ c(sid74_sum_counties = sum(nc$SID74),
   sid74_sum_rectangles = sum(a$SID74, na.rm = TRUE))
 ```
 
-``` r
+```         
 #   sid74_sum_counties sid74_sum_rectangles 
 #                  667                 2621
 ```

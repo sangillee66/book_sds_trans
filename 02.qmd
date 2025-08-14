@@ -209,7 +209,7 @@ p <- st_as_sfc("POINT(60 47)", crs = 'OGC:CRS84')
 p[[1]]
 ```
 
-``` r
+```         
 # POINT (60 47)
 ```
 
@@ -222,7 +222,7 @@ p <- st_as_sfc("POINT(60 47)", crs = 'OGC:CRS84') |> st_transform("+proj=geocent
 p[[1]]
 ```
 
-``` r
+```         
 # POINT Z (2178844 3773868 4641765)
 ```
 
@@ -311,7 +311,7 @@ sf_use_s2(s2_orig) # back to what it was before changing
 res |> units::set_units(km) |> setNames(names(res)) |> print(digits = 5)
 ```
 
-``` r
+```         
 # Units: [km]
 #  gc_ellipse str_ellipse   gc_sphere  str_sphere 
 #      879.70      879.00      877.46      876.77
@@ -353,11 +353,15 @@ Lott(2015)를 따라 다음과 같은 개념 정의를 사용할 것이다(이�
 
 2000년대 초, PROJ는 PROJ.4라는 이름으로 불리게 되었는데, 이는 불변의 버전 번호가 접미어로 붙은 형태였다. GPS의 확산을 비롯한 여러 요인으로 인해 좌표계 간 변환에 대한 수요가 증가하였고, 이에 따라 PROJ.4는 기본적인 데이텀 지원 기능을 갖추게 되었다. 이후 PROJ는 좌표참조체계(CRS)를 다음과 같은 형식으로 정의한다.
 
-`+proj=utm +zone=33 +datum=WGS84 +units=m +no_defs`
+```         
++proj=utm +zone=33 +datum=WGS84 +units=m +no_defs
+```
 
 ‘키=값’ 쌍은 `+` 기호로 시작하며, 공백으로 구분된다. 이러한 형식은 PROJ 프로젝트가 수십 년 동안 4.x 버전으로 유지되면서 일반적으로 ‘PROJ.4 문자열’로 알려지게 되었다. 다음은 그 외 몇 가지 예시이다.
 
-`+ellps=bessel +towgs84=565.4,50.3,465.6,-0.399,0.344,-1.877,4.072`
+```         
++ellps=bessel +towgs84=565.4,50.3,465.6,-0.399,0.344,-1.877,4.072
+```
 
 이 문자열은 해당 데이텀이 Bessel 타원체를 사용하고 있으며, 이를 WGS84(주로 GPS 기준으로 널리 사용됨)로 변환하기 위해서는 7개(또는 경우에 따라 3개)의 파라미터가 필요하다는 점을 잘 보여준다.
 
@@ -469,7 +473,7 @@ GEOGCRS["WGS 84",
     ID["EPSG",4326]]
 ```
 
-``` r
+```         
 GEOGCRS["WGS 84",
     ENSEMBLE["World Geodetic System 1984 ensemble",
         MEMBER["World Geodetic System 1984 (Transit)"],

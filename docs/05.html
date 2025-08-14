@@ -17,40 +17,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -257,13 +223,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -357,7 +323,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 13일</p>
+      <p class="date-modified">2025년 8월 14일</p>
     </div>
   </div>
     
@@ -378,11 +344,8 @@ window.Quarto = {
 <p>어떤 경우에는 시간적 특성이 피처의 속성으로 간주될 수 있다. 예를 들어, 사람의 출생일이나 도로의 건설 연도가 이에 해당한다. 대기질과 같이 속성이 공간과 시간의 함수로 표현되는 경우, 시간은 기하학적 특성과 동등한 중요성을 지니는 요소로 다루는 것이 가장 적절하다. 이러한 내용은 6장에서 데이터 큐브와 관련하여 더 자세히 다룬다.</p>
 <p>심플 피처를 구현하는 공간데이터사이언스 소프트웨어는 일반적으로 피처의 기하학적 특성과 속성을 모두 포함하는 테이블 형태로 데이터를 구성한다. 이는 Python의 <code>Geopandas</code>, PotsgreSQL의 <code>PostGIS</code> 테이블, R의 <code>sf</code> 객체 모두에 해당된다. 3.2절에서 설명된 기하학적 오퍼레이션은 <em>오직</em> 지오메트리에만 적용되며, 경우에 따라 새로운 속성(프리디케이트, 측도, 변환)을 생성할 수 있지만 기존 속성에는 영향을 미치지 않는다.</p>
 <p>지오메트리가 변경되었음에도 속성 <em>값</em>이 그대로 유지되는 경우, 서포트 문제가 발생할 수 있다. 예를 들어 카운티 폴리곤을 해당 폴리곤의 센트로이드로 대체하는 간단한 사례를 살펴보면, R의 <strong>sf</strong> 패키지는 다음과 같은 경고 메시지를 출력한다.</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: st_centroid assumes attributes are constant over geometries</code></pre>
-</div>
-</div>
+<pre><code># Warning: st_centroid assumes attributes are constant over
+# geometries</code></pre>
 <p>이러한 경고 메시지가 나타나는 이유는 데이터셋에 전체 폴리곤과 연관된 값을 가진 변수들이 포함되어 있기 때문이다.(역자주: 여기서 ’전체 폴리곤과 연관된 값’이란, 폴리곤 내부의 모든 지점이 동일한 값을 가진다는 의미가 아니라, 폴리곤 전체에 대한 합계나 총빈도를 나타내는 값을 뜻한다.) 예를 들어, 인구수와 같은 값은 폴리곤 전체와 관련된 것이므로, 폴리곤을 대체하는 <code>POINT</code> 지오메트리와는 직접적인 연관이 없다.</p>
 <p>1.6절에서 이미 언급했듯이, 라인과 폴리곤 지오메트리에서 피처 속성 값은 <em>포인트 스포트</em> 또는 <em>블록 스포트</em>를 가질 수 있다. 포인트 스포트는 해당 값이 지오메트리의 <em>모든 지점</em>에 동일하게 적용되는 경우를 말하고, 블록 서포트는 지오메트리 내 <em>모든 지점을 요약</em>하는 경우를 의미한다. 이 외에도 해당 지오메트리보다 더 작거나 더 큰 서포트를 가지는 경우도 가능하다.</p>
 <p>이 장에서는 속성이 지오메트리와 관련되는 방식, 이러한 차이가 데이터 분석에 미치는 영향, 그리고 서로 다른 지오메트리로부터 속성을 도출하는 방법(상향 스케일링과 하향 스케일링)에 대해 설명한다.</p>
@@ -437,13 +400,13 @@ window.Quarto = {
 <li><p>애그리게이션 함수를 적용하여 각 그룹별 단일 요약 속성값을 계산한다.</p></li>
 </ul>
 <p>SQL에서 애그리게이션 과정은 다음의 예시처럼 이루어진다.</p>
-<p><code>SELECT GroupID, SUM(population) FROM table GROUP BY GroupID;</code></p>
+<pre><code>SELECT GroupID, SUM(population) FROM table GROUP BY GroupID;</code></pre>
 <p>여기서 애그리게이션 함수는 <code>SUM</code>이고 그룹 프레디케이트는 <code>GroupID</code>이다.</p>
 <p>R의 <strong>dplyr</strong> 패키지는 이 작업을 두 단계로 수행한다. <code>group_by()</code> 함수는 레코드의 그룹 멤버십을 지정하고, <code>summarise()</code> 함수는 각 그룹에 대한 데이터 요약(예: 합계나 평균)을 계산한다. 반면 베이스 R의 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수는 테이블, 그룹화 조건, 집계 함수를 인수로 받아 이 두 단계를 하나의 함수 호출로 처리한다.</p>
 <p>노스캐롤라이나 카운티의 예는 그림 5.1에 제시되어 있다. 타원 좌표 <code>POINT</code>(-79, 35.5)를 기준점으로 사분면을 설정하고, 각 카운티의 센트로이드가 속한 사분면에 따라 카운티를 그룹화한 뒤, 각 그룹별로 질병 사례 수를 합산하였다. 그 결과, 그룹별로 통합된 지오메트리가 생성되었음을 확인할 수 있다(3.2.6절 참조). 이러한 그룹별 애그리게이션은 필수적이다. 만약 카운티 지오메트리를 단순히 결합하여 <code>MULTIPOLYGON</code>을 생성했다면, 수 많은 중복 경계가 발생하여 밸리드하지 않은 지오메트리가 생성되었을 것이기 때문이다(3.1.2절 참조).</p>
 <div id="fig-5-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncaggregation-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.1: SID74가 네 개의 지역별로 합산되었다.
@@ -452,15 +415,15 @@ window.Quarto = {
 <p>결합된 카운티 폴리곤을 지도로 표현하는 데 기술적인 문제는 없지만, 그룹 합계가 그룹화된 카운티가 아니라 개별 카운티에 해당하는 값이라는 잘못된 인상을 줄 수 있다. 이러한 방식의 애그리게이션의 특징은 각 레코드가 하나의 그룹에만 할당된다는 점이다. 이로 인해 그룹별 합계의 총합이 그룹화 이전 데이터의 총합과 동일하다는 유지되는 장점이 있다. 즉, 정량 변수의 경우 정보가 손실되거나 추가되지 않는다. 새로 생성된 지오메트리는 원래 레코드의 지오메트리를 그룹 단위로 유니온(union)한 결과이다.</p>
 <div id="fig-5-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.2: 노스케롤라이나 카운티 상의 타깃 블
 </figcaption></figure>
 </div>
 <p>지오메트리를 결합하지 않고도 그룹별 합산값을 계산해야 하는 경우가 있다. 이때는 공간 프레디케이트를 사용하며, 하나의 레코드가 여러 그룹과 연관될 수 있다. 예를 들어, 그림 5.2에서 직사각형을 타깃 에어리어로 설정하고, 각 직사각형과 인터섹션 관계에 있는 카운티의 유병자를 합산하면 전체 합계는 훨씬 더 크게 나타날 것이다.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   sid74_sum_counties sid74_sum_rectangles </span></span>
-<span><span class="co">#                  667                 2621</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#   sid74_sum_counties sid74_sum_rectangles 
+#                  667                 2621</code></pre>
 <p>반대로 <em>contains</em>나 <em>covers</em>와 같은 다른 프레디케이트를 사용하면 훨씬 작아진다. 이는 많은 카운티가 직사각형 안에 완전히 포함되지 않기 때문이다. 그러나 이러한 결과가 오히려 바람직할 수 있는 상황도 있다. 예를 들어, 다음과 같은 경우가 이에 해당한다.</p>
 <ul>
 <li><p><code>POINT</code> 지오메트리를 폴리곤 단위로 애그리게이션하는 경우: 모든 포인트는 자신을 완전히 폴리곤에 할당된다. DE-9IM-기반 GEOG 라이브러리는 이 방식을 사용하며, s2geometry 라이브러리는 ‘반-개방(semi-open)’ 폴리곤을 지정할 수 있게 하여, 폴리곤이 중첩되지 않는 한반드시 하나의 폴리곤에 포인트를 할당한다.</p></li>
@@ -534,7 +497,7 @@ window.Quarto = {
 </ol>
 <div id="fig-5-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-5-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/05-Attributes_files/figure-html/fig-awiex-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;5.3: 면적-가중 인터폴레이션의 예시 데이터
@@ -945,7 +908,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false,"openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

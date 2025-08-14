@@ -17,40 +17,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -257,13 +223,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -350,7 +316,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 11일</p>
+      <p class="date-modified">2025년 8월 14일</p>
     </div>
   </div>
     
@@ -372,20 +338,20 @@ window.Quarto = {
 <span class="header-section-number">4.3</span> 바운딩 박스, 바운딩 직사각형, 바운딩 캡</h2>
 <p><span class="math inline">\(R^2\)</span>에서는 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span> 좌표의 범위를 이용해 바운딩 박스를 쉽게 정의할 수 있지만, 타원체 좌표의 경우 지오메트리가 반대자오선(antimeridian)(경도 <span class="math inline">\(\pm 180\)</span>)이나 극점을 가로지를 때 이러한 범위는 크게 유용하지 않다.(역자주: 반대자오선은 본초자오선의 반대편에 위치한 자오선을 의미하는 것으로 동경 180도 혹은 서경 180도 경선을 지칭한다.)</p>
 <p><span class="math inline">\(R^2\)</span>에서 낮은 <span class="math inline">\(x\)</span> 값이 높은 값의 서쪽에 있다는 가정은 반대자오선을 넘을 때 성립하지 않는다. 구체 상의 영역을 정의하는 보다 자연스러운 대안은 바운딩 캡(bounding cap)으로, 이는 영역의 중심 좌표와 반지름만으로 정의할 수 있다. 예를 들어 남극 대륙의 경우, 그림 4.1의 (a)와 (c)에 나타나 있는 것처럼, 바운딩 박스는 다음의 좌표 범위를 통해 정의된다.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   xmin   ymin   xmax   ymax </span></span>
-<span><span class="co"># -180.0  -85.2  179.6  -60.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#   xmin   ymin   xmax   ymax 
+# -180.0  -85.2  179.6  -60.5</code></pre>
 <p>이 바운딩 박스는 명백히 <code>ymin</code>이 -90이고 <code>xmax</code>가 180인 지역을 포함하지 않는다. 반면 바운딩 캡은 해당 지역을 포함한다.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   lng lat angle</span></span>
-<span><span class="co"># 1   0 -90  29.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#   lng lat angle
+# 1   0 -90  29.5</code></pre>
 <p>해당 지역을 포함하는 또 다른 지오메트리에 바운딩 <em>직사각형</em>(rectangle)이 있다.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   lng_lo lat_lo lng_hi lat_hi</span></span>
-<span><span class="co"># 1   -180    -90    180  -60.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#   lng_lo lat_lo lng_hi lat_hi
+# 1   -180    -90    180  -60.5</code></pre>
 <p>반대자오선을 가로지르는 지역의 예로 피지 제도를 들 수 있으며, 피지 제도의 바운딩 박스는 다음과 같이 정의된다.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   xmin   ymin   xmax   ymax </span></span>
-<span><span class="co"># -179.9  -21.7  180.2  -12.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#   xmin   ymin   xmax   ymax 
+# -179.9  -21.7  180.2  -12.5</code></pre>
 <p>지구를 한바퀴 도는 정도의 크기이다. 동일한 지역에 대한 바운딩 직사각형은 다음과 같이 정의된다.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#   lng_lo lat_lo lng_hi lat_hi</span></span>
-<span><span class="co"># 1    175  -21.7   -178  -12.5</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#   lng_lo lat_lo lng_hi lat_hi
+# 1    175  -21.7   -178  -12.5</code></pre>
 <p>여기서 <code>lng_lo</code>가 <code>lng_hi</code> 보다 더 <em>큰</em> 값을 갖는데, 이는 바운딩 직사각형이 반대자오선을 가로지른다는 것을 의미한다. 좌표 범위만으로는 이러한 위치 관계를 추론하는 것은 극히 어렵다.</p>
 </section><section id="구체-상의-밸리드-지오메트리" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="구체-상의-밸리드-지오메트리">
 <span class="header-section-number">4.4</span> 구체 상의 밸리드 지오메트리</h2>
@@ -818,7 +784,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
