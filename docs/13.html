@@ -193,7 +193,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구체 지오메트리</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구면 지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -257,7 +257,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트패턴분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -355,7 +355,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 14일</p>
+      <p class="date-modified">2025년 8월 15일</p>
     </div>
   </div>
     
@@ -604,7 +604,7 @@ Z_n(s)=X_n\beta_n+e_n(s)
 <p>여기서는 <code>nmax</code> 인수 값을 크게 설정할 필요가 있었다. 이는 이산적인 이웃 선택에서 시간과 공간을 <em>모두</em> 고려해야 하며, 그로 인해 발생할 수 있는 시각적 왜곡(날카로운 경계)을 줄이기 위한 조치이다.(역자주: 시공간 크리깅에서는 예측값을 계산할 때 주변의 ‘이웃’ 데이터를 선택한다. 이웃을 선택할 때 공간 거리뿐 아니라 시간 차이까지 함께 고려하면, 적합한 이웃 수가 줄어들어 지도에 뚜렷하고 부자연스러운 경계선이 생길 수 있다. <code>nmax</code> 값을 크게 설정하면 이웃을 더 많이 포함시켜 이러한 경계를 완화할 수 있다.)</p>
 </section><section id="불규칙-시공간-데이터" class="level3" data-number="13.3.2"><h3 data-number="13.3.2" class="anchored" data-anchor-id="불규칙-시공간-데이터">
 <span class="header-section-number">13.3.2</span> 불규칙 시공간 데이터</h3>
-<p>관측 지점이 계속 변하거나, 고정된 관측 지점이라 하더라도 시간 프레임이 일관되지 않은 경우 <code>stars</code> 객체(벡터 데이터 큐브)는 이러한 데이터를 잘 처리하지 못한다. 이러한 불규칙 시공간 관측치는 <strong>sftime</strong> 패키지(Teickner, Pebesma, and Graeler 2022)에서 제공하는 <code>sftime</code> 객체로 표현할 수 있다. <code>sftime</code> 객체는 기본적으로 <code>sf</code> 객체에 지정된 시간 컬럼을 포함한 형태이다. 사용 예시는 <strong>gstat</strong> 패키지에서 제공되는 <code>demo(sftime)</code>에서 확인할 있다.</p>
+<p>관측 지점이 계속 변하거나, 고정된 관측 지점이라 하더라도 시간 프레임이 일관되지 않은 경우 <code>stars</code> 객체(벡터 데이터 큐브)는 이러한 데이터를 잘 처리하지 못한다. 이러한 불규칙 시공간 관측치는 <strong>sftime</strong> 패키지(Teickner, Pebesma, and Graeler 2022)에서 제공하는 <code>sftime</code> 객체로 표현할 수 있다. <code>sftime</code> 객체는 기본적으로 <code>sf</code> 객체에 지정된 시간 컬럼을 포함한 형태이다. 사용 예시는 <strong>gstat</strong> 패키지에서 제공되는 <code>demo(sftime)</code>에서 확인할 수 있다.</p>
 </section></section><section id="연습문제" class="level2" data-number="13.4"><h2 data-number="13.4" class="anchored" data-anchor-id="연습문제">
 <span class="header-section-number">13.4</span> 연습문제</h2>
 <ol type="1">
@@ -1021,7 +1021,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

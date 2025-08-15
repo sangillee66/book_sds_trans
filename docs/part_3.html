@@ -175,7 +175,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구체 지오메트리</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구면 지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -245,7 +245,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -328,7 +328,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 10일</p>
+      <p class="date-modified">2025년 8월 15일</p>
     </div>
   </div>
     
@@ -353,13 +353,13 @@ window.Quarto = {
 <p><span class="math display">\[
 \text{관측값}=\text{설명된 부분}+\text{잔여 부분}
 \]</span></p>
-<p>여기서 “잔여 부분”은 측정 오차를 포함해 예측 변수로 설명되지 않는 변동성을 의미할 뿐만 아니라, 낮은 모델 적합도나 모델 오지정(misspecification)에서 비롯된 변동성도 포함한다. 공간데이터의 경우에는 항이 하나 더 추가되어 다음과 같이 쓴다.</p>
+<p>여기서 ’잔여 부분’은 측정 오차를 포함해 예측 변수로 설명되지 않는 변동성을 의미할 뿐만 아니라, 낮은 모델 적합도나 모델 오지정(misspecification)에서 비롯된 변동성도 포함한다. 공간데이터의 경우에는 항이 하나 더 추가되어 다음과 같이 쓴다.</p>
 <p><span class="math display">\[
 \text{관측값}=\text{설명된 부분}+\text{매끄러운 부분}+\text{잔여 부분}
 \]</span></p>
-<p>여기서 ‘매끄러운 부분’은 외부 예측 변수로는 설명되지 않지만 뚜렷한 ’매끄러운’ 공간 패턴을 보이는 성분을 뜻하고, ‘잔차’는 이런 패턴을 보이지 않는 ’거친’ 변동성을 뜻한다. 이 ‘매끄러운’ 항은 좌표상의 기저함수(스플라인, 스무더)로 모델링하거나, 공간적 상관성을 가진 랜덤 항으로 모델링할 수 있다.</p>
-<p>10장은 공간데이터의 통계적 모델링을 소개한다. 이를 통해 후속 장을 준비하는 동시에, 후속 장에서는 자세히 다루지 않는 사항도 함께 짚는다. 또한 이 장은 제1부에서 다룬 개념, 특히 5장의 ‘서포트’ 개념과의 연결을 시도한다.</p>
-<p>공간데이터의 통계적 모델링 전체와 세부적인 전산 소프트웨어의 활용을 단 한 권에 모두 담는 일은 애초에 불가능하다. 예를 들어 <strong>spatstat</strong> 책(Baddeley, Rubak, and Turner, 2015)은 오직 공간 포인트 패턴 데이터와 R만을 다루는데도 분량이 약 850쪽에 달한다. 이 제3부에서는 ‘고전적인’ 공간통계 주제 세 가지, 즉 포인트 패턴 데이터 분석(11장), 지구통계학적 데이터 분석(12장, 13장), 에어리어(래티스) 데이터 분석(14~17장)에 집중한다. 내용 곳곳에 통계 방법론과 R 실행과 관련된 참고 사항을 가능한 많이 제시할 것이다.</p>
+<p>여기서 ‘매끄러운 부분’은 외부 예측 변수로는 설명되지 않지만 뚜렷한 ’매끄러운’ 공간 패턴을 보이는 성분을 뜻하고, ‘잔차’는 이런 패턴을 보이지 않는 ’거친’ 변동성을 뜻한다. 이 ‘매끄러운’ 항은 좌표상의 기저함수(스플라인, 스무더)로 모델링하거나, 공간적 자기상관을 가진 랜덤 항으로 모델링할 수 있다.</p>
+<p>10장은 공간데이터의 통계적 모델링을 소개하며, 이를 통해 후속 장의 내용을 준비하는 동시에 후속 장에서 자세히 다루지 않는 사항도 함께 다룬다. 또한 이 장은 제1부에서 소개한 개념, 특히 5장에서 논의한 ‘서포트’ 개념과의 연계를 시도한다.</p>
+<p>공간데이터의 통계적 모델링 전반과 세부적인 전산 소프트웨어 활용을 한 권에 모두 담는 것은 애초에 불가능하다. 예를 들어, <strong>spatstat</strong> 책(Baddeley, Rubak, and Turner, 2015)은 공간 포인트 패턴 데이터와 R만을 다루는데도 분량이 약 850쪽에 이른다. 이 제3부에서는 ‘고전적인’ 공간통계 주제 세 가지, 즉 포인트 패턴 데이터 분석(11장), 지구통계학적 데이터 분석(12장과 13장), 에어리어(래티스) 데이터 분석(14~17장)에 집중한다. 또한, 본문 곳곳에서 통계 방법론과 R 구현과 관련된 참고 사항을 가능한 한 많이 제시할 것이다.</p>
 
 
 
