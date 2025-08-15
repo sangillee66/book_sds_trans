@@ -146,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구체 지오메트리</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구면 지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -323,14 +323,14 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">공개</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025년 8월 14일</p>
+      <p class="date">2025년 8월 15일</p>
     </div>
   </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 13일</p>
+      <p class="date-modified">2025년 8월 15일</p>
     </div>
   </div>
     
@@ -343,30 +343,30 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="서장" class="level1 unnumbered">
 <h1 class="unnumbered">서장</h1>
-<p>데이터사이언스는 주어진 데이터를 바탕으로 질문에 대한 해답을 찾고, 그 과정을 타인과 소통하는 학문이다. 여기서의 소통은 단순히 결과를 제시하는 데 그치지 않으며, 사용된 데이터를 공유하고 해답이 도출된 전 과정을 포괄적이고 재현 가능한 방식으로 제시하는 것을 포함한다. 데이터사이언스는 또한 주어진 데이터가 질문에 답하기에 충분하지 않을 수 있음을 인정하며, 해답이 도출되었다 하더라도 데이터 수집 또는 샘플링 방식에 따라 그 결과가 달라질 수 있음을 수용한다.</p>
-<p>이 책은 <em>공간</em>데이터의 기본 개념을 소개하고 설명한다. 포인트, 라인, 폴리곤, 래스터, 커버리지, 지오메트리 속성, 데이터 큐브, 참조계와 같은 기초 개념부터, 속성이 지오메트리와 어떻게 연결되며 이러한 연결이 분석에 어떤 영향을 미치는지를 설명하는 고차원적인 개념까지를 다룬다. 속성과 지오메트리 간의 관계를 서포트(support)라고 하며, 서포트가 달라지면 속성의 특성 또한 변할 수 있다. 일부 데이터는 공간적 연속성에 기반하여 생성되므로 모든 지점에서 관찰이 가능하지만, 다른 데이터는 공간적 이산성에 바탕하여 특정한 구획 체계를 통해서만 관찰된다. 현대 공간데이터분석에서는 이러한 구획 체계 개념이 포인트 데이터, 지구통계학적 데이터, 에어리어 데이터를 포함한 다양한 데이터 유형에 폭넓게 적용되고 있다. 공간적 재현의 중요성을 뒷받침하는 핵심 개념이 바로 서포트(그리고 서포트에 대한 이해)이다. 이 책은 공간데이터를 자신의 분석에 활용하고자 하는 데이터 과학자를 주요 독자로 삼고 있다. 책 전반에 걸쳐 공간데이터분석이 어떻게 이루어지는지를 설명하며, 예시에서는 프로그래밍 언어로 R을 사용한다. 향후에는 Python과 Julia를 활용한 예제도 추가될 예정이다(Bivand 2022a 참조).</p>
-<p>공간데이터에 대해 사람들이 흔히 가지는 통념이 있다. 공간데이터란 관측 개체의 경위도값을 속성으로 포함한 데이터이며, 이 경위도값을 다른 변수들과 동일하게 취급해도 무방하다는 생각이다. 하지만 이러한 인식은 더 풍부한 연구 결과를 도출할 기회를 놓치게 할 뿐 아니라, 잘못된 결론에 도달할 위험성을 높일 수 있다. 다음 사항을 살펴보자.</p>
+<p>데이터사이언스는 주어진 데이터를 바탕으로 질문에 대한 해답을 찾고, 그 과정을 타인과 효과적으로 소통하는 학문이다. 여기서 소통은 단순히 결과를 제시하는 것을 넘어, 사용된 데이터를 공유하고 해답 도출의 전 과정을 포괄적이며 재현 가능한 방식으로 투명하게 공개하는 것을 포함한다. 또한 데이터사이언스는 주어진 데이터가 질문에 답하기에 충분하지 않을 수 있음을 인정하며, 설령 해답이 도출되었다 하더라도 데이터 수집 또는 표본추출 방식에 따라 그 결과가 달라질 수 있음을 수용한다.</p>
+<p>이 책은 <em>공간</em>데이터의 기본 개념을 소개하고 설명한다. 포인트, 라인, 폴리곤, 래스터, 커버리지, 지오메트리 속성, 데이터 큐브, 참조계와 같은 기초 개념부터, 속성과 지오메트리가 어떻게 연결되고 이러한 연결이 분석에 어떤 영향을 미치는지에 관한 고차원 개념까지를 다룬다. 속성과 지오메트리 간의 관계를 서포트(support)라 하며, 서포트가 달라지면 속성의 특성도 변할 수 있다. 일부 데이터는 공간적 연속성에 기반해 생성되어 모든 지점에서 관찰이 가능하지만, 다른 데이터는 공간적 이산성에 기반해 특정한 구획 체계를 통해서만 관찰된다. 현대 공간데이터분석에서는 이러한 구획 체계 개념이 포인트 데이터, 지구통계학적 데이터, 에어리어 데이터를 포함한 다양한 데이터 유형에 폭넓게 적용된다. 공간적 재현의 중요성을 뒷받침하는 핵심 개념이 바로 서포트이며, 서포트에 대한 이해는 필수적이다. 이 책은 공간데이터를 분석에 활용하고자 하는 데이터 과학자를 주요 독자로 한다. 책 전반에 걸쳐 공간데이터분석의 절차와 방법을 설명하며, 예시에는 프로그래밍 언어 R을 사용한다. 향후에는 Python과 Julia를 활용한 예제도 추가할 예정이다(Bivand 2022a 참조).</p>
+<p>공간데이터에 대해 흔히 갖는 통념이 있다. 공간데이터란 관측 개체의 경위도값을 속성으로 포함한 데이터이며, 이 경위도값을 다른 변수들과 동일하게 취급해도 무방하다는 생각이다. 그러나 이러한 인식은 더 풍부한 연구 결과를 도출할 기회를 놓칠 뿐 아니라, 잘못된 결론에 이를 위험을 높인다. 다음의 세 가지 점을 살펴보자.</p>
 <ul>
-<li>좌표 쌍은 말그대로 쌍이기 때문에, 반드시 함께 다루어져야 한다.</li>
-<li>관측 개체는 포인트, 라인, 폴리곤, 그리드 셀 등 다양한 형태를 가질 수 있으며, 각각의 특성을 고려해야 한다.</li>
-<li>관측 개체 간의 공간적 거리는 단순한 직선 거리로 표현될 수 있지만, 상황에 따라 대권(great circle) 거리, 네트워크 거리, 또는 비용 거리로 나타내는 것이 적절할 수 있다.</li>
+<li>좌표 쌍은 반드시 함께 다루어야 한다. 좌표는 말 그대로 쌍이므로, 하나의 독립적인 값처럼 분리해서는 안 된다.</li>
+<li>관측 개체의 형태를 고려해야 한다. 포인트, 라인, 폴리곤, 그리드 셀 등 다양한 형태가 있으며, 각 형태의 특성에 맞는 방법으로 처리해야 한다.</li>
+<li>적절한 거리 개념을 선택해야 한다. 관측 개체 간의 공간적 거리는 단순한 직선 거리뿐 아니라, 상황에 따라 대권(great circle) 거리, 네트워크 거리, 또는 비용 거리로 나타내는 것이 더 적합할 수 있다.</li>
 </ul>
-<p>이 책은 공간데이터, 좌표참조계, 공간분석과 관련된 다양한 개념 뿐만 아니라 <strong>sf</strong>(Pebesma 2018, 2022a), <strong>stars</strong>(Pebesma 2022b), <strong>s2</strong>(Dunnington, Pebesma, and Rubak 2023) and <strong>lwgeom</strong>(Pebesma 2023)와 같은 여러 R 패키지를 함께 다룬다. 이와 더불어 공간적 <strong>tidyverse</strong>(Wickham et al.&nbsp;2019; Wickham 2022) 확장 패키지와 이들 패키지와 연계하여 사용할 수 있는 공간분석 및 시각화 패키지들인 <strong>gstat</strong>(Pebesma 2004; Pebesma and Graeler 2022), <strong>spdep</strong>(Bivand 2022b), <strong>spatialreg</strong>(Bivand and Piras 2022), <strong>spatstat</strong>(Baddeley, Rubak, and Turner 2015; Baddeley, Turner, and Rubak 2022), <strong>tmap</strong>(Tennekes 2018, 2022), <strong>mapview</strong>(Appelhans et al.&nbsp;2022)도 함께 소개한다.</p>
-<p>데이터사이언스와 마찬가지로, 공간데이터사이언스 또한 특정 과학 분야의 하위 영역으로서 위로부터 형성된 것이 아니라, 공간데이터의 활용과 관련된 수많은 학문 및 산업 분야로부터의 상향식 발전을 통해 형성되어 온 분야이다. 학술대회, 심포지엄, 학회, 연구 프로그램 등을 통해 공간데이터사이언스를 규정하려는 다양한 시도들이 이루어지고 있으나, 공간데이터의 응용 범위가 광범위하고 다양하기 때문에 그러한 시도들이 결실을 맺기는 쉽지 않다. 이 책에 “공간데이터사이언스”라는 제목을 붙인 이유는 이 분야의 경계를 명확히 규정하려는 의도에서 비롯된 것이 아니다. 지난 30~40년 동안 우리는 연구의 전 과정을—기본 아이디어, 데이터, 소프트웨어 기반의 분석 절차까지—기꺼이 공유해 온 수많은 연구자들과 함께해 왔고, 이 책은 그러한 공동의 경험을 정리한 결과물이다. 이를 통해 공간데이터사이언스라는 연구 분야의 발전에 작게나마 기여하고자 하는 것이 이 책의 본래 의도이다. 따라서 이 책에서 다루는 주제의 선택은 필연적으로 저자들의 연구 관심과 경험에 일정 부분 편향되어 있을 수밖에 없다. 우리가 경험한 오픈 연구 커뮤니티의 형성에는 여러 플랫폼이 중요한 역할을 했다. ai-geostats, r-sig-geo 메일링 리스트, SourceForge, R-Forge, GitHub, 그리고 2006년부터 매년 열리고 있는 OpenGeoHub 여름학교가 그러한 플랫폼들이다. 데이터사이언스라의 언어 장벽을 넘어서고자 하는 수많은 노력의 결과, 오늘날 우리는 새로운 가능성과 흥미로운 관점이 열리고 있음을 실감하고 있다. 우리가 이 분야에 기여하고자 하는 이유는, 오픈사이언스가 더 나은 과학을 가능하게 하며, 더 나은 과학이 보다 지속가능한 세상을 만들어가는 데 기여할 수 있다고 믿기 때문이다.</p>
+<p>이 책은 공간데이터, 좌표참조계, 공간분석과 관련된 다양한 개념 뿐만 아니라 <strong>sf</strong>(Pebesma 2018, 2022a), <strong>stars</strong>(Pebesma 2022b), <strong>s2</strong>(Dunnington, Pebesma, and Rubak 2023), <strong>lwgeom</strong>(Pebesma 2023)와 같은 여러 R 패키지를 함께 다룬다. 이와 더불어 공간적 <strong>tidyverse</strong>(Wickham et al.&nbsp;2019; Wickham 2022) 확장 패키지와 이들 패키지와 연계하여 사용할 수 있는 공간분석 및 시각화 패키지들인 <strong>gstat</strong>(Pebesma 2004; Pebesma and Graeler 2022), <strong>spdep</strong>(Bivand 2022b), <strong>spatialreg</strong>(Bivand and Piras 2022), <strong>spatstat</strong>(Baddeley, Rubak, and Turner 2015; Baddeley, Turner, and Rubak 2022), <strong>tmap</strong>(Tennekes 2018, 2022), <strong>mapview</strong>(Appelhans et al.&nbsp;2022)도 함께 소개한다.</p>
+<p>데이터사이언스와 마찬가지로 공간데이터사이언스도 특정 과학 분야의 하위 영역으로서 위로부터 형성된 것이 아니라, 공간데이터 활용과 관련된 다양한 학문 및 산업 분야에서의 상향식 발전을 통해 형성되어 온 분야이다. 학술대회, 심포지엄, 학회, 연구 프로그램 등을 통해 공간데이터사이언스를 정의하려는 시도가 이어지고 있으나, 그 응용 범위가 워낙 광범위하고 다양하기 때문에 결실을 맺기는 쉽지 않다. 이 책에 ’공간데이터사이언스’라는 제목을 붙인 이유는 이 분야의 경계를 명확히 규정하려는 의도에서 비롯된 것이 아니다. 지난 30~40년 동안 우리는 기본 아이디어, 데이터, 소프트웨어 기반의 분석 절차 등 연구의 전 과정을 기꺼이 공유해 온 수많은 연구자들과 함께해 왔으며, 이 책은 그러한 공동 경험을 정리한 결과물이다. 이를 통해 공간데이터사이언스의 발전에 작게나마 기여하고자 하는 것이 우리의 본래 의도이다. 따라서 이 책에서 다루는 주제의 선택은 필연적으로 저자들의 연구 관심과 경험에 일정 부분 편향될 수밖에 없다. 우리가 경험한 오픈 연구 커뮤니티의 형성에는 여러 플랫폼이 중요한 역할을 했다. ai-geostats, r-sig-geo 메일링 리스트, SourceForge, R-Forge, GitHub, 그리고 2006년부터 매년 열리고 있는 OpenGeoHub 여름학교가 그 예이다. 데이터사이언스라는 언어 장벽을 넘어서려는 수많은 노력의 결과, 오늘날 우리는 새로운 가능성과 흥미로운 관점이 열리고 있음을 실감하고 있다. 우리가 이 분야에 기여하고자 하는 이유는, 오픈사이언스가 더 나은 과학을 가능하게 하며, 더 나은 과학이 보다 지속가능한 세상을 만드는 데 기여할 수 있다고 믿기 때문이다.</p>
 <section id="감사의-글" class="level2">
 <h2 class="anchored" data-anchor-id="감사의-글">감사의 글</h2>
-<p>우리는 r-spatial 커뮤니티 전체에 깊은 감사를 드리며, 특히 아래에 열거한 분들께는 특별한 감사의 마음을 전한다.</p>
+<p>우리는 r-spatial 커뮤니티 전체에 깊이 감사드리며, 특히 다음에 열거한 분들께 특별한 감사를 전한다.</p>
 <ul>
-<li><p>r-spatial 패키지를 개발하였거나 그 개발에 기여해 주신 분들</p></li>
-<li><p>트위터의 <code>#rspatial</code> 해시태그나 GitHub에서 디스커션에 참여해 주신 분들</p></li>
-<li><p>강좌, 여름 학교, 또는 학술 컨퍼런스에서 의견을 개진하거나 질문을 통해 토론에 기여해 주신 분들</p></li>
+<li><p>r-spatial 패키지를 개발하거나 그 개발에 기여해 주신 분들</p></li>
+<li><p>트위터의 <code>#rspatial</code> 해시태그나 GitHub에서 토론에 참여해 주신 분들</p></li>
+<li><p>강좌, 여름학교, 학술 컨퍼런스에서 의견을 개진하거나 질문을 통해 토론에 기여해 주신 분들</p></li>
 </ul>
-<p>우리는 <strong>s2</strong> 패키지를 구현해 준 듀이 더닝턴(Dewey Dunnington)에게 특별히 감사드리며, 사힐 반다리(Sahil Bhandari), 제6장의 데이터 큐브 관련 그림을 준비해 준 조너선 발만(Jonathan Bahlmann), 클라우스 빌케(Claus Wilke), 야쿠브 노보사드(Jakub Nowosad)의 적극적인 기여에도 깊이 감사드린다. 또한 2021년과 2022년에 진행된 “R을 활용한 공간데이터사이언스(Spatial Data Science with R)” 수업의 참가자들에게도 감사의 뜻을 전한다. 마지막으로 다음의 GitHub 리포지터리에 이슈, 풀 리퀘스트, 디스커션 등의 방식으로 적극적으로 참여해 주신 모든 분들께도 진심으로 감사드린다.</p>
+<p>특히, <strong>s2</strong> 패키지를 구현한 듀이 더닝턴(Dewey Dunnington)과, 제6장 <em>데이터 큐브</em>의 그림을 준비해 준 사힐 반다리(Sahil Bhandari), 조너선 발만(Jonathan Bahlmann), 그리고 클라우스 빌케(Claus Wilke), 야쿠브 노보사드(Jakub Nowosad)의 적극적인 기여에 깊이 감사드린다. 또한 2021년과 2022년에 진행된 ‘R을 활용한 공간데이터사이언스(Spatial Data Science with R)’ 수업의 참가자들과, 다음의 GitHub 리포지터리에서 이슈, 풀 리퀘스트, 디스커션 등을 통해 적극적으로 참여해 주신 모든 분들께도 진심으로 감사드린다.</p>
 <ul>
 <li><p>이 책의 리포지터리(Nowosad, jonathom, JaFro96, singhkpratham, liuyadong, hurielreichel, PPaccioretti, Robinlovelace, Syverpet, jonas-hurst, angela-li, ALanguillaume, florisvdh, ismailsunni, andronaco)</p></li>
-<li><p>sf 리포지터리(aecoleman, agila5, andycraig, angela-li, ateucher, barryrowlingson, bbest, BenGraeler, bhaskarvk, Bisaloo, bkmgit, christophertull, chrisyeh96, cmcaine, cpsievert, daissi, dankelley, DavisVaughan, dbaston, dblodgett-usgs, dcooley, demorenoc, dpprdan, drkrynstrng, etiennebr, famuvie, fdetsch, florisvdh, gregleleu, hadley, hughjonesd, huizezhang-sherry, jeffreyhanson, jeroen, jlacko, joethorley, joheisig, JoshOBrien, jwolfson, kadyb, karldw, kendonB, khondula, KHwong12, krlmlr, lambdamoses, lbusett, lcgodoy, lionel-, loicdtx, marwahaha, MatthieuStigler, mdsumner, MichaelChirico, microly, mpadge, mtennekes, nikolai-b, noerw, Nowosad, oliverbeagley, Pakillo, paleolimbot, pat-s, PPaccioretti, prdm0, ranghetti, rCarto, renejuan, rhijmans, rhurlin, rnuske, Robinlovelace, robitalec, rubak, rundel, statnmap, thomasp85, tim-salabim, tyluRp, uribo, Valexandre, wibeasley, wittja01, yutannihilation, Zedseayou)</p></li>
-<li><p>stars 리포지터리(a-benini, ailich, ateucher, btupper, dblodgett-usgs, djnavarro, ErickChacon, ethanwhite, etiennebr, flahn, floriandeboissieu, gavg712, gdkrmr, jannes-m, jeroen, JoshOBrien, kadyb, kendonB, mdsumner, michaeldorman, mtennekes, Nowosad, pat-s, PPaccioretti, przell, qdread, Rekyt, rhijmans, rubak, rushgeo, statnmap, uribo, yutannihilation)</p></li>
-<li><p>s2 리포지토리(kylebutts, spiry34, jeroen, eddelbuettel)</p></li>
+<li><p><strong>sf</strong> 리포지터리(aecoleman, agila5, andycraig, angela-li, ateucher, barryrowlingson, bbest, BenGraeler, bhaskarvk, Bisaloo, bkmgit, christophertull, chrisyeh96, cmcaine, cpsievert, daissi, dankelley, DavisVaughan, dbaston, dblodgett-usgs, dcooley, demorenoc, dpprdan, drkrynstrng, etiennebr, famuvie, fdetsch, florisvdh, gregleleu, hadley, hughjonesd, huizezhang-sherry, jeffreyhanson, jeroen, jlacko, joethorley, joheisig, JoshOBrien, jwolfson, kadyb, karldw, kendonB, khondula, KHwong12, krlmlr, lambdamoses, lbusett, lcgodoy, lionel-, loicdtx, marwahaha, MatthieuStigler, mdsumner, MichaelChirico, microly, mpadge, mtennekes, nikolai-b, noerw, Nowosad, oliverbeagley, Pakillo, paleolimbot, pat-s, PPaccioretti, prdm0, ranghetti, rCarto, renejuan, rhijmans, rhurlin, rnuske, Robinlovelace, robitalec, rubak, rundel, statnmap, thomasp85, tim-salabim, tyluRp, uribo, Valexandre, wibeasley, wittja01, yutannihilation, Zedseayou)</p></li>
+<li><p><strong>stars</strong> 리포지터리(a-benini, ailich, ateucher, btupper, dblodgett-usgs, djnavarro, ErickChacon, ethanwhite, etiennebr, flahn, floriandeboissieu, gavg712, gdkrmr, jannes-m, jeroen, JoshOBrien, kadyb, kendonB, mdsumner, michaeldorman, mtennekes, Nowosad, pat-s, PPaccioretti, przell, qdread, Rekyt, rhijmans, rubak, rushgeo, statnmap, uribo, yutannihilation)</p></li>
+<li><p><strong>s2</strong> 리포지토리(kylebutts, spiry34, jeroen, eddelbuettel)</p></li>
 </ul>
 
 
