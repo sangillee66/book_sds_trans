@@ -24,7 +24,7 @@ editor: visual
 공간 프로세스를 모형화하려는 시도 가운데 가장 초기의 공간계량경제학적 정식화 중 하나는, 잔차의 공간적 자기상관을 모형화하는 방식이다. 이는 공간오차모형(SEM)으로 다음과 같이 표현된다.
 
 $$
-\textbf{y}=\textbf{X}\beta+\textbf{u},\qquad \textbf{u}=\rho_\text {Err} \textbf{Wu}+\epsilon,
+\textbf{y}=\textbf{X}\beta+\textbf{u},\qquad \textbf{u}=\rho_\text {Err} \textbf{Wu}+\epsilon
 $$
 
 여기서 $\textbf{y}$는 $N$ 위치에서 측정된 반응변수의 $(N\times1)$ 관측치 벡터, $\textbf{X}$는 $(N \times k)$ 공변량 행렬, $\beta$는 $(k \times 1)$ 계수 벡터, $\textbf{u}$는 공간적 자기상관을 갖는 $(N \times 1)$ 교란 벡터, $\epsilon$은 독립항등분포를 따르는 $(N \times 1)$ 교란 벡터, $\rho_\text{Err}$는 스칼라 형태의 공간 계수이다.
@@ -32,7 +32,7 @@ $$
 이 모형과 유사한 다른 공간계량경제학 모형들은 혼합모형 프레임워크에는 부합하지 않는다. 여기서 모형화된 공간 프로세스는 반응변수, 공변량, 그리고 계수와 직접적으로 상호작용한다. 이러한 형태의 모형화 접근은 시계열 프레임워크를 단순히 2차원으로 확장한 오래된 전통에서 기원한 것으로 보인다.
 
 $$
-\textbf{u}=(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon,\quad \textbf{y}=\textbf{X}\beta+(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon,\quad (\textbf{I}-\rho_\text{Err}\textbf{W})\textbf{y}=(\textbf{I}-\rho_\text{Err}\textbf{W})\textbf{X}\beta+\epsilon.
+\textbf{u}=(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon,\quad \textbf{y}=\textbf{X}\beta+(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon,\quad (\textbf{I}-\rho_\text{Err}\textbf{W})\textbf{y}=(\textbf{I}-\rho_\text{Err}\textbf{W})\textbf{X}\beta+\epsilon
 $$
 
 만약 공변량과 반응변수가 동일한 공간 프로세스를 따른다면, 최소제곱법(OLS) 계수와 공간오차모형 계수 사이의 차이는 거의 없을 것이다. 그러나 실제로는 두 프로세스가 일치하지 않는 경우가 많으며, 이를 판별 및 조정하기 위해서는 Hausman 검정과 같은 추가 절차가 필요하다(Pace and LeSage 2008). 이러한 논의는, 공간 프로세스가 일치하는 경우 시계열 분석의 단위근(unit root)과 공적분(cointegration) 개념을 공간적으로 확장하려는 이전 연구와도 연결된다(Fingleton 1999).
@@ -45,7 +45,7 @@ $$
 
 여기서 $\gamma$는 $(k' \times 1)$ 파라미터 벡터이다. $k'$는 절편과 일부 공변량을 정의하며, 행표준화 공간가중치행렬을 사용하고 공간래그 절편을 포함하지 않는 경우 $k'=k-1$이다.
 
-이 기본 모형에 특정 제약을 가하면 다양한 변형 모형이 도출된다. $\gamma = 0$으로 설정하면 이중 공간계수 모형인 SAC/SARAR 모형이 되며, $\rho_\text{Lag}=0$으로 설정하면 공간더빈오차모형(SDEM, spatial Durbin error model)이 된다. 더 강한 조건을 부여할 수도 있는데, $\gamma = 0$과 $\rho_\text{Err}=0$로 설정하면 공간래그모형(SLM), $\gamma=0$와 $\rho_\text{Lag}=0$으로 설정하며 공간오차모형(SEM), $\rho_\text{Lag}=0$과 $\rho_\text{Err}=0$으로 설정하면 공간래그X모형(SLX)이 된다.
+이 기본 모형에 특정 제약을 가하면 다양한 변형 모형이 도출된다. $\gamma = 0$으로 설정하면 이중 공간계수 모형인 SAC/SARAR 모형이, $\rho_\text{Err}=0$으로 설정하면 공간더빈모형(SDM, spatial Durbin model)이, $\rho_\text{Lag}=0$으로 설정하면 공간더빈오차모형(SDEM, spatial Durbin error model)이 된다. 더 강한 조건을 부여할 수도 있는데, $\gamma = 0$과 $\rho_\text{Err}=0$로 설정하면 공간래그모형(SLM), $\gamma=0$와 $\rho_\text{Lag}=0$으로 설정하며 공간오차모형(SEM), $\rho_\text{Lag}=0$과 $\rho_\text{Err}=0$으로 설정하면 공간래그X모형(SLX)이 된다.
 
 공변량이 관측된 새로운 위치에 대해 예측을 수행하는 것과 관련된 문제는 오래전부터 인식되어 왔지만, 그 가능성에 대한 체계적인 검토와 실질적 진전은 상당한 시간이 지나서야 이루어졌다(Bivand 2002; Goulard, Laurent, and Thomas-Agnan 2017; Laurent and Margaretic 2021). MLE로 적합된 SLM, SDM, SEM, SDEM, SAC, GNM 모형을 예측에 적용하는 방법은 'Google Summer of Code(구글 썸머 오프 코드)' 프로젝트를 수행한 마틴 구브리(Martin Gubri)의 공로가 크다. 또한, 결측 데이터를 다루는 유사한 모형에 관한 연구(Suesse 2018)는 보스턴 주택 데이터셋에서 검열된 중앙값 주택가격을 분석하는데 시사점을 제공한다. 예측 문제를 다루다 보면 해당 모형의 축약 형태(reduced form)가 매우 중요하다는 점을 인식하게 된다. 특히 SLM, SDM, SAC, GNM 모형처럼 반응변수의 공간 프로세스가 회귀계수와 상호작용하는 경우에는, 보다 단순화된 형태의 표현이 분석과 해석에 도움이 될 수 있다.(역자주: 여기서 ‘축약 형태’란 공간계량경제학이나 회귀분석에서 모형을 단순화하여, 반응변수를 설명변수와 오차항만의 함수로 나타낸 식을 말하며, 효과 계산과 예측 분석에서 핵심적인 역할을 한다. 예를 들어 SLM에서는 단위행렬에서 공간계수와 공간가중치행렬의 곱을 뺀 행렬의 역행렬을 곱해 풀면 축약 형태가 되며, 이 역행렬이 공간 파급 효과를 나타낸다.)
 
@@ -54,13 +54,13 @@ $$
 이것은 GNM 데이터 생성 프로세스에서 확인할 수 있다.
 
 $$
-(\textbf{I}-\rho_{\text Err}\textbf{W})(\textbf{I}-\rho_{\text Lag}\textbf{W})\textbf{y}=(\textbf{I}-\rho_{\text Err}\textbf{W})(\textbf{X}\beta+\textbf{WX}\gamma)+\epsilon
+(\textbf{I}-\rho_\text{Err}\textbf{W})(\textbf{I}-\rho_\text {Lag}\textbf{W})\textbf{y}=(\textbf{I}-\rho_\text {Err}\textbf{W})(\textbf{X}\beta+\textbf{WX}\gamma)+\epsilon
 $$
 
 이를 다음과 같이 변형하여 나타낼 수 있다.
 
 $$
-\textbf{y}=(\textbf{I}-\rho_\text{Lag}\textbf{W})^{-1}(\textbf{X}\beta+\textbf{WX}\gamma)+(\textbf{I}-\rho_\text{Lag}\textbf{W})^{-1}(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon.
+\textbf{y}=(\textbf{I}-\rho_\text{Lag}\textbf{W})^{-1}(\textbf{X}\beta+\textbf{WX}\gamma)+(\textbf{I}-\rho_\text{Lag}\textbf{W})^{-1}(\textbf{I}-\rho_\text{Err}\textbf{W})^{-1}\epsilon
 $$
 
 이 식에서 $\rho_\text{Lag}$와 $\beta$ 사이에는 상호작용이 존재하며, $\gamma$가 존재할 경우에는 세 변수 간의 상호작용이 발생한다. 이는 다음의 편도함수에서 확인할 수 있다: $\partial y_i/\partial x_{jr}=((\textbf{I}-\rho_\text{Lag}\textbf{W})^{-1}(\textbf{I}\beta_r+\textbf{W}\gamma_r))_{ij}$. 여기서 밀집 행렬 $S_r(\textbf{W})=((\textbf{I}-\rho_\text{Lag}\textbf{W})^{-1}(\textbf{I}\beta_r+\textbf{W}\gamma_r))$의 주대각 요소는 직접 효과(direct effect)을 나타내고, 비대각 요소는 간접 효과(indirect effect)를 나타낸다.
@@ -79,15 +79,15 @@ Bivand, Millo와 Piras(2021)는 공간계량경제학적 분석을 위한 R 패�
 
 단일 공간계수를 가지는 모형(SEM 및 SDEM은 `errorsarlm()` 함수 사용, SLM 및 SDM은 `lagsarlm()` 함수 사용)에는 Ord(1975)가 처음 제시한 방법이 적용된다. 다음 표는 최대우도추정법(MLE)을 사용하여 앞서 설명한 모형을 추정할 수 있는 함수를 정리한 것이다.
 
-| 모형 | 모형명           | MLE 함수                        |
-|------|------------------|---------------------------------|
-| SEM  | 공간오차         | `errorsarlm(..., Durbin=FALSE)` |
-| SEM  | 공간오차         | `spautolm(..., family="SAR")`   |
-| SDEM | 공간더빈오차     | `errorsarlm(..., Durbin=TRUE)`  |
-| SLM  | 공간래그         | `lagsarlm(..., Durbin=FALSE)`   |
-| SDM  | 공간더빈         | `lagsarlm(..., Durbin=TRUE)`    |
-| SAC  | 공간자기회귀결합 | `sacsarlm(..., Durbin=FALSE)`   |
-| GNM  | 일반중첩         | `sacsarlm(..., Durbin=TRUE)`    |
+| 모형 | 모형명           | MLE 함수                          |
+|------|------------------|-----------------------------------|
+| SEM  | 공간오차         | `errorsarlm(..., Durbin = FALSE)` |
+| SEM  | 공간오차         | `spautolm(..., family = "SAR")`   |
+| SDEM | 공간더빈오차     | `errorsarlm(..., Durbin = TRUE)`  |
+| SLM  | 공간래그         | `lagsarlm(..., Durbin = FALSE)`   |
+| SDM  | 공간더빈         | `lagsarlm(..., Durbin = TRUE)`    |
+| SAC  | 공간자기회귀결합 | `sacsarlm(..., Durbin = FALSE)`   |
+| GNM  | 일반중첩         | `sacsarlm(..., Durbin = TRUE)`    |
 
 `errorsarlm()`과 `lagsarlm()` 추정 함수는 유사한 인수를 받는다. 첫 번째(`formula`)와 두 번째(`data`) 인수는 대부분의 모형 추정 함수에서 공통적으로 사용되며, 세 번째 인수는 `listw` 공간가중치 객체이다. `na.action` 인수는 결측값이 있는 관측 개체의 공간가중치를 어떻게 처리할지를 정의하며, 다른 모형 추정 함수와 동일하게 동작한다. `weights` 인수는 분산 항에서 관측값별 변동성을 나타내는 가중치를 제공하는 데 사용되지만, `lagsarlm()` 함수에서는 이 옵션이 제공되지 않는다.
 
@@ -438,7 +438,7 @@ data.frame(fit_TS = t0[,1], fit_KP2 = c(t1), fit_KP5 = c(t2),
 
 ## 연습문제
 
-1.  Piras와 Prucha(2014), 그리고 Raymond J. G. M. Florax, Folmer, Rey(2003)를 참조하여, 사전 테스트 전략을 선택했을 때, 속성만 포함된 데이터셋과 지자체 구역 변수를 추가한 속성 데이터셋의 선형모형에서 잔차의 공간적 의존성이 나타나는지 답하시오. 사전 테스트가 어떤 모형을 지목하는지에 대해 답하시오.
+1.  Piras와 Prucha(2014), 그리고 Raymond J. G. M. Florax, Folmer과 Rey(2003)를 참조하여, 사전 테스트 전략을 선택했을 때, 속성만 포함된 데이터셋과 지자체 구역 변수를 추가한 속성 데이터셋의 선형모형에서 잔차의 공간적 의존성이 나타나는지 답하시오. 사전 테스트가 어떤 모형을 지목하는지에 대해 답하시오.
 
 2.  자치구역 더미 변수를 포함하거나 자치구역 레짐(regime) 모형을 실행하는 것이 잔차의 공간적 의존성을 줄이는 데 도움이 될 수 있는지에 대해 답하시오.
 

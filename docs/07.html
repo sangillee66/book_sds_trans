@@ -405,7 +405,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 15일</p>
+      <p class="date-modified">2025년 8월 16일</p>
     </div>
   </div>
     
@@ -486,7 +486,7 @@ window.Quarto = {
 <span><span class="co"># Geodetic CRS:  NAD27</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>여기서 사용된 파일 이름과 경로는 <strong>sf</strong> 패키지에 포함된 데이터를 가리키며, 이는 <strong>sf</strong> 패키지를 설치하는 과정에서 설정되므로 어떤 컴퓨터에서든 예외 없이 읽을 수 있다.</p>
-<p><code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수는 두 개의 인수, 즉 <em>데이터 소스 이름</em>(<code>dsn</code>)과 <em>레이어</em>(layer)를 가진다. 위의 예에서 사용된 <em>geopackage</em>(GPKG) 파일은 단일 레이어만 포함하고 있으며, 해당 레이어가 불러와진 것이다. 만약 여러 레이어가 포함되어 있었다면, 첫 번째 레이어가 읽히고 경고 메시지가 출력되었을 것이다. 데이터셋에서 사용 가능한 레이어 목록은 다음과 같이 조회할 수 있다.</p>
+<p><code><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read()</a></code> 함수는 두 개의 인수, 즉 <em>데이터 소스 이름</em>(<code>dsn</code>)과 <em>레이어</em>(layer)를 가진다. 위의 예에서 사용된 <em>지오패키지</em>(GPKG) 파일은 단일 레이어만 포함하고 있으며, 해당 레이어가 불러와진 것이다. 만약 여러 레이어가 포함되어 있었다면, 첫 번째 레이어가 읽히고 경고 메시지가 출력되었을 것이다. 데이터셋에서 사용 가능한 레이어 목록은 다음과 같이 조회할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_layers.html">st_layers</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
 <span><span class="co"># Driver: GPKG </span></span>
@@ -513,7 +513,7 @@ window.Quarto = {
 </div>
 <p>여기에 몇몇 옵션을 부가적으로 적용할 수 있다.</p>
 <ul>
-<li><p><code>drop</code> 인수는 기본값이 <code>FALSE</code>로 설정되어 있어, 지오메트리 열이 <em>항상</em> 선택되며 <code>sf</code> 객체가 반환된다. <code>TRUE</code>로 설정하면, 지오메트리 열이 선택되지 않은 경우 해당 열이 제거된 <code>data.frame</code>이 반환된다.</p></li>
+<li><p><code>drop</code> 인수는 기본값이 <code>FALSE</code>로 설정되어 있어, 지오메트리 열이 <em>항상</em> 선택되며 <code>sf</code> 객체가 반환된다. <code>TRUE</code>로 설정하면, 지오메트리 열이 선택되지 <em>않은</em> 경우 해당 열이 제거된 <code>data.frame</code>이 반환된다.</p></li>
 <li><p>공간(<code>sf</code>, <code>sfc</code>, <code>sfg</code>) 객체를 첫 번째 인수로 사용하여 선택하면, 해당 객체와 공간적으로 <em>교차</em>하는 피처가 선택된다(다음 절 참조). 다른 프레디케이트를 사용하려면 <code>op</code> 인수를 설정하여 <code><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">st_covers()</a></code>와 같은 함수나 3.2.2절에 나열된 다른 이항 프레디케이트 함수를 지정할 수 있다.</p></li>
 </ul></section><section id="이항-프레디케이트" class="level3" data-number="7.1.4"><h3 data-number="7.1.4" class="anchored" data-anchor-id="이항-프레디케이트">
 <span class="header-section-number">7.1.4</span> 이항 프레디케이트</h3>
@@ -626,15 +626,16 @@ window.Quarto = {
 <p>결과의 복잡성을 줄이는 또 다른 방법은 조인 후에 <code>aggregate</code> 함수를 사용하여 모든 일치하는 레코드를 결합함과 동시에 지오메트리도 병합하는 것이다. 이에 대한 자세한 내용은 5.4절을 참고하라.</p>
 <section id="표본추출-그리드-생성-내삽" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="표본추출-그리드-생성-내삽">
 <span class="header-section-number">7.2.1</span> 표본추출, 그리드 생성, 내삽</h3>
-<p><code>sf</code> 패키지가 제공하는 몇 가지 유용한 함수를 소개한다. <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수는 대상 지오메트리로부터 임의의 표본 포인트를 생성하며, 여기서 대상 지오메트리는 포인트, 라인, 폴리곤 등 다양할 수 있다. 표본추출 방식은 완전 무작위 방식, 규칙적 방식, 또는 폴리곤의 경우 삼각형 방식 중 선택할 수 있다. 11장에서 <strong>spatstat</strong> 패키지가 제공하는 공간적 표본추출(또는 포인트패턴 시뮬레이션) 방법이 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수를 통해 어떻게 구현되는지 설명한다.</p>
+<p><strong>sf</strong> 패키지가 제공하는 몇 가지 유용한 함수를 소개한다. <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수는 대상 지오메트리로부터 임의의 표본 포인트를 생성하며, 여기서 대상 지오메트리는 포인트, 라인, 폴리곤 등 다양할 수 있다. 표본추출 방식은 완전 무작위 방식, 규칙적 방식, 또는 폴리곤의 경우 삼각형 방식 중 선택할 수 있다. 11장에서 <strong>spatstat</strong> 패키지가 제공하는 공간적 표본추출(또는 포인트패턴 시뮬레이션) 방법이 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수를 통해 어떻게 구현되는지 설명한다.</p>
 <p><code><a href="https://r-spatial.github.io/sf/reference/st_make_grid.html">st_make_grid()</a></code> 함수는 특정 영역 위에 정사각형, 직사각형, 또는 육각형의 그리드를 생성한다. 옵션 설정에 따라 그리드 자체가 아닌 그리드의 중심점이나 모서리점을 생성할 수도 있다. 이 함수는 그림 7.4에서 직사각형 그리드를 생성하는 데 사용되었다.</p>
 <p>함수 <code><a href="https://r-spatial.github.io/sf/reference/interpolate_aw.html">st_interpolate_aw()</a></code> 함수는 5.3절에서 설명한 바와 같이, 공간 내포 변수와 공간 외연 변수를 새로운 구역으로 ’내삽’하는 기능을 제공한다.</p>
 </section></section><section id="타원체-좌표" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="타원체-좌표">
 <span class="header-section-number">7.3</span> 타원체 좌표</h2>
-<p>비투영 데이터는 경위도로 표현된 타원체 좌표를 가진다. 4.1절에서 설명한 바와 같이, 포인트 간의 ’직선’은 최단 곡선 경로인 ’측지선(geodesic line)’이다. 기본적으로 <strong>sf</strong> 패키지는 s2geometry 라이브러를 사용해 기하학적 연산을 수행하며, 이는 <strong>s2</strong> 패키지를 통해 구현된다(Dunnington, Pebesma, and Rubak 2023). 예를 들어, 아래의 지점은 특정 폴리곤 <em>내부</em>에 위치한다(그림 7.5의 왼쪽: 정사 도법).</p>
+<p>비투영 데이터는 경위도로 표현된 타원체 좌표를 가진다. 4.1절에서 설명한 바와 같이, 포인트 간의 ’직선’은 최단 곡선 경로인 ’측지선(geodesic line)’이다. 기본적으로 <strong>sf</strong> 패키지는 s2geometry 라이브러리를 사용해 기하학적 연산을 수행하며, 이는 <strong>s2</strong> 패키지를 통해 구현된다(Dunnington, Pebesma, and Rubak 2023).</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="st">"POINT(50 50.1)"</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"OGC:CRS84"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">pt</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>예를 들어, 아래의 지점은 특정 폴리곤 <em>내부</em>에 위치한다(그림 7.5의 왼쪽: 정사 도법).</p>
 <div class="cell">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="st">"POLYGON((40 40, 60 40, 60 50, 40 50, 40 40))"</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="st">"OGC:CRS84"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">pol</span></span>
@@ -665,7 +666,7 @@ window.Quarto = {
 <span><span class="co"># Spherical geometry (s2) switched on</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>이렇게 하면 그림 7.5의 오른쪽(정거원통 도법)처럼, 엠프티 교차가 반환된다. 경고 메시지에는 타원체 좌표를 평면좌표으로 취급하고 있다는 내용이 명시된다.</p>
-<p><strong>s2</strong> 사용은 성능상의 이유나 레거시 구현과의 호환성을 위해 비활성화할 수 있다. 데카르트 기하를 위한 <code>GEOS</code> 라이브러리와 구체 기하를 위한 <code>s2geometry</code> 라이브러리(그림 1.7)는 서로 다른 동기로 개발되었으며, <strong>sf</strong> 패키지를 통해 사용될 때 몇 가지 차이가 있다.</p>
+<p><strong>s2</strong> 사용은 성능상의 이유나 레거시 구현과의 호환성을 위해 비활성화할 수 있다. 데카르트 기하를 위한 <code>GEOS</code> 라이브러리와 구체 기하를 위한 s2geometry 라이브러리(그림 1.7)는 서로 다른 동기로 개발되었으며, <strong>sf</strong> 패키지를 통해 사용될 때 몇 가지 차이가 있다.</p>
 <ul>
 <li><p>특정 연산에서 속도 차이가 크게 발생할 수 있다.</p></li>
 <li><p>일부 함수는 특정 라이브러리에만 존재한다(예를 들어 <code><a href="https://r-spatial.github.io/sf/reference/st_relate.html">st_relate()</a></code> 함수는 GEOS 라이브러리에만 존재)</p></li>
@@ -1432,7 +1433,7 @@ window.Quarto = {
 <p>카운트 속성을 정규화하는 또 다른 방법은 값을 면적이 아닌 인구수로 나누는 것이다.</p>
 </section><section id="타이디-어레이-데이터" class="level3" data-number="7.5.3"><h3 data-number="7.5.3" class="anchored" data-anchor-id="타이디-어레이-데이터">
 <span class="header-section-number">7.5.3</span> 타이디 어레이 데이터</h3>
-<p>Wickham(2014)의 타이디 데이터 논문은 3차원 데이터를 어레이 데이터 형식보다는 각 행이 (지역, 클래스, 연도, 값)으로 구성된 긴(비정규화된) 테이블 형식으로 처리되는 것이 더 바람직하다고 제안한다. 이는 가능하다면 항상 좋은 접근이다. 그러나 기본 처리나 저장 목적에서는 이 방법을 적용할 수 없는 경우가 있으며, 그 이유는 다음과 같다.</p>
+<p>Wickham(2014)의 <em>타이디</em> 데이터 논문은 3차원 데이터를 어레이 데이터 형식보다는 각 행이 (지역, 클래스, 연도, 값)으로 구성된 긴(비정규화된) 테이블 형식으로 처리되는 것이 더 바람직하다고 제안한다. 이는 가능하다면 항상 좋은 접근이다. 그러나 기본 처리나 저장 목적에서는 이 방법을 적용할 수 없는 경우가 있으며, 그 이유는 다음과 같다.</p>
 <ul>
 <li><p>많은 어레이 데이터는 처음부터 어레이 형식으로 수집되거나 생성된다. 예를 들어, 원격탐사를 통해 수집된 데이터나 기후 모형을 통해 생성된 데이터가 이에 해당한다.</p></li>
 <li><p>어레이 형식을 긴 테이블 형태로 변환하는 것이 그 반대보다 훨씬 쉽다.</p></li>
@@ -1443,7 +1444,7 @@ window.Quarto = {
 <p><strong>stars</strong> 패키지는 어레이 집합을 처리하는 문제에 있어 타이디 데이터 원칙(tidy manifesto)을 따르려 하며, 특히 하나 이상의 디멘션이 공간 및/또는 시간을 참조하는 경우에 그러하다.</p>
 </section><section id="벡터-데이터-큐브를-위한-파일-포맷" class="level3" data-number="7.5.4"><h3 data-number="7.5.4" class="anchored" data-anchor-id="벡터-데이터-큐브를-위한-파일-포맷">
 <span class="header-section-number">7.5.4</span> 벡터 데이터 큐브를 위한 파일 포맷</h3>
-<p>규칙 테이블 형식(긴 테이블 형식을 포함)은 하나의 대안이지만 사용하기에는 불편하다. 위의 출발지-목적지 데이터 예제와 13장에서 다룰 내용은 테이블 형식에서 벡터 데이터 큐브를 재구성하는 작업이 매우 복잡하다는 점을 잘 보여준다. NetCDF나 Zarr와 같은 어레이 형식은 어레이 데이터를 저장하기 위해 설계되었으나, 사실상 모든 데이터 구조를 저장할 수 있다. 다만, 한 번 작성된 파일은 재사용하기 어렵다는 위험이 있다. 포인트, (멀티)라인스트링, (멀티)폴리곤으로 구성된 단일 지오메트리 디멘션을 가진 벡터 데이터 큐브의 경우, CF 규칙(Eaton et al.&nbsp;2022)은 이러한 지오메트리를 인코딩하는 방법을 설명한다. <code><a href="https://r-spatial.github.io/stars/reference/mdim.html">stars::read_mdim()</a></code> 함수와 <code><a href="https://r-spatial.github.io/stars/reference/mdim.html">stars::write_mdim()</a></code> 함수는 이 규칙을 따르는 벡터 데이터 큐브를 읽고 쓸 수 있다.</p>
+<p>규칙 테이블 형식(긴 테이블 형식을 포함)은 하나의 대안이지만 사용하기에는 불편하다. 위의 출발지-목적지 데이터 예제와 13장에서 다룰 내용은 테이블 형식에서 벡터 데이터 큐브를 재구성하는 작업이 매우 복잡하다는 점을 잘 보여준다. NetCDF나 Zarr와 같은 어레이 형식은 어레이 데이터를 저장하기 위해 설계되었으나, 사실상 <em>모든</em> 데이터 구조를 저장할 수 있다. 다만, 한 번 작성된 파일은 재사용하기 어렵다는 위험이 있다. 포인트, (멀티)라인스트링, (멀티)폴리곤으로 구성된 <em>단일</em> 지오메트리 디멘션을 가진 벡터 데이터 큐브의 경우, CF 규칙(Eaton et al.&nbsp;2022)은 이러한 지오메트리를 인코딩하는 방법을 설명한다. <code><a href="https://r-spatial.github.io/stars/reference/mdim.html">stars::read_mdim()</a></code> 함수와 <code><a href="https://r-spatial.github.io/stars/reference/mdim.html">stars::write_mdim()</a></code> 함수는 이 규칙을 따르는 벡터 데이터 큐브를 읽고 쓸 수 있다.</p>
 </section></section><section id="래스터-벡터-전환과-벡터-래스터-전환" class="level2" data-number="7.6"><h2 data-number="7.6" class="anchored" data-anchor-id="래스터-벡터-전환과-벡터-래스터-전환">
 <span class="header-section-number">7.6</span> 래스터-벡터 전환과 벡터-래스터 전환</h2>
 <p>1.3절에서 래스터-벡터 전환과 벡터-래스터 전환의 몇 가지 예제를 이미 다루었다. 이 절에서는 이에 대한 코드와 예제를 추가로 제시한다.</p>
@@ -1507,7 +1508,7 @@ window.Quarto = {
 <span class="header-section-number">7.7</span> 좌표변환 및 좌표전환</h2>
 <section id="st_crs-함수" class="level3" data-number="7.7.1"><h3 data-number="7.7.1" class="anchored" data-anchor-id="st_crs-함수">
 <span class="header-section-number">7.7.1</span> <code>st_crs()</code> 함수</h3>
-<p><code>sf</code> 또는 <code>stars</code> 클래스의 공간 객체는 CRS(좌표참조계)를 포함하고 있다. <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs()</a></code> 함수를 사용하여 해당 객체의 CRS를 확인하거나 다른 CRS로 교체할 수 있다. 또한, <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_set_crs()</a></code>함수를 사용하여 CRS를 설정하거나 교체할 수 있다. CRS는 EPSG 코드로 설정할 수 있으며, 예를 들어 <code>st_crs(4326)</code>는 <code>st_crs('EPSG:4326')</code>로 변환된다. 또는 <code>"+proj=utm +zone=25 +south"</code>와 같은 PROJ.4 문자열, <code>"WGS84"</code>와 같은 이름, <code>"OGC"</code>처럼 기관명이 앞에 붙은 이름으로도 설정할 수 있다. 대안으로 WKT, WKT-2(2.5절), 또는 PROJJSON 형식의 CRS 정의를 사용할 수 있다. <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs()</a></code> 함수가 반환하는 객체는 다음 두 개의 필드를 포함한다.</p>
+<p><code>sf</code> 또는 <code>stars</code> 클래스의 공간 객체는 CRS(좌표참조계)를 포함하고 있다. <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs()</a></code> 함수를 사용하여 해당 객체의 CRS를 확인하거나 다른 CRS로 교체할 수 있다. 또한, <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_set_crs()</a></code>함수를 사용하여 CRS를 설정하거나 교체할 수 있다. CRS는 EPSG 코드로 설정할 수 있으며, 예를 들어 <code>st_crs(4326)</code>는 <code>st_crs('EPSG:4326')</code>로 변환된다. 또는 <code>"+proj=utm +zone=25 +south"</code>와 같은 PROJ.4 문자열, <code>"WGS84"</code>와 같은 이름, <code>"OGC:CRS84"</code>처럼 기관명이 앞에 붙은 이름으로도 설정할 수 있다. 대안으로 WKT, WKT-2(2.5절), 또는 PROJJSON 형식의 CRS 정의를 사용할 수 있다. <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs()</a></code> 함수가 반환하는 객체는 다음 두 개의 필드를 포함한다.</p>
 <ul>
 <li><p><code>wkt</code>: WKT-2 형식으로 표현된 CRS</p></li>
 <li><p><code>input</code>: 사용자 입력(있는 경우), 또는 CRS에 대한 인간 가독 설명(가능한 경우)</p></li>
@@ -1599,7 +1600,7 @@ window.Quarto = {
 <span><span class="co">#              1970-72 to WGS 84 (2) + UTM zone 25S</span></span>
 <span><span class="co"># Definition:  +</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>이 경우에는 데이텀 그리드 관련 정보가 누락되어 있음을 확인할 수 있다. <code><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_pipelines()</a></code> 함수가 반환하는 객체는 서브클래스화된 데이터 프레임으로, 다음과 같은 열을 포함한다.</p>
+<p>이 경우에는 데이텀 그리드 관련 정보가 누락되어 있음을 확인할 수 있다. <code><a href="https://r-spatial.github.io/sf/reference/proj_tools.html">sf_proj_pipelines()</a></code> 함수가 반환하는 객체는 서브클래스화된 <code>data.frame</code>으로, 다음과 같은 열을 포함한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co"># [1] "id"           "description"  "definition"   "has_inverse" </span></span>
@@ -1629,7 +1630,7 @@ window.Quarto = {
 <p><code><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform()</a></code> 함수가 선택한 가장 정확한 오프레이션 파이프라인이 기본값이지만, <code>pipeline</code> 인수를 지정하면 결과를 변경할 수도 있다. 이 경우 <code>p$definition</code>에 있는 옵션 중 하나를 선택하면 된다.</p>
 </section><section id="축-순서와-방향" class="level3" data-number="7.7.6"><h3 data-number="7.7.6" class="anchored" data-anchor-id="축-순서와-방향">
 <span class="header-section-number">7.7.6</span> 축 순서와 방향</h3>
-<p>2.5절에서 언급했듯이, EPSG:4326은 첫 번째 축을 위도에, 두 번째 축을 경도에 대응하도록 정의한다. 이는 많은 다른 타원체 CRS에서도 동일하다. 이러한 방식은 해당 기관(EPSG)이 규정한 것이지만, 현재 대부분의 데이터셋은 이러한 방식을 따르지 않는다. 대부분의 다른 소프트웨어와 마찬가지로, <strong>sf</strong> 패키지는 이를 무시하고 기본값으로 타원체 좌표 쌍을 (경도, 위도)로 해석한다. 그러나 해당 기관의 규정을 준수하는 데이터 원천(예: WFS 서비스)에서 생성된 데이터를 읽어야 하는 경우, 다음과 같이 지정할 수 있다.</p>
+<p>2.5절에서 언급했듯이, <code>EPSG:4326</code>은 첫 번째 축을 위도에, 두 번째 축을 경도에 대응하도록 정의한다. 이는 많은 다른 타원체 CRS에서도 동일하다. 이러한 방식은 해당 기관(EPSG)이 규정한 것이지만, 현재 대부분의 데이터셋은 이러한 방식을 따르지 않는다. 대부분의 다른 소프트웨어와 마찬가지로, <strong>sf</strong> 패키지는 이를 무시하고 기본값으로 타원체 좌표 쌍을 (경도, 위도)로 해석한다. 그러나 해당 기관의 규정을 준수하는 데이터 원천(예: WFS 서비스)에서 생성된 데이터를 읽어야 하는 경우, 다음과 같이 지정할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_axis_order</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1703,14 +1704,14 @@ window.Quarto = {
 <span class="header-section-number">7.9</span> 연습문제</h2>
 <p>R을 사용하여 다음 연습문제를 해결하시오.</p>
 <ol type="1">
-<li><p><code>nc</code> 카운티 중 <code>LINESTRING(-84 35, -78 35)</code>와 인턱센션하는 카운티의 이름을 찾으시오. 이를 위해 <code>[]</code>를 사용하고, 대안으로 <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join()</a></code> 함수를 사용하시오.</p></li>
+<li><p><code>nc</code> 카운티 중 <code>LINESTRING(-84 35,-78 35)</code>와 인턱센션하는 카운티의 이름을 찾으시오. 이를 위해 <code>[]</code>를 사용하고, 대안으로 <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join()</a></code> 함수를 사용하시오.</p></li>
 <li><p><code>sf_use_s2(FALSE)</code>를 설정한 후 위 작업을 반복하고, 차이를 <em>계산</em>하시오(힌트: <code><a href="https://generics.r-lib.org/reference/setops.html">setdiff()</a></code>사용). 차이가 나타나는 카운티는 색상 <code>‘#88000088’</code>로 채색하시오.</p></li>
 <li><p>두 지점 사이의 직선과 대권을 하나의 플롯에 그리시오. 현재 사용 중인 투영법에서는 R이 직선을 항상 직선으로 그린다는 점을 명심하시오. <code><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_segmentize()</a></code> 함수를 사용하여 직선 또는 타원 좌표의 대권 상에 포인트를 추가하시오.</p></li>
 <li><p>NDVI는 <code>(NIR-R)/(NIR+R)</code>로 계산되며, 여기서 NIR은 근적외선 밴드, R은 적색 밴드이다. <code>L7_ETMs.tif</code> 파일을 객체 <code>x</code>로 읽고, <code>split(x, "band")</code>를 사용하여 밴드 디멘션을 속성으로 분리하시오. 그런 다음 NIR(밴드 4)과 R(밴드 3) 속성을 직접 사용하는 표현식을 이용해 이 객체에 NDVI 속성을 추가하시오.</p></li>
 <li><p><code>L7_ETMs.tif</code> 이미지의 밴드 디맨션을 축소하여 NDVI를 계산하시오. 이를 위해 <code><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply()</a></code> 함수와 <code>ndvi = function(x) { (x[4]-x[3])/(x[4]+x[3]) }</code> 함수를 사용하시오. 결과를 플로팅하고, GeoTIFF 형식으로 저장하시오.</p></li>
 <li><p><code>L7_ETMs.tif</code>에서 읽은 <code>stars</code> 객체를 <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform()</a></code> 함수를 사용하여 <code>OGC:CRS84</code>로 변환하시오. 객체를 출력하시오. 이것이 규칙 그리드인지 확인하시오. 첫 번째 밴드를 <code>axes=TRUE</code>, <code>border=NA</code> 인수와 함께 플로팅하고, 왜 이렇게 시간이 오래 걸리는지 설명하시오.</p></li>
 <li><p><code>L7_ETMs.tif</code> 객체를 <code><a href="https://r-spatial.github.io/stars/reference/st_warp.html">st_warp()</a></code> 함수를 사용하여 <code>OGC:CRS84</code>로 변환하시오. 결과 객체를 <code>axes=TRUE</code>로 플로팅하시오. 왜 <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform()</a></code> 함수에 비해 플롯이 훨씬 더 빨리 생성되는지 설명하시오.</p></li>
-<li><p>래스터 <code>L7_ETMs</code>의 벡터 표현을 사용하여 <code>POINT(293716 9113692)</code>를 중심으로 반지름 75 m인 원형 영역과의 교차를 플로팅하고, 이 원의 면적-가중 평균 픽셀 값을 계산하시오. 벡터 데이터를 이용해 애그리게이션한 값과 래스터 데이터를 이용해 애그리게이션한 값(<code>exact=FALSE</code> 및 <code>exact=TRUE</code> 각각)을 비교하고, 차이점을 설명하시오.</p></li>
+<li><p>래스터 <code>L7_ETMs</code>의 벡터 표현을 사용하여 <code>POINT(293716 9113692)</code>를 중심으로 반지름 75 m인 원형 영역과의 교차를 플로팅하고, 이 원의 면적-가중 평균 픽셀 값을 계산하시오. 벡터 데이터에 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 적용하여 얻은 결과와 래스터 데이터에 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 적용하여 얻은 결과(<code>exact=FALSE</code> 및 <code>exact=TRUE</code> 각각)를 비교하고, 차이점을 설명하시오.</p></li>
 </ol>
 
 
@@ -2134,7 +2135,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

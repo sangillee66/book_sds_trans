@@ -316,7 +316,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 15일</p>
+      <p class="date-modified">2025년 8월 16일</p>
     </div>
   </div>
     
@@ -324,26 +324,25 @@ window.Quarto = {
   
 
 
-</header><p>“국지적 데카르트 투영 좌표계로 설정된 GIS 소프트웨어를 글로벌 스케일의 애플리케이션에 확장하는 순간, 오류투성이 결론이 도출되고 터무니없는 측정이 시작된다.” (Chrisman 2012)</p>
+</header><p>“<em>국지적 데카르트 투영 좌표계로 설정된 GIS 소프트웨어를 글로벌 스케일의 애플리케이션에 확장하는 순간, 오류투성이 결론이 도출되고 터무니없는 측정이 시작된다</em>.” (Chrisman 2012)</p>
 <p>3장에서는 평면 공간 <span class="math inline">\(R^2\)</span>에에서 정의되는 지오메트리에 대해 논의했다. 이 장에서는 평면이 아니라 3차원 구면(<span class="math inline">\(S^2\)</span>) 위의 지오메트리를 다룰 때 발생하는 변화를 살펴본다.</p>
-<p>2장에서 지구의 형태가 일반적으로 구체가 아니라 타원체로 근사된다는 점을 이미 배웠다. 그러나 그림 1.7에서 녹색으로 표시된 라이브러리 중 어느 것도 타원체를 전제로 한 포괄적인 계산 함수 세트에 접근할 수 없다. 오직 s2geometry(Dunnington, Pebesma, and Rubak 2023; Veach et al.&nbsp;2020) 라이브러리만이 이러한 접근을 가능하게 하는데, 이 라이브러리는 타원체 대신 구체를 사용한다. 그럼에도, 이전 장에서 다룬 평면(투영된) 공간과 비교하면 구체는 타원체에 훨씬 더 가까운 근사값이다.(역자 주: s2geometry 라이브러리는 지리공간 계산에 특화된 기능을 제공하지만, 완전한 타원체 모형에 기반한 계산이 아니라 구체 모형을 사용하여 이를 근사한다는 의미이다.)</p>
+<p>2장에서 지구의 형태가 일반적으로 구체가 아니라 타원체로 근사된다는 점을 이미 배웠다. 그러나 그림 1.7에서 녹색으로 표시된 라이브러리 중 어느 것도 타원체를 전제로 한 포괄적인 계산 함수 세트에 접근할 수 없다. 오직 s2geometry(Dunnington, Pebesma, and Rubak 2023; Veach et al.&nbsp;2020) 라이브러리만이 이러한 접근을 가능하게 하는데, 이 라이브러리는 타원체 대신 구체를 사용한다. 그럼에도, 이전 장에서 다룬 평면(투영된) 공간과 비교하면 구체는 타원체에 <em>훨씬</em> 더 가까운 근사값이다.(역자 주: s2geometry 라이브러리는 지리공간 계산에 특화된 기능을 제공하지만, 완전한 타원체 모형에 기반한 계산이 아니라 구체 모형을 사용하여 이를 근사한다는 의미이다.)</p>
 <section id="직선" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="직선">
 <span class="header-section-number">4.1</span> 직선</h2>
-<p>3장에서 다룬 심플 피처의 기본 전제는 지오메트리가 직선으로 연결된 포인트들의 시퀀스로 표현된다는 것이다. <span class="math inline">\(R^2\)</span>(또는 데카르트 공간)에서는 이는 자명하지만, 구면 위에는 직선이 존재하지 않는다. 두 지점을 연결하는 가장 짧은 경로는 두 지점을 지나는 원의 호이며, 이를 <em>대권호</em>(great circle segment)라고 한다. 이로 인해, 구의 정반대편에 있는 두 점을 연결하는 <em>가장</em> 짧은 선은 유일하게 정의되지 않는다. 이들 점을 잇는 모든 대권호는 동일한 길이를 갖기 때문이다. GeoJSON 표준(Butler et al.&nbsp;2016)은 측지 좌표계에서 직선의 정의에 대해 독자적인 해석을 제시하고 있다(이 장 말미의 연습문제 1 참조).</p>
+<p>3장에서 다룬 <em>심플 피처</em>의 기본 전제는 지오메트리가 <em>직선으로 연결된</em> 포인트들의 시퀀스로 표현된다는 것이다. <span class="math inline">\(R^2\)</span>(또는 데카르트 공간)에서는 이는 자명하지만, 구면 위에는 직선이 존재하지 않는다. 두 지점을 연결하는 가장 짧은 경로는 두 지점을 지나는 원의 호이며, 이를 <em>대권호</em>(great circle segment)라고 한다. 이로 인해, 구의 정반대편에 있는 두 점을 연결하는 <em>가장</em> 짧은 선은 유일하게 정의되지 않는다. 이들 점을 잇는 모든 대권호는 동일한 길이를 갖기 때문이다. GeoJSON 표준(Butler et al.&nbsp;2016)은 측지 좌표계에서 직선의 정의에 대해 독자적인 해석을 제시하고 있다(이 장 말미의 연습문제 1 참조).</p>
 </section><section id="링-디렉션과-완전-폴리곤" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="링-디렉션과-완전-폴리곤">
 <span class="header-section-number">4.2</span> 링 디렉션과 완전 폴리곤</h2>
 <p>구면 상에 존재하는 폴리곤은 구 표면을 내부와 외부, 두 개의 유한한 면적으로 나눈다. <span class="math inline">\(R^2\)</span>에서 적용되는 ’반시계 방향 규칙’은 구면에서는 잘 작동하지 않는데, 이는 방향 해석에 따라 내부가 달라지기 때문이다. 일반적으로는 폴리곤의 점을 순서대로 따라갈 때, 경계의 왼쪽(또는 오른쪽)을 내부로 정의한다. 점의 순서를 반대로 하면 내부와 외부가 뒤바뀌게 된다.</p>
 <p>3장에서 엠프티 폴리곤을 살펴본 바 있는데, 그 반대 개념으로 지표면 전체를 포괄하는 <em>완전 폴리곤</em>(whole polygon)도 생각할 수 있다. 이 개념은, 예를 들어 완전 폴리곤과 육지부의 합집합에 대한 기하학적 차이를 계산함으로써 해양부를 정의하는 데 유용하다(그림 8.1과 그림 11.6 참조).</p>
 </section><section id="바운딩-박스-바운딩-직사각형-바운딩-캡" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="바운딩-박스-바운딩-직사각형-바운딩-캡">
 <span class="header-section-number">4.3</span> 바운딩 박스, 바운딩 직사각형, 바운딩 캡</h2>
-<p><span class="math inline">\(R^2\)</span>에서는 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span> 좌표의 범위를 이용해 바운딩 박스(bounding box)를 쉽게 정의할 수 있다. 그러나, 타원체 좌표의 경우, 지오메트리가 반대자오선(antimeridian)(경도 <span class="math inline">\(\pm 180\)</span>)이나 극점을 가로지르면 이러한 범위는 크게 유용하지 않다.(역자주: 반대자오선은 본초자오선의 반대편에 위치한 자오선을 의미하는 것으로 동경 180도 혹은 서경 180도 경선을 지칭한다.)</p>
-<p><span class="math inline">\(R^2\)</span>에서 낮은 <span class="math inline">\(x\)</span>값이 높은 값의 서쪽에 있다는 가정은 반대자오선을 넘을 때 성립하지 않는다. 구면 상의 영역을 정의하는 보다 자연스러운 대안은 바운딩 캡(bounding cap)으로, 영역의 중심 좌표와 반지름만으로 정의할 수 있다. 예를 들어 남극 대륙의 경우 바운딩 박스는 그림 4.1의 (a)와 (c)에 나타나 있는 것처럼 다음의 좌표 범위를 통해 정의된다.</p>
+<p><span class="math inline">\(R^2\)</span>에서는 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span> 좌표의 범위를 이용해 바운딩 박스(bounding box)를 쉽게 정의할 수 있다. 그러나, 타원체 좌표의 경우, 지오메트리가 반대자오선(antimeridian)(경도 <span class="math inline">\(\pm 180\)</span>)이나 극점을 가로지르면 이러한 범위는 크게 유용하지 않다.(역자주: 반대자오선은 본초자오선의 반대편에 위치한 자오선을 의미하는 것으로 동경 180도 혹은 서경 180도 경선을 지칭한다.) <span class="math inline">\(R^2\)</span>에서 낮은 <span class="math inline">\(x\)</span>값이 높은 값의 서쪽에 있다는 가정은 반대자오선을 넘을 때 성립하지 않는다. 구면 상의 영역을 정의하는 보다 자연스러운 대안은 <em>바운딩 캡</em>(bounding cap)으로, 영역의 중심 좌표와 반지름만으로 정의할 수 있다. 예를 들어 남극 대륙의 경우 바운딩 박스는 그림 4.1의 (a)와 (c)에 나타나 있는 것처럼 다음의 좌표 범위를 통해 정의된다.</p>
 <pre><code>#   xmin   ymin   xmax   ymax 
 # -180.0  -85.2  179.6  -60.5</code></pre>
 <p>이 바운딩 박스는 명백히 <code>ymin</code>이 -90이고 <code>xmax</code>가 180인 지역을 포함하지 않는다. 반면 바운딩 캡은 해당 지역을 포함한다.</p>
 <pre><code>#   lng lat angle
 # 1   0 -90  29.5</code></pre>
-<p>해당 지역을 포함하는 또 다른 지오메트리는 바운딩 <em>직사각형</em>(bounding rectangle)이다.</p>
+<p>해당 지역을 포함하는 또 다른 지오메트리는 <em>바운딩</em> <em>직사각형</em>(bounding rectangle)이다.</p>
 <pre><code>#   lng_lo lat_lo lng_hi lat_hi
 # 1   -180    -90    180  -60.5</code></pre>
 <p>반대자오선을 가로지르는 지역의 예로 피지 제도를 들 수 있으며, 이 지역의 바운딩 박스는 다음과 같이 정의된다.</p>
@@ -352,7 +351,7 @@ window.Quarto = {
 <p>이는 지구를 한바퀴 도는 정도의 크기에 해당한다. 동일한 지역에 대한 바운딩 직사각형은 다음과 같이 정의된다.</p>
 <pre><code>#   lng_lo lat_lo lng_hi lat_hi
 # 1    175  -21.7   -178  -12.5</code></pre>
-<p>여기서 <code>lng_lo</code>가 <code>lng_hi</code> 보다 더 <em>큰</em> 값이라는 사실은, 해당 바운딩 직사각형이 반대자오선을 가로지르고 있음을 의미한다. 그러나 단순히 좌표 범위만으로는 이러한 위치 관계를 파악하기가 매우 어렵다.</p>
+<p>여기서 <code>lng_lo</code>가 <code>lng_hi</code> 보다 <em>더 큰</em> 값이라는 사실은, 해당 바운딩 직사각형이 반대자오선을 가로지르고 있음을 의미한다. 그러나 단순히 좌표 범위만으로는 이러한 위치 관계를 파악하기가 매우 어렵다.</p>
 </section><section id="구면-상의-밸리드-지오메트리" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="구면-상의-밸리드-지오메트리">
 <span class="header-section-number">4.4</span> 구면 상의 밸리드 지오메트리</h2>
 <p>많은 글로벌 데이터셋은 타원체 좌표로 제공되지만, 동시에 [-180,180] × [-90,90] 범위의 <span class="math inline">\(R^2\)</span> 공간에서도 잘 ’작동’하도록 사전 조치되어 있다. 이는 다음과 같은 의미를 가진다.</p>
@@ -360,11 +359,10 @@ window.Quarto = {
 <li><p>반대자오선(경도 <span class="math inline">\(\pm 180\)</span>)을 가로지르는 지오메트리는 양쪽으로 분할되어 실제로는 횡단이 발생하지 않지만, 두 부분은 거의 서로 맞닿아 있다.</p></li>
 <li><p>극점을 포함하는 지오메트리(예: 남극)는 경도 <span class="math inline">\(\pm 180\)</span>°를 기준으로 분할되어 (-180, -90)과 (180, -90)이 서로 다른 좌표로 취급되지만, 실제로는 두 좌표 모두 지리적 남극(Geographic South Pole)을 가리킨다.</p></li>
 </ul>
-<p>그림 4.1은 남극을 두 가지 방식으로 표현한 예를 보여준다. 위쪽은 <span class="math inline">\(R^2\)</span>를 전제로 한 타원체 좌표이며, 아래쪽은 극평사 도법(Polar Stereographic projection)으로 변환한 것이다. 왼쪽은 지리적 남극을 중심으로 분할이 없는 경우, 오른쪽은 지리적 남극을 중심으로 분할이 있는 경우를 나타낸다.</p>
-<p>폴리곤 (b)와 (c)는 밸리드하지만, 폴리곤 (a)는 자기 교차로 인해 밸리드하지 않으며, 폴리곤 (d)는 남극을 향하는 변을 두 번 지나기 때문에 밸리드하지 않다. 그러나 구면(<span class="math inline">\(S^2\)</span>) 상에서는 폴리곤 (a)는 밸리드한 반면, (b)는 (d)와 동일한 이유로 밸리드하지 않다.</p>
+<p>그림 4.1은 남극을 두 가지 방식으로 표현한 예를 보여준다. 위쪽은 <span class="math inline">\(R^2\)</span>를 전제로 한 타원체 좌표이며, 아래쪽은 극평사 도법(Polar Stereographic projection)으로 변환한 것이다. 왼쪽은 지리적 남극을 중심으로 분할이 없는 경우, 오른쪽은 지리적 남극을 중심으로 분할이 있는 경우를 나타낸다. 폴리곤 (b)와 (c)는 밸리드하지만, 폴리곤 (a)는 자기 교차로 인해 밸리드하지 않으며, 폴리곤 (d)는 남극을 향하는 변을 두 번 지나기 때문에 밸리드하지 않다. 그러나 구면(<span class="math inline">\(S^2\)</span>) 상에서는 폴리곤 (a)는 밸리드한 반면, (b)는 (d)와 동일한 이유로 밸리드하지 않다.</p>
 <div id="fig-4-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/04-Spherical_files/figure-html/fig-antarctica-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/04-Spherical_files/figure-html/fig-antarctica-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/04-Spherical_files/figure-html/fig-antarctica-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/04-Spherical_files/figure-html/fig-antarctica-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;4.1: 남극 폴리곤을 나타낸 것으로 (a)와 (c)는 POINT(-180 90)를 통과하지 않고, (b)와 (d)는 POINT(-180 -90)와 POINT(180 -90)를 통과한다.
@@ -784,7 +782,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

@@ -358,7 +358,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 15일</p>
+      <p class="date-modified">2025년 8월 16일</p>
     </div>
   </div>
     
@@ -366,7 +366,7 @@ window.Quarto = {
   
 
 
-</header><p>공간적 내삽(spatial interpolation)은 관측된 위치 정보를 바탕으로, 관측되지 않은 공간 위치에서 공간적으로 연속적인 변수(필드)의 값을 추정하는 과정이다. 이를 위한 통계적 방법론을 지구통계학(geostatistics)이라 하며, 공간적으로 연속적인 현상의 모형화, 예측, 그리고 시뮬레이션에 중점을 둔다. 공간적 내삽의 전형적인 적용 사례는 결측값 문제이다. 즉, 연구 대상 지역에서 한정된 표본 위치 <span class="math inline">\(s_i,i=1,...,n\)</span> 에서만 특정 현상의 속성 <span class="math inline">\(Z(s)\)</span>가 관측되었을 때, 이를 바탕으로 해당 연구 내 모든 위치 <span class="math inline">\(s_0\)</span>에서의 속성값을 추정하는 것이다. 관측되지 않은 위치에 대해 속성값을 예측하는 이러한 과정을 크리깅(kriging) 또는 가우시안 프로세스 예측(Gaussian Process prediction)이라고도 부른다. 만일 <span class="math inline">\(Z(s)\)</span>에 화이트 노이즈 성분인 <span class="math inline">\(\epsilon\)</span>이 포함되어 있다면, 이를 <span class="math inline">\(Z(s)=S(s)+\epsilon\)</span> (측정 오차 포함) 형태로 나타낼 수 있다. 이 경우, <span class="math inline">\(Z(s)\)</span> 자체가 아니라 오차가 제거된 <span class="math inline">\(S(s)\)</span>를 예측하거나 시뮬레이션하는 것이 대안적인 목표가 될 수 있다. 이러한 과정을 보통 <em>공간 필터링</em>(spatial filtering) 또는 <em>평활화</em>(smoothing)라고 부른다.</p>
+</header><p>공간적 내삽(spatial interpolation)은 관측된 위치 정보를 바탕으로, 관측되지 않은 공간 위치에서 공간적으로 연속적인 변수(필드)의 값을 추정하는 과정이다. 이를 위한 통계적 방법론을 지구통계학(geostatistics)이라 하며, 공간적으로 연속적인 현상의 모형화, 예측, 그리고 시뮬레이션에 중점을 둔다. 공간적 내삽의 전형적인 적용 사례는 결측값 문제이다. 즉, 연구 대상 지역에서 한정된 표본 위치 <span class="math inline">\(s_i,i=1,...,n\)</span> 에서만 특정 현상의 속성 <span class="math inline">\(Z(s)\)</span>가 관측되었을 때, 이를 바탕으로 해당 연구 내 모든 위치 <span class="math inline">\(s_0\)</span>에서의 속성값을 추정하는 것이다. 관측되지 않은 위치에 대해 속성값을 예측하는 이러한 과정을 <em>크리깅</em>(kriging) 또는 가우시안 프로세스 예측(Gaussian Process prediction)이라고도 부른다. 만일 <span class="math inline">\(Z(s)\)</span>에 화이트 노이즈 성분인 <span class="math inline">\(\epsilon\)</span>이 포함되어 있다면, 이를 <span class="math inline">\(Z(s)=S(s)+\epsilon\)</span> (측정 오차 포함) 형태로 나타낼 수 있다. 이 경우, <span class="math inline">\(Z(s)\)</span> 자체가 아니라 오차가 제거된 <span class="math inline">\(S(s)\)</span>를 예측하거나 시뮬레이션하는 것이 대안적인 목표가 될 수 있다. 이러한 과정을 보통 <em>공간 필터링</em>(spatial filtering) 또는 <em>평활화</em>(smoothing)라고 부른다.</p>
 <p>이 장에서는 지구통계학적 데이터를 다루는 간단한 접근법, 기초적인 내삽 기법, 그리고 공간적 자기상관, 공간 예측 및 시뮬레이션 모형화를 다룬다. 13장에서는 다변량 및 시공간 지구통계학적 모형과 같은 보다 복잡한 모형에 중점을 둔다. 주요 도구로는 <strong>gstat</strong> 패키지(Pebesma and Graeler 2022; Pebesma 2004)를 사용하며, 이 패키지는 다양한 비베이지안 지구통계 분석 모형과 옵션을 제공한다. R로 구현된 베이지안 방법은 Diggle, Tawn과 Moyeed(1998), Diggle과 Ribeiro Jr.(2007), Blangiardo와 Cameletti(2015), Wikle, Zammit-Mangion과 Cressie(2019)에서 확인할 수 있다. 대용량 데이터셋 분석에 활용되는 기법의 개요와 비교는 Heaton 등(2018)에 제시되어 있다.</p>
 <section id="첫-번째-데이터셋" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="첫-번째-데이터셋">
 <span class="header-section-number">12.1</span> 첫 번째 데이터셋</h2>
@@ -469,7 +469,7 @@ window.Quarto = {
 </section><section id="베리오그램-모형-적합" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="베리오그램-모형-적합">
 <span class="header-section-number">12.3</span> 베리오그램 모형 적합</h2>
 <p>공간 예측을 수행하려면, 앞에서 도출한 거리 구간별 추정값이 아니라 이론적으로 모든 거리 <span class="math inline">\(h\)</span>에 적용할 수 있는 베리오그램 <em>모형</em> <span class="math inline">\(\gamma(h)\)</span>이 필요하다. 구간별 추정값을 단순히 직선으로 연결하거나 각 구간에서 일정한 값이라고 가정하면 문제가 발생한다. 이는 비양수 정의 공분산 행렬(non-positive definite covariance matrices)을 전제하게 되며, 이러한 행렬을 기반으로 한 통계 모형은 예측에 사용할 수 없다(역자주: 표본 베리오그램의 구간별 평균값(위의 그림 12.3과 12.4의 포인트들)을 단순히 직선으로 연결하거나 각 구간에서 일정한 값으로 고정하면, 이를 바탕으로 계산된 공분산 행렬이 양의 정부호(positive definite) 조건이라는 수학적 제약을 만족하지 못할 수 있다.)</p>
-<p>이 문제를 피하기 위해, 파라메트릭 형태의 <span class="math inline">\(\gamma (h)\)</span>를 적합하여 추정값 <span class="math inline">\(\hat{\gamma} (h)\)</span>를 구한다. 여기서 <span class="math inline">\(\hat{\gamma} (h)\)</span>는 <span class="math inline">\(\gamma (h)\)</span>를 추정하는 데 사용된 모든 <span class="math inline">\(h'\)</span> 값의 평균값으로 설정된다. 예를 들어, 다음과 같은 지수형 베리오그램 모형을 적합할 수 있다.</p>
+<p>이 문제를 피하기 위해, 파라메트릭 형태의 <span class="math inline">\(\gamma (h)\)</span>를 적합하여 추정값 <span class="math inline">\(\hat{\gamma} (h_i)\)</span>를 구한다. 여기서 <span class="math inline">\(h_i\)</span>는 <span class="math inline">\(\hat{\gamma} (h_i)\)</span>를 추정하는 데 사용된 모든 <span class="math inline">\(h'\)</span> 값의 평균값으로 설정된다. 예를 들어, 다음과 같은 지수형 베리오그램 모형을 적합할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v.m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/fit.variogram.html">fit.variogram</a></span><span class="op">(</span><span class="va">v</span>, <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/vgm.html">vgm</a></span><span class="op">(</span><span class="fl">1</span>, <span class="st">"Exp"</span>, <span class="fl">50000</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -484,9 +484,9 @@ window.Quarto = {
 </div>
 <p>선의 적합에는 다음 식을 최소화하는 가중 최소제곱법이 적용되었다.</p>
 <p><span id="eq-12-2"><span class="math display">\[
-\sum^n_{i=1}w_i(\gamma (h_i)-\hat{\gamma}(h_i))^2,
+\sum^n_{i=1}w_i(\gamma (h_i)-\hat{\gamma}(h_i))^2
 \tag{12.2}\]</span></span></p>
-<p>여기에서 가중치의 기본값은 <span class="math inline">\(N(h_i)/h^2\)</span>로 주어지며, <code>fit.method</code> 인수를 통해 다른 가중치 옵션을 선택할 수 있다.</p>
+<p>여기에서 가중치 <span class="math inline">\(w_i\)</span>의 기본값은 <span class="math inline">\(N(h_i)/h^2\)</span>로 주어지며, <code>fit.method</code> 인수를 통해 다른 가중치 옵션을 선택할 수 있다.</p>
 <p>가중 최소제곱법 적합의 대안으로 최대우도 또는 제한 최대우도 모수추정법(Kitanidis and Lane 1985)을 사용할 수 있다. 이 사례에서는 그림 12.5에서 점선으로 나타난 것처럼, 비교적 유사한 적합 모형이 도출되었다. 최대우도추정법의 장점은 식 12.1에서 거리 구간 <span class="math inline">\(h_i\)</span>나 식 12.2에서 가중치 <span class="math inline">\(w_i\)</span>를 선택할 필요가 없다는 것이다. 반면, 단점은 데이터가 다변량 정규 분포를 따른다는 강한 가정을 전제로 하며, 대규모 데이터셋의 경우 관측 수에 해당하는 크기의 선형 시스템을 반복적으로 풀어야 한다는 점이다. Heaton 등(2018)은 대규모 데이터셋에 모형을 적합하는 데 특화된 접근법을 비교한다.</p>
 </section><section id="크리깅-내삽" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="크리깅-내삽">
 <span class="header-section-number">12.4</span> 크리깅 내삽</h2>
@@ -517,7 +517,7 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">no2.sf</span><span class="op">[</span><span class="st">"NO2"</span><span class="op">]</span>, by <span class="op">=</span> <span class="va">de</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>더 복잡한 방법으로는 블록 크리깅(block kriging, Journel and Huijbregts 1978)이 있으며, 이는 타깃 에어리어의 평균값을 추정하기 위해 모든 데이터를 활용한다. <code><a href="https://r-spatial.github.io/gstat/reference/krige.html">krige()</a></code> 함수의 <code>newdata</code> 인수에 타깃 에어리어(폴리곤)을 전달하면 된다.</p>
+<p>더 복잡한 방법으로는 <em>블록 크리깅</em>(block kriging, Journel and Huijbregts 1978)이 있으며, 이는 타깃 에어리어의 평균값을 추정하기 위해 <em>모든</em> 데이터를 활용한다. <code><a href="https://r-spatial.github.io/gstat/reference/krige.html">krige()</a></code> 함수의 <code>newdata</code> 인수에 타깃 에어리어(폴리곤)을 전달하면 된다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/gstat/reference/krige.html">krige</a></span><span class="op">(</span><span class="va">NO2</span><span class="op">~</span><span class="fl">1</span>, <span class="va">no2.sf</span>, <span class="va">de</span>, <span class="va">v.m</span><span class="op">)</span></span>
 <span><span class="co"># [using ordinary kriging]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -543,7 +543,7 @@ window.Quarto = {
 </figcaption></figure>
 </div>
 <p>패턴은 유사하지만, 단순 평균을 통한 표본 평균이 블록 크리깅 결과보다 변동성이 더 크다. 이는 크리깅에서 집계 영역 외부의 데이터 포인트에도 가중치를 부여함으로써 발생하는 평활화 효과 때문일 수 있다.</p>
-<p>표준 오차의 대략적인 추정치는 <span class="math inline">\(\sqrt{(\sigma^2 /n)}\)</span>으로 계산할 수 있다.</p>
+<p>표준오차의 대략적인 추정치는 <span class="math inline">\(\sqrt{(\sigma^2 /n)}\)</span>으로 계산할 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">SE</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">no2.sf</span><span class="op">[</span><span class="st">"NO2"</span><span class="op">]</span>, <span class="va">de</span>, <span class="va">SE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -600,7 +600,7 @@ window.Quarto = {
 <p><span class="math display">\[
 Z(s)=\sum^p_{j=0} \beta_jX_j(s)+e(s)
 \]</span></p>
-<p>여기서 <span class="math inline">\(X_0(s)=1\)</span>, <span class="math inline">\(\beta_0\)</span>는 절편, <span class="math inline">\(\beta_j\)</span>는 각 변수에 대한 회귀 계수이다. 변수를 추가하면 일반적으로 잔차 <span class="math inline">\(e(s)\)</span>의 공간적 자기상관과 분산이 모두 감소하여, 더 정확한 예측과 유사한 조건부 시뮬레이션 결과를 얻을 수 있다. NO<span class="math inline">\(_2\)</span>의 변동에 대한 설명변수로 인구 밀도 변수를 사용하는 예를 살펴본다.</p>
+<p>여기서 <span class="math inline">\(X_0(s)=1\)</span>, <span class="math inline">\(\beta_0\)</span>는 절편, <span class="math inline">\(\beta_j\)</span>는 각 변수에 대한 회귀계수이다. 변수를 추가하면 일반적으로 잔차 <span class="math inline">\(e(s)\)</span>의 공간적 자기상관과 분산이 모두 감소하여, 더 정확한 예측과 유사한 조건부 시뮬레이션 결과를 얻을 수 있다. NO<span class="math inline">\(_2\)</span>의 변동에 대한 설명변수로 인구 밀도 변수를 사용하는 예를 살펴본다.</p>
 <section id="인구-밀도-그리드" class="level3" data-number="12.7.1"><h3 data-number="12.7.1" class="anchored" data-anchor-id="인구-밀도-그리드">
 <span class="header-section-number">12.7.1</span> 인구 밀도 그리드</h3>
 <p>대기 중 NO<span class="math inline">\(_2\)</span>의 예측변수로 인구 밀도를 사용한다. NO<span class="math inline">\(_2\)</span>는 주로 교통에서 발생하며, 교통량은 인구 밀도가 높은 지역에서 더 집중된다. 인구 밀도 데이터는 2011년 인구 조사에서 얻어진 것으로, 100 m × 100 m 그리드 셀당 거주자 수가 CSV 파일에 포함되어 있다. 이 데이터를 타깃 그리드 셀에 맞춰 합산하여 새로운 집계 데이터를 생성할 수 있다.</p>
@@ -1133,7 +1133,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

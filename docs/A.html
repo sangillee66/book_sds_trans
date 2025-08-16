@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구체 지오메트리</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구면 지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 인터폴레이션</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 12일</p>
+      <p class="date-modified">2025년 8월 16일</p>
     </div>
   </div>
     
@@ -358,9 +358,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>다만 <code>readOGR()</code> 함수를 계속 사용할 경우에는 아규먼트를 더 주의해서 다뤄야 한다. 현재 우리는 <strong>rgdal</strong>, <strong>rgeos</strong>, <strong>maptools</strong> 없이, 가능하면 <strong>sp</strong> 없이도 전반이 동작하도록 과거 도서 <em>Applied Spatial Data Analysis with R</em>(Virgilio Gómez-Rubio, Bivand, Pebesma, Gómez-Rubio, 2013)의 모든 코드를 변환하는 작업을 진행 중이다. 관련 스크립트는 다음에서 확인할 수 있다. <a href="https://github.com/rsbivand/sf_asdar2ed" class="uri">https://github.com/rsbivand/sf_asdar2ed</a></p>
 </section><section id="raster와-terra-패키지" class="level2"><h2 class="anchored" data-anchor-id="raster와-terra-패키지">raster와 terra 패키지</h2>
-<p><strong>raster</strong> 패키지는 2010년부터 R에서 래스터 데이터 분석의 핵심 도구로 사용되어 왔으면, 이후 <em>Geographic Data Analysis and Modeling</em>(Hijmans 2023a) 패키지로 발전하여 다양한 공간데이터 처리에 활용되었다. <strong>raster</strong> 패키지는 벡터 데이터를 처리를 위해 <strong>sp</strong> 객체를 사용하고, GDAL 라이브러리 형식의 데이터 입출력시 <strong>terra</strong>를 활용한다. 후속 패키지인 <strong>terra</strong>는 <em>Spatial Data Analysis</em>(Hijmans 2023b)를 위한 도구로, “<strong>raster</strong> 패키지와 매우 유사하지만 […] 더 많은 기능을 제공하며, 사용하기 쉽고, […] 더 빠르다.” <strong>terra</strong> 패키지는 벡터 데이터용 자체 클래스를 제공하면서도 대부분의 <strong>sf</strong> 객체를 받아들인다. 다만, 위에서 언급한 <strong>sp</strong> 변환 시와 유사한 제약이 적용된다. 또한 <strong>terra</strong> 패키지는 GDAL, GEOS, PROJ와 직접 연결 되므로 별도의 패키지가 필요 없다.</p>
+<p><strong>raster</strong> 패키지는 2010년부터 R에서 래스터 데이터 분석의 핵심 도구로 사용되어 왔으면, 이후 ’공간데이터분석과 모델링(Geographic Data Analysis and Modeling)<em>‘<em>(Hijmans 2023a) 패키지로 발전하여 다양한 공간데이터 처리에 활용되었다. <strong>raster</strong> 패키지는 벡터 데이터를 처리를 위해 <strong>sp</strong> 객체를 사용하고, GDAL 라이브러리 형식의 데이터 입출력시 <strong>terra</strong>를 활용한다. 후속 패키지인 <strong>terra</strong>는 ’공간데이터분석(Spatial Data Analysis)</em>’</em>(Hijmans 2023b)을 위한 도구로, “<strong>raster</strong> 패키지와 매우 유사하지만 […] 더 많은 기능을 제공하며, 사용하기 쉽고, […] 더 빠르다.” <strong>terra</strong> 패키지는 벡터 데이터용 자체 클래스를 제공하면서도 대부분의 <strong>sf</strong> 객체를 받아들인다. 다만, 위에서 언급한 <strong>sp</strong> 변환 시와 유사한 제약이 적용된다. 또한 <strong>terra</strong> 패키지는 GDAL, GEOS, PROJ와 직접 연결 되므로 별도의 패키지가 필요 없다.</p>
 <p><strong>raster</strong> 또는 <strong>terra</strong> 패키지의 래스터 레이어나 래스터 스택은 <code>st_as_stars()</code> 함수를 사용해 <code>stars</code> 객체로 변환할 수 있다. <strong>terra</strong>의 <code>SpatVector</code> 객체는 <strong>sf</strong>의 <code>st_as_sf()</code> 함수를 통해 를 변환할 수 있다.</p>
-<p>로버트 히즈먼(Robert Hijmans)이 저술한 온라인 저서 <em>Spatial Data Science with R</em>(<a href="https://rspatial.org/terra" class="uri">https://rspatial.org/terra</a>)에서는 <strong>terra</strong>를 활용한 공간데이터분석 방법을 자세히 다룬다. <strong>sf</strong>, <strong>stars</strong> 및 이 책에서 다루는 여러 r-spatial 패키지는 <code>r-spatial</code> GitHub 조직에 속해 있으며(여기서 <code>r</code>과 <code>spatial</code> 사이에는 하이픈이 있다. 히즈먼의 조직에는 하이픈이 없음). 해당 조직 블로그(<a href="https://r-spatial.org/book" class="uri">https://r-spatial.org/book</a>) 에서 책 링크를 확인할 수 있다.</p>
+<p>로버트 히즈먼(Robert Hijmans)이 저술한 온라인 저서 ’R과 terra를 활용한 공간데이터사이언스(Spatial Data Science with R and “terra”)<em>’</em>(<a href="https://rspatial.org/terra" class="uri">https://rspatial.org/terra</a>)에서는 <strong>terra</strong>를 활용한 공간데이터분석 방법을 자세히 다룬다. <strong>sf</strong>, <strong>stars</strong> 및 이 책에서 다루는 여러 r-spatial 패키지는 <code>r-spatial</code> GitHub 조직에 속해 있으며(여기서 <code>r</code>과 <code>spatial</code> 사이에는 하이픈이 있다. 히즈먼의 조직에는 하이픈이 없음). 해당 조직 블로그(<a href="https://r-spatial.org/book" class="uri">https://r-spatial.org/book</a>) 에서 책 링크를 확인할 수 있다.</p>
 <p><strong>sf</strong>, <strong>stars</strong>, <strong>terra</strong> 패키지는 공통의 목표를 공유하고 있지만 접근 방식에서 차이를 보인다. 데이터 분석, 소프트웨어 엔지니어링, 커뮤니티 운영에 대한 강조점이 서로 달라 일부 사용자에게 혼란을 줄 수 있지만, 이러한 다양성은 R 패키지 생태계를 더욱 풍부하게 만들고 선택지를 확장한다. 이느 사용자가 R로 공간데이터를 다루는 과정에서 새로운 시도를 이어가도록 장려하며, 궁극적으로 R spatial의 발전과 확신에 기여한다.</p>
 
 

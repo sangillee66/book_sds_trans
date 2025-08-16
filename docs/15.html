@@ -379,7 +379,7 @@ window.Quarto = {
 <p>Tobler(1970)가 제시한 지리학의 제1법칙, 즉 “모든 것은 다른 모든 것과 연관되어 있다. 그러나 가까이 있는 것은 멀리 떨어져 있는 것보다 더 많이 연관되어 있다”는 만고의 진리처럼 받아들여져서는 안된다. 이 법칙은 지나치게 단순화된 개념으로, 다른 잠재적 문제들을 가려 버릴 수 있다. 예를 들어 개체화(entitation)의 문제, 스포트 문제, 그리고 오지정(misspecification)의 문제가 이에 해당한다. 관측 단위의 크기가 기저 공간 프로세스의 스케일에 부합하는가? 주어진 관측 단위에서 나타나는 관심 변수의 공간적 패턴이 다른 변수의 공간적 패턴으로 설명될 수 있는가?(역자주: 여기에서 ’개체화’의 문제는 사용된 공간 단위가 해당 공간 현상을 분석하기에 적합한지와 관련된 문제로 소위 ’공간단위 임의성의 문제(MAUP, modifiable areal unit problem)’와 관련된 것이다. ’오지정’의 문제는 통계 모형에서 해당 현상을 설명하기에 적절하지 않은 방식으로 변수 설정이 이루어진 경우를 통칭하는 용어인데, 주로 주요 변수의 누락에서 비롯되는 문제를 지적한다.)</p>
 <p>토블러(Tobler, 1970)의 논문은 올슨(Olsson, 1970)의 논문과 함께 경제지리학(<em>Economic Geography)</em> 저널의 특별호에 실렸다. 그러나 올슨은 공간적 자기상관이 공간 현상에 필연적으로 내재된 속성이 아니라, 부적절한 개체화, 누락된 변수, 그리고/또는 부적절하게 설정된 함수 관계로 인해 발생하는 경우가 더 많다는 점을 간파했다. Olsson의 핵심 인용문은 228쪽에 있다.</p>
 <p>“이러한 자기상관의 존재는 Tobler(1970)가 말한 “모든 것은 다른 모든 것과 연관되어 있다. 그러나 가까이 있는 것은 멀리 떨어져 있는 것보다 더 많이 연관되어 있다”는 주장에 동의하고 싶어지게 만든다. 그러나 한편으로, 이러한 자기상관이 체계적인 오지정 오류를 가리고 있는 것처럼 보인다는 사실은 이 주장을 ’지리학의 제1법칙’으로 격상하는 것이 다소 성급하다는 점을 시사한다. 최악의 경우, 이 주장은 사후 오류(post hoc fallacy, 단순한 우연을 인과 관계로 잘못 해석하는 오류)의 공간적 변형에 불과할 수도 있다.”</p>
-<p>제1법칙으로서의 ’확고한 지위’는 존 스노(John Snow)가 지도를 통해 콜레라의 원인이 수인성임을 밝혀냈다는 ’믿음’과 매우 유사하다. 존 스노의 이야기는 GIS를 홍보하는 데 도움이 될 수 있지만, 실제 역사적 사실과는 거리가 있다. 존 스노는 소호(Soho) 지역을 탐문하기 전에 이미 강력한 작업 가설을 갖고 있었으며, 해당 지도는 브로드 스트리트(Broad Street) 펌프가 차단된 이후 그의 가설이 옳았음을 문서화하기 위해 작성된 것이었다(Brody et al.&nbsp;2000).</p>
+<p>’제1법칙’으로서의 ’확고한 지위’는 존 스노(John Snow)가 지도를 통해 콜레라의 원인이 수인성임을 밝혀냈다는 ’믿음’과 매우 유사하다. 존 스노의 이야기는 GIS를 홍보하는 데 도움이 될 수 있지만, 실제 역사적 사실과는 거리가 있다. 존 스노는 소호(Soho) 지역을 탐문하기 전에 이미 강력한 작업 가설을 갖고 있었으며, 해당 지도는 브로드 스트리트(Broad Street) 펌프가 차단된 이후 그의 가설이 옳았음을 문서화하기 위해 작성된 것이었다(Brody et al.&nbsp;2000).</p>
 <p>불행히도 공간적 자기상관 측도는 실제 공간 구조뿐 아니라, 모형화 과정에서의 잘못된 지정으로 인한 오류까지 반영할 수 있다(Schabenberger and Gotway 2005; McMillen 2003). 이를 이해하기 위해, 대표적인 공간적 자기상관 측도인 모런 통계량을 정의한 뒤(Cliff and Ord 1981, 17), 단순한 예시를 살펴보자.</p>
 <p><span class="math display">\[
 I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
@@ -438,8 +438,8 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">joincount.test</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#  function (fx, listw, zero.policy = NULL, alternative = "greater",</span></span>
-<span><span class="co">#    sampling = "nonfree", spChk = NULL, adjust.n = TRUE)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#  function (fx, listw, zero.policy = NULL, alternative = "greater",
+#    sampling = "nonfree", spChk = NULL, adjust.n = TRUE)</code></pre>
 <p>이 함수는 가설 검정을 위한 <code>alternative</code> 인수와, 통계량의 분산을 구성하는 기준을 지정하는 <code>sampling</code> 인수를 입력받는다. 기본값 <code>"nonfree"</code>는 개념적으로 분석적 순열(analytical permutation)과 동일한 것이다.(역자주: ’분석적 순열’은 난수를 사용해 무작위 순열을 생성하지 않고, 가능한 모든 순열의 조합과 그에 따른 검정 통계량 분포를 수학 공식이나 조합론(combinatorics)을 통해 직접 계산하는 방식이다. 즉, 가설 검정을 위한 적률(예: 기대값, 분산 등)을 산출하는 공식이 명시적으로 제시되는 방식이다.) <code>spChk</code> 인수는 이전 버전과의 호환성을 위해 유지된다. 참고로, 앞에서 살펴본 지방자치단체 데이터에 대한 범주 유형별 카운트는 다음과 같다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="va">pol_pres15</span> <span class="op">|&gt;</span> </span>
@@ -490,9 +490,9 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">moran.test</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#  function (x, listw, randomisation = TRUE, zero.policy = NULL,</span></span>
-<span><span class="co">#    alternative = "greater", rank = FALSE, na.action = na.fail,</span></span>
-<span><span class="co">#    spChk = NULL, adjust.n = TRUE, drop.EI2 = FALSE)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#  function (x, listw, randomisation = TRUE, zero.policy = NULL,
+#    alternative = "greater", rank = FALSE, na.action = na.fail,
+#    spChk = NULL, adjust.n = TRUE, drop.EI2 = FALSE)</code></pre>
 <p><code>randomisation</code> 인수의 기본값은 <code>TRUE</code>이며, <code>FALSE</code>로 지정하면 정규성 가정 하에서 검정을 수행한다. 아래 사례를 통해, 단일 변수에 정규성 가정을 적용한 검정 결과와 절편만 포함된 회귀모형의 잔차에 대해 랜덤화 가정 하에서 수행한 검정 결과가 동일하게 나타남을 확인할 수 있다. 해당 변수는 2015년 폴란드 대통령 선거의 투표율이다. <code>randomisation</code>의 철자는 Cliff와 Ord(1973)의 표기를 따른 것이다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pol_pres15</span> <span class="op">|&gt;</span> </span>
@@ -548,7 +548,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </section></section><section id="국지적-측도" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="국지적-측도">
 <span class="header-section-number">15.3</span> 국지적 측도</h2>
 <p>전역적 측도의 한계를 극복하기 위한 노력의 일환으로, 1990년대 초반부터 ’국지적 공간연관성 지표(LISA, local indicators of spatial association)’들이 등장하기 시작했다(Anselin 1995; Getis and Ord 1992, 1996).</p>
-<p>또한, 모런 플롯(혹은 모런 산포도)을 통해 관심 변수와 그 공간래그값(14장 참조) 간의 관련성을 시각화할 수 있게 되었다. 일반적으로 행표준화가중치를 사용하면 두 축을 보다 더 직접적으로 비교할 수 있다(Anselin 1996). <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수는 영향력 측정 객체(influence measures object)를 반환하며, 이를 통해 전역적 모런 통계량을 나타내는 직선의 기울기에 상대적으로 큰 영향을 미치는 관측 개체를 표시할 수 있다.(역자주: ’영향력 측정 객체’는 회귀분석 등에서 각 관측 개체가 분석 결과에 미치는 영향을 정량화한 지표들의 집합을 담는 결과 객체를 말한다. 여기에는 레버리지(leverage), Cook’s 거리, DFBETA, DFFITS, 공분산 비율 등과 같이 특정 관측 개체를 제거하거나 변경했을 때 추정치나 적합값이 얼마나 변하는지를 나타내는 통계량이 포함된다. <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수는 Moran 산점도를 작성하면서 이러한 영향력 측정 절차를 표준화된 관측값과 공간래그값 간의 관계에 적용하여, 각 공간단위가 국지적 모런 통계량에 미치는 상대적 영향을 파악할 수 있는 형태로 반환한다.) 그림 15.1에서는 영향력이 큰 관측 개체가 상당히 많다는 점을 확인할 수 있다. 이러한 관측값과 공간래그 관측값의 쌍은 집합적으로 전역적 측도를 구성하지만, 개별적으로도 탐색이 가능하다. 모런 플롯에서 오른쪽 상단 사분면에는 높은 값-높은 값(H-H) 쌍이, 왼쪽 하단 사분면에는 낮은 값-낮은 값(L-L) 쌍이 나타난다. 왼쪽 상단과 오른쪽 하단 사분면에는 각각 낮은 값-높은 값(L-H)과 높은 값-낮은 값(H-L) 쌍이 위치하며, 앞의 두 사분면에 비해 상대적으로 적게 나타난다. <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수에서 사분면은 변수값와 공간래그값의 평균을 기준으로 나뉘지만, 해당 값을 표준화한 경우에는 0을 기준으로 나뉜다.</p>
+<p>또한, 모런 플롯(혹은 모런 산포도)을 통해 관심 변수와 그 공간래그값(14장 참조) 간의 관련성을 시각화할 수 있게 되었다. 일반적으로 행표준화가중치를 사용하면 두 축을 보다 더 직접적으로 비교할 수 있다(Anselin 1996). <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수는 영향력 측정 객체(influence measures object)를 반환하며, 이를 통해 전역적 모런 통계량을 나타내는 직선의 기울기에 상대적으로 큰 영향을 미치는 관측 개체를 표시할 수 있다.(역자주: ’영향력 측정 객체’는 회귀분석 등에서 각 관측 개체가 분석 결과에 미치는 영향을 정량화한 지표들의 집합을 담는 결과 객체를 말한다. 여기에는 레버리지(leverage), Cook’s 거리, DFBETA, DFFITS, 공분산 비율 등과 같이 특정 관측 개체를 제거하거나 변경했을 때 추정치나 적합값이 얼마나 변하는지를 나타내는 통계량이 포함된다. <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수는 Moran 산점도를 작성하면서 이러한 영향력 측정 절차를 표준화된 관측값과 공간래그값 간의 관계에 적용하여, 각 공간단위가 국지적 모런 통계량에 미치는 상대적 영향을 파악할 수 있는 형태로 반환한다.) 그림 15.1에서는 영향력이 큰 관측 개체가 상당히 많다는 점을 확인할 수 있다. 이러한 관측값과 공간래그 관측값의 쌍은 집합적으로 전역적 측도를 구성하지만, 개별적으로도 탐색이 가능하다. 모런 플롯에서 오른쪽 상단 사분면에는 높은 값-높은 값(High-High) 쌍이, 왼쪽 하단 사분면에는 낮은 값-낮은 값(Low-Low) 쌍이 나타난다. 왼쪽 상단과 오른쪽 하단 사분면에는 각각 낮은 값-높은 값(Low-High)과 높은 값-낮은 값(High-Low) 쌍이 위치하며, 앞의 두 사분면에 비해 상대적으로 적게 나타난다. <code><a href="https://r-spatial.github.io/spdep/reference/moran.plot.html">moran.plot()</a></code> 함수에서 사분면은 변수값와 공간래그값의 평균을 기준으로 나뉘지만, 해당 값을 표준화한 경우에는 0을 기준으로 나뉜다.</p>
 <div id="fig-15-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-15-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/15-Measures_files/figure-html/fig-moranplot-1.png" class="img-fluid figure-img"></a>
@@ -579,9 +579,9 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <div class="cell">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span><span class="op">(</span><span class="va">localmoran</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#  function (x, listw, zero.policy = NULL, na.action = na.fail,</span></span>
-<span><span class="co">#    conditional = TRUE, alternative = "two.sided", mlvar = TRUE,</span></span>
-<span><span class="co">#    spChk = NULL, adjust.x = FALSE)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#  function (x, listw, zero.policy = NULL, na.action = na.fail,
+#    conditional = TRUE, alternative = "two.sided", mlvar = TRUE,
+#    spChk = NULL, adjust.x = FALSE)</code></pre>
 <p>Bivand와 Wong(2018)는 국지적 모런 통계량의 표준편차를 분석적 공식에 기반한 방식과 조건부(conditional) 순열에 기반한 방식으로 비교하였다. 이에 대해 Sauer 등(2021)은 이러한 비교가 오해에 기반하고 있음을 명확히 보여주었다. Sokal, Oden과 Thomson(1998)은 총괄(total) 순열과 조건부 순열에 기반한 국지적 모런 통계량의 표준편차 공식을 제시한 바 있는데, Bivand와 Wong(2018)에서 사용된 분석 공식은 이전 관행에 따라 총괄 순열만 사용하였으며, 따라서 시뮬레이션 조건부 순열과 일치하지 않는다.(역자주: 국지적 공간적 자기상관 측도의 맥락에서 ’총괄 혹은 총체적 순열’은 데이터의 모든 값을 대상으로 무작위 재배치를 수행하는 방식이다. 반면 ’조건부 혹은 조건적 순열’은 특정 관측 단위의 값을 고정한 채 나머지 값만 무작위로 재배치한다. 두 방식 모두 랜덤화 가정에 기반하며, 적률(기대값, 분산 등)을 공식을 구하는 분석적 순열로도, 난수 시뮬레이션에 의한 순열 부트스트랩으로도 구현할 수 있다.) 적시에 제안된 풀 리퀘스트 덕분에, 이제 <code><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran()</a></code> 함수는 Sokal, Oden과 Thomson(1998)의 부록에 수록된 대안적 공식을 사용한 <code>conditional</code> 논리 인수(기본값은 <code>TRUE</code>)를 포함한다. <code><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran()</a></code> 함수의 <code>mlvar</code>와 <code>adjust.x</code> 인수가 필요한 이유는 Bivand와 Wong(2018)에 설명되어 있으며, 이를 통한 다른 패키지의 결과와 비교할 수 있다. 기본값인 <code>two.sided</code>를 설정하면 다음과 같은 결과를 얻을 수 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">I_turnout</span> <span class="op">|&gt;</span> </span>
@@ -614,7 +614,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <span>    <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/localmoran.html">localmoran_perm</a></span><span class="op">(</span>listw <span class="op">=</span> <span class="va">lw_q_W</span>, nsim <span class="op">=</span> <span class="fl">9999</span>, </span>
 <span>                    iseed <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">locm_p</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>그 결과, 다중비교 조정을 적용하지 않는 경우 전체 관측값의 15% 이상이 양측 <span class="math inline">\(p\)</span> 값이 0.005 미만으로 나타났다. Bonferroni 조정을 적용하면 이 비율은 약 1.5%로 감소하였다. 여기서 <span class="math inline">\(p\)</span> 값은 순열 샘플의 표준편차와 정규분포를 사용하여 계산되었다.</p>
+<p>그 결과, 다중비교 조정을 적용하지 않는 경우 전체 관측값의 15% 이상이 양측 <span class="math inline">\(p\text{-value}&lt;0.005\)</span> 로 나타났다. Bonferroni 조정을 적용하면 이 비율은 약 1.5%로 감소하였다. 여기서 <span class="math inline">\(p\)</span> 값은 순열 샘플의 표준편차와 정규분포를 사용하여 계산되었다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">locm_p</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span>select <span class="op">=</span> <span class="st">"Pr(z != E(Ii))"</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -649,7 +649,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 </figcaption></figure>
 </div>
 <p>FDR 조정과 판정 기준값 0.005를 적용한 결과, 그림 15.3에서 볼 수 있듯이 분석적 조건부 접근법, 순열 샘플링에서 추출된 값들의 적률을 활용한 접근법, 순열 샘플링에서 관측값의 순위를 활용한 접근법 모두 유사한 지도 패턴을 나타냈다. 이는 입력 변수의 분포가 정규분포에 매우 근접하기 때문에 나타난 현상이다.</p>
-<p>국지적 모런통계치를 제시할 때는 종종 ‘핫스팟’ 지도가 사용된다. 그러나 국지적 모런통계값은 입력 변수의 값이 낮든 높든 강한 양의 자기상관만 있으면 높은 값을 가지므로, 유사한 값을 지닌 이웃들의 ‘클러스터’가 어디에서 발생하는지를 낮은 값 클러스터와 높은 값 클러스터로 명확히 구분해 보이기는 어렵다. 이를 보완하기 위해 모런 플롯을 활용할 수 있다. 모런 플롯에서는 변수값과 공간래그값의 평균을 기준으로 범주형 사분면 변수를 생성한다. 이후, 기준 유의확률과 조정 절차에 따라 모런 통계값이 ’흥미로운’ 값으로 간주되지 않는 관측 개체는 사분면 범주 속성에서 <code>NA</code>값을 갖게 된다. 아래 사례에서는 FDR 조정된 조건부 유의확률 값을 사용했는데(그림 15.3, 왼쪽 상단 패널), 53개의 관측 개체가 ‘L-L’ 클러스터에, 96개는 ‘H-H’ 클러스터에 속했다. 이는 표준편차 기반의 순열 <span class="math inline">\(p\)</span> 값(그림 15.3, 오른쪽 상단 패널)에서도 유사하게 나타난다. 순위 기반 순열 <span class="math inline">\(p\)</span> 값(그림 15.3, 왼쪽 하단 패널)에서는 ‘H-H’ 클러스터의 수가 줄고 ‘L-L’ 클러스터 수가 증가한다.</p>
+<p>국지적 모런통계치를 제시할 때는 종종 ‘핫스팟’ 지도가 사용된다. 그러나 국지적 모런통계값은 입력 변수의 값이 낮든 높든 강한 양의 자기상관만 있으면 높은 값을 가지므로, 유사한 값을 지닌 이웃들의 ‘클러스터’가 어디에서 발생하는지를 낮은 값 클러스터와 높은 값 클러스터로 명확히 구분해 보이기는 어렵다. 이를 보완하기 위해 모런 플롯을 활용할 수 있다. 모런 플롯에서는 변수값과 공간래그값의 평균을 기준으로 범주형 사분면 변수를 생성한다. 이후, 기준 유의확률과 조정 절차에 따라 모런 통계값이 ’흥미로운’ 값으로 간주되지 않는 관측 개체는 사분면 범주 속성에서 <code>NA</code>값을 갖게 된다. 아래 사례에서는 FDR 조정된 조건부 유의확률 값을 사용했는데(그림 15.3, 왼쪽 상단 패널), 53개의 관측 개체가 <code>"Low-Low"</code> 클러스터에, 96개는 <code>"High-High"</code> 클러스터에 속했다. 이는 표준편차 기반의 순열 <span class="math inline">\(p\)</span> 값(그림 15.3, 오른쪽 상단 패널)에서도 유사하게 나타난다. 순위 기반 순열 <span class="math inline">\(p\)</span> 값(그림 15.3, 왼쪽 하단 패널)에서는 <code>"High-High"</code> 클러스터의 수가 줄고 <code>"Low-Low"</code> 클러스터 수가 증가한다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">quadr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">locm</span>, <span class="st">"quadr"</span><span class="op">)</span><span class="op">$</span><span class="va">mean</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">addNA</a></span><span class="op">(</span><span class="va">quadr</span><span class="op">)</span><span class="op">)</span></span>
@@ -690,7 +690,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 그림&nbsp;15.4: 국지적 모런 통계량의 FDR 조정 핫스팟 지도(유의수준은 0.005). 왼쪽 상단 패널에는 분석적 조건부 유의확률, 오른쪽 상단 패널은 순열 표준편차 기반 조건부 유의확률, 왼쪽 하단 패널은 순열 순위 기반 조건부 유의확률이 적용된 경우를 보여준다.(행표준화 공간가중치행렬 적용)
 </figcaption></figure>
 </div>
-<p>Figure 15.4는 분석적 조건부 표준편차, 순열 기반 표준편차, 순위 기반 확률 값의 세 가지 접근법에 대해 <span class="math inline">\(\alpha=0.005\)</span> 확률 값 컷오프를 적용했을 때 FDR 조정된 <em>흥미로운</em> 클러스터들 간의 차이가 거의 없음을 보여준다. ‘H-H’ 클러스터의 핵심부는 대도시 지역에 위치한다.</p>
+<p>Figure 15.4는 분석적 조건부 표준편차, 순열 기반 표준편차, 순위 기반 확률 값의 세 가지 접근법에 대해 <span class="math inline">\(\alpha=0.005\)</span> 확률 값 컷오프를 적용했을 때 FDR 조정된 <em>흥미로운</em> 클러스터들 간의 차이가 거의 없음을 보여준다. <code>"High-High"</code> 클러스터의 핵심부는 대도시 지역에 위치한다.</p>
 <p>Tiefelsdorf (2002)는 국지적 모런 통계량의 표준편차를 계산하는 표준 접근 방식에 수치적 추정치를 추가해야 한다고 주장하며, 이를 안장점 근사를 통해 구현하는 것이 계산적으로 효율적인 방법임을 보여주었다. <code><a href="https://r-spatial.github.io/spdep/reference/localmoran.sad.html">localmoran.sad()</a></code> 함수는 첫 번째 인수로 적합된 선형모형을 입력받으므로, 우선 절편만 포함된 기본 모형을 적합시켜야 한다. 그러나 구역별 유권자 수가 크게 다르므로, 이러한 효과를 통제하기 위해 최종적으로 가중 선형모형을 적합시킨다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">I_turnout</span> <span class="op">~</span> <span class="fl">1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">lm_null</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -746,7 +746,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <span><span class="co"># weighted            9        0        52 2434</span></span>
 <span><span class="co"># type_weighted      13        0        81 2401</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>그림 15.5의 왼쪽 상단 패널에는 비교를 위해 순열 순위 기반 클러스터가 제시되어 있다. 안장점 근사법은 더 풍부한 평균모형을 적용할 수 있으며, 관측 개체 <span class="math inline">\(i\)</span>에서의 회귀 잔차 값을 그 이웃들의 값과 연결하는 본질적으로 국지적인 접근법이기 때문에, 안정접 근사법에 기반한 나머지 세 개의 패널은 상당히 다른 패턴을 보여준다. 절편만 포함한 기본 모형은 표준적인 결과와 매우 유사하지만, 유권자수에 따른 가중치 부여로 인해 대부분의 ‘L-L’ 클러스터가 제거된다. 범주형 유형 변수를 추가하면 도시 지역의 ‘H-H’ 클러스터가 강화되지만, 바르샤바 구역들은 흥미로운 군집의 핵에서 제외된다. 바르샤바의 중앙 구역들은 높은 투표율을 보이며, 마찬가지로 높은 투표율을 보이는 다른 구역들에 의해 둘러싸여 있으나, 이는 공간적 자기상관에 의한 것이 아니라 모두 대도시 구역에 속하기 때문이다. 또한, 전역적 공간 프로세스를 통합한 경우 안장점 근사법을 활용할 수 있는데, 이를 통해 표준 접근법에서 나타나는 전역 및 지역 공간적 자기상관의 결합 효과를 제거할 수 있다.</p>
+<p>그림 15.5의 왼쪽 상단 패널에는 비교를 위해 순열 순위 기반 클러스터가 제시되어 있다. 안장점 근사법은 더 풍부한 평균모형을 적용할 수 있으며, 관측 개체 <span class="math inline">\(i\)</span>에서의 회귀 잔차 값을 그 이웃들의 값과 연결하는 본질적으로 국지적인 접근법이기 때문에, 안정접 근사법에 기반한 나머지 세 개의 패널은 상당히 다른 패턴을 보여준다. 절편만 포함한 기본 모형은 표준적인 결과와 매우 유사하지만, 유권자수에 따른 가중치 부여로 인해 대부분의 <code>"Low-Low"</code> 클러스터가 제거된다. 범주 유형 변수를 추가하면 도시 지역의 <code>"High-High"</code> 클러스터가 강화되지만, 바르샤바 구역들은 <em>흥미로운</em> 군집의 핵에서 제외된다. 바르샤바의 중앙 구역들은 높은 투표율을 보이며, 마찬가지로 높은 투표율을 보이는 다른 구역들에 의해 둘러싸여 있으나, 이는 공간적 자기상관에 의한 것이 아니라 모두 대도시 구역에 속하기 때문이다. 또한, 전역적 공간 프로세스를 통합한 경우 안장점 근사법을 활용할 수 있는데, 이를 통해 표준 접근법에서 나타나는 전역 및 지역 공간적 자기상관의 결합 효과를 제거할 수 있다.</p>
 <p>같은 결과를 정확 접근법으로도 얻을 수 있지만, 수치적분이 실패하는 경우가 있어 표준편차의 정확한 추정값 대신 <code>NaN</code>가 반환될 수 있다. 따라서 추가적인 조정이 필요할 수 있다(Bivand, Müller, and Reder 2009).(역자주: ’정확 접근법’은 검정 통계량의 분포를 평균과 분산만으로 추정하는 정규 근사나, 이를 개선한 안장점 근사와 달리, 필요한 모든 적률(moment)을 활용해 분포를 근사가 아닌 정확한 형태로 계산하는 방법이다. 이러한 접근은 정규성 가정과 관련되며, 계산 과정에서 상당한 전산 자원이 소요된다.)</p>
 <div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_types</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/spdep/reference/localmoran.exact.html">localmoran.exact</a></span><span class="op">(</span>nb <span class="op">=</span> <span class="va">nb_q</span>, style <span class="op">=</span> <span class="st">"W"</span>, </span>
@@ -765,7 +765,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 그림&nbsp;15.6: 국지적 모런 통계량의 FDR 조정 핫스팟 지도(양측검정, 흥미로움의 판정 기준값 0.005 적용). 왼쪽 패널에는 가중 유형 모형의 안장점 근사에 기반한 유의확률이, 오른쪽 패널은 가중 유형 모형의 정확 접근법에 기반한 유의확률이 제시되어 있다.(행표준화 공간가중치행렬의 적용)
 </figcaption></figure>
 </div>
-<p>그림 15.6에서 볼 수 있듯이, 정확 접근법과 안장점 근사법은 동일한 회귀 잔차, 다중비교 조정 방식, 그리고 기준값 수준을 적용했을 때 거의 동일한 클러스터 분류 결과를 산출한다. 두 방법 간의 차이는, 아래에 나타난 것처럼, 정확 접근법이 4개의 추가적인 관측 개체를 흥미로운 사례로 탐지한다는 점이다.</p>
+<p>그림 15.6에서 볼 수 있듯이, 정확 접근법과 안장점 근사법은 동일한 회귀 잔차, 다중비교 조정 방식, 그리고 기준값 수준을 적용했을 때 거의 동일한 클러스터 분류 결과를 산출한다. 두 방법 간의 차이는, 아래에 나타난 것처럼, 정확 접근법이 4개의 추가적인 관측 개체를 <em>흥미로운</em> 사례로 탐지한다는 점이다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span>Saddlepoint <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">addNA</a></span><span class="op">(</span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">locm_sad2</span><span class="op">)</span>,</span>
 <span>      exact <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">addNA</a></span><span class="op">(</span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">locm_ex</span><span class="op">)</span><span class="op">)</span></span>
@@ -880,7 +880,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <span><span class="co">#   Low-Low:NA                11    3</span></span>
 <span><span class="co">#   NA:NA                     36 2200</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>다변량 <span class="math inline">\(C_i\)</span>에서는 흥미로운 케이스로 식별된 관측 개체 중 47개는 단변량 <span class="math inline">\(C_i\)</span> 어느 경우에서도 흥미로운 케이스로 나타나지 않았다(FDR, 판정 기준값 0.005). 1차와 2차 라운드 모두에서 흥미로운 것으로 나타난 관측값은 거의 모두 다변량에서도 흥미로운 것으로 분류되었지만, 두 라운드 중 한 라운드에서만 흥미로운 것으로 나타난 관측값은 보다 혼합된 결과를 보였다.</p>
+<p>다변량 <span class="math inline">\(C_i\)</span>에서는 흥미로운 케이스로 식별된 관측 개체 중 47개는 단변량 <span class="math inline">\(C_i\)</span> 어느 경우에서도 <em>흥미로운</em> 케이스로 나타나지 않았다(FDR, 판정 기준값 0.005). 1차와 2차 라운드 모두에서 <em>흥미로운</em> 것으로 나타난 관측값은 거의 모두 다변량에서도 흥미로운 것으로 분류되었지만, 두 라운드 중 한 라운드에서만 흥미로운 것으로 나타난 관측값은 보다 혼합된 결과를 보였다.</p>
 </section><section id="rgeoda-패키지" class="level3" data-number="15.3.4"><h3 data-number="15.3.4" class="anchored" data-anchor-id="rgeoda-패키지">
 <span class="header-section-number">15.3.4</span> rgeoda 패키지</h3>
 <p><strong>rgeoda</strong> 패키지(Li and Anselin 2022)는 GeoDa의 R 래퍼 패키지로, <strong>spdep</strong> 패키지와 유사한 기능을 제공하여 에어리어 데이터 공간적 자기상관을 탐색할 수 있게 한다. 활성 객체는 컴파일된 작업 공간의 메모리 주소를 참조하는 포인터로 관리되며, 모든 연산이 GeoDa와 동일하게 컴파일된 코드로 실행되므로 <strong>rgeoda</strong> 패키지는 매우 빠른 성능을 제공한다. 다만, 수정이나 기능 확장이 필요할 경우 유연성은 상대적으로 떨어진다.</p>
@@ -937,7 +937,7 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 <span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">mvc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/p.adjust.html">p.adjust</a></span><span class="op">(</span><span class="fu"><a href="https://geodacenter.github.io/rgeoda/reference/lisa_pvalues.html">lisa_pvalues</a></span><span class="op">(</span><span class="va">lisa</span><span class="op">)</span>, <span class="st">"fdr"</span><span class="op">)</span> <span class="op">&gt;=</span> <span class="fl">0.0025</span></span>
 <span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">geoda_mvc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html">droplevels</a></span><span class="op">(</span><span class="va">mvc</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>regoda</strong> 패키지의 순열 방식을 적용한 결과 약 80개의 추가 관측값이 흥미로운 케이스로 확인되었으며, 구현 세부 사항에 대한 추가 분석이 여전히 진행 중이다.</p>
+<p><strong>regoda</strong> 패키지의 순열 방식을 적용한 결과 약 80개의 추가 관측값이 <em>흥미로운</em> 케이스로 확인되었으며, 구현 세부 사항에 대한 추가 분석이 여전히 진행 중이다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html">addmargins</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span>spdep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">addNA</a></span><span class="op">(</span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">hs_MvCa</span><span class="op">)</span>,</span>
 <span>                 rgeoda <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">addNA</a></span><span class="op">(</span><span class="va">pol_pres15</span><span class="op">$</span><span class="va">geoda_mvc</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -955,13 +955,14 @@ I=\frac {n\sum_{(2)}w_{ij} z_i z_j}{S_0\sum^n_{i=1}z^2_i}
 그림&nbsp;15.9: FDR 조정 다변량 <span class="math inline">\(C_i\)</span> 핫스팟 지도(양측검정, 흥미로움의 판정 기준값은 <span class="math inline">\([0,0.5]\)</span> 범위에서 0.0025 적용). 왼쪽 패널은 합산 투표율을 <strong>spdep</strong> 패키지에 적용한 결과이고, 오른쪽 패널은 합산 투표율을 <strong>rgeoda</strong> 패키지에 적용한 결과이다.(행표준화 공간가중치행렬의 적용)
 </figcaption></figure>
 </div>
+<p>그림 15.9는 <strong>spdep</strong> 패키지에서 <em>흥미로운</em> 것으로 판정된 242개 관측값의 거의 모두가 <strong>rgeoda</strong> 패키지에서도 역시 <em>흥미로운</em> 것으로 판정되었지만, 후자는 추가로 86개를 더 <em>흥미로운</em> 것으로 판정했음을 보여준다. 물론 순열 결과의 변동성은 불가피하지만, 어느 한쪽 또는 양쪽 구현에 수정이 필요한지 여부는 여전히 규명되어야 한다.</p>
 </section></section><section id="연습문제" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="연습문제">
 <span class="header-section-number">15.4</span> 연습문제</h2>
 <ol type="1">
 <li><p>체스판의 조인 카운트 통계값이 <code>rook</code> 이웃과 <code>queen</code> 이웃 간에 크게 다른 이유를 설명하시오.</p></li>
 <li><p>15.1절에서 제시한 시뮬레이션을 체스판 다각형과 행 표준화된 <code>queen</code> 연접 이웃을 사용하여 반복하시오. 공간적 자기상관이 일반적으로 (피할 수 없는) 데이터의 모형 오지정 문제를 나타낼 수 있다는 점을 이해하는 것이 왜 중요한지 설명하시오.</p></li>
 <li><p>국지적 공간적 자기상관 통계량에 FDR 조정이 권장되는 이유를 설명하시오.</p></li>
-<li><p>문항 2의 시뮬레이션 데이터에 대해 분석적 조건 접근법과 안장점 근사법을 사용하여 <span class="math inline">\(I_i\)</span>의 표준편차 값(검정 통계값)을 비교하시오. 또한 안장점 근사법의 장단점을 설명하시오.</p></li>
+<li><p>문항 2의 시뮬레이션 데이터에 대해 분석적 조건 접근법과 안장점 근사법을 사용하여 국지적 모런 통계량(<span class="math inline">\(I_i\)</span>)의 표준편차 값(검정 통계값)을 비교하시오. 또한 안장점 근사법의 장단점을 설명하시오.</p></li>
 </ol>
 
 
@@ -1374,7 +1375,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","loop":false,"closeEffect":"zoom","selector":".lightbox"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

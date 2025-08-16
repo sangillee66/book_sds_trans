@@ -67,10 +67,10 @@ x = as(sf::read_sf("file"), "Spatial")
 
 ## raster와 terra 패키지
 
-**raster** 패키지는 2010년부터 R에서 래스터 데이터 분석의 핵심 도구로 사용되어 왔으면, 이후 *Geographic Data Analysis and Modeling*(Hijmans 2023a) 패키지로 발전하여 다양한 공간데이터 처리에 활용되었다. **raster** 패키지는 벡터 데이터를 처리를 위해 **sp** 객체를 사용하고, GDAL 라이브러리 형식의 데이터 입출력시 **terra**를 활용한다. 후속 패키지인 **terra**는 *Spatial Data Analysis*(Hijmans 2023b)를 위한 도구로, "**raster** 패키지와 매우 유사하지만 \[…\] 더 많은 기능을 제공하며, 사용하기 쉽고, \[…\] 더 빠르다." **terra** 패키지는 벡터 데이터용 자체 클래스를 제공하면서도 대부분의 **sf** 객체를 받아들인다. 다만, 위에서 언급한 **sp** 변환 시와 유사한 제약이 적용된다. 또한 **terra** 패키지는 GDAL, GEOS, PROJ와 직접 연결 되므로 별도의 패키지가 필요 없다.
+**raster** 패키지는 2010년부터 R에서 래스터 데이터 분석의 핵심 도구로 사용되어 왔으면, 이후 '공간데이터분석과 모델링(Geographic Data Analysis and Modeling)*'*(Hijmans 2023a) 패키지로 발전하여 다양한 공간데이터 처리에 활용되었다. **raster** 패키지는 벡터 데이터를 처리를 위해 **sp** 객체를 사용하고, GDAL 라이브러리 형식의 데이터 입출력시 **terra**를 활용한다. 후속 패키지인 **terra**는 '공간데이터분석(Spatial Data Analysis)*'*(Hijmans 2023b)을 위한 도구로, "**raster** 패키지와 매우 유사하지만 \[…\] 더 많은 기능을 제공하며, 사용하기 쉽고, \[…\] 더 빠르다." **terra** 패키지는 벡터 데이터용 자체 클래스를 제공하면서도 대부분의 **sf** 객체를 받아들인다. 다만, 위에서 언급한 **sp** 변환 시와 유사한 제약이 적용된다. 또한 **terra** 패키지는 GDAL, GEOS, PROJ와 직접 연결 되므로 별도의 패키지가 필요 없다.
 
 **raster** 또는 **terra** 패키지의 래스터 레이어나 래스터 스택은 `st_as_stars()` 함수를 사용해 `stars` 객체로 변환할 수 있다. **terra**의 `SpatVector` 객체는 **sf**의 `st_as_sf()` 함수를 통해 를 변환할 수 있다.
 
-로버트 히즈먼(Robert Hijmans)이 저술한 온라인 저서 *Spatial Data Science with R*(<https://rspatial.org/terra>)에서는 **terra**를 활용한 공간데이터분석 방법을 자세히 다룬다. **sf**, **stars** 및 이 책에서 다루는 여러 r-spatial 패키지는 `r-spatial` GitHub 조직에 속해 있으며(여기서 `r`과 `spatial` 사이에는 하이픈이 있다. 히즈먼의 조직에는 하이픈이 없음). 해당 조직 블로그(<https://r-spatial.org/book>) 에서 책 링크를 확인할 수 있다.
+로버트 히즈먼(Robert Hijmans)이 저술한 온라인 저서 'R과 terra를 활용한 공간데이터사이언스(Spatial Data Science with R and "terra")*'*(<https://rspatial.org/terra>)에서는 **terra**를 활용한 공간데이터분석 방법을 자세히 다룬다. **sf**, **stars** 및 이 책에서 다루는 여러 r-spatial 패키지는 `r-spatial` GitHub 조직에 속해 있으며(여기서 `r`과 `spatial` 사이에는 하이픈이 있다. 히즈먼의 조직에는 하이픈이 없음). 해당 조직 블로그(<https://r-spatial.org/book>) 에서 책 링크를 확인할 수 있다.
 
 **sf**, **stars**, **terra** 패키지는 공통의 목표를 공유하고 있지만 접근 방식에서 차이를 보인다. 데이터 분석, 소프트웨어 엔지니어링, 커뮤니티 운영에 대한 강조점이 서로 달라 일부 사용자에게 혼란을 줄 수 있지만, 이러한 다양성은 R 패키지 생태계를 더욱 풍부하게 만들고 선택지를 확장한다. 이느 사용자가 R로 공간데이터를 다루는 과정에서 새로운 시도를 이어가도록 장려하며, 궁극적으로 R spatial의 발전과 확신에 기여한다.
