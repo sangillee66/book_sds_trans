@@ -352,7 +352,7 @@ window.Quarto = {
 <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98-%EC%9D%BD%EA%B8%B0%EC%99%80-%EC%93%B0%EA%B8%B0" id="toc-래스터-데이터의-읽기와-쓰기" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9D%98-%EC%9D%BD%EA%B8%B0%EC%99%80-%EC%93%B0%EA%B8%B0"><span class="header-section-number">7.4.1</span> 래스터 데이터의 읽기와 쓰기</a></li>
   <li><a href="#stars-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C%EC%9D%98-%EC%84%9C%EB%B8%8C%EC%84%B8%ED%8C%85" id="toc-stars-데이터-큐브의-서브세팅" class="nav-link" data-scroll-target="#stars-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%81%90%EB%B8%8C%EC%9D%98-%EC%84%9C%EB%B8%8C%EC%84%B8%ED%8C%85"><span class="header-section-number">7.4.2</span> <code>stars</code> 데이터 큐브의 서브세팅</a></li>
   <li><a href="#%ED%81%AC%EB%A1%9C%ED%95%91" id="toc-크로핑" class="nav-link" data-scroll-target="#%ED%81%AC%EB%A1%9C%ED%95%91"><span class="header-section-number">7.4.3</span> 크로핑</a></li>
-  <li><a href="#stars-%EA%B0%9D%EC%B2%B4%EC%9D%98-%EC%B0%A8%EC%9B%90%EC%9E%AC%EB%B6%80%EC%97%AC-%EB%B0%8F-%EA%B2%B0%ED%95%A9" id="toc-stars-객체의-차원재부여-및-결합" class="nav-link" data-scroll-target="#stars-%EA%B0%9D%EC%B2%B4%EC%9D%98-%EC%B0%A8%EC%9B%90%EC%9E%AC%EB%B6%80%EC%97%AC-%EB%B0%8F-%EA%B2%B0%ED%95%A9"><span class="header-section-number">7.4.4</span> <code>stars</code> 객체의 차원재부여 및 결합</a></li>
+  <li><a href="#stars-%EA%B0%9D%EC%B2%B4%EC%9D%98-%EB%94%94%EB%A9%98%EC%85%98-%EC%9E%AC%EC%84%A4%EC%A0%95-%EB%B0%8F-%EA%B2%B0%ED%95%A9" id="toc-stars-객체의-디멘션-재설정-및-결합" class="nav-link" data-scroll-target="#stars-%EA%B0%9D%EC%B2%B4%EC%9D%98-%EB%94%94%EB%A9%98%EC%85%98-%EC%9E%AC%EC%84%A4%EC%A0%95-%EB%B0%8F-%EA%B2%B0%ED%95%A9"><span class="header-section-number">7.4.4</span> <code>stars</code> 객체의 디멘션 재설정 및 결합</a></li>
   <li><a href="#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%83%98%ED%94%8C%EC%B6%94%EC%B6%9C%EA%B3%BC-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%EC%85%98" id="toc-포인트-샘플추출과-애그리게이션" class="nav-link" data-scroll-target="#%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%83%98%ED%94%8C%EC%B6%94%EC%B6%9C%EA%B3%BC-%EC%95%A0%EA%B7%B8%EB%A6%AC%EA%B2%8C%EC%9D%B4%EC%85%98"><span class="header-section-number">7.4.5</span> 포인트 샘플추출과 애그리게이션</a></li>
   <li><a href="#%EC%98%88%EC%B8%A1%EB%AA%A8%ED%98%95" id="toc-예측모형" class="nav-link" data-scroll-target="#%EC%98%88%EC%B8%A1%EB%AA%A8%ED%98%95"><span class="header-section-number">7.4.6</span> 예측모형</a></li>
   <li><a href="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%8C%EB%A1%9C%ED%8C%85" id="toc-래스터-데이터-플로팅" class="nav-link" data-scroll-target="#%EB%9E%98%EC%8A%A4%ED%84%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%94%8C%EB%A1%9C%ED%8C%85"><span class="header-section-number">7.4.7</span> 래스터 데이터 플로팅</a></li>
@@ -846,8 +846,8 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crop.html">st_crop</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">b</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="stars-객체의-차원재부여-및-결합" class="level3" data-number="7.4.4"><h3 data-number="7.4.4" class="anchored" data-anchor-id="stars-객체의-차원재부여-및-결합">
-<span class="header-section-number">7.4.4</span> <code>stars</code> 객체의 차원재부여 및 결합</h3>
+</section><section id="stars-객체의-디멘션-재설정-및-결합" class="level3" data-number="7.4.4"><h3 data-number="7.4.4" class="anchored" data-anchor-id="stars-객체의-디멘션-재설정-및-결합">
+<span class="header-section-number">7.4.4</span> <code>stars</code> 객체의 디멘션 재설정 및 결합</h3>
 <p><strong>stars</strong> 패키지는 다양한 어레이 조작을 수행하기 위해 <strong>abind</strong> 패키지(Plate and Heiberger 2016)를 사용한다. 예를 들어, 어레이를 순열하여 전치하는 <code><a href="https://rdrr.io/r/base/aperm.html">aperm()</a></code> 함수가 있다.</p>
 <div class="cell">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/aperm.html">aperm</a></span><span class="op">(</span><span class="va">r</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -1711,7 +1711,7 @@ window.Quarto = {
 <li><p><code>L7_ETMs.tif</code> 이미지의 밴드 디맨션을 축소하여 NDVI를 계산하시오. 이를 위해 <code><a href="https://r-spatial.github.io/stars/reference/st_apply.html">st_apply()</a></code> 함수와 <code>ndvi = function(x) { (x[4]-x[3])/(x[4]+x[3]) }</code> 함수를 사용하시오. 결과를 플로팅하고, GeoTIFF 형식으로 저장하시오.</p></li>
 <li><p><code>L7_ETMs.tif</code>에서 읽은 <code>stars</code> 객체를 <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform()</a></code> 함수를 사용하여 <code>OGC:CRS84</code>로 변환하시오. 객체를 출력하시오. 이것이 규칙 그리드인지 확인하시오. 첫 번째 밴드를 <code>axes=TRUE</code>, <code>border=NA</code> 인수와 함께 플로팅하고, 왜 이렇게 시간이 오래 걸리는지 설명하시오.</p></li>
 <li><p><code>L7_ETMs.tif</code> 객체를 <code><a href="https://r-spatial.github.io/stars/reference/st_warp.html">st_warp()</a></code> 함수를 사용하여 <code>OGC:CRS84</code>로 변환하시오. 결과 객체를 <code>axes=TRUE</code>로 플로팅하시오. 왜 <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform()</a></code> 함수에 비해 플롯이 훨씬 더 빨리 생성되는지 설명하시오.</p></li>
-<li><p>래스터 <code>L7_ETMs</code>의 벡터 표현을 사용하여 <code>POINT(293716 9113692)</code>를 중심으로 반지름 75 m인 원형 영역과의 교차를 플로팅하고, 이 원의 면적-가중 평균 픽셀 값을 계산하시오. 벡터 데이터에 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 적용하여 얻은 결과와 래스터 데이터에 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 적용하여 얻은 결과(<code>exact=FALSE</code> 및 <code>exact=TRUE</code> 각각)를 비교하고, 차이점을 설명하시오.</p></li>
+<li><p>래스터 <code>L7_ETMs</code>의 벡터 표현을 사용하여 <code>POINT(293716 9113692)</code>를 중심으로 반지름 75 m인 원형 영역과의 교차를 플로팅하고, 이 원의 면적 가중 평균 픽셀 값을 계산하시오. 벡터 데이터에 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 적용하여 얻은 결과와 래스터 데이터에 <code><a href="https://rdrr.io/r/stats/aggregate.html">aggregate()</a></code> 함수를 적용하여 얻은 결과(<code>exact=FALSE</code> 및 <code>exact=TRUE</code> 각각)를 비교하고, 차이점을 설명하시오.</p></li>
 </ol>
 
 
@@ -2135,7 +2135,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

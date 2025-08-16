@@ -3,8 +3,8 @@ date-modified: last-modified
 number-sections: true
 #format:
 #  docx: default
-format: 
-  html:  
+format:
+  html:
     toc: true
 code-link: true
 code-copy: true

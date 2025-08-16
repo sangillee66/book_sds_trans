@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>공간데이터사이언스 개론 - 16&nbsp; 공간적 회귀분석</title>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.4.549" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+
+<title>공간데이터사이언스 개론 – 16  공간적 회귀분석</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -53,27 +58,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./17.html" rel="next">
-<link href="./15.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -99,7 +85,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -124,29 +115,45 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script><link rel="stylesheet" href="styles.css">
+</script>
+
+<link rel="stylesheet" href="styles.css" />
 </head>
-<body class="nav-sidebar floating">
+
+<body>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn"
+      data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" 
+      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환"
+      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span id="sec-regression" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">공간적 회귀분석</span></span></h1>
+        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" 
+        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환"
+        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">공간데이터사이언스 개론</a> 
+      <a href="/">
+      공간데이터사이언스 개론
+      </a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/sangillee66/book_sds_trans" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/sangillee66/book_sds_trans"  title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -157,147 +164,147 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서장</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part_1.html" class="sidebar-item-text sidebar-link">
+            <a href="/part_1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">공간데이터</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">시작하기</span></span></a>
+  <a href="/01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>1</span>  <span class='chapter-title'>시작하기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">좌표계</span></span></a>
+  <a href="/02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>좌표계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">지오메트리</span></span></a>
+  <a href="/03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>3</span>  <span class='chapter-title'>지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">구면 지오메트리</span></span></a>
+  <a href="/04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>4</span>  <span class='chapter-title'>구면 지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">속성과 서포트</span></span></a>
+  <a href="/05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>5</span>  <span class='chapter-title'>속성과 서포트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">데이터 큐브</span></span></a>
+  <a href="/06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part_2.html" class="sidebar-item-text sidebar-link">
+            <a href="/part_2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">공간데이터사이언스와 R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">sf와 stars 패키지</span></span></a>
+  <a href="/07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">공간데이터의 플로팅</span></span></a>
+  <a href="/08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>공간데이터의 플로팅</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></a>
+  <a href="/09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>대규모 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./part_3.html" class="sidebar-item-text sidebar-link">
+            <a href="/part_3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">공간통계분석과 공간모델링</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">공간데이터의 통계적 모형화</span></span></a>
+  <a href="/10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>공간데이터의 통계적 모형화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">포인트 패턴 분석</span></span></a>
+  <a href="/11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>11</span>  <span class='chapter-title'>포인트 패턴 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">공간적 내삽</span></span></a>
+  <a href="/12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></a>
+  <a href="/13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>13</span>  <span class='chapter-title'>다변량 및 시공간 지구통계학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">근접성과 에어리어 데이터</span></span></a>
+  <a href="/14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>14</span>  <span class='chapter-title'>근접성과 에어리어 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">공간적 자기상관 측도</span></span></a>
+  <a href="/15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>15</span>  <span class='chapter-title'>공간적 자기상관 측도</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">공간적 회귀분석</span></span></a>
+  <a href="/16.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class='chapter-number'>16</span>  <span class='chapter-title'>공간적 회귀분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모형</span></span></a>
+  <a href="/17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모형</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -306,52 +313,35 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">예전 R 공간 패키지</span></span></a>
+  <a href="/A.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>A</span>  <span class='chapter-title'>예전 R 공간 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R 기초</span></span></a>
+  <a href="/B.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class='chapter-number'>B</span>  <span class='chapter-title'>R 기초</span></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
-   
-  <ul>
-<li>
-<a href="#%EB%A7%88%EB%A5%B4%EC%BD%94%ED%94%84-%EB%9E%9C%EB%8D%A4-%ED%95%84%EB%93%9C%EC%99%80-%EB%8B%A4%EC%88%98%EC%A4%80%EB%AA%A8%ED%98%95" id="toc-마르코프-랜덤-필드와-다수준모형" class="nav-link active" data-scroll-target="#%EB%A7%88%EB%A5%B4%EC%BD%94%ED%94%84-%EB%9E%9C%EB%8D%A4-%ED%95%84%EB%93%9C%EC%99%80-%EB%8B%A4%EC%88%98%EC%A4%80%EB%AA%A8%ED%98%95"><span class="header-section-number">16.1</span> 마르코프 랜덤 필드와 다수준모형</a>
-  <ul class="collapse">
-<li><a href="#%EB%B3%B4%EC%8A%A4%ED%84%B4-%EC%A3%BC%ED%83%9D%EA%B0%80%EA%B2%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B" id="toc-보스턴-주택가격-데이터셋" class="nav-link" data-scroll-target="#%EB%B3%B4%EC%8A%A4%ED%84%B4-%EC%A3%BC%ED%83%9D%EA%B0%80%EA%B2%A9-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B"><span class="header-section-number">16.1.1</span> 보스턴 주택가격 데이터셋</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#%EB%B3%B4%EC%8A%A4%ED%84%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B%EC%97%90-%EB%8C%80%ED%95%9C-%EB%8B%A4%EC%88%98%EC%A4%80%EB%AA%A8%ED%98%95" id="toc-보스턴-데이터셋에-대한-다수준모형" class="nav-link" data-scroll-target="#%EB%B3%B4%EC%8A%A4%ED%84%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B%EC%97%90-%EB%8C%80%ED%95%9C-%EB%8B%A4%EC%88%98%EC%A4%80%EB%AA%A8%ED%98%95"><span class="header-section-number">16.2</span> 보스턴 데이터셋에 대한 다수준모형</a>
-  <ul class="collapse">
-<li><a href="#iid-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-lme4-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%99%9C%EC%9A%A9" id="toc-iid-랜덤효과-lme4-패키지의-활용" class="nav-link" data-scroll-target="#iid-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-lme4-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%99%9C%EC%9A%A9"><span class="header-section-number">16.2.1</span> IID 랜덤효과: lme4 패키지의 활용</a></li>
-  <li><a href="#iid%EC%99%80-car-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-hglm-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%99%9C%EC%9A%A9" id="toc-iid와-car-랜덤효과-hglm-패키지의-활용" class="nav-link" data-scroll-target="#iid%EC%99%80-car-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-hglm-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%99%9C%EC%9A%A9"><span class="header-section-number">16.2.2</span> IID와 CAR 랜덤효과: hglm 패키지의 활용</a></li>
-  <li><a href="#iid%EC%99%80-icar-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-r2bayesx-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%99%9C%EC%9A%A9" id="toc-iid와-icar-랜덤효과-r2bayesx-패키지의-활용" class="nav-link" data-scroll-target="#iid%EC%99%80-icar-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-r2bayesx-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%99%9C%EC%9A%A9"><span class="header-section-number">16.2.3</span> IID와 ICAR 랜덤효과: R2BayesX 패키지의 활용</a></li>
-  <li><a href="#iid-icar-leroux-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-inla-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%99%9C%EC%9A%A9" id="toc-iid-icar-leroux-랜덤효과-inla-패키지의-활용" class="nav-link" data-scroll-target="#iid-icar-leroux-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-inla-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%ED%99%9C%EC%9A%A9"><span class="header-section-number">16.2.4</span> IID, ICAR, Leroux 랜덤효과: INLA 패키지의 활용</a></li>
-  <li><a href="#icar-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-mgcv-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-gam-%ED%95%A8%EC%88%98%EC%9D%98-%ED%99%9C%EC%9A%A9" id="toc-icar-랜덤효과-mgcv-패키지의-gam-함수의-활용" class="nav-link" data-scroll-target="#icar-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-mgcv-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-gam-%ED%95%A8%EC%88%98%EC%9D%98-%ED%99%9C%EC%9A%A9"><span class="header-section-number">16.2.5</span> ICAR 랜덤효과: mgcv 패키지의 <code>gam()</code> 함수의 활용</a></li>
-  <li><a href="#%EC%83%81%EC%9C%84-%EC%88%98%EC%A4%80-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-%EC%9A%94%EC%95%BD" id="toc-상위-수준-랜덤효과-요약" class="nav-link" data-scroll-target="#%EC%83%81%EC%9C%84-%EC%88%98%EC%A4%80-%EB%9E%9C%EB%8D%A4%ED%9A%A8%EA%B3%BC-%EC%9A%94%EC%95%BD"><span class="header-section-number">16.2.6</span> 상위 수준 랜덤효과: 요약</a></li>
-  </ul>
-</li>
-  <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제" class="nav-link" data-scroll-target="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C"><span class="header-section-number">16.3</span> 연습문제</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></nav>
+        <div id="quarto-toc-target"></div>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span id="sec-regression" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">공간적 회귀분석</span></span></h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-regression" class="quarto-section-identifier"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span></h1>
 </div>
 
 
@@ -371,11 +361,33 @@ window.Quarto = {
   
 
 
-</header><p>에어리어 서포트를 가진 변수가 주어졌을 때, 그 변수가 나타내는 공간적 패턴을 해석하는 일은 충분히 의미가 있다. 그러나 목적이 해당 변수의 공간적 패턴을 ‘설명’하는 것이라면, 즉 해당 변수를 반응변수로 간주하는 경우에는 상황이 달라진다. 이는 반응변수가 보이는 공간적 패턴이 주로 공변량(및 그 함수 형태)에 기인한 것일 가능성이 크고, 각 변수의 영향력이 작동하는 공간적 범위에도 좌우되기 때문이다. 이차원 공간적 자기회귀 모형은 공변량 없이 시작되었으며, 시계열 분석 모형과 뚜렷한 연관성을 갖는다(Whittle 1954).(역자주: 공간적 자기회귀 모형은 본질적으로 이차원일 수밖에 없다. 이는 일차원 축에서 자기회귀 구조가 결정되는 시간적 자기회귀 모형과 달리, 공간적 자기회귀 모형에서는 자기회귀 구조가 이차원 공간에서 정의되기 때문이다.) 이후 연구에서는 선형모형의 잔차에서 공간적 자기상관을 검정하는 방법이 제안되었고, 이를 확장하여 자기회귀 성분을 반응변수나 잔차에 직접 포함하는 공간 회귀모형이 개발되었다. 이러한 확장에는 선형모형의 잔차에서 공간적 자기상관을 검정하는 방법과, 자기회귀 성분을 반응변수 또는 잔차에 적용하는 모형이 포함된다. 특히 잔차에 자기회귀 성분을 적용하는 모형은 잔차를 대상으로 한 공간적 자기상관 검정 결과와 일치하였다(Cliff and Ord, 1972, 1973). 이러한 에어리어 데이터에 대한 ’격자(lattice)’ 모형은 일반적으로 연접성 행렬 형태의 이웃 관계 그래프를 사용하여 관측값 간의 공간적 의존성을 표현한다.</p>
-<p>물론, 일반화 최소제곱모형이나 <strong>nlme</strong> 및 기타 여러 패키지에서 제공하는 (일반화) 선형 또는 비선형 혼합효과모형에서 공간적 자기상관을 다루기 위해 반드시 이웃 관계 그래프를 사용할 필요는 없다(Pinheiro and Bates 2000). 관측값 간 거리 함수를 사용하거나, 공간적 자기상관을 모형화하기 위해 베리오그램을 적합하는 방법 역시 공간적 회귀모형의 한 유형이라고 볼 수 있다. 이러한 접근은 기저 프로세스에 대한 보다 명확한 이해를 제공하는 것으로 평가되며(Wall, 2004), 지구통계학에 기반을 두고 있다. 예를 들어, <strong>glmmTMB</strong> 패키지는 이 접근법을 활용하여 공간적 회귀분석을 성공적으로 수행한다(Brooks et al.&nbsp;2017). 그러나 본 장에서는 공간가중치행렬을 활용하는 공간적 회귀분석만을 다루기로 한다.</p>
-<section id="마르코프-랜덤-필드와-다수준모형" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="마르코프-랜덤-필드와-다수준모형">
-<span class="header-section-number">16.1</span> 마르코프 랜덤 필드와 다수준모형</h2>
-<p>질병 매핑(disease mapping) 연구에서는 공간적으로 구조화된 임의효과를 다루기 위해 조건부 자기회귀(CAR, conditional autoregressive) 모형과 내재적 자기회귀(ICAR, intrinsic conditional autoregressive) 모형을 활용한 다양한 연구가 축적되어 있다. 이러한 모형은 다수준모형(multilevel model)으로 확장될 수 있으며, 공간적으로 구조화된 임의효과가 모형의 서로 다른 수준에서 적용될 수 있다(Bivand et al.&nbsp;2017). 여러 변형을 시도해 보기 위해, 두 단계에 걸쳐 무이웃 관측값을 제거해야 한다. 먼저 트랙트(tract) 수준에서 무이웃 관측값을 제거하고, 이어서 모형 출력 구역 집계(model output zone aggregated) 수준에서 무이웃 관측값을 제거한다. 이는 트랙트 수준에서 관측값을 줄이면 모형 출력 구역 수준에서도 무이웃 결과가 발생하기 때문이다. 대부분의 모형 추정 함수는 <code>family</code> 인수를 사용하며, 이웃 간 관계를 마르코프 랜덤 필드로 표현한 공간 랜덤효과를 통해 각 관측값에 대해 일반화 선형 혼합효과모형을 적합한다. 다수준모형의 경우, 랜덤효과는 그룹 수준에서 모형화될 수 있으며, 아래의 예시에 그 적용 사례가 제시되어 있다.(역자주: ’마르코프 랜덤 필드’는 공간적 의존성을 확률적으로 표현하는 틀로, 각 공간단위의 값이 직접적으로는 이웃 공간단위의 값에만 조건부로 의존한다는 마르코프 성질을 2차원 이상의 격자나 네트워크 구조로 확장한 것이다. 마르코프 랜덤 필드를 사용하면 이웃 구조를 기반으로 공간적 자기상관성을 희소 행렬 형태로 표현할 수 있어 계산이 효율적이며, 이웃 관계와 의존성 강도를 직관적으로 해석할 수 있다. 이러한 특성 덕분에 마르크프 랜덤 필드는 CAR, ICAR, SAR 등 공간적 랜덤효과 모형의 수학적 기반으로 널리 활용된다.)</p>
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#마르코프-랜덤-필드와-다수준모형" id="toc-마르코프-랜덤-필드와-다수준모형"><span class="header-section-number">16.1</span> 마르코프 랜덤 필드와 다수준모형</a>
+  <ul>
+  <li><a href="#보스턴-주택가격-데이터셋" id="toc-보스턴-주택가격-데이터셋"><span class="header-section-number">16.1.1</span> 보스턴 주택가격 데이터셋</a></li>
+  </ul></li>
+  <li><a href="#보스턴-주택가격-데이터셋에-대한-다수준모형" id="toc-보스턴-주택가격-데이터셋에-대한-다수준모형"><span class="header-section-number">16.2</span> 보스턴 주택가격 데이터셋에 대한 다수준모형</a>
+  <ul>
+  <li><a href="#iid-랜덤효과-lme4-패키지의-활용" id="toc-iid-랜덤효과-lme4-패키지의-활용"><span class="header-section-number">16.2.1</span> IID 랜덤효과: lme4 패키지의 활용</a></li>
+  <li><a href="#iid와-car-랜덤효과-hglm-패키지의-활용" id="toc-iid와-car-랜덤효과-hglm-패키지의-활용"><span class="header-section-number">16.2.2</span> IID와 CAR 랜덤효과: hglm 패키지의 활용</a></li>
+  <li><a href="#iid와-icar-랜덤효과-r2bayesx-패키지의-활용" id="toc-iid와-icar-랜덤효과-r2bayesx-패키지의-활용"><span class="header-section-number">16.2.3</span> IID와 ICAR 랜덤효과: R2BayesX 패키지의 활용</a></li>
+  <li><a href="#iid-icar-leroux-랜덤효과-inla-패키지의-활용" id="toc-iid-icar-leroux-랜덤효과-inla-패키지의-활용"><span class="header-section-number">16.2.4</span> IID, ICAR, Leroux 랜덤효과: INLA 패키지의 활용</a></li>
+  <li><a href="#icar-랜덤효과-mgcv-패키지의-gam-함수의-활용" id="toc-icar-랜덤효과-mgcv-패키지의-gam-함수의-활용"><span class="header-section-number">16.2.5</span> ICAR 랜덤효과: mgcv 패키지의 <code>gam()</code> 함수의 활용</a></li>
+  <li><a href="#상위-수준-랜덤효과-요약" id="toc-상위-수준-랜덤효과-요약"><span class="header-section-number">16.2.6</span> 상위 수준 랜덤효과: 요약</a></li>
+  </ul></li>
+  <li><a href="#연습문제" id="toc-연습문제"><span class="header-section-number">16.3</span> 연습문제</a></li>
+  </ul>
+</nav>
+<p>에어리어 서포트를 가진 변수가 주어졌을 때, 그 변수가 나타내는 공간적 패턴을 해석하는 일은 충분히 의미가 있다. 그러나 목적이 해당 변수의 공간적 패턴을 ‘설명’하는 것이라면, 즉 해당 변수를 반응변수로 간주하는 경우에는 상황이 달라진다. 이는 반응변수가 보이는 공간적 패턴이 주로 공변량(및 그 함수 형태)에 기인한 것일 가능성이 크고, 각 변수의 영향력이 작동하는 공간적 범위에도 좌우되기 때문이다. 이차원 공간적 자기회귀 모형은 공변량 없이 시작되었으며, 시계열 분석 모형과 뚜렷한 연관성을 갖는다(Whittle 1954).(역자주: 공간적 자기회귀 모형은 본질적으로 이차원일 수밖에 없다. 이는 일차원 축에서 자기회귀 구조가 결정되는 시간적 자기회귀 모형과 달리, 공간적 자기회귀 모형에서는 자기회귀 구조가 이차원 공간에서 정의되기 때문이다.) 이후 연구에서는 선형모형의 잔차에서 공간적 자기상관을 검정하는 방법이 제안되었고, 이를 확장하여 자기회귀 성분을 반응변수나 잔차에 직접 포함하는 공간 회귀모형이 개발되었다. 이러한 확장에는 선형모형의 잔차에서 공간적 자기상관을 검정하는 방법과, 자기회귀 성분을 반응변수 또는 잔차에 적용하는 모형이 포함된다. 특히 잔차에 자기회귀 성분을 적용하는 모형은 잔차를 대상으로 한 공간적 자기상관 검정 결과와 일치하였다(Cliff and Ord, 1972, 1973). 이러한 에어리어 데이터에 대한 ’격자(lattice)’ 모형은 일반적으로 연접성 행렬 형태의 이웃 관계 그래프를 사용하여 관측값 간의 공간적 의존성을 표현한다.</p>
+<p>물론, 일반화 최소제곱모형이나 <strong>nlme</strong> 및 기타 여러 패키지에서 제공하는 (일반화) 선형 또는 비선형 혼합효과모형에서 공간적 자기상관을 다루기 위해 반드시 이웃 관계 그래프를 사용할 필요는 없다(Pinheiro and Bates 2000). 관측값 간 거리 함수를 사용하거나, 공간적 자기상관을 모형화하기 위해 베리오그램을 적합하는 방법 역시 공간적 회귀모형의 한 유형이라고 볼 수 있다. 이러한 접근은 기저 프로세스에 대한 보다 명확한 이해를 제공하는 것으로 평가되며(Wall, 2004), 지구통계학에 기반을 두고 있다. 예를 들어, <strong>glmmTMB</strong> 패키지는 이 접근법을 활용하여 공간적 회귀분석을 성공적으로 수행한다(Brooks et al. 2017). 그러나 본 장에서는 공간가중치행렬을 활용하는 공간적 회귀분석만을 다루기로 한다.</p>
+<section id="마르코프-랜덤-필드와-다수준모형" class="level2" data-number="16.1">
+<h2 data-number="16.1"><span class="header-section-number">16.1</span> 마르코프 랜덤 필드와 다수준모형</h2>
+<p>질병 매핑(disease mapping) 연구에서는 공간적으로 구조화된 임의효과를 다루기 위해 조건부 자기회귀(CAR, conditional autoregressive) 모형과 내재적 자기회귀(ICAR, intrinsic conditional autoregressive) 모형을 활용한 다양한 연구가 축적되어 있다. 이러한 모형은 다수준모형(multilevel model)으로 확장될 수 있으며, 공간적으로 구조화된 임의효과가 모형의 서로 다른 수준에서 적용될 수 있다(Bivand et al. 2017). 여러 변형을 시도해 보기 위해, 두 단계에 걸쳐 무이웃 관측값을 제거해야 한다. 먼저 트랙트(tract) 수준에서 무이웃 관측값을 제거하고, 이어서 모형 출력 구역 집계(model output zone aggregated) 수준에서 무이웃 관측값을 제거한다. 이는 트랙트 수준에서 관측값을 줄이면 모형 출력 구역 수준에서도 무이웃 결과가 발생하기 때문이다. 대부분의 모형 추정 함수는 <code>family</code> 인수를 사용하며, 이웃 간 관계를 마르코프 랜덤 필드로 표현한 공간 랜덤효과를 통해 각 관측값에 대해 일반화 선형 혼합효과모형을 적합한다. 다수준모형의 경우, 랜덤효과는 그룹 수준에서 모형화될 수 있으며, 아래의 예시에 그 적용 사례가 제시되어 있다.(역자주: ’마르코프 랜덤 필드’는 공간적 의존성을 확률적으로 표현하는 틀로, 각 공간단위의 값이 직접적으로는 이웃 공간단위의 값에만 조건부로 의존한다는 마르코프 성질을 2차원 이상의 격자나 네트워크 구조로 확장한 것이다. 마르코프 랜덤 필드를 사용하면 이웃 구조를 기반으로 공간적 자기상관성을 희소 행렬 형태로 표현할 수 있어 계산이 효율적이며, 이웃 관계와 의존성 강도를 직관적으로 해석할 수 있다. 이러한 특성 덕분에 마르크프 랜덤 필드는 CAR, ICAR, SAR 등 공간적 랜덤효과 모형의 수학적 기반으로 널리 활용된다.)</p>
 <p>공간적 회귀분석을 혼합효과모형의 틀에서 설명한 Pinheiro와 Bates(2000)와 McCulloch와 Searle(2001)의 논리는 중요하다.(역자주: 공간적 회귀분석이 혼합효과모형의 틀에서 잘 다루어질 수밖에 없는 이유는 다음과 같다. 혼합효과모형은 모든 관측값에 동일하게 적용되는 고정효과와, 특정 그룹 또는 지역 단위별로 달라지는 랜덤효과로 구성된다. 이러한 구조는 고정효과와 랜덤효과가 서로 다른 수준에서 발생하므로, 혼합효과모형이 본질적으로 다수준 구조를 표현하게 만든다. 공간적 회귀분석은 바로 이 랜덤효과에 공간적 자기상관 구조(CAR, ICAR, SAR 등)를 부여한 모형으로, 혼합효과모형의 확장형이자 다수준모형의 한 특수 사례라 할 수 있다.) 여기서는 Gómez-Rubio(2019)의 표기법을 따라 설명하고자 한다. 반응변수 <span class="math inline">\(Y\)</span>, 고정 공변량 <span class="math inline">\(X\)</span>, 회귀계수 <span class="math inline">\(\beta\)</span>, 오차 항 <span class="math inline">\(\epsilon_i\sim N(0, \sigma^2), i=1,...,n\)</span>이 주어진 상태에서, 랜덤효과 <span class="math inline">\(u\)</span>를 추가하면, 가우시안 선형 혼합효과모형은 다음과 같이 정의된다.</p>
 <p><span class="math display">\[
 Y=X\beta+Zu+\epsilon
@@ -383,7 +395,7 @@ Y=X\beta+Zu+\epsilon
 <p>여기서 <span class="math inline">\(Z\)</span>는 랜덤효과를 위한 고정 디자인 행렬이다. 만약 랜덤효과가 <span class="math inline">\(n\)</span>개라면 <span class="math inline">\(n \times n\)</span> 단위행렬이 되며, 관측값이 <span class="math inline">\(m\)</span>개의 그룹으로 집계되어 <span class="math inline">\(m&lt;n\)</span>의 랜덤효과만 존재하는 경우에는 각 관측값의 그룹 소속을 나타내는 <span class="math inline">\(n \times m\)</span> 행렬이 된다. 랜덤효과는 다변량 정규분포 <span class="math inline">\(u\sim N(0,\sigma_u^2 \sum)\)</span>로 모형화되며, <span class="math inline">\(\sigma_u^2 \sum\)</span>은 랜덤효과의 분산-공분산 행렬이다.</p>
 <p>CAR 모형(Besag 1974)과 SAR(simultaneous autoregressive) 모형(Ord 1975; Hepple 1976)을 사용하는 학문 분야 간에는, 두 모형이 밀접하게 관련되어 있음에도 불구하고 서로 다른 전통이 형성되어 왔다. 이러한 구분은 오히려 두 모형의 전체 구조를 이해하는 데 방해가 될 수 있다. 실제로 두 모형을 요약한 주요 연구(Ripley 1981, 1988; Cressie 1993)를 공통으로 참조하면서도, 유사한 모형을 적용한 경험을 공유하는 데 어려움을 겪어 왔다. Ripley(1981, 1989)는 SAR 모형의 분산을 다음과 같이 제시했으며, 이는 정밀도 행렬(precision matrix) <span class="math inline">\(\sum^{-1}\)</span>로도 알려져 있다.</p>
 <p><span class="math display">\[
-\Sigma^{-1}=[(I-\rho W)'(I-\rho W)]
+\Sigma^{-1}=[(I-\rho W)&#39;(I-\rho W)]
 \]</span></p>
 <p>여기서 <span class="math inline">\(\rho\)</span>는 공간적 자기상관 계수, <span class="math inline">\(W\)</span>는 비단일(non-singular) 공간가중치행렬이다. 한편 CAR 모형의 정밀도 행렬은 다음과 같이 주어진다.</p>
 <p><span class="math display">\[
@@ -400,287 +412,307 @@ Y=X\beta+Zu+\epsilon
 \]</span></p>
 <p>이 모형들의 정의는 Gómez-Rubio(2020)를 참조할 수 있으며, Besag-York-Mollié와 Leroux 모형의 추정 문제는 Gerber와 Furrer(2015)에서 다루고 있다.</p>
 <p>에어리어 데이터 모형화의 이론적 기초를 다룬 최근 저작(Gaetan and Guyon 2010; Van Lieshout 2019)에서는 SAR과 CAR 모형의 유사성이 여러 장에서 언급된다. 배경 정보에 관심이 있는 독자는 이들 서적들을 참고하기 바란다.</p>
-<section id="보스턴-주택가격-데이터셋" class="level3" data-number="16.1.1"><h3 data-number="16.1.1" class="anchored" data-anchor-id="보스턴-주택가격-데이터셋">
-<span class="header-section-number">16.1.1</span> 보스턴 주택가격 데이터셋</h3>
+<section id="보스턴-주택가격-데이터셋" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1"><span class="header-section-number">16.1.1</span> 보스턴 주택가격 데이터셋</h3>
 <p>여기서는 보스턴 주택가격 데이터셋을 사용한다. 이 데이터셋은 센서스 트랙트(tract) 경계에 맞추어 재구성된 것이다(Bivand 2017). 원래 데이터셋은 506개의 트랙트로 구성되었으며, 깨끗한 공기에 대한 지불 의사를 추정하기 위해 헤도닉(hedonic) 모형을 사용했다. 반응변수는 1970년 센서스에서 가구들이 주택 가치를 서열척도(가격 구간)로 응답한 자료를, 각 구간별 가구 수로 집계한 뒤 이를 기반으로 생성되었다. 이 반응변수는 센서스 원자료에서 좌측 및 우측 검열이 있었으며, 분석에서는 가우시안 분포를 따른다고 가정하였다.(역자주: 이 데이터는 원래 대기질 개선에 따른 주택가격 변화량을 추정하기 위한 헤도닉 모형에 투입된 것이다. 반응변수는 결국 센서스 트랙트별 중위 주택가격이며 최하위 가격 구간보다 낮은 주택(좌측 검열)과 최상위 가격 구간(50,000달러 초과)(우측 검열)은 결측 처리되었다.) 주요 공변량은 연간 질소산화물(NOX) 수준을 보여주는 기상 모형에 기반해 생성되었으며, 트랙트 수보다 적은 수의 모형 산출 구역 단위로 제공된다. 주택 응답 수는 트랙트별과 모형 출력 구역별로 차이가 있다. 다른 공변량도 여러 개 포함되어 있으며, 일부는 트랙트 수준에서 측정되었고, 일부는 타운 단위로만 측정되었다. 이 타운들은 대체로 대기오염 모형 출력 구역과 일치한다.</p>
 <p>우리는 먼저 <strong>spData</strong> 패키지(Bivand, Nowosad, and Lovelace 2022)에서 506개 트랙트 데이터셋을 불러온 뒤, 인접성 이웃 객체를 생성하고 이를 기반으로 행 표준화 공간가중치 객체를 만든다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jakubnowosad.com/spData/">spData</a></span><span class="op">)</span></span>
-<span><span class="va">boston_506</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"shapes/boston_tracts.shp"</span>,</span>
-<span>                      package <span class="op">=</span> <span class="st">"spData"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spData)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>boston_506 <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">system.file</span>(<span class="st">&quot;shapes/boston_tracts.shp&quot;</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">package =</span> <span class="st">&quot;spData&quot;</span>)[<span class="dv">1</span>], <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nb_q</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">)</span></span>
-<span><span class="va">lw_q</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">nb_q</span>, style <span class="op">=</span> <span class="st">"W"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nb_q <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">poly2nb</span>(boston_506)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lw_q <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">nb2listw</span>(nb_q, <span class="at">style =</span> <span class="st">&quot;W&quot;</span>)</span></code></pre></div>
 </div>
 <p>중위 주택가격 데이터를 살펴보면, 검열된 값들이 결측값으로 처리되어 있으며, 이로 인해 총 17개 트랙트가 영향을 받은 것을 알 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">$</span><span class="va">censored</span><span class="op">)</span></span>
-<span><span class="co"># </span></span>
-<span><span class="co">#  left    no right </span></span>
-<span><span class="co">#     2   489    15</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(boston_506<span class="sc">$</span>censored)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  left    no right </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     2   489    15</span></span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">$</span><span class="va">median</span><span class="op">)</span></span>
-<span><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's </span></span>
-<span><span class="co">#    5600   16800   21000   21749   24700   50000      17</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(boston_506<span class="sc">$</span>median)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    5600   16800   21000   21749   24700   50000      17</span></span></code></pre></div>
 </div>
 <p>다음으로, 비검열 주택가격 값을 가진 나머지 489개 트랙트로 서브셋을 구성하고, 여기에 맞추어 이웃 객체도 조정한다. 이 과정 후에는 비이웃 관측값이 하나 발생한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_506</span><span class="op">$</span><span class="va">CHAS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">$</span><span class="va">CHAS</span><span class="op">)</span></span>
-<span><span class="va">boston_489</span> <span class="op">&lt;-</span> <span class="va">boston_506</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">$</span><span class="va">median</span><span class="op">)</span>,<span class="op">]</span></span>
-<span><span class="va">nb_q_489</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">boston_489</span><span class="op">)</span></span>
-<span><span class="va">lw_q_489</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">nb_q_489</span>, style <span class="op">=</span> <span class="st">"W"</span>,</span>
-<span>                            zero.policy <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>boston_506<span class="sc">$</span>CHAS <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(boston_506<span class="sc">$</span>CHAS)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>boston_489 <span class="ot">&lt;-</span> boston_506[<span class="sc">!</span><span class="fu">is.na</span>(boston_506<span class="sc">$</span>median),]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nb_q_489 <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">poly2nb</span>(boston_489)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>lw_q_489 <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">nb2listw</span>(nb_q_489, <span class="at">style =</span> <span class="st">&quot;W&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">zero.policy =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <p>상위 집계 수준을 정의하는 <code>NOX_ID</code> 변수를 활용하여, 트랙트 수준의 데이터를 대기오염 모형 출력 구역 단위로 집계한다. 이 과정에서 이웃 객체와 행표준화 공간가중치 객체를 생성하며, <code>NOX</code> 변수는 평균값으로 재계산하고, 찰스강 상에 위치한 관측 단위 여부를 나타내는 더미 변수 <code>CHAS</code> 역시 재계산한다. 여기서는 5.3.1절에서 설명한 원칙, 즉 공간 외연 변수와 공간 내포 변수를 구분하여 다루는 원칙을 따른다. <code>NOX</code>와 <code>CHAS</code>는 모두 카운트 변수가 아니므로, 합계를 통해 재계산할 수 없다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">agg_96</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">boston_96</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">[</span>, <span class="st">"NOX_ID"</span><span class="op">]</span>, by <span class="op">=</span> <span class="va">agg_96</span>,</span>
-<span>                       <span class="va">unique</span><span class="op">)</span></span>
-<span><span class="va">nb_q_96</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">boston_96</span><span class="op">)</span></span>
-<span><span class="va">lw_q_96</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">nb_q_96</span><span class="op">)</span></span>
-<span><span class="va">boston_96</span><span class="op">$</span><span class="va">NOX</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">$</span><span class="va">NOX</span>, <span class="va">agg_96</span>, <span class="va">mean</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span>
-<span><span class="va">boston_96</span><span class="op">$</span><span class="va">CHAS</span> <span class="op">&lt;-</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">$</span><span class="va">CHAS</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, <span class="va">agg_96</span>, <span class="va">max</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>agg_96 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">as.character</span>(boston_506<span class="sc">$</span>NOX_ID))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>boston_96 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(boston_506[, <span class="st">&quot;NOX_ID&quot;</span>], <span class="at">by =</span> agg_96,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                       unique)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>nb_q_96 <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">poly2nb</span>(boston_96)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>lw_q_96 <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">nb2listw</span>(nb_q_96)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>boston_96<span class="sc">$</span>NOX <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(boston_506<span class="sc">$</span>NOX, agg_96, mean)<span class="sc">$</span>x</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>boston_96<span class="sc">$</span>CHAS <span class="ot">&lt;-</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aggregate</span>(<span class="fu">as.integer</span>(boston_506<span class="sc">$</span>CHAS)<span class="sc">-</span><span class="dv">1</span>, agg_96, max)<span class="sc">$</span>x</span></code></pre></div>
 </div>
 <p>반응변수의 집계는 <strong>matrixStats</strong> 패키지의 <code>weightedMedian()</code> 함수를 사용하여, 주택가격 클래스의 중간값을 기준으로 계산한다. 주택가격 클래스별 주택 수를 산출하는 것은 매우 중요한데, 이는 센서스 공표 데이터를 검증하는 데에도 활용될 수 있다. 트랙트 수준에서 <code>weightedMedian()</code> 함수를 적용하면 공표된 값이 그대로 재현되는 것을 확인할 수 있다. 반응변수를 집계한 결과, 두 개의 출력 구역에서 가중 중위값이 센서스 문항의 최상위 주택가격 한계값(5만 달러)을 초과하는 것으로 나타났다. 이들 구역은, 최상위 가격 구간에 대해 적절히 대체할 값을 알 수 없다는 문제에도 영향을 받으므로, 최종적으로 분석에서 제외하였다. 주택가격 클래스별 주택 수를 계산하는 것은 공간 외연 변수의 집계에 해당하므로, 재계산 함수로 합계를 적용하는 것이 적절하다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nms</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">)</span></span>
-<span><span class="va">ccounts</span> <span class="op">&lt;-</span> <span class="fl">23</span><span class="op">:</span><span class="fl">31</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">nm</span> <span class="kw">in</span> <span class="va">nms</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="va">ccounts</span>, <span class="fl">36</span><span class="op">)</span><span class="op">]</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">boston_96</span><span class="op">[[</span><span class="va">nm</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">[[</span><span class="va">nm</span><span class="op">]</span><span class="op">]</span>, <span class="va">agg_96</span>, <span class="va">sum</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">br2</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.50</span>, <span class="fl">6.25</span>, <span class="fl">8.75</span>, <span class="fl">12.5</span>, <span class="fl">17.5</span>, <span class="fl">22.5</span>, <span class="fl">30</span>, <span class="fl">42.5</span>, <span class="fl">60</span><span class="op">)</span> <span class="op">*</span> <span class="fl">1000</span></span>
-<span><span class="va">counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">boston_96</span><span class="op">)</span><span class="op">[</span>, <span class="va">nms</span><span class="op">[</span><span class="va">ccounts</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">matrixStats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/matrixStats/man/weightedMedian.html">weightedMedian</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">br2</span>, w <span class="op">=</span> <span class="va">x</span>,</span>
-<span>                                     interpolate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">boston_96</span><span class="op">$</span><span class="va">median</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">counts</span>, <span class="fl">1</span>, <span class="va">f</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">boston_96</span><span class="op">$</span><span class="va">median</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">boston_96</span><span class="op">$</span><span class="va">median</span> <span class="op">&gt;</span> <span class="fl">50000</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">boston_96</span><span class="op">$</span><span class="va">median</span><span class="op">)</span></span>
-<span><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's </span></span>
-<span><span class="co">#    9009   20417   23523   25263   30073   49496       2</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nms <span class="ot">&lt;-</span> <span class="fu">names</span>(boston_506)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ccounts <span class="ot">&lt;-</span> <span class="dv">23</span><span class="sc">:</span><span class="dv">31</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nm <span class="cf">in</span> nms[<span class="fu">c</span>(<span class="dv">22</span>, ccounts, <span class="dv">36</span>)]) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  boston_96[[nm]] <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(boston_506[[nm]], agg_96, sum)<span class="sc">$</span>x</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>br2 <span class="ot">&lt;-</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fl">3.50</span>, <span class="fl">6.25</span>, <span class="fl">8.75</span>, <span class="fl">12.5</span>, <span class="fl">17.5</span>, <span class="fl">22.5</span>, <span class="dv">30</span>, <span class="fl">42.5</span>, <span class="dv">60</span>) <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(boston_96)[, nms[ccounts]]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) matrixStats<span class="sc">::</span><span class="fu">weightedMedian</span>(<span class="at">x =</span> br2, <span class="at">w =</span> x,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">interpolate =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>boston_96<span class="sc">$</span>median <span class="ot">&lt;-</span> <span class="fu">apply</span>(counts, <span class="dv">1</span>, f)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(boston_96<span class="sc">$</span>median) <span class="ot">&lt;-</span> boston_96<span class="sc">$</span>median <span class="sc">&gt;</span> <span class="dv">50000</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(boston_96<span class="sc">$</span>median)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#    9009   20417   23523   25263   30073   49496       2</span></span></code></pre></div>
 </div>
 <p>나머지 공변량은 트랙트 수준의 센서스 인구수를 가중치로 하여 가중평균을 산출함으로써(Bivand 2017) 집계한다. 이는 해당 공변량들이 카운트 데이터가 아니라 공간 내포 변수이기 때문에 적용되는 방식이다. 이 집계 과정을 마친 뒤, 이어서 서브셋을 구성한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">POP</span> <span class="op">&lt;-</span> <span class="va">boston_506</span><span class="op">$</span><span class="va">POP</span></span>
-<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">matrixStats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/matrixStats/man/weightedMean.html">weightedMean</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">nm</span> <span class="kw">in</span> <span class="va">nms</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span><span class="op">:</span><span class="fl">11</span>, <span class="fl">14</span><span class="op">:</span><span class="fl">19</span>, <span class="fl">21</span>, <span class="fl">33</span><span class="op">)</span><span class="op">]</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">s0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">boston_506</span><span class="op">[[</span><span class="va">nm</span><span class="op">]</span><span class="op">]</span>, <span class="va">POP</span><span class="op">)</span>, <span class="va">agg_96</span><span class="op">)</span></span>
-<span>  <span class="va">boston_96</span><span class="op">[[</span><span class="va">nm</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">s0</span>, <span class="va">f</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">boston_94</span> <span class="op">&lt;-</span> <span class="va">boston_96</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">boston_96</span><span class="op">$</span><span class="va">median</span><span class="op">)</span>,<span class="op">]</span></span>
-<span><span class="va">nb_q_94</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/subset.nb.html">subset.nb</a></span><span class="op">(</span><span class="va">nb_q_96</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">boston_96</span><span class="op">$</span><span class="va">median</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">lw_q_94</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">nb_q_94</span>, style<span class="op">=</span><span class="st">"W"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>POP <span class="ot">&lt;-</span> boston_506<span class="sc">$</span>POP</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) matrixStats<span class="sc">::</span><span class="fu">weightedMean</span>(x[,<span class="dv">1</span>], x[,<span class="dv">2</span>])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (nm <span class="cf">in</span> nms[<span class="fu">c</span>(<span class="dv">9</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">14</span><span class="sc">:</span><span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">33</span>)]) {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  s0 <span class="ot">&lt;-</span> <span class="fu">split</span>(<span class="fu">data.frame</span>(boston_506[[nm]], POP), agg_96)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  boston_96[[nm]] <span class="ot">&lt;-</span> <span class="fu">sapply</span>(s0, f)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>boston_94 <span class="ot">&lt;-</span> boston_96[<span class="sc">!</span><span class="fu">is.na</span>(boston_96<span class="sc">$</span>median),]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>nb_q_94 <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">subset.nb</span>(nb_q_96, <span class="sc">!</span><span class="fu">is.na</span>(boston_96<span class="sc">$</span>median))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>lw_q_94 <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">nb2listw</span>(nb_q_94, <span class="at">style=</span><span class="st">&quot;W&quot;</span>)</span></code></pre></div>
 </div>
 <p>이제 두 개의 데이터셋이 서로 다른 두 수준에서 존재한다. 하나는 하위 수준인 센서스 트랙트 수준이고, 다른 하나는 상위 수준인 대기오염 모형 출력 구역 수준이다. 하나는 검열된 관측값을 포함하며, 다른 하나는 이를 제외한 데이터이다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_94a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">boston_489</span><span class="op">[</span>,<span class="st">"NOX_ID"</span><span class="op">]</span>, </span>
-<span>                        <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">boston_489</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span>, <span class="va">unique</span><span class="op">)</span></span>
-<span><span class="va">nb_q_94a</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">boston_94a</span><span class="op">)</span></span>
-<span><span class="va">NOX_ID_no_neighs</span> <span class="op">&lt;-</span></span>
-<span>        <span class="va">boston_94a</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/card.html">card</a></span><span class="op">(</span><span class="va">nb_q_94a</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">boston_487</span> <span class="op">&lt;-</span> <span class="va">boston_489</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/match.html">match</a></span><span class="op">(</span><span class="va">boston_489</span><span class="op">$</span><span class="va">NOX_ID</span>,</span>
-<span>                                     <span class="va">NOX_ID_no_neighs</span><span class="op">)</span><span class="op">)</span>,<span class="op">]</span></span>
-<span><span class="va">boston_93</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">boston_487</span><span class="op">[</span>, <span class="st">"NOX_ID"</span><span class="op">]</span>,</span>
-<span>                       <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ids <span class="op">=</span> <span class="va">boston_487</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span>, <span class="va">unique</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">boston_93</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">boston_93</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span></span>
-<span><span class="va">nb_q_93</span> <span class="op">&lt;-</span> <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/poly2nb.html">poly2nb</a></span><span class="op">(</span><span class="va">boston_93</span>,</span>
-<span>        row.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">boston_93</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>boston_94a <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(boston_489[,<span class="st">&quot;NOX_ID&quot;</span>], </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">list</span>(boston_489<span class="sc">$</span>NOX_ID), unique)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>nb_q_94a <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">poly2nb</span>(boston_94a)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>NOX_ID_no_neighs <span class="ot">&lt;-</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        boston_94a<span class="sc">$</span>NOX_ID[<span class="fu">which</span>(spdep<span class="sc">::</span><span class="fu">card</span>(nb_q_94a) <span class="sc">==</span> <span class="dv">0</span>)]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>boston_487 <span class="ot">&lt;-</span> boston_489[<span class="fu">is.na</span>(<span class="fu">match</span>(boston_489<span class="sc">$</span>NOX_ID,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                     NOX_ID_no_neighs)),]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>boston_93 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(boston_487[, <span class="st">&quot;NOX_ID&quot;</span>],</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">list</span>(<span class="at">ids =</span> boston_487<span class="sc">$</span>NOX_ID), unique)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(boston_93) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(boston_93<span class="sc">$</span>NOX_ID)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>nb_q_93 <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">poly2nb</span>(boston_93,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">row.names =</span> <span class="fu">unique</span>(<span class="fu">as.character</span>(boston_93<span class="sc">$</span>NOX_ID)))</span></code></pre></div>
 </div>
 <p>원래 모형은 트랙트별 중위 주택가격의 로그값과 NOX 값 제곱 간의 관련성을 분석한 것이었으며, 여기에 트랙트별 주택가격과 다른 공변량들(예: 총 방 수, 총 연령, 민족, 사회적 지위, 중심가까지의 거리, 가장 가까운 방사형 도로까지의 거리, 범죄율, 도시 수준 변수 등)도 포함되었다(Bivand 2017). 이 데이터를 활용하여 공간 회귀모형을 적합할 때 발생할 수 있는 여러 문제를 살펴볼 것이다. 또한, 이 데이터는 다수준 이슈를 다루는 데에도 유용하다.</p>
-</section></section><section id="보스턴-데이터셋에-대한-다수준모형" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="보스턴-데이터셋에-대한-다수준모형">
-<span class="header-section-number">16.2</span> 보스턴 데이터셋에 대한 다수준모형</h2>
+</section>
+</section>
+<section id="보스턴-주택가격-데이터셋에-대한-다수준모형" class="level2" data-number="16.2">
+<h2 data-number="16.2"><span class="header-section-number">16.2</span> 보스턴 주택가격 데이터셋에 대한 다수준모형</h2>
 <p>ZN, INDUS, NOX, RAD, TAX, PTRATIO 변수는 TASSIM 구역 내에서 변동이 거의 없어, 다수준모형에서는 이들 변수의 설명력이 고정효과가 아니라 랜덤효과에 의해 대부분 포착될 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">form</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/formula.html">formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">median</span><span class="op">)</span> <span class="op">~</span> <span class="va">CRIM</span> <span class="op">+</span> <span class="va">ZN</span> <span class="op">+</span> <span class="va">INDUS</span> <span class="op">+</span> <span class="va">CHAS</span> <span class="op">+</span> </span>
-<span>                <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="op">(</span><span class="va">NOX</span><span class="op">*</span><span class="fl">10</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">RM</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">AGE</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">DIS</span><span class="op">)</span> <span class="op">+</span></span>
-<span>                <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">RAD</span><span class="op">)</span> <span class="op">+</span> <span class="va">TAX</span> <span class="op">+</span> <span class="va">PTRATIO</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">BB</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>                <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">LSTAT</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>form <span class="ot">&lt;-</span> <span class="fu">formula</span>(<span class="fu">log</span>(median) <span class="sc">~</span> CRIM <span class="sc">+</span> ZN <span class="sc">+</span> INDUS <span class="sc">+</span> CHAS <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">I</span>((NOX<span class="sc">*</span><span class="dv">10</span>)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(RM<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> AGE <span class="sc">+</span> <span class="fu">log</span>(DIS) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">log</span>(RAD) <span class="sc">+</span> TAX <span class="sc">+</span> PTRATIO <span class="sc">+</span> <span class="fu">I</span>(BB<span class="sc">/</span><span class="dv">100</span>) <span class="sc">+</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">log</span>(<span class="fu">I</span>(LSTAT<span class="sc">/</span><span class="dv">100</span>)))</span></code></pre></div>
 </div>
-<section id="iid-랜덤효과-lme4-패키지의-활용" class="level3" data-number="16.2.1"><h3 data-number="16.2.1" class="anchored" data-anchor-id="iid-랜덤효과-lme4-패키지의-활용">
-<span class="header-section-number">16.2.1</span> IID 랜덤효과: lme4 패키지의 활용</h3>
-<p><strong>lme4</strong> 패키지(Bates et al.&nbsp;2022)는 모형 출력 구역 수준에서 독립동일분포(IID, independent and identically distributed)를 따르는 비구조적 랜덤효과를 추가할 수 있도록 지원한다. 이는 모형 공식에 랜덤효과 항을 추가하거나 갱신하는 방식으로 구현된다.(역자주: ’독립동일분포’는 통계학에서 각 확률변수가 서로 독립이며(independent), 동일한 확률분포(identical distribution)를 따른다는 가정을 의미한다. 이는 표본의 모든 관측값이 서로 영향을 주지 않고, 같은 분포에서 동일한 확률법칙에 의해 생성된다는 것을 뜻한다. IID 가정은 확률론과 통계추론에서 자주 사용되며, 특히 회귀분석과 혼합효과모형의 랜덤효과를 단순화할 때 기본 전제로 활용된다.)</p>
+<section id="iid-랜덤효과-lme4-패키지의-활용" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1"><span class="header-section-number">16.2.1</span> IID 랜덤효과: lme4 패키지의 활용</h3>
+<p><strong>lme4</strong> 패키지(Bates et al. 2022)는 모형 출력 구역 수준에서 독립동일분포(IID, independent and identically distributed)를 따르는 비구조적 랜덤효과를 추가할 수 있도록 지원한다. 이는 모형 공식에 랜덤효과 항을 추가하거나 갱신하는 방식으로 구현된다.(역자주: ’독립동일분포’는 통계학에서 각 확률변수가 서로 독립이며(independent), 동일한 확률분포(identical distribution)를 따른다는 가정을 의미한다. 이는 표본의 모든 관측값이 서로 영향을 주지 않고, 같은 분포에서 동일한 확률법칙에 의해 생성된다는 것을 뜻한다. IID 가정은 확률론과 통계추론에서 자주 사용되며, 특히 회귀분석과 혼합효과모형의 랜덤효과를 단순화할 때 기본 전제로 활용된다.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://Matrix.R-forge.R-project.org">Matrix</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span></span>
-<span><span class="va">MLM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">form</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">NOX_ID</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>            data <span class="op">=</span> <span class="va">boston_487</span>, REML <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>MLM <span class="ot">&lt;-</span> <span class="fu">lmer</span>(<span class="fu">update</span>(form, . <span class="sc">~</span> . <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> NOX_ID)), </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> boston_487, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <p>랜덤효과를 <code>"sf"</code> 객체에 복사하여, 이후 지도로 시각화할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_93</span><span class="op">$</span><span class="va">MLM_re</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/nlme/man/random.effects.html">ranef</a></span><span class="op">(</span><span class="va">MLM</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>MLM_re <span class="ot">&lt;-</span> <span class="fu">ranef</span>(MLM)[[<span class="dv">1</span>]][,<span class="dv">1</span>]</span></code></pre></div>
 </div>
-</section><section id="iid와-car-랜덤효과-hglm-패키지의-활용" class="level3" data-number="16.2.2"><h3 data-number="16.2.2" class="anchored" data-anchor-id="iid와-car-랜덤효과-hglm-패키지의-활용">
-<span class="header-section-number">16.2.2</span> IID와 CAR 랜덤효과: hglm 패키지의 활용</h3>
+</section>
+<section id="iid와-car-랜덤효과-hglm-패키지의-활용" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2"><span class="header-section-number">16.2.2</span> IID와 CAR 랜덤효과: hglm 패키지의 활용</h3>
 <p>동일한 모형을 <strong>hglm</strong> 패키지(Alam, Ronnegard, and Shen 2019)를 사용하여 추정할 수 있다. 이 경우, 랜덤효과 항은 한쪽 방향 포뮬러(one-sided formula)를 추가하는 방식으로 지정된다.(역자주: ’한쪽 방향 포뮬러’는 회귀모형에서 반응변수를 지정하지 않고 설명변수나 효과만을 기술하는 공식 형태를 말한다. 예를 들어, <code>~ 1 | group</code>과 같이 작성하면, 종속변수 없이 그룹 단위의 랜덤효과 구조만을 정의하게 된다. 이는 주로 랜덤효과나 특정 구조적 효과를 모형에 추가할 때 사용되며, <strong>hglm</strong> 패키지와 같이 랜덤효과 항을 별도로 지정하는 함수에서 자주 활용된다.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">hglm</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="va">HGLM_iid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/hglm/man/hglm.html">hglm</a></span><span class="op">(</span>fixed <span class="op">=</span> <span class="va">form</span>,</span>
-<span>                                  random <span class="op">=</span> <span class="op">~</span><span class="fl">1</span> <span class="op">|</span> <span class="va">NOX_ID</span>,</span>
-<span>                                  data <span class="op">=</span> <span class="va">boston_487</span>,</span>
-<span>                                  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">gaussian</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">boston_93</span><span class="op">$</span><span class="va">HGLM_re</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">HGLM_iid</span><span class="op">$</span><span class="va">ranef</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hglm) <span class="sc">|&gt;</span> <span class="fu">suppressPackageStartupMessages</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressWarnings</span>(HGLM_iid <span class="ot">&lt;-</span> <span class="fu">hglm</span>(<span class="at">fixed =</span> form,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span> <span class="sc">|</span> NOX_ID,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">data =</span> boston_487,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">family =</span> <span class="fu">gaussian</span>()))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>HGLM_re <span class="ot">&lt;-</span> <span class="fu">unname</span>(HGLM_iid<span class="sc">$</span>ranef)</span></code></pre></div>
 </div>
 <p><strong>hglm</strong> 패키지는 공간적으로 구조화된 SAR 및 CAR 랜덤효과도 다룰 수 있도록 확장되었으며, 이 경우 희소 공간가중치행렬이 필요하다(Alam, Rönnegård, and Shen 2015). 여기서는 이진 공간가중치를 사용한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span></span>
-<span><span class="va">W</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/methods/as.html">as</a></span><span class="op">(</span><span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/nb2listw.html">nb2listw</a></span><span class="op">(</span><span class="va">nb_q_93</span>, style <span class="op">=</span> <span class="st">"B"</span><span class="op">)</span>, <span class="st">"CsparseMatrix"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatialreg)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">as</span>(spdep<span class="sc">::</span><span class="fu">nb2listw</span>(nb_q_93, <span class="at">style =</span> <span class="st">&quot;B&quot;</span>), <span class="st">&quot;CsparseMatrix&quot;</span>)</span></code></pre></div>
 </div>
 <p><code>and.family</code> 인수를 사용하여 상위 수준에서 CAR 모형을 적합한다. 이 때 인덱싱 변수인 <code>NOX_ID</code>의 값은 <span class="math inline">\(W\)</span>의 행 이름과 일치해야 한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/warning.html">suppressWarnings</a></span><span class="op">(</span><span class="va">HGLM_car</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/hglm/man/hglm.html">hglm</a></span><span class="op">(</span>fixed <span class="op">=</span> <span class="va">form</span>,</span>
-<span>                                  random <span class="op">=</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">NOX_ID</span>,</span>
-<span>                                  data <span class="op">=</span> <span class="va">boston_487</span>,</span>
-<span>                                  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">gaussian</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                                  rand.family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/hglm/man/CAR.html">CAR</a></span><span class="op">(</span>D<span class="op">=</span><span class="va">W</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">boston_93</span><span class="op">$</span><span class="va">HGLM_ss</span> <span class="op">&lt;-</span> <span class="va">HGLM_car</span><span class="op">$</span><span class="va">ranef</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressWarnings</span>(HGLM_car <span class="ot">&lt;-</span> <span class="fu">hglm</span>(<span class="at">fixed =</span> form,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> NOX_ID,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">data =</span> boston_487,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">family =</span> <span class="fu">gaussian</span>(),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">rand.family =</span> <span class="fu">CAR</span>(<span class="at">D=</span>W)))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>HGLM_ss <span class="ot">&lt;-</span> HGLM_car<span class="sc">$</span>ranef[,<span class="dv">1</span>]</span></code></pre></div>
 </div>
-</section><section id="iid와-icar-랜덤효과-r2bayesx-패키지의-활용" class="level3" data-number="16.2.3"><h3 data-number="16.2.3" class="anchored" data-anchor-id="iid와-icar-랜덤효과-r2bayesx-패키지의-활용">
-<span class="header-section-number">16.2.3</span> IID와 ICAR 랜덤효과: R2BayesX 패키지의 활용</h3>
-<p><strong>R2BayesX</strong> 패키지(Umlauf et al.&nbsp;2022)는 공간 다수준모형을 포함한 다양한 구조화된 가법(additive) 회귀모형을 지원한다.(역자주: ’구조화된 가법 회귀모형’은 종속변수를 설명하기 위해 여러 개의 함수적 구성요소를 부가하는 형태를 가지면서, 각 구성요소에 사전 구조(prior structure)나 제약조건을 부여한 회귀모형을 말한다. 예를 들어, 선형항(고정효과), 비선형 평활항, 공간적 랜덤효과, 시계열 효과 등을 동일한 모형 안에서 더해 표현할 수 있으며, 각 항의 형태나 상관 구조를 사용자가 지정할 수 있다. 이러한 접근은 일반화 가법모형(GAM)을 확장한 개념으로, <strong>R2BayesX</strong>나 <strong>mgcv</strong> 패키지에서 다양한 구조의 항을 포함하는 모형을 구현할 수 있다.) 지원 모형 중 하나가 상위 수준에서의 IID 비구조적 랜덤효과 모형이며, 이를 지정하려면 <code>sx</code> 모형 항에 <code>"re"</code> 사양을 사용하면 된다(Umlauf et al.&nbsp;2015). 이때 추정 방법으로 <code>"MCMC"</code> 메서드를 선택한다.</p>
+</section>
+<section id="iid와-icar-랜덤효과-r2bayesx-패키지의-활용" class="level3" data-number="16.2.3">
+<h3 data-number="16.2.3"><span class="header-section-number">16.2.3</span> IID와 ICAR 랜덤효과: R2BayesX 패키지의 활용</h3>
+<p><strong>R2BayesX</strong> 패키지(Umlauf et al. 2022)는 공간 다수준모형을 포함한 다양한 구조화된 가법(additive) 회귀모형을 지원한다.(역자주: ’구조화된 가법 회귀모형’은 종속변수를 설명하기 위해 여러 개의 함수적 구성요소를 부가하는 형태를 가지면서, 각 구성요소에 사전 구조(prior structure)나 제약조건을 부여한 회귀모형을 말한다. 예를 들어, 선형항(고정효과), 비선형 평활항, 공간적 랜덤효과, 시계열 효과 등을 동일한 모형 안에서 더해 표현할 수 있으며, 각 항의 형태나 상관 구조를 사용자가 지정할 수 있다. 이러한 접근은 일반화 가법모형(GAM)을 확장한 개념으로, <strong>R2BayesX</strong>나 <strong>mgcv</strong> 패키지에서 다양한 구조의 항을 포함하는 모형을 구현할 수 있다.) 지원 모형 중 하나가 상위 수준에서의 IID 비구조적 랜덤효과 모형이며, 이를 지정하려면 <code>sx</code> 모형 항에 <code>"re"</code> 사양을 사용하면 된다(Umlauf et al. 2015). 이때 추정 방법으로 <code>"MCMC"</code> 메서드를 선택한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">R2BayesX</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">BX_iid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/bayesx.html">bayesx</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">form</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/sx.html">sx</a></span><span class="op">(</span><span class="va">NOX_ID</span>, bs <span class="op">=</span> <span class="st">"re"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                 family <span class="op">=</span> <span class="st">"gaussian"</span>, data <span class="op">=</span> <span class="va">boston_487</span>,</span>
-<span>                 method <span class="op">=</span> <span class="st">"MCMC"</span>, iterations <span class="op">=</span> <span class="fl">12000</span>,</span>
-<span>                 burnin <span class="op">=</span> <span class="fl">2000</span>, step <span class="op">=</span> <span class="fl">2</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(R2BayesX) <span class="sc">|&gt;</span> <span class="fu">suppressPackageStartupMessages</span>()</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_93</span><span class="op">$</span><span class="va">BX_re</span> <span class="op">&lt;-</span> <span class="va">BX_iid</span><span class="op">$</span><span class="va">effects</span><span class="op">[</span><span class="st">"sx(NOX_ID):re"</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Mean</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>BX_iid <span class="ot">&lt;-</span> <span class="fu">bayesx</span>(<span class="fu">update</span>(form, . <span class="sc">~</span> . <span class="sc">+</span> <span class="fu">sx</span>(NOX_ID, <span class="at">bs =</span> <span class="st">&quot;re&quot;</span>)),</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="at">data =</span> boston_487,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;MCMC&quot;</span>, <span class="at">iterations =</span> <span class="dv">12000</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">burnin =</span> <span class="dv">2000</span>, <span class="at">step =</span> <span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">123</span>)</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>BX_re <span class="ot">&lt;-</span> BX_iid<span class="sc">$</span>effects[<span class="st">&quot;sx(NOX_ID):re&quot;</span>][[<span class="dv">1</span>]]<span class="sc">$</span>Mean</span></code></pre></div>
 </div>
 <p>상위 수준의 <code>"nb"</code> 객체를 기반으로 <code>"mrf"</code>(Markov Random Field) 사양을 선택하여, 공간적으로 구조화된 내재적 CAR 랜덤효과를 지정한다. <code>"nb"</code> 객체의 <code>"region.id"</code> 속성에는 <code>sx</code> 효과 항의 인덱싱 변수와 일치하는 값이 포함되어야 한다. 이는 설계행렬 <span class="math inline">\(Z\)</span>의 내부 구조화를 용이하게 하기 위함이다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">RBX_gra</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/nbAndGraConversion.html">nb2gra</a></span><span class="op">(</span><span class="va">nb_q_93</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">RBX_gra</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">nb_q_93</span>, <span class="st">"region.id"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># [1] TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>RBX_gra <span class="ot">&lt;-</span> <span class="fu">nb2gra</span>(nb_q_93)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">row.names</span>(RBX_gra), <span class="fu">attr</span>(nb_q_93, <span class="st">&quot;region.id&quot;</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] TRUE</span></span></code></pre></div>
 </div>
 <p>앞서 살펴본 내재적 CAR 모형의 정의에서와 같이, 이웃 수는 대각 원소에 입력된다. 그러나 현재 구현에서는 희소 행렬이 아닌 밀집 행렬을 사용한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/all.equal-methods.html">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">RBX_gra</span><span class="op">)</span><span class="op">)</span>, <span class="fu">spdep</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/spdep/reference/card.html">card</a></span><span class="op">(</span><span class="va">nb_q_93</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># [1] TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">unname</span>(<span class="fu">diag</span>(RBX_gra)), spdep<span class="sc">::</span><span class="fu">card</span>(nb_q_93))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] TRUE</span></span></code></pre></div>
 </div>
 <p><code>sx</code> 모형 항은 여전히 인덱싱 변수를 포함하며, 이번에는 내재적 CAR 정밀행렬을 거쳐 처리된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">BX_mrf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/bayesx.html">bayesx</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">form</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/R2BayesX/man/sx.html">sx</a></span><span class="op">(</span><span class="va">NOX_ID</span>, bs <span class="op">=</span> <span class="st">"mrf"</span>,</span>
-<span>                                         map <span class="op">=</span> <span class="va">RBX_gra</span><span class="op">)</span><span class="op">)</span>, </span>
-<span>                 family <span class="op">=</span> <span class="st">"gaussian"</span>, data <span class="op">=</span> <span class="va">boston_487</span>,</span>
-<span>                 method <span class="op">=</span> <span class="st">"MCMC"</span>, iterations <span class="op">=</span> <span class="fl">12000</span>,</span>
-<span>                 burnin <span class="op">=</span> <span class="fl">2000</span>, step <span class="op">=</span> <span class="fl">2</span>, seed <span class="op">=</span> <span class="fl">123</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>BX_mrf <span class="ot">&lt;-</span> <span class="fu">bayesx</span>(<span class="fu">update</span>(form, . <span class="sc">~</span> . <span class="sc">+</span> <span class="fu">sx</span>(NOX_ID, <span class="at">bs =</span> <span class="st">&quot;mrf&quot;</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">map =</span> RBX_gra)), </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="at">data =</span> boston_487,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">&quot;MCMC&quot;</span>, <span class="at">iterations =</span> <span class="dv">12000</span>,</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">burnin =</span> <span class="dv">2000</span>, <span class="at">step =</span> <span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">123</span>)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_93</span><span class="op">$</span><span class="va">BX_ss</span> <span class="op">&lt;-</span> <span class="va">BX_mrf</span><span class="op">$</span><span class="va">effects</span><span class="op">[</span><span class="st">"sx(NOX_ID):mrf"</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">Mean</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>BX_ss <span class="ot">&lt;-</span> BX_mrf<span class="sc">$</span>effects[<span class="st">&quot;sx(NOX_ID):mrf&quot;</span>][[<span class="dv">1</span>]]<span class="sc">$</span>Mean</span></code></pre></div>
 </div>
-</section><section id="iid-icar-leroux-랜덤효과-inla-패키지의-활용" class="level3" data-number="16.2.4"><h3 data-number="16.2.4" class="anchored" data-anchor-id="iid-icar-leroux-랜덤효과-inla-패키지의-활용">
-<span class="header-section-number">16.2.4</span> IID, ICAR, Leroux 랜덤효과: INLA 패키지의 활용</h3>
+</section>
+<section id="iid-icar-leroux-랜덤효과-inla-패키지의-활용" class="level3" data-number="16.2.4">
+<h3 data-number="16.2.4"><span class="header-section-number">16.2.4</span> IID, ICAR, Leroux 랜덤효과: INLA 패키지의 활용</h3>
 <p>Bivand, Gómez-Rubio와 Rue(2015) 및 Gómez-Rubio(2020)는 <strong>INLA</strong> 패키지(Rue, Lindgren, and Teixeira Krainski 2022)와 공간 회귀모형에 대한 <code>inla()</code> 모형 적합 함수를 사용하는 방법을 설명한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">INLA</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(INLA) <span class="sc">|&gt;</span> <span class="fu">suppressPackageStartupMessages</span>()</span></code></pre></div>
 </div>
 <p>세부적인 차이는 있으나, 고정모형 공식을 비구조적 랜덤효과 항으로 갱신하는 접근 방식은 앞서 살펴본 방법과 매우 유사하다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">INLA_iid</span> <span class="op">&lt;-</span> <span class="fu">inla</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">form</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="fu">f</span><span class="op">(</span><span class="va">NOX_ID</span>, model <span class="op">=</span> <span class="st">"iid"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                 family <span class="op">=</span> <span class="st">"gaussian"</span>, data <span class="op">=</span> <span class="va">boston_487</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>INLA_iid <span class="ot">&lt;-</span> <span class="fu">inla</span>(<span class="fu">update</span>(form, . <span class="sc">~</span> . <span class="sc">+</span> <span class="fu">f</span>(NOX_ID, <span class="at">model =</span> <span class="st">&quot;iid&quot;</span>)),</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">family =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="at">data =</span> boston_487)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_93</span><span class="op">$</span><span class="va">INLA_re</span> <span class="op">&lt;-</span> <span class="va">INLA_iid</span><span class="op">$</span><span class="va">summary.random</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">$</span><span class="va">mean</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>INLA_re <span class="ot">&lt;-</span> INLA_iid<span class="sc">$</span>summary.random<span class="sc">$</span>NOX_ID<span class="sc">$</span>mean</span></code></pre></div>
 </div>
 <p>대부분의 구현과 마찬가지로, 공간가중치와 인덱싱 변수가 일치하도록 주의해야 한다. 여기서는 <code>NOX_ID</code> 변수를 직접 사용하는 대신, 1부터 93까지의 인덱스를 사용한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ID2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">boston_487</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ID2 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(boston_487<span class="sc">$</span>NOX_ID))</span></code></pre></div>
 </div>
 <p>동일한 희소 이진 공간가중치행렬을 사용하며, 내재적 CAR 표현은 내부적으로 생성된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">INLA_ss</span> <span class="op">&lt;-</span> <span class="fu">inla</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">form</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="fu">f</span><span class="op">(</span><span class="va">ID2</span>, model <span class="op">=</span> <span class="st">"besag"</span>,</span>
-<span>                                       graph <span class="op">=</span> <span class="va">W</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                family <span class="op">=</span> <span class="st">"gaussian"</span>, data <span class="op">=</span> <span class="va">boston_487</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>INLA_ss <span class="ot">&lt;-</span> <span class="fu">inla</span>(<span class="fu">update</span>(form, . <span class="sc">~</span> . <span class="sc">+</span> <span class="fu">f</span>(ID2, <span class="at">model =</span> <span class="st">&quot;besag&quot;</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">graph =</span> W)),</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="at">data =</span> boston_487)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_93</span><span class="op">$</span><span class="va">INLA_ss</span> <span class="op">&lt;-</span> <span class="va">INLA_ss</span><span class="op">$</span><span class="va">summary.random</span><span class="op">$</span><span class="va">ID2</span><span class="op">$</span><span class="va">mean</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>INLA_ss <span class="ot">&lt;-</span> INLA_ss<span class="sc">$</span>summary.random<span class="sc">$</span>ID2<span class="sc">$</span>mean</span></code></pre></div>
 </div>
 <p>Gómez-Rubio(2020)가 제시한 희소 Leroux 표현은 다음과 같이 구성할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/Diagonal.html">Diagonal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">W</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/colSums-methods.html">rowSums</a></span><span class="op">(</span><span class="va">W</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="va">W</span></span>
-<span><span class="va">Cmatrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/Diagonal.html">Diagonal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">M</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">-</span>  <span class="va">M</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">Diagonal</span>(<span class="fu">nrow</span>(W), <span class="fu">rowSums</span>(W)) <span class="sc">-</span> W</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Cmatrix <span class="ot">&lt;-</span> <span class="fu">Diagonal</span>(<span class="fu">nrow</span>(M), <span class="dv">1</span>) <span class="sc">-</span>  M</span></code></pre></div>
 </div>
 <p>이 모형은 지정된 정밀행렬과 함께 <code>"generic1"</code> 모형을 사용하여 추정할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">INLA_lr</span> <span class="op">&lt;-</span> <span class="fu">inla</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">form</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="fu">f</span><span class="op">(</span><span class="va">ID2</span>, model <span class="op">=</span> <span class="st">"generic1"</span>,</span>
-<span>                                       Cmatrix <span class="op">=</span> <span class="va">Cmatrix</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                family <span class="op">=</span> <span class="st">"gaussian"</span>, data <span class="op">=</span> <span class="va">boston_487</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>INLA_lr <span class="ot">&lt;-</span> <span class="fu">inla</span>(<span class="fu">update</span>(form, . <span class="sc">~</span> . <span class="sc">+</span> <span class="fu">f</span>(ID2, <span class="at">model =</span> <span class="st">&quot;generic1&quot;</span>,</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">Cmatrix =</span> Cmatrix)),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> <span class="st">&quot;gaussian&quot;</span>, <span class="at">data =</span> boston_487)</span></code></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_93</span><span class="op">$</span><span class="va">INLA_lr</span> <span class="op">&lt;-</span> <span class="va">INLA_lr</span><span class="op">$</span><span class="va">summary.random</span><span class="op">$</span><span class="va">ID2</span><span class="op">$</span><span class="va">mean</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>INLA_lr <span class="ot">&lt;-</span> INLA_lr<span class="sc">$</span>summary.random<span class="sc">$</span>ID2<span class="sc">$</span>mean</span></code></pre></div>
 </div>
-</section><section id="icar-랜덤효과-mgcv-패키지의-gam-함수의-활용" class="level3" data-number="16.2.5"><h3 data-number="16.2.5" class="anchored" data-anchor-id="icar-랜덤효과-mgcv-패키지의-gam-함수의-활용">
-<span class="header-section-number">16.2.5</span> ICAR 랜덤효과: mgcv 패키지의 <code>gam()</code> 함수의 활용</h3>
-<p>비슷한 방식으로, <strong>mgcv</strong> 패키지의 <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> 함수(Wood 2022)는 <code>"nb"</code> 객체를 사용하여 <code>"mrf"</code> 항을 포함할 수 있다. 이 경우, <code>"nb"</code> 객체의 <code>"region.id"</code> 속성 값을 이웃 목록 구성 요소의 이름으로 복사해야 하며, 인덱싱 변수는 범주형이어야 한다(Wood 2017).</p>
+</section>
+<section id="icar-랜덤효과-mgcv-패키지의-gam-함수의-활용" class="level3" data-number="16.2.5">
+<h3 data-number="16.2.5"><span class="header-section-number">16.2.5</span> ICAR 랜덤효과: mgcv 패키지의 <code>gam()</code> 함수의 활용</h3>
+<p>비슷한 방식으로, <strong>mgcv</strong> 패키지의 <code>gam()</code> 함수(Wood 2022)는 <code>"nb"</code> 객체를 사용하여 <code>"mrf"</code> 항을 포함할 수 있다. 이 경우, <code>"nb"</code> 객체의 <code>"region.id"</code> 속성 값을 이웃 목록 구성 요소의 이름으로 복사해야 하며, 인덱싱 변수는 범주형이어야 한다(Wood 2017).</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">nb_q_93</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">nb_q_93</span>, <span class="st">"region.id"</span><span class="op">)</span></span>
-<span><span class="va">boston_487</span><span class="op">$</span><span class="va">NOX_ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">boston_487</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mgcv)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nb_q_93) <span class="ot">&lt;-</span> <span class="fu">attr</span>(nb_q_93, <span class="st">&quot;region.id&quot;</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>boston_487<span class="sc">$</span>NOX_ID <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(boston_487<span class="sc">$</span>NOX_ID)</span></code></pre></div>
 </div>
-<p>공간적으로 구조화된 항의 지정 방식은 앞선 예들과 다소 다르지만, 결과는 동일하다. <code><a href="https://rdrr.io/pkg/R2BayesX/man/bayesx.html">bayesx()</a></code> 함수의 <code>"REML"</code> 방법은 이 경우 <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> 함수의 <code>"REML"</code>을 사용하는 것과 동일한 결과를 산출한다.</p>
+<p>공간적으로 구조화된 항의 지정 방식은 앞선 예들과 다소 다르지만, 결과는 동일하다. <code>bayesx()</code> 함수의 <code>"REML"</code> 방법은 이 경우 <code>gam()</code> 함수의 <code>"REML"</code>을 사용하는 것과 동일한 결과를 산출한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">GAM_MRF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span><span class="va">form</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">NOX_ID</span>, bs <span class="op">=</span> <span class="st">"mrf"</span>,</span>
-<span>                                      xt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nb <span class="op">=</span> <span class="va">nb_q_93</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>               data <span class="op">=</span> <span class="va">boston_487</span>, method <span class="op">=</span> <span class="st">"REML"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>GAM_MRF <span class="ot">&lt;-</span> <span class="fu">gam</span>(<span class="fu">update</span>(form, . <span class="sc">~</span> . <span class="sc">+</span> <span class="fu">s</span>(NOX_ID, <span class="at">bs =</span> <span class="st">&quot;mrf&quot;</span>,</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">xt =</span> <span class="fu">list</span>(<span class="at">nb =</span> nb_q_93))),</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> boston_487, <span class="at">method =</span> <span class="st">&quot;REML&quot;</span>)</span></code></pre></div>
 </div>
 <p>상위 수준의 랜덤효과는 예측을 통해 추출할 수 있다. 동일한 상위 수준의 대기질 모형 출력 구역에 속하는 모든 하위 수준 트랙트는 동일한 값을 가진다는 것을 확인할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ssre</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">GAM_MRF</span>, type <span class="op">=</span> <span class="st">"terms"</span>, </span>
-<span>                se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">[</span>, <span class="st">"s(NOX_ID)"</span><span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tapply.html">tapply</a></span><span class="op">(</span><span class="va">ssre</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">boston_487</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span>, <span class="va">c</span><span class="op">)</span>,</span>
-<span>           <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># [1] TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ssre <span class="ot">&lt;-</span> <span class="fu">predict</span>(GAM_MRF, <span class="at">type =</span> <span class="st">&quot;terms&quot;</span>, </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">se =</span> <span class="cn">FALSE</span>)[, <span class="st">&quot;s(NOX_ID)&quot;</span>]</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">sapply</span>(<span class="fu">tapply</span>(ssre, <span class="fu">list</span>(boston_487<span class="sc">$</span>NOX_ID), c),</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>           <span class="cf">function</span>(x) <span class="fu">length</span>(<span class="fu">unique</span>(<span class="fu">round</span>(x, <span class="dv">8</span>))) <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] TRUE</span></span></code></pre></div>
 </div>
 <p>따라서 각 상위 수준 단위에 대해 첫 번째 값을 반환하면 된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boston_93</span><span class="op">$</span><span class="va">GAM_ss</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="va">ssre</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">boston_487</span><span class="op">$</span><span class="va">NOX_ID</span><span class="op">)</span>, </span>
-<span>                              <span class="va">head</span>, n<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>boston_93<span class="sc">$</span>GAM_ss <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(ssre, <span class="fu">list</span>(boston_487<span class="sc">$</span>NOX_ID), </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                              head, <span class="at">n=</span><span class="dv">1</span>)<span class="sc">$</span>x</span></code></pre></div>
 </div>
-</section><section id="상위-수준-랜덤효과-요약" class="level3" data-number="16.2.6"><h3 data-number="16.2.6" class="anchored" data-anchor-id="상위-수준-랜덤효과-요약">
-<span class="header-section-number">16.2.6</span> 상위 수준 랜덤효과: 요약</h3>
-<p><code><a href="https://rdrr.io/pkg/hglm/man/hglm.html">hglm()</a></code>, <code><a href="https://rdrr.io/pkg/R2BayesX/man/bayesx.html">bayesx()</a></code>, <code>inla()</code>, 그리고 <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> 함수의 경우, 이산형 반응변수를 모형화하는 것도 가능하다. <code>bayesx(),</code> <code>inla()</code>, <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> 함수는 해당 공변량에 대한 기능 형태(functional form) 적합을 일반화하는 데 유리하다.(역자주: ’기능 형태 적합’은 독립변수와 종속변수 간의 관계를 수학적으로 표현하는 함수의 형태를 결정하고, 해당 함수에 데이터를 맞추는(fitting) 과정을 의미한다. 예를 들어, 선형함수, 다항식, 로그함수, 스플라인 등 다양한 형태가 가능하며, 선택된 기능 형태에 따라 변수 간 관계의 해석과 예측 결과가 달라질 수 있다. 특히 공간적 회귀분석에서는 지역 간 상관 구조나 공간적 이질성을 정확히 반영하기 위해, 데이터 특성에 맞는 기능 형태를 유연하게 지정하는 것이 중요하다.)</p>
+</section>
+<section id="상위-수준-랜덤효과-요약" class="level3" data-number="16.2.6">
+<h3 data-number="16.2.6"><span class="header-section-number">16.2.6</span> 상위 수준 랜덤효과: 요약</h3>
+<p><code>hglm()</code>, <code>bayesx()</code>, <code>inla()</code>, 그리고 <code>gam()</code> 함수의 경우, 이산형 반응변수를 모형화하는 것도 가능하다. <code>bayesx(),</code> <code>inla()</code>, <code>gam()</code> 함수는 해당 공변량에 대한 기능 형태(functional form) 적합을 일반화하는 데 유리하다.(역자주: ’기능 형태 적합’은 독립변수와 종속변수 간의 관계를 수학적으로 표현하는 함수의 형태를 결정하고, 해당 함수에 데이터를 맞추는(fitting) 과정을 의미한다. 예를 들어, 선형함수, 다항식, 로그함수, 스플라인 등 다양한 형태가 가능하며, 선택된 기능 형태에 따라 변수 간 관계의 해석과 예측 결과가 달라질 수 있다. 특히 공간적 회귀분석에서는 지역 간 상관 구조나 공간적 이질성을 정확히 반영하기 위해, 데이터 특성에 맞는 기능 형태를 유연하게 지정하는 것이 중요하다.)</p>
 <p>그러나 이러한 다수준모형들이 추정한 대기질 변수의 회귀계수는 해석에 큰 도움이 되지 않는다. 모든 계수가 음의 값을 보인 것은 예상대로였지만, 모형 출력 구역 수준 효과와 IID 또는 공간적으로 구조화된 효과가 포함되면서, 관찰 스케일의 영향을 상위 스케일에서의 공변량 효과와 분리해 내기가 어려워졌다.</p>
 <p>Figure 16.1은 대기질 모형 출력 구역 수준의 IID 랜덤효과가 네 가지 모형 적합 함수 모두에서 매우 유사함을 보여준다. 모든 지도에서 중앙 도심 구역은 강한 음의 랜덤효과 값을 보이며, 중앙 도심 인근에서는 강한 양의 값이 나타나고, 교외 지역에서는 0에 가까운 값이 나타난다.</p>
-<div id="fig-16-1" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-16-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png" class="img-fluid figure-img"></a>
+<div id="fig-16-1" class="quarto-figure quarto-figure-center quarto-float">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-16-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps1-1.png" class="img-fluid" /></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-16-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;16.1: 대기질 모형 출력 구역 수준의 IID 랜덤효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA, R2BayesX</strong>를 사용하여 추정). 응답변수 (<code>log(median)</code>)의 범위는 2.1893이다.
-</figcaption></figure>
+그림 16.1: 대기질 모형 출력 구역 수준의 IID 랜덤효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA, R2BayesX</strong>를 사용하여 추정). 응답변수 (<code>log(median)</code>)의 범위는 2.1893이다.
+</figcaption>
+</figure>
 </div>
 <p>Figure 16.2는 공간적으로 구조화된 랜덤효과가 서로 매우 유사하며, <code>"SAR"</code> 공간적 평활도가 랜덤효과 값의 범위를 고려할 때 <code>"CAR"</code> 평활도보다 약간 더 부드럽다는 것을 보여준다.</p>
-<div id="fig-16-2" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-16-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png" class="img-fluid figure-img"></a>
+<div id="fig-16-2" class="quarto-figure quarto-figure-center quarto-float">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-16-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/16-SpatialRegression_files/figure-html/fig-multi-levelmaps2-1.png" class="img-fluid" /></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-16-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-그림&nbsp;16.2: 대기질 모형 출력 구역 수준의 공간적으로 구조화된 랜덤효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA</strong>, <strong>R2BayesX,</strong> <strong>mgcv</strong>를 사용하여 추정).
-</figcaption></figure>
+그림 16.2: 대기질 모형 출력 구역 수준의 공간적으로 구조화된 랜덤효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA</strong>, <strong>R2BayesX,</strong> <strong>mgcv</strong>를 사용하여 추정).
+</figcaption>
+</figure>
 </div>
 <p>다수준 데이터를 처리할 수 있는 공간 회귀모형 적합 함수에 대한 보다 체계적인 비교 연구가 여전히 필요하지만, 최근 몇 년간 상당한 진전이 있었다. Vranckx, Neyens와 Faes(2019)는 질병 매핑 공간 회귀모형에 대한 비교 연구를 수행했으며, 주로 기대빈도를 오프셋으로 설정한 포아송 회귀 프레임워크에 초점을 맞췄다. Bivand와 Gómez-Rubio(2021)는 공간가중치행렬을 이용한 공간 생존모형 추정 방법과 공간 프로빗 모형 간의 비교를 다룬다.</p>
-</section></section><section id="연습문제" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="연습문제">
-<span class="header-section-number">16.3</span> 연습문제</h2>
+</section>
+</section>
+<section id="연습문제" class="level2" data-number="16.3">
+<h2 data-number="16.3"><span class="header-section-number">16.3</span> 연습문제</h2>
 <ol type="1">
 <li><p><strong>HSAR</strong> 패키지(<a href="https://cran.r-project.org/src/contrib/Archive/HSAR/HSAR_0.5.1.tar.gz" class="uri">https://cran.r-project.org/src/contrib/Archive/HSAR/HSAR_0.5.1.tar.gz</a>)의 아테네 주택 데이터(<strong>spData</strong> 패키지 2.2.1 버전 포함)를 이용하여 다수준 데이터셋을 생성하시오. 각 자치구역의 속성 값이 해당 구역 내 모든 포인트 관측값에 복사되는 시점은 언제인지 설명하시오.</p></li>
 <li><p>상위 수준과 하위 수준 모두에서 이웃 객체를 생성하고, 두 수준 모두에서 <code>greensp</code> 변수의 공간적 자기상관을 검정하시오. 자치구역의 녹지 면적(㎡)을 포인트 서포트를 가지는 부동산 수준으로 복사하여 부여했을 때, 데이터 구조나 분석 결과에 어떤 중요한 영향이 발생하는지 설명하시오.</p></li>
-<li><p>위에서 생성한 공식 객체를 사용하여 상위 수준의 변수를 추가하는 것이 타당한지 평가하시오. <strong>mgcv</strong> 패키지의 <code><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam()</a></code> 함수를 이용해 선형 혼합효과모형을 적합하되, 자치구역 식별 변수(<code>num_dep</code>)를 사용하여 IID를 지정하시오. 하위 수준 변수만 사용한 모형과 하위와 상위 수준 변수 모두를 사용한 모형을 비교하고, 결론이 달라지는지 설명하시오.</p></li>
+<li><p>위에서 생성한 공식 객체를 사용하여 상위 수준의 변수를 추가하는 것이 타당한지 평가하시오. <strong>mgcv</strong> 패키지의 <code>gam()</code> 함수를 이용해 선형 혼합효과모형을 적합하되, 자치구역 식별 변수(<code>num_dep</code>)를 사용하여 IID를 지정하시오. 하위 수준 변수만 사용한 모형과 하위와 상위 수준 변수 모두를 사용한 모형을 비교하고, 결론이 달라지는지 설명하시오.</p></li>
 <li><p>IID 랜덤효과를 <code>"mrf"</code>(마르코프 랜덤 필드)와 앞서 생성한 연접 이웃 객체로 대체하여 분석을 완성하시오. 자치구역 수준 변수(예: <code>greensp</code>)에 근거하여 결론을 내는 것이 타당한지에 대해 견해를 밝히시오.</p></li>
 </ol>
-
-
-<div class="hidden" aria-hidden="true">
-<span class="glightbox-desc lightbox-desc-1">그림&nbsp;16.1: 대기질 모형 출력 구역 수준의 IID 랜덤효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA, R2BayesX</strong>를 사용하여 추정). 응답변수 (<code>log(median)</code>)의 범위는 2.1893이다.</span>
-<span class="glightbox-desc lightbox-desc-2">그림&nbsp;16.2: 대기질 모형 출력 구역 수준의 공간적으로 구조화된 랜덤효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA</strong>, <strong>R2BayesX,</strong> <strong>mgcv</strong>를 사용하여 추정).</span>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-int-navbar-title">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">17</span>  <span class="chapter-title">공간계량경제학적 모형</span></span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">15</span>  <span class="chapter-title">공간적 자기상관 측도</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html서장">서장</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">공간데이터</span> <span class="hidden" data-render-id="quarto-int-sidebar:/01.html&lt;span-class=&#39;chapter-number&#39;&gt;1&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;시작하기&lt;/span&gt;"><span class="chapter-number">1</span>  <span class="chapter-title">시작하기</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/02.html&lt;span-class=&#39;chapter-number&#39;&gt;2&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;좌표계&lt;/span&gt;"><span class="chapter-number">2</span>  <span class="chapter-title">좌표계</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/03.html&lt;span-class=&#39;chapter-number&#39;&gt;3&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;지오메트리&lt;/span&gt;"><span class="chapter-number">3</span>  <span class="chapter-title">지오메트리</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/04.html&lt;span-class=&#39;chapter-number&#39;&gt;4&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;구면-지오메트리&lt;/span&gt;"><span class="chapter-number">4</span>  <span class="chapter-title">구면 지오메트리</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/05.html&lt;span-class=&#39;chapter-number&#39;&gt;5&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;속성과-서포트&lt;/span&gt;"><span class="chapter-number">5</span>  <span class="chapter-title">속성과 서포트</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/06.html&lt;span-class=&#39;chapter-number&#39;&gt;6&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;데이터-큐브&lt;/span&gt;"><span class="chapter-number">6</span>  <span class="chapter-title">데이터 큐브</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">공간데이터사이언스와 R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/07.html&lt;span-class=&#39;chapter-number&#39;&gt;7&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;sf와-stars-패키지&lt;/span&gt;"><span class="chapter-number">7</span>  <span class="chapter-title">sf와 stars 패키지</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/08.html&lt;span-class=&#39;chapter-number&#39;&gt;8&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간데이터의-플로팅&lt;/span&gt;"><span class="chapter-number">8</span>  <span class="chapter-title">공간데이터의 플로팅</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/09.html&lt;span-class=&#39;chapter-number&#39;&gt;9&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;대규모-데이터와-클라우드-네이티브&lt;/span&gt;"><span class="chapter-number">9</span>  <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">공간통계분석과 공간모델링</span> <span class="hidden" data-render-id="quarto-int-sidebar:/10.html&lt;span-class=&#39;chapter-number&#39;&gt;10&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간데이터의-통계적-모형화&lt;/span&gt;"><span class="chapter-number">10</span>  <span class="chapter-title">공간데이터의 통계적 모형화</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/11.html&lt;span-class=&#39;chapter-number&#39;&gt;11&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;포인트-패턴-분석&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/12.html&lt;span-class=&#39;chapter-number&#39;&gt;12&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-내삽&lt;/span&gt;"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 내삽</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/13.html&lt;span-class=&#39;chapter-number&#39;&gt;13&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;다변량-및-시공간-지구통계학&lt;/span&gt;"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/14.html&lt;span-class=&#39;chapter-number&#39;&gt;14&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;근접성과-에어리어-데이터&lt;/span&gt;"><span class="chapter-number">14</span>  <span class="chapter-title">근접성과 에어리어 데이터</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/15.html&lt;span-class=&#39;chapter-number&#39;&gt;15&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-자기상관-측도&lt;/span&gt;"><span class="chapter-number">15</span>  <span class="chapter-title">공간적 자기상관 측도</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/16.html&lt;span-class=&#39;chapter-number&#39;&gt;16&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-회귀분석&lt;/span&gt;"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/17.html&lt;span-class=&#39;chapter-number&#39;&gt;17&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간계량경제학적-모형&lt;/span&gt;"><span class="chapter-number">17</span>  <span class="chapter-title">공간계량경제학적 모형</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-4">부록</span> <span class="hidden" data-render-id="quarto-int-sidebar:/A.html&lt;span-class=&#39;chapter-number&#39;&gt;A&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;예전-R-공간-패키지&lt;/span&gt;"><span class="chapter-number">A</span>  <span class="chapter-title">예전 R 공간 패키지</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/B.html&lt;span-class=&#39;chapter-number&#39;&gt;B&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-기초&lt;/span&gt;"><span class="chapter-number">B</span>  <span class="chapter-title">R 기초</span></span> <span class="hidden" data-render-id="quarto-breadcrumbs-공간통계분석과-공간모델링">공간통계분석과 공간모델링</span> <span class="hidden" data-render-id="quarto-breadcrumbs-&lt;span-class=&#39;chapter-number&#39;&gt;16&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-회귀분석&lt;/span&gt;"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span></p>
 </div>
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">공간데이터사이언스 개론 - <span id="sec-regression" class="quarto-section-identifier"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">공간데이터사이언스 개론 - <span id="sec-regression" class="quarto-section-identifier"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">공간데이터사이언스 개론 - <span id="sec-regression" class="quarto-section-identifier"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span></span> <span class="hidden" data-render-id="quarto-metasitename">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
+</div>
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">그림 16.1: 대기질 모형 출력 구역 수준의 IID 랜덤효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA, R2BayesX</strong>를 사용하여 추정). 응답변수 (<code>log(median)</code>)의 범위는 2.1893이다.</span>
+<span class="glightbox-desc lightbox-desc-2">그림 16.2: 대기질 모형 출력 구역 수준의 공간적으로 구조화된 랜덤효과(<strong>lme4</strong>, <strong>hglm</strong>, <strong>INLA</strong>, <strong>R2BayesX,</strong> <strong>mgcv</strong>를 사용하여 추정).</span>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1066,19 +1098,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./15.html" class="pagination-link  aria-label=">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">공간적 자기상관 측도</span></span>
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a  href="/15.html" class="pagination-link  aria-label="&lt;span class=&#39;chapter-number&#39;&gt;15&lt;/span&gt;  &lt;span class=&#39;chapter-title&#39;&gt;공간적 자기상관 측도&lt;/span&gt;">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>15</span>  <span class='chapter-title'>공간적 자기상관 측도</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./17.html" class="pagination-link" aria-label="<span class='chapter-number'>17</span>&nbsp; <span class='chapter-title'>공간계량경제학적 모형</span>">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">공간계량경제학적 모형</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a  href="/17.html" class="pagination-link" aria-label="&lt;span class=&#39;chapter-number&#39;&gt;17&lt;/span&gt;  &lt;span class=&#39;chapter-title&#39;&gt;공간계량경제학적 모형&lt;/span&gt;">
+        <span class="nav-page-text"><span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모형</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
@@ -1104,5 +1138,6 @@ window.onload = () => {
 };
           </script>
 
+</body>
 
-</body></html>
+</html>

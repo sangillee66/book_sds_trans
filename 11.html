@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
-
 <head>
-
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.4.549" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>공간데이터사이언스 개론 – 11  포인트 패턴 분석</title>
 <style>
 code{white-space: pre-wrap;}
@@ -57,9 +53,7 @@ div.sourceCode
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
-
-<!-- htmldependencies:E3FAD763 -->
-<script id="quarto-search-options" type="application/json">{
+<!-- htmldependencies:E3FAD763 --><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -85,12 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "검색",
     "search-label": "검색"
   }
-}</script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -115,45 +104,31 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script>
-
-<link rel="stylesheet" href="styles.css" />
+</script><link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" 
-        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환"
-        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
           <h1 class="quarto-secondary-nav-title"></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="/">
       공간데이터사이언스 개론
       </a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/sangillee66/book_sds_trans"  title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/sangillee66/book_sds_trans" title="소스 코드" class="quarto-navigation-tool px-1" aria-label="소스 코드"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -164,7 +139,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">서장</span></a>
@@ -178,45 +153,45 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>1</span>  <span class='chapter-title'>시작하기</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>  <span class="chapter-title">시작하기</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>2</span>  <span class='chapter-title'>좌표계</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>  <span class="chapter-title">좌표계</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>3</span>  <span class='chapter-title'>지오메트리</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>  <span class="chapter-title">지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>4</span>  <span class='chapter-title'>구면 지오메트리</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>  <span class="chapter-title">구면 지오메트리</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>5</span>  <span class='chapter-title'>속성과 서포트</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>  <span class="chapter-title">속성과 서포트</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>6</span>  <span class='chapter-title'>데이터 큐브</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>  <span class="chapter-title">데이터 큐브</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="/part_2.html" class="sidebar-item-text sidebar-link">
@@ -225,27 +200,27 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>7</span>  <span class='chapter-title'>sf와 stars 패키지</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>  <span class="chapter-title">sf와 stars 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>8</span>  <span class='chapter-title'>공간데이터의 플로팅</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>  <span class="chapter-title">공간데이터의 플로팅</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>9</span>  <span class='chapter-title'>대규모 데이터와 클라우드 네이티브</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>  <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="/part_3.html" class="sidebar-item-text sidebar-link">
@@ -254,57 +229,57 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>공간데이터의 통계적 모형화</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>  <span class="chapter-title">공간데이터의 통계적 모형화</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/11.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class='chapter-number'>11</span>  <span class='chapter-title'>포인트 패턴 분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 내삽</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 내삽</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>13</span>  <span class='chapter-title'>다변량 및 시공간 지구통계학</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>14</span>  <span class='chapter-title'>근접성과 에어리어 데이터</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>  <span class="chapter-title">근접성과 에어리어 데이터</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>15</span>  <span class='chapter-title'>공간적 자기상관 측도</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>  <span class="chapter-title">공간적 자기상관 측도</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>16</span>  <span class='chapter-title'>공간적 회귀분석</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>17</span>  <span class='chapter-title'>공간계량경제학적 모형</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>  <span class="chapter-title">공간계량경제학적 모형</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
@@ -313,34 +288,30 @@ window.Quarto = {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>A</span>  <span class='chapter-title'>예전 R 공간 패키지</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>  <span class="chapter-title">예전 R 공간 패키지</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="/B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class='chapter-number'>B</span>  <span class='chapter-title'>R 기초</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>  <span class="chapter-title">R 기초</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" ></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <div id="quarto-toc-target"></div>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title"><span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span></h1>
 </div>
 
@@ -361,337 +332,334 @@ window.Quarto = {
   
 
 
-</header>
-
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">목차</h2>
+</header><nav id="TOC" role="doc-toc"><h2 id="toc-title">목차</h2>
    
   <ul>
-  <li><a href="#관측-윈도우" id="toc-관측-윈도우"><span class="header-section-number">11.1</span> 관측 윈도우</a></li>
+<li><a href="#%EA%B4%80%EC%B8%A1-%EC%9C%88%EB%8F%84%EC%9A%B0" id="toc-관측-윈도우"><span class="header-section-number">11.1</span> 관측 윈도우</a></li>
   <li><a href="#crs" id="toc-crs"><span class="header-section-number">11.2</span> CRS</a></li>
-  <li><a href="#마크-포인트-패턴과-선형-네트워크-상의-포인트" id="toc-마크-포인트-패턴과-선형-네트워크-상의-포인트"><span class="header-section-number">11.3</span> 마크 포인트 패턴과 선형 네트워크 상의 포인트</a></li>
-  <li><a href="#공간적-표본추출과-포인트-프로세스-시뮬레이션하기" id="toc-공간적-표본추출과-포인트-프로세스-시뮬레이션하기"><span class="header-section-number">11.4</span> 공간적 표본추출과 포인트 프로세스 시뮬레이션하기</a></li>
-  <li><a href="#구체-상의-포인트를-시뮬레이션하기" id="toc-구체-상의-포인트를-시뮬레이션하기"><span class="header-section-number">11.5</span> 구체 상의 포인트를 시뮬레이션하기</a></li>
-  <li><a href="#연습문제" id="toc-연습문제"><span class="header-section-number">11.6</span> 연습문제</a></li>
-  </ul>
-</nav>
-<p>포인트 패턴 분석은 공간상에 나타난 포인트의 분포 패턴을 기술하거나, 그러한 패턴을 생성한 프로세스에 대해 추론하는 기법이다. 여기서 핵심은 포인트의 위치 정보인데, 이 위치는 표본추출을 위해 임의로 정한 지점이 아니라 특정한 프로세스의 결과물이다(예: 동물 목격 지점, 사고 지점, 발병 지점, 수목 위치 등). 이는 모든 지점에서 해당 현상이 존재하지만 관측값은 <em>연구자가 통제한</em> 관측 지점에서만 얻어진다고 보는 지구통계학적 프로세스(12장)와 대조적이다. 지구통계학적 연구의 주된 관심은 관측 지점 자체가 아니라 관측되지 않은 지점의 값을 추정하는 데 있다. 반면, 포인트 패턴 분석에서는 연구 대상 지역의 모든 지점에서 관측이 이루어질 수 있다고 가정한다. 이 경우, 특정 지점에 포인트가 없다는 것은 관측이 이루어지지 않았다는 뜻이 아니라(지구통계학적 프로세스와의 차이점), 관측은 이루어졌지만 현상이 발생하지 않았다는 의미다. 확률과정(random process)의 관점에서 보면, 포인트 패턴 분석에서는 위치가 확률변수인 반면, 지구통계학적 분석에서 측정 변수가 고정된 위치를 갖는 랜덤필드(random field)이다.</p>
+  <li><a href="#%EB%A7%88%ED%81%AC-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%8C%A8%ED%84%B4%EA%B3%BC-%EC%84%A0%ED%98%95-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%83%81%EC%9D%98-%ED%8F%AC%EC%9D%B8%ED%8A%B8" id="toc-마크-포인트-패턴과-선형-네트워크-상의-포인트"><span class="header-section-number">11.3</span> 마크 포인트 패턴과 선형 네트워크 상의 포인트</a></li>
+  <li><a href="#%EA%B3%B5%EA%B0%84%EC%A0%81-%ED%91%9C%EB%B3%B8%EC%B6%94%EC%B6%9C%EA%B3%BC-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%ED%95%98%EA%B8%B0" id="toc-공간적-표본추출과-포인트-프로세스-시뮬레이션하기"><span class="header-section-number">11.4</span> 공간적 표본추출과 포인트 프로세스 시뮬레이션하기</a></li>
+  <li><a href="#%EA%B5%AC%EC%B2%B4-%EC%83%81%EC%97%90%EC%84%9C-%ED%8F%AC%EC%9D%B8%ED%8A%B8-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98%ED%95%98%EA%B8%B0" id="toc-구체-상에서-포인트-시뮬레이션하기"><span class="header-section-number">11.5</span> 구체 상에서 포인트 시뮬레이션하기</a></li>
+  <li><a href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C" id="toc-연습문제"><span class="header-section-number">11.6</span> 연습문제</a></li>
+  </ul></nav><p>포인트 패턴 분석은 공간상에 나타난 포인트의 분포 패턴을 기술하거나, 그러한 패턴을 생성한 프로세스에 대해 추론하는 기법이다. 여기서 핵심은 포인트의 위치 정보인데, 이 위치는 표본추출을 위해 임의로 정한 지점이 아니라 특정한 프로세스의 결과물이다(예: 동물 목격 지점, 사고 지점, 발병 지점, 수목 위치 등). 이는 모든 지점에서 해당 현상이 존재하지만 관측값은 <em>연구자가 통제한</em> 관측 지점에서만 얻어진다고 보는 지구통계학적 프로세스(12장)와 대조적이다. 지구통계학적 연구의 주된 관심은 관측 지점 자체가 아니라 관측되지 않은 지점의 값을 추정하는 데 있다. 반면, 포인트 패턴 분석에서는 연구 대상 지역의 모든 지점에서 관측이 이루어질 수 있다고 가정한다. 이 경우, 특정 지점에 포인트가 없다는 것은 관측이 이루어지지 않았다는 뜻이 아니라(지구통계학적 프로세스와의 차이점), 관측은 이루어졌지만 현상이 발생하지 않았다는 의미다. 확률과정(random process)의 관점에서 보면, 포인트 패턴 분석에서는 위치가 확률변수인 반면, 지구통계학적 분석에서 측정 변수가 고정된 위치를 갖는 랜덤필드(random field)이다.</p>
 <p>이 장에서는 <strong>spatstat</strong> 패키지(Baddeley, Turner, and Rubak 2022)를 활용한 포인트 패턴 분석의 기초만을 다룬다. 포인트 패턴 이론과 <strong>spatstat</strong> 및 관련 패키지 사용에 대한 포괄적인 내용은 Baddeley, Rubak와 Turner(2015)의 <strong>spatstat</strong> 저서에 잘 정리되어 있다. 여기서는 특정 주제만을 다루지만, 그렇다고 해서 이 주제들이 누락된 다른 주제들보다 더 중요하다는 의미는 아니다. 또한 <strong>spatstat</strong> 패키지와 보다 공간데이터사이언스 지향적인 패키지인 <strong>sf</strong> 및 <strong>stars</strong> 간의 인터페이스 설명에도 지면을 할애한다. 포인트 패턴 분석을 소개하는 또 다른 참고서로는 Stoyan 등(2017)이 있으며, 시공간 포인트 프로세스 분석용 R 패키지인 <strong>stpp</strong>(Gabriel et al. 2022)에 대해서는 Gabriel, Rowlingson와 Diggle(2013)을 참조할 수 있다.</p>
 <p>포인트 패턴 분석에서 중요한 개념은 포인트 <em>패턴</em>과 포인트 <em>프로세스</em>를 구분하는 것이다. 포인트 프로세스는 포인트 패턴을 생성하는 확률과정(stochastic process)이며, 우리가 다루는 데이터셋은 항상 포인트 패턴이다. 분석의 목적은 관찰된 패턴을 생성했을 가능성이 있는 포인트 프로세스의 특성을 파악하는 데 있다. 공간 포인트 프로세스의 주요 특성은 다음과 같다.</p>
 <ul>
 <li><p>1차 특성: 강도 함수(intensity function)는 단위 면적당 포인트의 수를 나타내며, <em>이질적</em>(inhomogeneous) 포인트 프로세스에서는 공간적으로 변동한다.</p></li>
 <li><p>2차 특성: 주어진 강도 함수(고정 혹은 변동) 하에서, 포인트들이 <em>서로</em> 독립적으로 분포하는지, 서로 끌어당기는 경향이 있는지(군집화), 혹는 서로 밀어내는 경향이 있는지(완전 공간 무작위성(complete spatial randomness)보다 더 규칙적인 분포인지)를 묘사한다.</p></li>
 </ul>
-<section id="관측-윈도우" class="level2" data-number="11.1">
-<h2 data-number="11.1"><span class="header-section-number">11.1</span> 관측 윈도우</h2>
+<section id="관측-윈도우" class="level2" data-number="11.1"><h2 data-number="11.1">
+<span class="header-section-number">11.1</span> 관측 윈도우</h2>
 <p>포인트 패턴은 관측 윈도우(observation window)를 가진다. 관측 윈도우는 포인트가 기록될 수 있는 공간적 범위를 정의하며, 분석에서 중요한 역할을 한다. 다음 코드는 무작위 포인트 패턴을 생성하는 예시이다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13531</span>) <span class="co"># remove this to create another random sequence</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">runif</span>(n), <span class="at">y =</span> <span class="fu">runif</span>(n)) <span class="sc">|&gt;</span> </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
+<span><span class="co"># Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">13531</span><span class="op">)</span> <span class="co"># remove this to create another random sequence</span></span>
+<span><span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span>coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>이 포인트들은 <span class="math inline">\([0,1]\times[0,1]\)</span> 영역 내에 고르게 분포하고 있으며, 완전한 공간적 무작위 분포로도 표현할 수 있다. 그러나 영역의 크기가 커지면 ’고르게 분포한다’고 말하기는 어려워 진다. 예를 들어, 아래 코드로 두 개의 정사각형 영역(<code>w1</code>과 <code>w2</code>)을 생성하는 예시를 보여준다(그림 11.1).</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="dv">1</span>, <span class="at">ymax =</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">st_as_sfc</span>() </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(<span class="fu">st_point</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.5</span>))) <span class="sc">|&gt;</span> <span class="fu">st_buffer</span>(<span class="fl">1.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">w1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="fl">0</span>, ymin <span class="op">=</span> <span class="fl">0</span>, xmax <span class="op">=</span> <span class="fl">1</span>, ymax <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>        <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html">st_as_sfc</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span><span class="va">w2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_point</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_buffer</a></span><span class="op">(</span><span class="fl">1.2</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="fig-11-1" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-11-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png" class="img-fluid" /></a>
+<figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-11-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-pp1-1.png" class="img-fluid"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림 11.1: 관찰 윈도우(회색)에 따라 동일한 포인트 패턴이 공간적으로 완전히 무작위로 나타날 수도 있고(왼쪽), 군집을 이루고 있는 것으로 나타날 수도 있다(오른쪽).
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p><strong>spatstat</strong> 패키지는 포인트 패턴을 <code>ppp</code> 클라스의 객체로 저장한다. 모든 <code>ppp</code> 객체는 포인트의 위치 정보와 관측 윈도우(<code>owin</code> 클라스의 객체)를 함께 가진다. 다음 예시는 포인트 데이터를 이용해 <code>ppp</code> 객체를 생성하는 방법을 보여준다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat) <span class="sc">|&gt;</span> <span class="fu">suppressPackageStartupMessages</span>()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.ppp</span>(xy)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Planar point pattern: 30 points</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># window: rectangle = [0.009, 0.999] x [0.103, 0.996] units</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://spatstat.org/">spatstat</a></span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.ppp.html">as.ppp</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span></span>
+<span><span class="co"># Planar point pattern: 30 points</span></span>
+<span><span class="co"># window: rectangle = [0.009, 0.999] x [0.103, 0.996] units</span></span></code></pre></div>
 </div>
 <p>여기서 관측 윈도우를 별도로 지정되지 않으면, 포인트들의 바운딩 박스가 자동으로 관측 윈도우로 설정된다. 데이터셋의 첫 번째 피처로 폴리곤 지오메트리를 추가하면, 해당 폴리곤이 관측 윈도우로 사용된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(pp1 <span class="ot">&lt;-</span> <span class="fu">c</span>(w1, <span class="fu">st_geometry</span>(xy)) <span class="sc">|&gt;</span> <span class="fu">as.ppp</span>())</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Planar point pattern: 30 points</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># window: polygonal boundary</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># enclosing rectangle: [0, 1] x [0, 1] units</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">st_buffer</span>(<span class="fu">st_centroid</span>(w2), <span class="fl">1.2</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>(pp2 <span class="ot">&lt;-</span> <span class="fu">c</span>(c1, <span class="fu">st_geometry</span>(xy)) <span class="sc">|&gt;</span> <span class="fu">as.ppp</span>())</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Planar point pattern: 30 points</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># window: polygonal boundary</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># enclosing rectangle: [-0.2, 2.2] x [-0.7, 1.7] units</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">pp1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">w1</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.ppp.html">as.ppp</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Planar point pattern: 30 points</span></span>
+<span><span class="co"># window: polygonal boundary</span></span>
+<span><span class="co"># enclosing rectangle: [0, 1] x [0, 1] units</span></span>
+<span><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_buffer</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">w2</span><span class="op">)</span>, <span class="fl">1.2</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">pp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">c1</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.ppp.html">as.ppp</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Planar point pattern: 30 points</span></span>
+<span><span class="co"># window: polygonal boundary</span></span>
+<span><span class="co"># enclosing rectangle: [-0.2, 2.2] x [-0.7, 1.7] units</span></span></code></pre></div>
 </div>
 <p>포인트 패턴의 등질성(homogeneity)을 검정하기 위해, 적절한 방격 레이아웃을 설정할 수 있다.(역자주: 포인트 패턴의 등질성은 기대 밀도가 모든 지점에서 동일한지를 의미한다.) 예를 들어, 그림 11.2에는 3 × 3 레이아웃이 나타나 있다. 이를 사용하여 방격 빈도(quadrat count), 즉 방격별 포인트 수를 구할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>q1 <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(pp1, <span class="at">nx=</span><span class="dv">3</span>, <span class="at">ny=</span><span class="dv">3</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>q2 <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(pp2, <span class="at">nx=</span><span class="dv">3</span>, <span class="at">ny=</span><span class="dv">3</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(q1, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xy, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(q2, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xy, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">q1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/quadratcount.html">quadratcount</a></span><span class="op">(</span><span class="va">pp1</span>, nx<span class="op">=</span><span class="fl">3</span>, ny<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">q2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/quadratcount.html">quadratcount</a></span><span class="op">(</span><span class="va">pp2</span>, nx<span class="op">=</span><span class="fl">3</span>, ny<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">q1</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">xy</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">q2</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">xy</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="fig-11-2" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-11-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png" class="img-fluid" /></a>
+<figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-11-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png" class="img-fluid"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림 11.2: 두 포인트 패턴의 3x3 방격 빈도
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>이 방격 빈도 정보를 이용하여 다음과 같이 <span class="math inline">\(\chi^2\)</span> 검정을 수행한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quadrat.test</span>(pp1, <span class="at">nx=</span><span class="dv">3</span>, <span class="at">ny=</span><span class="dv">3</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning: Some expected counts are small; chi^2 approximation may be</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># inaccurate</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   Chi-squared test of CSR using quadrat counts</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># data:  pp1</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># X2 = 8, df = 8, p-value = 0.9</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative hypothesis: two.sided</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Quadrats: 9 tiles (irregular windows)</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">quadrat.test</span>(pp2, <span class="at">nx=</span><span class="dv">3</span>, <span class="at">ny=</span><span class="dv">3</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning: Some expected counts are small; chi^2 approximation may be</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># inaccurate</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   Chi-squared test of CSR using quadrat counts</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># data:  pp2</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># X2 = 43, df = 8, p-value = 2e-06</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative hypothesis: two.sided</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Quadrats: 9 tiles (irregular windows)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.explore/man/quadrat.test.html">quadrat.test</a></span><span class="op">(</span><span class="va">pp1</span>, nx<span class="op">=</span><span class="fl">3</span>, ny<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co"># Warning: Some expected counts are small; chi^2 approximation may be</span></span>
+<span><span class="co"># inaccurate</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#   Chi-squared test of CSR using quadrat counts</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># data:  pp1</span></span>
+<span><span class="co"># X2 = 8, df = 8, p-value = 0.9</span></span>
+<span><span class="co"># alternative hypothesis: two.sided</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># Quadrats: 9 tiles (irregular windows)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.explore/man/quadrat.test.html">quadrat.test</a></span><span class="op">(</span><span class="va">pp2</span>, nx<span class="op">=</span><span class="fl">3</span>, ny<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co"># Warning: Some expected counts are small; chi^2 approximation may be</span></span>
+<span><span class="co"># inaccurate</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#   Chi-squared test of CSR using quadrat counts</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># data:  pp2</span></span>
+<span><span class="co"># X2 = 43, df = 8, p-value = 2e-06</span></span>
+<span><span class="co"># alternative hypothesis: two.sided</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># Quadrats: 9 tiles (irregular windows)</span></span></code></pre></div>
 </div>
 <p>이는 두 번째 사례가 완전공간무작위성(CSR, complete spatial randomness) 패턴이 아님을 시사한다. 경고 메시지에 언급된 대로 기대빈도가 너무 작으므로 유의확률(<span class="math inline">\(p\)</span> 값)의 해석에는 각별한 주의가 필요하다.</p>
-<p><code>density()</code> 함수를 사용하면 커널 밀도를 계산할 수 있으며, 커널의 형태와 탐색반경을 조정할 수 있다. 탐색반경을 결정하는 파라미터 <code>sigma</code> 값은 <code>bw.diggle()</code> 함수의 교차검증을 통해 지정되며, 그림 11.3에 이렇게 생성된 밀도면이 나타나 있다.</p>
+<p><code><a href="https://rdrr.io/r/stats/density.html">density()</a></code> 함수를 사용하면 커널 밀도를 계산할 수 있으며, 커널의 형태와 탐색반경을 조정할 수 있다. 탐색반경을 결정하는 파라미터 <code>sigma</code> 값은 <code><a href="https://rdrr.io/pkg/spatstat.explore/man/bw.diggle.html">bw.diggle()</a></code> 함수의 교차검증을 통해 지정되며, 그림 11.3에 이렇게 생성된 밀도면이 나타나 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>den1 <span class="ot">&lt;-</span> <span class="fu">density</span>(pp1, <span class="at">sigma =</span> bw.diggle)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>den2 <span class="ot">&lt;-</span> <span class="fu">density</span>(pp2, <span class="at">sigma =</span> bw.diggle)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">den1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">pp1</span>, sigma <span class="op">=</span> <span class="va">bw.diggle</span><span class="op">)</span></span>
+<span><span class="va">den2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">pp2</span>, sigma <span class="op">=</span> <span class="va">bw.diggle</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="fig-11-3" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-11-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png" class="img-fluid" /></a>
+<figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-11-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-bwdiggle-1.png" class="img-fluid"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림 11.3: 두 포인트 패턴에 대한 커널 밀도면
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>이러한 방식으로 생성된 밀도 지도는 본질적으로 래스터 이미지이므로, 이를 <code>stars</code> 객체로 변환할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stars)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required package: abind</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">st_as_stars</span>(den1)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(s2 <span class="ot">&lt;-</span> <span class="fu">st_as_stars</span>(den2))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># attribute(s):</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#        Min.  1st Qu. Median Mean 3rd Qu. Max. NA&#39;s</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># v  6.28e-15 0.000153  0.304 6.77    13.1 42.7 3492</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># dimension(s):</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   from  to offset   delta x/y</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># x    1 128   -0.2  0.0187 [x]</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># y    1 128    1.7 -0.0187 [y]</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/stars/">stars</a></span><span class="op">)</span></span>
+<span><span class="co"># Loading required package: abind</span></span>
+<span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="va">den1</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="va">den2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#        Min.  1st Qu. Median Mean 3rd Qu. Max. NA's</span></span>
+<span><span class="co"># v  6.28e-15 0.000153  0.304 6.77    13.1 42.7 3492</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#   from  to offset   delta x/y</span></span>
+<span><span class="co"># x    1 128   -0.2  0.0187 [x]</span></span>
+<span><span class="co"># y    1 128    1.7 -0.0187 [y]</span></span></code></pre></div>
 </div>
 <p>밀도면 하부 체적을 계산하면, 다음 코드에서 확인할 수 있듯이 표본크기(30)와 유사한 값을 얻을 수 있다.(역자주: ’밀도면 하부 체적’이란 각 셀별로 면적과 밀도값을 곱하여 셀 체적을 구하고 모든 셀에 대한 이 체적값을 합한 값을 의미한다.)</p>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>s1<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="fu">st_area</span>(s1) <span class="sc">|&gt;</span> <span class="fu">suppressMessages</span>()</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>s2<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="fu">st_area</span>(s2) <span class="sc">|&gt;</span> <span class="fu">suppressMessages</span>()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(s1, <span class="fu">sum</span>(v <span class="sc">*</span> a, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 29</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(s2, <span class="fu">sum</span>(v <span class="sc">*</span> a, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 30.7</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">s1</span><span class="op">$</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">s2</span><span class="op">$</span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">s1</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">v</span> <span class="op">*</span> <span class="va">a</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># [1] 29</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">s2</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">v</span> <span class="op">*</span> <span class="va">a</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># [1] 30.7</span></span></code></pre></div>
 </div>
 <p>여기에 밀도면을 외부 변수의 함수로 나타내는 모형화를 적용하면 더 흥미로운 결과를 얻을 수 있다. 예를 들어, <code>pp2</code>의 밀도를 푸아송 포인트 패턴 프로세스로 모형화한다고 가정해 보자(즉, 포인트 간에 상호작용이 없다고 가정). 이때 밀도의 변화는 ‘클러스터’ 중심으로부터의 거리의 함수로 설명되며, 해당 거리값은 <code>stars</code> 객체에 포함되어 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pt <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(<span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_as_sf</span>(s2, <span class="at">as_points =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_distance</span>(pt) <span class="ot">-&gt;</span> s2<span class="sc">$</span>dist</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_point</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">s2</span>, as_points <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_distance</a></span><span class="op">(</span><span class="va">pt</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">s2</span><span class="op">$</span><span class="va">dist</span></span></code></pre></div>
 </div>
-<p>그런 다음 <code>ppm()</code> 함수를 사용하여 밀도를 모형화할 수 있으며, <code>formula</code>의 왼쪽에는 포인트 패턴 객체의 <em>이름</em>이 위치한다.</p>
+<p>그런 다음 <code><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html">ppm()</a></code> 함수를 사용하여 밀도를 모형화할 수 있으며, <code>formula</code>의 왼쪽에는 포인트 패턴 객체의 <em>이름</em>이 위치한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(m <span class="ot">&lt;-</span> <span class="fu">ppm</span>(pp2 <span class="sc">~</span> dist, <span class="at">data =</span> <span class="fu">list</span>(<span class="at">dist =</span> <span class="fu">as.im</span>(s2[<span class="st">&quot;dist&quot;</span>]))))</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Nonstationary Poisson process</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted to point pattern dataset &#39;pp2&#39;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Log intensity:  ~dist</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted trend coefficients:</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (Intercept)        dist </span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#        4.54       -4.24 </span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#             Estimate  S.E. CI95.lo CI95.hi Ztest  Zval</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># (Intercept)     4.54 0.341    3.87    5.21   *** 13.32</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># dist           -4.24 0.700   -5.62   -2.87   *** -6.06</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.model/man/ppm.html">ppm</a></span><span class="op">(</span><span class="va">pp2</span> <span class="op">~</span> <span class="va">dist</span>, data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.im.html">as.im</a></span><span class="op">(</span><span class="va">s2</span><span class="op">[</span><span class="st">"dist"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Nonstationary Poisson process</span></span>
+<span><span class="co"># Fitted to point pattern dataset 'pp2'</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># Log intensity:  ~dist</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co"># Fitted trend coefficients:</span></span>
+<span><span class="co"># (Intercept)        dist </span></span>
+<span><span class="co">#        4.54       -4.24 </span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#             Estimate  S.E. CI95.lo CI95.hi Ztest  Zval</span></span>
+<span><span class="co"># (Intercept)     4.54 0.341    3.87    5.21   *** 13.32</span></span>
+<span><span class="co"># dist           -4.24 0.700   -5.62   -2.87   *** -6.06</span></span></code></pre></div>
 </div>
 <p>반환된 객체는 <code>ppm</code> 클래스이며, 이를 플로팅할 수 있다. 그림 11.4는 예측된 밀도면을 보여주며, 예측 표준오차 역시 플로팅할 수 있다.</p>
 <div id="fig-11-4" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-11-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="img-fluid" /></a>
+<figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-11-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-ppm-1.png" class="img-fluid"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림 11.4: ppm 모형에 기반한 예측 밀도면
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
-<p>모형에는 <code>predict()</code> 메서드도 있어, 이를 통해 <code>im</code> 객체를 반환하며, 이 객체는 다음과 같이 <code>stars</code> 객체로 전환될 수 있다.</p>
+<p>모형에는 <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> 메서드도 있어, 이를 통해 <code>im</code> 객체를 반환하며, 이 객체는 다음과 같이 <code>stars</code> 객체로 전환될 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m, <span class="at">covariates =</span> <span class="fu">list</span>(<span class="at">dist =</span> <span class="fu">as.im</span>(s2[<span class="st">&quot;dist&quot;</span>]))) <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_as_stars</span>()</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># attribute(s):</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#      Min. 1st Qu. Median Mean 3rd Qu. Max. NA&#39;s</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># v  0.0698   0.529   2.13 6.62     7.3 89.7 3492</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># dimension(s):</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   from  to offset   delta x/y</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># x    1 128   -0.2  0.0187 [x]</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># y    1 128    1.7 -0.0188 [y]</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m</span>, covariates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.im.html">as.im</a></span><span class="op">(</span><span class="va">s2</span><span class="op">[</span><span class="st">"dist"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/stars/reference/st_as_stars.html">st_as_stars</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># stars object with 2 dimensions and 1 attribute</span></span>
+<span><span class="co"># attribute(s):</span></span>
+<span><span class="co">#      Min. 1st Qu. Median Mean 3rd Qu. Max. NA's</span></span>
+<span><span class="co"># v  0.0698   0.529   2.13 6.62     7.3 89.7 3492</span></span>
+<span><span class="co"># dimension(s):</span></span>
+<span><span class="co">#   from  to offset   delta x/y</span></span>
+<span><span class="co"># x    1 128   -0.2  0.0187 [x]</span></span>
+<span><span class="co"># y    1 128    1.7 -0.0188 [y]</span></span></code></pre></div>
 </div>
-</section>
-<section id="crs" class="level2" data-number="11.2">
-<h2 data-number="11.2"><span class="header-section-number">11.2</span> CRS</h2>
+</section><section id="crs" class="level2" data-number="11.2"><h2 data-number="11.2">
+<span class="header-section-number">11.2</span> CRS</h2>
 <p><strong>spatstat</strong> 패키지의 모든 루틴은 데카르트 좌표계를 사용하는 2차원 데이터에 맞게 설계되어 있다. 따라서 타원체 좌표계(위도, 경도)를 가진 객체를 변환하려고 시도하면 오류가 발생한다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;gpkg/nc.gpkg&quot;</span>, <span class="at">package =</span> <span class="st">&quot;sf&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_sf</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_geometry</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_centroid</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.ppp</span>()</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: Only projected coordinates may be converted to spatstat</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># class objects</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"gpkg/nc.gpkg"</span>, package <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.ppp.html">as.ppp</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># Error: Only projected coordinates may be converted to spatstat</span></span>
+<span><span class="co"># class objects</span></span></code></pre></div>
 </div>
-<p><strong>spatstat</strong> 패키지의 데이터 구조로 변환되면, 원래의 CRS(coordinate reference system, 좌표참조계) 정보가 손실된다. 이를 다시 <code>sf</code> 또는 <code>stars</code> 객체로 복원하려면 <code>st_set_crs()</code> 함수를 사용해야 된다.</p>
-</section>
-<section id="마크-포인트-패턴과-선형-네트워크-상의-포인트" class="level2" data-number="11.3">
-<h2 data-number="11.3"><span class="header-section-number">11.3</span> 마크 포인트 패턴과 선형 네트워크 상의 포인트</h2>
+<p><strong>spatstat</strong> 패키지의 데이터 구조로 변환되면, 원래의 CRS(coordinate reference system, 좌표참조계) 정보가 손실된다. 이를 다시 <code>sf</code> 또는 <code>stars</code> 객체로 복원하려면 <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_set_crs()</a></code> 함수를 사용해야 된다.</p>
+</section><section id="마크-포인트-패턴과-선형-네트워크-상의-포인트" class="level2" data-number="11.3"><h2 data-number="11.3">
+<span class="header-section-number">11.3</span> 마크 포인트 패턴과 선형 네트워크 상의 포인트</h2>
 <p><strong>spatstat</strong> 패키지에서는 몇 가지 확장된 데이터 유형을 상호 변환할 수 있다. 마크(marked) 포인트 패턴은 각 포인트에 범주형 레이블 또는 숫자형 레이블이 ‘부여된’ 포인트 패턴을 말한다. 예를 들어, <strong>spatstat</strong> 패키지에 포함된 <code>longleaf</code> 소나무 데이터셋은 가슴 높이에서 측정한 나무 직경 값을 숫자형 마크로 포함하고 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>longleaf</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Marked planar point pattern: 584 points</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># marks are numeric, of storage type  &#39;double&#39;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># window: rectangle = [0, 200] x [0, 200] metres</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>ll <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(longleaf)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ll, <span class="at">n =</span> <span class="dv">3</span>)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 585 features and 2 fields</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: GEOMETRY</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: 0 ymin: 0 xmax: 200 ymax: 200</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># CRS:           NA</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># First 3 features:</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#    spatstat.geom..marks.x.  label                           geom</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># NA                      NA window POLYGON ((0 0, 200 0, 200 2...</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 1                     32.9  point                POINT (200 8.8)</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 2                     53.5  point                 POINT (199 10)</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">longleaf</span></span>
+<span><span class="co"># Marked planar point pattern: 584 points</span></span>
+<span><span class="co"># marks are numeric, of storage type  'double'</span></span>
+<span><span class="co"># window: rectangle = [0, 200] x [0, 200] metres</span></span>
+<span><span class="va">ll</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">longleaf</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">ll</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co"># Simple feature collection with 585 features and 2 fields</span></span>
+<span><span class="co"># Geometry type: GEOMETRY</span></span>
+<span><span class="co"># Dimension:     XY</span></span>
+<span><span class="co"># Bounding box:  xmin: 0 ymin: 0 xmax: 200 ymax: 200</span></span>
+<span><span class="co"># CRS:           NA</span></span>
+<span><span class="co"># First 3 features:</span></span>
+<span><span class="co">#    spatstat.geom..marks.x.  label                           geom</span></span>
+<span><span class="co"># NA                      NA window POLYGON ((0 0, 200 0, 200 2...</span></span>
+<span><span class="co"># 1                     32.9  point                POINT (200 8.8)</span></span>
+<span><span class="co"># 2                     53.5  point                 POINT (199 10)</span></span></code></pre></div>
 </div>
 <p>해당 값은 다음과 같이 <code>ppp</code> 객체로 다시 변환할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.ppp</span>(ll)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning in as.ppp.sf(ll): only first attribute column is used for</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># marks</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Marked planar point pattern: 584 points</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># marks are numeric, of storage type  &#39;double&#39;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># window: polygonal boundary</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># enclosing rectangle: [0, 200] x [0, 200] units</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/spatstat.geom/man/as.ppp.html">as.ppp</a></span><span class="op">(</span><span class="va">ll</span><span class="op">)</span></span>
+<span><span class="co"># Warning in as.ppp.sf(ll): only first attribute column is used for</span></span>
+<span><span class="co"># marks</span></span>
+<span><span class="co"># Marked planar point pattern: 584 points</span></span>
+<span><span class="co"># marks are numeric, of storage type  'double'</span></span>
+<span><span class="co"># window: polygonal boundary</span></span>
+<span><span class="co"># enclosing rectangle: [0, 200] x [0, 200] units</span></span></code></pre></div>
 </div>
 <p><strong>spatstat</strong> 패키지의 <code>psp</code> 클래스에 속하는 선분은 <code>LINESTRING</code> 지오메트리를 가진 <code>sf</code> 피처로 상호 변환할 수 있으며, 관측 윈도우를 나타내는 <code>POLYGON</code> 피처가 하나 포함된다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">st_as_sf</span>(copper<span class="sc">$</span>SouthLines), <span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 91 features and 1 field</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: GEOMETRY</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: -0.335 ymin: 0.19 xmax: 35 ymax: 158</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CRS:           NA</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># First 5 features:</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     label                           geom</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 1  window POLYGON ((-0.335 0.19, 35 0...</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 segment LINESTRING (3.36 0.19, 10.4...</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 segment LINESTRING (12.5 0.263, 11....</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 segment LINESTRING (11.2 0.197, -0....</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 segment LINESTRING (6.35 12.8, 16.5...</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">copper</span><span class="op">$</span><span class="va">SouthLines</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co"># Simple feature collection with 91 features and 1 field</span></span>
+<span><span class="co"># Geometry type: GEOMETRY</span></span>
+<span><span class="co"># Dimension:     XY</span></span>
+<span><span class="co"># Bounding box:  xmin: -0.335 ymin: 0.19 xmax: 35 ymax: 158</span></span>
+<span><span class="co"># CRS:           NA</span></span>
+<span><span class="co"># First 5 features:</span></span>
+<span><span class="co">#     label                           geom</span></span>
+<span><span class="co"># 1  window POLYGON ((-0.335 0.19, 35 0...</span></span>
+<span><span class="co"># 2 segment LINESTRING (3.36 0.19, 10.4...</span></span>
+<span><span class="co"># 3 segment LINESTRING (12.5 0.263, 11....</span></span>
+<span><span class="co"># 4 segment LINESTRING (11.2 0.197, -0....</span></span>
+<span><span class="co"># 5 segment LINESTRING (6.35 12.8, 16.5...</span></span></code></pre></div>
 </div>
 <p>마지막으로, 선형 네트워크상의 포인트 패턴은 <strong>spatstat</strong> 패키지에서 <code>lpp</code> 객체로 표현되며, 다음과 같이 <code>sf</code> 객체로 변환할 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">st_as_sf</span>(chicago), <span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple feature collection with 620 features and 4 fields</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Geometry type: GEOMETRY</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimension:     XY</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounding box:  xmin: 0.389 ymin: 153 xmax: 1280 ymax: 1280</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CRS:           NA</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># First 5 features:</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     label seg tp marks                           geom</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 1  window  NA NA  &lt;NA&gt; POLYGON ((0.389 153, 1282 1...</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 segment  NA NA  &lt;NA&gt; LINESTRING (0.389 1254, 110...</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 segment  NA NA  &lt;NA&gt; LINESTRING (110 1252, 111 1...</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 segment  NA NA  &lt;NA&gt; LINESTRING (110 1252, 198 1...</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 segment  NA NA  &lt;NA&gt; LINESTRING (198 1277, 198 1...</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">chicago</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co"># Simple feature collection with 620 features and 4 fields</span></span>
+<span><span class="co"># Geometry type: GEOMETRY</span></span>
+<span><span class="co"># Dimension:     XY</span></span>
+<span><span class="co"># Bounding box:  xmin: 0.389 ymin: 153 xmax: 1280 ymax: 1280</span></span>
+<span><span class="co"># CRS:           NA</span></span>
+<span><span class="co"># First 5 features:</span></span>
+<span><span class="co">#     label seg tp marks                           geom</span></span>
+<span><span class="co"># 1  window  NA NA  &lt;NA&gt; POLYGON ((0.389 153, 1282 1...</span></span>
+<span><span class="co"># 2 segment  NA NA  &lt;NA&gt; LINESTRING (0.389 1254, 110...</span></span>
+<span><span class="co"># 3 segment  NA NA  &lt;NA&gt; LINESTRING (110 1252, 111 1...</span></span>
+<span><span class="co"># 4 segment  NA NA  &lt;NA&gt; LINESTRING (110 1252, 198 1...</span></span>
+<span><span class="co"># 5 segment  NA NA  &lt;NA&gt; LINESTRING (198 1277, 198 1...</span></span></code></pre></div>
 </div>
 <p>여기서는 처음 다섯 개 피처만 표시되어 있어 쉽게 눈에 띄지는 않지만, <code>label</code> 변수를 보면 포인트들도 이 객체에 포함되어 있음을 알 수 있다.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">st_as_sf</span>(chicago)<span class="sc">$</span>label)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   point segment  window </span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     116     503       1</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">chicago</span><span class="op">)</span><span class="op">$</span><span class="va">label</span><span class="op">)</span></span>
+<span><span class="co"># </span></span>
+<span><span class="co">#   point segment  window </span></span>
+<span><span class="co">#     116     503       1</span></span></code></pre></div>
 </div>
 <p>네트워크의 <em>구조</em>에 관한 정보, 즉 <code>LINESTRING</code> 지오메트리가 어떻게 연결되어 있는지는 <code>sf</code> 객체에 포함되지 않는다. 이런 측면에서 <strong>sfnetworks</strong> 패키지(van der Meer et al. 2022)는 좋은 대안이 될 수 있다. 이 패키지는 네트워크 위상 정보를 다룰 수 있을 뿐 아니라 OpenStreetMap에서 불러온 네트워크 데이터를 <strong>spatstat</strong> 패키지로 전달하는 기능도 제공한다.</p>
-</section>
-<section id="공간적-표본추출과-포인트-프로세스-시뮬레이션하기" class="level2" data-number="11.4">
-<h2 data-number="11.4"><span class="header-section-number">11.4</span> 공간적 표본추출과 포인트 프로세스 시뮬레이션하기</h2>
-<p><strong>sf</strong> 패키지에는 <code>MULTIPOINT</code>, 선형, 또는 폴리곤 지오메트리에서 포인트를 표본추출하는 <code>st_sample()</code> 메서드가 있으며, 여러 가지 공간적 표본추출 전략을 지원한다. 기본적으로 ‘random’, ‘hexagonal’, ‘Fibonacci’(11.5절 참고), ‘regular’ 옵션을 제공한다. ‘regular’는 정사각형 격자에서의 표본추출을, ’hexagonal’은 사실상 삼각형 격자에 해당하는 표본추출을 의미한다. ’random’ 유형만 요청한 포인트 수를 정확히 반환하며, 다른 유형은 근사값을 반환한다.</p>
-<p><code>st_sample()</code> 함수는 표본추출 유형에 다른 값을 지정할 경우, <strong>spatstat</strong> 패키지의 포인트 프로세스 시뮬레이션 함수와도 연동된다. 예를 들어, <code>type = Thomas</code>로 설정하면 <strong>spatstat</strong> 패키지의 <code>rThomas()</code> 함수가 호출된다(그림 11.5).</p>
+</section><section id="공간적-표본추출과-포인트-프로세스-시뮬레이션하기" class="level2" data-number="11.4"><h2 data-number="11.4">
+<span class="header-section-number">11.4</span> 공간적 표본추출과 포인트 프로세스 시뮬레이션하기</h2>
+<p><strong>sf</strong> 패키지에는 <code>MULTIPOINT</code>, 선형, 또는 폴리곤 지오메트리에서 포인트를 표본추출하는 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 메서드가 있으며, 여러 가지 공간적 표본추출 전략을 지원한다. 기본적으로 ‘random’, ‘hexagonal’, ‘Fibonacci’(11.5절 참고), ‘regular’ 옵션을 제공한다. ‘regular’는 정사각형 격자에서의 표본추출을, ’hexagonal’은 사실상 삼각형 격자에 해당하는 표본추출을 의미한다. ’random’ 유형만 요청한 포인트 수를 정확히 반환하며, 다른 유형은 근사값을 반환한다.</p>
+<p><code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수는 표본추출 유형에 다른 값을 지정할 경우, <strong>spatstat</strong> 패키지의 포인트 프로세스 시뮬레이션 함수와도 연동된다. 예를 들어, <code>type = Thomas</code>로 설정하면 <strong>spatstat</strong> 패키지의 <code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">rThomas()</a></code> 함수가 호출된다(그림 11.5).</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>kappa <span class="ot">&lt;-</span> <span class="dv">30</span> <span class="sc">/</span> <span class="fu">st_area</span>(w2) <span class="co"># intensity</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>th <span class="ot">&lt;-</span> <span class="fu">st_sample</span>(w2, <span class="at">kappa =</span> kappa, <span class="at">mu =</span> <span class="dv">3</span>, <span class="at">scale =</span> <span class="fl">0.05</span>, </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;Thomas&quot;</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(th)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">kappa</span> <span class="op">&lt;-</span> <span class="fl">30</span> <span class="op">/</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="va">w2</span><span class="op">)</span> <span class="co"># intensity</span></span>
+<span><span class="va">th</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample</a></span><span class="op">(</span><span class="va">w2</span>, kappa <span class="op">=</span> <span class="va">kappa</span>, mu <span class="op">=</span> <span class="fl">3</span>, scale <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span>    type <span class="op">=</span> <span class="st">"Thomas"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">th</span><span class="op">)</span></span>
+<span><span class="co"># [1] 90</span></span></code></pre></div>
 </div>
 <div id="fig-11-5" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-11-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png" class="img-fluid" /></a>
+<figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-11-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-rThomas-1.png" class="img-fluid"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림 11.5: mu =3, scale = 0.05로 설정한 Thomas 프로세스
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
-<p><code>?rThomas</code>를 실행하면 함수 <code>rThomas()</code>의 매개변수 <code>kappa</code>, <code>mu</code>, <code>scale</code>의 의미를 자세히 확인할 수 있다. 포인트 프로세스 시뮬레이션에서는 표본크기를 지정하는 대신 강도를 지정한다. 이때 관측 윈도우 내에서 실제로 생성되는 표본크기는 확률변수가 된다.</p>
-</section>
-<section id="구체-상의-포인트를-시뮬레이션하기" class="level2" data-number="11.5">
-<h2 data-number="11.5"><span class="header-section-number">11.5</span> 구체 상의 포인트를 시뮬레이션하기</h2>
-<p><strong>sf</strong> 패키지에서 기본적으로 제공하는 또 다른 공간적 무작위 표본추출 유형은 구면에서의 무작위 포인트 시뮬레이션이다. 그림 11.6은 그 한 예시로, 생성된 포인트들이 모두 해양에 위치해 있다. 구면에서 규칙적인 포인트 패턴을 시뮬레이션하려면 <code>st_sample()</code> 함수에서 인수를 <code>type = "Fibonacci"</code>로 지정하면 된다(González 2010).</p>
+<p><code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">?rThomas</a></code>를 실행하면 함수 <code><a href="https://rdrr.io/pkg/spatstat.random/man/rThomas.html">rThomas()</a></code>의 매개변수 <code>kappa</code>, <code>mu</code>, <code>scale</code>의 의미를 자세히 확인할 수 있다. 포인트 프로세스 시뮬레이션에서는 표본크기를 지정하는 대신 강도를 지정한다. 이때 관측 윈도우 내에서 실제로 생성되는 표본크기는 확률변수가 된다.</p>
+</section><section id="구체-상에서-포인트-시뮬레이션하기" class="level2" data-number="11.5"><h2 data-number="11.5">
+<span class="header-section-number">11.5</span> 구체 상에서 포인트 시뮬레이션하기</h2>
+<p><strong>sf</strong> 패키지에서 기본적으로 제공하는 또 다른 공간적 무작위 표본추출 유형은 구면에서의 무작위 포인트 시뮬레이션이다. 그림 11.6은 그 한 예시로, 생성된 포인트들이 모두 해양에 위치해 있다. 구면에서 규칙적인 포인트 패턴을 시뮬레이션하려면 <code><a href="https://r-spatial.github.io/sf/reference/st_sample.html">st_sample()</a></code> 함수에서 인수를 <code>type = "Fibonacci"</code>로 지정하면 된다(González 2010).</p>
 <div id="fig-11-6" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-11-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="img-fluid" /></a>
+<figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-11-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-srsglobe-1.png" class="img-fluid"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-11-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림 11.6: 구면에서 해양부에만 제한된 표본 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법 지도에 표시되어 있다.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
-</section>
-<section id="연습문제" class="level2" data-number="11.6">
-<h2 data-number="11.6"><span class="header-section-number">11.6</span> 연습문제</h2>
+</section><section id="연습문제" class="level2" data-number="11.6"><h2 data-number="11.6">
+<span class="header-section-number">11.6</span> 연습문제</h2>
 <ol type="1">
-<li><p><strong>spatstat</strong> 패키지에서 <code>plot(longleaf)</code>로 생성되는 플롯과 동일한 결과를 <strong>ggplot2</strong> 패키지의 <code>geom_sf()</code> 함수 및 <code>sf::plot()</code> 함수를 사용하여 구현하시오.</p></li>
+<li><p><strong>spatstat</strong> 패키지에서 <code>plot(longleaf)</code>로 생성되는 플롯과 동일한 결과를 <strong>ggplot2</strong> 패키지의 <code>geom_sf()</code> 함수 및 <code><a href="https://r-spatial.github.io/sf/reference/plot.html">sf::plot()</a></code> 함수를 사용하여 구현하시오.</p></li>
 <li><p>12장에서 사용된 NO<span class="math inline">\(_2\)</span> 데이터의 표본 위치를 적절한 관측 윈도우와 함께 <code>ppp</code> 객체로 변환하시오.</p></li>
 <li><p>NO<span class="math inline">\(_2\)</span> 데이터셋을 사용하여 밀도를 계산하고, 밀도면을 플로팅하시오. 이어서 밀도면을 <code>stars</code> 객체로 변환하고, 표면 하부 체적을 계산하시오.</p></li>
 </ol>
 <div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-int-navbar-title">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 내삽</span></span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">10</span>  <span class="chapter-title">공간데이터의 통계적 모형화</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html서장">서장</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">공간데이터</span> <span class="hidden" data-render-id="quarto-int-sidebar:/01.html&lt;span-class=&#39;chapter-number&#39;&gt;1&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;시작하기&lt;/span&gt;"><span class="chapter-number">1</span>  <span class="chapter-title">시작하기</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/02.html&lt;span-class=&#39;chapter-number&#39;&gt;2&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;좌표계&lt;/span&gt;"><span class="chapter-number">2</span>  <span class="chapter-title">좌표계</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/03.html&lt;span-class=&#39;chapter-number&#39;&gt;3&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;지오메트리&lt;/span&gt;"><span class="chapter-number">3</span>  <span class="chapter-title">지오메트리</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/04.html&lt;span-class=&#39;chapter-number&#39;&gt;4&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;구면-지오메트리&lt;/span&gt;"><span class="chapter-number">4</span>  <span class="chapter-title">구면 지오메트리</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/05.html&lt;span-class=&#39;chapter-number&#39;&gt;5&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;속성과-서포트&lt;/span&gt;"><span class="chapter-number">5</span>  <span class="chapter-title">속성과 서포트</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/06.html&lt;span-class=&#39;chapter-number&#39;&gt;6&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;데이터-큐브&lt;/span&gt;"><span class="chapter-number">6</span>  <span class="chapter-title">데이터 큐브</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">공간데이터사이언스와 R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/07.html&lt;span-class=&#39;chapter-number&#39;&gt;7&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;sf와-stars-패키지&lt;/span&gt;"><span class="chapter-number">7</span>  <span class="chapter-title">sf와 stars 패키지</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/08.html&lt;span-class=&#39;chapter-number&#39;&gt;8&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간데이터의-플로팅&lt;/span&gt;"><span class="chapter-number">8</span>  <span class="chapter-title">공간데이터의 플로팅</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/09.html&lt;span-class=&#39;chapter-number&#39;&gt;9&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;대규모-데이터와-클라우드-네이티브&lt;/span&gt;"><span class="chapter-number">9</span>  <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">공간통계분석과 공간모델링</span> <span class="hidden" data-render-id="quarto-int-sidebar:/10.html&lt;span-class=&#39;chapter-number&#39;&gt;10&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간데이터의-통계적-모형화&lt;/span&gt;"><span class="chapter-number">10</span>  <span class="chapter-title">공간데이터의 통계적 모형화</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/11.html&lt;span-class=&#39;chapter-number&#39;&gt;11&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;포인트-패턴-분석&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/12.html&lt;span-class=&#39;chapter-number&#39;&gt;12&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-내삽&lt;/span&gt;"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 내삽</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/13.html&lt;span-class=&#39;chapter-number&#39;&gt;13&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;다변량-및-시공간-지구통계학&lt;/span&gt;"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/14.html&lt;span-class=&#39;chapter-number&#39;&gt;14&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;근접성과-에어리어-데이터&lt;/span&gt;"><span class="chapter-number">14</span>  <span class="chapter-title">근접성과 에어리어 데이터</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/15.html&lt;span-class=&#39;chapter-number&#39;&gt;15&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-자기상관-측도&lt;/span&gt;"><span class="chapter-number">15</span>  <span class="chapter-title">공간적 자기상관 측도</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/16.html&lt;span-class=&#39;chapter-number&#39;&gt;16&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간적-회귀분석&lt;/span&gt;"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/17.html&lt;span-class=&#39;chapter-number&#39;&gt;17&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;공간계량경제학적-모형&lt;/span&gt;"><span class="chapter-number">17</span>  <span class="chapter-title">공간계량경제학적 모형</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-4">부록</span> <span class="hidden" data-render-id="quarto-int-sidebar:/A.html&lt;span-class=&#39;chapter-number&#39;&gt;A&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;예전-R-공간-패키지&lt;/span&gt;"><span class="chapter-number">A</span>  <span class="chapter-title">예전 R 공간 패키지</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/B.html&lt;span-class=&#39;chapter-number&#39;&gt;B&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;R-기초&lt;/span&gt;"><span class="chapter-number">B</span>  <span class="chapter-title">R 기초</span></span> <span class="hidden" data-render-id="quarto-breadcrumbs-공간통계분석과-공간모델링">공간통계분석과 공간모델링</span> <span class="hidden" data-render-id="quarto-breadcrumbs-&lt;span-class=&#39;chapter-number&#39;&gt;11&lt;/span&gt;--&lt;span-class=&#39;chapter-title&#39;&gt;포인트-패턴-분석&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span></p>
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-int-navbar-title">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-int-next"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 내삽</span></span> <span class="hidden" data-render-id="quarto-int-prev"><span class="chapter-number">10</span>  <span class="chapter-title">공간데이터의 통계적 모형화</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html서장">서장</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">공간데이터</span> <span class="hidden" data-render-id="quarto-int-sidebar:/01.html&lt;span-class='chapter-number'&gt;1&lt;/span&gt;--&lt;span-class='chapter-title'&gt;시작하기&lt;/span&gt;"><span class="chapter-number">1</span>  <span class="chapter-title">시작하기</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/02.html&lt;span-class='chapter-number'&gt;2&lt;/span&gt;--&lt;span-class='chapter-title'&gt;좌표계&lt;/span&gt;"><span class="chapter-number">2</span>  <span class="chapter-title">좌표계</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/03.html&lt;span-class='chapter-number'&gt;3&lt;/span&gt;--&lt;span-class='chapter-title'&gt;지오메트리&lt;/span&gt;"><span class="chapter-number">3</span>  <span class="chapter-title">지오메트리</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/04.html&lt;span-class='chapter-number'&gt;4&lt;/span&gt;--&lt;span-class='chapter-title'&gt;구면-지오메트리&lt;/span&gt;"><span class="chapter-number">4</span>  <span class="chapter-title">구면 지오메트리</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/05.html&lt;span-class='chapter-number'&gt;5&lt;/span&gt;--&lt;span-class='chapter-title'&gt;속성과-서포트&lt;/span&gt;"><span class="chapter-number">5</span>  <span class="chapter-title">속성과 서포트</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/06.html&lt;span-class='chapter-number'&gt;6&lt;/span&gt;--&lt;span-class='chapter-title'&gt;데이터-큐브&lt;/span&gt;"><span class="chapter-number">6</span>  <span class="chapter-title">데이터 큐브</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">공간데이터사이언스와 R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/07.html&lt;span-class='chapter-number'&gt;7&lt;/span&gt;--&lt;span-class='chapter-title'&gt;sf와-stars-패키지&lt;/span&gt;"><span class="chapter-number">7</span>  <span class="chapter-title">sf와 stars 패키지</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/08.html&lt;span-class='chapter-number'&gt;8&lt;/span&gt;--&lt;span-class='chapter-title'&gt;공간데이터의-플로팅&lt;/span&gt;"><span class="chapter-number">8</span>  <span class="chapter-title">공간데이터의 플로팅</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/09.html&lt;span-class='chapter-number'&gt;9&lt;/span&gt;--&lt;span-class='chapter-title'&gt;대규모-데이터와-클라우드-네이티브&lt;/span&gt;"><span class="chapter-number">9</span>  <span class="chapter-title">대규모 데이터와 클라우드 네이티브</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">공간통계분석과 공간모델링</span> <span class="hidden" data-render-id="quarto-int-sidebar:/10.html&lt;span-class='chapter-number'&gt;10&lt;/span&gt;--&lt;span-class='chapter-title'&gt;공간데이터의-통계적-모형화&lt;/span&gt;"><span class="chapter-number">10</span>  <span class="chapter-title">공간데이터의 통계적 모형화</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/11.html&lt;span-class='chapter-number'&gt;11&lt;/span&gt;--&lt;span-class='chapter-title'&gt;포인트-패턴-분석&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/12.html&lt;span-class='chapter-number'&gt;12&lt;/span&gt;--&lt;span-class='chapter-title'&gt;공간적-내삽&lt;/span&gt;"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 내삽</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/13.html&lt;span-class='chapter-number'&gt;13&lt;/span&gt;--&lt;span-class='chapter-title'&gt;다변량-및-시공간-지구통계학&lt;/span&gt;"><span class="chapter-number">13</span>  <span class="chapter-title">다변량 및 시공간 지구통계학</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/14.html&lt;span-class='chapter-number'&gt;14&lt;/span&gt;--&lt;span-class='chapter-title'&gt;근접성과-에어리어-데이터&lt;/span&gt;"><span class="chapter-number">14</span>  <span class="chapter-title">근접성과 에어리어 데이터</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/15.html&lt;span-class='chapter-number'&gt;15&lt;/span&gt;--&lt;span-class='chapter-title'&gt;공간적-자기상관-측도&lt;/span&gt;"><span class="chapter-number">15</span>  <span class="chapter-title">공간적 자기상관 측도</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/16.html&lt;span-class='chapter-number'&gt;16&lt;/span&gt;--&lt;span-class='chapter-title'&gt;공간적-회귀분석&lt;/span&gt;"><span class="chapter-number">16</span>  <span class="chapter-title">공간적 회귀분석</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/17.html&lt;span-class='chapter-number'&gt;17&lt;/span&gt;--&lt;span-class='chapter-title'&gt;공간계량경제학적-모형&lt;/span&gt;"><span class="chapter-number">17</span>  <span class="chapter-title">공간계량경제학적 모형</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-4">부록</span> <span class="hidden" data-render-id="quarto-int-sidebar:/A.html&lt;span-class='chapter-number'&gt;A&lt;/span&gt;--&lt;span-class='chapter-title'&gt;예전-R-공간-패키지&lt;/span&gt;"><span class="chapter-number">A</span>  <span class="chapter-title">예전 R 공간 패키지</span></span> <span class="hidden" data-render-id="quarto-int-sidebar:/B.html&lt;span-class='chapter-number'&gt;B&lt;/span&gt;--&lt;span-class='chapter-title'&gt;R-기초&lt;/span&gt;"><span class="chapter-number">B</span>  <span class="chapter-title">R 기초</span></span> <span class="hidden" data-render-id="quarto-breadcrumbs-공간통계분석과-공간모델링">공간통계분석과 공간모델링</span> <span class="hidden" data-render-id="quarto-breadcrumbs-&lt;span-class='chapter-number'&gt;11&lt;/span&gt;--&lt;span-class='chapter-title'&gt;포인트-패턴-분석&lt;/span&gt;"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span></p>
 </div>
 <div id="quarto-meta-markdown" class="hidden">
 <p><span class="hidden" data-render-id="quarto-metatitle">공간데이터사이언스 개론 - <span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span></span> <span class="hidden" data-render-id="quarto-twittercardtitle">공간데이터사이언스 개론 - <span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span></span> <span class="hidden" data-render-id="quarto-ogcardtitle">공간데이터사이언스 개론 - <span id="sec-point" class="quarto-section-identifier"><span class="chapter-number">11</span>  <span class="chapter-title">포인트 패턴 분석</span></span></span> <span class="hidden" data-render-id="quarto-metasitename">공간데이터사이언스 개론</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
@@ -704,10 +672,7 @@ window.Quarto = {
 <span class="glightbox-desc lightbox-desc-5">그림 11.5: mu =3, scale = 0.05로 설정한 Thomas 프로세스</span>
 <span class="glightbox-desc lightbox-desc-6">그림 11.6: 구면에서 해양부에만 제한된 표본 포인트: 무작위 패턴(왼쪽)과 규칙 패턴(오른쪽)이 정사 도법 지도에 표시되어 있다.</span>
 </div>
-</section>
-
-</main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1093,21 +1058,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a  href="/10.html" class="pagination-link  aria-label="&lt;span class=&#39;chapter-number&#39;&gt;10&lt;/span&gt;  &lt;span class=&#39;chapter-title&#39;&gt;공간데이터의 통계적 모형화&lt;/span&gt;">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class='chapter-number'>10</span>  <span class='chapter-title'>공간데이터의 통계적 모형화</span></span>
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="/10.html" class="pagination-link  aria-label=">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>  <span class="chapter-title">공간데이터의 통계적 모형화</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a  href="/12.html" class="pagination-link" aria-label="&lt;span class=&#39;chapter-number&#39;&gt;12&lt;/span&gt;  &lt;span class=&#39;chapter-title&#39;&gt;공간적 내삽&lt;/span&gt;">
-        <span class="nav-page-text"><span class='chapter-number'>12</span>  <span class='chapter-title'>공간적 내삽</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="/12.html" class="pagination-link" aria-label="&lt;span class='chapter-number'&gt;12&lt;/span&gt;  &lt;span class='chapter-title'&gt;공간적 내삽&lt;/span&gt;">
+        <span class="nav-page-text"><span class="chapter-number">12</span>  <span class="chapter-title">공간적 내삽</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
@@ -1132,7 +1095,5 @@ window.onload = () => {
 
 };
           </script>
-
 </body>
-
 </html>

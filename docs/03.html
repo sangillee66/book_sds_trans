@@ -303,7 +303,7 @@ window.Quarto = {
   <li><a href="#z-%EC%A2%8C%ED%91%9C%EC%99%80-m-%EC%A2%8C%ED%91%9C" id="toc-z-좌표와-m-좌표" class="nav-link" data-scroll-target="#z-%EC%A2%8C%ED%91%9C%EC%99%80-m-%EC%A2%8C%ED%91%9C"><span class="header-section-number">3.1.3</span> Z 좌표와 M 좌표</a></li>
   <li><a href="#%EC%97%A0%ED%94%84%ED%8B%B0-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC" id="toc-엠프티-지오메트리" class="nav-link" data-scroll-target="#%EC%97%A0%ED%94%84%ED%8B%B0-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC"><span class="header-section-number">3.1.4</span> 엠프티 지오메트리</a></li>
   <li><a href="#%EA%B0%9C%EC%9D%98-%EB%B6%80%EC%88%98%EC%A0%81%EC%9D%B8-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC" id="toc-개의-부수적인-지오메트리" class="nav-link" data-scroll-target="#%EA%B0%9C%EC%9D%98-%EB%B6%80%EC%88%98%EC%A0%81%EC%9D%B8-%EC%A7%80%EC%98%A4%EB%A9%94%ED%8A%B8%EB%A6%AC"><span class="header-section-number">3.1.5</span> 10개의 부수적인 지오메트리</a></li>
-  <li><a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%97%94%EC%BD%94%EB%94%A9%EA%B3%BC-%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EC%97%94%EC%BD%94%EB%94%A9" id="toc-텍스트-엔코딩과-바이너리-엔코딩" class="nav-link" data-scroll-target="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%97%94%EC%BD%94%EB%94%A9%EA%B3%BC-%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EC%97%94%EC%BD%94%EB%94%A9"><span class="header-section-number">3.1.6</span> 텍스트 엔코딩과 바이너리 엔코딩</a></li>
+  <li><a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%9D%B8%EC%BD%94%EB%94%A9%EA%B3%BC-%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EC%9D%B8%EC%BD%94%EB%94%A9" id="toc-텍스트-인코딩과-바이너리-인코딩" class="nav-link" data-scroll-target="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%9D%B8%EC%BD%94%EB%94%A9%EA%B3%BC-%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC-%EC%9D%B8%EC%BD%94%EB%94%A9"><span class="header-section-number">3.1.6</span> 텍스트 인코딩과 바이너리 인코딩</a></li>
   </ul>
 </li>
   <li>
@@ -419,7 +419,7 @@ window.Quarto = {
 </table>
 <div id="fig-3-1" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-sfgeometries-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.1: 심플 피처 지오메트리의 주요 유형
@@ -539,9 +539,9 @@ GEOMETRYCOLLECTION (
 </tbody>
 </table>
 <p><code>CIRCULARSTRING</code>, <code>COMPOUNDCURVE</code>, <code>CURVEPOLYGON</code>은 SFA 표준에는 포함되지 않지만, SQL-MM Part 3 표준에는 포함되어 있다. 위 표의 설명은 PostGIS 매뉴얼에서 인용한 것이다.</p>
-</section><section id="텍스트-엔코딩과-바이너리-엔코딩" class="level3" data-number="3.1.6"><h3 data-number="3.1.6" class="anchored" data-anchor-id="텍스트-엔코딩과-바이너리-엔코딩">
-<span class="header-section-number">3.1.6</span> 텍스트 엔코딩과 바이너리 엔코딩</h3>
-<p>심플 피처 표준에는 두 가지 인코딩 방식이 포함된다. 하나는 텍스트 인코딩, 다른 하나는 바이너리 인코딩이다. 위에서 사용된 WKT는 사람이 읽을 수 있는(human-readable) 방식이며, WKB(well-known binary) 인코딩은 기계가 읽을 수 있는(machine-readable) 방식이다. WKB 인코딩은 정보 손실이 없으며, 일반적인 텍스트 인코딩 및 디코딩보다 처리 속도가 빠르다. 이러한 이유로 WKB 인코딩은 R의 <strong>sf</strong> 패키지와 GDAL, GEOS, liblwgeom, s2geometry 라이브러리 간의 모든 통신에 사용된다(그림 1.7).</p>
+</section><section id="텍스트-인코딩과-바이너리-인코딩" class="level3" data-number="3.1.6"><h3 data-number="3.1.6" class="anchored" data-anchor-id="텍스트-인코딩과-바이너리-인코딩">
+<span class="header-section-number">3.1.6</span> 텍스트 인코딩과 바이너리 인코딩</h3>
+<p>심플 피처 표준에는 두 가지 인코딩 방식이 포함된다. 하나는 텍스트 인코딩(text encoding), 다른 하나는 바이너리 인코딩(binary encoding)이다. 위에서 사용된 WKT는 사람이 읽을 수 있는(human-readable) 방식이며, WKB(well-known binary) 인코딩은 기계가 읽을 수 있는(machine-readable) 방식이다. WKB 인코딩은 정보 손실이 없으며, 일반적인 텍스트 인코딩 및 디코딩보다 처리 속도가 빠르다. 이러한 이유로 WKB 인코딩은 R의 <strong>sf</strong> 패키지와 GDAL, GEOS, liblwgeom, s2geometry 라이브러리 간의 모든 통신에 사용된다(그림 1.7).</p>
 </section></section><section id="지오메트리에-적용되는-연산" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="지오메트리에-적용되는-연산">
 <span class="header-section-number">3.2</span> 지오메트리에 적용되는 연산</h2>
 <p>심플 피처 지오메트리의 속성을 추출할 수 있으며, 심플 피처 지오메트리들의 결합으로 새로운 지오메트리가 생성된 경우에도 그 속성을 추출할 수 있다. 이 절에서는 <em>기하</em> 속성에만 초점을 맞춘 연산을 간략히 다룬다. 비기하학적 피처 속성 분석은 5장에서 다룬다. 이 절의 일부 내용은 Pebesma (2018)에서 가져왔다.</p>
@@ -576,7 +576,7 @@ GEOMETRYCOLLECTION (
 </ul>
 <div id="fig-3-2" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-de9im-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.2: DE-9IM: 폴리곤의 내부, 경계, 외부(행)와 라인의 내부, 경계, 외부(열) 간의 교차(빨간색으로 표시)
@@ -814,7 +814,7 @@ GEOMETRYCOLLECTION (
 </table>
 <div id="fig-3-3" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-3" data-gallery="quarto-lightbox-gallery-3"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-glightbox="description: .lightbox-desc-3"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-vor-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.3: 포인트의 집합, 왼편은 컨벡스헐, 가운데는 보로노이 폴리곤, 오른편은 들로네 삼각망
@@ -862,7 +862,7 @@ GEOMETRYCOLLECTION (
 <p>다항 <code>intersection</code>과 <code>difference</code>는 단일 인수를 받는 형식이지만, 모든 쌍, 세 쌍, 네 쌍 등으로 확장되어 순차적으로 작동한다. 그림 3.4를 보자. 세 개의 상자가 모두 겹치는 영역을 어떻게 식별할 수 있을까? 이항 <code>intersection</code>을 사용하면 모든 쌍(1-1, 1-2, 1-3, 2-1, 2-2, 2-3, 3-1, 3-2, 3-3)에 대한 교차 결과를 얻을 수 있다. 그러나 이 방식만으로는 두 개 이상의 지오메트리가 동시에 교차하는 영역을 식별할 수 없다. 그림 3.4 오른쪽은 다항 <code>intersection</code>의 결과를 보여준다. 여기서는 하나, 둘, 혹은 그 <em>이상</em>의 지오메트리가 교차하여 생성된 7개의 상호 중복 없는 고유 지오메트리를 확인할 수 있다.</p>
 <div id="fig-3-4" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-4" data-gallery="quarto-lightbox-gallery-4"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-boxes-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.4: 왼쪽: 세 개의 정사각형이 서로 겹치고 있는데, 이들 모두가 겹치는 부분을 어떻게 확인할 수 있을까? 오른쪽: 상호 중복이 없는 고유한 다항 교차
@@ -871,7 +871,7 @@ GEOMETRYCOLLECTION (
 <p>유사하게, 집합 <span class="math inline">\(\{s_1,s_2,s_3,...\}\)</span>에 다항 <code>difference</code>를 적용하면 <span class="math inline">\(\{s_1,s_2-s_1,s_3-s_2-s_1,...\}\)</span>를 생성할 수 있다. 그 결과는 그림 3.5에 나타나 있다. 그림의 왼쪽은 원래 집합을, 오른쪽은 입력 지오메트리의 순서를 변경한 후의 집합을 보여준다. 이는 결과가 입력 지오메트리의 순서에 의존한다는 점을 명확히 하기 위함이다. 이렇게 얻어진 지오메트리들은 서로 겹치지 않는다.</p>
 <div id="fig-3-5" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-5" data-gallery="quarto-lightbox-gallery-5"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" data-glightbox="description: .lightbox-desc-5"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-diff-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.5: 박스들에 서로 다른 순서로 <code>differece</code>를 적용한 결과: 왼쪽은 원래 순서이며, 오른편은 반대 순서
@@ -913,7 +913,7 @@ d_i=d_0+[i\times \delta,(i+1)\times \delta)
 <p>일반적인 폴리곤 테셀레이션에서는 두 폴리곤이 공유하는 경계에 위치한 점의 할당이 모호할 수 있다. 그러나 규칙 테셀레이션에서는 좌측 닫힘(<code>[</code>) 및 우측 개방(<code>)</code>) 구간을 사용하여 이러한 모호성을 해소한다. 이는 <span class="math inline">\(y\)</span> 좌표에 음의 <span class="math inline">\(\delta\)</span> 값이, <span class="math inline">\(x\)</span> 좌표에 양의 <span class="math inline">\(\delta\)</span> 값이 적용된 래스터의 경우, 각 셀의 모서리 점들 중 좌측 상단의 점만을 해당 셀의 일부로 간주한다는 의미이다. 이로 인해 발생할 수 있는 예기치 못한 결과의 한 예가 그림 3.6에 나타나 있다.</p>
 <div id="fig-3-6" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="lightbox" data-glightbox="description: .lightbox-desc-6" data-gallery="quarto-lightbox-gallery-6"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="img-fluid figure-img"></a>
+<a href="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" data-glightbox="description: .lightbox-desc-6"><img src="https://r-spatial.org/book/03-Geometries_files/figure-html/fig-rasterizeline-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 그림&nbsp;3.6: 래스터화의 예기치 못한 결과: 각 셀의 좌측 상단 지점만 셀 내부로 간주되기 때문에, 대각선 아래에 위치하면서 붉은 선과 접촉한 셀들도 래스터로 전환되었다.
@@ -1351,7 +1351,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sangillee66/book_sds_trans/issues/new" class="toc-action"><i class="bi bi-github"></i>이슈 보고</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
