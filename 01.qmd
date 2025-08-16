@@ -106,7 +106,7 @@ ggplot() + geom_sf(data = nc_longer, aes(fill = value), linewidth = 0.4) +
   theme(panel.grid.major = element_line(color = "white"))
 ```
 
-!["미국 노스캐롤라이나 카운티별 영아돌연사증후군에 의한 사망아수의 패싯 지도, 1974\~1978년과 1979\~1984년"](https://r-spatial.org/book/01-hello_files/figure-html/fig-firstgather-1.png){#fig-1-2}
+![미국 노스캐롤라이나 카운티별 영아돌연사증후군에 의한 사망아수의 패싯 지도, 1974\~1978년과 1979\~1984년](https://r-spatial.org/book/01-hello_files/figure-html/fig-firstgather-1.png){#fig-1-2}
 
 리플릿(leaflet)을 사용하면 그림 1.3과 같은 인터랙티브 지도를 제작할 수 있다.
 
