@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -280,7 +314,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 15일</p>
+      <p class="date-modified">2025년 8월 17일</p>
     </div>
   </div>
     
@@ -289,7 +323,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header><p>이 책의 제1부에서는 공간데이터사이언스의 핵심 개념을 다룬다. 지도, 투영, 벡터 및 래스터 데이터의 구조, 소프트웨어, 속성과 서포트, 데이터 큐브 등의 개념을 익히게 된다. 이 부분에서 R의 비중은 크지 않으며, 주로 텍스트 출력이나 그래프 작성에만 사용된다. 따라서 독자가 내용에 집중할 수 있도록 R 코드를 제시하거나 설명하지 않는다. R은 제2부에서 본격적으로 다루어진다. 이 책의 온라인 버전(<a href="https://r-spatial.org/book/" class="uri">https://r-spatial.org/book/</a>)에서는 모든 R 코드를 확인할 수 있으며, 필요한 경우 클립보드에 복사해 실행해 볼 수 있다. R 코드 실행 결과는 <code>#</code> 기호로 시작하며, 코드 폰트로 표시된다.</p>
-<pre><code># Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE</code></pre>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>공간데이터사이언스 문제 해결을 위한 R 코드에 대한 보다 상세한 설명은 제2부부터 시작된다. 부록 B에는 R 데이터 구조에 대한 간략한 설명이 있으며, 더 자세한 내용은 Wickham(2014)을 참고하면 된다.</p>
 
 

@@ -1,12 +1,12 @@
 ---
 date-modified: last-modified
 number-sections: true
-format: 
-  html: 
+format:
+  html:
     toc: true
 code-link: true
 code-copy: true
-execute: 
+execute:
   warning: false
   error: false
   freeze: auto
@@ -23,7 +23,7 @@ editor: visual
 # Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE
 ```
 
-```         
+``` r
 # Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE
 ```
 

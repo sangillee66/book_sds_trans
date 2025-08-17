@@ -70,7 +70,7 @@ st_sf(elev = c(33.2, 52.1, 81.2),
 # 3 81.2   Id03 POINT (7.44 52.2)
 ```
 
-![sf 객체의 구조](https://r-spatial.org/book/images/sf_obj.png){#fig-7-1}
+![`sf` 객체의 구조](https://r-spatial.org/book/images/sf_obj.png){#fig-7-1}
 
 그림 7.1은 출력된 구성 요소에 대한 설명을 보여준다. 객체를 처음부터 생성하는 경우도 있지만, R에서의 공간데이터는 대체로 외부 소스에서 읽어온다. 이러한 외부 소스에는 다음과 같은 것들이 있다.
 
@@ -787,14 +787,14 @@ aggregate(r, circles, max)
 #| echo: false
 #| eval: false
 #| label: fig-7-7
-#| fig-cap: "트레이닝 데이터로 사용된 무작위 샘플 포인트: 빨간색은 해양부이고 노란색을 육지부를 나타낸다."
+#| fig-cap: "훈련 데이터로 사용된 무작위 샘플 포인트: 빨간색은 해양부이고 노란색을 육지부를 나타낸다."
 plot(r[,,,1], reset = FALSE)
 col <- rep("yellow", 20)
 col[c(8, 14, 15, 18, 19)] = "red"
 st_as_sf(e) |> st_coordinates() |> text(labels = 1:20, col = col)
 ```
 
-![트레이닝 데이터로 사용된 무작위 표본 포인트: 빨간색은 해양부이고 노란색을 육지부를 나타낸다.](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-rsample-1.png){#fig-7-7}
+![훈련 데이터로 사용된 무작위 표본 포인트: 빨간색은 해양부이고 노란색을 육지부를 나타낸다.](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-rsample-1.png){#fig-7-7}
 
 이 그림에서 포인트 8, 14, 15, 18, 19는 수부에, 나머지 포인트는 육지부에 위치함을 ‘육안’으로 확인할 수 있다. 선형판별('최대우도') 분류기를 적용한 결과, 그림 7.8과 같은 모형 예측 결과를 얻을 수 있다.
 
@@ -814,11 +814,11 @@ pr <- predict(rs, model)
 #| echo: false
 #| eval: false
 #| label: fig-7-8
-#| fig-cap: "그림 7.7의 트레이닝 데이터를 기반으로 한 육지부/수부 구분 선형 판별 분류 결과"
+#| fig-cap: "그림 7.7의 훈련 데이터를 기반으로 한 육지부/수부 구분 선형 판별 분류 결과"
 plot(pr[1], key.pos = 4, key.width = lcm(3.5), key.length = lcm(2))
 ```
 
-![그림 7.7의 트레이닝 데이터를 기반으로 한 육지부/수부 구분 선형 판별 분류 결과](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lda-1.png){#fig-7-8}
+![그림 7.7의 훈련 데이터를 기반으로 한 육지부/수부 구분 선형 판별 분류 결과](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-lda-1.png){#fig-7-8}
 
 또한, 그림 7.8에 표시된 레이어가 클래스 레이블을 가진 범주형 변수임을 확인할 수 있다.
 
@@ -832,7 +832,7 @@ plot(pr[1], key.pos = 4, key.width = lcm(3.5), key.length = lcm(2))
 plot(r)
 ```
 
-![30 m 해상도의 Landsat 6개 밴드를 90 m로 다운샘플한 결과로 브라질의 올린다의 예시이다.](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-firststars-1.png)
+![30 m 해상도의 Landsat 6개 밴드를 90 m로 다운샘플한 결과로 브라질의 올린다의 예시이다.](https://r-spatial.org/book/07-Introsf_files/figure-html/fig-firststars-1.png){#fig-7-9}
 
 베이스 플롯 함수를 `stars` 객체에 적용할 수 있으며, `plot(r)`로 생성된 결과는 그림 7.9에 나타나 있다. 기본 색상 스케일은 회색 톤을 사용하고, 모든 밴드의 데이터 분위수에 맞춰 명암 대비를 조정하는 ‘히스토그램 평활화’가 적용된다.(역자주: 히스토그램 평활화는 데이터의 분포를 재조정하여 시각적으로 더 유용하게 하고 세부 사항을 더 잘 드르나게 하는 기법이다. 예를 들어, 어두운 영상에서는 어두운 영역의 픽셀 값이 한쪽에 몰려 있는데, 히스토그램 평활화를 적용하면 이 픽셀 값의 범위를 더 넓게 확장(stretch)시켜 이미지를 더 밝고 선명하게 만들 수 있다.) `breaks = "equal"`로 설정하면 급폭이 동일한 등간격 분류법이 적용되며, 계급 단절값을 임의로 지정하는 것도 가능하다. 그런데 더 익숙한 시각화 방식은 그림 7.10에 나타난 RGB 또는 폴스(false) 컬러 합성일 것이다.
 

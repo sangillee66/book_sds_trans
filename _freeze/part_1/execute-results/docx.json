@@ -1,8 +1,8 @@
 {
-  "hash": "e00ece534ab1b3668c07b8b75be5affe",
+  "hash": "566c1c30a4687dcb836f063479555e1e",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ndate-modified: last-modified\nnumber-sections: true\nformat: \n  html: \n    toc: true\ncode-link: true\ncode-copy: true\nexecute: \n  warning: false\n  error: false\n  freeze: auto\neditor: visual\n---\n\n\n\n# 공간데이터\n\n이 책의 제1부에서는 공간데이터사이언스의 핵심 개념을 다룬다. 지도, 투영, 벡터 및 래스터 데이터의 구조, 소프트웨어, 속성과 서포트, 데이터 큐브 등의 개념을 익히게 된다. 이 부분에서 R의 비중은 크지 않으며, 주로 텍스트 출력이나 그래프 작성에만 사용된다. 따라서 독자가 내용에 집중할 수 있도록 R 코드를 제시하거나 설명하지 않는다. R은 제2부에서 본격적으로 다루어진다. 이 책의 온라인 버전(<https://r-spatial.org/book/>)에서는 모든 R 코드를 확인할 수 있으며, 필요한 경우 클립보드에 복사해 실행해 볼 수 있다. R 코드 실행 결과는 `#` 기호로 시작하며, 코드 폰트로 표시된다.\n\n\n\n::: {.cell}\n\n:::\n\n\n\n```         \n# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE\n```\n\n공간데이터사이언스 문제 해결을 위한 R 코드에 대한 보다 상세한 설명은 제2부부터 시작된다. 부록 B에는 R 데이터 구조에 대한 간략한 설명이 있으며, 더 자세한 내용은 Wickham(2014)을 참고하면 된다.\n",
+    "markdown": "---\ndate-modified: last-modified\nnumber-sections: true\nformat:\n  html:\n    toc: true\ncode-link: true\ncode-copy: true\nexecute:\n  warning: false\n  error: false\n  freeze: auto\neditor: visual\n---\n\n\n\n# 공간데이터\n\n이 책의 제1부에서는 공간데이터사이언스의 핵심 개념을 다룬다. 지도, 투영, 벡터 및 래스터 데이터의 구조, 소프트웨어, 속성과 서포트, 데이터 큐브 등의 개념을 익히게 된다. 이 부분에서 R의 비중은 크지 않으며, 주로 텍스트 출력이나 그래프 작성에만 사용된다. 따라서 독자가 내용에 집중할 수 있도록 R 코드를 제시하거나 설명하지 않는다. R은 제2부에서 본격적으로 다루어진다. 이 책의 온라인 버전(<https://r-spatial.org/book/>)에서는 모든 R 코드를 확인할 수 있으며, 필요한 경우 클립보드에 복사해 실행해 볼 수 있다. R 코드 실행 결과는 `#` 기호로 시작하며, 코드 폰트로 표시된다.\n\n\n\n::: {.cell}\n\n:::\n\n\n\n``` r\n# Linking to GEOS 3.11.1, GDAL 3.6.4, PROJ 9.1.1; sf_use_s2() is TRUE\n```\n\n공간데이터사이언스 문제 해결을 위한 R 코드에 대한 보다 상세한 설명은 제2부부터 시작된다. 부록 B에는 R 데이터 구조에 대한 간략한 설명이 있으며, 더 자세한 내용은 Wickham(2014)을 참고하면 된다.\n",
     "supporting": [
       "part_1_files"
     ],

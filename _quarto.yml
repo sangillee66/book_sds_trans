@@ -74,4 +74,48 @@ format:
     fig-title: "그림"
     table-title: "표"
     chapter-title: "장"
+  docx:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+
 editor: visual
+
+profiles: 
+  docx:
+    book: 
+      project:
+        output-dir: _docx
+      execute:
+        freeze: true
+      chapters:
+        - index.qmd
+        - part_1_docx.qmd
+        - 01.qmd
+        - 02.qmd
+        - 03.qmd
+        - 04.qmd
+        - 05.qmd
+        - 06.qmd
+        - part_2_docx.qmd
+        - 07.qmd
+        - 08.qmd
+        - 09.qmd
+        - part_3_docx.qmd
+        - 10.qmd
+        - 11.qmd
+        - 12.qmd
+        - 13.qmd
+        - 14.qmd
+        - 15.qmd
+        - 16.qmd
+        - 17.qmd      
+      appendices: # 이 부분을 추가합니다.
+        - A.qmd
+        - B.qmd
+    
+    format:
+      docx:
+        toc: true
+        toc-depth: 3        
+        number-sections: true

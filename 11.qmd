@@ -90,7 +90,7 @@ plot(q2, main = "")
 plot(xy, add = TRUE)
 ```
 
-![두 포인트 패턴의 3x3 방격 빈도](https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png){#fig-11-2}
+![두 포인트 패턴의 3 × 3 방격 빈도](https://r-spatial.org/book/11-PointPattern_files/figure-html/fig-quadrat-1.png){#fig-11-2}
 
 이 방격 빈도 정보를 이용하여 다음과 같이 $\chi^2$ 검정을 수행한다.
 

@@ -174,7 +174,7 @@ plot(st_geometry(nc), reset = FALSE, border = 'grey')
 plot(st_geometry(gr), add = TRUE)
 ```
 
-![노스케롤라이나 카운티 상의 타깃 블](https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png){#fig-5-2}
+![노스케롤라이나 카운티 상의 타깃 블록](https://r-spatial.org/book/05-Attributes_files/figure-html/fig-ncblocks-1.png){#fig-5-2}
 
 지오메트리를 결합하지 *않고도* 그룹별 합산값을 계산해야 하는 경우에는 공간 프레디케이트를 활용한다. 다만 이 방식에서는 하나의 레코드가 여러 그룹에 속할 수 있다는 점에 유의해야 한다. 예를 들어, 그림 5.2에서 직사각형을 타깃 에어리어로 설정하고, 각 직사각형과 *교차* 관계에 있는 카운티의 유병자를 합산하면 전체 합계는 훨씬 더 크게 나타날 것이다.
 
