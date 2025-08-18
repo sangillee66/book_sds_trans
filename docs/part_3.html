@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>공간데이터사이언스 개론 - 공간통계분석과 공간모델링</title>
+<title>공간데이터사이언스 개론 - 공간통계분석과 공간모형화</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,7 +112,7 @@ window.Quarto = {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="사이드바 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">공간통계분석과 공간모델링</h1>
+          <h1 class="quarto-secondary-nav-title">공간통계분석과 공간모형화</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -224,7 +224,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./part_3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">공간통계분석과 공간모델링</span></a>
+ <span class="menu-text">공간통계분석과 공간모형화</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="토글 섹션">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -316,7 +316,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">공간통계분석과 공간모델링</h1>
+<h1 class="title d-none d-lg-block">공간통계분석과 공간모형화</h1>
 </div>
 
 
@@ -328,7 +328,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">2025년 8월 17일</p>
+      <p class="date-modified">2025년 8월 18일</p>
     </div>
   </div>
     
@@ -339,7 +339,7 @@ window.Quarto = {
 </header>
 
 
-<p>이 책의 제1부와 제2부에서는 ’공간데이터 모델’과 관련된 핵심 개념들을 살펴보았다. 다룬 주제는 다음과 같다.</p>
+<p>이 책의 제1부와 제2부에서는 ’공간데이터 모형’과 관련된 핵심 개념들을 살펴보았다. 다룬 주제는 다음과 같다.</p>
 <ul>
 <li><p>실제 현상과 수치 표현의 관계(2장)</p></li>
 <li><p>좌표가 다양한 공간에서 정의되는 방식(2장과 4장)</p></li>
@@ -349,17 +349,17 @@ window.Quarto = {
 <li><p>심플 테셀레이션이 시공간 체적(볼륨)을 표현하는 방식(6장)</p></li>
 <li><p>이 개념을 데이터사이언스 소프트웨어에 적용하는 방법(7장)</p></li>
 </ul>
-<p>이 책의 제3부는 분량이 가장 많으며, 공간데이터의 <em>통계적</em> 모델링을 다룬다. 과학으로서 <em>통계학</em>은 관측값의 변동성을 기술하고 이해하며, 미래 관측값을 예측하는 데 중점을 둔다. 관측값은 보통 다음과 같이 모델링된다.</p>
+<p>이 책의 제3부는 분량이 가장 많으며, 공간데이터의 <em>통계적</em> 모형화를 다룬다. 과학으로서 <em>통계학</em>은 관측값의 변동성을 기술하고 이해하며, 미래 관측값을 예측하는 데 중점을 둔다. 관측값은 보통 다음과 같이 모델링된다.</p>
 <p><span class="math display">\[
 \text{관측값}=\text{설명된 부분}+\text{잔여 부분}
 \]</span></p>
-<p>여기서 ’잔여 부분’은 측정 오차를 포함해 예측 변수로 설명되지 않는 변동성을 의미할 뿐만 아니라, 낮은 모델 적합도나 모델 오지정(misspecification)에서 비롯된 변동성도 포함한다. 공간데이터의 경우에는 항이 하나 더 추가되어 다음과 같이 쓴다.</p>
+<p>여기서 ’잔여 부분’은 측정 오차를 포함해 예측 변수로 설명되지 않는 변동성을 의미할 뿐만 아니라, 낮은 모형 적합도나 모형 오지정(misspecification)에서 비롯된 변동성도 포함한다. 공간데이터의 경우에는 항이 하나 더 추가되어 다음과 같이 쓴다.</p>
 <p><span class="math display">\[
 \text{관측값}=\text{설명된 부분}+\text{매끄러운 부분}+\text{잔여 부분}
 \]</span></p>
-<p>여기서 ‘매끄러운 부분’은 외부 예측 변수로는 설명되지 않지만 뚜렷한 ’매끄러운’ 공간 패턴을 보이는 성분을 뜻하고, ‘잔차’는 이런 패턴을 보이지 않는 ’거친’ 변동성을 뜻한다. 이 ‘매끄러운’ 항은 좌표상의 기저함수(스플라인, 스무더)로 모델링하거나, 공간적 자기상관을 가진 랜덤 항으로 모델링할 수 있다.</p>
-<p>10장은 공간데이터의 통계적 모델링을 소개하며, 이를 통해 후속 장의 내용을 준비하는 동시에 후속 장에서 자세히 다루지 않는 사항도 함께 다룬다. 또한 이 장은 제1부에서 소개한 개념, 특히 5장에서 논의한 ‘서포트’ 개념과의 연계를 시도한다.</p>
-<p>공간데이터의 통계적 모델링 전반과 세부적인 전산 소프트웨어 활용을 한 권에 모두 담는 것은 애초에 불가능하다. 예를 들어, <strong>spatstat</strong> 책(Baddeley, Rubak, and Turner, 2015)은 공간 포인트 패턴 데이터와 R만을 다루는데도 분량이 약 850쪽에 이른다. 이 제3부에서는 ‘고전적인’ 공간통계 주제 세 가지, 즉 포인트 패턴 데이터 분석(11장), 지구통계학적 데이터 분석(12장과 13장), 에어리어(래티스) 데이터 분석(14~17장)에 집중한다. 또한, 본문 곳곳에서 통계 방법론과 R 구현과 관련된 참고 사항을 가능한 한 많이 제시할 것이다.</p>
+<p>여기서 ‘매끄러운 부분’은 외부 예측 변수로는 설명되지 않지만 뚜렷한 ’매끄러운’ 공간 패턴을 보이는 성분을 뜻하고, ‘잔차’는 이런 패턴을 보이지 않는 ’거친’ 변동성을 뜻한다. 이 ‘매끄러운’ 항은 좌표상의 기저함수(스플라인, 스무더)로 모형화하거나, 공간적 자기상관을 가진 랜덤 항으로 모델링할 수 있다.</p>
+<p>10장은 공간데이터의 통계적 모형화를 소개하며, 이를 통해 후속 장의 내용을 준비하는 동시에 후속 장에서 자세히 다루지 않는 사항도 함께 다룬다. 또한 이 장은 제1부에서 소개한 개념, 특히 5장에서 논의한 ‘서포트’ 개념과의 연계를 시도한다.</p>
+<p>공간데이터의 통계적 모형화 전반과 세부적인 전산 소프트웨어 활용을 한 권에 모두 담는 것은 애초에 불가능하다. 예를 들어, <strong>spatstat</strong> 책(Baddeley, Rubak, and Turner, 2015)은 공간 포인트 패턴 데이터와 R만을 다루는데도 분량이 약 850쪽에 이른다. 이 제3부에서는 ‘고전적인’ 공간통계 주제 세 가지, 즉 포인트 패턴 데이터 분석(11장), 지구통계학적 데이터 분석(12장과 13장), 에어리어(래티스) 데이터 분석(14~17장)에 집중한다. 또한, 본문 곳곳에서 통계 방법론과 R 구현과 관련된 참고 사항을 가능한 한 많이 제시할 것이다.</p>
 
 
 
